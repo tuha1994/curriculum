@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-This is the first of the two part course where we dig deeper into HTML and CSS.
+Đây là bài đầu tiên trong khóa học gồm hai phần, nơi chúng ta sẽ tìm hiểu sâu hơn về HTML và CSS.
 
-Our foundations lessons by design only scratched the surface of what's possible. We wanted to give you all of the bare necessities for getting started so you could move on and be somewhat productive as quickly as possible, but now it's time to slow down and dig in!
+Các bài học Foundations của chúng ta, theo chủ ý, mới chỉ đề cập sơ qua về những điều có thể làm được. Mục tiêu là cung cấp cho bạn những kiến thức thiết yếu để bắt đầu, giúp bạn nhanh chóng tiếp tục học và làm được một số việc hữu ích. Nhưng bây giờ là lúc chậm lại và tìm hiểu sâu hơn!
 
-You have probably realized by now that there are many more HTML elements than we mentioned in our foundations content. Throughout this course, we'll be hitting the rest of the important elements such as forms and tables.
+Có lẽ đến lúc này bạn đã nhận ra rằng có nhiều phần tử HTML hơn những gì chúng ta đã đề cập trong nội dung Foundations. Trong suốt khóa học này, chúng ta sẽ tìm hiểu những phần tử quan trọng còn lại, chẳng hạn như form và bảng.
 
-There is also a *lot* more that you can do with CSS that you'll learn throughout this course, such as variables, functions, shadows and of course grid layouts! So buckle up! By the time you finish this course, you'll be able to recreate just about any web design you can find on the internet, which is an important skill to carry forward. Even if you are not shooting for a front-end specific job, being able to make your portfolio pieces look nice is important when it comes to making yourself stand out.
+CSS cũng còn rất nhiều điều thú vị mà bạn sẽ học trong khóa này, chẳng hạn như biến, hàm, bóng đổ và tất nhiên là cả bố cục grid! Vì vậy, hãy chuẩn bị tinh thần nhé! Khi hoàn thành khóa học, bạn sẽ có thể tái tạo gần như mọi thiết kế web mà bạn tìm thấy trên internet. Đây là một kỹ năng quan trọng để tiếp tục phát triển. Ngay cả khi bạn không định theo một công việc chuyên về front-end, khả năng làm cho các sản phẩm trong portfolio trông đẹp mắt cũng rất quan trọng để giúp bạn nổi bật.
 
-You’ll learn about animations, accessibility, and responsive design later in the curriculum, in the Advanced HTML and CSS course.
+Sau này trong lộ trình, ở khóa Advanced HTML and CSS, bạn sẽ học về animation, khả năng tiếp cận (accessibility) và thiết kế responsive.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài.
 
-- Get an overview of additional HTML elements and CSS concepts that will be covered in this course.
+- Có cái nhìn tổng quan về các phần tử HTML bổ sung và các khái niệm CSS sẽ được đề cập trong khóa học này.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through this [HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) to get an overview of what other HTML elements are available to you. No need to commit this to memory because you'll be learning the important parts as we go, but having a glance now will help the content stick later.
-1. Take a glance at a somewhat overwhelming looking [CSS Cheat Sheet](https://htmlcheatsheet.com/css/).  Again, we don't need you to learn anything specific, or memorize anything from this list. Just use it to get a feel for what you still have left to learn!
+1. Đọc qua [tài liệu tham khảo về các phần tử HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) này để biết những phần tử HTML khác nào đang có sẵn. Bạn không cần ghi nhớ ngay, vì chúng ta sẽ học những phần quan trọng dần dần. Tuy vậy, xem qua từ bây giờ sẽ giúp bạn ghi nhớ nội dung tốt hơn về sau.
+1. Xem qua [CSS Cheat Sheet](https://htmlcheatsheet.com/css/) có phần hơi choáng ngợp này. Một lần nữa, bạn không cần học hay ghi nhớ điều gì cụ thể trong danh sách. Chỉ cần dùng nó để hình dung những điều bạn vẫn còn phải học!
 
 </div>

@@ -1,50 +1,50 @@
-### Introduction
+### Giới thiệu
 
-There are many different units that you can use to define sizes in CSS. This lesson will introduce the most important to you, and show you where to learn about the rest of them.
+Có nhiều đơn vị khác nhau bạn có thể sử dụng để định nghĩa kích thước trong CSS. Bài này sẽ giới thiệu những đơn vị quan trọng nhất đối với bạn và chỉ cho bạn nơi tìm hiểu về các đơn vị còn lại.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- You'll learn the difference between relative and absolute units.
-- You'll learn when it's appropriate to use the different units.
+- Bạn sẽ học sự khác nhau giữa đơn vị tương đối và đơn vị tuyệt đối.
+- Bạn sẽ học khi nào nên dùng từng loại đơn vị.
 
-### Absolute units
+### Đơn vị tuyệt đối
 
-Absolute units are those that are always the same in any context. `px` is an absolute unit because the size of a pixel doesn't change relative to anything else on the page. In fact, `px` is the only absolute unit you should be using for web projects. The rest of them make more sense in a print setting because they are related to physical units such as `in` (inch) and `cm` (centimeter).
+Đơn vị tuyệt đối là những đơn vị luôn có cùng giá trị trong mọi ngữ cảnh. `px` là một đơn vị tuyệt đối vì kích thước của một pixel không thay đổi tương đối với bất kỳ thứ gì khác trên trang. Trên thực tế, `px` là đơn vị tuyệt đối duy nhất bạn nên dùng cho các dự án web. Những đơn vị còn lại phù hợp hơn với môi trường in ấn vì chúng liên quan đến các đơn vị vật lý như `in` (inch) và `cm` (centimeter).
 
-### Relative units
+### Đơn vị tương đối
 
-Relative units are units that can change based on their context. There are several of them that you are likely to encounter and want to use.
+Đơn vị tương đối là những đơn vị có thể thay đổi tùy theo ngữ cảnh. Có một số đơn vị bạn có thể sẽ gặp và muốn sử dụng.
 
-#### em and rem
+#### em và rem
 
-`em` and `rem` both refer to a font size, though they are often used to define other sizes in CSS. You'll see both of them often so we're going to explain both, but as a rule-of-thumb, prefer `rem`.
+`em` và `rem` đều liên quan đến cỡ chữ, dù chúng thường được dùng để định nghĩa các kích thước khác trong CSS. Bạn sẽ thường xuyên gặp cả hai, vì vậy chúng ta sẽ giải thích cả hai, nhưng theo nguyên tắc chung, hãy ưu tiên `rem`.
 
-`1em` is the `font-size` of an element (or the element's parent if you're using it to set `font-size`). So, for example, if an element's `font-size` is `16px`, then setting its width to `4em` would make its width `64px` (`16 * 4 == 64`).
+`1em` là `font-size` của một phần tử (hoặc phần tử cha của nó nếu bạn dùng đơn vị này để đặt `font-size`). Ví dụ, nếu `font-size` của một phần tử là `16px`, việc đặt chiều rộng của nó thành `4em` sẽ khiến chiều rộng là `64px` (`16 * 4 == 64`).
 
-`1rem` is the `font-size` of the root element (either `:root` or `html`). The math works the same with `rem` as it did with `em`, but without the added complexity of keeping track of the parent's font size. Relying on `em` could mean that a particular size could change if the context changes, which is very likely not the behavior you want.
+`1rem` là `font-size` của phần tử gốc (có thể là `:root` hoặc `html`). Phép tính hoạt động giống với `rem` như với `em`, nhưng không có sự phức tạp do phải theo dõi cỡ chữ của phần tử cha. Việc phụ thuộc vào `em` có thể khiến một kích thước thay đổi khi ngữ cảnh thay đổi; rất có thể đó không phải hành vi bạn muốn.
 
-Using a relative size like `rem` to define font sizes across your website *is* recommended. Many browsers allow users to change the base font-size to increase readability. If at all possible, it is advisable to respect a user's wishes regarding font size. You'll learn more about this from the reading assignments.
+Dùng kích thước tương đối như `rem` để định nghĩa cỡ chữ trên toàn website là điều được khuyến nghị. Nhiều trình duyệt cho phép người dùng thay đổi cỡ chữ cơ sở để tăng khả năng đọc. Nếu có thể, bạn nên tôn trọng mong muốn của người dùng về cỡ chữ. Bạn sẽ tìm hiểu thêm về điều này trong các bài đọc được giao.
 
-#### Viewport units
+#### Đơn vị viewport
 
-The units `vh` and `vw` relate to the size of the viewport. Specifically, `1vh` is equal to `1%` of the viewport height and `1vw` is equal to `1%` of the viewport width. These can be useful any time you want something to be sized relative to the viewport, examples including full-height heroes and full-screen app-like interfaces.
+Các đơn vị `vh` và `vw` liên quan đến kích thước viewport. Cụ thể, `1vh` bằng `1%` chiều cao viewport và `1vw` bằng `1%` chiều rộng viewport. Chúng hữu ích bất cứ khi nào bạn muốn một thứ được định kích thước tương đối với viewport, chẳng hạn hero có chiều cao toàn màn hình và giao diện giống ứng dụng chiếm toàn màn hình.
 
-### So many units!
+### Có quá nhiều đơn vị!
 
-If you look up all the different units available in CSS, even just for [length units](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length), you'll see *absolutely loads*. How do you know which one to use and when?
+Nếu tra cứu tất cả đơn vị có trong CSS, ngay cả chỉ [các đơn vị độ dài](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/length), bạn sẽ thấy có *rất nhiều*. Làm sao biết nên dùng đơn vị nào và khi nào?
 
-Try not to look for rules for what situations to use what units in. Each unit does a different thing, so just like any other code, think about how you want something to behave and what instructions you want to write, then look into what unit(s) may help you with that.
+Đừng cố tìm các quy tắc cứng nhắc về việc dùng đơn vị nào trong tình huống nào. Mỗi đơn vị có tác dụng khác nhau, vì vậy cũng như với mọi đoạn mã khác, hãy nghĩ về cách bạn muốn một thứ hoạt động và chỉ dẫn bạn muốn viết, rồi tìm hiểu xem đơn vị nào có thể giúp bạn làm điều đó.
 
-You may want a certain margin size to be based off (and thus scale with) the root font size, in which case you'd use `rem`. But `rem` for a different margin may not make sense, and you actually want it fixed to a `px` value. Maybe you want this div's width to be half of its parent's, in which case a width of `50%` would make sense, but that div over there you want to be half whatever the viewport width is, in which case `%` would not make sense but `vw` would. You're not going to be memorizing these any time soon, nor would it help much to do so, so don't worry about looking into things when needed (which goes for anything in your programming journey).
+Có thể bạn muốn một kích thước margin dựa trên (và do đó thay đổi theo) cỡ chữ gốc, khi đó bạn sẽ dùng `rem`. Nhưng `rem` có thể không phù hợp cho một margin khác, và bạn thực sự muốn nó cố định bằng giá trị `px`. Có thể bạn muốn chiều rộng của div này bằng một nửa phần tử cha, khi đó chiều rộng `50%` hợp lý; nhưng với div kia, bạn muốn nó bằng một nửa chiều rộng viewport, nên `%` không phù hợp mà `vw` mới phù hợp. Bạn sẽ không ghi nhớ hết những điều này trong thời gian ngắn, và việc ghi nhớ cũng không giúp ích nhiều, nên đừng ngại tra cứu khi cần (điều này đúng với mọi thứ trong hành trình lập trình của bạn).
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. [CSS values and units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units) covers all the available units.
-1. The article [CSS units](https://web.archive.org/web/20251130034321/https://codyloyd.com/2021/css-units/) goes in depth on how and when you might want to use `em`, `rem`, or `px`.
-1. [Fun with Viewport Units](https://css-tricks.com/fun-viewport-units/) demonstrates some interesting things you can do with `vh` and `vw`.
+1. [CSS values and units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units) trình bày tất cả các đơn vị hiện có.
+1. Bài viết [CSS units](https://web.archive.org/web/20251130034321/https://codyloyd.com/2021/css-units/) đi sâu vào cách thức và thời điểm bạn có thể muốn dùng `em`, `rem` hoặc `px`.
+1. [Fun with Viewport Units](https://css-tricks.com/fun-viewport-units/) trình bày một số điều thú vị bạn có thể làm với `vh` và `vw`.
 
 </div>

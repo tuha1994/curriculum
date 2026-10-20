@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-Custom properties (also known as CSS variables) can be a really useful and powerful tool when writing our CSS files. In short, they allow us to reference a CSS value however many times we want throughout a file. By using custom properties, instead of having to update every single instance of a specific value ("This shade of red is too light, let's change the shade on all seven of these selectors"), we only need to update a single instance: the custom property itself. Not only that, but custom properties can help us keep colors consistent throughout a project, something that will be really helpful as projects get larger.
+Custom properties (còn gọi là biến CSS) có thể là một công cụ rất hữu ích và mạnh mẽ khi viết các file CSS. Nói ngắn gọn, chúng cho phép chúng ta tham chiếu đến một giá trị CSS bao nhiêu lần tùy ý trong một file. Nhờ custom properties, thay vì phải cập nhật từng nơi xuất hiện của một giá trị cụ thể ("Màu đỏ này quá nhạt, hãy đổi màu ở cả bảy selector này"), chúng ta chỉ cần cập nhật một nơi duy nhất: chính custom property đó. Không chỉ vậy, custom properties còn giúp giữ màu sắc nhất quán trong toàn dự án, điều sẽ rất hữu ích khi dự án lớn dần.
 
-We can even redefine custom properties under different contexts, which is incredibly useful for creating themes, such as the dark and light themes you see on many websites these days.
+Chúng ta thậm chí có thể định nghĩa lại custom properties trong những ngữ cảnh khác nhau, cực kỳ hữu ích khi tạo theme, chẳng hạn theme tối và sáng mà bạn thấy trên nhiều website hiện nay.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- How to declare custom properties.
-- How to use a custom property in a rule declaration.
-- The scope of custom properties.
-- The root selector.
-- Using media queries.
+- Cách khai báo custom properties.
+- Cách sử dụng custom property trong một khai báo rule.
+- Phạm vi của custom properties.
+- Selector gốc.
+- Sử dụng media query.
 
-### Using custom properties
+### Sử dụng custom properties
 
-The syntax for declaring and accessing a custom property is not too different from how we write normal rule declarations:
+Cú pháp khai báo và truy cập custom property không khác quá nhiều so với cách chúng ta viết các khai báo rule thông thường:
 
 ```css
 .error-modal {
@@ -30,13 +30,13 @@ The syntax for declaring and accessing a custom property is not too different fr
 }
 ```
 
-That's it! First, we declare our custom property with a double hyphen followed by a case-sensitive, hyphen-separated property name (`color-error-text` wouldn't be the same as `Color-Error-Text`) which can be whatever name we want. The use of Kebab case (single hyphens to separate words) is very important here because spaces are not valid (`--color error text` would not work). Then we can store any valid CSS value in our newly declared custom property, whether it be a color value, shorthand values, or even a more complex function, just to give you a few examples.
+Vậy là xong! Trước tiên, chúng ta khai báo custom property bằng hai dấu gạch ngang, theo sau là tên property phân biệt chữ hoa chữ thường và các từ được ngăn cách bằng dấu gạch ngang (`color-error-text` không giống `Color-Error-Text`), tên này có thể tùy ý. Việc dùng Kebab case (dấu gạch ngang đơn để ngăn cách các từ) rất quan trọng vì khoảng trắng không hợp lệ (`--color error text` sẽ không hoạt động). Sau đó, chúng ta có thể lưu bất kỳ giá trị CSS hợp lệ nào vào custom property vừa khai báo, dù đó là giá trị màu, giá trị viết tắt hay thậm chí một hàm phức tạp hơn.
 
-When we want to access a custom property, we use the `var()` function as the value of a CSS property, and then place our custom property inside of the parenthesis (including the double hyphen at the beginning).
+Khi muốn truy cập custom property, chúng ta dùng hàm `var()` làm giá trị của một thuộc tính CSS, rồi đặt custom property bên trong cặp dấu ngoặc đơn (bao gồm cả hai dấu gạch ngang ở đầu).
 
-#### Fallback values
+#### Giá trị dự phòng
 
-The `var()` function actually accepts two parameters. The first parameter we've already gone over, which is the custom property we want to assign. The second parameter is an optional fallback value. When a fallback value is provided in addition to a custom property, the fallback value will be used if the custom property is invalid or hasn't been declared yet. We can even pass in *another* custom property as a fallback, which can have *its own* fallback value as well!
+Hàm `var()` thực ra nhận hai tham số. Tham số đầu tiên là custom property chúng ta muốn gán, như đã trình bày. Tham số thứ hai là giá trị dự phòng tùy chọn. Khi cung cấp giá trị dự phòng cùng với custom property, giá trị dự phòng sẽ được dùng nếu custom property không hợp lệ hoặc chưa được khai báo. Chúng ta thậm chí có thể truyền một custom property *khác* làm giá trị dự phòng, và custom property đó cũng có thể có giá trị dự phòng *riêng*!
 
 ```css
 .fallback {
@@ -47,13 +47,13 @@ The `var()` function actually accepts two parameters. The first parameter we've 
 }
 ```
 
-In the above example, our `background-color` property would have a value of `black` and our `color` property would have a value of `white`. If the `--color-text` custom property was invalid or didn't exist, the fallback to our fallback would take over and the `color` property would have a value of `yellow`.
+Trong ví dụ trên, thuộc tính `background-color` sẽ có giá trị `black` và thuộc tính `color` sẽ có giá trị `white`. Nếu custom property `--color-text` không hợp lệ hoặc không tồn tại, giá trị dự phòng cho giá trị dự phòng sẽ được dùng, và thuộc tính `color` sẽ có giá trị `yellow`.
 
-### Scope
+### Phạm vi
 
-In the first example above, you may have noticed that we declared and then accessed our custom properties within the same declaration block. That's because the scope of a custom property is determined by the selector. This scope includes the selector the custom property was declared for as well as any descendants of that selector. If you're familiar with how scope works in JavaScript, this sort of behavior should feel a little similar.
+Trong ví dụ đầu tiên, có thể bạn đã nhận thấy chúng ta khai báo rồi truy cập custom properties trong cùng một declaration block. Đó là vì phạm vi của custom property được xác định bởi selector. Phạm vi này bao gồm selector nơi custom property được khai báo cùng mọi hậu duệ của selector đó. Nếu bạn quen với cách hoạt động của scope trong JavaScript, hành vi này sẽ khá tương tự.
 
-In the example below, only the element with the `cool-paragraph` class would get styled with a red background since it's a descendant of the element where our custom property is declared.
+Trong ví dụ dưới đây, chỉ phần tử có class `cool-paragraph` được tạo nền màu đỏ, vì nó là hậu duệ của phần tử nơi custom property được khai báo.
 
 ```html
 <div class="cool-div">
@@ -77,11 +77,11 @@ In the example below, only the element with the `cool-paragraph` class would get
 }
 ```
 
-#### The :root selector
+#### Selector :root
 
-While there may be times where you will want to limit the scope of a custom property, you may want to be able to use other custom properties on many, unrelated selectors. One workaround would be declaring the same custom property on a bunch of selectors, but that defeats one of the purposes of using custom properties in the first place (the ease of changing multiple instances of a value at once).
+Dù đôi khi bạn muốn giới hạn phạm vi của custom property, có thể bạn cũng muốn dùng các custom property khác trên nhiều selector không liên quan. Một cách giải quyết là khai báo cùng một custom property trên nhiều selector, nhưng như vậy lại đi ngược một trong những mục đích của custom properties (dễ thay đổi nhiều nơi chứa một giá trị cùng lúc).
 
-A better solution is declaring those custom properties on the `:root` selector, which is essentially the same thing as the `html` selector except it has a higher specificity.
+Cách tốt hơn là khai báo các custom property trên selector `:root`, về cơ bản tương đương selector `html` nhưng có specificity cao hơn.
 
 ```html
 <p class="cool-paragraph">Lorem ipsum dolor sit amet.</p>
@@ -103,55 +103,55 @@ A better solution is declaring those custom properties on the `:root` selector, 
 }
 ```
 
-By declaring our custom property on the `:root` selector in the example above, we can access it on *any* other valid selector within our CSS file, since any other selector would be considered a descendant of the `:root` selector.
+Khi khai báo custom property trên selector `:root` trong ví dụ trên, chúng ta có thể truy cập nó trên *bất kỳ* selector hợp lệ nào khác trong file CSS, vì mọi selector khác đều được xem là hậu duệ của selector `:root`.
 
-### Creating themes with custom properties
+### Tạo theme bằng custom properties
 
-Beyond allowing us to access custom properties more globally, the `:root` selector gives us one way to add themes to our pages:
+Ngoài việc cho phép truy cập custom properties một cách toàn cục hơn, selector `:root` còn cung cấp một cách để thêm theme vào các trang của chúng ta:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="PojVRMb" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-<span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PojVRMb">
+<span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PojVRMb">
 Theme Toggle | CSS Custom Properties</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-on <a href="https://codepen.io">CodePen</a>.</span>
+trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-First, since we don’t have direct access to the root element in the HTML tab on codepen, we’ve applied a default class of `dark` using the settings menu. Feel free to open the pen and change this setting to see how it behaves! Next in our CSS we created two scopes for our custom properties on the `:root` selector, one for when our `html` (or root) element has a class of `dark` and another for when it has a class of `light`. Our other selectors then use the values of any custom properties depending on which class is currently present on our root element.
+Trước tiên, vì không có quyền truy cập trực tiếp vào phần tử gốc trong tab HTML trên codepen, chúng ta đã áp dụng class mặc định `dark` bằng menu cài đặt. Bạn cứ mở pen và thay đổi cài đặt này để xem nó hoạt động thế nào! Tiếp theo, trong CSS, chúng ta tạo hai scope cho custom properties trên selector `:root`: một scope dành cho trường hợp phần tử `html` (hoặc root) có class `dark`, và một scope dành cho trường hợp nó có class `light`. Sau đó, các selector khác sử dụng giá trị của những custom properties tùy theo class nào hiện có trên phần tử root.
 
-#### Media queries
+#### Media query
 
-Giving users the ability to toggle a theme themselves is great, but there's another option for setting a theme that you may have come across on certain sites or applications: using the user's theme setting from their operating system or user agent (like a browser). This can be done using the `prefers-color-scheme` media query, which lets you apply different styles based on the user's device or settings, like screen size or theme preference (light/dark mode).
+Cho người dùng khả năng tự chuyển theme là điều tuyệt vời, nhưng còn một cách khác để đặt theme mà bạn có thể đã gặp trên một số website hoặc ứng dụng: dùng cài đặt theme của người dùng từ hệ điều hành hoặc user agent (chẳng hạn trình duyệt). Việc này có thể thực hiện bằng media query `prefers-color-scheme`, cho phép bạn áp dụng các style khác nhau dựa trên thiết bị hoặc cài đặt của người dùng, như kích thước màn hình hoặc tùy chọn theme (chế độ sáng/tối).
 
-The `prefers-color-scheme` query checks if the user has selected a theme on their OS or browser. Don’t worry, we’ll cover media queries in more detail later. For now, try changing your OS or browser theme to see the example update in real time!
+Query `prefers-color-scheme` kiểm tra xem người dùng đã chọn theme trên hệ điều hành hoặc trình duyệt hay chưa. Đừng lo, chúng ta sẽ tìm hiểu media query chi tiết hơn sau. Hiện tại, hãy thử thay đổi theme của hệ điều hành hoặc trình duyệt để xem ví dụ cập nhật theo thời gian thực!
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="powGZzE" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-<span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/powGZzE">
+<span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/powGZzE">
 Theme Query | CSS Custom Properties</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-on <a href="https://codepen.io">CodePen</a>.</span>
+trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-We first added custom properties on the `:root` element outside of the media query. This gives us a default theme in case a user doesn't have a preference set on their OS or user agent, or if a browser doesn't support the media query. In this case, we're using our "light" theme colors as the default. Then we added a `prefers-color-scheme` media query for when a user has a dark theme set in their preferences.
+Trước tiên, chúng ta thêm custom properties trên phần tử `:root`, bên ngoài media query. Việc này tạo theme mặc định trong trường hợp người dùng chưa đặt tùy chọn trên hệ điều hành hoặc user agent, hoặc trình duyệt không hỗ trợ media query. Trong trường hợp này, chúng ta dùng màu của theme "light" làm mặc định. Sau đó, chúng ta thêm media query `prefers-color-scheme` cho trường hợp người dùng đặt theme tối trong tùy chọn của họ.
 
-Using the `prefers-color-scheme` media query can be pretty helpful for users since it doesn't require them to manually change the theme to their preferred one. That said, you need to be aware of a few things when it comes to using this media query:
+Sử dụng media query `prefers-color-scheme` khá hữu ích cho người dùng vì họ không cần tự chuyển sang theme mong muốn. Tuy vậy, bạn cần lưu ý một số điều khi dùng media query này:
 
-1. Only `dark` and `light` are valid values for the media query, so you can't use it to implement any themes beyond these two basic ones.
-1. The `light` value for the media query is actually for when a user has a light theme specified *or* when they have no preference set.
-1. It doesn't allow users to change the theme themselves, which can still be important in cases where a user might want to use the theme opposite of their OS/user agent preferred one for whatever reason.
+1. Chỉ `dark` và `light` là các giá trị hợp lệ cho media query, nên bạn không thể dùng nó để triển khai theme nào ngoài hai theme cơ bản này.
+1. Giá trị `light` của media query thực sự dùng cho trường hợp người dùng chỉ định theme sáng *hoặc* chưa đặt tùy chọn nào.
+1. Nó không cho phép người dùng tự thay đổi theme, điều vẫn có thể quan trọng khi người dùng muốn dùng theme đối lập với theme ưa thích của hệ điều hành/user agent vì bất kỳ lý do nào.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. This [video on CSS custom properties](https://www.youtube.com/watch?v=PHO6TBq_auI) is a great introduction. Go ahead and watch it.
-1. Read through MDN's [Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties#inheritance_of_custom_properties) page starting at the "Inheritance of custom properties" section.
-1. Watch [Using CSS custom properties](https://www.youtube.com/watch?v=_2LwjfYc1x8) by Kevin Powell, which shows neat ways to use custom properties.
-1. Open the inspector on this page to inspect the styles and see how Odin uses some custom properties.
+1. [Video về custom properties trong CSS](https://www.youtube.com/watch?v=PHO6TBq_auI) là phần giới thiệu tuyệt vời. Hãy xem video này.
+1. Đọc trang MDN [Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties#inheritance_of_custom_properties), bắt đầu từ phần "Inheritance of custom properties".
+1. Xem [Using CSS custom properties](https://www.youtube.com/watch?v=_2LwjfYc1x8) của Kevin Powell để tìm hiểu những cách hay dùng custom properties.
+1. Mở inspector trên trang này để kiểm tra các style và xem Odin sử dụng một số custom properties như thế nào.
 
 </div>

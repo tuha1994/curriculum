@@ -1,32 +1,32 @@
-### Introduction
+### Giới thiệu
 
-Browsers apply a set of default styles to every webpage. You may not have thought about this directly, but you have undoubtedly encountered it.
+Trình duyệt áp dụng một tập hợp style mặc định cho mọi trang web. Có thể bạn chưa từng trực tiếp nghĩ về điều này, nhưng chắc chắn đã gặp chúng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- You'll learn about default browser styles.
-- You'll learn how to use a CSS reset to remove or change those default styles.
+- Bạn sẽ tìm hiểu về style mặc định của trình duyệt.
+- Bạn sẽ học cách dùng CSS reset để loại bỏ hoặc thay đổi những style mặc định đó.
 
-### What are default styles and where do they come from?
+### Style mặc định là gì và chúng đến từ đâu?
 
-As you have worked on projects, you likely observed default styles applied to certain elements, such as larger and bolder headings on `h1` elements, and blue, underlined links on `a` elements. There is also a good chance you struggled with things like default margins and padding. These styles are part of the user-agent stylesheets, ensuring basic styling for webpages without CSS. Each browser has its own set of user-agent stylesheets so the default styles do vary slightly between browsers.
+Khi làm các dự án, có thể bạn đã quan sát thấy style mặc định được áp dụng cho một số phần tử, chẳng hạn tiêu đề trên phần tử `h1` lớn hơn và đậm hơn, cũng như liên kết trên phần tử `a` có màu xanh và được gạch chân. Rất có thể bạn cũng từng gặp khó khăn với những thứ như margin và padding mặc định. Những style này thuộc về user-agent stylesheet, giúp bảo đảm các trang web có kiểu dáng cơ bản ngay cả khi không có CSS. Mỗi trình duyệt có tập user-agent stylesheet riêng, nên style mặc định có thể hơi khác nhau giữa các trình duyệt.
 
-### What if I don't like the defaults?
+### Nếu không thích các giá trị mặc định thì sao?
 
-With very few exceptions you can simply write your own CSS rules. The rules you write in your stylesheet have higher precedence than the user-agents rules, and therefore overwrite the defaults. However, there is another option.
+Ngoại trừ rất ít trường hợp, bạn chỉ cần viết các rule CSS của riêng mình. Các rule bạn viết trong stylesheet có độ ưu tiên cao hơn rule của user agent, nên sẽ ghi đè các giá trị mặc định. Tuy nhiên, còn một lựa chọn khác.
 
-To address inconsistencies across browsers and establish a consistent starting point for styling, some developers started using CSS resets. These resets are stylesheets containing CSS rules aimed at altering or removing the defaults set by user-agent stylesheets. Using them can help achieve consistency, and can provide a clean slate for developers to apply their styles without interference.
+Để xử lý sự không nhất quán giữa các trình duyệt và thiết lập điểm khởi đầu nhất quán cho việc tạo kiểu, một số nhà phát triển bắt đầu dùng CSS reset. Đây là các stylesheet chứa những rule CSS nhằm thay đổi hoặc loại bỏ các giá trị mặc định do user-agent stylesheet thiết lập. Dùng chúng có thể giúp tạo sự nhất quán và cung cấp một nền tảng sạch để nhà phát triển áp dụng style mà không bị can thiệp.
 
-While CSS resets are still commonly used, they are not mandatory. Some developers opt not to use them, while others create their own or utilize prebuilt resets. It's important to understand that resets are subjective and opinionated, reflecting the preferences of the developer who created them. You can decide how you wish to do things yourself.
+CSS reset vẫn được sử dụng phổ biến, nhưng không bắt buộc. Một số nhà phát triển chọn không dùng, trong khi những người khác tự tạo reset hoặc dùng reset có sẵn. Điều quan trọng là hiểu rằng reset mang tính chủ quan và có quan điểm riêng, phản ánh sở thích của nhà phát triển tạo ra nó. Bạn có thể tự quyết định cách mình muốn làm.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read [Reboot, Resets, and Reasoning](https://css-tricks.com/reboot-resets-reasoning/) for an excellent history of resets and what it means for a reset to be opinionated.
-1. Read [Making the case for CSS normalize and reset stylesheets in 2023](https://mattbrictson.com/blog/css-normalize-and-reset). It does an excellent job of discussing the differences in various resets and why you might choose to use them.
-1. [Josh Comeau's custom CSS reset](https://www.joshwcomeau.com/css/custom-css-reset/) also includes a great breakdown of his thought process behind each rule he uses, giving you an idea of how to reason about these ideas.
+1. Đọc [Reboot, Resets, and Reasoning](https://css-tricks.com/reboot-resets-reasoning/) để tìm hiểu lịch sử của reset và ý nghĩa của việc một reset mang quan điểm riêng.
+1. Đọc [Making the case for CSS normalize and reset stylesheets in 2023](https://mattbrictson.com/blog/css-normalize-and-reset). Bài viết trình bày rất tốt sự khác nhau giữa các reset và lý do bạn có thể chọn dùng chúng.
+1. [Custom CSS reset của Josh Comeau](https://www.joshwcomeau.com/css/custom-css-reset/) cũng giải thích kỹ quá trình suy nghĩ phía sau từng rule được sử dụng, giúp bạn hình dung cách lập luận về những ý tưởng này.
 
 </div>

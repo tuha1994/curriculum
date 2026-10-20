@@ -1,57 +1,57 @@
-### Introduction
+### Giới thiệu
 
-By now you have had quite a bit of practice moving elements around the screen using things like margin, padding, and flexbox. These techniques have all relied on CSS's default "positioning-mode". This default positioning-mode is intuitive, and you'll continue using it for almost all of your layout needs. However, there are other methods at your disposal that can be very useful in some situations.
+Đến lúc này, bạn đã có khá nhiều thực hành di chuyển các phần tử trên màn hình bằng những thứ như margin, padding và flexbox. Các kỹ thuật này đều dựa trên "positioning-mode" mặc định của CSS. Chế độ định vị mặc định này khá trực quan, và bạn sẽ tiếp tục dùng nó cho gần như mọi nhu cầu bố cục. Tuy nhiên, bạn còn có những phương pháp khác có thể rất hữu ích trong một số tình huống.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài.
 
-- You'll learn how to use absolute positioning.
-- You'll learn how to use fixed positioning.
-- You'll learn how to use sticky positioning.
-- You'll know the difference between each property and how to combine them.
+- Bạn sẽ học cách sử dụng định vị tuyệt đối.
+- Bạn sẽ học cách sử dụng định vị cố định.
+- Bạn sẽ học cách sử dụng định vị bám dính.
+- Bạn sẽ biết sự khác nhau giữa từng thuộc tính và cách kết hợp chúng.
 
-### Static and relative positioning
+### Định vị tĩnh và tương đối
 
-The default positioning mode that you've gotten used to is `position: static`. The difference between static and relative is fairly simple. Static is the default position of every element, and properties `top`, `right`, `bottom`, and `left` do not affect the position of the element. Relative on the other hand is pretty much the same as static, but properties `top`, `right...(etc.)` displace the element relative to its normal position in the flow of the document.
+Chế độ định vị mặc định mà bạn đã quen thuộc là `position: static`. Sự khác nhau giữa static và relative khá đơn giản. Static là vị trí mặc định của mọi phần tử, và các thuộc tính `top`, `right`, `bottom` và `left` không ảnh hưởng đến vị trí của phần tử. Ngược lại, relative gần như giống static, nhưng các thuộc tính `top`, `right...(etc.)` sẽ dịch chuyển phần tử so với vị trí bình thường của nó trong luồng tài liệu.
 
-### Absolute positioning
+### Định vị tuyệt đối
 
-`position: absolute` allows you to position something at an exact point on the screen without disturbing the other elements around it. More specifically, using absolute positioning on an element will remove that element from the normal document flow while being positioned relative to an ancestor element. To put it in other words: elements that are removed from the normal flow of the document don't affect other elements and are also not affected by other elements. Using absolute positioning allows you to position elements anywhere on the screen using `top`, `right`, `bottom`, and `left` properties. This property is really useful when you want to position something at an exact point on the screen, without disturbing any of the other elements. A couple of good use cases for absolute positioning are:
+`position: absolute` cho phép bạn đặt một phần tử tại vị trí chính xác trên màn hình mà không làm xáo trộn các phần tử khác xung quanh. Cụ thể hơn, dùng định vị tuyệt đối cho một phần tử sẽ loại phần tử đó khỏi luồng tài liệu bình thường, đồng thời định vị nó tương đối với một phần tử tổ tiên. Nói cách khác: các phần tử bị loại khỏi luồng bình thường của tài liệu không ảnh hưởng đến các phần tử khác và cũng không bị các phần tử khác ảnh hưởng. Dùng định vị tuyệt đối cho phép bạn đặt phần tử ở bất cứ đâu trên màn hình bằng các thuộc tính `top`, `right`, `bottom` và `left`. Thuộc tính này thực sự hữu ích khi bạn muốn đặt một thứ ở vị trí chính xác trên màn hình mà không làm xáo trộn các phần tử khác. Một vài trường hợp sử dụng phù hợp cho định vị tuyệt đối là:
 
-- modals
-- image with a caption on it
-- icons on top of other elements
+- modal
+- hình ảnh có chú thích bên trên
+- biểu tượng nằm trên các phần tử khác
 
-In the following example, we are using absolute positioning to display text over an image.
+Trong ví dụ sau, chúng ta dùng định vị tuyệt đối để hiển thị văn bản trên một hình ảnh.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="poWyWeJ" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-<span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/poWyWeJ">
-Absolute Position | CSS Positioning</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-on <a href="https://codepen.io">CodePen</a>.</span>
+<span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/poWyWeJ">
+Absolute Position | CSS Positioning</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Disclaimer: absolute positioning has very specific use cases and if possible, using flexbox or grid should be prioritized. Absolute positioning shouldn't be used to do entire page layouts.
+Lưu ý: định vị tuyệt đối có những trường hợp sử dụng rất cụ thể; nếu có thể, nên ưu tiên flexbox hoặc grid. Không nên dùng định vị tuyệt đối để tạo toàn bộ bố cục trang.
 
-### Fixed positioning
+### Định vị cố định
 
-Fixed elements are also removed from the normal flow of the document and are positioned relative to the `viewport`. You basically use `top`, `right`, `bottom`, and `left` properties to position it, and it will stay there as the user scrolls. This is especially useful for things like navigation bars and floating chat buttons.
+Các phần tử fixed cũng bị loại khỏi luồng bình thường của tài liệu và được định vị tương đối với `viewport`. Về cơ bản, bạn dùng các thuộc tính `top`, `right`, `bottom` và `left` để định vị phần tử, và phần tử đó sẽ giữ nguyên vị trí khi người dùng cuộn. Điều này đặc biệt hữu ích cho những thứ như thanh điều hướng và nút trò chuyện nổi.
 
-### Sticky positioning
+### Định vị bám dính
 
-Sticky elements will act like normal elements until you scroll past them, then they start behaving like fixed elements. They are also not taken out of the normal flow of the document. It might sound confusing, so check out this [sticky positioning example](https://codepen.io/theanam/pen/MPLBYy) that might clear things up for you. It's useful for things like section-headings. Remember being able to still see what category you're looking at while scrolling through a shop? This is how it's done!
+Các phần tử sticky sẽ hoạt động như những phần tử bình thường cho đến khi bạn cuộn vượt qua chúng, sau đó chúng bắt đầu hoạt động như các phần tử fixed. Chúng cũng không bị đưa ra khỏi luồng bình thường của tài liệu. Điều này có thể nghe hơi khó hiểu, vì vậy hãy xem [ví dụ về định vị sticky](https://codepen.io/theanam/pen/MPLBYy), có thể nó sẽ giúp bạn hiểu rõ hơn. Định vị này hữu ích cho những thứ như tiêu đề các phần. Bạn còn nhớ việc vẫn có thể nhìn thấy mình đang xem danh mục nào khi cuộn qua một cửa hàng không? Đây là cách thực hiện điều đó!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Web Dev Simplified's [Learn CSS Position](https://www.youtube.com/watch?v=jx5jmI0UlXU) video is fast-paced but provides a good visual representation of different positioning behaviors. Go ahead and watch it.
-1. [MDN's docs on `position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) covers all of the conceptual details about positioning.
-1. CSS trick's page [Absolute, Relative, Fixed Positioning](https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/) should give you a different insight on the topic. You should read it as well.
-1. Finally, Kevin Powell's article discusses the [difference between fixed and sticky positioning](https://www.kevinpowell.co/article/positition-fixed-vs-sticky/). It’s a great read to understand the difference better.
+1. Video [Learn CSS Position](https://www.youtube.com/watch?v=jx5jmI0UlXU) của Web Dev Simplified có nhịp độ nhanh nhưng biểu diễn trực quan khá tốt các hành vi định vị khác nhau. Hãy xem video.
+1. [Tài liệu MDN về `position`](https://developer.mozilla.org/en-US/docs/Web/CSS/position) trình bày tất cả chi tiết khái niệm về định vị.
+1. Trang [Absolute, Relative, Fixed Positioning](https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/) của CSS trick sẽ cung cấp cho bạn một góc nhìn khác về chủ đề này. Bạn cũng nên đọc bài đó.
+1. Cuối cùng, bài viết của Kevin Powell thảo luận về [sự khác nhau giữa định vị fixed và sticky](https://www.kevinpowell.co/article/positition-fixed-vs-sticky/). Đây là một bài đọc rất hay để hiểu rõ hơn sự khác biệt.
 
 </div>

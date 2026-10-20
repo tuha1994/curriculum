@@ -42,3 +42,39 @@ Tạo bản dịch tiếng Việt dễ học, đúng bối cảnh The Odin Proje
 ## Theo dõi phiên bản
 
 Sổ `TRANSLATION_LOG.md` ghi đường dẫn bài, Git commit SHA của bản gốc, ngày kiểm tra, trạng thái và ghi chú. Chỉ ghi các thư mục bài học người học đang học. Người học tự chạy quy trình cập nhật bằng tay.
+
+## Quy trình cập nhật từ upstream
+
+Thực hiện bằng tay, chỉ trong phạm vi `intermediate_html_css`:
+
+1. Kiểm tra trạng thái làm việc và bảo đảm bản dịch hiện tại đã được lưu ở một mốc có thể quay lui.
+2. Ghi lại commit SHA đang được dùng trong `TRANSLATION_LOG.md`.
+3. Cập nhật thông tin từ remote `upstream` theo quy trình Git mà người học đã duyệt.
+4. Chỉ xem thay đổi trong các đường dẫn thuộc `intermediate_html_css`.
+5. Với mỗi bài có thay đổi, xem diff bản gốc trước khi sửa bản dịch.
+6. Cập nhật chỉ phần tiếng Việt tương ứng với phần văn xuôi đã thay đổi. Không thay thế toàn bộ file bài dịch bằng file upstream.
+7. Giữ nguyên code, comment trong code, URL, lệnh, đường dẫn, tag HTML, thuộc tính HTML và các khối bao quanh bài học.
+8. Nếu có xung đột, dừng ở bài đó, giữ riêng phần bản dịch và phần upstream để đối chiếu; không dùng thao tác ghi đè hàng loạt.
+9. Chạy kiểm tra vùng code và kiểm tra thủ công URL, lệnh, đường dẫn, HTML và ngữ nghĩa bản dịch.
+10. Xem bài đã cập nhật trên web local.
+11. Chỉ sau khi mọi kiểm tra đạt mới cập nhật commit SHA, ngày, trạng thái và ghi chú trong `TRANSLATION_LOG.md`.
+12. Nếu kiểm tra thất bại, hoàn tác bài đang xử lý về mốc trước cập nhật, rồi khôi phục log về SHA cũ.
+
+Không tự động hóa bằng hook, CI, dịch nền hoặc job định kỳ. Không mở rộng sang thư mục khác nếu chưa được người học chốt.
+
+## Checklist dịch ngay trước khi học
+
+Dùng checklist này cho từng bài, theo đúng thứ tự:
+
+1. Xác định đường dẫn bài và kiểm tra bài thuộc `intermediate_html_css`.
+2. Đọc commit SHA gốc trong `TRANSLATION_LOG.md`.
+3. Đọc bài gốc, `GLOSSARY.md` và các bài liên quan được bài liên kết.
+4. Dịch chỉ văn xuôi, tiêu đề, heading và text hiển thị.
+5. Giữ nguyên code, comment trong code, lệnh, đường dẫn, URL, tag và thuộc tính HTML.
+6. Ghi thuật ngữ hoặc câu chưa chắc ở cuối bài để người học duyệt.
+7. Chạy công cụ kiểm tra bất biến code.
+8. Đối chiếu thủ công URL, lệnh, đường dẫn, HTML và ngữ nghĩa.
+9. Mở đúng bài trên web local và kiểm tra nội dung, heading, liên kết, ghi chú và code.
+10. Chỉ khi đạt mới cập nhật trạng thái trong `TRANSLATION_LOG.md` và bắt đầu học.
+
+Nếu bất kỳ bước nào không đạt, dừng học bài đó, ghi trạng thái phù hợp và quay lui bản dịch về mốc an toàn.

@@ -1,51 +1,51 @@
-### Introduction
+### Giới thiệu
 
-You may have noticed that some property values you’ve worked with in CSS have a slightly different syntax. When the value is a word followed by a pair of parentheses () containing information between them - as in background-color: `rgb(0, 0, 0)` - you’re using CSS functions.
+Có thể bạn đã nhận thấy một số giá trị thuộc tính từng làm việc trong CSS có cú pháp hơi khác. Khi giá trị là một từ đi kèm một cặp dấu ngoặc đơn () chứa thông tin bên trong — như trong hàm `rgb(0, 0, 0)` của thuộc tính background — bạn đang sử dụng các hàm CSS.
 
-In this lesson, we’ll cover the basics of what a function is and some common ways they’re used in CSS.
+Trong bài này, chúng ta sẽ tìm hiểu những điều cơ bản về hàm là gì và một số cách thường dùng hàm trong CSS.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Recognize the basic parts of a CSS function.
-- Learn about the `calc()`, `min()`, `max()`, and `clamp()` functions and how to use each one.
+- Nhận biết các thành phần cơ bản của một hàm CSS.
+- Tìm hiểu các hàm `calc()`, `min()`, `max()` và `clamp()` cũng như cách sử dụng từng hàm.
 
-### What is a function and how are they used in CSS?
+### Hàm là gì và được dùng như thế nào trong CSS?
 
-Similar to programming languages, functions in CSS are reusable pieces of code which perform specific tasks. Functions are passed “arguments” between parentheses, each of which is used by the function in a specific way. Some common examples are:
+Tương tự các ngôn ngữ lập trình, hàm trong CSS là những đoạn mã có thể tái sử dụng để thực hiện các tác vụ cụ thể. Hàm nhận các “đối số” giữa hai dấu ngoặc đơn; mỗi đối số được hàm sử dụng theo một cách cụ thể. Một số ví dụ phổ biến là:
 
 ```css
 color: rgb(0, 42, 255);
 background: linear-gradient(90deg, blue, red);
 ```
 
-Here, the value of `color` is the function `rgb()`, which accepts arguments in the form of numbers. It processes those numbers to calculate the rgb color corresponding to the three values given. Similarly, the `background` property has a value of `linear-gradient(90deg, blue, red)`. `linear-gradient` generates a gradient image using the parameters it's been given. It needs at least two color arguments: colors to transition between. Additionally, you can set the angle of direction of the gradient line (like we've done in the example), add more color values, etc.
+Ở đây, giá trị của `color` là hàm `rgb()`, nhận các đối số dưới dạng số. Hàm xử lý những số đó để tính màu rgb tương ứng với ba giá trị đã cho. Tương tự, thuộc tính `background` có giá trị là `linear-gradient(90deg, blue, red)`. `linear-gradient` tạo ra ảnh chuyển màu bằng các tham số được cung cấp. Hàm cần ít nhất hai đối số màu: những màu sẽ chuyển tiếp với nhau. Ngoài ra, bạn có thể đặt góc của đường chuyển màu (như trong ví dụ), thêm nhiều giá trị màu hơn, v.v.
 
-Unlike programming languages you’ll use in TOP, CSS does not allow us to create our own functions. Instead, the language comes bundled with a list of premade functions that will help you solve the most common styling problems.
+Khác với các ngôn ngữ lập trình bạn sẽ dùng trong TOP, CSS không cho phép chúng ta tự tạo hàm. Thay vào đó, ngôn ngữ này đi kèm một danh sách các hàm dựng sẵn giúp bạn giải quyết những vấn đề tạo kiểu phổ biến nhất.
 
-Besides defining colors, there are several CSS functions that are useful when designing a website’s layout and sizing. These become important when thinking about responsive design.
+Ngoài việc định nghĩa màu, có một số hàm CSS hữu ích khi thiết kế bố cục và kích thước website. Chúng trở nên quan trọng khi suy nghĩ về responsive design.
 
-Let’s go over a few of these functions: `calc()`, `min()`, `max()`, and `clamp()`.
+Hãy cùng xem qua một vài hàm: `calc()`, `min()`, `max()` và `clamp()`.
 
 ### calc()
 
-The most powerful use cases for calc include:
+Những trường hợp sử dụng mạnh mẽ nhất của calc gồm:
 
-- Mixing units
-- The ability to nest `calc( calc () - calc () )`
+- Trộn các đơn vị
+- Khả năng lồng `calc( calc () - calc () )`
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="OJxNxya" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/OJxNxya">
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/OJxNxya">
   calc() | CSS Functions</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Take a look at how `calc()` is being used here:
+Hãy xem cách `calc()` được sử dụng ở đây:
 
 ```css
 :root {
@@ -55,32 +55,32 @@ Take a look at how `calc()` is being used here:
 }
 ```
 
-- `--header`, `--footer`, and `--main` are all examples of CSS variables. You will be learning about these in the next lesson.
+- `--header`, `--footer` và `--main` đều là ví dụ về biến CSS. Bạn sẽ học về chúng trong bài tiếp theo.
   
-Setting main to equal the outcome of: `100vh - (3rem + 40px)`.
-To put it another way:  `main = 100vh - (header + footer)`.
-`calc()` is handling the math for us even though we are mixing vh, rem and px units.
-Combined with CSS variables, `calc()` can save us from the headache of repeating CSS rules.
+Đặt main bằng kết quả của: `100vh - (3rem + 40px)`.
+Nói cách khác:  `main = 100vh - (header + footer)`.
+`calc()` thực hiện phép tính giúp chúng ta, dù đang trộn các đơn vị vh, rem và px.
+Kết hợp với biến CSS, `calc()` có thể giúp chúng ta tránh phải lặp lại các quy tắc CSS.
 
-You should be able to grasp how `calc()` is used in the above CodePen embed. We encourage you to play around with different units and sizes of the elements to see what results you get before moving on.
+Bạn có thể hiểu cách `calc()` được sử dụng trong phần nhúng CodePen ở trên. Chúng tôi khuyến khích bạn thử thay đổi các đơn vị và kích thước của các phần tử để xem kết quả trước khi chuyển tiếp.
 
 <div class="lesson-note lesson-note--tip" markdown=1>
 
-#### calc() example
+#### Ví dụ calc()
 
-The above is just an example of how `calc()` can affect a layout, but keep in mind that `calc()` is likely not the best way to go about it. We will talk more about layouts in future lessons.
+Phần trên chỉ là ví dụ về cách `calc()` có thể tác động đến bố cục, nhưng hãy nhớ rằng `calc()` có lẽ không phải cách tốt nhất để thực hiện việc này. Chúng ta sẽ nói thêm về bố cục trong các bài học sau.
 
 </div>
 
 ### min()
 
-`min()` does an excellent job of helping us create responsive websites. Take a look at this example:
+`min()` làm rất tốt việc giúp chúng ta tạo các website responsive. Hãy xem ví dụ này:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="RwLaLay" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/RwLaLay">
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/RwLaLay">
   min() | CSS Functions</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -95,29 +95,29 @@ The above is just an example of how `calc()` can affect a layout, but keep in mi
 }
 ```
 
-The `min()` function works just like JavaScript's `Math.min()` and Ruby's `Array#min` methods. It takes a list of values separated by commas and returns the smallest one.
+Hàm `min()` hoạt động giống hệt `Math.min()` của JavaScript và method `Array#min` của Ruby. Hàm nhận một danh sách các giá trị được phân tách bằng dấu phẩy và trả về giá trị nhỏ nhất.
 
-This checks whether `100%` of the parent element’s width is smaller than `150px`. If `100%` would be narrower than `150px`, the element will take up the full width of the container (`100%`). Otherwise, it will be `150px` wide.
+Hàm kiểm tra xem `100%` chiều rộng của phần tử cha có nhỏ hơn `150px` hay không. Nếu `100%` hẹp hơn `150px`, phần tử sẽ chiếm toàn bộ chiều rộng của container (`100%`). Nếu không, nó sẽ rộng `150px`.
 
-You are able to do basic math inside a `min()`. For example, `width: min(80ch, 100vw - 2rem);` (you don't even need `calc()` in this case).
+Bạn có thể thực hiện phép tính cơ bản bên trong `min()`. Ví dụ: `width: min(80ch, 100vw - 2rem);` (trong trường hợp này bạn thậm chí không cần `calc()`).
 
 ### max()
 
-`max()` works the same way as `min()`, only in reverse, and is like JavaScript's `Math.max()` and Ruby's `Array#max` methods. It will select the largest possible value from within the parentheses.
+`max()` hoạt động giống `min()`, chỉ theo chiều ngược lại, tương tự các method `Math.max()` của JavaScript và `Array#max` của Ruby. Hàm chọn giá trị lớn nhất có thể trong cặp dấu ngoặc đơn.
 
 ```css
 width: max(100px, 4em, 50%);
 ```
 
-The above compares all three values and sets the element's width to whichever is largest. If `50%` of the parent container is bigger than `100px` and `4em`, the width will be `50%`. If `4em` is larger than the others, it will use `4em`.
+Đoạn trên so sánh cả ba giá trị và đặt chiều rộng của phần tử thành giá trị lớn nhất. Nếu `50%` của container cha lớn hơn `100px` và `4em`, chiều rộng sẽ là `50%`. Nếu `4em` lớn hơn các giá trị còn lại, `4em` sẽ được dùng.
 
-The max function is most useful when the viewing window is either exceptionally small, or the user increases the content size by using the browser’s zoom feature.
-You may not find a lot of use for max at first, but it is a good tool to be aware of for projects where accessibility is important.
+Hàm max hữu ích nhất khi cửa sổ xem cực kỳ nhỏ hoặc khi người dùng tăng kích thước nội dung bằng tính năng zoom của trình duyệt.
+Ban đầu bạn có thể không dùng max nhiều, nhưng đây là một công cụ đáng biết trong các dự án coi trọng khả năng tiếp cận.
 
 ### clamp()
 
-`clamp()` is a great way to make elements fluid and responsive.
-`clamp()` takes 3 values:
+`clamp()` là một cách tuyệt vời để làm cho các phần tử linh hoạt và responsive.
+`clamp()` nhận 3 giá trị:
 
 ```css
 h1 {
@@ -125,19 +125,19 @@ h1 {
 }
 ```
 
-1. the minimum value `1.5rem`
-1. the scaling value `5vw`
-1. the maximum value `3rem`
+1. giá trị tối thiểu `1.5rem`
+1. giá trị điều chỉnh theo tỷ lệ `5vw`
+1. giá trị tối đa `3rem`
 
-The `clamp()` CSS function uses these values to set the minimum value, scaling value and maximum value. In the above example, this would mean the minimum acceptable font-size would be `1.5rem` and the maximum would be `3rem`.
+Hàm CSS `clamp()` dùng các giá trị này để đặt giá trị tối thiểu, giá trị điều chỉnh theo tỷ lệ và giá trị tối đa. Trong ví dụ trên, điều đó có nghĩa là cỡ chữ nhỏ nhất được chấp nhận là `1.5rem` và lớn nhất là `3rem`.
 
-A font-size of `5vw` is set in-between. The value `5vw` allows the font-size to scale according to the viewport's width, but the size is restricted by the minimum and maximum values we've set.
+Cỡ chữ `5vw` được đặt ở khoảng giữa. Giá trị `5vw` cho phép cỡ chữ thay đổi theo chiều rộng viewport, nhưng kích thước bị giới hạn bởi các giá trị tối thiểu và tối đa đã đặt.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Take a look at the [complete list of CSS functions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions) and how they are used so you have an idea of what is possible.
-1. Have a more in-depth look at the [`min`, `max` and `clamp` CSS functions](https://web.dev/min-max-clamp/) in action.
+1. Xem [danh sách đầy đủ các hàm CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions) và cách sử dụng chúng để hình dung những gì có thể làm được.
+1. Tìm hiểu sâu hơn về [các hàm CSS `min`, `max` và `clamp`](https://web.dev/min-max-clamp/) qua các ví dụ thực tế.
 
 </div>

@@ -1,23 +1,23 @@
-### Introduction
+### Giới thiệu
 
-You've already done a bit of text-manipulation in our Foundations lessons. This lesson will cover a few more useful CSS properties that can be used when working with text.
+Bạn đã làm quen với một số thao tác xử lý văn bản trong các bài học Foundations. Bài học này sẽ đề cập thêm một số thuộc tính CSS hữu ích khi làm việc với văn bản.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài.
 
-- You'll learn how to use custom fonts on your web projects.
-- You'll learn some more text-related CSS properties.
+- Bạn sẽ học cách sử dụng font tùy chỉnh trong các dự án web.
+- Bạn sẽ học thêm một số thuộc tính CSS liên quan đến văn bản.
 
 ### Fonts
 
-In our Foundations lesson, we covered changing the `font-family` of an element, but there is some nuance and detail that we left out at the time.
+Trong bài học Foundations, chúng ta đã tìm hiểu cách thay đổi `font-family` của một phần tử, nhưng khi đó còn bỏ qua một số sắc thái và chi tiết.
 
 #### The system font stack
 
- If you use the `font-family` property to change to a font like `Impact` or `Times New Roman`, and those fonts do not happen to be installed on your user's computer, then a fallback font will be displayed.  If you have not defined a fallback, then the default HTML font will be used, which is often somewhat ugly. For this reason, it's common to see somewhat long stacks of fonts listed on projects.
+ Nếu bạn dùng thuộc tính `font-family` để đổi sang một font như `Impact` hoặc `Times New Roman`, nhưng những font đó không được cài trên máy tính của người dùng, một font dự phòng sẽ được hiển thị. Nếu bạn chưa định nghĩa font dự phòng, font HTML mặc định sẽ được dùng; font này thường khá xấu. Vì lý do đó, bạn thường thấy các dự án liệt kê một danh sách font tương đối dài.
 
-One popular stack is CSS Tricks' [system font stack](https://css-tricks.com/snippets/css/system-font-stack/).
+Một danh sách phổ biến là [system font stack](https://css-tricks.com/snippets/css/system-font-stack/) của CSS Tricks.
 
 ```css
 body {
@@ -25,21 +25,21 @@ body {
 }
 ```
 
-The point of this somewhat ridiculous string of font-families is to try using the default font of the system's user interface. It will go through each of those fonts until it finds one that is installed on the system, and then use that. Using a stack like this often produces pleasing results, especially if you're going for a somewhat 'neutral' font style.
+Mục đích của chuỗi font-family có vẻ hơi vô lý này là thử dùng font mặc định của giao diện người dùng trên hệ thống. Nó sẽ lần lượt đi qua từng font cho đến khi tìm thấy font được cài trên hệ thống, rồi sử dụng font đó. Dùng một danh sách như vậy thường cho kết quả dễ chịu, đặc biệt khi bạn hướng đến kiểu font tương đối "trung tính".
 
 #### Web fonts
 
-If you want to use a font that will not be available on the user's device, you will need to import the font from an online source, either a font library or an asset on your site. Both methods will import the font and make it accessible in your CSS `font-family` property.
+Nếu muốn dùng một font không có sẵn trên thiết bị của người dùng, bạn cần import font từ một nguồn trực tuyến, có thể là thư viện font hoặc một tài nguyên trên trang web của bạn. Cả hai cách đều import font và giúp font đó có thể được sử dụng trong thuộc tính CSS `font-family`.
 
-Keep in mind that it's important to add a fallback font.  If you're linking to an external API, you have no guarantee that the URL won't change, or that the external API won't go down at some point. Having a reasonable fallback means that if something goes wrong, at least your site won't look completely broken.
+Hãy nhớ rằng việc thêm font dự phòng rất quan trọng. Nếu bạn liên kết đến một API bên ngoài, bạn không thể đảm bảo URL sẽ không thay đổi hoặc API bên ngoài sẽ không ngừng hoạt động vào một thời điểm nào đó. Có một font dự phòng hợp lý có nghĩa là nếu có sự cố xảy ra thì ít nhất trang web của bạn cũng không trông như bị hỏng hoàn toàn.
 
-There are performance issues with using imported files, which you will read more about in the assignments. Therefore, it is best to use a font stack instead of imported fonts if your design allows for it. However, there are times you will want to use an imported font.
+Việc sử dụng các tệp được import có thể gây ra vấn đề về hiệu năng, bạn sẽ đọc thêm về điều này trong phần bài tập. Vì vậy, nếu thiết kế cho phép, tốt nhất nên dùng một danh sách font thay vì font được import. Tuy nhiên, có những lúc bạn sẽ muốn dùng font được import.
 
 #### Online font libraries
 
-One popular and easy method to get fonts that are *not* installed on a user's device is to use an online font library.
+Một cách phổ biến và dễ dàng để lấy những font *chưa được cài* trên thiết bị của người dùng là dùng thư viện font trực tuyến.
 
-To use a font from one of these libraries, go to the website, select a font and then copy a snippet from the website to import that font from their server into your website. You'll be given either a `<link>` tag to put in your HTML like so....
+Để dùng font từ một trong những thư viện này, hãy truy cập trang web, chọn một font rồi sao chép đoạn mã từ trang web để import font đó từ máy chủ của họ vào trang web của bạn. Bạn sẽ được cung cấp một thẻ `<link>` để đặt vào HTML như sau....
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,19 +47,19 @@ To use a font from one of these libraries, go to the website, select a font and 
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 ```
 
-... or an `@import` tag that can be dropped at the top of a CSS file.
+... hoặc một thẻ `@import` có thể đặt ở đầu tệp CSS.
 
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 ```
 
-Common online font libraries include (but are not limited to) [Font Library](https://fontlibrary.org/), [Font Bunny](https://fonts.bunny.net/) and [Google Fonts](https://fonts.google.com/).
+Một số thư viện font trực tuyến phổ biến gồm (nhưng không chỉ có) [Font Library](https://fontlibrary.org/), [Font Bunny](https://fonts.bunny.net/) và [Google Fonts](https://fonts.google.com/).
 
-However, an important consideration when using a font library is the library's privacy policies and any regulations you may need to comply with. For example, [using the Google Fonts API violates the European GDPR](https://thehackernews.com/2022/01/german-court-rules-websites-embedding.html). If you are concerned about complying with such regulations, you can download the font from the library and host it yourself.
+Tuy nhiên, một điều quan trọng cần cân nhắc khi dùng thư viện font là chính sách quyền riêng tư của thư viện và mọi quy định mà bạn cần tuân thủ. Ví dụ, [việc dùng Google Fonts API vi phạm GDPR của châu Âu](https://thehackernews.com/2022/01/german-court-rules-websites-embedding.html). Nếu lo ngại về việc tuân thủ các quy định như vậy, bạn có thể tải font từ thư viện xuống và tự lưu trữ font.
 
 #### Self hosted fonts
 
-It is also possible to use a font that you have downloaded from the web. In your CSS file, you import and define a custom font using the `@font-face` rule, and then use it as you would any other font-family. There are multiple types of font file formats and you can read more in depth about them on [fileinfo.com's page on Font File Formats](https://fileinfo.com/filetypes/font). Please take care when choosing a font file format however, because some are not universally supported by browsers. A list of browsers and the font formats they support can be found on [W3 Schools' page on CSS Web Fonts](https://www.w3schools.com/css/css3_fonts.asp).
+Bạn cũng có thể dùng font đã tải xuống từ web. Trong tệp CSS, bạn import và định nghĩa font tùy chỉnh bằng quy tắc `@font-face`, rồi dùng nó như mọi font-family khác. Có nhiều loại định dạng tệp font; bạn có thể đọc thêm chi tiết về chúng trên [trang của fileinfo.com về các định dạng tệp font](https://fileinfo.com/filetypes/font). Tuy nhiên, hãy cẩn thận khi chọn định dạng tệp font vì không phải định dạng nào cũng được trình duyệt hỗ trợ rộng rãi. Bạn có thể xem danh sách trình duyệt và các định dạng font mà chúng hỗ trợ trên [trang CSS Web Fonts của W3 Schools](https://www.w3schools.com/css/css3_fonts.asp).
 
 ```css
 @font-face {
@@ -72,19 +72,19 @@ h1 {
 }
 ```
 
-This method *may* be more reliable than relying on a third-party font API, but it is always wise to include a fallback.
+Phương pháp này *có thể* đáng tin cậy hơn việc phụ thuộc vào API font của bên thứ ba, nhưng luôn nên có một font dự phòng.
 
 ### Text styles
 
-You learned the basics of manipulating fonts in our Foundations lessons, but there is quite a bit more that you can do with CSS when it comes to manipulating text styles. These rules are all relatively simple and self-explanatory. You can refer to the docs for any questions you might have.
+Bạn đã học những kiến thức cơ bản về thao tác với font trong các bài học Foundations, nhưng CSS còn làm được nhiều hơn thế khi nói đến việc thao tác với kiểu văn bản. Các quy tắc này nhìn chung khá đơn giản và dễ hiểu. Nếu có câu hỏi, bạn có thể xem tài liệu.
 
 #### font-style
 
-Typically used to make a font italic. You learned about the HTML `<em>` tag, which uses an italic font, but `<em>` *also* signifies that the text it wraps is significant or should be emphasized in some way. A good rule of thumb to follow is that if you just want text to be italic (or bold, underlined, highlighted, etc.), use a CSS property. Otherwise, if text should have some sort of semantic emphasis, use the correct HTML element.
+Thuộc tính này thường được dùng để làm font in nghiêng. Bạn đã học về thẻ HTML `<em>`, thẻ này sử dụng font in nghiêng, nhưng `<em>` *cũng* biểu thị rằng văn bản nó bao quanh có ý nghĩa hoặc cần được nhấn mạnh theo một cách nào đó. Một nguyên tắc đơn giản là: nếu bạn chỉ muốn văn bản in nghiêng (hoặc in đậm, gạch chân, tô sáng, v.v.), hãy dùng thuộc tính CSS. Nếu văn bản cần một dạng nhấn mạnh mang tính ngữ nghĩa, hãy dùng phần tử HTML phù hợp.
 
-For example, if you want all your header text to be italic you should use `font-style` to accomplish this. If you want some text in the *middle of a sentence* to appear italic in order to emphasize that text, it is appropriate to use an `em` element. The [MDN doc on the Emphasis Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em) puts stress on our point above.
+Ví dụ, nếu muốn toàn bộ văn bản tiêu đề in nghiêng, bạn nên dùng `font-style` để thực hiện. Nếu muốn một phần văn bản *ở giữa câu* hiển thị in nghiêng nhằm nhấn mạnh phần đó, dùng phần tử `em` là phù hợp. [Tài liệu MDN về phần tử Emphasis](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em) cũng nhấn mạnh quan điểm trên.
 
-We should use `font-style: italic;` if italics is required for styling purposes.
+Chúng ta nên dùng `font-style: italic;` nếu chữ in nghiêng là yêu cầu về kiểu hiển thị.
 
 ```css
 h1 {
@@ -92,7 +92,7 @@ h1 {
 }
 ```
 
-We should use the `em` element if italics is required for emphasis.
+Chúng ta nên dùng phần tử `em` nếu chữ in nghiêng là yêu cầu về việc nhấn mạnh.
 
 ```html
 <p>I <em>never</em> said he stole your money</p>
@@ -102,29 +102,29 @@ We should use the `em` element if italics is required for emphasis.
 
 #### letter-spacing
 
-Letter spacing does what you would expect.... it changes the space between letters in a word. This can be useful for adjusting custom fonts that you feel have too much or too little space. It can also be aesthetically pleasing in some cases, like headers.
+Letter spacing làm đúng như bạn dự đoán.... nó thay đổi khoảng cách giữa các chữ cái trong một từ. Điều này hữu ích để điều chỉnh những font tùy chỉnh mà bạn cảm thấy có khoảng cách quá lớn hoặc quá nhỏ. Trong một số trường hợp, nó cũng có thể tạo hiệu ứng đẹp mắt, chẳng hạn ở tiêu đề.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="MWomjGr" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/MWomjGr">
-  Letter Spacing | CSS Text Styles</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/MWomjGr">
+  Letter Spacing | CSS Text Styles</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Obviously, use this sparingly and with care. Do not make your site hard to read!
+Rõ ràng, hãy dùng thuộc tính này tiết chế và cẩn thận. Đừng khiến trang web khó đọc!
 
 #### line-height
 
-Line height adjusts the space between lines in wrapped text. Adding a little line-height can increase readability.
+Line height điều chỉnh khoảng cách giữa các dòng trong văn bản được ngắt dòng. Thêm một chút line-height có thể tăng khả năng đọc.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="vYZmXzY" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/vYZmXzY">
-  Line Height | CSS Text Styles</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/vYZmXzY">
+  Line Height | CSS Text Styles</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -132,21 +132,21 @@ Line height adjusts the space between lines in wrapped text. Adding a little lin
 
 #### text-transform
 
-Text transform changes the case of the given text. You can use this, for example, to force your heading tags to be all uppercase, or to capitalize every word.
+Text transform thay đổi kiểu chữ của văn bản đã cho. Ví dụ, bạn có thể dùng thuộc tính này để buộc các thẻ tiêu đề viết toàn bộ bằng chữ hoa hoặc viết hoa chữ cái đầu của mọi từ.
 
-Usage can be seen in the clear example on these [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform).
+Bạn có thể xem cách sử dụng trong ví dụ rõ ràng trên [tài liệu web MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform).
 
 #### text-shadow
 
-As you might expect, `text-shadow` adds a shadow around the text in the selected element. This one is best used sparingly, but can be used to great effect in headings or other presentational text.
+Đúng như bạn có thể đoán, `text-shadow` thêm bóng xung quanh văn bản trong phần tử được chọn. Thuộc tính này nên được dùng tiết chế, nhưng có thể tạo hiệu quả tốt cho tiêu đề hoặc văn bản mang tính trình bày khác.
 
-The examples on the [MDN reference page for text-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow) show how to use it.
+Các ví dụ trên [trang tham khảo MDN về text-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow) cho thấy cách sử dụng thuộc tính này.
 
 #### ellipsis
 
-This one isn't a single property, but it's a useful trick to keep in your toolbox. With the `text-overflow` property, you can truncate overflowing text with an ellipsis. Making an overflow happen, however, requires the use of a couple other properties because the default behavior of text printing outside its container isn't technically considered an `overflow` (that's confusing, we know.  Sorry.)
+Đây không phải là một thuộc tính đơn lẻ, nhưng là một mẹo hữu ích nên có trong bộ công cụ của bạn. Với thuộc tính `text-overflow`, bạn có thể cắt ngắn văn bản bị tràn bằng dấu ba chấm. Tuy nhiên, để tạo ra tình trạng tràn, bạn cần dùng thêm một vài thuộc tính khác vì hành vi mặc định là văn bản hiển thị bên ngoài phần tử chứa về mặt kỹ thuật không được xem là một `overflow` (khá khó hiểu, chúng tôi biết. Xin lỗi.)
 
-The full snippet is:
+Đoạn đầy đủ là:
 
 ```css
 .overflowing {
@@ -156,14 +156,14 @@ The full snippet is:
 }
 ```
 
-You can see more detail and an example in this [CSS Tricks article on ellipsis overflow](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/). (Be ready to go look that article up every time you want to use this.)
+Bạn có thể xem thêm chi tiết và ví dụ trong [bài viết CSS Tricks về ellipsis overflow](https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/). (Hãy chuẩn bị tinh thần sẽ phải tra cứu bài viết đó mỗi lần muốn dùng mẹo này.)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read [MDN's article on web fonts](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Web_fonts) and do the exercises.
-1. Read [web.dev's article on best practices for fonts](https://web.dev/articles/font-best-practices) to understand some of the performance considerations of imported fonts and how to mitigate issues with them.
-1. Read [web.dev's article on typography](https://web.dev/learn/design/typography) to understand some important considerations for developers with typography.
+1. Đọc [bài viết về web fonts của MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text/Web_fonts) và làm các bài tập.
+1. Đọc [bài viết của web.dev về các phương pháp hay nhất cho font](https://web.dev/articles/font-best-practices) để hiểu một số cân nhắc về hiệu năng của font được import và cách giảm thiểu vấn đề.
+1. Đọc [bài viết của web.dev về typography](https://web.dev/learn/design/typography) để hiểu một số cân nhắc quan trọng đối với lập trình viên về typography.
 
 </div>

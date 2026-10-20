@@ -1,50 +1,50 @@
-### Introduction
+### Giới thiệu
 
-By now, you probably have a strong grasp of the important foundational concepts of CSS, but there is a lot more that you can do with CSS to make some truly spectacular looking websites. It's time to cover those useful little CSS features you can use to add some shine to your projects.
+Đến lúc này, có lẽ bạn đã nắm khá vững những khái niệm nền tảng quan trọng của CSS, nhưng CSS còn có thể làm được nhiều điều hơn nữa để tạo ra những trang web thực sự bắt mắt. Đã đến lúc tìm hiểu những tính năng CSS hữu ích mà bạn có thể dùng để tạo thêm điểm nhấn cho các dự án của mình.
 
-There are a *lot* of CSS properties. Luckily, you don't have to memorize them all: the amount of properties you're actually going to use on a daily basis is much smaller. This lesson is going to cover most of the items you'll end up using on a regular basis. The format of this lesson is a little different since it's essentially just a list of CSS properties. We'll give a little description of the property and then link you to some documentation where you can see all the available options.
+Có *rất nhiều* thuộc tính CSS. May mắn là bạn không cần ghi nhớ tất cả: số thuộc tính bạn thực sự dùng hằng ngày nhỏ hơn nhiều. Bài học này sẽ đề cập đến phần lớn những thuộc tính mà bạn sẽ thường xuyên sử dụng. Cấu trúc của bài hơi khác một chút vì về cơ bản đây chỉ là danh sách các thuộc tính CSS. Chúng tôi sẽ mô tả ngắn gọn thuộc tính rồi liên kết đến tài liệu nơi bạn có thể xem tất cả các tùy chọn có sẵn.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài.
 
-- You'll learn about a lot of useful CSS properties.
+- Bạn sẽ tìm hiểu nhiều thuộc tính CSS hữu ích.
 
 #### Background
 
-You've likely already experimented with setting background colors on things, but the `background` property can do quite a bit more. The `background` property is actually a shorthand for 8 different background-related properties, all of which you can read about in the linked docs. Beyond changing background-colors, you can also specify background images, change the position and size of background images, and change how background images repeat or tile if they are too small to fill their container. It is also possible to have multiple background layers.
+Có lẽ bạn đã thử đặt màu nền cho các phần tử, nhưng thuộc tính `background` còn làm được nhiều hơn thế. Thuộc tính `background` thực ra là dạng viết tắt của 8 thuộc tính liên quan đến nền, và bạn có thể đọc về tất cả chúng trong tài liệu được liên kết. Ngoài việc thay đổi màu nền, bạn còn có thể chỉ định ảnh nền, thay đổi vị trí và kích thước ảnh nền, cũng như thay đổi cách ảnh nền lặp lại hoặc lát nền khi ảnh quá nhỏ để lấp đầy phần tử chứa. Bạn cũng có thể sử dụng nhiều lớp nền.
 
-One thing to note is that it *is* possible to use these properties individually, and in some cases it might be easier and more clear to do that than defaulting to the shorthand. This is in contrast to some other shorthand properties where it is almost always preferable to default to using the shorthand (flex, margin, padding etc.)
+Cần lưu ý rằng bạn *có thể* dùng riêng từng thuộc tính này, và trong một số trường hợp, cách đó có thể dễ hơn và rõ ràng hơn so với việc mặc định dùng dạng viết tắt. Điều này trái ngược với một số thuộc tính viết tắt khác, trong đó gần như lúc nào cũng nên ưu tiên dạng viết tắt (flex, margin, padding, v.v.).
 
-There's a lot of information in the docs on this shorthand and all the associated properties. As we've mentioned before, you do NOT need to *memorize* the exact order and syntax of each property. It's enough to know that they exist and have a general idea of what they do.
+Tài liệu chứa rất nhiều thông tin về dạng viết tắt này và tất cả các thuộc tính liên quan. Như chúng tôi đã đề cập trước đây, bạn KHÔNG cần *ghi nhớ* thứ tự và cú pháp chính xác của từng thuộc tính. Chỉ cần biết chúng tồn tại và nắm được ý nghĩa khái quát của chúng là đủ.
 
-One more note, the **Formal Syntax** section here is *crazy*. Don't let it deter you. The basic syntax is somewhat hard to define because many of the properties that make up the shorthand are optional, or can come in different places in the definition.
+Một lưu ý nữa là phần **Formal Syntax** ở đây *rất* phức tạp. Đừng để điều đó làm bạn nản. Cú pháp cơ bản hơi khó định nghĩa vì nhiều thuộc tính tạo nên dạng viết tắt là tùy chọn, hoặc có thể xuất hiện ở những vị trí khác nhau trong định nghĩa.
 
 #### Borders
 
-At this point, you've probably already encountered `border` and `border-radius`. The `border` property is another shorthand, but it is *much* less complicated than the background shorthand. For borders, basically you just need to define a size, style and color.
+Đến lúc này, có lẽ bạn đã gặp `border` và `border-radius`. Thuộc tính `border` cũng là một dạng viết tắt, nhưng *đơn giản hơn nhiều* so với dạng viết tắt của background. Với đường viền, về cơ bản bạn chỉ cần xác định kích thước, kiểu và màu.
 
-`border-radius` is the property that is used to create rounded corners on things. As you'll see in the docs, it's possible to get fancy and define different radii for each corner of an element, but this is rarely useful. Store that information in the category of "things I'll look up if I ever need it".
+`border-radius` là thuộc tính dùng để tạo các góc bo tròn cho phần tử. Như bạn sẽ thấy trong tài liệu, bạn có thể định nghĩa bán kính khác nhau cho từng góc, nhưng điều này hiếm khi hữu ích. Hãy xếp thông tin đó vào nhóm "những thứ sẽ tra cứu nếu sau này cần".
 
 #### Box-shadow
 
-As you might expect from the property name, `box-shadow` adds a shadow effect around an element. This is useful to create a sense of depth on your page and to add subtle separation between elements.
+Đúng như tên gọi, `box-shadow` thêm hiệu ứng đổ bóng xung quanh một phần tử. Thuộc tính này hữu ích để tạo cảm giác chiều sâu cho trang và tạo sự phân tách tinh tế giữa các phần tử.
 
-In usage it's straightforward, but keep in mind that it's best used sparingly, and subtly. Prefer lighter, barely visible shadows to darker or brighter colors.
+Cách sử dụng khá đơn giản, nhưng hãy nhớ rằng bạn nên dùng nó tiết chế và nhẹ nhàng. Ưu tiên những bóng mờ, khó nhận thấy hơn là các màu tối hoặc quá nổi bật.
 
 #### Overflow
 
-It is possible, using `overflow`, to define what happens to an element when its content is too big to fit. The most common usage is likely to add scrollbars to an element inside a webpage, for example a `card` style element with scrollable content.
+Bạn có thể dùng `overflow` để xác định điều gì xảy ra với một phần tử khi nội dung của nó quá lớn, không thể vừa vào bên trong. Cách dùng phổ biến nhất có lẽ là thêm thanh cuộn cho một phần tử bên trong trang web, chẳng hạn một phần tử kiểu `card` có nội dung cuộn được.
 
 #### Opacity
 
-Opacity is another easy one that can be very useful in some circumstances. The `opacity` property allows you to make an element more or less transparent. This can be useful for creating hover effects, or for layering elements on top of each other.
+Opacity cũng là một thuộc tính đơn giản nhưng có thể rất hữu ích trong một số trường hợp. Thuộc tính `opacity` cho phép bạn làm cho một phần tử trong suốt nhiều hơn hoặc ít hơn. Điều này có thể hữu ích khi tạo hiệu ứng hover hoặc xếp các phần tử chồng lên nhau.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Check out the MDN docs for the following properties:
+1. Xem tài liệu MDN về các thuộc tính sau:
    - [background](https://developer.mozilla.org/en-US/docs/Web/CSS/background)
    - [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border)
    - [border-radius](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius)

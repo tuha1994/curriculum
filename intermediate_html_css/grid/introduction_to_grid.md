@@ -1,84 +1,84 @@
-### Introduction
+### Giới thiệu
 
-Over the next few lessons we will cover CSS Grid and make page layouts much easier. First we’ll take a quick look back at Flexbox (remember Flexbox!?) and then learn about Grid.
+Trong vài bài học tiếp theo, chúng ta sẽ tìm hiểu CSS Grid và làm cho việc bố cục trang trở nên dễ dàng hơn nhiều. Trước tiên, chúng ta sẽ ôn nhanh về Flexbox (còn nhớ Flexbox chứ!?) rồi tìm hiểu về Grid.
 
-The following lessons will show you how to create a grid, position grid items and use some advanced properties. Then we will take a deeper look between Flexbox and Grid. Ultimately we are working towards building a dashboard project using Grid.
+Các bài học sau sẽ chỉ cho bạn cách tạo một grid, định vị các phần tử trong grid và sử dụng một số thuộc tính nâng cao. Sau đó, chúng ta sẽ xem xét sâu hơn sự khác nhau giữa Flexbox và Grid. Mục tiêu cuối cùng là xây dựng một dự án dashboard bằng Grid.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Compare the basics between Flexbox and Grid.
-- Describe a situation for using Grid over Flexbox.
+- So sánh những điểm cơ bản giữa Flexbox và Grid.
+- Mô tả một tình huống nên dùng Grid thay cho Flexbox.
 
-### A look back at flex
+### Ôn lại về flex
 
-In the Foundations course you learned a lot about Flexbox. If you’ve been using Flex here and there along the way, this section will be a quick refresher before we get into Grid. If you’re completely lost on Flex, then it might be helpful to go back through the [Flex lessons](https://www.theodinproject.com/lessons/foundations-introduction-to-flexbox) again to get up to speed.
+Trong khóa Foundations, bạn đã học rất nhiều về Flexbox. Nếu bạn đã sử dụng Flex ở đây đó trong quá trình học, phần này sẽ là một bài ôn nhanh trước khi chúng ta bắt đầu với Grid. Nếu bạn hoàn toàn chưa nắm được Flex, bạn có thể xem lại [các bài học về Flex](https://www.theodinproject.com/lessons/foundations-introduction-to-flexbox) để bắt kịp.
 
-The Flex lessons covered positioning items along the [two flex axes (main and cross)](https://www.theodinproject.com/lessons/foundations-axes) and how to set their [flex alignment](https://www.theodinproject.com/lessons/foundations-alignment). You also learned [how to make your flex items grow, shrink or change their size](https://www.theodinproject.com/lessons/foundations-growing-and-shrinking). This is the real beauty of Flexbox as items can, well, “flex” to stretch out or shrink down.
+Các bài học về Flex đã đề cập đến việc định vị các phần tử theo [hai trục flex (trục chính và trục phụ)](https://www.theodinproject.com/lessons/foundations-axes) và cách thiết lập [căn chỉnh flex](https://www.theodinproject.com/lessons/foundations-alignment). Bạn cũng đã học [cách làm cho các flex item tăng, co hoặc thay đổi kích thước](https://www.theodinproject.com/lessons/foundations-growing-and-shrinking). Đây chính là điểm thú vị của Flexbox: các phần tử có thể “flex”, tức là kéo giãn ra hoặc co lại.
 
-You’ll remember you can line up a nice row of flex items like this:
+Bạn sẽ nhớ rằng mình có thể xếp một hàng flex item đẹp mắt như sau:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="XWeJbRy" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/XWeJbRy">
-  Single Row | CSS Flexbox</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/XWeJbRy">
+  Single Row | CSS Flexbox</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Or a column like this:
+Hoặc một cột như sau:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="MWEYwoX" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/MWEYwoX">
-  Single Column | CSS Flexbox</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/MWEYwoX">
+  Single Column | CSS Flexbox</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-For one-dimensional layouts, Flex offers a convenient tool without having to rely on floats or CSS hacks to align your items properly.
+Đối với bố cục một chiều, Flex cung cấp một công cụ thuận tiện mà không cần dựa vào float hoặc các mẹo CSS để căn chỉnh đúng các phần tử.
 
-For two-dimensional layouts, you learned a little bit about `flex-wrap`, which allows you to take your flex items and wrap them to the next line. This can be done with either a row that wraps to another row, or a column that wraps to another column.
+Đối với bố cục hai chiều, bạn đã học một chút về `flex-wrap`, cho phép đưa các flex item xuống dòng tiếp theo. Việc này có thể thực hiện với một hàng chuyển sang hàng khác hoặc một cột chuyển sang cột khác.
 
-Remember how much fun you had solving the card layout in this exercise?
+Bạn còn nhớ mình đã vui thế nào khi giải bài tập bố cục card này không?
 
 [![flex-exercise-desired-outcome.png](https://i.postimg.cc/vZ81HMkB/flex-exercise-desired-outcome.png)](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/flex/07-flex-layout-2)
 
-We know that was a frustrating one, but it's part of the point. While Flexbox allows you to build a layout of rows and columns together, it isn’t always easy.
+Chúng ta biết bài đó khá khó chịu, nhưng đó là một phần của mục đích bài tập. Mặc dù Flexbox cho phép bạn xây dựng bố cục gồm cả hàng và cột, việc này không phải lúc nào cũng dễ.
 
-But setting up a two-dimensional layout of cards would be much easier using CSS Grid:
+Nhưng việc thiết lập bố cục hai chiều cho các card sẽ dễ hơn nhiều khi dùng CSS Grid:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="KKXwpZR" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/KKXwpZR">
-  2D Layout | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/KKXwpZR">
+  2D Layout | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### What is grid?
+### Grid là gì?
 
-Although Grid is a newer module to CSS, this layout tool has long been in development. Fun fact, CSS co-creator Dr. Bert Bos (no relation to Wes Bos) started working on this layout model in 1996. The idea was inspired by the use of grid-like layouts in other forms of media like newspapers and magazines. After years of thorough demonstrations and development, CSS Grid was finally introduced to all major browsers in 2017.
+Mặc dù Grid là một module mới hơn của CSS, công cụ bố cục này đã được phát triển từ lâu. Một sự thật thú vị: đồng sáng tạo viên CSS, Tiến sĩ Bert Bos (không có họ hàng với Wes Bos), bắt đầu làm việc trên mô hình bố cục này từ năm 1996. Ý tưởng được truyền cảm hứng từ việc sử dụng các bố cục dạng lưới trong những hình thức truyền thông khác như báo và tạp chí. Sau nhiều năm trình diễn và phát triển kỹ lưỡng, CSS Grid cuối cùng cũng được giới thiệu trên tất cả các trình duyệt lớn vào năm 2017.
 
-As shown above, Grid is often praised for easy placement of items in a two-dimensional layout. But Grid can be used for one-dimensional layouts too. One advantage for developers is if they start off with only one row of items, they can add additional rows later.
+Như đã thấy ở trên, Grid thường được đánh giá cao vì khả năng dễ dàng đặt các phần tử trong bố cục hai chiều. Nhưng Grid cũng có thể dùng cho bố cục một chiều. Một lợi thế đối với developer là nếu ban đầu họ chỉ có một hàng phần tử, họ vẫn có thể thêm các hàng khác về sau.
 
-You will notice a lot of similarities between Flex and Grid. Both use parent containers with child items. They have similar property names for alignment and positioning. But you will also come across a lot of differences between the two and opinions on how each module should be used. For example, if you’ve been struggling to get your Flex items to all match evenly in size, Grid can make this type of layout much easier.
+Bạn sẽ nhận thấy Flex và Grid có nhiều điểm tương đồng. Cả hai đều dùng container cha với các item con. Chúng có tên thuộc tính tương tự để căn chỉnh và định vị. Nhưng bạn cũng sẽ gặp nhiều khác biệt giữa hai module này, cùng các quan điểm về cách nên sử dụng mỗi module. Ví dụ, nếu bạn đang chật vật để làm cho tất cả flex item có kích thước đều nhau, Grid có thể khiến kiểu bố cục này dễ hơn nhiều.
 
-When reviewing older resources, keep in mind that differences between Flex and Grid can also change as these modules get updated. One of the big highlights for CSS Grid was the use of the `gap` property, which we will cover in the next lesson. This used to only be available to Grid, but is now supported with Flex too.
+Khi xem các tài liệu cũ, hãy nhớ rằng khác biệt giữa Flex và Grid cũng có thể thay đổi khi các module này được cập nhật. Một điểm nổi bật của CSS Grid là thuộc tính `gap`, chúng ta sẽ học ở bài tiếp theo. Trước đây thuộc tính này chỉ có trong Grid, nhưng hiện nay Flex cũng hỗ trợ.
 
-While some people thought CSS Grid was here to replace Flexbox, you will learn by the end of these lessons that Grid is just another tool for the bag. In fact, not only do each of these modules have their own use cases, but you will also find it helpful to pair Flex and Grid together. But we’ll be covering all of that in the concluding lesson. First you will learn how to actually make a grid!
+Một số người từng nghĩ CSS Grid ra đời để thay thế Flexbox, nhưng đến cuối các bài học này bạn sẽ thấy Grid chỉ là thêm một công cụ vào bộ công cụ. Thực tế, mỗi module đều có trường hợp sử dụng riêng, và bạn cũng sẽ thấy việc kết hợp Flex với Grid rất hữu ích. Chúng ta sẽ tìm hiểu tất cả điều đó trong bài tổng kết. Trước hết, bạn sẽ học cách thực sự tạo một grid!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Surprise! No assignment! You’ll be learning a lot more throughout the coming lessons so keep going.
+1. Bất ngờ chưa! Không có bài tập! Bạn sẽ học thêm rất nhiều trong các bài sắp tới, nên hãy tiếp tục.
 
 </div>

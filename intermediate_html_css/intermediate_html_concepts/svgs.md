@@ -1,40 +1,40 @@
-### Introduction
+### Giới thiệu
 
-SVGs are a very common image format on the web. They can be a little confusing at first, but once you know how to use them, they are an incredibly powerful tool for creating high-quality, dynamic images for your website.
+SVG là một định dạng hình ảnh rất phổ biến trên web. Ban đầu chúng có thể hơi khó hiểu, nhưng một khi biết cách sử dụng, SVG là công cụ cực kỳ mạnh để tạo ra những hình ảnh chất lượng cao, sống động cho trang web của bạn.
 
-In this lesson, we will learn exactly what SVGs are, what they're used for, and how you can embed them in your websites.
+Trong bài học này, chúng ta sẽ tìm hiểu chính xác SVG là gì, chúng được dùng để làm gì và cách nhúng chúng vào trang web.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài.
 
-- What SVGs, Vector Graphics, and XML are.
-- How to create simple SVGs and add them to your websites.
-- When to use SVGs, and when a different image format would be more appropriate.
+- SVG, Vector Graphics và XML là gì.
+- Cách tạo SVG đơn giản và thêm chúng vào trang web.
+- Khi nào nên dùng SVG và khi nào một định dạng hình ảnh khác sẽ phù hợp hơn.
 
-### What are SVGs?
+### SVG là gì?
 
-SVGs are a *scalable* image format, which means they will easily scale to any size and retain their quality without increasing their filesize. They're also very useful if you need to create or modify your images programmatically, because you can change their properties through CSS and JavaScript.
+SVG là một định dạng hình ảnh *có thể co giãn*, nghĩa là chúng dễ dàng thay đổi kích thước đến bất kỳ mức nào mà vẫn giữ nguyên chất lượng, không làm tăng kích thước tệp. SVG cũng rất hữu ích nếu bạn cần tạo hoặc chỉnh sửa hình ảnh bằng chương trình, vì bạn có thể thay đổi thuộc tính của chúng thông qua CSS và JavaScript.
 
-SVGs are often used for:
+SVG thường được dùng cho:
 
-1. Icons
-1. Graphs/Charts
-1. Large, simple images
-1. Patterned backgrounds
-1. Applying effects to other elements via SVG filters
+1. Biểu tượng
+1. Đồ thị/biểu đồ
+1. Hình ảnh lớn, đơn giản
+1. Nền có họa tiết
+1. Áp dụng hiệu ứng cho các phần tử khác bằng bộ lọc SVG
 
-### Okay, but what are they?
+### Được rồi, nhưng chúng là gì?
 
-"SVG" stands for "Scalable Vector Graphics". Vector graphics are images defined by math, as opposed to traditional "raster graphics", where your image is defined by a grid of pixels. With raster graphics, the detail is limited to the size of that pixel grid. If you want to increase the size of the image (*scale* it), you have to increase the size of that grid. How do you decide what all those new pixels should look like? There's no simple solution. Additionally, the larger the grid, the bigger your filesize grows.
+"SVG" là viết tắt của "Scalable Vector Graphics". Đồ họa vector là những hình ảnh được định nghĩa bằng toán học, trái ngược với "đồ họa raster" truyền thống, trong đó hình ảnh được định nghĩa bằng một lưới pixel. Với đồ họa raster, mức độ chi tiết bị giới hạn bởi kích thước của lưới pixel đó. Nếu muốn tăng kích thước hình ảnh (*scale*), bạn phải tăng kích thước lưới. Bạn quyết định tất cả những pixel mới đó sẽ trông như thế nào bằng cách nào? Không có giải pháp đơn giản. Ngoài ra, lưới càng lớn thì kích thước tệp càng tăng.
 
-With vector graphics on the other hand, there's no grid. Instead, you have formulas for different shapes and lines. Since these are just formulas, it doesn't matter how large or small you want them to appear--they can scale to any size you want, and it will have no effect on the quality or the size of the file.
+Ngược lại, đồ họa vector không có lưới. Thay vào đó, bạn có các công thức cho những hình dạng và đường nét khác nhau. Vì chúng chỉ là các công thức, việc bạn muốn chúng hiển thị lớn hay nhỏ không quan trọng -- chúng có thể co giãn đến bất kỳ kích thước nào mà không ảnh hưởng đến chất lượng hoặc kích thước tệp.
 
-SVGs have another interesting aspect to them: they're defined using XML. XML (aka, "Extensible Markup Language") is an HTML-like syntax which is used for lots of things, from [APIs](https://en.wikipedia.org/wiki/API), to [RSS](https://en.wikipedia.org/wiki/RSS), to [spreadsheet and word editor software](https://en.wikipedia.org/wiki/Office_Open_XML).
+SVG còn có một điểm thú vị khác: chúng được định nghĩa bằng XML. XML (hay còn gọi là "Extensible Markup Language") là một cú pháp giống HTML, được dùng cho rất nhiều thứ, từ [API](https://en.wikipedia.org/wiki/API), [RSS](https://en.wikipedia.org/wiki/RSS), cho đến [phần mềm bảng tính và soạn thảo văn bản](https://en.wikipedia.org/wiki/Office_Open_XML).
 
-The fact that SVG source-code is XML has a few key benefits.
+Việc mã nguồn SVG là XML mang lại một vài lợi ích chính.
 
-First, it means that it is *human-readable*. If you were to open up a JPEG in a text editor, it would just look like gobbledygook. If you were to open up an SVG, however, it would look something like this:
+Trước hết, điều đó có nghĩa là nó *dễ đọc đối với con người*. Nếu mở một JPEG trong trình soạn thảo văn bản, bạn chỉ thấy những ký tự vô nghĩa. Tuy nhiên, nếu mở một SVG, bạn sẽ thấy nội dung tương tự như sau:
 
 ```html
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -43,55 +43,55 @@ First, it means that it is *human-readable*. If you were to open up a JPEG in a 
 </svg>
 ```
 
-It might still be confusing, but hey--those are words! Tags! Attributes! Compared to [binary file formats](https://en.wikipedia.org/wiki/Binary_file) like JPEG, we're definitely in familiar territory.
+Nội dung này vẫn có thể gây khó hiểu, nhưng này -- đó là các từ! Các tag! Các thuộc tính! So với những [định dạng tệp nhị phân](https://en.wikipedia.org/wiki/Binary_file) như JPEG, chúng ta đang ở một vùng quen thuộc hơn nhiều.
 
-The second benefit of XML is that it's designed to be interoperable with HTML, which means you can put the above code directly in an HTML file, without any changes, and it should display the image. And because these can become elements in the DOM just like HTML elements, you can target them with CSS and create them using the [Element WebAPI](https://developer.mozilla.org/en-US/docs/Web/API/Element) you've already been using!
+Lợi ích thứ hai của XML là nó được thiết kế để có thể tương tác với HTML. Điều đó có nghĩa là bạn có thể đặt trực tiếp đoạn mã trên vào tệp HTML mà không cần thay đổi gì, và hình ảnh sẽ được hiển thị. Vì các phần tử này có thể trở thành phần tử trong DOM giống như phần tử HTML, bạn có thể chọn chúng bằng CSS và tạo chúng bằng [Element WebAPI](https://developer.mozilla.org/en-US/docs/Web/API/Element) mà bạn đã sử dụng!
 
-### Drawbacks
+### Nhược điểm
 
-So, clearly SVGs are awesome! Time to go convert all of our images to SVG, right? Well, not quite. SVGs are *great* for relatively simple images, but because every single detail of the image needs to be written out as XML, they are extremely inefficient at storing complex images. If your image is supposed to be photo-realistic, or it has fine detail or texture ("[grunge textures](https://unsplash.com/s/photos/grunge-texture)" are a great example), then SVGs are the wrong tool for the job.
+Rõ ràng SVG thật tuyệt! Vậy đã đến lúc chuyển tất cả hình ảnh sang SVG, đúng không? Không hẳn. SVG *rất phù hợp* với những hình ảnh tương đối đơn giản, nhưng vì mọi chi tiết của hình ảnh đều phải được viết ra dưới dạng XML, chúng cực kỳ kém hiệu quả khi lưu trữ những hình ảnh phức tạp. Nếu hình ảnh của bạn cần trông như ảnh chụp, hoặc có chi tiết hay kết cấu tinh vi ("[kết cấu grunge](https://unsplash.com/s/photos/grunge-texture)" là một ví dụ điển hình), SVG không phải công cụ phù hợp.
 
-### Anatomy of an SVG
+### Giải phẫu một SVG
 
-Typically, you will not want to create SVGs from scratch in your code. Most often, you will download the file or copy the code either from a website or from an image editor that can create them ([Material icons](https://fonts.google.com/icons) and [Feather icons](https://feathericons.com/) are examples of popular SVG icon libraries). However, it's pretty common to download an SVG and want to tweak or adjust it just a little bit, so knowing what all the bits and pieces are, and how they work is very useful.
+Thông thường, bạn sẽ không muốn tự tạo SVG từ đầu trong mã của mình. Phần lớn thời gian, bạn sẽ tải tệp xuống hoặc sao chép mã từ một trang web hay một trình chỉnh sửa hình ảnh có thể tạo SVG ( [Material icons](https://fonts.google.com/icons) và [Feather icons](https://feathericons.com/) là những ví dụ về thư viện biểu tượng SVG phổ biến). Tuy nhiên, việc tải một SVG xuống rồi muốn tinh chỉnh hoặc điều chỉnh một chút là khá thường gặp, nên biết từng phần là gì và chúng hoạt động ra sao rất hữu ích.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="NWaGdmL" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/NWaGdmL">
-  Simple SVG Example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/NWaGdmL">
+  Simple SVG Example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
 
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-1. `xmlns` - stands for "XML NameSpace". This specifies what *dialect* of XML you're using. In our case, that dialect is the SVG language spec. Without it, some browsers will not render your image or will render it incorrectly.
-1. `viewBox` - defines the bounds of your SVG. When you have to define the positions of different points of the elements in your SVG, this is what that's referencing. It also defines the aspect ratio *and* the origin of your SVG. So it's doing quite a lot! Be sure to play around with different values in the example above to get a feel for how it affects the shapes.
-1. `class`, `id` - these attributes function just like they do in HTML. Using these in SVGs allows you to easily target an element via CSS or JavaScript, or to reuse an element via the [`use` element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use).
-1. Elements such as `<circle>`, `<rect>`, `<path>`, and `<text>` are defined by the SVG namespace. These are our basic building-blocks. Although you can make extremely complex images with SVG, they are mostly created with just a dozen or so of these basic elements. Here is a [complete list of SVG elements](https://developer.mozilla.org/en-US/docs/Web/SVG/Element).
-1. Many SVG attributes, such as `fill` and `stroke`, can be changed in your CSS. Learn more in this [article on SVG properties and CSS](https://css-tricks.com/svg-properties-and-css/).
+1. `xmlns` - là viết tắt của "XML NameSpace". Thuộc tính này chỉ định bạn đang dùng *phương ngữ* XML nào. Trong trường hợp của chúng ta, đó là đặc tả ngôn ngữ SVG. Nếu không có thuộc tính này, một số trình duyệt sẽ không hiển thị hình ảnh hoặc hiển thị không chính xác.
+1. `viewBox` - định nghĩa giới hạn của SVG. Khi phải xác định vị trí của những điểm khác nhau trong các phần tử SVG, đây là giới hạn được tham chiếu. Nó cũng định nghĩa tỷ lệ khung hình *và* gốc tọa độ của SVG. Vì vậy, thuộc tính này đảm nhiệm khá nhiều việc! Hãy thử thay đổi các giá trị khác nhau trong ví dụ trên để cảm nhận ảnh hưởng của nó đến các hình dạng.
+1. `class`, `id` - các thuộc tính này hoạt động giống như trong HTML. Dùng chúng trong SVG cho phép bạn dễ dàng chọn một phần tử bằng CSS hoặc JavaScript, hoặc tái sử dụng một phần tử thông qua [phần tử `use`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use).
+1. Các phần tử như `<circle>`, `<rect>`, `<path>` và `<text>` được định nghĩa bởi namespace SVG. Đây là những khối xây dựng cơ bản của chúng ta. Mặc dù bạn có thể tạo những hình ảnh SVG cực kỳ phức tạp, phần lớn chúng chỉ được tạo bằng khoảng một tá phần tử cơ bản này. Đây là [danh sách đầy đủ các phần tử SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element).
+1. Nhiều thuộc tính SVG, chẳng hạn `fill` và `stroke`, có thể được thay đổi trong CSS. Tìm hiểu thêm trong [bài viết về thuộc tính SVG và CSS](https://css-tricks.com/svg-properties-and-css/).
 
-Play around with the code above and try to get a feel for what's happening. What happens when you change the viewBox dimensions? Or the attributes of an element?
+Hãy thử thay đổi đoạn mã trên và cảm nhận điều gì đang xảy ra. Điều gì xảy ra khi bạn thay đổi kích thước viewBox? Hoặc các thuộc tính của một phần tử?
 
-### Embedding SVGs
+### Nhúng SVG
 
-There are two main approaches when deciding how to actually place the SVG in your document: linked, and inline.
+Có hai cách tiếp cận chính khi quyết định cách thực sự đặt SVG vào tài liệu: liên kết và inline.
 
-Linking SVGs works basically the same way as linking any other image. You can use an HTML image element such as `<img>`, or link it in your CSS using `background-image: url(./my-image.svg)`. They will still scale properly, but the contents of the SVG will not be accessible from the webpage.
+Việc liên kết SVG về cơ bản giống với việc liên kết bất kỳ hình ảnh nào khác. Bạn có thể dùng một phần tử hình ảnh HTML như `<img>`, hoặc liên kết nó trong CSS bằng `background-image: url(./my-image.svg)`. SVG vẫn sẽ co giãn đúng cách, nhưng nội dung của SVG sẽ không thể được truy cập từ trang web.
 
-The alternative is to inline your SVGs by pasting their contents directly into your webpage's code, rather than linking to it as an image. It will still render correctly, but the SVG's properties will be visible to your code, which will allow you to alter the image dynamically via CSS or JavaScript.
+Cách thay thế là inline SVG bằng cách dán trực tiếp nội dung của nó vào mã trang web, thay vì liên kết nó như một hình ảnh. SVG vẫn được hiển thị chính xác, nhưng các thuộc tính của SVG sẽ hiển thị với mã của bạn, cho phép bạn thay đổi hình ảnh một cách động bằng CSS hoặc JavaScript.
 
-Inlining SVGs allows you to unlock their full potential, but it also comes with some serious drawbacks: it makes your code harder to read, makes your page less cacheable, and if it's a large SVG it might delay the rest of your HTML from loading.
+Inline SVG giúp bạn khai thác toàn bộ tiềm năng của chúng, nhưng cũng có một số nhược điểm nghiêm trọng: mã khó đọc hơn, trang khó được cache hơn, và nếu SVG lớn thì nó có thể làm chậm việc tải phần HTML còn lại.
 
-Some of the drawbacks of inlining SVG code can be avoided once you've learned a front-end JavaScript library like React, or a build-tool like webpack. We aren't quite ready to get into those yet, so just keep that in the back of your mind.
+Một số nhược điểm của việc inline mã SVG có thể được tránh khi bạn đã học một thư viện JavaScript front-end như React hoặc một build-tool như webpack. Chúng ta chưa sẵn sàng tìm hiểu những thứ đó, nên hiện tại chỉ cần ghi nhớ điều này.
 
-For now, just do whichever works best for your use-case. Linking is generally cleaner and simpler, so prefer that unless you need to tweak the SVG code alongside your HTML.
+Bây giờ, hãy dùng cách phù hợp nhất với trường hợp của bạn. Liên kết thường gọn gàng và đơn giản hơn, vì vậy hãy ưu tiên cách đó trừ khi bạn cần tinh chỉnh mã SVG cùng với HTML.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read Josh Comeau's [A Friendly Introduction to SVG](https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/), a great guide with interactive demos covering shapes and scaling. Stop when you get to the section on animations (animations are covered later in the curriculum).
+1. Đọc [A Friendly Introduction to SVG](https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/) của Josh Comeau, một hướng dẫn tuyệt vời có các bản minh họa tương tác về hình dạng và co giãn. Dừng lại khi đến phần về animation (animation sẽ được đề cập ở phần sau của curriculum).
 
 </div>

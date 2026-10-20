@@ -1,48 +1,48 @@
-### Introduction
+### Giới thiệu
 
-Now that you've had plenty of practice using Grid, we are going to build a full dashboard design. For this project, use whatever tools you need to get it done, but try to lean on Grid for the majority of the layout work. Go back through the lessons or practice assignments if you need a refresher.
+Bây giờ bạn đã có nhiều thời gian luyện tập với Grid, chúng ta sẽ xây dựng một thiết kế dashboard hoàn chỉnh. Với dự án này, hãy dùng bất kỳ công cụ nào cần thiết để hoàn thành, nhưng cố gắng dựa vào Grid cho phần lớn công việc bố cục. Nếu cần ôn lại, hãy xem lại các bài học hoặc bài tập trước.
 
 ![dashboard project](https://cdn.statically.io/gh/TheOdinProject/curriculum/43cc6ab69fdfbef40d431a65677d2144668930ac/intermediate_html_css/grid/project_admin_dashboard/imgs/dashboard-project.png)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Step 1: Set up and planning
+#### Bước 1: Thiết lập và lập kế hoạch
 
-1. Set up your Git repository (refer to past projects if you need a refresher).
-1. Set up your HTML and CSS files with some dummy content, just to make sure you have everything linked correctly.
-1. Download a full-resolution copy of the [project design file](https://cdn.statically.io/gh/TheOdinProject/curriculum/43cc6ab69fdfbef40d431a65677d2144668930ac/intermediate_html_css/grid/project_admin_dashboard/imgs/dashboard-project.png) and get a general idea for how you're going to need to lay things out in your HTML document.
+1. Thiết lập Git repository của bạn (nếu cần ôn lại, hãy xem các dự án trước).
+1. Tạo các file HTML và CSS với một số nội dung giả, chỉ để bảo đảm mọi thứ được liên kết đúng.
+1. Tải bản có độ phân giải đầy đủ của [file thiết kế dự án](https://cdn.statically.io/gh/TheOdinProject/curriculum/43cc6ab69fdfbef40d431a65677d2144668930ac/intermediate_html_css/grid/project_admin_dashboard/imgs/dashboard-project.png) và hình dung khái quát cách bạn sẽ cần bố trí các phần trong tài liệu HTML.
 
-#### Step 2: Layout
+#### Bước 2: Bố cục
 
-1. Start by writing out the HTML elements for the sidebar, header and main-content containers.
-1. In your CSS file, apply Grid properties until you have this basic layout built.
+1. Bắt đầu bằng cách viết các phần tử HTML cho các container sidebar, header và main-content.
+1. Trong file CSS, áp dụng các thuộc tính Grid cho đến khi xây dựng được bố cục cơ bản này.
 
-#### Step 3: Nesting
+#### Bước 3: Lồng ghép
 
-1. Taking it one section at a time, begin nesting child elements under the parent elements in the HTML. Remember that you can keep making grid containers within grid containers.
-1. In the sidebar, use more grids to lay out the navigation and branding sections.
-1. In the header, use more grids to lay out the search bar, user info and buttons.
-1. For the main-content, use more grids to lay out the projects, announcements and trending items.
-1. Fill out some dummy content and placeholder images so you can position all of your grid items.
+1. Xử lý từng phần một, bắt đầu lồng các phần tử con bên dưới phần tử cha trong HTML. Hãy nhớ rằng bạn có thể tiếp tục tạo grid container bên trong grid container.
+1. Trong sidebar, dùng thêm grid để bố trí các phần navigation và branding.
+1. Trong header, dùng thêm grid để bố trí thanh tìm kiếm, thông tin người dùng và các nút.
+1. Với main-content, dùng thêm grid để bố trí các project, announcement và item trending.
+1. Điền một số nội dung giả và ảnh placeholder để có thể định vị tất cả grid item.
 
-#### Step 4: Gather assets
+#### Bước 4: Thu thập asset
 
-1. Once you have your grid layout complete you can either recreate the dashboard example above or style your own design.
-1. All of the icons and more can be downloaded as SVGs from [Material Design Icons](https://pictogrammers.com/library/mdi/).
-1. Choose your own fonts! The design example uses `Roboto`, which is available with Google fonts. (You may want to review the [More Text Styles Lesson](https://www.theodinproject.com/lessons/intermediate-html-and-css-more-text-styles) for information about how to include external fonts in your projects).
+1. Khi hoàn tất bố cục grid, bạn có thể tái tạo dashboard ví dụ ở trên hoặc thiết kế một giao diện riêng.
+1. Có thể tải toàn bộ icon và nhiều tài nguyên khác dưới dạng SVG từ [Material Design Icons](https://pictogrammers.com/library/mdi/).
+1. Hãy chọn font của riêng bạn! Thiết kế ví dụ dùng `Roboto`, có sẵn trên Google fonts. (Bạn có thể xem lại [bài More Text Styles](https://www.theodinproject.com/lessons/intermediate-html-and-css-more-text-styles) để biết cách đưa font bên ngoài vào dự án).
 
-#### Step 5: Some tips!
+#### Bước 5: Một vài mẹo!
 
-1. When building the layout, apply background colors or borders to your containers to help you visualize your grid.
-1. It's up to you whether to use pixels, `fr` units or both for your grid tracks.
-1. This project does not have to be responsive, but if you'd like to, you can expand or shrink the project cards section when resizing the browser window.
-1. You don't have to make a pixel perfect match with the design example. Consider this an opportunity to practice your CSS skills with your own designs.
-1. Don't forget to push your finished dashboard to GitHub. Use GitHub Pages to publish it to the world!
+1. Khi xây dựng bố cục, hãy áp dụng màu nền hoặc border cho các container để dễ hình dung grid.
+1. Bạn có thể tự chọn dùng pixel, đơn vị `fr` hoặc cả hai cho các grid track.
+1. Dự án này không bắt buộc phải responsive, nhưng nếu muốn, bạn có thể mở rộng hoặc thu nhỏ phần project card khi thay đổi kích thước cửa sổ trình duyệt.
+1. Bạn không cần khớp hoàn hảo từng pixel với thiết kế ví dụ. Hãy xem đây là cơ hội luyện kỹ năng CSS bằng các thiết kế của riêng mình.
+1. Đừng quên push dashboard hoàn thành lên GitHub. Hãy dùng GitHub Pages để công khai nó!
 
-#### Step 6: Section feedback
+#### Bước 6: Phản hồi về phần học
 
-1. Before you move on, we would love it if you could [submit your feedback on the Intermediate HTML and CSS course](https://docs.google.com/forms/d/e/1FAIpQLSf_hNwIjvqcPZyl9Lx41mgJNQKp04qOro03SI8ABw4Zp7U_4w/viewform?usp=sf_link).
+1. Trước khi chuyển tiếp, chúng tôi rất mong bạn [gửi phản hồi về khóa Intermediate HTML and CSS](https://docs.google.com/forms/d/e/1FAIpQLSf_hNwIjvqcPZyl9Lx41mgJNQKp04qOro03SI8ABw4Zp7U_4w/viewform?usp=sf_link).
 
 </div>

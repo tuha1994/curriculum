@@ -1,67 +1,67 @@
-### Introduction
+### Giới thiệu
 
-So far, you've learned how to create a grid, adjust the sizes of the tracks, and position grid elements in specific rows and columns. Right now, you have all the tools you need to be able to create any kind of static grid layout, but what do you do when you want your grid to be more responsive, dynamic, or reusable?
+Cho đến nay, bạn đã học cách tạo grid, điều chỉnh kích thước các track và định vị grid element trong những hàng, cột cụ thể. Hiện tại, bạn đã có mọi công cụ cần thiết để tạo bất kỳ bố cục grid tĩnh nào, nhưng sẽ làm gì khi muốn grid responsive, động hoặc có thể tái sử dụng hơn?
 
-In this lesson, you will learn about some more advanced Grid properties that can help you do this.
+Trong bài học này, bạn sẽ tìm hiểu một số thuộc tính Grid nâng cao giúp bạn làm được điều đó.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Create multiple grid tracks more easily using the `repeat` function.
-- Create grid tracks using `fr` units instead of an explicit size.
-- Set minimum, maximum, and ideal track size boundaries.
-- Use `auto-fit` and `auto-fill` to create a grid with a dynamic number of rows or columns.
-- Use `auto-fit`/`auto-fill` along with `minmax()` to create responsive grids.
+- Dễ dàng tạo nhiều grid track bằng hàm `repeat`.
+- Tạo grid track bằng đơn vị `fr` thay vì kích thước tường minh.
+- Thiết lập giới hạn kích thước tối thiểu, tối đa và lý tưởng cho track.
+- Dùng `auto-fit` và `auto-fill` để tạo grid có số hàng hoặc cột động.
+- Kết hợp `auto-fit`/`auto-fill` với `minmax()` để tạo grid responsive.
 
-### Setup
+### Thiết lập
 
-We're going to approach this lesson hands-on. Let's set up a grid with five columns and two rows and apply some styling so everything is easy to see.
+Chúng ta sẽ tiếp cận bài học này theo hướng thực hành. Hãy thiết lập một grid với năm cột và hai hàng, đồng thời áp dụng một chút style để mọi thứ dễ nhìn.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="wvrBBXK" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvrBBXK">
-  Advanced Properties | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvrBBXK">
+  Advanced Properties | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-In this example, the HTML is pretty straightforward, but let's talk really quick about some of the CSS being used that *isn't* related to the lesson so you can understand why it is being used.
+Trong ví dụ này, HTML khá đơn giản, nhưng hãy nói nhanh về một số CSS đang được dùng mà *không* liên quan đến bài học, để bạn hiểu lý do chúng xuất hiện.
 
-#### grid-item, p, img selectors
+#### Các selector grid-item, p, img
 
-All the properties here are to make our grid items look a bit nicer. They are all relatively straightforward, so no need to dive into specifics.
+Tất cả thuộc tính ở đây nhằm làm cho grid item trông đẹp hơn một chút. Chúng tương đối dễ hiểu, nên không cần đi sâu vào chi tiết.
 
 #### grid-container
 
-For our container, we are obviously using `display: grid` to render the container as a CSS Grid. But the next property might be unfamiliar to you: `resize: both`. This is a property that allows the user to resize the container by clicking and dragging from the bottom right corner. This will be beneficial to us when we start using properties that resize our grid tracks based on the size of the grid.
+Đối với container, rõ ràng chúng ta dùng `display: grid` để hiển thị container dưới dạng CSS Grid. Nhưng thuộc tính tiếp theo có thể còn xa lạ: `resize: both`. Thuộc tính này cho phép người dùng thay đổi kích thước container bằng cách nhấp và kéo từ góc dưới bên phải. Nó sẽ hữu ích khi chúng ta bắt đầu dùng các thuộc tính thay đổi kích thước grid track dựa trên kích thước grid.
 
-**Change zoom levels:** Make sure to view the CodePen embeds at 0.5x or 0.25x so that there's room to resize the container.
+**Thay đổi mức zoom:** Hãy xem các CodePen embed ở mức 0.5x hoặc 0.25x để có chỗ thay đổi kích thước container.
 
-We use `overflow: auto` to enable scrolling if we resize the container to be smaller than our grid can accommodate.
+Chúng ta dùng `overflow: auto` để bật cuộn nếu thay đổi kích thước container nhỏ hơn mức grid có thể chứa.
 
-We use the properties `gap` and `padding` to establish a "gutter" area to be able to visualize the grid items better.
+Chúng ta dùng các thuộc tính `gap` và `padding` để tạo vùng “gutter”, giúp nhìn rõ grid item hơn.
 
-The `border` and `background-color` are included to make the container look nicer.
+`border` và `background-color` được thêm vào để container trông đẹp hơn.
 
 ```css
 grid-template-rows: 150px 150px;
 grid-template-columns: 150px 150px 150px 150px 150px;
 ```
 
-Here is where we want to begin our focus for this lesson. In order to make two rows and five columns, we manually define each row and column's track size individually.
+Đây là nơi chúng ta bắt đầu tập trung vào bài học. Để tạo hai hàng và năm cột, chúng ta định nghĩa thủ công kích thước track của từng hàng và cột.
 
-Ugh, so tedious!
+Ôi, thật tẻ nhạt!
 
-Okay, so maybe it wasn't THAT tedious. But in this case, we only made a 2x5 grid, which can hold a total of ten items. Imagine using this method of defining every column and row for a grid that can hold hundreds of items!
+Được rồi, có lẽ nó không *tẻ nhạt đến thế*. Nhưng trong trường hợp này, chúng ta chỉ tạo grid 2x5, có thể chứa tổng cộng mười item. Hãy tưởng tượng phải dùng cách này để định nghĩa từng cột và hàng cho một grid có thể chứa hàng trăm item!
 
-Enter, `repeat()`.
+Hãy dùng `repeat()`.
 
 ### Repeat
 
-`repeat()` is a CSS function available to the CSS Grid template properties that allows us to define a number of rows or columns and the size we want them to be without having to manually type out each individual track's size. For example, in our setup above:
+`repeat()` là một hàm CSS có sẵn cho các thuộc tính template của CSS Grid, cho phép định nghĩa số lượng hàng hoặc cột và kích thước của chúng mà không phải gõ thủ công kích thước từng track. Ví dụ, với thiết lập ở trên:
 
 ```css
 .grid-container {
@@ -70,7 +70,7 @@ Enter, `repeat()`.
 }
 ```
 
-can be rewritten as:
+có thể viết lại thành:
 
 ```css
 .grid-container {
@@ -79,53 +79,53 @@ can be rewritten as:
 }
 ```
 
-Check it out for yourself!
+Hãy tự thử nhé!
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="wvrBBxK" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvrBBxK">
-  repeat | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvrBBxK">
+  repeat | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Fractional units
+### Đơn vị phân số
 
-Now that we know how to quickly create many grid tracks, it's time to learn how to start making them *dynamic*. Dynamic, in this context means "flexible" or "responsive in some way." The opposite of dynamic is *static*, or fixed at a certain defined height, like `150px`, which we used in the setup of this sample grid.
+Bây giờ đã biết cách nhanh chóng tạo nhiều grid track, đã đến lúc học cách làm chúng *động*. Trong ngữ cảnh này, động nghĩa là “linh hoạt” hoặc “responsive theo một cách nào đó”. Trái nghĩa của động là *tĩnh*, tức cố định ở một chiều cao nhất định như `150px`, giá trị chúng ta đã dùng khi thiết lập grid mẫu.
 
-The most basic way to make our grid items dynamic is by using **fractional units**, also known as `fr`.
+Cách cơ bản nhất để làm grid item động là dùng **đơn vị phân số**, còn gọi là `fr`.
 
-The `fr` unit is a way of distributing whatever *remaining space* is left in the grid. For example, if we have a four-column grid with a total width of `400px` and four grid items each on a column track assigned `1fr` as their size, all of the grid items should be given **one fraction** of that `400px` of space, which is 100 pixels.
+Đơn vị `fr` là cách phân phối phần *không gian còn lại* trong grid. Ví dụ, nếu có grid bốn cột với tổng chiều rộng `400px` và bốn grid item, mỗi item nằm trên một column track có kích thước `1fr`, thì mỗi grid item sẽ nhận **một phần** của `400px`, tức 100 pixel.
 
-Let's take a look at what happens if we give our column and row tracks in the sample grid we created a dynamic width of `1fr` instead of a static width of 150px:
+Hãy xem điều gì xảy ra khi cho các row track và column track trong grid mẫu một chiều rộng động `1fr` thay vì chiều rộng tĩnh 150px:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="WNZbbgG" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/WNZbbgG">
-  fr Unit 1 | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/WNZbbgG">
+  fr Unit 1 | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Notice how all of our grid items now fill up the entire width and height of the grid? Neat, right? Now, try resizing that example and see what happens. Even cooler!
+Bạn có thấy tất cả grid item giờ lấp đầy toàn bộ chiều rộng và chiều cao của grid không? Hay nhỉ? Bây giờ hãy thử thay đổi kích thước ví dụ đó để xem điều gì xảy ra. Còn thú vị hơn nữa!
 
-We can also tell our grid items to distribute the remaining space disproportionately. For example, if we divide the 5 columns up by giving the first two a track size of `2fr` and the remaining three a track size of `1fr`, the first two tracks will be given twice as much remaining space as the others. Compare this example to the previous one:
+Chúng ta cũng có thể yêu cầu grid item phân phối không gian còn lại theo các tỷ lệ khác nhau. Ví dụ, nếu chia 5 cột bằng cách đặt kích thước track của hai cột đầu là `2fr` và ba cột còn lại là `1fr`, hai track đầu sẽ nhận lượng không gian còn lại gấp đôi các track khác. Hãy so sánh ví dụ này với ví dụ trước:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="QWqwwJG" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/QWqwwJG">
-  fr Unit 2 | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/QWqwwJG">
+  fr Unit 2 | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-In this example, there's a lot going on in our `grid-template-columns`, but take a minute to understand what is written:
+Trong ví dụ này, `grid-template-columns` có khá nhiều thứ đang diễn ra, nhưng hãy dành thời gian hiểu dòng lệnh:
 
 ```css
 grid-template-columns: repeat(2, 2fr) repeat(3, 1fr);
@@ -133,37 +133,37 @@ grid-template-columns: repeat(2, 2fr) repeat(3, 1fr);
 
 <div class="lesson-note" markdown="1">
 
-#### Different ways to define grid tracks
+#### Các cách khác nhau để định nghĩa grid track
 
-We continue to use the `repeat()` function here, but this could be written the old-fashioned way too!
+Ở đây chúng ta tiếp tục dùng hàm `repeat()`, nhưng cũng có thể viết theo cách cũ!
 
 </div>
 
-The key here is that the first two columns are assigned `2fr` units and the remaining three are assigned `1fr`. This means that as the grid grows and shrinks dynamically, the space will be distributed in different amounts between these columns, specifically, twice as many pixels to the first two columns as the remaining three.
+Điểm mấu chốt là hai cột đầu được gán đơn vị `2fr`, còn ba cột còn lại được gán `1fr`. Điều này có nghĩa là khi grid động mở rộng và thu nhỏ, không gian sẽ được phân phối khác nhau giữa các cột, cụ thể là hai cột đầu nhận số pixel gấp đôi ba cột còn lại.
 
-Notice that when you resize, the grid items grow proportionately to how many `fr` units they are allocated, as mentioned above.
+Bạn sẽ nhận thấy khi thay đổi kích thước, grid item tăng theo tỷ lệ số đơn vị `fr` được cấp, như đã đề cập ở trên.
 
-You can also mix static units (like `px`) and dynamic units (like `fr`):
+Bạn cũng có thể trộn các đơn vị tĩnh (như `px`) và đơn vị động (như `fr`):
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="RwLNNqX" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/RwLNNqX">
-  fr and px Units | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/RwLNNqX">
+  fr and px Units | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-You may have noticed at this point that when you resize the grid as large as possible, there is no limit to how large the grid items will become. However, when you resize it as small as possible, there is a distinct "smallest" size the grid will allow its items to go. In this case, it's the smallest size either the `<p>` or `<img>` element can be without overflowing. This breakpoint is the item's `min-content` value. This CSS keyword is **very** useful, but it is beyond the scope of this lesson. For more info, check out the [MDN docs on min-content](https://developer.mozilla.org/en-US/docs/Web/CSS/min-content).
+Có thể bạn đã nhận thấy khi phóng to grid hết mức, không có giới hạn nào cho việc grid item lớn đến đâu. Tuy nhiên, khi thu nhỏ hết mức, có một kích thước “nhỏ nhất” rõ ràng mà grid cho phép item đạt tới. Trong trường hợp này, đó là kích thước nhỏ nhất mà phần tử `<p>` hoặc `<img>` có thể có trước khi tràn. Điểm ngắt này là giá trị `min-content` của item. Đây là keyword CSS **rất** hữu ích, nhưng nằm ngoài phạm vi bài học. Để biết thêm, hãy xem [tài liệu MDN về min-content](https://developer.mozilla.org/en-US/docs/Web/CSS/min-content).
 
-### Minimum and maximum track sizes: min() and max()
+### Kích thước track tối thiểu và tối đa: min() và max()
 
-When we resize our grid super small, it is reassuring to know that the browser will stop the item from shrinking beyond the `min-content` value. However, we really don't want to rely on that most of the time. It's much better for you to explicitly decide as a developer how small and large your content should be, even in the most extreme situations.
+Khi thu nhỏ grid đến mức rất nhỏ, thật yên tâm khi biết trình duyệt sẽ dừng item trước khi nó co vượt quá giá trị `min-content`. Tuy nhiên, phần lớn thời gian chúng ta không muốn phụ thuộc vào điều đó. Tốt hơn là developer nên chủ động quyết định nội dung có thể nhỏ và lớn đến đâu, kể cả trong những tình huống cực đoan nhất.
 
-We learned about `min()` and `max()` in our previous [lesson on CSS functions](https://www.theodinproject.com/lessons/intermediate-html-and-css-css-functions), but a bit of review can't hurt. Both of these functions will return a value based on the arguments you supply them. `min()` will return the smallest of all the values passed in, and `max()` will return the largest. For example, `min(100px, 200px)` will return a value of `100px` every time, while `max(100px, 200px)` will return a value of `200px` every time.
+Chúng ta đã học về `min()` và `max()` trong [bài học về CSS function](https://www.theodinproject.com/lessons/intermediate-html-and-css-css-functions) trước đó, nhưng ôn lại cũng không hại gì. Cả hai hàm đều trả về một giá trị dựa trên các đối số bạn cung cấp. `min()` trả về giá trị nhỏ nhất trong tất cả giá trị được truyền vào, còn `max()` trả về giá trị lớn nhất. Ví dụ, `min(100px, 200px)` luôn trả về `100px`, còn `max(100px, 200px)` luôn trả về `200px`.
 
-You can supply as many arguments to these functions as you want:
+Bạn có thể cung cấp bao nhiêu đối số tùy ý cho các hàm này:
 
 ```css
 .grid-container {
@@ -172,7 +172,7 @@ You can supply as many arguments to these functions as you want:
 }
 ```
 
-Of course, it's silly to give these functions static units because the calculation is meaningless: the smallest or largest value will always be returned. In the above example, the grid rows will always have a size of `100px` (the smallest of the five values) and the grid columns will always have a size of `500px` (the largest of the five). But when we provide a dynamic value as one of these arguments, we unlock the real potential of these functions, especially in the context of Grid:
+Tất nhiên, việc đưa các đơn vị tĩnh vào những hàm này khá vô nghĩa vì phép tính không có ý nghĩa: giá trị nhỏ nhất hoặc lớn nhất luôn được trả về. Trong ví dụ trên, các hàng grid luôn có kích thước `100px` (nhỏ nhất trong năm giá trị), còn các cột grid luôn có kích thước `500px` (lớn nhất trong năm). Nhưng khi cung cấp một giá trị động làm một trong các đối số, chúng ta khai mở tiềm năng thực sự của các hàm này, đặc biệt trong bối cảnh Grid:
 
 ```css
 .grid-container {
@@ -181,37 +181,37 @@ Of course, it's silly to give these functions static units because the calculati
 }
 ```
 
-In this case, the grid row size will be calculated from the values `200px` and `50%` grid container's height. In realtime, the browser will compare both of these values and apply whichever is smallest to the size of our grid row. Essentially, what this tells this grid is that the track size should be 50% of the grid's total vertical space (because we are defining a row size), *unless* that number would exceed `200px`. Essentially, you're setting a max-height for the track.
+Trong trường hợp này, kích thước row grid được tính từ `200px` và `50%` chiều cao của grid container. Theo thời gian thực, trình duyệt so sánh hai giá trị và áp dụng giá trị nhỏ hơn cho kích thước row grid. Về cơ bản, điều này nói rằng track phải có kích thước bằng 50% tổng không gian dọc của grid (vì chúng ta đang định nghĩa kích thước hàng), *trừ khi* con số đó vượt quá `200px`. Nói cách khác, bạn đang đặt max-height cho track.
 
-Conversely, the grid column size will be calculated based on the larger of the two values `120px` and `15%` of the grid container's width. In doing so, we are essentially setting a *minimum* width of our grid column size at `120px`. Check out the example here, and try clicking and dragging to change the grid's dimensions to see how the grid items respond:
+Ngược lại, kích thước column grid được tính dựa trên giá trị lớn hơn giữa `120px` và `15%` chiều rộng của grid container. Như vậy, về cơ bản chúng ta đặt chiều rộng *tối thiểu* cho column grid là `120px`. Hãy xem ví dụ và thử nhấp kéo để thay đổi kích thước grid, xem các grid item phản hồi ra sao:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="PoJwwLq" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PoJwwLq">
-  min and max | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PoJwwLq">
+  min and max | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Dynamic minimum and maximum sizes
+### Kích thước tối thiểu và tối đa động
 
 #### minmax()
 
-`minmax()` is a CSS function that is specifically used with Grid. It can only be used with the following CSS properties:
+`minmax()` là một hàm CSS được dùng riêng với Grid. Nó chỉ có thể dùng với các thuộc tính CSS sau:
 
 - `grid-template-columns`
 - `grid-template-rows`
 - `grid-auto-columns`
 - `grid-auto-rows`
 
-It is a relatively straightforward function that only takes in two arguments:
+Đây là một hàm tương đối đơn giản, chỉ nhận hai đối số:
 
-1. The minimum size the grid track can be
-1. The maximum size the grid track can be
+1. Kích thước tối thiểu mà grid track có thể có
+1. Kích thước tối đa mà grid track có thể có
 
-Unlike `min()` and `max()`, it *can* make sense to use static values for both arguments. Here is an example of the grid we've been using written with `minmax()` and some static values:
+Không giống `min()` và `max()`, việc dùng giá trị tĩnh cho cả hai đối số ở đây có thể hợp lý. Đây là ví dụ về grid chúng ta đang dùng, viết bằng `minmax()` và một số giá trị tĩnh:
 
 ```css
 .grid-container {
@@ -220,13 +220,13 @@ Unlike `min()` and `max()`, it *can* make sense to use static values for both ar
 }
 ```
 
-With our `grid-template-columns` set with `minmax()` values, each grid item's width will grow and shrink with the grid container as it resizes horizontally. However, as the grid shrinks, the column tracks will stop shrinking at `150px`, and as the grid grows, they will stop growing at `200px`. Talk about flexibility! Check it out for yourself below:
+Với `grid-template-columns` được thiết lập bằng các giá trị `minmax()`, chiều rộng của mỗi grid item sẽ tăng và giảm cùng grid container khi nó thay đổi kích thước theo chiều ngang. Tuy nhiên, khi grid thu nhỏ, các column track sẽ dừng co ở `150px`, còn khi grid lớn lên, chúng sẽ dừng tăng ở `200px`. Thật linh hoạt! Hãy tự xem bên dưới:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="poWvvmr" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/poWvvmr">
-  minmax | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/poWvvmr">
+  minmax | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -234,15 +234,15 @@ With our `grid-template-columns` set with `minmax()` values, each grid item's wi
 
 #### clamp()
 
-Unlike `minmax()`, `clamp()` is a CSS function that can be used anywhere, not just within a grid container. As with `min()` and `max()`, we learned about it in a previous lesson, but let's do a quick review. The syntax is as follows:
+Không giống `minmax()`, `clamp()` là một hàm CSS có thể dùng ở bất kỳ đâu, không chỉ trong grid container. Cũng như `min()` và `max()`, chúng ta đã học về nó ở bài trước, nhưng hãy ôn nhanh. Cú pháp như sau:
 
 `clamp(minimum-size, ideal-size, maximum-size)`
 
-What this does is allow our item to resize itself until it reaches one of the minimum or maximum threshold values.
+Hàm này cho phép item tự thay đổi kích thước cho đến khi chạm một trong các ngưỡng tối thiểu hoặc tối đa.
 
-Since `clamp()`'s purpose is to create a flexibly sized track with constraints, we want to use a dynamic value for the "ideal size" argument, and *typically* a static size for the minimum and maximum size, although it is possible to use a dynamic value here too.
+Vì mục đích của `clamp()` là tạo track có kích thước linh hoạt nhưng có ràng buộc, chúng ta muốn dùng một giá trị động cho đối số “ideal size”, và *thường* dùng kích thước tĩnh cho kích thước tối thiểu và tối đa, dù cũng có thể dùng giá trị động ở đây.
 
-Here is a non-grid example. We will look back at our grid in a moment:
+Đây là một ví dụ không dùng grid. Một lát nữa chúng ta sẽ quay lại grid:
 
 ```css
 .non-grid-example {
@@ -250,9 +250,9 @@ Here is a non-grid example. We will look back at our grid in a moment:
 }
 ```
 
-This element, which we can pretend is just a `div`, will render with a width equal to 80% of its parent's width, unless that number is lower than `500px` or higher than `1000px`, in which case it will use those numbers as its width.
+Phần tử này, giả sử chỉ là một `div`, sẽ hiển thị với chiều rộng bằng 80% chiều rộng của phần tử cha, trừ khi con số đó nhỏ hơn `500px` hoặc lớn hơn `1000px`; khi đó nó sẽ dùng các giá trị đó làm chiều rộng.
 
-Okay, now back to our grid:
+Được rồi, giờ quay lại grid:
 
 ```css
 .grid-container {
@@ -262,23 +262,23 @@ Okay, now back to our grid:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="dyVPPEL" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/dyVPPEL">
-  clamp | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/dyVPPEL">
+  clamp | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Notice how the tracks stay at `20%` of the width of the container until they hit the minimum or maximum thresholds?
+Bạn có thấy các track giữ ở `20%` chiều rộng của container cho đến khi chạm ngưỡng tối thiểu hoặc tối đa không?
 
-Using `clamp()` and `minmax()` are fantastic methods for making grids more responsive while ensuring we don't hit critical breakpoints that make our website look bad. This is imperative when using images and elements that may have a tendency to overflow or render in undesirable ways when pushed to extreme sizes.
+Dùng `clamp()` và `minmax()` là những cách tuyệt vời để làm grid responsive hơn, đồng thời bảo đảm chúng ta không chạm các breakpoint quan trọng khiến website trông xấu. Điều này đặc biệt cần thiết khi dùng hình ảnh và các phần tử có xu hướng tràn hoặc hiển thị không mong muốn khi bị đẩy tới kích thước cực đoan.
 
-### auto-fit and auto-fill
+### auto-fit và auto-fill
 
-These two values are actually a part of the `repeat()` function specification, but they were saved for the end of the lesson because their usefulness is not apparent until after you understand the `minmax()` function. Here's the use case: You want to give your grid a number of columns that is flexible based on the size of the grid. For example, if our grid is only `200px` wide, we may only want one column. If it's `400px` wide, we may want two, and so on. Thankfully, `auto-fit` and `auto-fill` are here to save the day!
+Hai giá trị này thực ra là một phần của đặc tả hàm `repeat()`, nhưng được để đến cuối bài vì sự hữu ích của chúng chưa rõ cho đến khi bạn hiểu hàm `minmax()`. Trường hợp sử dụng là: bạn muốn số cột của grid linh hoạt dựa trên kích thước grid. Ví dụ, nếu grid chỉ rộng `200px`, có thể bạn chỉ muốn một cột. Nếu rộng `400px`, bạn có thể muốn hai cột, v.v. May mắn là `auto-fit` và `auto-fill` sẽ giải quyết việc này!
 
-According to the [W3 specification on auto-fill and auto-fit](https://www.w3.org/TR/css-grid-1/#auto-repeat), both of these functions will return "the largest possible positive integer" without the grid items overflowing their container. Here is an example:
+Theo [đặc tả W3 về auto-fill và auto-fit](https://www.w3.org/TR/css-grid-1/#auto-repeat), cả hai hàm sẽ trả về “số nguyên dương lớn nhất” mà không làm grid item tràn khỏi container. Đây là một ví dụ:
 
 ```css
 .example {
@@ -288,9 +288,9 @@ According to the [W3 specification on auto-fill and auto-fit](https://www.w3.org
 }
 ```
 
-For this grid, we have a set width of `1000px` and we are telling it to fill in our columns with tracks of `200px` each. As long as there are at least five grid items, this will result in a 5-column layout no matter what. In this case, `auto-fill` would actually do the same thing. We will get into the difference soon.
+Grid này có chiều rộng cố định `1000px`, và chúng ta yêu cầu nó lấp đầy các cột bằng các track `200px`. Miễn là có ít nhất năm grid item, kết quả luôn là bố cục 5 cột. Trong trường hợp này, `auto-fill` thực ra cũng cho kết quả tương tự. Chúng ta sẽ nói về sự khác nhau sau.
 
-The real magic of `auto-fit` and `auto-fill` comes when we incorporate `minmax()` into the equation. With `minmax()`, we can tell our grid that we want to have as many columns as possible, using the constraints of our `minmax()` function to determine each column's size, without it overflowing our grid. Check out how cool our grid looks when we resize it now!
+Phép màu thực sự của `auto-fit` và `auto-fill` xuất hiện khi kết hợp `minmax()` vào công thức. Với `minmax()`, chúng ta có thể nói với grid rằng muốn có nhiều cột nhất có thể, dùng các ràng buộc của hàm `minmax()` để xác định kích thước từng cột mà không làm grid tràn. Hãy xem grid trông tuyệt thế nào khi thay đổi kích thước!
 
 ```css
 .grid-container {
@@ -300,31 +300,31 @@ The real magic of `auto-fit` and `auto-fill` comes when we incorporate `minmax()
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="abLzzgR" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/abLzzgR">
-  autofit 1 | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/abLzzgR">
+  autofit 1 | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Notice how when we resize, the columns automatically know how many will fit across. If you don't think *that's* cool, you better check your pulse!
+Bạn có thấy khi thay đổi kích thước, các cột tự biết có thể vừa bao nhiêu cột theo chiều ngang không? Nếu bạn không thấy điều đó thú vị, hãy kiểm tra mạch đập của mình!
 
-So what's going on here specifically with `repeat(auto-fit, minmax(150px, 1fr));`? Remember that `auto-fit` will return the **highest positive integer** without overflowing the grid. So first, the browser has to know the width of the grid's content box (i.e. ignoring margins, borders or padding).
+Vậy cụ thể điều gì xảy ra với `repeat(auto-fit, minmax(150px, 1fr));`? Hãy nhớ rằng `auto-fit` trả về **số nguyên dương cao nhất** mà không làm grid tràn. Trước tiên, trình duyệt phải biết chiều rộng content box của grid (tức bỏ qua margin, border và padding).
 
-For the sake of this example, let's pretend like our grid's content box is currently `500px` wide. Second, the browser needs to know how many grid column tracks could possibly fit in that width. To do this, it uses the minimum value in our `minmax()` function, since that will yield the highest number of items, which is `150px`. If our window is `500px` wide, this means our grid will render 3 columns. But wait, there's more! Once the browser has determined how many columns we can fit, it then resizes our columns up to the maximum value allowed by our `minmax()` function. In this case, our max size is `1fr`, so all three columns will be given an equal allotment of the space available. As we resize our window, these calculations happen in realtime and the result is what you see in the above example!
+Với ví dụ này, giả sử content box của grid hiện rộng `500px`. Thứ hai, trình duyệt cần biết có thể đặt bao nhiêu column track trong chiều rộng đó. Để làm vậy, nó dùng giá trị tối thiểu trong hàm `minmax()`, vì giá trị đó cho số item lớn nhất, ở đây là `150px`. Nếu cửa sổ rộng `500px`, grid sẽ hiển thị 3 cột. Nhưng chưa hết! Sau khi xác định số cột có thể vừa, trình duyệt sẽ phóng to các cột đến giá trị tối đa mà hàm `minmax()` cho phép. Trong trường hợp này, kích thước tối đa là `1fr`, nên cả ba cột nhận phần không gian khả dụng bằng nhau. Khi thay đổi kích thước cửa sổ, các phép tính này diễn ra theo thời gian thực và kết quả là thứ bạn thấy trong ví dụ trên!
 
-#### What about auto-fill?
+#### Còn auto-fill thì sao?
 
-In most cases, `auto-fill` is going to work exactly the same way as `auto-fit`. The difference is only noticeable when there are fewer items than can fill up the entirety of the grid row once. When the grid is expanded to a size where another grid item *could* fit, but there aren't any left, `auto-fit` will keep the grid items at their `max` size. Using `auto-fill`, the grid items will snap back down to their `min` size once the space becomes available to add another grid item, even if there isn't one to be rendered. They will continue their pattern of growing to `max` and snapping back to their `min` as the grid expands and more room becomes available for new grid tracks.
+Trong hầu hết trường hợp, `auto-fill` hoạt động giống hệt `auto-fit`. Sự khác biệt chỉ thấy rõ khi số item ít hơn số item có thể lấp đầy toàn bộ một hàng grid. Khi grid được mở rộng đến kích thước có thể chứa thêm một grid item nhưng không còn item nào, `auto-fit` sẽ giữ các grid item ở kích thước `max`. Khi dùng `auto-fill`, các grid item sẽ thu nhỏ trở lại kích thước `min` ngay khi có đủ chỗ để thêm một grid item, dù không có item nào để hiển thị. Chúng tiếp tục lớn dần đến `max` rồi bật về `min` khi grid mở rộng và có thêm không gian cho các grid track mới.
 
-To see this in action, look at the following 2 examples, the first with `auto-fit` and the second with `auto-fill` and see what happens when you resize the grid horizontally:
+Để thấy điều này, hãy xem 2 ví dụ sau, ví dụ đầu dùng `auto-fit`, ví dụ thứ hai dùng `auto-fill`, rồi thay đổi kích thước grid theo chiều ngang:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="mdByJyJ" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/mdByJyJ">
-  autofit 2 | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/mdByJyJ">
+  autofit 2 | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -332,26 +332,26 @@ To see this in action, look at the following 2 examples, the first with `auto-fi
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="KKXwpwX" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/KKXwpwX">
-  autofill | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/KKXwpwX">
+  autofill | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-And that's about it! Congratulations, if you've made it this far, you are well on your way to becoming a Grid Master!
+Vậy là xong! Xin chúc mừng, nếu đã đi đến đây thì bạn đang trên đường trở thành Grid Master!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the sections "CSS Grid Properties", "Special Units, Values, & Functions" and "Subgrid" from [CSS-Tricks Grid Layout Guide](https://css-tricks.com/css-grid-layout-guide).
-1. Play through levels 18 - 28 of [CSS Grid Garden](https://cssgridgarden.com/) to practice positioning items.
-1. Do the exercises in our [CSS exercises repository's `intermediate-html-css/advanced-grid` directory](https://github.com/TheOdinProject/css-exercises/tree/main/intermediate-html-css/advanced-grid) (remember that the instructions are in the README) in the order:
+1. Đọc các phần “CSS Grid Properties”, “Special Units, Values, & Functions” và “Subgrid” trong [CSS-Tricks Grid Layout Guide](https://css-tricks.com/css-grid-layout-guide).
+1. Chơi các level 18 - 28 của [CSS Grid Garden](https://cssgridgarden.com/) để luyện định vị item.
+1. Làm các bài tập trong [thư mục `intermediate-html-css/advanced-grid` của repository bài tập CSS](https://github.com/TheOdinProject/css-exercises/tree/main/intermediate-html-css/advanced-grid) (nhớ rằng hướng dẫn nằm trong README), theo thứ tự:
    - `01-responsive-holy-grail`
    - `02-holy-grail-mockup`
 
-   Note: When doing these exercises, please use all the documentation and resources you need to accomplish them. You are *not* intended to have any of this stuff memorized at this point. Check the docs, use Google, do what you need to do (besides checking the solutions) to get them done.
+   Lưu ý: Khi làm các bài tập này, hãy sử dụng mọi tài liệu và tài nguyên cần thiết để hoàn thành. Bạn *không* được kỳ vọng phải ghi nhớ tất cả vào lúc này. Hãy xem tài liệu, dùng Google, làm bất cứ điều gì cần thiết (ngoài việc xem lời giải) để hoàn thành.
 
 </div>

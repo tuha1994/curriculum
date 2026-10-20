@@ -1,31 +1,31 @@
-### Introduction
+### Giới thiệu
 
-By now you should be comfortable with basic CSS selectors and have no trouble grabbing things by their type, class or ID. But to be a real CSS surgeon, sometimes you need more specialized tools. In this lesson we'll look at advanced CSS selectors and show you how to target elements in a more fine-grained way.
+Đến giờ, có lẽ bạn đã quen với các selector CSS cơ bản và không gặp khó khăn khi chọn phần tử theo type, class hoặc ID. Nhưng để trở thành một "bác sĩ phẫu thuật" CSS thực thụ, đôi khi bạn cần những công cụ chuyên biệt hơn. Trong bài này, chúng ta sẽ xem các selector CSS nâng cao và chỉ cho bạn cách nhắm đến phần tử một cách chi tiết hơn.
 
-These selectors can be especially useful when you can't (or don't want to) change your HTML markup.
+Các selector này đặc biệt hữu ích khi bạn không thể (hoặc không muốn) thay đổi markup HTML.
 
-There are *a lot* of advanced selectors, so going through every single one is outside the scope of this lesson. However, we'll go through some of the most useful and common ones, as well as arm you with the concepts and vocabulary to learn more on your own.
+Có *rất nhiều* selector nâng cao, nên việc đi qua từng selector nằm ngoài phạm vi bài này. Tuy nhiên, chúng ta sẽ tìm hiểu một số selector hữu ích và phổ biến nhất, đồng thời trang bị cho bạn các khái niệm và từ vựng để tự học thêm.
 
-As always feel free to open up your code editor and run your own experiments with these selectors - practice makes perfect!
+Như mọi khi, hãy thoải mái mở trình soạn thảo code và tự thử nghiệm với các selector này — luyện tập sẽ giúp bạn thành thạo!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Understand how to use parent and sibling selectors.
-- Recognize the difference between pseudo classes and pseudo elements.
-- Learn about some of the most useful and common pseudo elements and pseudo classes.
-- Learn about the different ways to select an attribute or its parts.
+- Hiểu cách sử dụng selector parent và sibling.
+- Nhận biết sự khác nhau giữa pseudo class và pseudo element.
+- Tìm hiểu một số pseudo element và pseudo class hữu ích, phổ biến nhất.
+- Tìm hiểu các cách khác nhau để chọn một attribute hoặc các phần của nó.
 
-### Child and sibling combinators
+### Combinator của phần tử con và sibling
 
-Let's have a look at some more ways we can access different elements *without* referring to their classes. Here are three new selectors to do just that.
+Hãy xem thêm một số cách để truy cập các phần tử khác nhau *mà không* cần tham chiếu đến class của chúng. Dưới đây là ba selector mới giúp làm điều đó.
 
-- `>` - the child combinator
-- `+` - the next-sibling combinator
-- `~` - the general sibling combinator
+- `>` - combinator phần tử con
+- `+` - combinator sibling kế tiếp
+- `~` - combinator sibling tổng quát
 
-We'll tackle some practical examples using this sample markup.
+Chúng ta sẽ xử lý một số ví dụ thực tế bằng markup mẫu này.
 
 ```html
 <main class="parent">
@@ -41,7 +41,7 @@ We'll tackle some practical examples using this sample markup.
 </main>
 ```
 
-By now, you should be pretty comfortable writing rules using the descendant combinator you learned about in [Intro to CSS](https://www.theodinproject.com/lessons/foundations-intro-to-css). For instance, if we wanted to select all the `child` and `grand-child` divs inside of `main`, we could write:
+Đến giờ, có lẽ bạn khá quen với việc viết rule bằng descendant combinator đã học trong [Intro to CSS](https://www.theodinproject.com/lessons/foundations-intro-to-css). Ví dụ, nếu muốn chọn tất cả div `child` và `grand-child` bên trong `main`, chúng ta có thể viết:
 
 ```css
 main div {
@@ -49,7 +49,7 @@ main div {
 }
 ```
 
-But what if we wanted to be more specific and select *only* the `child` or `grand-child` divs? That's where the child combinator `>` comes in handy. Unlike the descendant combinator, it will only select direct children.
+Nhưng nếu muốn cụ thể hơn và chỉ chọn các div `child` hoặc `grand-child` thì sao? Đó là lúc child combinator `>` trở nên hữu ích. Khác với descendant combinator, nó chỉ chọn các phần tử con trực tiếp.
 
 ```css
 /* The divs with the class "child" will get selected by this */
@@ -63,7 +63,7 @@ main > div > div {
 }
 ```
 
-Phrased another way, the child selector will select an element that is one level of indentation down. In order to select an element that is next to (immediately following) our target, or on the same level of indentation, we can use the next-sibling combinator `+`.
+Nói theo cách khác, child selector sẽ chọn một phần tử nằm thấp hơn một cấp thụt lề. Để chọn phần tử nằm cạnh (ngay sau) phần tử mục tiêu, hoặc ở cùng cấp thụt lề, chúng ta có thể dùng next-sibling combinator `+`.
 
 ```css
 /* Only the div with the classes "child group2" will get selected by this */
@@ -77,7 +77,7 @@ Phrased another way, the child selector will select an element that is one level
 }
 ```
 
-Finally, if we want to select all of the siblings following an element and not just the first one, we can use the general sibling combinator `~`.
+Cuối cùng, nếu muốn chọn tất cả sibling đứng sau một phần tử chứ không chỉ phần tử đầu tiên, chúng ta có thể dùng general sibling combinator `~`.
 
 ```css
 /* All of .group1's div siblings - in this case the 2nd and 3rd .child divs, will get selected by this */
@@ -86,39 +86,39 @@ Finally, if we want to select all of the siblings following an element and not j
 }
 ```
 
-Just like the descendant combinator, these selectors don't have any special specificity rules - their specificity score will just be made up of their component parts.
+Cũng giống descendant combinator, các selector này không có quy tắc specificity đặc biệt — điểm specificity của chúng chỉ được tạo thành từ các phần cấu thành.
 
-This [MDN article on combinators](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Combinators) provides a good overview if you want to learn more about them.
+[Bài viết MDN về combinator](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Combinators) này cung cấp phần tổng quan tốt nếu bạn muốn tìm hiểu thêm.
 
-### Pseudo-selectors
+### Pseudo-selector
 
-Before diving into pseudo-selectors, a quick note on the difference between [pseudo-classes and pseudo-elements](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements). Pseudo-class selectors are prefixed with a single colon and are a different way to target elements that already exist in HTML. Pseudo-elements are prefixed with two colons and are used to target elements that *don't* normally exist in the markup. If that doesn't make sense straight away, don't worry - we'll explore some examples below.
+Trước khi đi sâu vào pseudo-selector, cần nói nhanh về sự khác nhau giữa [pseudo-class và pseudo-element](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements). Pseudo-class selector có một dấu hai chấm ở đầu và là một cách khác để nhắm đến các phần tử đã tồn tại trong HTML. Pseudo-element có hai dấu hai chấm ở đầu và được dùng để nhắm đến các phần tử vốn *không* thường tồn tại trong markup. Nếu điều này chưa có ý nghĩa ngay, đừng lo — chúng ta sẽ khám phá một số ví dụ bên dưới.
 
-### Pseudo-classes
+### Pseudo-class
 
-Pseudo-classes offer us different ways to target elements in our HTML. There are quite a lot of them, and they come in a couple of different flavors. Some are based on their position or structure within the HTML. Others are based on the state of a particular element, or how the user is currently interacting with it. There are too many to cover in detail here but we'll have a look at some of the most useful ones. Pseudo-classes share the same specificity as regular classes (0, 0, 1, 0). Just like regular classes, most can be chained together.
+Pseudo-class cung cấp những cách khác nhau để nhắm đến các phần tử trong HTML. Có khá nhiều pseudo-class và chúng thuộc một vài nhóm khác nhau. Một số dựa trên vị trí hoặc cấu trúc của chúng trong HTML. Một số khác dựa trên trạng thái của một phần tử cụ thể hoặc cách người dùng hiện tương tác với nó. Có quá nhiều pseudo-class để trình bày chi tiết ở đây, nhưng chúng ta sẽ xem một số loại hữu ích nhất. Pseudo-class có cùng specificity với class thông thường (0, 0, 1, 0). Cũng như class thông thường, hầu hết pseudo-class có thể được nối chuỗi.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Calculating CSS specificity notation
+#### Tính ký hiệu specificity của CSS
 
-The (0,0,1,0) above is the notation for calculating specificity. To find out more about how it works, glance over the "Calculating CSS Specificity Value" section from this [article on CSS Specificity](https://css-tricks.com/specifics-on-css-specificity/#aa-calculating-css-specificity-value).
+(0,0,1,0) ở trên là ký hiệu dùng để tính specificity. Để tìm hiểu thêm về cách hoạt động, hãy xem qua phần "Calculating CSS Specificity Value" trong [bài viết về CSS Specificity](https://css-tricks.com/specifics-on-css-specificity/#aa-calculating-css-specificity-value) này.
 
 </div>
 
-As always don't forget to check [MDN's docs on pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) to see a complete picture of what's available.
+Như mọi khi, đừng quên xem [tài liệu MDN về pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) để có cái nhìn đầy đủ về những gì đang có.
 
-#### Dynamic and user action pseudo-classes
+#### Pseudo-class động và hành động người dùng
 
-These types of useful pseudo-classes can make your page feel much more dynamic and interactive.
+Những pseudo-class hữu ích này có thể khiến trang của bạn trở nên năng động và tương tác hơn.
 
-[`:focus`](https://css-tricks.com/almanac/pseudo-selectors/f/focus/) applies to an element that is currently selected by the user either through selecting it with their cursor or using their keyboard.
+[`:focus`](https://css-tricks.com/almanac/pseudo-selectors/f/focus/) áp dụng cho phần tử hiện đang được người dùng chọn, bằng con trỏ hoặc bằng bàn phím.
 
-[`:hover`](https://css-tricks.com/almanac/pseudo-selectors/h/hover/) will affect anything under the user's mouse pointer. It can be used to give extra oomph to buttons and links to highlight that they're interactable, or to trigger a drop-down menu.
+[`:hover`](https://css-tricks.com/almanac/pseudo-selectors/h/hover/) tác động đến bất kỳ thứ gì nằm dưới con trỏ chuột của người dùng. Nó có thể được dùng để làm các button và link nổi bật hơn, cho người dùng thấy chúng có thể tương tác, hoặc để kích hoạt menu thả xuống.
 
-[`:active`](https://css-tricks.com/almanac/pseudo-selectors/a/active/) applies to elements that are currently being clicked, and is especially useful for giving your user feedback that their action had an effect. This is a great one to give your buttons and other interactive elements more 'tactile' feedback.
+[`:active`](https://css-tricks.com/almanac/pseudo-selectors/a/active/) áp dụng cho các phần tử đang được click và đặc biệt hữu ích để cho người dùng phản hồi rằng hành động của họ đã có tác dụng. Đây là một lựa chọn tuyệt vời để tạo phản hồi "có cảm giác" hơn cho button và các phần tử tương tác khác.
 
-Have you ever wondered why links are blue but turn purple when clicked in unstyled HTML? It's because browsers implement that styling by default. To implement your own custom styling for links, take advantage of the [`:link`](https://css-tricks.com/almanac/pseudo-selectors/l/link/) and [`:visited`](https://css-tricks.com/almanac/pseudo-selectors/v/visited/) pseudo-classes. A simplified version of default browser styling might look something like this:
+Bạn đã bao giờ thắc mắc tại sao link có màu xanh nhưng chuyển sang tím khi được click trong HTML không có style chưa? Đó là vì trình duyệt triển khai style đó theo mặc định. Để tự tạo style cho link, hãy tận dụng pseudo-class [`:link`](https://css-tricks.com/almanac/pseudo-selectors/l/link/) và [`:visited`](https://css-tricks.com/almanac/pseudo-selectors/v/visited/). Một phiên bản đơn giản hóa của style trình duyệt mặc định có thể trông như sau:
 
 ```css
   /* This rule will apply to all links */
@@ -137,19 +137,19 @@ Have you ever wondered why links are blue but turn purple when clicked in unstyl
   }
 ```
 
-#### Structural pseudo-classes
+#### Pseudo-class cấu trúc
 
-Structural pseudo-classes are a powerful way to select elements based on their position within the DOM.
+Pseudo-class cấu trúc là một cách mạnh mẽ để chọn phần tử dựa trên vị trí của chúng trong DOM.
 
-[`:root`](https://css-tricks.com/almanac/pseudo-selectors/r/root/) is a special class that represents the very top level of your document - the one element that has no parents. Generally when working with the web, this is equivalent to the `html` element, but there are a [few subtle differences between `:root` and `html`](https://stackoverflow.com/questions/15899615/whats-the-difference-between-css3s-root-pseudo-class-and-html).
+[`:root`](https://css-tricks.com/almanac/pseudo-selectors/r/root/) là một class đặc biệt đại diện cho cấp cao nhất của tài liệu — phần tử duy nhất không có phần tử cha. Nhìn chung khi làm việc với web, nó tương đương phần tử `html`, nhưng có [một vài khác biệt nhỏ giữa `:root` và `html`](https://stackoverflow.com/questions/15899615/whats-the-difference-between-css3s-root-pseudo-class-and-html).
 
-`:root` is generally the place where you will place your 'global' CSS rules that you want available everywhere - such as your custom properties and CSS variables, or rules such as `box-sizing: border-box;`.
+`:root` thường là nơi bạn đặt các rule CSS "toàn cục" muốn có ở mọi nơi — chẳng hạn custom properties và biến CSS, hoặc các rule như `box-sizing: border-box;`.
 
-[`:first-child`](https://css-tricks.com/almanac/pseudo-selectors/f/first-child/) and [`:last-child`](https://css-tricks.com/almanac/pseudo-selectors/l/last-child/) will match elements that are the first or last sibling.
+[`:first-child`](https://css-tricks.com/almanac/pseudo-selectors/f/first-child/) và [`:last-child`](https://css-tricks.com/almanac/pseudo-selectors/l/last-child/) sẽ khớp với các phần tử là sibling đầu tiên hoặc cuối cùng.
 
-Similarly, [`:empty`](https://css-tricks.com/almanac/pseudo-selectors/e/empty/) will match elements that have no children at all, and [`:only-child`](https://css-tricks.com/almanac/pseudo-selectors/o/only-child/) will match elements that don't have any siblings.
+Tương tự, [`:empty`](https://css-tricks.com/almanac/pseudo-selectors/e/empty/) sẽ khớp với phần tử hoàn toàn không có phần tử con, còn [`:only-child`](https://css-tricks.com/almanac/pseudo-selectors/o/only-child/) sẽ khớp với phần tử không có sibling nào.
 
-For a more dynamic approach we can use [`:nth-child`](https://css-tricks.com/almanac/pseudo-selectors/n/nth-child/). This is a flexible pseudo-class with a few different uses.
+Để có cách tiếp cận linh hoạt hơn, chúng ta có thể dùng [`:nth-child`](https://css-tricks.com/almanac/pseudo-selectors/n/nth-child/). Đây là một pseudo-class linh hoạt với một vài cách sử dụng khác nhau.
 
 ```css
   .myList:nth-child(5) {/* Selects the 5th element with class myList */}
@@ -161,17 +161,17 @@ For a more dynamic approach we can use [`:nth-child`](https://css-tricks.com/alm
   .myList:nth-child(even) {/* Selects every even element with class myList */}
 ```
 
-### Pseudo-elements
+### Pseudo-element
 
-While pseudo-classes give us an alternative way to interact with our HTML elements based on their state or structure, pseudo-elements are more abstract. They allow us to affect parts of our HTML that aren't elements at all. These special elements share the same specificity as regular elements (0, 0, 0, 1). There are a number of useful pseudo-elements that can be utilized in any number of creative ways.
+Trong khi pseudo-class cho chúng ta một cách tương tác thay thế với các phần tử HTML dựa trên trạng thái hoặc cấu trúc, pseudo-element mang tính trừu tượng hơn. Chúng cho phép tác động đến những phần HTML vốn hoàn toàn không phải là phần tử. Các phần tử đặc biệt này có cùng specificity với phần tử thông thường (0, 0, 0, 1). Có nhiều pseudo-element hữu ích có thể được dùng theo vô số cách sáng tạo.
 
-[`::marker`](https://css-tricks.com/almanac/pseudo-selectors/m/marker/) allows you to customize the styling of your `<li>` elements' bullets or numbers.
+[`::marker`](https://css-tricks.com/almanac/pseudo-selectors/m/marker/) cho phép bạn tùy chỉnh style của dấu đầu dòng hoặc số trên các phần tử `<li>`.
 
-[`::first-letter`](https://css-tricks.com/almanac/pseudo-selectors/f/first-letter/) and [`::first-line`](https://css-tricks.com/almanac/pseudo-selectors/f/first-line/) allow you to (you guessed it!) give special styling to the first letter or line of some text.
+[`::first-letter`](https://css-tricks.com/almanac/pseudo-selectors/f/first-letter/) và [`::first-line`](https://css-tricks.com/almanac/pseudo-selectors/f/first-line/) cho phép bạn (đúng như tên gọi!) tạo style đặc biệt cho chữ cái hoặc dòng đầu tiên của một đoạn văn bản.
 
-[`::selection`](https://css-tricks.com/almanac/pseudo-selectors/s/selection/) allows you to change the highlighting when a user selects text on the page.
+[`::selection`](https://css-tricks.com/almanac/pseudo-selectors/s/selection/) cho phép bạn thay đổi phần highlight khi người dùng chọn văn bản trên trang.
 
-[`::before` and `::after`](https://css-tricks.com/almanac/pseudo-selectors/b/after-and-before/) allow us to add extra elements onto the page with CSS, instead of HTML. Using it to decorate text in various ways is one common use case.
+[`::before` và `::after`](https://css-tricks.com/almanac/pseudo-selectors/b/after-and-before/) cho phép chúng ta thêm phần tử bổ sung vào trang bằng CSS thay vì HTML. Dùng chúng để trang trí văn bản theo nhiều cách là một trường hợp sử dụng phổ biến.
 
 ```html
 <style>
@@ -189,25 +189,25 @@ While pseudo-classes give us an alternative way to interact with our HTML elemen
 </body>
 ```
 
-Using these pseudo-elements this way would give us this result:
+Dùng pseudo-element theo cách này sẽ cho chúng ta kết quả:
 
 Let's 😎 😄 🤓 emojify 🤓 😄 😎 this span!
 
- There are lots more! Have a quick browse through the [pseudo-element docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) to see a complete list of what's possible.
+ Còn rất nhiều pseudo-element khác! Hãy xem nhanh [tài liệu pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) để biết đầy đủ những gì có thể làm.
 
-### Attribute selectors
+### Attribute selector
 
-The last tool we're going to add to the box is attribute selectors. Recall that an attribute is anything in the opening tag of an HTML element - such as `src='picture.jpg'` or `href="www.theodinproject.com"`.
+Công cụ cuối cùng chúng ta sẽ thêm vào hộp công cụ là attribute selector. Hãy nhớ rằng attribute là bất cứ thứ gì nằm trong tag mở của một phần tử HTML — chẳng hạn `src='picture.jpg'` hoặc `href="www.theodinproject.com"`.
 
-Since we write our own values for attributes, we need a slightly more flexible system to be able to target specific values.
+Vì chúng ta tự viết giá trị cho attribute, cần một hệ thống linh hoạt hơn để có thể nhắm đến các giá trị cụ thể.
 
-Attribute selectors have the same specificity as classes and pseudo-classes (0, 0, 1, 0).
+Attribute selector có cùng specificity với class và pseudo-class (0, 0, 1, 0).
 
-Let's look at some examples for basic usage.
+Hãy xem một số ví dụ sử dụng cơ bản.
 
-- `[attribute]` - This general selector will select anything where the given attribute exists. Its value doesn't matter.
-- `selector[attribute]` - Optionally we can combine our attribute selectors with other types of selectors, such as class or element selectors.
-- `[attribute="value"]` - To get really specific, we can use `=` to match a specific attribute with a specific value.
+- `[attribute]` - selector tổng quát này sẽ chọn mọi thứ có attribute đã cho. Giá trị của nó không quan trọng.
+- `selector[attribute]` - chúng ta có thể tùy chọn kết hợp attribute selector với các loại selector khác, chẳng hạn class hoặc element selector.
+- `[attribute="value"]` - để cụ thể hơn, chúng ta có thể dùng `=` để khớp một attribute với một giá trị cụ thể.
 
 ```css
   [src] {
@@ -223,11 +223,11 @@ Let's look at some examples for basic usage.
   }
 ```
 
-Sometimes we need to be more general in how we access these attributes. For example, perhaps we're only interested in `img` elements where the `src` attribute's value ends in `.jpg`. For cases like this we have some attribute selectors that allow us to match a part of the attribute's value. If you've ever come across [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) before, these attributes use a similar syntax.
+Đôi khi chúng ta cần một cách tổng quát hơn để truy cập các attribute này. Ví dụ, có thể chúng ta chỉ quan tâm đến các phần tử `img` có giá trị attribute `src` kết thúc bằng `.jpg`. Với những trường hợp như vậy, chúng ta có một số attribute selector cho phép khớp một phần giá trị của attribute. Nếu từng gặp [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), bạn sẽ thấy các attribute này dùng cú pháp tương tự.
 
-- `[attribute^="value"]` - `^=` Will match strings from the start.
-- `[attribute$="value"]` - `$=` Will match strings from the end.
-- `[attribute*="value"]` - `*=` The wildcard selector will match anywhere inside the string.
+- `[attribute^="value"]` - `^=` sẽ khớp chuỗi từ đầu.
+- `[attribute$="value"]` - `$=` sẽ khớp chuỗi từ cuối.
+- `[attribute*="value"]` - `*=` selector wildcard sẽ khớp ở bất kỳ vị trí nào trong chuỗi.
 
 ```css
 [class^='aus'] {
@@ -255,14 +255,14 @@ Sometimes we need to be more general in how we access these attributes. For exam
 }
 ```
 
-To see what other things you can achieve with attribute selectors, such as searching case insensitivity, or sub-strings separated by hyphens, have a browse through [MDN's docs on attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors).
+Để xem attribute selector còn có thể làm được gì, chẳng hạn tìm kiếm không phân biệt hoa thường hoặc các chuỗi con được phân tách bằng dấu gạch ngang, hãy xem [tài liệu MDN về attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors).
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Complete [CSS Diner](https://flukeout.github.io/). You should be familiar with most of the content in the first couple of exercises, but practice and review never hurt! Don't forget to read the examples and explanations on the right.
-1. Read [Shay Howe's article on Complex Selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/). This covers most of the content of this lesson in a bit more detail. As stated in their article, they sometimes use a single colon instead of a double one for pseudo-elements. Please keep in mind that the double colon is now the standard.
-1. Do this [Selectors Assessment](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors/Selectors_Tasks) from MDN. It'd help you put your newly learned knowledge of selectors to practice!
+1. Hoàn thành [CSS Diner](https://flukeout.github.io/). Bạn có thể đã quen với phần lớn nội dung trong vài bài tập đầu, nhưng luyện tập và ôn lại không bao giờ thừa! Đừng quên đọc các ví dụ và phần giải thích ở bên phải.
+1. Đọc [bài viết của Shay Howe về Complex Selectors](https://learn.shayhowe.com/advanced-html-css/complex-selectors/). Bài viết trình bày phần lớn nội dung của bài này chi tiết hơn một chút. Như bài viết đã nêu, đôi khi tác giả dùng một dấu hai chấm thay vì hai dấu cho pseudo-element. Hãy nhớ rằng hiện nay hai dấu hai chấm mới là tiêu chuẩn.
+1. Làm [Selectors Assessment](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors/Selectors_Tasks) của MDN. Bài này sẽ giúp bạn vận dụng kiến thức mới học về selector!
 
 </div>

@@ -1,65 +1,65 @@
-### Introduction
+### Giới thiệu
 
-Some may tell you there is a debate on the use of Grid vs. Flexbox and whether or not one is superior to the other. The reality is these are complementary tools that can work together, and each has its own place in the world of CSS.
+Một số người có thể nói rằng có một cuộc tranh luận về việc dùng Grid hay Flexbox, và liệu cái nào có vượt trội hơn cái kia hay không. Thực tế là đây là những công cụ bổ trợ cho nhau, có thể hoạt động cùng nhau, và mỗi công cụ đều có vị trí riêng trong thế giới CSS.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Know when you might want to use Flexbox over Grid.
-- Know when you might want to use Grid over Flexbox.
-- Know when you might want to use the two together.
+- Biết khi nào nên dùng Flexbox thay cho Grid.
+- Biết khi nào nên dùng Grid thay cho Flexbox.
+- Biết khi nào nên dùng cả hai cùng nhau.
 
-### Content first vs layout first design
+### Thiết kế ưu tiên nội dung và ưu tiên bố cục
 
-A way to decide between Grid and Flexbox is to consider if your design starts from the content, or from the layout.
+Một cách để quyết định giữa Grid và Flexbox là xem thiết kế của bạn bắt đầu từ nội dung hay từ bố cục.
 
-In Content First Design, you begin with clarity of how the content should be, and the layout follows. This is a great opportunity to use Flexbox. Its flexible nature gives you control of the *behavior* of items through logical rules. How they grow, shrink, their ideal size and position in relation to each other, all make the layout dynamic. While Flexbox gives you control over its content, the final layout is only a consequence. Depending on the dimensions of the flex container, the general layout can change a lot.
+Trong thiết kế ưu tiên nội dung (Content First Design), bạn bắt đầu bằng việc làm rõ nội dung nên như thế nào, rồi bố cục đi theo sau. Đây là cơ hội tuyệt vời để dùng Flexbox. Bản chất linh hoạt của nó cho phép bạn kiểm soát *hành vi* của các item thông qua những quy tắc logic. Cách chúng tăng, co, kích thước lý tưởng và vị trí tương quan với nhau đều khiến bố cục trở nên động. Flexbox cho phép bạn kiểm soát nội dung, còn bố cục cuối cùng chỉ là hệ quả. Tùy theo kích thước của flex container, bố cục tổng thể có thể thay đổi rất nhiều.
 
-In Layout First Design, you decide how you want the pieces arranged, then fill in the content. That is when Grid shines. Defining grid row and column tracks gives you full control of layout. Content in a grid can only fill the spaces of explicit or implicit tracks. So, when you have an idea of what the big picture of a container should look like, Grid is the clear choice.
+Trong thiết kế ưu tiên bố cục (Layout First Design), bạn quyết định cách sắp xếp các phần, rồi điền nội dung vào sau. Đây là lúc Grid tỏa sáng. Việc định nghĩa các row track và column track cho phép bạn kiểm soát hoàn toàn bố cục. Nội dung trong grid chỉ có thể lấp đầy không gian của các track tường minh hoặc ngầm định. Vì vậy, khi bạn đã hình dung được bức tranh lớn của một container, Grid là lựa chọn rõ ràng.
 
-Content or Layout First Design do not force us to use either Flexbox or Grid! Let's try laying out a one dimensional set of items – a task many reserve for Flexbox – using Grid.
+Thiết kế ưu tiên nội dung hay bố cục không buộc chúng ta chỉ dùng Flexbox hoặc Grid! Hãy thử bố cục một tập hợp item một chiều – một công việc thường được dành cho Flexbox – bằng Grid.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="mdByJRV" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/mdByJRV">
-  1-Dimensional Grid | CSS Grid</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/mdByJRV">
+  1-Dimensional Grid | CSS Grid</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-It works and looks absolutely *beautiful*! But imagine we would like to move these boxes around in the future. Or, for instance, we wanted the third box to stretch in a second row so that the boxes didn't shrink too much to fit in only one. Both of these things would be *possible* in Grid. But if controlling the layout isn't our priority, Flexbox is more intuitive and fit for the task.
+Nó hoạt động và trông tuyệt đẹp! Nhưng hãy tưởng tượng sau này chúng ta muốn di chuyển các hộp này. Hoặc chẳng hạn, chúng ta muốn hộp thứ ba kéo dài sang hàng thứ hai để các hộp không phải co quá nhiều nhằm vừa trong một hàng. Cả hai việc này đều *có thể* thực hiện bằng Grid. Nhưng nếu kiểm soát bố cục không phải ưu tiên của chúng ta, Flexbox trực quan hơn và phù hợp hơn với nhiệm vụ.
 
-### Combining flexbox and grid
+### Kết hợp flexbox và grid
 
-If you have one-dimensional content, Flexbox can make it easier to control how that content is positioned in a Flex container. If, on the other hand, you want to accurately place content on a complex layout in two-dimensions, Grid can be easier to use.
+Nếu bạn có nội dung một chiều, Flexbox có thể giúp kiểm soát cách nội dung đó được định vị trong một Flex container. Ngược lại, nếu muốn đặt nội dung chính xác trong một bố cục hai chiều phức tạp, Grid có thể dễ dùng hơn.
 
-Say you want your overall layout to be a grid, but you want the grid items to act as flex parents. This way, the grid items can be moved around using the precise two-dimensional placement Grid allows for, while also allowing the content inside the grid items to be capable of freely moving around using Flex. Check out this example from CSS-Tricks.
+Giả sử bạn muốn bố cục tổng thể là một grid, nhưng muốn các grid item hoạt động như flex parent. Nhờ vậy, các grid item có thể được di chuyển bằng khả năng định vị hai chiều chính xác của Grid, đồng thời nội dung bên trong grid item vẫn có thể tự do di chuyển bằng Flex. Hãy xem ví dụ này từ CSS-Tricks.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="vYeEOxN" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/vYeEOxN">
-  Combine Grid and Flexbox</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/vYeEOxN">
+  Combine Grid and Flexbox</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Closing opinion
+### Quan điểm cuối
 
-This lesson includes recommendations, not the "right" or "wrong" way of using Flexbox or Grid. Ultimately, it comes down to personal preference and what a developer feels is easier for whatever the given task might be. At this point you have both of these tools in your toolbox and got a sneak peek at how they can be used together or one in place of the other. The best way to learn Flexbox and Grid is to build many projects with both of them and develop your own opinion about which to use in different circumstances.
+Bài học này đưa ra các khuyến nghị, chứ không phải cách dùng Flexbox hay Grid “đúng” hoặc “sai”. Cuối cùng, điều đó phụ thuộc vào sở thích cá nhân và việc developer thấy cách nào dễ hơn cho nhiệm vụ cụ thể. Đến đây, bạn đã có cả hai công cụ trong bộ công cụ của mình và đã thấy trước cách chúng có thể được dùng cùng nhau hoặc thay thế nhau. Cách tốt nhất để học Flexbox và Grid là xây dựng nhiều dự án với cả hai, rồi tự hình thành quan điểm về việc dùng công cụ nào trong từng hoàn cảnh.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read about how [CSS Grid does not replace flexbox](https://css-tricks.com/css-grid-replace-flexbox/).
+1. Đọc bài viết về việc [CSS Grid không thay thế flexbox](https://css-tricks.com/css-grid-replace-flexbox/).
 
-1. This video by Kevin Powell demonstrates [real-world use cases for Grid and Flexbox](https://www.youtube.com/watch?v=3elGSZSWTbM).
+1. Video này của Kevin Powell trình bày [các trường hợp sử dụng Grid và Flexbox trong thực tế](https://www.youtube.com/watch?v=3elGSZSWTbM).
 
-1. Read up on [when to use Grid or Flexbox and why](https://webdesign.tutsplus.com/flexbox-vs-css-grid-which-should-you-use--cms-30184a).
+1. Đọc thêm về [khi nào nên dùng Grid hoặc Flexbox và lý do](https://webdesign.tutsplus.com/flexbox-vs-css-grid-which-should-you-use--cms-30184a).
 
 </div>

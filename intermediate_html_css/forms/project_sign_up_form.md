@@ -1,31 +1,31 @@
-### Introduction
+### Giới thiệu
 
-This project is intended to give you a chance to flex some of the new items you've been absorbing over the past few lessons. This time it's a sign-up form for an imaginary service.
+Project này cho bạn cơ hội vận dụng những kiến thức mới đã học trong vài bài vừa qua. Lần này, bạn sẽ xây dựng form đăng ký cho một dịch vụ tưởng tượng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Step 1: Set up and planning
+#### Bước 1: Thiết lập và lập kế hoạch
 
-1. Set up your git repository (refer to past projects if you need a refresher).
-1. Set up your HTML and CSS files with some dummy content, just to make sure you have everything linked correctly.
-1. Download a full-resolution copy of [the design file](https://cdn.statically.io/gh/TheOdinProject/curriculum/afdbabfab03fbc34783c6b6f3920aba4a4d3b935/intermediate_html_css/forms/project_sign_up_form/imgs/sign-up-form.png), and get a general idea for how you're going to need to lay things out in your HTML document.
+1. Thiết lập repository git (tham khảo các project trước nếu cần ôn lại).
+1. Thiết lập các file HTML và CSS với một ít nội dung mẫu để đảm bảo mọi thứ đã được liên kết đúng.
+1. Tải bản sao đầy đủ độ phân giải của [file thiết kế](https://cdn.statically.io/gh/TheOdinProject/curriculum/afdbabfab03fbc34783c6b6f3920aba4a4d3b935/intermediate_html_css/forms/project_sign_up_form/imgs/sign-up-form.png), và hình dung tổng quát cách bạn cần bố trí các thành phần trong tài liệu HTML.
 
-#### Step 2: Gather assets
+#### Bước 2: Thu thập asset
 
-1. The design has a large background-image, so go find and download an image you want to use for that section. The one in the design can be found on [unsplash.com](https://unsplash.com/photos/25xggax4bSA), but feel free to select your own. Be sure to credit the creator of your image!
-1. Pick an external font for the 'logo' section. We've used [Norse Bold](https://www.joelcarrouche.com/fonts/norse), but you can use any font you like.
-1. For the image-sidebar, we've used this [Odin logo](https://cdn.statically.io/gh/TheOdinProject/curriculum/5f37d43908ef92499e95a9b90fc3cc291a95014c/html_css/project-sign-up-form/odin-lined.png).
+1. Thiết kế có một background-image lớn, vì vậy hãy tìm và tải một hình ảnh bạn muốn dùng cho phần đó. Hình ảnh trong thiết kế có thể tìm thấy trên [unsplash.com](https://unsplash.com/photos/25xggax4bSA), nhưng bạn hoàn toàn có thể chọn hình ảnh riêng. Hãy nhớ ghi công tác giả của hình ảnh!
+1. Chọn một font bên ngoài cho phần 'logo'. Chúng tôi đã dùng [Norse Bold](https://www.joelcarrouche.com/fonts/norse), nhưng bạn có thể dùng bất kỳ font nào mình thích.
+1. Ở image-sidebar, chúng tôi đã dùng [logo Odin](https://cdn.statically.io/gh/TheOdinProject/curriculum/5f37d43908ef92499e95a9b90fc3cc291a95014c/html_css/project-sign-up-form/odin-lined.png) này.
 
-#### Step 3: Some tips!
+#### Bước 3: Một số mẹo!
 
-1. How you attack this project is mostly up to you, but it is wise to begin by scaffolding out the structure of the page, and then tackle the various sections one by one.
-1. The area behind the "ODIN" logo is a div that has a dark, but semi-transparent background color. This enhances the readability of the text against the busy background image.
-1. The color we've chosen for the 'Create Account' button is similar to tones found in the background image. Specifically, it is `#596D48`.
-1. The inputs, by default have a very light border (`#E5E7EB`), but we’ve included 2 variations. For starters, the password inputs should have a red border if they contain an invalid password. This can be handled with the `:user-invalid` pseudo-class you've learned in the previous lesson.
-1. The other variation is the selected input, which should have a blue border and subtle box-shadow. This can be done with the `:focus` pseudo-class you've learned about in an earlier lesson.
-1. Do not worry about making your project look nice on mobile. Responsive design isn't covered until later in the curriculum.
-1. Validating that the password fields match each other requires JavaScript. Using JavaScript to validate forms is covered in a future lesson. For now, just validate each field separately.
+1. Cách bạn thực hiện project này chủ yếu tùy thuộc vào bạn, nhưng nên bắt đầu bằng việc dựng khung cấu trúc trang, rồi xử lý từng phần một.
+1. Khu vực phía sau logo "ODIN" là một div có màu nền tối nhưng bán trong suốt. Điều này giúp văn bản dễ đọc hơn trên hình nền nhiều chi tiết.
+1. Màu chúng tôi chọn cho nút 'Create Account' tương tự các tông màu trong hình nền. Cụ thể là `#596D48`.
+1. Theo mặc định, các input có viền rất nhạt (`#E5E7EB`), nhưng chúng tôi đưa vào 2 biến thể. Trước hết, input mật khẩu nên có viền đỏ nếu chứa mật khẩu không hợp lệ. Bạn có thể xử lý việc này bằng pseudo-class `:user-invalid` đã học ở bài trước.
+1. Biến thể còn lại là input được chọn, input này nên có viền xanh và box-shadow nhẹ. Có thể thực hiện bằng pseudo-class `:focus` đã học trong một bài trước.
+1. Đừng lo làm cho project trông đẹp trên thiết bị di động. Responsive design sẽ được học ở phần sau của curriculum.
+1. Việc xác thực các trường mật khẩu khớp nhau cần JavaScript. Cách dùng JavaScript để xác thực form sẽ được học trong một bài sau. Hiện tại, chỉ cần xác thực từng trường riêng lẻ.
 
 </div>

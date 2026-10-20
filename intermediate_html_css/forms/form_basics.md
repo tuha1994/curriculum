@@ -1,33 +1,33 @@
-### Introduction
+### Giới thiệu
 
-Forms are one of the most critical parts of your site. They are your user's gateway into your backend – the user provides data in a form, and you do stuff with it.
+Form là một trong những phần quan trọng nhất của website. Chúng là cánh cổng để người dùng truy cập backend của bạn — người dùng cung cấp dữ liệu trong form, còn bạn xử lý dữ liệu đó.
 
-You need to specify the proper types of inputs for each possible data item since there are often multiple ways to collect a piece of data, but only one way is easiest for your user.
+Bạn cần chỉ định đúng loại input cho từng mẩu dữ liệu có thể có, vì thường có nhiều cách thu thập một mẩu dữ liệu nhưng chỉ một cách là dễ nhất đối với người dùng.
 
-In this lesson, we will explore the basics of HTML forms and some of the different types of inputs available to you.
+Trong bài học này, chúng ta sẽ tìm hiểu những điều cơ bản về form HTML và một số loại input khác nhau mà bạn có thể sử dụng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài này.
 
-- Create forms with HTML.
-- Have a basic idea of how to style forms.
+- Tạo form bằng HTML.
+- Có hiểu biết cơ bản về cách tạo kiểu cho form.
 
-### The form element
+### Phần tử form
 
-The form element is a container element like the div element we learned earlier in the curriculum. The form element wraps all of the inputs a user will interact with on a form.
+Phần tử form là một phần tử chứa, giống như phần tử div mà chúng ta đã học trước đó trong curriculum. Phần tử form bao bọc tất cả các input mà người dùng sẽ tương tác trong một biểu mẫu.
 
-The form element accepts two essential attributes; the first is the `action` attribute which takes a URL value that tells the form where it should send its data to be processed.
-Later in the curriculum, we will learn to hook backend systems up to frontend forms using this attribute. For now, it's only essential to know what the `action` attribute is used for.
+Phần tử form nhận hai thuộc tính thiết yếu; đầu tiên là thuộc tính `action`, nhận một giá trị URL cho biết biểu mẫu cần gửi dữ liệu đến đâu để xử lý.
+Sau này trong curriculum, chúng ta sẽ học cách kết nối hệ thống backend với các biểu mẫu frontend bằng thuộc tính này. Hiện tại, điều quan trọng là hiểu thuộc tính `action` được dùng để làm gì.
 
-The second is the `method` attribute which tells the browser [which HTTP request method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) it should use to submit the form.
-The GET and POST request methods are the two you will find yourself using the most.
+Thứ hai là thuộc tính `method`, cho trình duyệt biết nó nên dùng [phương thức yêu cầu HTTP nào](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) để gửi biểu mẫu.
+GET và POST là hai phương thức yêu cầu bạn sẽ sử dụng nhiều nhất.
 
-We use GET when we want to retrieve something from a server. For example, Google uses a GET request when you search as it *gets* the search results.
+Chúng ta dùng GET khi muốn lấy một thứ gì đó từ máy chủ. Ví dụ, Google dùng yêu cầu GET khi bạn tìm kiếm, vì nó *lấy* về các kết quả tìm kiếm.
 
-POST is used when we want to change something on the server, for example, when a user makes an account or makes a payment on a website.
+POST được dùng khi muốn thay đổi điều gì đó trên máy chủ, chẳng hạn khi người dùng tạo tài khoản hoặc thanh toán trên một website.
 
-The markup for creating a form element looks like this:
+Markup để tạo một phần tử form có dạng như sau:
 
 ```html
 <form action="example.com/path" method="post">
@@ -35,15 +35,15 @@ The markup for creating a form element looks like this:
 </form>
 ```
 
-### Form controls
+### Bộ điều khiển biểu mẫu
 
-To start collecting user data, we need to use form control elements. These are all the elements users will interact with on the form, such as text boxes, dropdowns, checkboxes and buttons. In the following few sections, we will explore some of the form controls you will use most commonly.
+Để bắt đầu thu thập dữ liệu người dùng, chúng ta cần dùng các phần tử điều khiển biểu mẫu. Đây là tất cả những phần tử mà người dùng sẽ tương tác trong biểu mẫu, chẳng hạn hộp văn bản, danh sách thả xuống, checkbox và nút. Trong vài phần tiếp theo, chúng ta sẽ tìm hiểu một số bộ điều khiển biểu mẫu thường dùng nhất.
 
-### The input element
+### Phần tử input
 
-The input element is the most versatile of all the form control elements. It accepts a `type` attribute which tells the browser what *type* of data it should expect and how it should render the input element.
+Phần tử input là phần tử linh hoạt nhất trong số các phần tử điều khiển biểu mẫu. Nó nhận thuộc tính `type`, cho trình duyệt biết nên mong đợi *loại* dữ liệu nào và hiển thị phần tử input ra sao.
 
-A text input looks like this:
+Một input văn bản có dạng như sau:
 
 ```html
 <form action="example.com/path" method="post">
@@ -51,13 +51,13 @@ A text input looks like this:
 </form>
 ```
 
-Text inputs accept any text input. For example, you would use it to collect things like users' first and last names.
+Input văn bản nhận mọi nội dung dạng chữ. Ví dụ, bạn có thể dùng nó để thu thập họ và tên của người dùng.
 
-#### Labels
+#### Nhãn
 
-An input on its own isn't very useful since the user will not know what kind of data they are supposed to provide. Instead, we can give our inputs a label to inform users what type of data they are expected to enter.
+Một input đứng riêng không hữu ích lắm vì người dùng sẽ không biết họ cần cung cấp loại dữ liệu nào. Thay vào đó, chúng ta có thể thêm nhãn cho input để cho người dùng biết họ cần nhập loại dữ liệu gì.
 
-To create a label, we use the `<label>` element. The text we want displayed in the label will go between its opening and closing tags:
+Để tạo nhãn, chúng ta dùng phần tử `<label>`. Văn bản muốn hiển thị trong nhãn sẽ nằm giữa thẻ mở và thẻ đóng của nó:
 
 ```html
 <form action="example.com/path" method="post">
@@ -66,49 +66,49 @@ To create a label, we use the `<label>` element. The text we want displayed in t
 </form>
 ```
 
-Labels accept a `for` attribute, which associates it with a particular input. The input we want to associate with a label needs an `id` attribute with the same value as the label's `for` attribute.
+Nhãn nhận thuộc tính `for`, dùng để liên kết nó với một input cụ thể. Input muốn liên kết với nhãn cần có thuộc tính `id` mang cùng giá trị với thuộc tính `for` của nhãn.
 
-When a label is associated with an input and is clicked, it will focus the cursor on that input, ready for the user to input some data. This helps make our forms more accessible to users who rely on assistive technologies.
+Khi nhãn được liên kết với một input và được nhấp, con trỏ sẽ chuyển tiêu điểm vào input đó, sẵn sàng để người dùng nhập dữ liệu. Điều này giúp biểu mẫu dễ tiếp cận hơn với những người dùng phụ thuộc vào công nghệ hỗ trợ.
 
-#### Placeholder attribute
+#### Thuộc tính placeholder
 
-To guide users on what to enter in form elements, we can include placeholder text in input fields.
+Để hướng dẫn người dùng cần nhập gì vào các phần tử biểu mẫu, chúng ta có thể thêm văn bản placeholder vào các trường input.
 
-This is done by adding a `placeholder` attribute to an input. The value will be the *placeholder* text we want to display in the input:
+Ta thực hiện việc này bằng cách thêm thuộc tính `placeholder` vào input. Giá trị của thuộc tính sẽ là văn bản *placeholder* muốn hiển thị trong input:
 
 ```html
 <label for="first_name">First Name:</label>
 <input type="text" id="first_name" placeholder="Bob...">
 ```
 
-Use placeholder text to demonstrate how text should be entered and formatted.
+Dùng văn bản placeholder để minh họa cách nhập và định dạng văn bản.
 
-#### The name attribute
+#### Thuộc tính name
 
-We need to use labels so that users understand what the data entered into an input field will represent. Just like that, we also need to let the backend, where we send our data, know what each piece of data represents.
+Chúng ta cần dùng nhãn để người dùng hiểu dữ liệu nhập vào một trường input đại diện cho điều gì. Tương tự, chúng ta cũng cần cho backend — nơi nhận dữ liệu — biết mỗi mẩu dữ liệu đại diện cho điều gì.
 
-We do this by adding a `name` attribute to our inputs:
+Ta thực hiện việc này bằng cách thêm thuộc tính `name` vào các input:
 
 ```html
 <label for="first_name">First Name:</label>
 <input type="text" id="first_name" name="first_name">
 ```
 
-The `name` attribute serves as a reference to the data inputted into a form control after submitting it. You can think of it as a variable name for the input. Form input should always have a `name` attribute; otherwise, it will be ignored when the form is submitted.
+Thuộc tính `name` dùng làm tham chiếu đến dữ liệu được nhập vào một bộ điều khiển biểu mẫu sau khi gửi biểu mẫu. Bạn có thể hình dung nó như tên biến của input. Input trong biểu mẫu luôn nên có thuộc tính `name`; nếu không, nó sẽ bị bỏ qua khi biểu mẫu được gửi.
 
-To get a better understanding of what this looks like we can submit a form to [httpbin](http://httpbin.org/). This service will send back a response which will let us view what data was submitted. Fill in the form below and click submit:
+Để hiểu rõ hơn kết quả này trông như thế nào, chúng ta có thể gửi một biểu mẫu đến [httpbin](http://httpbin.org/). Dịch vụ này sẽ trả về phản hồi cho phép xem dữ liệu đã được gửi. Hãy điền vào biểu mẫu bên dưới rồi nhấp submit:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="dyVRMbq" data-preview="true" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/dyVRMbq">
-  form-basics-name-attribute</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/dyVRMbq">
+  form-basics-name-attribute</a> bởi TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-The output we care about from the response is the "form" object. It should look something like this:
+Phần chúng ta quan tâm trong phản hồi là đối tượng "form". Nó sẽ có dạng tương tự như sau:
 
 ```json
 "form": {
@@ -118,97 +118,97 @@ The output we care about from the response is the "form" object. It should look 
   },
 ```
 
-Try changing the `name` attributes of some of the input fields in the form and removing the attribute entirely, then submit the form again to see how the form data in the response changes.
+Hãy thử thay đổi thuộc tính `name` của một vài trường input trong biểu mẫu và xóa hẳn thuộc tính đó, sau đó gửi lại biểu mẫu để xem dữ liệu biểu mẫu trong phản hồi thay đổi như thế nào.
 
-#### Using form controls outside of forms
+#### Dùng bộ điều khiển biểu mẫu bên ngoài form
 
-It's worth mentioning that you can use any of the form controls HTML provides outside of the `<form>` element, even when you don't have a backend server where you can send data.
+Cần lưu ý rằng bạn có thể dùng bất kỳ bộ điều khiển biểu mẫu nào HTML cung cấp bên ngoài phần tử `<form>`, ngay cả khi bạn không có máy chủ backend để gửi dữ liệu đến.
 
-For example, you might want to have an input that gets some data from a user and display that somewhere else on the page with JavaScript:
+Ví dụ, bạn có thể muốn có một input nhận dữ liệu từ người dùng rồi hiển thị dữ liệu đó ở nơi khác trên trang bằng JavaScript:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="PoJjNYr" data-preview="true" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PoJjNYr">
-  using-form-controls-outside-of-form</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PoJjNYr">
+  using-form-controls-outside-of-form</a> bởi TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-We will need to manipulate data from form controls like this in projects later in the curriculum.
+Sau này trong curriculum, chúng ta sẽ cần thao tác với dữ liệu từ những bộ điều khiển biểu mẫu như thế này trong các project.
 
-#### The type attribute
+#### Thuộc tính type
 
-`Email` inputs are specialized text inputs just for email addresses. They are different from text inputs in that they will display a different keyboard which will include the @ symbol on mobile devices to make entering email addresses easier.
+Input `Email` là input văn bản chuyên dụng dành cho địa chỉ email. Chúng khác input văn bản ở chỗ trên thiết bị di động, chúng hiển thị bàn phím khác có cả ký hiệu @ để nhập địa chỉ email dễ hơn.
 
-They also validate that the user has entered a correctly formatted email address, but there will be more on validations later.
+Chúng cũng xác thực xem người dùng đã nhập địa chỉ email đúng định dạng hay chưa, nhưng phần validation sẽ được trình bày thêm ở phía sau.
 
-To create an email input, we use an input element with `type` attribute of "email":
+Để tạo input email, chúng ta dùng phần tử input với thuộc tính `type` có giá trị là "email":
 
 ```html
 <label for="user_email">Email Address:</label>
 <input type="email" id="user_email" name="email" placeholder="you@example.com">
 ```
 
-`Password` inputs are another specialized text input. They differ from regular text inputs in that they mask the inputted data with another character – usually an asterisk (*) or bullet point (•) – to prevent anyone from seeing what has been entered.
+Input `Password` là một loại input văn bản chuyên dụng khác. Chúng khác input văn bản thông thường ở chỗ che dữ liệu đã nhập bằng một ký tự khác — thường là dấu sao (*) hoặc dấu chấm (•) — để ngăn người khác nhìn thấy nội dung đã nhập.
 
-A password input can be created using an input element with a type of "password":
+Có thể tạo input mật khẩu bằng phần tử input với type là "password":
 
 ```html
 <label for="user_password">Password:</label>
 <input type="password" id="user_password" name="password">
 ```
 
-The `number` input only accepts number values and ignores any other characters the user tries to enter.
+Input `number` chỉ nhận giá trị số và bỏ qua mọi ký tự khác mà người dùng cố nhập.
 
-We create a number input using the input element with a `type` attribute of "number":
+Ta tạo input số bằng phần tử input với thuộc tính `type` là "number":
 
 ```html
 <label for="amount">Amount:</label>
 <input type="number" id="amount" name="amount">
 ```
 
-To collect dates from a user, we can use a `date` input. This input is unique because it provides a better user experience for choosing dates by rendering a date picker calendar.
+Để thu thập ngày tháng từ người dùng, chúng ta có thể dùng input `date`. Input này đặc biệt vì cung cấp trải nghiệm chọn ngày tốt hơn bằng cách hiển thị lịch chọn ngày.
 
-To create a date input, we use the input element with a `type` attribute of "date":
+Để tạo input ngày tháng, chúng ta dùng phần tử input với thuộc tính `type` là "date":
 
 ```html
 <label for="dob">Date of Birth:</label>
 <input type="date" id="dob" name="dob">
 ```
 
-#### Text area
+#### Vùng văn bản
 
-While technically not an input element, the text area element provides an input box that can accept text that spans multiple lines like user comments and reviews. It can also be resized by clicking and dragging the bottom right corner to make it bigger or smaller.
+Dù về mặt kỹ thuật không phải phần tử input, phần tử text area cung cấp một hộp nhập có thể nhận văn bản nhiều dòng, chẳng hạn bình luận và đánh giá của người dùng. Hộp này cũng có thể được thay đổi kích thước bằng cách nhấp và kéo góc dưới bên phải.
 
-To create a text area, we use the `<textarea>` element:
+Để tạo vùng văn bản, chúng ta dùng phần tử `<textarea>`:
 
 ```html
 <textarea></textarea>
 ```
 
-Unlike input elements, Textarea elements do have a closing tag. This allows you to wrap some initial content you want the text area to display:
+Khác với các phần tử input, phần tử Textarea có thẻ đóng. Nhờ đó, bạn có thể đặt nội dung ban đầu muốn vùng văn bản hiển thị vào giữa hai thẻ:
 
 ```html
 <textarea>Some initial content</textarea>
 ```
 
-Text area elements accept a couple of unique attributes that other form controls do not. These are the `rows` and `cols` attributes. They allow you to control the initial height (rows) and width (cols) of the text area:
+Phần tử text area nhận một vài thuộc tính riêng mà các bộ điều khiển biểu mẫu khác không có. Đó là thuộc tính `rows` và `cols`. Chúng cho phép kiểm soát chiều cao ban đầu (rows) và chiều rộng (cols) của vùng văn bản:
 
 ```html
 <textarea rows="20" cols="60"></textarea>
 ```
 
-### Selection elements
+### Phần tử lựa chọn
 
-Sometimes you will want users to select a value from a predefined list. This is where select elements will be useful.
+Đôi khi bạn muốn người dùng chọn một giá trị từ danh sách định sẵn. Đây là lúc phần tử select phát huy tác dụng.
 
-#### Select dropdown
+#### Danh sách select thả xuống
 
-The select element renders a dropdown list where users can select an option. Syntactically, select elements have similar markup to unordered lists. The select element wraps option elements which are the options that can be selected.
+Phần tử select hiển thị danh sách thả xuống để người dùng chọn một tùy chọn. Về cú pháp, phần tử select có markup tương tự danh sách không có thứ tự. Phần tử select bao bọc các phần tử option, tức những tùy chọn có thể chọn.
 
-To create a select dropdown, we use the `<select>` element. Any options we want to display within the select element are defined using `<option>` elements:
+Để tạo danh sách select thả xuống, chúng ta dùng phần tử `<select>`. Mọi tùy chọn muốn hiển thị bên trong phần tử select đều được định nghĩa bằng các phần tử `<option>`:
 
 ```html
 <select name="Car">
@@ -221,9 +221,9 @@ To create a select dropdown, we use the `<select>` element. Any options we want 
 </select>
 ```
 
-All the option elements should have a `value` attribute (otherwise the text content inside is used). This value will be sent to the server when the form is submitted.
+Mọi phần tử option nên có thuộc tính `value` (nếu không, nội dung văn bản bên trong sẽ được dùng). Giá trị này sẽ được gửi đến máy chủ khi biểu mẫu được gửi.
 
-We can set one of the options to be the default selected element when the browser first renders the form by giving one of the options the `selected` attribute:
+Ta có thể đặt một option làm phần tử được chọn mặc định khi trình duyệt hiển thị biểu mẫu lần đầu bằng cách thêm thuộc tính `selected` cho option đó:
 
 ```html
 <select name="Car">
@@ -236,7 +236,7 @@ We can set one of the options to be the default selected element when the browse
 </select>
 ```
 
-We may also split the list of options into groups using the `<optgroup>` element. The optgroup element takes a `label` attribute which the browser uses as the label for each group:
+Ta cũng có thể chia danh sách option thành các nhóm bằng phần tử `<optgroup>`. Phần tử optgroup nhận thuộc tính `label`, được trình duyệt dùng làm nhãn cho mỗi nhóm:
 
 ```html
 <select name="fashion">
@@ -253,11 +253,11 @@ We may also split the list of options into groups using the `<optgroup>` element
 </select>
 ```
 
-#### Radio buttons
+#### Nút radio
 
-Select dropdowns are great for saving space on the page when we have an extensive list of options we want users to choose from. However, when we have a smaller list of 5 or fewer options to choose from, it is often a better user experience to have them displayed on the page instead of hidden behind a dropdown.
+Danh sách select thả xuống rất hữu ích để tiết kiệm không gian khi có nhiều tùy chọn cho người dùng lựa chọn. Tuy nhiên, khi danh sách chỉ có 5 tùy chọn trở xuống, thường sẽ dễ dùng hơn nếu hiển thị chúng ngay trên trang thay vì ẩn sau danh sách thả xuống.
 
-In this case, we can use radio buttons. Radio buttons allow us to create multiple options that the user can choose one of. To create radio buttons, we use the ever adaptable input element again with a `type` attribute of "radio":
+Trong trường hợp này, chúng ta có thể dùng nút radio. Nút radio cho phép tạo nhiều tùy chọn mà người dùng chỉ có thể chọn một. Để tạo nút radio, ta lại dùng phần tử input linh hoạt với thuộc tính `type` là "radio":
 
 ```html
 <h1>Ticket Type</h1>
@@ -277,9 +277,9 @@ In this case, we can use radio buttons. Radio buttons allow us to create multipl
 </div>
 ```
 
-When we select one of the radio buttons and then select another, it will deselect the first one. Radio buttons know to do this because they have the same `name` attribute. This is how the browser knows these elements are part of the same group of options.
+Khi chọn một nút radio rồi chọn nút khác, nút đầu tiên sẽ bị bỏ chọn. Nút radio biết phải làm vậy vì chúng có cùng thuộc tính `name`. Nhờ đó, trình duyệt biết các phần tử này thuộc cùng một nhóm tùy chọn.
 
-We can set the default selected radio button by adding the `checked` attribute to it:
+Ta có thể đặt nút radio được chọn mặc định bằng cách thêm thuộc tính `checked` vào nó:
 
 ```html
 <h1>Ticket Type</h1>
@@ -299,11 +299,11 @@ We can set the default selected radio button by adding the `checked` attribute t
 </div>
 ```
 
-#### Checkboxes
+#### Checkbox
 
-Checkboxes are similar to radio buttons in that they allow users to choose from a set of predefined options. But unlike radio buttons, they allow multiple options to be selected at once.
+Checkbox tương tự nút radio ở chỗ cho phép người dùng chọn từ một tập tùy chọn định sẵn. Nhưng khác nút radio, checkbox cho phép chọn nhiều tùy chọn cùng lúc.
 
-To create a checkbox, we use the input element with a `type` attribute of "checkbox":
+Để tạo checkbox, chúng ta dùng phần tử input với thuộc tính `type` là "checkbox":
 
 ```html
 <h1>Pizza Toppings</h1>
@@ -329,7 +329,7 @@ To create a checkbox, we use the input element with a `type` attribute of "check
 </div>
 ```
 
-We can also have a single checkbox when we want users to toggle if they want something to be true or false. Like signing up to a newsletter when they create an account for example:
+Ta cũng có thể dùng một checkbox đơn khi muốn người dùng bật tắt một giá trị đúng hoặc sai. Ví dụ, đăng ký nhận bản tin khi họ tạo tài khoản:
 
 ```html
 <div>
@@ -338,7 +338,7 @@ We can also have a single checkbox when we want users to toggle if they want som
 </div>
 ```
 
-We can set checkboxes to be checked by default on page load by giving them a `checked` attribute:
+Ta có thể đặt checkbox được chọn mặc định khi tải trang bằng cách thêm thuộc tính `checked` cho chúng:
 
 ```html
 <div>
@@ -347,43 +347,43 @@ We can set checkboxes to be checked by default on page load by giving them a `ch
 </div>
 ```
 
-### Buttons
+### Nút
 
-The button element creates clickable buttons that the user can interact with to submit forms and trigger other actions.
+Phần tử button tạo các nút có thể nhấp để người dùng tương tác, gửi biểu mẫu và kích hoạt những hành động khác.
 
-To create a button, we use the `<button>` element. The content or text we want to have displayed inside the button will go within the opening and closing tags:
+Để tạo nút, chúng ta dùng phần tử `<button>`. Nội dung hoặc văn bản muốn hiển thị bên trong nút sẽ nằm giữa thẻ mở và thẻ đóng:
 
 ```html
 <button>Click Me</button>
 ```
 
-The button element also accepts a `type` attribute that tells the browser which kind of button it is dealing with. There are three types of buttons available to us.
+Phần tử button cũng nhận thuộc tính `type`, cho trình duyệt biết đó là loại nút nào. Có ba loại nút để chúng ta sử dụng.
 
-#### Submit buttons
+#### Nút submit
 
-Once a user is finished filling in a form, they will need a way to submit it. There is a specialized button for this; the submit button. When a submit button is clicked, it will submit the form it is contained within. The `type` attribute has a value of submit by default, i.e. if the `type` is not specified or the value provided is invalid.
+Khi điền xong biểu mẫu, người dùng cần một cách để gửi biểu mẫu. Nút submit là nút chuyên dụng cho việc này. Khi được nhấp, nút submit sẽ gửi biểu mẫu chứa nó. Theo mặc định, thuộc tính `type` có giá trị là submit, tức là khi không chỉ định `type` hoặc giá trị cung cấp không hợp lệ.
 
-To create a submit button, we use the button element with a `type` attribute of "submit":
+Để tạo nút submit, chúng ta dùng phần tử button với thuộc tính `type` là "submit":
 
 ```html
 <button type="submit">Submit</button>
 ```
 
-#### Reset buttons
+#### Nút reset
 
-A reset button clears all the data the user has entered into the form and sets all the inputs in the form back to what they were initially.
+Nút reset xóa toàn bộ dữ liệu người dùng đã nhập vào biểu mẫu và đưa mọi input trong biểu mẫu về trạng thái ban đầu.
 
-To create a reset button, we use the button element with a `type` attribute of "reset":
+Để tạo nút reset, chúng ta dùng phần tử button với thuộc tính `type` là "reset":
 
 ```html
 <button type="reset">Reset</button>
 ```
 
-#### Generic buttons
+#### Nút thông thường
 
-The third and final button type is a generic button that can be used for anything. It's commonly used with JS for creating interactive UI's.
+Loại nút thứ ba và cuối cùng là nút thông thường, có thể dùng cho bất kỳ mục đích nào. Nó thường được dùng cùng JS để tạo UI tương tác.
 
-To create a generic button, we use the button element with a `type` attribute of "button":
+Để tạo nút thông thường, chúng ta dùng phần tử button với thuộc tính `type` là "button":
 
 ```html
 <button type="button">Click to Toggle</button>
@@ -391,23 +391,23 @@ To create a generic button, we use the button element with a `type` attribute of
 
 <div class="lesson-note lesson-note--tip" markdown=1>
 
-#### Button type defaults in forms
+#### Giá trị mặc định của type nút trong form
 
-It is important to remember that a button within a form with the `type` value of submit (which happens to be the default value) will always try to make a new request and submit data back to the server. Hence, for buttons that are used within a form for different purposes other than submitting the data, the `type` attribute should always be specified to avoid unwanted effects of submitting a form.
+Điều quan trọng cần nhớ là một nút trong form có giá trị `type` là submit (vốn là giá trị mặc định) sẽ luôn cố tạo yêu cầu mới và gửi dữ liệu về máy chủ. Vì vậy, với các nút trong form dùng cho mục đích khác ngoài gửi dữ liệu, luôn phải chỉ định thuộc tính `type` để tránh việc gửi form ngoài ý muốn.
 
 </div>
 
-### Organizing form elements
+### Sắp xếp các phần tử biểu mẫu
 
-Using the correct inputs for the data we want users to enter goes a long way towards making our forms user-friendly. However, in larger forms, users can easily get overwhelmed and discouraged if there are many inputs to fill in.
+Dùng đúng input cho loại dữ liệu muốn người dùng nhập góp phần lớn giúp biểu mẫu thân thiện hơn. Tuy nhiên, trong các biểu mẫu lớn, người dùng dễ bị quá tải và nản lòng nếu phải điền quá nhiều input.
 
-Luckily, HTML provides a couple of elements that make it easy to organize forms into sections that are visually distinct and manageable to digest.
+May mắn là HTML cung cấp một vài phần tử giúp dễ dàng chia biểu mẫu thành các phần khác biệt về mặt hiển thị và dễ tiếp nhận hơn.
 
-#### Fieldset element
+#### Phần tử fieldset
 
-The fieldset element is a container element that allows us to group related form inputs into one logical unit.
+Phần tử fieldset là phần tử chứa cho phép nhóm các input biểu mẫu liên quan thành một đơn vị logic.
 
-To create a fieldset, we use the `<fieldset>` element. Whatever form inputs we want to group together go within the opening and closing fieldset tags:
+Để tạo fieldset, chúng ta dùng phần tử `<fieldset>`. Các input biểu mẫu muốn nhóm cùng nhau sẽ nằm giữa thẻ mở và thẻ đóng fieldset:
 
 ```html
 <fieldset>
@@ -421,9 +421,9 @@ To create a fieldset, we use the `<fieldset>` element. Whatever form inputs we w
 
 #### Legend
 
-The legend element is used to give field sets a heading or caption so the user can see what a grouping of inputs is for.
+Phần tử legend dùng để đặt tiêu đề hoặc chú thích cho fieldset, giúp người dùng biết một nhóm input dùng cho mục đích gì.
 
-To create a legend, we use the `<legend>` element with the text we want to display within its opening and closing tags. A legend should always come right after an opening fieldset tag:
+Để tạo legend, chúng ta dùng phần tử `<legend>` với văn bản muốn hiển thị nằm giữa thẻ mở và thẻ đóng. Legend luôn nên nằm ngay sau thẻ mở fieldset:
 
 ```html
 <fieldset>
@@ -453,7 +453,7 @@ To create a legend, we use the `<legend>` element with the text we want to displ
 </fieldset>
 ```
 
-A common use-case for these elements is using a fieldset to group radio buttons and using a legend to communicate to the user what each of the options is ultimately for:
+Một trường hợp sử dụng phổ biến của các phần tử này là dùng fieldset để nhóm các nút radio và dùng legend để cho người dùng biết nhóm tùy chọn đó dùng cho việc gì:
 
 ```html
 <fieldset>
@@ -476,39 +476,39 @@ A common use-case for these elements is using a fieldset to group radio buttons 
 </fieldset>
 ```
 
-### A note on styling forms
+### Lưu ý về việc tạo kiểu cho biểu mẫu
 
-We will provide resources that go deep into styling forms in the assignment section that comes next. However, before we get to the assignment, we should talk about some of the challenges with styling HTML forms and how we can get around them:
+Trong phần bài tập tiếp theo, chúng tôi sẽ cung cấp các tài liệu đi sâu vào việc tạo kiểu cho biểu mẫu. Tuy nhiên, trước khi đến bài tập, chúng ta nên nói về một số thách thức khi tạo kiểu cho form HTML và cách khắc phục:
 
-#### Default browser styles
+#### Kiểu mặc định của trình duyệt
 
-Each browser has its own default styles for form controls, making your forms visually different for users depending on what browser they are using.
+Mỗi trình duyệt có kiểu mặc định riêng cho các bộ điều khiển biểu mẫu, khiến biểu mẫu hiển thị khác nhau tùy trình duyệt người dùng đang dùng.
 
-To have a consistent design among all browsers, we have to override these default styles and style them ourselves.
+Để có thiết kế nhất quán giữa các trình duyệt, chúng ta phải ghi đè các kiểu mặc định này và tự tạo kiểu cho chúng.
 
-#### Tricky and downright impossible to style form controls
+#### Bộ điều khiển biểu mẫu khó, thậm chí không thể, tạo kiểu
 
-Text-based form controls like text, email, password and text areas are reasonably straightforward to style. They operate like any other HTML element, and most CSS properties can be used on them.
+Các bộ điều khiển biểu mẫu dạng văn bản như text, email, password và text area tương đối dễ tạo kiểu. Chúng hoạt động như các phần tử HTML khác và có thể dùng hầu hết thuộc tính CSS trên chúng.
 
-Things get more tricky when creating custom styles for radio buttons and checkboxes. But there are many guides out there you can use to achieve your desired design, such as this [guide on custom checkbox styling](https://moderncss.dev/pure-css-custom-checkbox-style). There have also been [new CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color) made available in recent times to make styling radio buttons and checkboxes much easier.
+Việc tạo kiểu tùy chỉnh cho nút radio và checkbox khó hơn. Tuy vậy, có nhiều hướng dẫn giúp bạn đạt thiết kế mong muốn, chẳng hạn [hướng dẫn tạo kiểu checkbox tùy chỉnh](https://moderncss.dev/pure-css-custom-checkbox-style). Gần đây cũng có [các thuộc tính CSS mới](https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color) giúp việc tạo kiểu cho nút radio và checkbox dễ hơn nhiều.
 
-Certain aspects of other elements are downright impossible to style, for example, calendar or date pickers. If we want custom styles for these, we will have to build custom form controls with JavaScript or use one of the many JavaScript libraries that provide us with ready-made solutions.
+Một số khía cạnh của các phần tử khác gần như không thể tạo kiểu, chẳng hạn lịch hoặc bộ chọn ngày. Nếu muốn tạo kiểu tùy chỉnh cho chúng, ta phải xây dựng bộ điều khiển biểu mẫu tùy chỉnh bằng JavaScript hoặc dùng một trong nhiều thư viện JavaScript cung cấp giải pháp có sẵn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Form basics
+#### Kiến thức cơ bản về form
 
-1. Read and follow along with [MDN's "Introductory Tutorials" on forms](https://developer.mozilla.org/en-US/docs/Learn/Forms#introductory_tutorials).
-1. Read and follow along with [MDN's "The Different Form Controls" guides](https://developer.mozilla.org/en-US/docs/Learn/Forms#the_different_form_controls).
+1. Đọc và làm theo ["Introductory Tutorials" về form của MDN](https://developer.mozilla.org/en-US/docs/Learn/Forms#introductory_tutorials).
+1. Đọc và làm theo các hướng dẫn ["The Different Form Controls" của MDN](https://developer.mozilla.org/en-US/docs/Learn/Forms#the_different_form_controls).
 
-#### Styling forms
+#### Tạo kiểu cho form
 
-1. Read and follow along with these three MDN form styling tutorials:
+1. Đọc và làm theo ba hướng dẫn tạo kiểu form của MDN:
    - [Styling web forms](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Styling_web_forms)
    - [Advanced form styling](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling)
    - [UI pseudo-classes](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/UI_pseudo-classes)
-1. Read and follow along with the [tutorial on forms by Interneting Is Hard](https://internetingishard.netlify.app/html-and-css/forms/index.html).
+1. Đọc và làm theo [hướng dẫn về form của Interneting Is Hard](https://internetingishard.netlify.app/html-and-css/forms/index.html).
 
 </div>

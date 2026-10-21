@@ -1,16 +1,16 @@
-### Guide: Install VSCode on Linux
+### Hướng dẫn: Cài đặt VSCode trên Linux
 
-#### Step 1: Download VSCode
+#### Bước 1: Tải VSCode
 
-Open your **terminal** then run the following command to download the latest **VSCode** `.deb` package (`-O` is a capital "o", not a zero):
+Mở **terminal**, sau đó chạy lệnh sau để tải gói **VSCode** `.deb` mới nhất (`-O` là chữ "o" viết hoa, không phải số 0):
 
 ```bash
 wget -O code-latest.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 ```
 
-#### Step 2: Install VSCode
+#### Bước 2: Cài đặt VSCode
 
-Enter the following commands in your terminal to install the **VSCode** `.deb` package:
+Nhập các lệnh sau trong terminal để cài gói **VSCode** `.deb`:
 
 ```bash
 sudo apt update
@@ -18,53 +18,53 @@ sudo apt upgrade
 sudo apt install ./code-latest.deb
 ```
 
-Then, if prompted, enter your password.
+Sau đó, nếu được yêu cầu, hãy nhập mật khẩu của bạn.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Adding Microsoft's VSCode repository (optional)
+#### Thêm kho VSCode của Microsoft (tùy chọn)
 
-If you prefer to have VSCode update automatically alongside your other system updates, you can add Microsoft's official VSCode repository to your apt sources. This is completely fine and safe to do. The repository will allow VSCode to be updated whenever you run `sudo apt update && sudo apt upgrade` with your other system packages.
+Nếu muốn VSCode tự động cập nhật cùng với các bản cập nhật hệ thống khác, bạn có thể thêm kho VSCode chính thức của Microsoft vào các nguồn apt. Việc này hoàn toàn ổn và an toàn. Kho này cho phép VSCode được cập nhật mỗi khi bạn chạy `sudo apt update && sudo apt upgrade` cùng các gói hệ thống khác.
 
 </div>
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Typing passwords in the terminal
+#### Nhập mật khẩu trong terminal
 
-When using a command in the terminal that requires you to enter your password for authentication (such as `sudo`), you will notice that the characters aren't visible as you type them. While it might seem like the terminal isn’t responding, don’t worry!
+Khi dùng một lệnh trong terminal yêu cầu bạn nhập mật khẩu để xác thực (chẳng hạn như `sudo`), bạn sẽ thấy các ký tự không hiển thị khi gõ. Dù terminal có vẻ không phản hồi, đừng lo!
 
-This is a security feature to protect confidential information, like how password fields on websites use asterisks or dots. By not displaying the characters you write, the terminal keeps your password secure.
+Đây là tính năng bảo mật nhằm bảo vệ thông tin bí mật, tương tự như cách các trường mật khẩu trên trang web dùng dấu hoa thị hoặc dấu chấm. Không hiển thị các ký tự bạn gõ giúp terminal giữ an toàn cho mật khẩu của bạn.
 
-You can still enter your password as normal and press Enter to submit it.
+Bạn vẫn cứ nhập mật khẩu như bình thường rồi nhấn Enter để gửi.
 
 </div>
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Notice about unsandboxed download
+#### Lưu ý về việc tải xuống không có sandbox
 
-If you see a something like `N: Download is performed unsandboxed (...)`, you don't need to worry about it as the [`N:` just means it's a notice and not a warning](https://www.reddit.com/r/linux4noobs/comments/ux6cwx/comment/i9x2twx/).
+Nếu thấy thông báo dạng `N: Download is performed unsandboxed (...)`, bạn không cần lo lắng vì [`N:` chỉ có nghĩa đây là một thông báo chứ không phải cảnh báo](https://www.reddit.com/r/linux4noobs/comments/ux6cwx/comment/i9x2twx/).
 
 </div>
 
-#### Step 3: Delete the installer file
+#### Bước 3: Xóa tệp cài đặt
 
-Run the following command:
+Chạy lệnh sau:
 
 ```bash
 rm code-latest.deb
 ```
 
-#### Step 4: Using VSCode
+#### Bước 4: Sử dụng VSCode
 
-You can start VSCode in one of two ways:
+Bạn có thể khởi động VSCode theo một trong hai cách:
 
-- Click **Visual Studio Code** from the Applications menu
-- In the terminal, run the following command:
+- Nhấp **Visual Studio Code** trong menu Applications
+- Trong terminal, chạy lệnh sau:
 
   ```bash
   code
   ```
 
-[Return to Text Editors lesson](https://www.theodinproject.com/lessons/foundations-text-editors#assignment)
+[Quay lại bài học Trình soạn thảo văn bản](https://www.theodinproject.com/lessons/foundations-text-editors#assignment)

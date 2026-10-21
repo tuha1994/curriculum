@@ -1,24 +1,24 @@
-### Guide: Install VSCode on macOS
+### Hướng dẫn: Cài đặt VSCode trên macOS
 
-#### Step 1: Download VSCode
+#### Bước 1: Tải VSCode
 
-[Download the latest VSCode installer .zip file](https://update.code.visualstudio.com/latest/darwin-universal/stable).
+[Tải tệp .zip cài đặt VSCode mới nhất](https://update.code.visualstudio.com/latest/darwin-universal/stable).
 
-#### Step 2: Install VSCode
+#### Bước 2: Cài đặt VSCode
 
-1. Open the **Downloads** folder.
-1. Double click the file `VSCode-darwin-universal.zip`.
-1. Drag the `Visual Studio Code.app` icon to the **Applications** folder icon.
+1. Mở thư mục **Downloads**.
+1. Nhấp đúp vào tệp `VSCode-darwin-universal.zip`.
+1. Kéo biểu tượng `Visual Studio Code.app` vào biểu tượng thư mục **Applications**.
 
-#### Step 3: Delete the installer file
+#### Bước 3: Xóa tệp cài đặt
 
-1. Open **Finder**.
-1. Go to the **Downloads** folder.
-1. Drag `VSCode-darwin-universal.zip` to the trash.
+1. Mở **Finder**.
+1. Đi tới thư mục **Downloads**.
+1. Kéo `VSCode-darwin-universal.zip` vào thùng rác.
 
-#### Step 4: Using VSCode
+#### Bước 4: Sử dụng VSCode
 
-1. Go to your **Applications** folder.
-1. Double click **Visual Studio Code**.
+1. Đi tới thư mục **Applications**.
+1. Nhấp đúp vào **Visual Studio Code**.
 
-[Return to Text Editors lesson](https://www.theodinproject.com/lessons/foundations-text-editors#assignment)
+[Quay lại bài học Trình soạn thảo văn bản](https://www.theodinproject.com/lessons/foundations-text-editors#assignment)

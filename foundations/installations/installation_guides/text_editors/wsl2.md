@@ -1,34 +1,34 @@
-### Guide: Install VSCode on WSL2
+### Hướng dẫn: Cài đặt VSCode trên WSL2
 
-#### Step 1: Install VSCode
+#### Bước 1: Cài đặt VSCode
 
-Follow the instructions for [installing Visual Studio Code on Windows](https://code.visualstudio.com/docs/setup/windows).
+Làm theo hướng dẫn [cài đặt Visual Studio Code trên Windows](https://code.visualstudio.com/docs/setup/windows).
 
-**Important note**: The default Windows installer used in the provided page assumes that you are using an x64 machine. If you are using an ARM64 machine, you will need to click on the link under the table and choose the correct version of installer for your machine.
+**Lưu ý quan trọng**: Trình cài đặt Windows mặc định trên trang được cung cấp giả định bạn đang sử dụng máy x64. Nếu dùng máy ARM64, bạn cần nhấp vào liên kết bên dưới bảng rồi chọn đúng phiên bản trình cài đặt cho máy của mình.
 
-#### Step 2: Delete the installer file
+#### Bước 2: Xóa tệp cài đặt
 
-1. Open **File Explorer**.
-1. Go to the **Downloads** folder.
-1. Drag `VSCodeUserSetup-{version}.exe` to the trash.
+1. Mở **File Explorer**.
+1. Đi tới thư mục **Downloads**.
+1. Kéo `VSCodeUserSetup-{version}.exe` vào thùng rác.
 
-#### Step 3: Install WSL Extension
+#### Bước 3: Cài đặt tiện ích WSL
 
-1. Open Visual Studio Code.
-1. Navigate to the extensions tab.
-1. Find and install the [WSL extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl).
+1. Mở Visual Studio Code.
+1. Điều hướng đến tab tiện ích mở rộng.
+1. Tìm và cài đặt [tiện ích mở rộng WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl).
 
-#### Step 4: Ensure that WSL2 can correctly open VSCode
+#### Bước 4: Bảo đảm WSL2 có thể mở VSCode đúng cách
 
-1. Open a new WSL2 terminal.
-1. Run the following command to open a new VSCode window in WSL2:
+1. Mở một terminal WSL2 mới.
+1. Chạy lệnh sau để mở một cửa sổ VSCode mới trong WSL2:
 
    ```bash
    code
    ```
 
-After a few moments a new VSCode window should open, and VSCode should provide a notification that its opening in WSL2.
+Sau một lát, một cửa sổ VSCode mới sẽ mở ra và VSCode sẽ hiển thị thông báo cho biết chương trình đang mở trong WSL2.
 
-Going forward, this is how you should be opening VSCode to ensure it is using WSL2 and not your Windows OS/file system.
+Từ nay về sau, bạn nên mở VSCode theo cách này để bảo đảm chương trình sử dụng WSL2 thay vì hệ điều hành/hệ thống tệp Windows.
 
-[Return to Text Editors lesson](https://www.theodinproject.com/lessons/foundations-text-editors#assignment)
+[Quay lại bài học Trình soạn thảo văn bản](https://www.theodinproject.com/lessons/foundations-text-editors#assignment)

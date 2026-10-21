@@ -1,74 +1,74 @@
-### Guide: WSL2 setup
+### Hướng dẫn: Thiết lập WSL2
 
-Using WSL2 is a quick and easy way to get started with using Linux, allowing you to run a Linux distribution from within Windows. WSL2 is available on Windows 10 version 2004 and higher (Build 19041 and higher) and Windows 11.
+Sử dụng WSL2 là một cách nhanh chóng và dễ dàng để bắt đầu làm quen với Linux, cho phép bạn chạy một bản phân phối Linux ngay trong Windows. WSL2 có trên Windows 10 phiên bản 2004 trở lên (Build 19041 trở lên) và Windows 11.
 
-To make it clear: you are going to be using a different OS, this is not a way to avoid using Linux. Due to how WSL2 is integrated with Windows it often causes significant confusion to new learners. Use the Virtual Machine if you want a clear separation between your Windows and Linux so the curriculum is easier to follow.
+Nói rõ hơn: bạn sẽ sử dụng một hệ điều hành khác; đây không phải là cách để tránh dùng Linux. Do cách WSL2 tích hợp với Windows, công cụ này thường khiến người mới học khá bối rối. Nếu muốn tách biệt rõ ràng giữa Windows và Linux để dễ theo dõi chương trình học hơn, hãy dùng Máy ảo.
 
 <div class="lesson-note" markdown="1">
 
-#### WSL2 and Linux instructions
+#### Hướng dẫn WSL2 và Linux
 
-Because WSL2 is a full-fledged Linux distribution, almost everything that the curriculum teaches about Linux is also applicable to WSL2. In future lessons, whenever there are instructions that differ by OS, you should follow the Linux instructions, unless the lesson includes WSL2-specific instructions.
+Vì WSL2 là một bản phân phối Linux đầy đủ, gần như mọi điều chương trình học hướng dẫn về Linux cũng áp dụng được cho WSL2. Trong các bài học sau, khi có hướng dẫn khác nhau tùy hệ điều hành, bạn nên làm theo hướng dẫn dành cho Linux, trừ khi bài học có hướng dẫn riêng cho WSL2.
 
 </div>
 
-### Step 1: Installations
+### Bước 1: Cài đặt
 
-#### Step 1.1: Installing WSL2
+#### Bước 1.1: Cài đặt WSL2
 
-1. Open PowerShell in administrator mode by searching for it in your applications, right clicking the top option, and then selecting run as administrator. You might get a prompt asking if you want to allow Windows Powershell to make changes to your device: click yes.
-1. Enter the following command
+1. Mở PowerShell ở chế độ quản trị viên bằng cách tìm ứng dụng này trong danh sách chương trình, nhấp chuột phải vào kết quả đầu tiên rồi chọn chạy với tư cách quản trị viên. Có thể bạn sẽ thấy lời nhắc hỏi có cho phép Windows Powershell thực hiện thay đổi trên thiết bị hay không: hãy chọn có.
+1. Nhập lệnh sau
 
    ```powershell
    wsl --install
    ```
 
-1. After a few minutes you'll be prompted to reboot your computer; do so.
-1. You should see an open Powershell window, prompting you to enter a username and a password. Your username should be lowercase, but can otherwise be whatever suits you. You'll also need to enter a new password.
-1. When entering your password you might notice that you aren't seeing any visual feedback. This is a standard security feature in Linux, and will also happen in all future cases where you need to enter a password. Just type your password and hit <kbd>Enter</kbd>.
+1. Sau vài phút, máy sẽ yêu cầu bạn khởi động lại; hãy thực hiện việc đó.
+1. Bạn sẽ thấy một cửa sổ Powershell mở ra, yêu cầu nhập tên người dùng và mật khẩu. Tên người dùng nên viết thường, nhưng bạn có thể chọn tên phù hợp với mình. Bạn cũng cần nhập một mật khẩu mới.
+1. Khi nhập mật khẩu, bạn có thể nhận thấy không có phản hồi trực quan nào. Đây là tính năng bảo mật tiêu chuẩn trong Linux và cũng sẽ xảy ra trong mọi trường hợp sau này khi bạn cần nhập mật khẩu. Chỉ cần gõ mật khẩu rồi nhấn <kbd>Enter</kbd>.
 
-#### Step 1.2.1: Install Windows Terminal (Windows 10 only)
+#### Bước 1.2.1: Cài đặt Windows Terminal (chỉ Windows 10)
 
-Windows Terminal is a terminal application that lets you more easily customize and run terminals, as well as supporting multiple tabs which can each run their own different terminals. [Install Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install) by using the direct install option.
+Windows Terminal là một ứng dụng terminal giúp bạn dễ dàng tùy chỉnh và chạy các terminal hơn, đồng thời hỗ trợ nhiều tab, mỗi tab có thể chạy một terminal khác nhau. [Cài đặt Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install) bằng tùy chọn cài đặt trực tiếp.
 
-#### Step 1.2.2: Setting WSL2 as default (Optional)
+#### Bước 1.2.2: Đặt WSL2 làm mặc định (Tùy chọn)
 
-Unless you are regularly using other terminals on your computer we recommend that you set WSL2 as the default terminal program when you open Windows Terminal.
+Trừ khi thường xuyên sử dụng các terminal khác trên máy tính, chúng tôi khuyên bạn đặt WSL2 làm chương trình terminal mặc định khi mở Windows Terminal.
 
-1. Open Windows Terminal by searching for terminal in your applications.
-1. Click the dropdown next to the new tab button (at the top of the windows), and select Settings.
-1. You should see a Default Profile option with a dropdown next to it.
-1. In the dropdown select Ubuntu.
-1. Click save at the bottom of the page.
+1. Mở Windows Terminal bằng cách tìm terminal trong danh sách chương trình.
+1. Nhấp vào mũi tên thả xuống bên cạnh nút tab mới (ở đầu cửa sổ), rồi chọn Settings.
+1. Bạn sẽ thấy tùy chọn Default Profile cùng một menu thả xuống bên cạnh.
+1. Trong menu thả xuống, chọn Ubuntu.
+1. Nhấp save ở cuối trang.
 
-### Step 2 Opening WSL2
+### Bước 2: Mở WSL2
 
-On Windows there are three primary ways to open WSL2.
+Trên Windows có ba cách chính để mở WSL2.
 
-- If you set Windows Terminal to open a Ubuntu terminal by default you can start a new WSL2 session by opening the terminal app.
-- You can open Windows Terminal, click the dropdown next to the new tab button (at the top of the windows), and select Ubuntu.
-- If you search for Ubuntu in the application search bar you should see a application titled Ubuntu; open it to start a new terminal session.
+- Nếu đã đặt Windows Terminal mở terminal Ubuntu theo mặc định, bạn có thể bắt đầu một phiên WSL2 mới bằng cách mở ứng dụng terminal.
+- Bạn có thể mở Windows Terminal, nhấp vào mũi tên thả xuống bên cạnh nút tab mới (ở đầu cửa sổ), rồi chọn Ubuntu.
+- Nếu tìm Ubuntu trong thanh tìm kiếm ứng dụng, bạn sẽ thấy một ứng dụng có tên Ubuntu; hãy mở ứng dụng đó để bắt đầu một phiên terminal mới.
 
-All options below are valid selections that will open the same program:
+Tất cả các lựa chọn dưới đây đều hợp lệ và sẽ mở cùng một chương trình:
 
-![The search results for Ubuntu in the Windows Start Menu](../../installations/imgs/ubuntu.png)
+![Kết quả tìm kiếm Ubuntu trong Start Menu của Windows](../../installations/imgs/ubuntu.png)
 
-![The search results for WSL in the Windows Start Menu](../../installations/imgs/wsl.png)
+![Kết quả tìm kiếm WSL trong Start Menu của Windows](../../installations/imgs/wsl.png)
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Terminal color scheme
+#### Bảng màu terminal
 
-You might notice when you open WSL2 via Windows Terminal, you'll see a window with a different color scheme and a different icon compared to opening a terminal through Ubuntu in your applications. This is because Windows Terminal comes with a default color scheme for Ubuntu meant to emulate how a real Ubuntu terminal looks. This difference is purely cosmetic, and there is no practical difference between the two.
+Khi mở WSL2 bằng Windows Terminal, bạn có thể nhận thấy cửa sổ có bảng màu và biểu tượng khác so với khi mở terminal thông qua Ubuntu trong danh sách chương trình. Đó là vì Windows Terminal có bảng màu mặc định cho Ubuntu nhằm mô phỏng giao diện của một terminal Ubuntu thực. Khác biệt này chỉ mang tính thẩm mỹ, không có khác biệt thực tế nào giữa hai cách mở.
 
 </div>
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### /mnt/c is not Linux!
+#### /mnt/c không phải Linux!
 
-When opening your WSL2 terminal ensure that you do not see `/mnt/c` at the start of the line. `/mnt/c` is where your Windows installation lives when working within WSL2, and messing around there can have unintended consequences.
+Khi mở terminal WSL2, hãy bảo đảm bạn không thấy `/mnt/c` ở đầu dòng. `/mnt/c` là nơi bản cài đặt Windows của bạn nằm trong WSL2, và việc thao tác bất cẩn ở đó có thể gây ra hậu quả ngoài ý muốn.
 
 </div>
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#os-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#os-installation)

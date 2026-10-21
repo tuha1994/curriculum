@@ -1,59 +1,59 @@
-### Introduction
+### Giới thiệu
 
-Feeling scared of the command line? You're not alone. We have this image of developers staring intently at a black screen with white or green text flashing across as they wildly enter incomprehensible commands to hack into the corporate mainframe (no doubt while guzzling soda and wiping neon orange Cheetos dust off their keyboard).
+Bạn cảm thấy sợ dòng lệnh ư? Bạn không cô độc đâu. Chúng ta thường hình dung các nhà phát triển chăm chú nhìn vào màn hình đen với những dòng chữ trắng hoặc xanh lá nhấp nháy, đồng thời gõ loạn những lệnh khó hiểu để đột nhập vào máy chủ của tập đoàn (chắc hẳn vừa tu nước ngọt vừa phủi bụi Cheetos màu cam neon khỏi bàn phím).
 
-That blank screen or window with a prompt and blinking cursor is the command line interface (CLI), where you're able to enter commands that your computer will run for you. While there's no need for you to reenact the scene above, working with the command line is a critical skill for you to learn as a developer. The command line is like our base of operations, from which we can launch other programs and interact with them. It has a syntax of its own to learn, but since you'll be entering the same commands dozens of times, you'll quickly pick up the commands you need most.
+Màn hình hoặc cửa sổ trống có dấu nhắc và con trỏ nhấp nháy đó chính là giao diện dòng lệnh (CLI), nơi bạn có thể nhập các lệnh để máy tính thực hiện. Dù bạn không cần tái hiện cảnh tượng ở trên, làm việc với dòng lệnh là một kỹ năng thiết yếu mà bạn cần học với tư cách nhà phát triển. Dòng lệnh giống như căn cứ hoạt động của chúng ta, từ đó ta có thể khởi chạy các chương trình khác và tương tác với chúng. Dòng lệnh có cú pháp riêng cần học, nhưng vì bạn sẽ nhập đi nhập lại cùng một số lệnh hàng chục lần, bạn sẽ nhanh chóng ghi nhớ những lệnh mình dùng thường xuyên nhất.
 
-In this introductory lesson on the command line, you'll learn how to navigate your computer and manipulate files and directories (also known as folders) directly from the comfort of the command line. You'll soon see that this isn't as difficult as you may think. The commands you will learn in this lesson are very straightforward, so don't let the prospect of using the command line for the first time intimidate you.
+Trong bài học nhập môn về dòng lệnh này, bạn sẽ học cách điều hướng máy tính và thao tác trực tiếp với các tệp và thư mục (còn gọi là folder) từ dòng lệnh. Bạn sẽ sớm thấy việc này không khó như mình tưởng. Những lệnh bạn học trong bài rất đơn giản, vì vậy đừng để việc lần đầu sử dụng dòng lệnh làm bạn thấy e ngại.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp cái nhìn tổng quát về các chủ đề bạn sẽ học trong bài.
 
-- Describe what the command line is.
-- Open the command line on your computer.
-- Use the command line to navigate directories and display directory contents.
-- Use the command line to create a new directory and a new file.
-- Use the command line to rename or destroy a directory and a file.
-- Use the command line to open a file or folder in a program.
+- Mô tả dòng lệnh là gì.
+- Mở dòng lệnh trên máy tính.
+- Dùng dòng lệnh để điều hướng các thư mục và hiển thị nội dung thư mục.
+- Dùng dòng lệnh để tạo thư mục mới và tệp mới.
+- Dùng dòng lệnh để đổi tên hoặc xóa thư mục và tệp.
+- Dùng dòng lệnh để mở tệp hoặc thư mục bằng một chương trình.
 
-### Test drive your terminal
+### Thử dùng terminal
 
-Open a terminal on your computer.
+Mở terminal trên máy tính của bạn.
 
-- **Linux**: Open the programs menu and search for "Terminal". You can also open the terminal by pressing <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> on your keyboard.
+- **Linux**: Mở menu chương trình và tìm "Terminal". Bạn cũng có thể mở terminal bằng cách nhấn <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> trên bàn phím.
 
-- **macOS**: Open your Applications > Utilities folder and find "Terminal". You can also use Spotlight search to open Terminal. Press <kbd>Cmd</kbd> + <kbd>Space</kbd> to open Spotlight, and search for "Terminal". Press <kbd>Enter</kbd> to open it.
+- **macOS**: Mở thư mục Applications > Utilities và tìm "Terminal". Bạn cũng có thể dùng tìm kiếm Spotlight để mở Terminal. Nhấn <kbd>Cmd</kbd> + <kbd>Space</kbd> để mở Spotlight rồi tìm "Terminal". Nhấn <kbd>Enter</kbd> để mở.
 
-The window that opens will be mostly blank, with the exception of some text that will vary based on your operating system.  On Linux and older Macs, the line will end with `$` and on newer Macs, the line will end with `%`.  This symbol - called the prompt - indicates that the terminal is waiting for you to enter a command. Let's try that now. Type `whoami` and press <kbd>Enter</kbd>.
+Cửa sổ mở ra hầu như sẽ trống, ngoài một số dòng chữ thay đổi tùy hệ điều hành. Trên Linux và các máy Mac đời cũ, dòng này sẽ kết thúc bằng `$`, còn trên các máy Mac đời mới sẽ kết thúc bằng `%`. Ký hiệu này — gọi là dấu nhắc — cho biết terminal đang chờ bạn nhập lệnh. Hãy thử ngay. Gõ `whoami` rồi nhấn <kbd>Enter</kbd>.
 
-It returns your username. Cool!
+Lệnh sẽ trả về tên người dùng của bạn. Hay quá!
 
-Often, guides and instructions for using the terminal will indicate commands by putting the symbol first, like `$ whoami`.  This tells you to type the command in your terminal, but don't enter the `$`. And remember, if you are using a newer Mac, the `%` is the same as `$`.
+Thông thường, các hướng dẫn dùng terminal sẽ đặt ký hiệu này trước lệnh, chẳng hạn `$ whoami`. Điều đó có nghĩa là bạn cần gõ lệnh vào terminal, nhưng không gõ ký hiệu `$`. Và hãy nhớ rằng nếu bạn đang dùng máy Mac đời mới, `%` cũng tương đương với `$`.
 
-#### Why learn this now?
+#### Tại sao nên học điều này ngay bây giờ?
 
-You will be making heavy use of the command line throughout this curriculum, and the upcoming installations project will need you to install many different software programs using the command line. Additionally, you will primarily be using Git within the command line (more on this later). As part of the bigger picture, you may well be using the command line on a daily basis in your career as a software developer, making it an indispensable skill in your toolset.
+Bạn sẽ sử dụng dòng lệnh rất nhiều trong suốt chương trình học này, và dự án cài đặt sắp tới sẽ yêu cầu bạn cài nhiều chương trình phần mềm khác nhau bằng dòng lệnh. Ngoài ra, phần lớn thời gian bạn sẽ dùng Git trong dòng lệnh (sẽ tìm hiểu thêm về điều này sau). Nhìn rộng hơn, trong sự nghiệp phát triển phần mềm, rất có thể bạn sẽ sử dụng dòng lệnh hằng ngày, khiến đây trở thành một kỹ năng không thể thiếu trong bộ công cụ của bạn.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Typing passwords in the terminal
+#### Nhập mật khẩu trong terminal
 
-  When using a command in the terminal that requires you to enter your password for authentication (such as sudo), you will notice that the characters aren't visible as you type them. While it might seem like the terminal isn’t responding, don’t worry!
+  Khi dùng một lệnh trong terminal yêu cầu bạn nhập mật khẩu để xác thực (chẳng hạn như sudo), bạn sẽ thấy các ký tự không hiển thị khi gõ. Dù terminal có vẻ không phản hồi, đừng lo!
 
-  This is a security feature to protect confidential information, like how password fields on websites use asterisks or dots. By not displaying the characters you type, the terminal keeps your password secure.
+  Đây là tính năng bảo mật nhằm bảo vệ thông tin bí mật, tương tự như cách các trường mật khẩu trên trang web dùng dấu hoa thị hoặc dấu chấm. Không hiển thị các ký tự bạn gõ giúp terminal giữ an toàn cho mật khẩu của bạn.
 
-  You can still enter your password as normal and press Enter to submit it.
+  Bạn vẫn cứ nhập mật khẩu như bình thường rồi nhấn Enter để gửi.
 
 </div>
 
-### Use the command line like a pro
+### Sử dụng dòng lệnh như một chuyên gia
 
-There's something important that you need to know about programmers. Programmers are lazy. Like, really lazy. When forced to do something over and over again, the odds are good that they'll figure out a way to automate it instead. The good news is that you get to take advantage of the many shortcuts they've created along the way. It's time to learn how to use the command line like a pro (which is to say, in a really lazy way).
+Có một điều quan trọng bạn cần biết về các lập trình viên. Lập trình viên rất lười. Cực kỳ lười là đằng khác. Khi bị buộc phải làm đi làm lại một việc, họ thường sẽ tìm cách tự động hóa việc đó. Tin tốt là bạn được hưởng lợi từ vô số phím tắt mà họ đã tạo ra. Đã đến lúc học cách sử dụng dòng lệnh như một chuyên gia (hay nói cách khác là theo cách thật lười biếng).
 
-First, you might have already noticed that copying and pasting inside the command line doesn't work the way that you'd expect. When you're inside the command line, use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> (Mac: <kbd>Cmd</kbd> + <kbd>C</kbd>) to copy and <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> (Mac: <kbd>Cmd</kbd> + <kbd>V</kbd>) to paste. For example, to copy and paste commands from your browser into the command line, highlight the command text and use <kbd>Ctrl</kbd> + <kbd>C</kbd> as usual, then paste it in your terminal using <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>. Test it out!
+Trước hết, có thể bạn đã nhận thấy việc sao chép và dán trong dòng lệnh không hoạt động như mong đợi. Khi đang ở trong dòng lệnh, hãy dùng <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> (Mac: <kbd>Cmd</kbd> + <kbd>C</kbd>) để sao chép và <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> (Mac: <kbd>Cmd</kbd> + <kbd>V</kbd>) để dán. Ví dụ, để sao chép và dán lệnh từ trình duyệt vào dòng lệnh, hãy bôi đen phần lệnh và dùng <kbd>Ctrl</kbd> + <kbd>C</kbd> như bình thường, sau đó dán vào terminal bằng <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>. Hãy thử xem!
 
-Second, you need to learn about [tab completion](https://en.wikipedia.org/wiki/Command-line_completion). Seriously, this tip will save you so much time and frustration. Let's say that you're in the command line and need to move into a distant folder, something like `~/Documents/Odin-Project/foundations/javascript/calculator/`. That's a long command to type out, and everything needs to be exactly right in order for it to work. Nope, we're *way* too lazy for that! Basically, by hitting <kbd>Tab</kbd>, the command line will automatically complete commands that you've started typing once there's only one option. For example, it's pretty common to have a `Documents` folder and a `Downloads` folder in the home directory. If you've typed `cd D` and then press <kbd>Tab</kbd>, the command line will let you know that it's not sure which one you want by showing you the different options that match what you've typed so far:
+Thứ hai, bạn cần tìm hiểu về [tự động hoàn thành bằng phím Tab](https://en.wikipedia.org/wiki/Command-line_completion). Nghiêm túc đấy, mẹo này sẽ giúp bạn tiết kiệm rất nhiều thời gian và công sức. Giả sử bạn đang ở dòng lệnh và cần chuyển vào một thư mục ở xa, chẳng hạn `~/Documents/Odin-Project/foundations/javascript/calculator/`. Đó là một lệnh dài phải gõ, và mọi thứ phải chính xác tuyệt đối thì mới hoạt động. Không đời nào, chúng ta *quá* lười để làm thế! Về cơ bản, khi nhấn <kbd>Tab</kbd>, dòng lệnh sẽ tự động hoàn thành phần lệnh bạn đã bắt đầu gõ khi chỉ còn một lựa chọn. Ví dụ, thư mục home thường có cả thư mục `Documents` và `Downloads`. Nếu bạn đã gõ `cd D` rồi nhấn <kbd>Tab</kbd>, dòng lệnh sẽ cho biết nó chưa chắc bạn muốn thư mục nào bằng cách hiển thị các lựa chọn khớp với phần bạn đã gõ:
 
 ```bash
 $ cd D
@@ -61,64 +61,64 @@ Documents/ Downloads/
 $ cd D
 ```
 
-But once you've typed in a bit more, it will complete the name for you, making it possible to write out the full file path above by typing as little as `cd Doc[tab]O[tab]f[tab]j[tab]cal[tab]` (depending on what other folders exist on your computer). Test it out, and get comfortable with how this works. You're gonna love it.
+Nhưng khi gõ thêm một chút, nó sẽ tự hoàn thành tên thư mục cho bạn. Nhờ vậy, bạn có thể gõ toàn bộ đường dẫn tệp ở trên chỉ bằng cách nhập ít như `cd Doc[tab]O[tab]f[tab]j[tab]cal[tab]` (tùy những thư mục khác có trên máy tính của bạn). Hãy thử và làm quen với cách hoạt động này. Bạn sẽ thích nó đấy.
 
-Third, there's a really handy shortcut for opening everything within a project directory: `.` Once you've installed a text editor, you can use this shortcut to open up an entire project and all its files in one go. This shortcut is also commonly used with Git (later on it's covered in detail) with commands like `git add .` to add all the files in a directory to Git's staging area. For example, if you have VS Code installed, you can `cd` into the project directory and then type `code .` (with the period). It will launch VS Code and open up the project folder in the sidebar. See the next section of this lesson for a more detailed example.
+Thứ ba, có một phím tắt rất tiện để mở mọi thứ bên trong thư mục dự án: `.` Sau khi cài một trình soạn thảo văn bản, bạn có thể dùng phím tắt này để mở toàn bộ dự án và tất cả tệp trong đó chỉ bằng một lần. Phím tắt này cũng thường được dùng với Git (sẽ tìm hiểu kỹ sau) trong các lệnh như `git add .` để thêm tất cả tệp trong một thư mục vào vùng staging của Git. Ví dụ, nếu đã cài VS Code, bạn có thể `cd` vào thư mục dự án rồi gõ `code .` (kèm dấu chấm). VS Code sẽ khởi chạy và mở thư mục dự án trong thanh bên. Hãy xem phần tiếp theo của bài để có ví dụ chi tiết hơn.
 
-### Opening files in VSCode from the command line
+### Mở tệp trong VSCode từ dòng lệnh
 
-- **Linux**: You can open VSCode from the command line by typing `code`, and you can open folders or files by adding the name of the location after it: `code my_awesome_project/`.
+- **Linux**: Bạn có thể mở VSCode từ dòng lệnh bằng cách gõ `code`, và có thể mở thư mục hoặc tệp bằng cách thêm tên vị trí phía sau: `code my_awesome_project/`.
 
-- **macOS**: Some setup is required. After installing VSCode, launch it any way you're comfortable with. Once it's running, open the Command Palette with <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>. In the little dialog that appears, type `shell command`. One of the choices that appears will be `Shell Command: Install 'code' command in PATH`. Select that option and restart the terminal if you have it open.
+- **macOS**: Cần thực hiện một số bước thiết lập. Sau khi cài VSCode, hãy khởi chạy bằng cách nào bạn thấy thuận tiện. Khi chương trình đang chạy, mở Command Palette bằng <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>. Trong hộp thoại nhỏ hiện ra, gõ `shell command`. Một trong các lựa chọn sẽ là `Shell Command: Install 'code' command in PATH`. Chọn mục đó rồi khởi động lại terminal nếu terminal đang mở.
 
-- **WSL2**: Opening up VSCode from the command line in WSL2 is just as easy as it is in Linux. Just enter `code`, which will open VSCode in WSL2.
+- **WSL2**: Mở VSCode từ dòng lệnh trong WSL2 cũng dễ như trên Linux. Chỉ cần nhập `code`, VSCode sẽ mở trong WSL2.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Creating a Desktop folder
+#### Tạo thư mục Desktop
 
-Some of the following resources assume you have a Desktop folder located in your system. If, however, you do not have one located anywhere in your system, then please do the  following: Open your terminal and make sure you're located in the home directory by typing `cd ~` into your command line. Then, type `mkdir Desktop` and press `enter`. To ensure  your command worked, type `ls` and check if your Desktop folder is shown amongst your other directories.  
+Một số tài liệu dưới đây giả định rằng hệ thống của bạn có thư mục Desktop. Tuy nhiên, nếu không có thư mục này ở bất kỳ đâu trong hệ thống, hãy làm như sau: Mở terminal và bảo đảm bạn đang ở thư mục home bằng cách nhập `cd ~` vào dòng lệnh. Sau đó, nhập `mkdir Desktop` và nhấn `enter`. Để chắc chắn lệnh đã chạy đúng, hãy nhập `ls` và kiểm tra xem thư mục Desktop có xuất hiện cùng các thư mục khác hay không.
 
 </div>
 
 <div class="lesson-note lesson-note--warning" markdown=1>
 
-#### Using the correct OS
+#### Dùng đúng hệ điều hành
 
-Many of these resources assume you're using a Mac or Linux environment. If you did our previous installation lesson, you should already have Linux installed in dual-boot or a virtual machine. Or, you might be using macOS. If you don't have macOS, or any official Ubuntu flavor installed, please return to the [Installations lesson](https://www.theodinproject.com/lessons/foundations-installations).
+Nhiều tài liệu trong số này giả định bạn đang dùng môi trường Mac hoặc Linux. Nếu đã học bài cài đặt trước đó, có lẽ bạn đã cài Linux theo chế độ dual-boot hoặc trên máy ảo. Hoặc bạn có thể đang dùng macOS. Nếu không có macOS hoặc bất kỳ phiên bản Ubuntu chính thức nào, hãy quay lại [bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations).
 
 </div>
 
-1. Visit [The Unix Shell](https://swcarpentry.github.io/shell-novice/) course designed by the Software Carpentry Foundation. There, you will find a full complement of lessons on using the CLI, but for now, just focus on completing the following lessons:
+1. Truy cập khóa học [The Unix Shell](https://swcarpentry.github.io/shell-novice/) do Software Carpentry Foundation thiết kế. Tại đó có đầy đủ các bài học về sử dụng CLI, nhưng hiện tại bạn chỉ cần hoàn thành những bài sau:
 
    <div class="lesson-note" markdown="1">
 
-   #### Doing the SWCarpentry course on WSL2
+   #### Thực hiện khóa học SWCarpentry trên WSL2
 
-   Use the `wget` command along with the link given in the `Download files` section to get the zip file in your WSL2 installation (`wget https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip`). You will also have to install unzip by using the command `sudo apt install unzip` and then `unzip shell-lesson-data.zip` to unzip the file. Keep in mind that throughout this course, your terminal output may look slightly different from what is shown in the lessons. Anytime the course asks you to go to the Desktop, you will instead be going to the home directory which can be done by using the cd command (`cd ~`).
+   Dùng lệnh `wget` cùng liên kết trong phần `Download files` để tải tệp zip vào bản cài đặt WSL2 của bạn (`wget https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip`). Bạn cũng cần cài unzip bằng lệnh `sudo apt install unzip`, sau đó dùng `unzip shell-lesson-data.zip` để giải nén tệp. Lưu ý rằng trong suốt khóa học này, kết quả terminal của bạn có thể hơi khác so với kết quả được hiển thị trong bài. Bất cứ khi nào khóa học yêu cầu bạn đi đến Desktop, thay vào đó bạn sẽ đi đến thư mục home bằng lệnh cd (`cd ~`).
 
    </div>
 
-   - [Download files](https://swcarpentry.github.io/shell-novice/#download-files) - only follow the instructions in this section. You don't need to install any software and can move onto the next bullet point in this list.
-   - [Introducing the Shell](https://swcarpentry.github.io/shell-novice/01-intro.html)
-   - [Navigating Files and Directories](https://swcarpentry.github.io/shell-novice/02-filedir.html)
-   - [Working With Files and Directories](https://swcarpentry.github.io/shell-novice/03-create.html)
+   - [Download files](https://swcarpentry.github.io/shell-novice/#download-files) - chỉ làm theo hướng dẫn trong phần này. Bạn không cần cài phần mềm nào và có thể chuyển sang mục tiếp theo trong danh sách.
+   - [Giới thiệu về Shell](https://swcarpentry.github.io/shell-novice/01-intro.html)
+   - [Điều hướng tệp và thư mục](https://swcarpentry.github.io/shell-novice/02-filedir.html)
+   - [Làm việc với tệp và thư mục](https://swcarpentry.github.io/shell-novice/03-create.html)
 
-1. With your newly discovered CLI superpowers, practice creating a folder and a few files using the `mkdir`, `touch`, and `cd` commands introduced in the previous step. As an example, a basic website might have a main `index.html` file, a CSS stylesheet file called `style.css`, and a folder for `images`. Think about how you could create these files with the commands and put it into practice!
+1. Với những siêu năng lực CLI mới khám phá, hãy luyện tạo một thư mục và vài tệp bằng các lệnh `mkdir`, `touch` và `cd` đã giới thiệu ở bước trước. Ví dụ, một trang web cơ bản có thể có tệp `index.html` chính, tệp biểu định kiểu CSS tên là `style.css` và một thư mục `images`. Hãy nghĩ cách tạo các tệp này bằng lệnh rồi thực hành!
 
-1. Let's practice creating files and directories and deleting them! You'll need to enter the commands for the steps below in your terminal. If you can't recall how to open a terminal, scroll up for a reminder.
+1. Hãy luyện tạo và xóa tệp cũng như thư mục! Bạn sẽ cần nhập các lệnh cho những bước dưới đây vào terminal. Nếu không nhớ cách mở terminal, hãy cuộn lên để xem lại hướng dẫn.
 
-    1. Create a new directory in your home directory with the name `test`.
-    1. Navigate to the `test` directory.
-    1. Create a new file called `test.txt`. *Hint: use the `touch` command.*
-    1. Open your newly created file in VSCode, make some changes, save the file, and close it.
-    1. Navigate back out of the `test` directory.
-    1. Delete the `test` directory.
+    1. Tạo một thư mục mới tên `test` trong thư mục home.
+    1. Điều hướng vào thư mục `test`.
+    1. Tạo một tệp mới tên `test.txt`. *Gợi ý: dùng lệnh `touch`.*
+    1. Mở tệp vừa tạo trong VSCode, chỉnh sửa một vài chỗ, lưu tệp rồi đóng lại.
+    1. Điều hướng ra khỏi thư mục `test`.
+    1. Xóa thư mục `test`.
 
-    That's it---you're done with practice! If you commit to doing most tasks from the command line from here on out, these commands will become second nature to you. Moving and copying files is much more efficiently done through the command line, even if it feels like more of a hassle at this point.
+    Vậy là xong phần luyện tập! Nếu từ giờ bạn duy trì thói quen thực hiện phần lớn tác vụ từ dòng lệnh, những lệnh này sẽ nhanh chóng trở nên quen thuộc. Di chuyển và sao chép tệp bằng dòng lệnh hiệu quả hơn nhiều, dù hiện tại việc đó có thể vẫn khiến bạn thấy phiền hơn.
 
 </div>

@@ -297,6 +297,16 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `foundations/installations/installation_guides/linux/dual_boot.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học kiểm tra kỹ hướng dẫn phân vùng. |
 | `foundations/installations/installation_guides/linux/virtual_machine.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học kiểm tra kỹ hướng dẫn VM. |
 
+## Foundations đã dịch — batch 10
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `foundations/installations/command_line_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh terminal và output. |
+| `foundations/installations/installation_guides/linux/wsl2.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh WSL2. |
+| `foundations/installations/installation_guides/text_editors/linux.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên tên menu và lệnh. |
+| `foundations/installations/installation_guides/text_editors/macos.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên tên menu và lệnh. |
+| `foundations/installations/installation_guides/text_editors/wsl2.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh WSL2. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

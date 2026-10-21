@@ -1,20 +1,20 @@
 ### Giới thiệu
 
-ở đây we go again với a mới dự án! Hãy  Tạo sure you hiểu the concepts so far. The main goal of this dự án is to implement the concepts đã học so far by sử dụng hooks to manage và utilize state while fetching và sử dụng dữ liệu từ an external API.
+Chúng ta lại bắt đầu với một dự án mới! Hãy chắc chắn rằng bạn hiểu các khái niệm cho đến nay. Mục tiêu chính của dự án này là triển khai các khái niệm đã học cho đến nay bằng cách sử dụng hook để quản lý và sử dụng trạng thái trong khi tìm nạp và sử dụng dữ liệu từ API bên ngoài.
 
-### How the game works
+### Trò chơi hoạt động như thế nào
 
-Go play around với this [student's solution](https://heldersrvio.github.io/memory-card-game/) to find out for yourself cách the Memory game works. Although this ví dụ uses cartoon characters, Bạn có thể sử dụng anything you like for your game.
+Đi chơi với cái này [giải pháp của sinh viên](https://heldersrvio.github.io/memory-card-game/) để tự mình tìm hiểu cách thức hoạt động của trò chơi Trí nhớ. Mặc dù ví dụ này sử dụng các nhân vật hoạt hình nhưng bạn có thể sử dụng bất cứ thứ gì bạn thích cho trò chơi của mình.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. tạo a mới React dự án.
-1. Take some time to think về the features you want to implement, which các component you cần, cách to structure your ứng dụng, và cách to get the images từ an API. Your ứng dụng nên include a scoreboard, which counts the current score, và a "Best Score", which shows the highest score you've achieved thus far. ở đó nên be a hàm that displays the cards in a random order anytime a user clicks one. Be sure to invoke that hàm Khi the component mounts.
-1. You cũng cần a handful of cards that display images và possibly informational text. These images và texts cần to be fetched từ an external API. Bạn có thể sử dụng anything từ [Giphy](https://giphy.com/) to a [Pokemon API](https://pokeapi.co/).
-1. Now that you've thought về the structure of your ứng dụng, set up the folder structure và start tạo the các component.
-1. Style your ứng dụng so Bạn có thể show it off!
-1. As always, push the dự án to GitHub, và don't forget to deploy it.
+1. Tạo một dự án React mới.
+1. Hãy dành chút thời gian để suy nghĩ về các tính năng bạn muốn triển khai, thành phần nào bạn cần, cách cấu trúc ứng dụng của bạn và cách lấy hình ảnh từ API. Đơn đăng ký của bạn phải bao gồm bảng điểm để tính số điểm hiện tại và "Điểm tốt nhất" cho biết số điểm cao nhất bạn đạt được cho đến nay. Cần có chức năng hiển thị các thẻ theo thứ tự ngẫu nhiên bất cứ khi nào người dùng nhấp vào. Hãy chắc chắn gọi hàm đó khi thành phần được gắn kết.
+1. Bạn cũng cần một số thẻ hiển thị hình ảnh và có thể cả văn bản thông tin. Những hình ảnh và văn bản này cần được tìm nạp từ API bên ngoài. Bạn có thể sử dụng bất cứ thứ gì từ [Giphy](https://giphy.com/) đến một [Pokemon API](https://pokeapi.co/).
+1. Bây giờ bạn đã nghĩ về cấu trúc ứng dụng của mình, hãy thiết lập cấu trúc thư mục và bắt đầu tạo các thành phần.
+1. Tạo phong cách cho ứng dụng của bạn để bạn có thể thể hiện nó!
+1. Như mọi khi, hãy đẩy dự án lên GitHub và đừng quên triển khai nó.
 
 </div>

@@ -1,48 +1,48 @@
 ### Giới thiệu
 
-Cho đến thời điểm này trong curriculum, chúng ta đã xây dựng các application một trang. Tuy nhiên, mọi application quy mô lớn hơn sẽ có nhiều page. May mắn là trình duyệt cho phép JavaScript phía máy khách quản lý cách người dùng điều hướng bằng [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API). Chúng ta có thể tận dụng sức mạnh này để quản lý routing trong React với sự trợ giúp của package như React Router.
+Cho đến thời điểm này trong chương trình giảng dạy, chúng tôi đã xây dựng các ứng dụng một trang. Tuy nhiên, đối với bất kỳ ứng dụng quy mô lớn hơn nào, chúng ta sẽ có nhiều trang. Rất may, trình duyệt cho phép phía máy khách JavaScript quản lý cách người dùng có thể điều hướng, với [Lịch sử API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API). Chúng ta có thể tận dụng sức mạnh của điều này để quản lý việc định tuyến trong React với sự trợ giúp của gói như Bộ định tuyến React.
 
 ### Tổng quan bài học
 
-Phần này khái quát những chủ đề bạn sẽ học trong bài này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Hiểu client-side routing là gì.
-- Học cách dùng React Router cho client-side routing.
-- Tìm hiểu cách tạo path lồng nhau và path động trong React Router.
-- Tìm hiểu cách thêm route “catch-all” trong React Router.
-- Học cách truyền dữ liệu từ component cha tới các component con được render qua outlet.
-- Hiểu cách triển khai protected route trong React Router.
-- Làm quen với việc kiểm thử component sử dụng React Router.
+- Hiểu định tuyến phía máy khách là gì.
+- Tìm hiểu cách sử dụng Bộ định tuyến React để định tuyến phía máy khách.
+- Khám phá cách tạo đường dẫn lồng nhau và động trong Bộ định tuyến React.
+- Khám phá cách thêm tuyến đường 'bắt tất cả' trong Bộ định tuyến React.
+- Tìm hiểu cách truyền dữ liệu từ thành phần gốc tới bất kỳ thành phần con nào được hiển thị qua ổ cắm.
+- Hiểu cách triển khai các tuyến được bảo vệ trong Bộ định tuyến React.
+- Nhận phần giới thiệu về các thành phần thử nghiệm sử dụng Bộ định tuyến React.
 
-### Client-side routing
+### Định tuyến phía máy khách
 
-Client-side routing là kiểu routing trong đó JavaScript đảm nhiệm việc xử lý các route của application. Client-side routing giúp xây dựng single-page application (SPA) mà không refresh khi người dùng điều hướng. Ví dụ, khi người dùng click một phần tử navbar, URL thay đổi và phần hiển thị của page được cập nhật tương ứng ngay phía client.
+Định tuyến phía máy khách là loại định tuyến trong đó JavaScript đảm nhận nhiệm vụ xử lý các tuyến đường trong một ứng dụng. Định tuyến phía máy khách giúp xây dựng các ứng dụng một trang (SPA) mà không cần làm mới khi người dùng điều hướng. Ví dụ: khi người dùng nhấp vào một thành phần thanh điều hướng, URL sẽ thay đổi và chế độ xem của trang cũng được sửa đổi tương ứng trong ứng dụng khách.
 
-Hãy tưởng tượng bạn đang nấu gà. Nếu muốn nấu ngon, bạn sẽ phải:
+Giả sử bạn đang nấu một ít thịt gà. Muốn nấu ngon và ngon thì bạn phải:
 
-1. Cho gà vào lò và đặt thời gian cùng nhiệt độ phù hợp
-1. Chờ đến khi món ăn tỏa ra mùi thơm hấp dẫn
-1. Bắt đầu thưởng thức!
+1. Cho gà vào lò nướng và đặt chế độ nấu với thời gian và nhiệt độ thích hợp
+1. Đợi đến khi món ăn tỏa ra mùi thơm sảng khoái
+1. Bắt đầu nhai!
 
-Điều này cũng giống với mọi website: bạn cài đặt lò theo thứ mình muốn (truy cập một URL bất kỳ, chẳng hạn [https://theodinproject.com/](https://theodinproject.com/)), chờ lò nấu xong (màn hình loading), rồi thưởng thức món ngon (page đã sẵn sàng để dùng). Nhưng nếu bạn quên cho gia vị trước khi nấu thì sao? Bạn phải lặp lại quy trình:
+Điều này là phổ biến đối với tất cả các trang web, bạn thiết lập sẵn những gì bạn muốn (truy cập bất kỳ URL nào, như [https://theodinproject.com/](https://theodinproject.com/)), đợi lò nấu xong (màn hình tải) và tada, hãy thưởng thức món ăn ngon của bạn (trang của bạn đã sẵn sàng để sử dụng). Nhưng nếu bạn quên thêm một số gia vị trước khi nấu thì sao? Bạn phải lặp lại quy trình này một lần nữa:
 
-1. Đứng dậy khỏi ghế
-1. Thêm gia vị vào gà
-1. Quay lại lò, cho gà vào và cài đặt để hâm nóng
-1. Chờ đến khi gà nóng vừa đủ
-1. Bây giờ bạn có thể ăn!
+1. Hãy đứng dậy khỏi chỗ ngồi của bạn
+1. Thêm gia vị vào thịt gà
+1. Quay trở lại lò nướng, cho gà vào và chuẩn bị hâm nóng lại
+1. Đợi nó đẹp và ấm áp
+1. Bây giờ bạn có thể ăn nó!
 
-Đây là điểm cần nhấn mạnh: **bạn phải đứng dậy khỏi ghế**. Trong một multi-page application (MPA) thông thường, trình duyệt reload mỗi khi bạn click link để điều hướng. Với client-side routing, **bạn không bao giờ rời page hiện tại** — bạn mang lò vi sóng tới bàn để không phải đứng dậy nếu gặp vấn đề “thiếu gia vị”. Các request của link được JavaScript bạn viết chặn lại thay vì gửi thẳng tới server.
+Đây là nơi chúng tôi nhắc lại,**bạn cần phải đứng dậy khỏi chỗ ngồi của mình**. Trong ứng dụng nhiều trang chung (MPA), trình duyệt sẽ tải lại mỗi khi bạn nhấp vào liên kết để điều hướng. Với định tuyến phía máy khách,**bạn không bao giờ rời khỏi trang bạn đang truy cập**- bạn mang theo lò vi sóng đến bàn để đảm bảo bạn không phải đứng dậy khỏi chỗ ngồi nếu gặp phải vấn đề "thiếu gia vị". Các yêu cầu liên kết bị chặn bởi JavaScript mà bạn viết, thay vì cho phép chúng truy cập trực tiếp vào máy chủ.
 
-### Một giải pháp Reactive
+### Một giải pháp phản ứng
 
-Client-side routing cho phép tương tác đẹp và giống app hơn (vì kiểm soát route nên bạn có thể tạo animation CSS bắt mắt khi đổi route), nhưng dễ bỏ sót nhiều điểm cần lưu ý. Khi trình duyệt reload, nó thông báo cho screen reader về nội dung mới; còn với client-side routing, bạn cần tự thông báo cập nhật route cho screen reader. Tuy nhiên, một thư viện mạnh có thể giúp giải quyết các vấn đề này!
+Mặc dù định tuyến phía máy khách cho phép các tương tác đẹp hơn, giống như ứng dụng (vì bạn đang kiểm soát các tuyến đường nên bạn có thể tạo các hoạt ảnh CSS lạ mắt khi thay đổi tuyến đường), nhưng rất nhiều cảnh báo có thể bị bỏ qua. Khi trình duyệt tải lại, trình duyệt sẽ thông báo cho trình đọc màn hình về nội dung mới cần đọc, nhưng trong trường hợp định tuyến phía máy khách, bạn sẽ cần thông báo cho trình đọc màn hình về các cập nhật tuyến theo cách thủ công. Tuy nhiên, với sự trợ giúp của một thư viện mạnh mẽ, bạn thường có thể giải quyết những mối lo ngại này!
 
-React Router là thư viện routing tiêu chuẩn cho application React. Với React Router, chúng ta có thể chỉ định các component React được render dựa trên route cùng nhiều khả năng khác. Hãy bắt đầu!
+React Router là thư viện định tuyến tiêu chuẩn cho các ứng dụng React. Bằng cách sử dụng Bộ định tuyến React, chúng ta có thể chỉ định các thành phần React, có thể được hiển thị dựa trên tuyến đường, v.v. Hãy đi sâu vào!
 
-### Thêm router
+### Thêm bộ định tuyến
 
-Hãy tạo một app nhỏ để hiểu router này được triển khai thế nào. Tạo một project React mới và bắt đầu bằng cách thêm vài page mô phỏng làm ví dụ. Tạo file `Profile.jsx` mới với component sau:
+Hãy tạo một ứng dụng nhỏ để hiểu cách triển khai bộ định tuyến này. Tạo một dự án React mới và bắt đầu bằng cách thêm một số trang mô phỏng làm ví dụ. Tạo một tệp `Profile.jsx` mới với thành phần sau:
 
 ```jsx
 const Profile = () => {
@@ -57,7 +57,7 @@ const Profile = () => {
 export default Profile;
 ```
 
-Đồng thời thay nội dung file `App.jsx` bằng nội dung cơ bản sau:
+Thay thế tệp `App.jsx` bằng một số nội dung cơ bản:
 
 ```jsx
 const App = () => {
@@ -79,13 +79,13 @@ const App = () => {
 export default App;
 ```
 
-Bây giờ là lúc thêm router! Có vài cách định nghĩa route của app; chúng ta sẽ dùng cách tiếp cận dựa trên object.
+Bây giờ là lúc thêm bộ định tuyến! Có một số cách để xác định lộ trình của ứng dụng, chúng tôi sẽ thực hiện theo cách tiếp cận dựa trên đối tượng.
 
-Hãy cài package React Router:
+Hãy để chúng tôi cài đặt gói Bộ định tuyến React:
 
 `npm install react-router`
 
-Thêm nội dung sau vào `main.jsx`; lát nữa chúng ta sẽ giải thích điều đang diễn ra.
+Thêm phần sau vào `main.jsx`, chúng ta sẽ nói về những gì đang xảy ra sau.
 
 ```jsx
 import { StrictMode } from "react";
@@ -112,16 +112,16 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Sau khi xong, hãy chạy `npm run dev` và kiểm tra cả hai route: home route `/` và profile route `/profile`. Nó hoạt động! Nhưng chuyện gì đang xảy ra?
+Sau khi hoàn tất việc này, hãy tiếp tục và chạy `npm run dev` và kiểm tra cả hai tuyến: tuyến nhà `/` và tuyến hồ sơ `/profile`. Nó hoạt động! Nhưng chuyện gì đang xảy ra ở đây vậy?
 
-1. Chúng ta import `createBrowserRouter` và `RouterProvider` từ React Router.
-1. `createBrowserRouter` dùng để tạo cấu hình router bằng cách truyền đối số dưới dạng một array route.
-1. Array cấu hình chứa các object với hai key bắt buộc là path và element tương ứng cần render.
-1. Sau đó cấu hình được tạo này được render bằng cách truyền nó vào component `RouterProvider`.
+1. Chúng tôi nhập `createBrowserRouter` và `RouterProvider` từ Bộ định tuyến React.
+1. `createBrowserRouter` được sử dụng để tạo cấu hình cho bộ định tuyến bằng cách truyền các đối số dưới dạng một mảng các tuyến đường.
+1. Mảng cấu hình chứa các đối tượng có hai khóa bắt buộc là đường dẫn và phần tử tương ứng sẽ được hiển thị.
+1. Sau đó, cấu hình được tạo này sẽ được hiển thị bằng cách chuyển nó tới thành phần `RouterProvider`.
 
-### Phần tử link
+### Yếu tố liên kết
 
-Tuy nhiên, bạn có thể nhận thấy khi click link trong navbar, trình duyệt reload để tới URL tiếp theo thay vì dùng React Router. Đây không phải điều đã hứa! Để giải quyết, React Router cung cấp custom [Link component](https://reactrouter.com/api/components/Link) để dùng thay cho tag `a` thông thường. Chúng ta có thể thay tag `a` trong navbar bằng phần tử `Link`.
+Nhưng bạn có thể nhận thấy, khi chúng ta nhấp vào các liên kết trong thanh điều hướng, trình duyệt sẽ tải lại cho URL tiếp theo thay vì sử dụng Bộ định tuyến React. Đây không phải là những gì đã hứa! Để trợ giúp việc này, React Router xuất một tập tin tùy chỉnh [Thành phần liên kết](https://reactrouter.com/api/components/Link) được sử dụng thay cho thẻ `a` thông thường. Chúng ta có thể thay thế thẻ `a` trong thanh điều hướng bằng phần tử `Link`.
 
 ```jsx
 import { Link } from "react-router";
@@ -145,11 +145,11 @@ const App = () => {
 export default App;
 ```
 
-Bây giờ trình duyệt không còn reload mỗi khi chúng ta click link trên navbar!
+Và bây giờ, chúng tôi không tải lại trình duyệt mỗi khi chúng tôi nhấp vào liên kết trên thanh điều hướng!
 
-### Route lồng nhau, outlet và segment động
+### Các tuyến đường, cửa hàng và phân khúc động được lồng nhau
 
-Nếu muốn render một phần của page khác nhau tùy URL thì sao? Đây là lúc nested route phát huy tác dụng! Chúng ta có thể lồng route làm child của nhau để đảm bảo child được render cùng parent. Hãy tạo hai component `Popeye.jsx` và `Spinach.jsx`.
+Bây giờ, điều gì sẽ xảy ra nếu bạn muốn hiển thị một phần của trang theo cách khác, dựa trên URLs khác? Đây là nơi các tuyến đường lồng nhau phát huy tác dụng! Chúng ta có thể thêm các tuyến được lồng vào nhau như các tuyến con của nhau để đảm bảo rằng tuyến con được hiển thị cùng với tuyến cha. Tạo một vài thành phần, `Popeye.jsx` và `Spinach.jsx`.
 
 ```jsx
 import { Link } from "react-router";
@@ -181,7 +181,7 @@ const Spinach = () => {
 export default Spinach;
 ```
 
-Bây giờ, chúng ta có thể viết lại route như sau:
+Bây giờ, chúng ta có thể viết lại các tuyến đường như đã cho:
 
 ```jsx
 import { StrictMode } from "react"
@@ -214,7 +214,7 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Điều này cho phép render component con cùng parent thông qua [Outlet component](https://reactrouter.com/api/components/Outlet)! Chúng ta có thể viết lại component Profile để thêm `Outlet`; nó sẽ được thay thế bằng các profile tương ứng khi truy cập route đó!
+Điều này cho phép chúng ta kết xuất thành phần con cùng với thành phần cha, thông qua một [Thành phần đầu ra](https://reactrouter.com/api/components/Outlet)! Chúng ta có thể viết lại thành phần Hồ sơ để thêm `Outlet` sẽ được thay thế bằng các hồ sơ khác nhau khi tuyến đường đó được truy cập!
 
 ```jsx
 import { Outlet } from "react-router";
@@ -234,11 +234,11 @@ const Profile = () => {
 export default Profile;
 ```
 
-Hãy mở page `/profile`. Để truy cập page `/profile/popeye` hoặc `/profile/spinach`, hãy thêm thủ công `/popeye` hoặc `/spinach` vào cuối URL hiện tại. Component `<Outlet />` được thay bằng component con khi truy cập path tương ứng.
+Hãy xem trang `/profile`. Để truy cập các trang `/profile/popeye` hoặc `/profile/spinach`, hãy thêm thủ công `/popeye` hoặc `/spinach` vào cuối URL hiện tại. Thành phần `<Outlet />` được thay thế bằng thành phần con khi đường dẫn của chúng được truy cập.
 
-Nếu muốn render một component mặc định khi không thêm path vào Profile, bạn có thể thêm index route vào các child!
+Nếu bạn muốn hiển thị thứ gì đó làm thành phần mặc định khi không có đường dẫn nào được thêm vào Hồ sơ, bạn có thể thêm tuyến chỉ mục cho các thành phần con!
 
-Tạo component DefaultProfile:
+Tạo thành phần DefaultProfile:
 
 ```jsx
 const DefaultProfile = () => {
@@ -248,7 +248,7 @@ const DefaultProfile = () => {
 export default DefaultProfile;
 ```
 
-Bây giờ, thêm property index với DefaultProfile làm child cho route `/profile`.
+Bây giờ, hãy thêm thuộc tính chỉ mục với DefaultProfile khi còn nhỏ vào tuyến đường `/profile`.
 
 ```jsx
 import { StrictMode } from "react";
@@ -283,9 +283,9 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Nếu truy cập path `/profile` lúc này, bạn sẽ thấy nội dung mặc định tại vị trí `Outlet` khi index path được render!
+Nếu bạn truy cập đường dẫn `/profile` bây giờ, bạn sẽ có thể thấy một số nội dung mặc định trong đó `Outlet` được hiển thị khi đường dẫn chỉ mục được hiển thị!
 
-Nhưng ví dụ này đặt ra một vấn đề khác. Đôi khi chúng ta muốn render nội dung theo URL. Trong trường hợp này, nghĩa là component phải có thể render nội dung động từ chính nó. May mắn là dynamic segment cho phép làm vậy! Hãy đổi route thành:
+Nhưng ví dụ này lại mang đến một vấn đề nan giải khác. Đôi khi, chúng ta muốn hiển thị nội dung theo URLs. Điều đó ở đây có nghĩa là chúng ta có thể hiển thị nội dung một cách linh hoạt, từ chính thành phần đó. Rất may, bạn có thể làm như vậy với các phân đoạn động! Thay đổi các tuyến đường như sau:
 
 ```jsx
 import { StrictMode } from "react";
@@ -312,7 +312,7 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Dấu hai chấm (:) biến phần path sau nó thành một “dynamic segment”. Dynamic segment sẽ khớp với các giá trị động (có thể thay đổi) ở vị trí đó trong URL, chẳng hạn `name`. Chúng cũng có thể được gọi là “URL params” hoặc gọi tắt là “params”. Có thể dùng chúng với hook `useParams`. Vì vậy, chúng ta có thể viết lại component Profile như sau:
+Dấu hai chấm (:) biến phần đường dẫn sau nó thành "đoạn động". Các phân đoạn động sẽ khớp với các giá trị động (thay đổi) ở vị trí đó của URL, giống như `name`. Chúng cũng có thể được gọi ngắn gọn là "URL params" hoặc "params". Chúng có thể được sử dụng với sự trợ giúp của móc `useParams`. Do đó chúng ta có thể viết lại thành phần Profile như sau:
 
 ```jsx
 import { useParams } from "react-router";
@@ -343,9 +343,9 @@ const Profile = () => {
 export default Profile;
 ```
 
-### Xử lý URL không hợp lệ
+### Xử lý các url xấu
 
-Nhưng tiếc là index path không còn hoạt động, vì ở path `/profile` thực sự không truyền params nào. Thật ra `/profile` không có nhiều ý nghĩa nếu thiếu một name cụ thể; nếu không thì phải hiển thị profile của ai, đúng không? Vì vậy application hiển thị lỗi! Điều này không ổn, vậy làm sao hiển thị page mặc định khi người dùng truy cập path sai hoặc chưa được dùng? Bạn có thể truyền đối số `errorElement` ở đây! Hãy tạo một page “Not Found” cơ bản:
+Nhưng than ôi, đường dẫn chỉ mục không còn hoạt động với điều này nữa, vì trong đường dẫn `/profile`, không có thông số nào thực sự được chuyển. Trên thực tế, đường dẫn `/profile` sẽ không có nhiều ý nghĩa nếu không có tên thực, nếu không thì nó sẽ hiển thị hồ sơ của ai, phải không? Vì vậy, ứng dụng hiển thị lỗi! Điều này không thể tốt được, vậy làm cách nào để hiển thị trang mặc định trong trường hợp người dùng truy cập vào đường dẫn sai hoặc không được sử dụng? Bạn có thể chuyển đối số `errorElement` tại đây! Tạo trang "Không tìm thấy" cơ bản:
 
 ```jsx
 import { Link } from "react-router";
@@ -364,7 +364,7 @@ const ErrorPage = () => {
 export default ErrorPage;
 ```
 
-Thêm `errorElement` vào cấu hình và xác minh nó render error page bằng cách truy cập path `/profile` hoặc bất kỳ path chưa được khai báo nào.
+Thêm `errorElement` vào cấu hình và xác minh rằng nó hiển thị trang lỗi bằng cách đi tới đường dẫn `/profile` hoặc bất kỳ đường dẫn nào chưa được đề cập.
 
 ```jsx
 import { StrictMode } from "react";
@@ -393,11 +393,11 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-### Refactor route
+### Tái cấu trúc các tuyến đường
 
-Hãy refactor array route thành file riêng. Sau khi refactor, chúng ta có thể import route vào `main.jsx` và tạo browser router từ đó như ví dụ trên. Điều tiện lợi là cũng có thể import array route vào các file test cần dùng test-specific router thay vì browser router (sẽ nói thêm sau).
+Hãy cấu trúc lại mảng tuyến đường của chúng ta thành tệp riêng. Bằng cách tái cấu trúc, chúng ta có thể nhập các tuyến vào `main.jsx` và tạo bộ định tuyến trình duyệt từ đó, như trong ví dụ trên. Điều thuận tiện ở đây là chúng ta cũng có thể nhập mảng tuyến đường vào bất kỳ tệp thử nghiệm nào, có thể cần sử dụng bộ định tuyến dành riêng cho thử nghiệm thay vì bộ định tuyến trình duyệt (sẽ nói thêm về điều đó sau).
 
-Tạo file `routes.jsx` mới và chuyển array route vào đó:
+Tạo một tệp `routes.jsx` mới và di chuyển mảng tuyến đường tới nó:
 
 ```jsx
 import App from "./App";
@@ -419,7 +419,7 @@ const routes = [
 export default routes;
 ```
 
-Import route vào file `main.jsx`:
+Nhập các tuyến đường vào tệp `main.jsx` của bạn:
 
 ```jsx
 import { StrictMode } from "react";
@@ -436,40 +436,40 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Gọn gàng hơn nhiều!
+Đẹp hơn nhiều!
 
-### Outlet và state
+### Cửa hàng và trạng thái
 
-Như đã học, bạn có thể lồng route làm child của route cha, cho phép dùng `<Outlet />` trong parent để render element phù hợp dựa trên phần còn lại của path.
+Như chúng ta đã tìm hiểu trước đó, bạn có thể lồng các tuyến đường dưới dạng tuyến đường con của tuyến đường gốc, cho phép bạn sử dụng `<Outlet />` trong tuyến đường gốc để hiển thị phần tử thích hợp dựa trên phần còn lại của đường dẫn.
 
-Nếu parent element có dữ liệu, chẳng hạn state, và muốn truyền dữ liệu đó tới mọi component được render bởi outlet, chúng ta cần dùng thứ gọi là `context`. Hiện tại, chúng ta tập trung vào context với outlet; trong bài sau, chúng ta sẽ tìm hiểu thêm cách dùng context không qua outlet.
+Nếu chúng tôi có dữ liệu trong phần tử gốc, chẳng hạn như trạng thái, mà chúng tôi muốn chuyển đến bất kỳ thành phần nào được kết xuất bởi ổ cắm đó, thì chúng tôi sẽ phải sử dụng thứ gọi là `context`. Hiện tại, chúng ta sẽ tập trung vào ngữ cảnh có đầu ra, nhưng trong bài học sau, chúng ta sẽ tìm hiểu thêm về cách sử dụng ngữ cảnh không có đầu ra.
 
-Outlet có sẵn prop `context`. Chúng ta có thể truyền bất kỳ giá trị nào vào prop này, kể cả array hoặc object. Bên trong *bất kỳ* component nào được render trong outlet đó (kể cả component “cháu”), chúng ta có thể gọi hook `useOutletContext()`, hook này trả về giá trị đã truyền vào prop context. Nếu truyền array hoặc object, thậm chí chúng ta còn có thể destructure nó!
+Các ổ cắm có một prop `context` được tích hợp sẵn. Chúng ta có thể chuyển bất kỳ giá trị nào chúng ta muốn vào prop này, thậm chí là một mảng hoặc đối tượng. Bên trong*bất kì*thành phần sẽ được hiển thị trong ổ cắm đó (thậm chí cả các thành phần "cháu"), chúng ta có thể gọi `useOutletContext()` hook sẽ trả về bất cứ thứ gì chúng ta đã chuyển vào bối cảnh đó. Nếu chúng ta truyền vào một mảng hoặc đối tượng, chúng ta thậm chí có thể phá hủy nó!
 
-Hãy xem [tài liệu về `useOutletContext`](https://reactrouter.com/api/hooks/useOutletContext) của React Router để tìm hiểu thêm cách truyền context qua outlet và truy cập context đó trong component con.
+Hãy xem React Bộ định tuyến [tài liệu về `useOutletContext`](https://reactrouter.com/api/hooks/useOutletContext) để tìm hiểu thêm về cách chuyển ngữ cảnh qua một lối thoát và truy cập ngữ cảnh đó trong các thành phần con.
 
-### Protected route và điều hướng
+### Các tuyến đường và điều hướng được bảo vệ
 
-Thường bạn sẽ cần quyết định một route có được render hay không. Authentication là một ví dụ: render các route nhất định dựa trên việc người dùng đã đăng nhập hay chưa. Nếu đã đăng nhập, bạn hiển thị thông tin người dùng như tại [dashboard page của The Odin Project](https://www.theodinproject.com/dashboard). Nếu không, họ được redirect tới sign-in page (có thể là bất kỳ page nào). Có nhiều cách làm, nhưng một trong những cách dễ nhất là tạo config cho router một cách có điều kiện.
+Thông thường, bạn sẽ cần phải quyết định xem có nên hiển thị một tuyến đường nhất định hay không. Một ví dụ là xác thực, trong đó bạn hiển thị các tuyến nhất định dựa trên việc người dùng có đăng nhập hay không. Nếu họ đã đăng nhập, bạn sẽ hiển thị một số thông tin về người dùng như tại đây [Trang bảng điều khiển Dự án Odin](https://www.theodinproject.com/dashboard). Nếu không, họ sẽ được chuyển hướng đến trang đăng nhập (đây có thể là bất kỳ trang nào). Mặc dù có nhiều cách để thực hiện việc này nhưng một trong những cách dễ nhất là tạo cấu hình có điều kiện cho bộ định tuyến.
 
-Bạn sẽ thường gặp nhu cầu chuyển người dùng tới URL khác bằng code. Đây là lúc có thể dùng [hook useNavigate](https://reactrouter.com/api/hooks/useNavigate), cho phép điều hướng tới URL hoặc thậm chí quay lại trong history của người dùng.
+Bạn sẽ thường gặp nhu cầu định tuyến lại người dùng đến một URL khác theo chương trình. Đây là nơi chúng ta có thể sử dụng [cái móc useNavigate](https://reactrouter.com/api/hooks/useNavigate) cho phép bạn điều hướng đến URLs hoặc thậm chí quay lại lịch sử của người dùng.
 
-### Kiểm thử React Router
+### React Kiểm tra bộ định tuyến
 
-Khi kiểm thử component dùng React Router, điều quan trọng là nhớ rằng app không bao giờ render trực tiếp các component đó. Thay vào đó, app render chúng thông qua router (ví dụ qua `<RouterProvider>`). Vì vậy, test render các component này cũng cần render chúng bên trong routing context — nếu không, các hook như `useNavigate` hoặc `useParams`, hay component `<Link>`, sẽ gây lỗi.
+Khi kiểm tra các thành phần sử dụng Bộ định tuyến React, điều quan trọng cần nhớ là ứng dụng của bạn không bao giờ hiển thị trực tiếp các thành phần đó. Thay vào đó, nó hiển thị chúng thông qua bộ định tuyến (ví dụ: qua `<RouterProvider>`). Do đó, các thử nghiệm hiển thị các thành phần này cũng cần hiển thị chúng bên trong ngữ cảnh định tuyến - nếu không, các hook như `useNavigate` hoặc `useParams` hoặc thành phần `<Link>` sẽ gây ra lỗi.
 
-Nếu chỉ render một component tình cờ chứa `<Link>` (và không kiểm thử navigation hay phụ thuộc tính năng router khác), bọc nó trong [MemoryRouter](https://reactrouter.com/api/declarative-routers/MemoryRouter) nhẹ là đủ. Nhưng nếu component phụ thuộc vào **hành vi router**, chẳng hạn dùng outlet context, matching params, error element hoặc redirect, hợp lý hơn là render `<RouterProvider>` như app. Vì test không chạy trong trình duyệt, bạn có thể dùng [createMemoryRouter](https://reactrouter.com/api/data-routers/createMemoryRouter) để tạo router trong test với cùng cấu hình route từ `routes.jsx`.
+Nếu bạn chỉ hiển thị một thành phần có chứa thứ gì đó như `<Link>` (và bạn không kiểm tra điều hướng hoặc dựa vào các tính năng khác của bộ định tuyến), hãy gói nó trong một gói nhẹ [Bộ định tuyến bộ nhớ](https://reactrouter.com/api/declarative-routers/MemoryRouter) có thể là đủ. Nhưng nếu thành phần phụ thuộc vào **hành vi của bộ định tuyến**, như sử dụng ngữ cảnh đầu ra, thông số phù hợp, thành phần lỗi hoặc chuyển hướng, sẽ hợp lý hơn khi hiển thị `<RouterProvider>` giống như ứng dụng của bạn. Vì các bài kiểm tra của bạn không chạy trên trình duyệt nên bạn có thể sử dụng [createMemoryRouter](https://reactrouter.com/api/data-routers/createMemoryRouter) để tạo bộ định tuyến trong các thử nghiệm của bạn với cùng cấu hình tuyến đường từ `routes.jsx`.
 
-### Kết luận
+### Phần kết luận
 
-Bây giờ bạn đã có đủ kiến thức cơ bản để bắt đầu routing trong React. react-router còn nhiều tính năng cực kỳ hữu ích nhưng nằm ngoài phạm vi bài này. Chúng tôi tin rằng các khái niệm trên đủ giúp bạn hoàn thành khóa học React. Nếu muốn học thêm, chúng tôi khuyên bạn tìm hiểu history hoặc match object. Khi đã quen với nền tảng, hãy tiếp tục khám phá các khái niệm nâng cao.
+Bây giờ bạn đã có đủ kiến ​​thức cơ bản để bắt đầu với định tuyến React. Có rất nhiều tính năng khác của bộ định tuyến phản ứng cực kỳ hữu ích nhưng nằm ngoài phạm vi của bài học này. Chúng tôi tự tin rằng các khái niệm nêu trên sẽ đủ để giúp bạn vượt qua khóa học React. Nếu bạn muốn tìm hiểu thêm, chúng tôi khuyên bạn nên xem xét lịch sử hoặc đối tượng trùng khớp. Chắc chắn hãy đi và kiểm tra các khái niệm nâng cao hơn khi bạn đã quen với những điều cơ bản.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Bài viết về [SPA và client-side routing của Ben Holmes](https://bholmes.dev/blog/spas-clientside-routing/) trình bày ngắn gọn nhiều khái niệm routing.
-1. Thêm một vài route mới vào application đã tạo ở trên. Đây là bài học nhiều nội dung, vì vậy hãy dành thời gian thử nghiệm các công cụ mới. Bạn có thể cân nhắc xóa hoàn toàn application và viết lại bằng những gì đã biết.
-1. Đọc lướt qua [tài liệu React Router](https://reactrouter.com/home). Một lần nữa, bạn không cần đọc hết hay hiểu hết. Chỉ cần xem qua và đọc lại các khái niệm đã thảo luận ở đây. Tìm hiểu thêm những tính năng khác React Router cung cấp. Đây là tài liệu rất hữu ích để tham khảo sau này.
+1. Bài viết này trên [SPA và định tuyến phía khách hàng của Ben Holmes](https://bholmes.dev/blog/spas-clientside-routing/) đi qua rất nhiều khái niệm định tuyến một cách chính xác.
+1. Thêm một vài tuyến đường mới vào ứng dụng chúng tôi đã tạo ở trên. Đây là một bài học dày đặc, vì vậy hãy dành chút thời gian để làm quen với những công cụ mới mà bạn đã học. Hãy cân nhắc việc xóa nó hoàn toàn và viết lại nó bằng những gì bạn biết.
+1. Duyệt qua [React Tài liệu về bộ định tuyến](https://reactrouter.com/home). Xin nhắc lại, bạn không cần phải đọc hết hay hiểu hết. Chỉ cần duyệt qua các khái niệm chúng ta đã thảo luận ở đây và đọc lại chúng. Xem xét các tính năng khác mà Bộ định tuyến React cung cấp. Đây là một nguồn tài liệu tuyệt vời để tham khảo lại.
 
 </div>

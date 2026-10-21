@@ -1,33 +1,33 @@
 ### Giới thiệu
 
-Any exciting ứng dụng you Xây dựng is likely to change over the time the user is exploring it. The changes could be as cơ bản as toggling a dropdown menu hoặc as phức tạp as fetching dữ liệu từ an API. React provides primitives to manipulate the state of your apps, thêm specifically các component, to Tạo them dynamic. Trong bài học này, chúng ta sẽ tìm hiểu cách to sử dụng state in React.
+Bất kỳ ứng dụng thú vị nào bạn xây dựng đều có khả năng thay đổi theo thời gian người dùng khám phá nó. Những thay đổi có thể cơ bản như chuyển đổi menu thả xuống hoặc phức tạp như tìm nạp dữ liệu từ API. React cung cấp các nguyên hàm để thao tác trạng thái ứng dụng của bạn, cụ thể hơn là các thành phần, để làm cho chúng trở nên linh hoạt. Trong bài học này, chúng ta sẽ học cách sử dụng trạng thái trong React.
 
-đọc  [state là gì? by Academind](https://academind.com/tutorials/what-is-state) Trước khi we get started.
+Đọc [Nhà nước là gì? bởi Học viện](https://academind.com/tutorials/what-is-state) trước khi chúng ta bắt đầu.
 
 ### Tổng quan bài học
 
-Phần này chứa a general tổng quan of topics that you sẽ tìm hiểu Trong bài học này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- điều gì state in React is.
-- How to sử dụng state in React.
-- điều gì happens in React Khi state is changed.
+- Trạng thái của React là gì.
+- Cách sử dụng trạng thái trong React.
+- Điều gì xảy ra trong React khi trạng thái được thay đổi.
 
-### state là gì in React?
+### Trạng thái trong React là gì?
 
-We viết các component in React, A LOT of các component, và many times chúng ta muốn them to undergo visual changes as a result of user hoặc computer interactions. For this purpose, a component cần to "remember" things về itself. This is nơi state comes in. **state is a component's memory.**
+Chúng tôi viết các thành phần bằng React, RẤT NHIỀU thành phần và nhiều khi chúng tôi muốn chúng trải qua những thay đổi trực quan do tương tác của người dùng hoặc máy tính. Với mục đích này, một thành phần cần phải "ghi nhớ" mọi thứ về chính nó. Đây là nơi nhà nước xuất hiện.**Trạng thái là bộ nhớ của một thành phần.**
 
-Hãy  take a look at cách chúng ta có thể sử dụng state in our mã. Go to our [react-các ví dụ repo](https://github.com/TheOdinProject/react-examples) then fork và clone it. Sau khi you've cloned it, `cd` vào the `state/` directory, nơi Bạn có thể then run `npm install` to get everything set up, then `npm run dev` to start the dev server.
+Chúng ta hãy xem cách chúng ta có thể sử dụng trạng thái trong mã của mình. Đi đến của chúng tôi [repo ví dụ phản ứng](https://github.com/TheOdinProject/react-examples) sau đó rẽ nhánh và sao chép nó. Khi bạn đã sao chép nó, `cd` vào thư mục `state/`, nơi bạn có thể chạy `npm install` để thiết lập mọi thứ, sau đó `npm run dev` để khởi động máy chủ nhà phát triển.
 
-Sau khi opened, you'll see we have an app that changes its background color based on the clicked button. Take your time reading the mã as we'll jump right in và look at the mã within `src/App.jsx`.
+Sau khi mở, bạn sẽ thấy chúng tôi có một ứng dụng thay đổi màu nền dựa trên nút được nhấp. Hãy dành thời gian đọc mã khi chúng ta bắt đầu ngay và xem mã trong `src/App.jsx`.
 
-#### The useState hook
+#### Cái móc useState
 
-The `useState` hook is a built-in hook (we'll talk về hooks later) in React that cho phép you to define state in a functional component. It nhận an initial giá trị as a parameter và trả về an array với two các phần tử that chúng ta có thể destructure to get:
+Hook `useState` là một hook tích hợp (chúng ta sẽ nói về hook sau) trong React cho phép bạn xác định trạng thái trong một thành phần chức năng. Nó lấy một giá trị ban đầu làm tham số và trả về một mảng có hai phần tử mà chúng ta có thể cấu trúc lại để nhận được:
 
-1. The current state giá trị
-1. A hàm to update the state giá trị
+1. Giá trị trạng thái hiện tại
+1. Hàm cập nhật giá trị trạng thái
 
-state definition với `useState` commonly follows this pattern:
+Định nghĩa trạng thái với `useState` thường tuân theo mẫu này:
 
 ```javascript
 const [stateValue, setStateValue] = useState(initialValue);
@@ -36,50 +36,50 @@ const [stateValue, setStateValue] = useState(initialValue);
 const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
 ```
 
-Even không có much knowledge of React, Bạn có thể, to some extent, hiểu điều gì's going on. The `backgroundColor` state is defined với the hook. Then on every button, we set up a *click* event handler that calls the `setBackgroundColor` hàm với the corresponding giá trị. Then, magically the mới color is applied to the background.
+Ngay cả khi không có nhiều kiến ​​thức về React, ở một mức độ nào đó, bạn vẫn có thể hiểu được chuyện gì đang xảy ra. Trạng thái `backgroundColor` được xác định bằng hook. Sau đó trên mỗi nút, chúng tôi thiết lập một*bấm vào*trình xử lý sự kiện gọi hàm `setBackgroundColor` với giá trị tương ứng. Sau đó, màu mới được áp dụng cho nền một cách kỳ diệu.
 
-Adding thêm state variables nên be as easy as adding thêm `useState` calls.
+Việc thêm nhiều biến trạng thái cũng dễ dàng như việc thêm nhiều lệnh gọi `useState` hơn.
 
-Great, Bạn có thể bây giờ sử dụng state! But, điều gì's going on bên dưới the hood?
+Tuyệt vời, bây giờ bạn có thể sử dụng trạng thái! Nhưng, những gì đang xảy ra dưới mui xe?
 
-### How does state work in React?
+### Trạng thái hoạt động như thế nào trong React?
 
-Hãy  hit you với some theory.
+Hãy đánh bạn với một số lý thuyết.
 
-In React, Khi a component's state hoặc props change, React runs your component hàm again từ the beginning to figure out điều gì nên be displayed based on the freshly-set state và props. All the calculated changes are then applied to the DOM (committed).
-That is, the entire component is recreated, in a sense, nhưng this time the latest state giá trị sẽ be returned từ `useState`. This process is được gọi là rerendering. Rerendering is a key feature of React that enables it to efficiently update the user interface in response to changes in the underlying dữ liệu.
+Trong React, khi trạng thái hoặc đạo cụ của một thành phần thay đổi, React sẽ chạy lại chức năng thành phần của bạn ngay từ đầu để tìm ra nội dung nào sẽ được hiển thị dựa trên trạng thái và đạo cụ mới được thiết lập. Sau đó, tất cả các thay đổi được tính toán sẽ được áp dụng cho DOM (đã cam kết).
+Nghĩa là, theo một nghĩa nào đó, toàn bộ thành phần được tạo lại, nhưng lần này giá trị trạng thái mới nhất sẽ được trả về từ `useState`. Quá trình này được gọi là kết xuất lại. Hiển thị lại là tính năng chính của React cho phép nó cập nhật giao diện người dùng một cách hiệu quả để đáp ứng với những thay đổi trong dữ liệu cơ bản.
 
 <div class="lesson-note" markdown="1">
 
-#### React reconciliation algorithm
+#### React thuật toán đối chiếu
 
-The process of rerendering generates a mới virtual DOM (Document Object Model) tree. The virtual DOM is a lightweight representation of the actual DOM that React uses to keep track of the current state of the UI. React then compares the mới virtual DOM tree to the previous one và calculates the minimal set of changes needed to update the actual DOM. This is the reconciliation algorithm.
+Quá trình kết xuất lại tạo ra một cây ảo DOM (Mô hình đối tượng tài liệu) mới. DOM ảo là một đại diện nhẹ của DOM thực tế mà React sử dụng để theo dõi trạng thái hiện tại của UI. React sau đó so sánh cây DOM ảo mới với cây trước đó và tính toán tập hợp các thay đổi tối thiểu cần thiết để cập nhật DOM thực tế. Đây là thuật toán đối chiếu.
 
 </div>
 
-#### Explaining rerendering với the ví dụ bên trên
+#### Giải thích việc hiển thị lại bằng ví dụ trên
 
-Whenever `setBackgroundColor` is được gọi là, our `App` component is rerendered. Essentially, the component is recreated điều đó có nghĩa là the `onButtonClick` hàm và our `div` và `button`s are recreated as well. You might wonder, shouldn't the `backgroundColor` state be recreated as well? Well, React nhận the responsibility of keeping track of the latest state và providing it to the component. The initial state giá trị is chỉ được sử dụng for the component's đầu tiên render và is ignored on subsequent renders.
+Bất cứ khi nào `setBackgroundColor` được gọi, thành phần `App` của chúng tôi sẽ được hiển thị lại. Về cơ bản, thành phần này được tạo lại, có nghĩa là hàm `onButtonClick` và các `div` và `button` của chúng tôi cũng được tạo lại. Bạn có thể thắc mắc, có nên tạo lại trạng thái `backgroundColor` không? Chà, React chịu trách nhiệm theo dõi trạng thái mới nhất và cung cấp nó cho thành phần. Giá trị trạng thái ban đầu chỉ được sử dụng cho lần hiển thị đầu tiên của thành phần và bị bỏ qua trong các lần hiển thị tiếp theo.
 
-![mã illustration of rerendering](https://cdn.statically.io/gh/TheOdinProject/curriculum/abf5962ab36c951bab907a9952d09400651eab10/react/states_and_effects/introduction_to_state/imgs/00.png)
+![mã minh họa của kết xuất lại](https://cdn.statically.io/gh/TheOdinProject/curriculum/abf5962ab36c951bab907a9952d09400651eab10/react/states_and_effects/introduction_to_state/imgs/00.png)
 
-điều gì we covered in this section is just a brief tổng quan of a portion of React internals. You may be curious to tìm hiểu thêm, nhưng be advised, this is a deep rabbit hole. điều gì we covered bên trên is enough to get you qua the React course.
+Những gì chúng tôi đề cập trong phần này chỉ là tổng quan ngắn gọn về một phần nội bộ React. Bạn có thể tò mò muốn tìm hiểu thêm, nhưng hãy lưu ý, đây là một cái hố sâu. Những gì chúng tôi đề cập ở trên đủ để giúp bạn vượt qua khóa học React.
 
-### Hooks
+### móc
 
-Hooks are functions that let you sử dụng React features. All hooks are recognizable by the `use` prefix. Ví dụ, `useState` is a hook. We'll sử dụng thêm of these as we get further vào the course. For bây giờ, Hãy nhớ rằng hooks have rules that we cần to abide by:
+Móc là các hàm cho phép bạn sử dụng các tính năng React. Tất cả các hook đều có thể được nhận dạng bằng tiền tố `use`. Ví dụ: `useState` là một cái móc. Chúng ta sẽ sử dụng nhiều hơn những thứ này khi chúng ta tiến sâu hơn vào khóa học. Bây giờ, hãy nhớ rằng hook có những quy tắc mà chúng ta cần tuân theo:
 
-1. Hooks có thể chỉ be được gọi là từ the top level of a functional component.
-1. Hooks có thể't be được gọi là từ bên trong loops hoặc conditions.
+1. Hook chỉ có thể được gọi từ cấp cao nhất của một thành phần chức năng.
+1. Hook không thể được gọi từ vòng lặp hoặc điều kiện bên trong.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. đọc the following articles từ the React docs:
-    1. [State: A Component's Memory](https://react.dev/learn/state-a-components-memory)
-    1. [Render and Commit](https://react.dev/learn/render-and-commit)
-1. đọc this [article on React Reconciliation Algorithm](https://www.geeksforgeeks.org/reactjs-reconciliation/) for a great explanation.
-1. Head back to the state ví dụ app từ our `react-examples` repo earlier in the bài học. Thêm a mới state variable to keep track of the number of times the background color has been changed. Display the number of times the background color has been changed on the page.
+1. Đọc các bài viết sau từ tài liệu React:
+    1. [Trạng thái: Bộ nhớ của một thành phần](https://react.dev/learn/state-a-components-memory)
+    1. [Kết xuất và cam kết](https://react.dev/learn/render-and-commit)
+1. Đọc cái này [bài viết về React Thuật toán đối chiếu](https://www.geeksforgeeks.org/reactjs-reconciliation/) cho một lời giải thích tuyệt vời.
+1. Quay lại ứng dụng ví dụ trạng thái từ kho lưu trữ `react-examples` của chúng tôi ở phần trước trong bài học. Thêm một biến trạng thái mới để theo dõi số lần màu nền được thay đổi. Hiển thị số lần màu nền được thay đổi trên trang.
 
 </div>

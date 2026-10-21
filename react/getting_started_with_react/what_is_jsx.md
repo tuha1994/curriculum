@@ -1,39 +1,39 @@
 ### Giới thiệu
 
-Có lẽ bạn đã khá quen thuộc với JSX qua các bài học React trước đây. Trong bài học này, chúng ta sẽ giải thích JSX *là gì*, *tại sao* sử dụng nó và *cách* sử dụng nó trong các ứng dụng React.
+Có thể bạn đã quen với JSX trong các bài học React trước, trong bài học này chúng tôi sẽ giải thích*Gì*đó là,*Tại sao* chúng tôi sử dụng nó và*Làm sao*để sử dụng nó trong các ứng dụng React của bạn.
 
 ### Tổng quan bài học
 
-Phần này cung cấp tổng quan chung về những chủ đề bạn sẽ học trong bài học này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
 - JSX là gì.
-- Sự khác nhau giữa JSX và HTML.
+- Sự khác biệt giữa JSX và HTML.
 
 ### JSX là gì?
 
-JSX là một phần mở rộng cú pháp của JavaScript, cho phép bạn viết mã đánh dấu tương tự HTML bên trong một tệp JavaScript. JSX không bắt buộc khi viết các component React, nhưng giúp việc viết chúng ngắn gọn hơn.
+JSX là phần mở rộng cú pháp cho JavaScript cho phép bạn viết đánh dấu giống HTML bên trong tệp JavaScript. Không bắt buộc phải sử dụng JSX khi viết các thành phần React nhưng nó giúp việc viết chúng ngắn gọn hơn.
 
-Về cơ bản, JSX là cú pháp đường cho hàm [createElement](https://react.dev/reference/react/createElement) của React. Hàm này tạo ra một phần tử React, vốn là một đối tượng thuần túy, nên JSX được biên dịch thành các đối tượng JavaScript thuần túy.
+Về cơ bản, JSX là cú pháp của React [chức năng createElement](https://react.dev/reference/react/createElement). Hàm này tạo ra một phần tử React, là một đối tượng đơn giản, do đó JSX sẽ biên dịch thành các đối tượng JavaScript đơn giản.
 
-Dưới đây là giá trị được ghi lại của một phần tử JSX `div` có chứa văn bản:
+Tại đây, bạn có thể thấy giá trị được ghi của phần tử div JSX kèm theo một số văn bản:
 
-![Giá trị được ghi lại của phần tử JSX](https://cdn.statically.io/gh/TheOdinProject/curriculum/1100fab7884b195379664e41b62dfa95588f3a15/react/getting_started_with_react/what_is_jsx/imgs/00.png)
+![Giá trị được ghi của phần tử JSX](https://cdn.statically.io/gh/TheOdinProject/curriculum/1100fab7884b195379664e41b62dfa95588f3a15/react/getting_started_with_react/what_is_jsx/imgs/00.png)
 
 ### Tại sao chúng ta sử dụng JSX?
 
-Trong ứng dụng, logic kết xuất và mã đánh dấu vốn gắn liền với nhau, nhưng thông thường chúng ta tách chúng ra bằng cách đặt logic và mã đánh dấu trong các tệp riêng biệt. JSX cho phép React phân tách các mối quan tâm bằng cách chứa cả logic kết xuất lẫn nội dung tại cùng một nơi (một component).
+Hầu hết thời gian trong ứng dụng, logic kết xuất và đánh dấu vốn được kết hợp với nhau nhưng chúng tôi thường tách chúng ra bằng cách đặt logic và đánh dấu trong các tệp riêng biệt. JSX cho phép React phân tách các mối quan tâm bằng cách chứa cả logic hiển thị và nội dung ở cùng một nơi (một thành phần).
 
-Ngoài ra, JSX là một cách trực quan và dễ hiểu hơn để làm việc với giao diện người dùng ngay trong mã của bạn, đồng thời cho phép React hiển thị các thông báo lỗi và cảnh báo hữu ích hơn.
+Trên hết, đây là một cách trực quan, trực quan hơn để làm việc với UI bên trong mã của bạn và cho phép React hiển thị các thông báo cảnh báo và lỗi hữu ích hơn.
 
-### Các quy tắc của JSX
+### Quy tắc của JSX
 
-Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào component React, đoạn mã đó sẽ không hoạt động. Nguyên nhân là JSX áp dụng một số quy tắc không có trong HTML.
+Nếu bạn lấy một số HTML hợp lệ và sao chép thẳng vào thành phần React của bạn, nó sẽ không hoạt động. Điều này là do một số quy tắc triển khai JSX không có trong HTML.
 
 1. Trả về một phần tử gốc duy nhất.
 
-   Nếu muốn trả về nhiều phần tử trong một component, bạn có thể bọc chúng trong một thẻ cha. Thẻ đó có thể là `<div>`, hoặc nếu không muốn các phần tử có một vùng chứa, bạn có thể dùng [React fragment](https://react.dev/reference/react/Fragment), như sau: `<>Children</>`
+   Nếu bạn muốn trả về nhiều phần tử trong một thành phần, bạn có thể làm như vậy bằng cách gói chúng trong thẻ cha. Đây có thể là `<div>` hoặc nếu bạn không muốn các phần tử có vùng chứa, bạn có thể sử dụng [đoạn React](https://react.dev/reference/react/Fragment), như vậy: `<>Children</>`
 
-   Correct:
+   Chính xác:
 
    ```jsx
    function App() {
@@ -60,11 +60,11 @@ Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào compone
 
 1. Đóng tất cả các thẻ.
 
-   Trong HTML, nhiều thẻ tự đóng và tự bao quanh nội dung. Tuy nhiên, trong JSX, chúng ta phải đóng và bao quanh các thẻ này một cách tường minh.
+   Trong HTML, nhiều thẻ có khả năng tự đóng và tự gói. Tuy nhiên, trong JSX, chúng ta phải đóng và bọc các thẻ này một cách rõ ràng.
 
-   `<input>` sẽ trở thành `<input />`, còn `<li>` sẽ trở thành `<li></li>`
+   `<input>` sẽ trở thành `<input />` và `<li>` sẽ trở thành `<li></li>`
 
-   Correct:
+   Chính xác:
 
    ```jsx
    function App() {
@@ -77,7 +77,7 @@ Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào compone
     }
    ```
 
-   Incorrect:
+   Không đúng:
 
    ```jsx
    function App() {
@@ -90,11 +90,11 @@ Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào compone
    }
    ```
 
-1. Viết camelCase cho **hầu hết** mọi thứ.
+1. camelCase**Hầu hết**đồ đạc.
 
-   JSX được chuyển thành JavaScript, còn các thuộc tính của phần tử trở thành khóa của đối tượng JavaScript. Vì vậy, bạn không thể dùng dấu gạch ngang hoặc các từ dành riêng như `class`. Do đó, nhiều thuộc tính HTML được viết theo kiểu camelCase. Thay vì `stroke-width`, bạn sẽ dùng `strokeWidth`, và thay vì `class`, bạn sẽ dùng `className`.
+   JSX biến thành JavaScript và thuộc tính của các phần tử trở thành khóa của đối tượng JavaScript, vì vậy bạn không thể sử dụng dấu gạch ngang hoặc các từ dành riêng như `class`. Vì điều này, nhiều thuộc tính HTML được viết bằng camelCase. Thay vì `stroke-width`, bạn sẽ sử dụng `strokeWidth` và thay vì `class`, bạn sẽ sử dụng `className`.
 
-   Correct:
+   Chính xác:
 
    ```jsx
    function App() {
@@ -108,7 +108,7 @@ Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào compone
    }
    ```
 
-   Incorrect:
+   Không đúng:
 
    ```jsx
    function App() {
@@ -122,9 +122,9 @@ Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào compone
    }
    ```
 
-### Chuyển đổi HTML sang JSX
+### Chuyển đổi HTML thành JSX
 
-Sau khi đã tìm hiểu các quy tắc của JSX, chúng ta sẽ chuyển một đoạn HTML sang JSX.
+Bây giờ chúng ta đã đề cập đến Quy tắc của JSX, chúng ta sẽ tiến hành chuyển đổi một đoạn HTML thành JSX.
 
 ```jsx
 <h1>Test title</h1>
@@ -136,11 +136,11 @@ Sau khi đã tìm hiểu các quy tắc của JSX, chúng ta sẽ chuyển một
 </form>
 ```
 
-Nếu thử trả về đoạn mã này từ một component React, bạn sẽ nhận được rất nhiều lỗi, vì vậy chúng ta sẽ sửa chúng!
+Nếu bạn cố gắng trả về cái này từ một thành phần React, bạn sẽ gặp nhiều lỗi, vì vậy chúng tôi sẽ khắc phục điều đó!
 
- Hãy thực hành theo ví dụ này trong môi trường cục bộ của bạn. Ngoài ra, bạn có thể truy cập [react.new](https://react.new/) để nhanh chóng khởi chạy một môi trường React trong trình duyệt web.
+ Đảm bảo làm theo ví dụ này trong môi trường địa phương của bạn. Ngoài ra, bạn có thể đi đến[react.new](https://react.new/)để thiết lập và sử dụng môi trường React nhanh chóng trong trình duyệt web của bạn.
 
-Vấn đề đầu tiên là đoạn mã này không trả về một phần tử gốc duy nhất, vì vậy hãy thêm một vùng chứa cho nó.
+Vấn đề đầu tiên chúng tôi nhận được là điều này sẽ không trả về một phần tử gốc duy nhất, vì vậy hãy cung cấp cho nó một vùng chứa.
 
 ```jsx
 <div>
@@ -154,9 +154,9 @@ Vấn đề đầu tiên là đoạn mã này không trả về một phần t�
 </div>
 ```
 
-Bạn sẽ thấy một lỗi khác xuất hiện sau khi đã sửa lỗi ban đầu. Điều đó không có nghĩa là chúng ta tạo ra lỗi này do những thay đổi trước đó; chỉ là React chưa hiển thị nó mà thôi.
+Bạn sẽ thấy một lỗi khác xuất hiện sau khi chúng tôi đã sửa lỗi ban đầu. Điều này không có nghĩa là chúng tôi đã tạo ra lỗi với những thay đổi trước đó, chỉ là React chưa hiển thị lỗi này.
 
-Tiếp theo là vấn đề thứ hai: chúng ta chưa đóng thẻ `<input>`.
+Bây giờ, vấn đề thứ hai là chúng ta chưa đóng thẻ `<input>`.
 
 ```jsx
 <div>
@@ -170,9 +170,9 @@ Tiếp theo là vấn đề thứ hai: chúng ta chưa đóng thẻ `<input>`.
 </div>
 ```
 
-Nếu đang thực hành theo, ở bước này bạn sẽ không còn thấy lỗi được hiển thị trên màn hình nữa; lần này lỗi sẽ xuất hiện trong console.
+Nếu bạn đang theo dõi, tại thời điểm này, bạn sẽ không còn thấy lỗi hiển thị trên màn hình nữa, lần này nó sẽ xuất hiện trong bảng điều khiển.
 
-Vấn đề cuối cùng là chúng ta chưa chuyển các thuộc tính sang camelCase, nên đang sử dụng các thuộc tính DOM không hợp lệ đối với JSX, cụ thể là `stroke-width`.
+Vấn đề cuối cùng là chúng tôi chưa có thuộc tính camelCased và do đó đang sử dụng các thuộc tính DOM không hợp lệ cho JSX, cụ thể là `stroke-width`.
 
 ```jsx
 <div>
@@ -186,16 +186,16 @@ Vấn đề cuối cùng là chúng ta chưa chuyển các thuộc tính sang ca
 </div>
 ```
 
-Sau khi áp dụng tất cả các cách sửa cho những lỗi React đưa ra, đây đã là mã JSX hoàn chỉnh có thể được dùng trong một component React mà không gặp vấn đề nào.
+Bây giờ chúng tôi đã áp dụng tất cả các bản sửa lỗi cho các lỗi mà React gây ra, đây là mã JSX hoàn chỉnh có thể được sử dụng trong thành phần React mà không gặp bất kỳ sự cố nào.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-Trong các bài học tiếp theo, bạn sẽ dành thời gian đọc tài liệu React. Hầu hết các bài sẽ có những bài tập nhỏ ở cuối để kiểm tra nội dung bạn đã đọc. Chúng tôi sẽ không       nhắc đến chúng một cách rõ ràng mỗi lần, nhưng hãy nhớ thực hiện. Có thực hành thì mới thành thạo!
+Trong các bài học tiếp theo, bạn sẽ dành chút thời gian để đọc tài liệu React. Hầu hết trong số họ sẽ có những nhiệm vụ nhỏ ở cuối để kiểm tra những gì bạn đã đọc. Chúng tôi sẽ không đề cập đến chúng một cách rõ ràng mỗi lần, nhưng hãy chắc chắn thực hiện chúng. Luyện tập tạo nên sự hoàn hảo!
 
-1. Đọc trang tài liệu React [Viết mã đánh dấu bằng JSX](https://react.dev/learn/writing-markup-with-jsx) để ôn lại nội dung chúng ta đã đề cập ở đây.
+1. Đọc qua tài liệu React[Viết đánh dấu với JSX](https://react.dev/learn/writing-markup-with-jsx)trang để xem lại nội dung chúng tôi đã đề cập ở đây.
 
-1. Đọc trang tài liệu React [JavaScript trong JSX](https://react.dev/learn/javascript-in-jsx-with-curly-braces) để làm quen với việc viết logic JavaScript và tham chiếu các giá trị động bên trong mã đánh dấu.
+1. Đọc qua tài liệu React[JavaScript ở JSX](https://react.dev/learn/javascript-in-jsx-with-curly-braces)trang để giới thiệu bản thân về cách viết logic JavaScript và tham chiếu các giá trị động bên trong đánh dấu của bạn.
 
 </div>

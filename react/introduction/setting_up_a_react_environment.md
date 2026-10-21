@@ -1,65 +1,65 @@
 ### Giới thiệu
 
-Bạn đã biết React *là gì* và có thể còn hình dung được *nên* sử dụng nó ở đâu. Bây giờ là lúc bắt đầu tìm hiểu *cách* sử dụng React.
+Bạn biết*Gì*React là như vậy và bạn thậm chí có thể có ý tưởng về*Ở đâu*để sử dụng nó. Bây giờ là lúc bắt đầu tìm hiểu*Làm sao*.
 
-Bài học này sẽ hướng dẫn cách bắt đầu một dự án React mới trên máy tính, cùng với một số công cụ hữu ích hỗ trợ bạn trong quá trình đó. Chúng ta cũng sẽ giải thích một số vấn đề có thể phát sinh (và cách tránh chúng).
+Bài học này sẽ đề cập đến việc bắt đầu một dự án React mới trên máy của bạn, cũng như một số công cụ hữu ích để trợ giúp bạn trong quá trình thực hiện. Chúng tôi cũng sẽ giải thích một số vấn đề có thể phát sinh (và cách tránh chúng).
 
 ### Tổng quan bài học
 
-Phần này cung cấp tổng quan chung về những chủ đề bạn sẽ học trong bài học này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Cách tạo các dự án React.
-- Cách sử dụng Vite để tạo các dự án React mới.
-- Cách định dạng mã trong các dự án React.
-- React Developer Tools là gì.
+- Cách tạo dự án React.
+- Cách sử dụng Vite để tạo dự án React mới.
+- Cách định dạng mã trong dự án React.
+- React Công cụ dành cho nhà phát triển là gì.
 
-### Nhiều cách tiếp cận
+### Nhiều con đường
 
-Có nhiều cách để bắt đầu sử dụng React trong các dự án, từ việc gắn một loạt thẻ `<script>` để tải React từ một [CDN](https://en.wikipedia.org/wiki/Content_delivery_network), cho đến các [toolchain](https://en.wikipedia.org/wiki/Toolchain) và [framework](https://en.wikipedia.org/wiki/Web_framework) mạnh mẽ, có khả năng cấu hình cao và cho phép tăng khả năng mở rộng cũng như tối ưu hóa.
+Có nhiều cách để bắt đầu sử dụng React trong dự án của bạn, từ việc đính kèm một bộ thẻ `<script>` phục vụ React từ một [CDN](https://en.wikipedia.org/wiki/Content_delivery_network), mạnh mẽ [dây chuyền công cụ](https://en.wikipedia.org/wiki/Toolchain) Và [khuôn khổ](https://en.wikipedia.org/wiki/Web_framework) có cấu hình cao và cho phép tăng khả năng mở rộng và tối ưu hóa.
 
-Một số ví dụ về các toolchain này gồm:
+Một số ví dụ về các chuỗi công cụ này bao gồm:
 
-- [Cấu hình React của Vite](https://vitejs.dev/)
+- [Cấu hình Vite của React](https://vitejs.dev/)
 - [Gatsby](https://www.gatsbyjs.com/)
-- [NextJS](https://nextjs.org/)
-- [Create React App](https://create-react-app.dev/) (Đã ngừng sử dụng)
+- [Tiếp theoJS](https://nextjs.org/)
+- [Tạo ứng dụng React](https://create-react-app.dev/)(Không dùng nữa)
 
-Tại sao chúng ta cần những toolchain này? Chẳng phải chúng ta có thể tự tạo công cụ theo ý mình sao?
+Tại sao chúng ta cần những chuỗi công cụ này? Chúng ta không thể tự làm theo cách chúng ta thấy phù hợp sao?
 
-Được, nhưng việc đó *khó*. React là một hệ sinh thái phức tạp với rất nhiều phần chuyển động. Trước khi có thể bắt đầu viết bất kỳ loại mã nào cung cấp chức năng, bạn sẽ cần cấu hình *ít nhất* những thứ sau:
+Vâng, nhưng đó là*cứng*. React là một con thú phức tạp và có nhiều bộ phận chuyển động. Trước khi bạn có thể bắt đầu viết bất kỳ loại mã nào cung cấp chức năng, bạn cần phải định cấu hình*ít nhất*sau đây:
 
-- Quản lý gói ([NPM](https://www.npmjs.com/), [Yarn](https://yarnpkg.com/))
-- Đóng gói mô-đun ([Webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/))
-- Biên dịch ([Babel](https://babeljs.io/))
-- Bản thân React
+- Quản lý gói ([NPM](https://www.npmjs.com/),[Yarn](https://yarnpkg.com/))
+- Gói mô-đun ([Webpack](https://webpack.js.org/),[Bưu kiện](https://parceljs.org/))
+- Biên soạn ([Babel](https://babeljs.io/))
+- React chính nó
 
-Tất cả những thứ này, và đôi khi còn *nhiều hơn nữa*, là cần thiết để đưa một dự án React cùng môi trường phát triển vào trạng thái hoạt động.
+Tất cả điều này, và đôi khi*nhiều hơn nữa*, là bắt buộc để thiết lập và chạy môi trường phát triển và dự án React.
 
 <div class="lesson-note" markdown=1>
 
-#### Lưu ý về Create React App
+#### Lưu ý về Tạo ứng dụng React
 
-Create React App, hay CRA, từng là cách chính thức để tạo khung cho các dự án React mới kể từ khi được giới thiệu vào năm 2016. Đáng tiếc là vì nhiều lý do, [CRA đã bị ngừng phát triển vào đầu năm 2023](https://github.com/reactjs/react.dev/pull/5487#issuecomment-1409720741). Do CRA rất phổ biến, bạn sẽ thấy nó được nhắc đến trong nhiều hướng dẫn và tài liệu. Tuy nhiên, hiện không còn khuyến nghị sử dụng CRA cho các dự án mới.
+Tạo ứng dụng React, hay CRA, là cách chính thức để xây dựng các dự án React mới kể từ khi được giới thiệu vào năm 2016. Thật không may, vì nhiều lý do, [CRA không còn được dùng nữa vào đầu năm 2023](https://github.com/reactjs/react.dev/pull/5487#issuecomment-1409720741). Do mức độ phổ biến của CRA, bạn sẽ thấy nó được đề cập trong nhiều hướng dẫn và tài liệu. Tuy nhiên, CRA không còn được khuyến khích cho các dự án mới.
 
 </div>
 
 ### Đơn giản hóa quy trình
 
-Giờ bạn đã hiểu những gì liên quan đến việc bắt đầu một dự án React từ đầu, bạn có thể thở phào nhẹ nhõm khi biết rằng chúng ta có thể bắt đầu chỉ với *một lệnh terminal*. Chúng ta sẽ dùng template React của Vite để tạo khung cho dự án, tương tự như khi tự tạo và sử dụng một repo template.
+Bây giờ bạn đã hiểu những gì liên quan đến việc bắt đầu một dự án React từ đầu, bạn có thể thở phào nhẹ nhõm khi biết rằng chúng ta có thể bắt đầu với một*lệnh thiết bị đầu cuối duy nhất*. Chúng tôi sẽ sử dụng mẫu React của chính Vite để xây dựng dự án của mình, giống như khi chúng tôi tạo và sử dụng kho lưu trữ mẫu của riêng mình.
 
-Vite xây dựng các công cụ frontend cho nhà phát triển và tận dụng những công nghệ mới nhất bên dưới để mang lại trải nghiệm phát triển tốt. May mắn là Vite cũng hỗ trợ hệ sinh thái React. Chúng ta sẽ dùng CLI của Vite để nhanh chóng tạo một dự án React từ template. Công cụ này yêu cầu cấu hình tối thiểu và cung cấp ngay nhiều công cụ cực kỳ hữu ích, cho phép chúng ta bắt đầu học ngay. Hãy bắt đầu!
+Vite xây dựng các công cụ giao diện người dùng dành cho nhà phát triển và nó tận dụng các công nghệ mới nhất để mang lại trải nghiệm tuyệt vời cho nhà phát triển. May mắn thay, nó cũng phục vụ cho hệ sinh thái React. Chúng ta sẽ sử dụng Vite của CLI để nhanh chóng tạo dự án mẫu React. Nó yêu cầu cấu hình tối thiểu và cung cấp ngay các công cụ cực kỳ hữu ích, cho phép chúng ta bắt đầu học ngay. Hãy bắt đầu!
 
-### Tạo một ứng dụng React
+### Tạo ứng dụng React
 
-Hãy đảm bảo bạn đang sử dụng phiên bản *LTS* mới nhất của Node, nếu không có thể xảy ra lỗi. Mở terminal và thư mục chứa các dự án của bạn. Sau đó nhập lệnh sau (bạn có thể thay `my-first-react-app` bằng bất kỳ tên nào mình muốn):
+Hãy đảm bảo rằng bạn đang sử dụng phiên bản mới nhất*LTS*phiên bản Node, nếu không có thể xảy ra lỗi. Mở terminal và thư mục chứa các dự án của bạn. Sau đó nhập lệnh sau (bạn có thể thay thế `my-first-react-app` bằng bất kỳ tên nào bạn muốn):
 
 ```bash
 npm create vite@latest my-first-react-app -- --template react
 ```
 
-Bạn có thể được hỏi có muốn cài đặt gói `create-vite` hay không; khi đó, hãy chấp nhận bằng cách nhập `y` rồi nhấn <kbd>Enter</kbd>. Nếu được hỏi về việc sử dụng các tính năng thử nghiệm, bạn có thể trả lời không. Cuối cùng, trả lời có cho `Install with npm and start now?`.
+Bạn có thể được hỏi xem bạn có muốn cài đặt gói `create-vite` hay không, trong trường hợp đó bạn nên chấp nhận bằng cách nhập `y` rồi nhấn <kbd>Enter</kbd>. Nếu nó hỏi bạn bất kỳ câu hỏi nào về việc sử dụng các tính năng thử nghiệm, bạn có thể trả lời không. Cuối cùng, hãy trả lời có cho `Install with npm and start now?`.
 
-Sau khi lệnh thực thi xong, đầu ra sẽ giống như sau:
+Khi lệnh đã được thực thi, nó sẽ xuất ra như sau:
 
 ```bash
 ➜  Local:   http://localhost:5173/
@@ -67,35 +67,35 @@ Sau khi lệnh thực thi xong, đầu ra sẽ giống như sau:
 ➜  press h + enter to show help
 ```
 
-Nếu mọi thứ diễn ra đúng kế hoạch, hãy truy cập `localhost:5173`; bạn sẽ thấy trang sau:
+Với điều kiện mọi thứ đã diễn ra theo đúng kế hoạch, hãy truy cập `localhost:5173`, nơi bạn sẽ được chào đón với trang sau:
 
-![Trang chủ template React của Vite](https://cdn.statically.io/gh/TheOdinProject/curriculum/9200680864d044390aeb1baa838f213addd65cbe/react/introduction/setting_up_a_react_environment/imgs/vite_react_homepage.png)
+![Vite React trang chủ mẫu](https://cdn.statically.io/gh/TheOdinProject/curriculum/9200680864d044390aeb1baa838f213addd65cbe/react/introduction/setting_up_a_react_environment/imgs/vite_react_homepage.png)
 
-Xin chúc mừng! Bạn đã tạo ứng dụng React đầu tiên của mình. Bây giờ bạn có thể thoát máy chủ phát triển (<kbd>Ctrl</kbd> + <kbd>C</kbd>) và dùng `cd` để chuyển vào thư mục dự án. Bạn có thể khởi động máy chủ phát triển bất cứ lúc nào trong thư mục dự án bằng cách chạy `npm run dev`.
+Chúc mừng! Bạn đã tạo ứng dụng React đầu tiên của mình. Bây giờ bạn có thể thoát khỏi máy chủ dev (<kbd>Ctrl</kbd> + <kbd>C</kbd>) và `cd` vào thư mục dự án của bạn. Bạn có thể khởi động máy chủ dev bất kỳ lúc nào trong thư mục dự án bằng cách chạy `npm run dev`.
 
-Để liên kết thư mục dự án cục bộ với một repo GitHub, hãy tạo một repo **trống** mới trên GitHub, rồi làm theo hướng dẫn trên trang repo mới để kết nối repo đó với thư mục dự án cục bộ.
+Để liên kết thư mục dự án cục bộ của bạn với kho lưu trữ GitHub, hãy tạo một kho lưu trữ mới **trống** repo trên GitHub sau đó làm theo hướng dẫn trên trang của repo mới để kết nối nó với thư mục dự án cục bộ của bạn.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
 #### Sử dụng repo hiện có
 
-Ngoài ra, nếu bạn đã tạo và clone một repo GitHub, bạn có thể dùng `cd` để chuyển vào repo đã clone, rồi chạy lệnh Vite ở trên với `.` làm tên dự án:
+Ngoài ra, nếu bạn đã tạo một repo GitHub và sao chép nó, bạn có thể `cd` vào repo nhân bản của mình, sau đó chạy lệnh Vite ở trên, sử dụng `.` làm tên dự án:
 
 ```bash
 npm create vite@latest . -- --template react
 ```
 
-Lệnh này yêu cầu Vite sử dụng thư mục hiện tại cho dự án thay vì tạo một thư mục mới theo tên dự án đã cho. Thư mục đã clone này vốn đã được khởi tạo dưới dạng một git repo và kết nối với remote phù hợp.
+Điều này sẽ yêu cầu Vite sử dụng thư mục hiện tại cho dự án, thay vì tạo một thư mục mới với tên dự án đã cho. Thư mục nhân bản này sẽ được khởi tạo dưới dạng git repo và được kết nối với điều khiển từ xa bên phải.
 
 </div>
 
 ### Tìm hiểu sâu hơn
 
-Hãy xem kỹ hơn dự án mới của chúng ta. Bên trong, bạn sẽ thấy một số thư mục cùng các tệp `package.json`, `package-lock.json`, `.gitignore` và `README.md`. Tệp `README.md` chứa một số thông tin hữu ích mà bạn nên dành thời gian đọc lướt qua ngay bây giờ.
+Chúng ta hãy xem xét kỹ hơn về dự án mới của chúng tôi. Bên trong, bạn sẽ tìm thấy một số thư mục, cũng như các tệp `package.json`, `package-lock.json`, `.gitignore` và `README.md`. `README.md` chứa một số thông tin hữu ích mà bạn nên dành thời gian để đọc lướt qua ngay bây giờ.
 
-Thư mục `public` là nơi chứa toàn bộ tài nguyên tĩnh liên quan đến ứng dụng. Những tài nguyên này có thể gồm hình ảnh, biểu tượng và các tệp thông tin dành cho trình duyệt.
+Thư mục `public` là nơi chứa tất cả nội dung tĩnh liên quan đến ứng dụng của bạn. Điều này có thể bao gồm hình ảnh, biểu tượng và tệp thông tin cho trình duyệt.
 
-Trong thư mục `src`, bạn sẽ tìm thấy mã chạy ứng dụng. Tệp `main.jsx` là điểm vào của ứng dụng. Hãy mở tệp `main.jsx` và xem chúng ta có thể hiểu điều gì đang xảy ra không:
+Bên trong thư mục `src` là nơi bạn sẽ tìm thấy mã chạy ứng dụng của mình. Tệp `main.jsx` ở đây đóng vai trò là điểm vào của ứng dụng. Hãy mở tệp `main.jsx` và xem liệu chúng ta có thể hiểu chuyện gì đang xảy ra không:
 
 ```jsx
 import { StrictMode } from "react";
@@ -110,30 +110,30 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Ồ! Có khá nhiều thứ ở đây. Hiện tại, bạn không cần phải nhận ra nhiều (hoặc bất kỳ) phần nào trong số này. Dưới đây là tóm tắt ngắn gọn về những gì đang diễn ra:
+Ối! Có khá nhiều ở đây. Bạn sẽ không nhận ra nhiều điều này (nếu có) ngay bây giờ. Dưới đây là tóm tắt ngắn gọn về những gì đang xảy ra:
 
-1. Chúng ta lần lượt import `StrictMode` và `createRoot` từ các package `react` và `react-dom`.
-1. Chúng ta import component `App` từ `App.jsx` để có thể đặt (render) nó vào DOM.
-1. Chúng ta import một số kiểu CSS (bạn có thể nhận ra cú pháp này từ phần tài liệu về Webpack).
-1. Chúng ta tạo một đối tượng `root` bằng cách gọi `createRoot` với một phần tử trong `index.html`.
-1. Chúng ta gọi phương thức `render`, vốn được gắn vào đối tượng `root`, với một cú pháp trông khá thú vị bên trong cặp dấu ngoặc đơn.
+1. Chúng tôi nhập `StrictMode` và `createRoot` từ các gói `react` và `react-dom` tương ứng.
+1. Chúng tôi nhập thành phần `App` từ `App.jsx` để có thể đặt (kết xuất) nó trong DOM.
+1. Chúng tôi nhập một số kiểu CSS (bạn có thể nhận ra cú pháp này từ tài liệu Webpack).
+1. Chúng ta tạo một đối tượng `root` bằng cách gọi `createRoot` với một phần tử từ `index.html` của chúng ta.
+1. Chúng ta gọi phương thức `render`, được gắn vào đối tượng `root` của chúng ta, với một số cú pháp trông rất thú vị bên trong dấu ngoặc đơn.
 
-Dễ hiểu là tất cả những điều này có thể trông không giống bất cứ thứ gì bạn từng thấy cho đến nay, nhưng đừng lo. Sau khi dành thời gian học khóa học này, bạn sẽ biết chính xác tất cả những thứ này làm gì, và còn *nhiều hơn nữa*.
+Có thể hiểu một cách dễ hiểu là tất cả những điều này trông không giống bất cứ điều gì bạn đã thấy cho đến bây giờ, nhưng đừng lo, khi bạn đã dành thời gian tham gia khóa học này, bạn sẽ biết chính xác tất cả những điều này có tác dụng gì và*nhiều hơn nữa*.
 
 ### Công cụ dành cho nhà phát triển
 
-Khi tiến bộ với React, các dự án của bạn chắc chắn sẽ ngày càng lớn hơn, chứa ngày càng nhiều component và có mức độ chức năng ngày càng cao.
+Khi bạn phát triển với React, các dự án của bạn chắc chắn sẽ ngày càng lớn hơn và bao gồm ngày càng nhiều thành phần, với mức độ chức năng ngày càng tăng.
 
-Khi đó, việc theo dõi (và thực hiện thay đổi trực tiếp đối với) các phần đang hoạt động bên trong ứng dụng sẽ rất hữu ích cho việc hiểu và gỡ lỗi mã. Để làm điều này, chúng ta có thể sử dụng tiện ích mở rộng Chrome có tên [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
+Khi điều này xảy ra, sẽ rất hữu ích nếu bạn có thể theo dõi (và thực hiện các thay đổi trực tiếp) các bộ phận chuyển động bên trong ứng dụng để hiểu và gỡ lỗi mã của mình. Để đạt được mục đích này, chúng ta có thể sử dụng tiện ích mở rộng của Chrome có tên [React Công cụ dành cho nhà phát triển](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
 
-Chúng tôi khuyên bạn cài đặt và làm quen với công cụ này càng sớm càng tốt, vì đây là công cụ vô giá để phát triển React hiệu quả.
+Chúng tôi khuyên bạn nên cài đặt phần mềm này và cảm thấy thoải mái khi sử dụng nó càng sớm càng tốt vì đây là một công cụ vô giá để phát triển React hiệu quả.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Ôn lại tài liệu này bằng cách đọc [Trang bắt đầu với Vite](https://vitejs.dev/guide/).
-1. Xem [hướng dẫn về React Developer Tools](https://www.debugbear.com/blog/react-devtools) để bắt đầu học cách sử dụng công cụ này (đừng lo nếu hiện tại bạn chưa hiểu một số chi tiết).
-1. Thử dọn dẹp dự án `my-first-react-app` để dự án không còn hiển thị trang mặc định. Hãy xem bạn có thể làm cho nó hiển thị thông báo "Hello, World!" thay thế hay không.
+1. Xem lại tài liệu này bằng cách đọc qua [Trang Bắt đầu của Vite](https://vitejs.dev/guide/).
+1. Kiểm tra cái này [hướng dẫn dành cho Công cụ dành cho nhà phát triển React](https://www.debugbear.com/blog/react-devtools) để bắt đầu học cách sử dụng nó (đừng lo lắng nếu bạn chưa hiểu một số chi tiết).
+1. Cố gắng dọn dẹp dự án `my-first-react-app` của bạn để nó không còn hiển thị trang mặc định nữa. Xem liệu bạn có thể làm cho nó hiển thị thông báo "Xin chào, Thế giới!" thay vào đó hãy nhắn tin.
 
 </div>

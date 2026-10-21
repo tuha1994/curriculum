@@ -1,25 +1,25 @@
 ### Giới thiệu
 
-Certain các component in React cần to interact với things outside themselves. These things có thể be anything từ querying dữ liệu từ a server to finding/changing the position of the component on the webpage hoặc even sending some dữ liệu to a server Khi necessary. This interaction với the *outside world* is được gọi là a side-effect.
+Một số thành phần nhất định trong React cần tương tác với những thứ bên ngoài chúng. Những việc này có thể là bất cứ điều gì từ việc truy vấn dữ liệu từ máy chủ đến việc tìm kiếm hoặc thay đổi vị trí của thành phần trên trang web, hoặc thậm chí gửi một số dữ liệu đến máy chủ khi cần thiết. Sự tương tác này với *thế giới bên ngoài* được gọi là tác dụng phụ.
 
-While we are already familiar với kết xuất mã và adding event handlers, it is không enough for tất cả uses, like Khi you want to connect to your server và fetch messages to show to a user. các effect let you run some mã to synchronize your component as necessary, on kết xuất hoặc a reactive/state giá trị change rather than on a particular event.
+Mặc dù chúng ta đã quen với việc hiển thị mã và thêm trình xử lý sự kiện nhưng điều đó vẫn chưa đủ cho mọi mục đích sử dụng, chẳng hạn như khi bạn muốn kết nối với máy chủ của mình và tìm nạp thông báo để hiển thị cho người dùng. Các hiệu ứng cho phép bạn chạy một số mã để đồng bộ hóa thành phần của mình khi cần thiết, khi kết xuất hoặc thay đổi giá trị reactive/state thay vì trên một sự kiện cụ thể.
 
-Similar to cách we have the `useState` hook, React offers us a handy `useEffect` hook to sử dụng các effect in our các component.
+Tương tự như cách chúng ta có hook `useState`, React cung cấp cho chúng ta một hook `useEffect` tiện dụng để sử dụng các hiệu ứng trong các thành phần của chúng ta.
 
 ### Tổng quan bài học
 
-Phần này chứa a general tổng quan of topics that you sẽ tìm hiểu Trong bài học này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- hiểu điều gì các effect are in React.
-- tìm hiểu cách to sử dụng các effect in React các ứng dụng.
-- Explore khác parts of the useEffect hook.
-- Identify Khi to sử dụng an effect in React.
+- Hiểu những hiệu ứng trong React.
+- Tìm hiểu cách sử dụng hiệu ứng trong ứng dụng React.
+- Khám phá các phần khác nhau của hook useEffect.
+- Xác định thời điểm sử dụng hiệu ứng trong React.
 
-### sử dụng effect saves the day
+### Sử dụng hiệu ứng tiết kiệm trong ngày
 
-#### The useEffect hook
+#### Cái móc useEffect
 
-Let us take a component in question. chúng ta muốn to Tạo a `Clock` component that shows cách many seconds have passed since the user has loaded the webpage. To update it every second, chúng ta có thể sử dụng our nifty `setInterval` hàm to add one to the `counter` state variable, every second. Hãy  try putting it in the body of our component.
+Hãy để chúng tôi lấy một thành phần trong câu hỏi. Chúng tôi muốn tạo thành phần `Clock` hiển thị số giây đã trôi qua kể từ khi người dùng tải trang web. Để cập nhật nó mỗi giây, chúng ta có thể sử dụng hàm `setInterval` tiện lợi của mình để thêm một biến vào biến trạng thái `counter` mỗi giây. Hãy thử đặt nó vào phần thân của thành phần của chúng ta.
 
 ```jsx
 import { useState } from "react";
@@ -37,11 +37,11 @@ export default function Clock() {
 }
 ```
 
-Alas, we see our counter going berserk. This happens vì the `setInterval` hàm is being được gọi là không Sau khi, nhưng at every state render.
+Than ôi, chúng ta thấy quầy của mình đang trở nên điên cuồng. Điều này xảy ra vì hàm `setInterval` không được gọi một lần mà ở mọi trạng thái hiển thị.
 
-Khi our component đầu tiên renders, it calls our initial `setInterval` hàm. That interval updates the state every second, triggering the component to re-render. But every re-render calls `setInterval` again, which triggers thêm frequent state updates, which mỗi spawn mới intervals, và everything quickly spirals out of control.
+Khi thành phần của chúng tôi hiển thị lần đầu tiên, nó sẽ gọi hàm `setInterval` ban đầu của chúng tôi. Khoảng thời gian đó cập nhật trạng thái mỗi giây, kích hoạt thành phần hiển thị lại. Nhưng mỗi lần kết xuất lại lại gọi `setInterval`, điều này kích hoạt các cập nhật trạng thái thường xuyên hơn, mỗi lần xuất hiện các khoảng thời gian mới và mọi thứ nhanh chóng vượt khỏi tầm kiểm soát.
 
-This is nơi the `useEffect` hook swoops in to save us. chúng ta có thể wrap this calculation bên trong a `useEffect` hook to move it outside the kết xuất calculation. It accepts a callback hàm với tất cả the calculations.
+Đây là lúc cái móc `useEffect` lao vào để cứu chúng ta. Chúng ta có thể gói phép tính này bên trong một móc `useEffect` để di chuyển nó ra ngoài phép tính kết xuất. Nó chấp nhận chức năng gọi lại với tất cả các phép tính.
 
 ```jsx
 import { useEffect, useState } from "react";
@@ -61,15 +61,15 @@ export default function Clock() {
 }
 ```
 
-But, it still keeps growing too fast! This is nơi another argument of the `useEffect` comes in: the dependency array.
+Tuy nhiên, nó vẫn tiếp tục phát triển quá nhanh! Đây là nơi xuất hiện một đối số khác của `useEffect`: mảng phụ thuộc.
 
-#### The dependency array
+#### Mảng phụ thuộc
 
-By default, `useEffect` hook runs on every render. Since setting state tears the component down, we still get multiple setter calls on every render, which doesn't help us.
+Theo mặc định, hook `useEffect` chạy trên mọi kết xuất. Vì trạng thái cài đặt làm hỏng thành phần nên chúng tôi vẫn nhận được nhiều lệnh gọi setter trên mỗi lần kết xuất, điều này không giúp ích gì cho chúng tôi.
 
-Fortunately, the second argument accepts an array of dependencies allowing the hook to re-render **chỉ Khi those dependencies are changed**. So if you have a state variable và want to have some side-effect occur any time the state changes, Bạn có thể sử dụng this hook và mention the state variable in the dependency array.
+May mắn thay, đối số thứ hai chấp nhận một loạt các phụ thuộc cho phép hook hiển thị lại **chỉ khi những phụ thuộc đó được thay đổi**. Vì vậy, nếu bạn có một biến trạng thái và muốn xảy ra một số tác dụng phụ bất cứ khi nào trạng thái thay đổi, bạn có thể sử dụng hook này và đề cập đến biến trạng thái trong mảng phụ thuộc.
 
-We pass an empty array in this ví dụ vì we do không want the `useEffect` hook to run anytime khác than the initial component render.
+Chúng tôi chuyển một mảng trống trong ví dụ này vì chúng tôi không muốn hook `useEffect` chạy bất cứ lúc nào ngoài kết xuất thành phần ban đầu.
 
 ```jsx
 import { useEffect, useState } from "react";
@@ -91,9 +91,9 @@ export default function Clock() {
 
 <div class="lesson-note" markdown="1">
 
-#### Managing useEffect dependencies
+#### Quản lý các phần phụ thuộc useEffect
 
-Usually, you do không cần to add dependencies to your `useEffect` hook manually. Your linter nên let you know về the dependencies it expects. Letting the linter show các lỗi và fixing them Thay vào đó of suppressing them is usually the best idea. On a general Lưu ý, the following block does a good job of summing this point up.
+Thông thường, bạn không cần thêm phần phụ thuộc vào hook `useEffect` của mình theo cách thủ công. Kẻ nói dối của bạn sẽ cho bạn biết về sự phụ thuộc mà nó mong đợi. Để kẻ nói dối hiển thị lỗi và sửa chúng thay vì chặn chúng thường là ý tưởng tốt nhất. Nói chung, khối sau đây thực hiện tốt việc tổng hợp điểm này.
 
 ```jsx
 useEffect(() => {
@@ -111,13 +111,13 @@ useEffect(() => {
 
 </div>
 
-#### The clean-up hàm
+#### Chức năng dọn dẹp
 
-Oh, it's không going berserk anymore! We still have an issue với the counter updating twice every second though. That có thể be understood as a [behavior caused by the React StrictMode](https://react.dev/reference/react/StrictMode#strictmode). It is supposed to help us catch bugs, so điều gì is that bug ở đây?
+Ồ, nó không còn điên cuồng nữa! Tuy nhiên, chúng tôi vẫn gặp sự cố với bộ đếm cập nhật hai lần mỗi giây. Đó có thể được hiểu là một [hành vi gây ra bởi React StrictMode](https://react.dev/reference/react/StrictMode#strictmode). Nó được cho là giúp chúng ta bắt lỗi, vậy lỗi đó ở đây là gì?
 
-với `StrictMode`, the `App` component is mounted, unmounted, then mounted again. This behavior of `StrictMode` is chỉ in the development environment. Notice that every time the `useEffect` hook runs, a mới `setInterval` is được sử dụng.  Khi the component is unmounted the đầu tiên time, `setInterval` is không stopped, it keeps incrementing. This unnecessary behavior có thể be prevented by clearing the interval Khi the component is unmounted và that is nơi the third phần of our `useEffect` hook comes in - the cleanup hàm.
+Với `StrictMode`, thành phần `App` được gắn kết, ngắt kết nối rồi gắn lại. Hành vi này của `StrictMode` chỉ có trong môi trường phát triển. Lưu ý rằng mỗi khi `useEffect` hook chạy, một `setInterval` mới sẽ được sử dụng.  Khi thành phần được ngắt kết nối lần đầu tiên, `setInterval` không bị dừng mà tiếp tục tăng. Hành vi không cần thiết này có thể được ngăn chặn bằng cách xóa khoảng thời gian khi thành phần chưa được kết nối và đó là lúc phần thứ ba của hook `useEffect` của chúng ta xuất hiện - chức năng dọn dẹp.
 
-Bạn có thể return a hàm từ the callback in the `useEffect` hook, which sẽ be executed mỗi time Trước khi the tiếp theo effect is run, và one final time Khi the component is unmounted. In this case, let us clean up the interval với a cleanup hàm.
+Bạn có thể trả về một hàm từ lệnh gọi lại trong hook `useEffect`, hàm này sẽ được thực thi mỗi lần trước khi hiệu ứng tiếp theo được chạy và lần cuối cùng khi thành phần này được ngắt kết nối. Trong trường hợp này, chúng ta hãy dọn dẹp khoảng thời gian bằng chức năng dọn dẹp.
 
 ```jsx
 import { useEffect, useState } from "react";
@@ -141,7 +141,7 @@ export default function Clock() {
 }
 ```
 
-Phew! It Cuối cùng works! As the counter keeps merrily ticking on, let us sum up điều gì we know về the `useEffect` hook.
+Phù! Cuối cùng nó cũng hoạt động! Khi bộ đếm tiếp tục tích tắc vui vẻ, chúng ta hãy tóm tắt những gì chúng ta biết về hook `useEffect`.
 
 ```jsx
 useEffect(
@@ -156,13 +156,13 @@ useEffect(
 )
 ```
 
-### But do we cần the effect?
+### Nhưng chúng ta có cần hiệu ứng không?
 
-`useEffect` is a mechanism outside the concepts that React usually applies, allowing you to sync your component với various external systems like a server, API, hoặc browser DOM. The single question that Bạn có thể ask yourself Trước khi you sử dụng an effect is if ở đó are any such external systems that cần to be synced với, apart từ props hoặc state. Unnecessary `useEffect` hooks are mã-smell, lỗi-prone, và cause unnecessary performance issues.
+`useEffect` là một cơ chế nằm ngoài các khái niệm mà React thường áp dụng, cho phép bạn đồng bộ hóa thành phần của mình với nhiều hệ thống bên ngoài khác nhau như máy chủ, API hoặc trình duyệt DOM. Câu hỏi duy nhất mà bạn có thể tự hỏi mình trước khi sử dụng hiệu ứng là liệu có bất kỳ hệ thống bên ngoài nào cần được đồng bộ hóa, ngoài đạo cụ hoặc trạng thái hay không. Các móc `useEffect` không cần thiết có mùi mã, dễ bị lỗi và gây ra các vấn đề về hiệu suất không cần thiết.
 
-Let us address a few cases nơi `useEffect` does không cần to be được sử dụng.
+Hãy để chúng tôi giải quyết một số trường hợp trong đó `useEffect` không cần sử dụng.
 
-- You do không cần to sử dụng an effect if you are chỉ calculating something based on the state during kết xuất. For a change in a component, due to a change in the props, Bạn có thể calculate và set it during kết xuất.
+- Bạn không cần sử dụng hiệu ứng nếu bạn chỉ tính toán thứ gì đó dựa trên trạng thái trong quá trình kết xuất. Đối với sự thay đổi của một thành phần, do thay đổi trong props, bạn có thể tính toán và thiết lập nó trong quá trình kết xuất.
 
     ```jsx
     import { useState } from "react";
@@ -186,7 +186,7 @@ Let us address a few cases nơi `useEffect` does không cần to be được s�
     }
     ```
 
-- You do không cần các effect for events. mã that runs Khi a component is **displayed** nên be in các effect, the rest nên be in events.
+- Bạn không cần hiệu ứng cho các sự kiện. Mã chạy khi một thành phần được **hiển thị** nên có hiệu ứng, phần còn lại nên có trong các sự kiện.
 
     ```jsx
     import { useState } from "react";
@@ -218,16 +218,16 @@ Let us address a few cases nơi `useEffect` does không cần to be được s�
     }
     ```
 
-- You do không cần an effect to reset the state based on a condition most of the time. You have đã học về keys in React. Just like sử dụng a key on a list's item, adding one to a component, based on the state on which it nên be reset creates a unique version of that component for mỗi change in the giá trị of the state.
+- Bạn không cần hiệu ứng để đặt lại trạng thái dựa trên một điều kiện trong hầu hết mọi trường hợp. Bạn đã tìm hiểu về các khóa trong React. Cũng giống như việc sử dụng một khóa trên một mục trong danh sách, việc thêm một khóa vào một thành phần, dựa trên trạng thái mà nó cần được đặt lại sẽ tạo ra một phiên bản duy nhất của thành phần đó cho mỗi thay đổi về giá trị của trạng thái.
 
-- Nếu you are having issues với managing your state và want to sử dụng an effect to update the state of a parent hoặc some khác non-child component, consider **lifting the state**. As we know, in React, the state flows in one direction, generally down the DOM. So the parents know of the dữ liệu Trước khi passing it to the children. Nếu multiple children are required to Tạo sử dụng of a single state, it nên be moved up to the parent that has tất cả of the các component that cần it, Thay vào đó of sử dụng escape hatches like an effect.
+- Nếu bạn gặp vấn đề với việc quản lý trạng thái của mình và muốn sử dụng hiệu ứng để cập nhật trạng thái của thành phần cha mẹ hoặc một số thành phần không phải con khác, hãy xem xét **nâng cao trạng thái**. Như chúng ta đã biết, trong React, trạng thái diễn ra theo một hướng, thường là xuống DOM. Vì vậy, cha mẹ biết dữ liệu trước khi truyền cho con cái. Nếu nhiều thành phần con được yêu cầu sử dụng một trạng thái duy nhất thì trạng thái đó nên được chuyển lên trạng thái gốc có tất cả các thành phần cần đến nó, thay vì sử dụng các cửa thoát hiểm như một hiệu ứng.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Bài học này từ the React docs talks về the [lifecycle of a component](https://react.dev/learn/lifecycle-of-reactive-effects), the khác stages at which kết xuất nhận place, và the role of `useEffect` in it.
-1. thêm các ví dụ từ the React docs về Khi [you might không cần an effect](https://react.dev/learn/you-might-not-need-an-effect).
-1. Yet another article that explains a common mistake that beginners Tạo, [the infinite useEffect loop](https://dmitripavlutin.com/react-useeffect-infinite-loop).
+1. Bài học này từ tài liệu React nói về [vòng đời của một thành phần](https://react.dev/learn/lifecycle-of-reactive-effects), các giai đoạn khác nhau mà quá trình kết xuất diễn ra và vai trò của `useEffect` trong đó.
+1. Các ví dụ khác từ tài liệu React về thời điểm [bạn có thể không cần Hiệu ứng](https://react.dev/learn/you-might-not-need-an-effect).
+1. Một bài viết khác giải thích một lỗi phổ biến mà người mới bắt đầu mắc phải,[vòng lặp useEffect vô hạn](https://dmitripavlutin.com/react-useeffect-infinite-loop).
 
 </div>

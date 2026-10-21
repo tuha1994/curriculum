@@ -1,22 +1,24 @@
 ### Giới thiệu
 
-Có lẽ bạn đã từng nghe về reducer. Trong bài học này, chúng ta sẽ tìm hiểu *chúng là gì*, *khi nào* nên sử dụng chúng và *cách* sử dụng chúng trong React với hook `useReducer`.
+Bạn có thể đã nghe nói về bộ giảm tốc trước đây. Trong bài học này chúng ta sẽ đi
+học hỏi*Gì*họ là vậy,*khi* sử dụng chúng và*Làm sao*để sử dụng chúng trong React với móc `useReducer`.
 
 ### Tổng quan bài học
 
-Phần này cung cấp tổng quan chung về những chủ đề bạn sẽ học trong bài học này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Reducer là gì.
-- Khi nào nên sử dụng reducer.
-- Hook `useReducer` là gì.
+- Bộ giảm tốc là gì.
+- Khi nào nên sử dụng bộ giảm tốc.
+- Móc `useReducer` là gì.
 
-### Reducer là gì?
+### Bộ giảm tốc là gì?
 
-Reducer là các hàm thuần túy, nhận state trước đó và một action để trả về state mới.
+Bộ giảm tốc là các hàm thuần túy lấy trạng thái trước đó và thực hiện hành động để trả về trạng thái mới.
 
-Action là một đối tượng có thuộc tính *type* mô tả việc người dùng đã thực hiện. Đối tượng này cũng có thể chứa bất kỳ thuộc tính nào khác mà reducer cần để tạo ra state mới.
+Hành động là một đối tượng có*kiểu*thuộc tính mô tả những gì người dùng đã làm. Đối tượng này cũng có thể chứa
+bất kỳ thuộc tính nào khác mà bộ giảm tốc của chúng tôi có thể cần để tạo ra trạng thái mới.
 
-Chúng ta có thể định nghĩa một reducer cập nhật state của bộ đếm như sau:
+Chúng ta có thể định nghĩa một bộ giảm tốc cập nhật trạng thái của bộ đếm như thế này:
 
 ```javascript
 function reducer(state, action) {
@@ -37,21 +39,26 @@ function reducer(state, action) {
 }
 ```
 
-Hãy nhớ rằng reducer là hàm thuần túy, vì vậy chúng ta không nên thay đổi trực tiếp state.
+Hãy nhớ rằng, bộ giảm tốc là các hàm thuần túy nên chúng ta không nên thay đổi trạng thái.
 
-### Khi nào nên sử dụng reducer?
+### Khi nào nên sử dụng bộ giảm tốc?
 
-Nếu một component chỉ cần cập nhật state theo một vài cách đơn giản, bạn không cần dùng reducer. Ngược lại, reducer hữu ích khi component đã trở nên quá lớn, khó đọc hoặc khó gỡ lỗi vì logic state của nó.
+Nếu một thành phần chỉ cần cập nhật trạng thái của nó theo một vài cách đơn giản thì bạn không cần sử dụng bộ giảm tốc.
+Có thể nói điều ngược lại khi một thành phần trở nên quá lớn, khó đọc hoặc khó gỡ lỗi do trạng thái logic của nó.
 
-Bằng cách sử dụng reducer, chúng ta có thể tách logic state ra, thậm chí lưu logic đó trong một tệp hoặc thư mục khác, từ đó tạo ra các component nhỏ hơn và dễ đọc hơn.
+Bằng cách sử dụng bộ giảm tốc, chúng ta có thể tách logic trạng thái và thậm chí lưu trữ nó trong một tệp hoặc thư mục khác, dẫn đến
+thành các thành phần nhỏ hơn dễ đọc hơn.
 
-Vì reducer sử dụng *action*, chúng ta có thể dễ dàng lần ngược các lỗi liên quan đến state về action đã được dispatch. Ngoài ra, vì reducer chỉ là các hàm thuần túy, chúng ta có thể kiểm thử chúng một cách độc lập.
+Kể từ khi sử dụng bộ giảm tốc*hành động*, chúng tôi có thể dễ dàng theo dõi mọi lỗi liên quan đến trạng thái đối với hành động được gửi đi,
+và bởi vì bộ giảm tốc của chúng tôi chỉ là các hàm thuần túy nên chúng tôi có thể kiểm tra chúng một cách riêng biệt.
 
-### Hook useReducer
+### Cái móc useReducer
 
-React cho phép chúng ta sử dụng reducer trong component thông qua một hook có tên `useReducer`. Hook này nhận một hàm reducer và state ban đầu làm đối số, sau đó trả về một mảng gồm hai giá trị: state hiện tại và một hàm `dispatch`.
+React cho phép chúng ta sử dụng bộ giảm tốc trong các thành phần của mình thông qua một hook có tên `useReducer`. Móc này có chức năng giảm tốc và
+trạng thái ban đầu làm đối số, sau đó trả về một mảng có hai giá trị: trạng thái hiện tại và hàm `dispatch`.
 
-Hàm `dispatch` nhận một đối tượng **action** làm đối số. Đối tượng này được truyền cho hàm reducer, và giá trị mà reducer trả về sẽ được dùng để cập nhật state.
+Hàm `dispatch` này nhận được một **hoạt động** đối tượng làm đối số, được truyền cho hàm rút gọn của chúng tôi và
+giá trị trả về từ nó được sử dụng để cập nhật trạng thái.
 
 ```javascript
 const [state, dispatch] = useReducer(reducer, { count: 0 });
@@ -61,16 +68,17 @@ function handleClick() {
 }
 ```
 
-Tương tự cách React cập nhật state bằng hàm `set` trong `useState`, React *chỉ cập nhật state trong lần render tiếp theo* sau khi gọi hàm `dispatch`. Hãy nhớ rằng các hàm này sử dụng [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) để xác định state có thay đổi hay không; nếu state không thay đổi, component sẽ không render lại.
+Tương tự như cách React cập nhật trạng thái bằng hàm `set` trong `useState`, React*chỉ cập nhật trạng thái trong lần kết xuất tiếp theo*sau khi gọi hàm `dispatch`.
+Hãy nhớ rằng các chức năng này sử dụng [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) để xác định xem trạng thái có thay đổi hay không, nếu không thì thành phần đó sẽ không hiển thị lại.
 
-Việc sử dụng `useState` hay `useReducer` tùy thuộc vào bạn. Hai hook này tương đương nhau và bạn có thể sử dụng cả hai trong cùng một component.
+Việc bạn sử dụng `useState` hay `useReducer` là tùy thuộc vào bạn, cả hai đều tương đương nhau và bạn có thể sử dụng cả hai trong cùng một thành phần.
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Đọc tài liệu React [Đưa logic state vào reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer) để tìm hiểu thêm về cách sử dụng reducer trong React và cách cấu trúc lại `useState` thành `useReducer`. Đừng quên hoàn thành các thử thách ở cuối.
+1. Đọc qua tài liệu React [Trích xuất logic trạng thái vào bộ giảm tốc](https://react.dev/learn/extracting-state-logic-into-a-reducer) để tìm hiểu thêm về cách sử dụng bộ giảm tốc trong React và cách tái cấu trúc `useState` thành `useReducer`. Đừng quên hoàn thành các thử thách ở cuối.
 
-1. Đọc tài liệu React [useReducer](https://react.dev/reference/react/useReducer) để tìm hiểu thêm về hook này. Hãy chú ý đến phần xử lý sự cố để biết những vấn đề thường gặp mà bạn có thể gặp phải.
+1. Đọc [useReducer](https://react.dev/reference/react/useReducer) React docs để tìm hiểu thêm về hook này nhé. Hãy chú ý đến phần khắc phục sự cố để biết các sự cố thường gặp mà bạn có thể gặp phải.
 
 </div>

@@ -1,24 +1,24 @@
 ### Giới thiệu
 
-Bài học này sẽ Xây dựng upon the previous bài học on state và introduce further concepts và techniques to manage state. Hãy  dive in.
+Bài học này sẽ dựa trên bài học trước về trạng thái và giới thiệu thêm các khái niệm và kỹ thuật quản lý trạng thái. Hãy đi sâu vào.
 
 ### Tổng quan bài học
 
-Phần này chứa a general tổng quan of topics that you sẽ tìm hiểu Trong bài học này.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- How to structure state.
-- How state updates.
-- tìm hiểu về controlled các component.
+- Cách cấu trúc trạng thái.
+- Trạng thái cập nhật như thế nào.
+- Tìm hiểu về các thành phần được kiểm soát.
 
-### How to structure state
+### Cách cấu trúc trạng thái
 
-Managing và structuring state effectively is by far one of the most crucial parts of building your ứng dụng. Nếu không done correctly, it có thể become a source of bugs và headaches.
+Cho đến nay, quản lý và cấu trúc trạng thái một cách hiệu quả là một trong những phần quan trọng nhất trong việc xây dựng ứng dụng của bạn. Nếu không được thực hiện chính xác, nó có thể trở thành nguồn gây ra lỗi và đau đầu.
 
-The assignment items go qua the topic thoroughly, nhưng as a general rule of thumb: don't put các giá trị in state that có thể be calculated sử dụng existing các giá trị, state, và/hoặc props.
+Các mục bài tập đều xuyên suốt chủ đề, nhưng theo nguyên tắc chung: không đặt các giá trị ở trạng thái có thể được tính toán bằng cách sử dụng các giá trị, trạng thái, đạo cụ and/or hiện có.
 
-#### state nên không be mutated
+#### Nhà nước không nên bị đột biến
 
-Mutating state is a no-go area in React as it leads to unpredictable results. Primitives are already immutable, nhưng if you are sử dụng reference-type các giá trị, i.e., arrays và objects, never mutate them. According to the React documentation, we nên treat state as if it was *immutable*. To change state, we nên always sử dụng the `setState` hàm, which in the case of the ví dụ below is the `setPerson` hàm.
+Trạng thái đột biến là khu vực cấm đi trong React vì nó dẫn đến kết quả không thể đoán trước. Các giá trị nguyên thủy vốn đã bất biến nhưng nếu bạn đang sử dụng các giá trị kiểu tham chiếu, tức là, mảng và đối tượng, thì đừng bao giờ thay đổi chúng. Theo tài liệu React, chúng ta nên xử lý trạng thái như thể nó là*bất biến*. Để thay đổi trạng thái, chúng ta phải luôn sử dụng hàm `setState`, trong trường hợp ví dụ bên dưới là hàm `setPerson`.
 
 ```jsx
 function Person() {
@@ -51,20 +51,20 @@ function Person() {
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Objects và arrays in state
+#### Các đối tượng và mảng ở trạng thái
 
-In the bên trên ví dụ, notice cách we *tạo* a mới object và then copy the existing state các giá trị vào the mới object while providing a mới giá trị for `age`.
-That is vì if we don't provide a mới object to `setState` it is không guaranteed to re-render the page. Do đó, we nên always provide a mới Object for `setState` to trigger a re-render. `setState` uses [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) to determine if the previous state is the giống nhau.
+Trong ví dụ trên, hãy chú ý cách chúng ta*tạo nên*một đối tượng mới rồi sao chép các giá trị trạng thái hiện có vào đối tượng mới đồng thời cung cấp giá trị mới cho `age`.
+Đó là bởi vì nếu chúng tôi không cung cấp một đối tượng mới cho `setState` thì không đảm bảo trang sẽ được kết xuất lại. Do đó, chúng ta phải luôn cung cấp một đối tượng mới cho `setState` để kích hoạt việc kết xuất lại. `setState` sử dụng [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) để xác định trạng thái trước đó có thay đổi hay không.
 
-As for nested objects và arrays, state có thể get tricky fast since you sẽ have to copy the nested items as well. Be careful Khi sử dụng them.
+Đối với các đối tượng và mảng lồng nhau, trạng thái có thể gặp khó khăn nhanh chóng vì bạn cũng sẽ phải sao chép các mục lồng nhau. Hãy cẩn thận khi sử dụng chúng.
 
 </div>
 
-### How state updates
+### Cách cập nhật trạng thái
 
-state updates are asynchronous. điều gì this implies is that whenever you call the `setState` hàm, React sẽ apply the update in the **tiếp theo** component render. This concept có thể take a while to wrap your head around. với a lot of practice, you'll get the hang of it in no time.
+Cập nhật trạng thái không đồng bộ. Điều này ngụ ý rằng bất cứ khi nào bạn gọi hàm `setState`, React sẽ áp dụng bản cập nhật trong **Kế tiếp** kết xuất thành phần. Khái niệm này có thể mất một thời gian để bạn hiểu rõ. Với việc luyện tập nhiều, bạn sẽ nhanh chóng thành thạo nó.
 
-Remember, state variables aren't reactive; the component is. This có thể be understood by the fact that calling `setState` re-renders the entire component Thay vào đó of just changing the state variable on the fly.
+Hãy nhớ rằng, các biến trạng thái không có tác dụng phản ứng; thành phần đó là Điều này có thể được hiểu bởi thực tế là việc gọi `setState` sẽ hiển thị lại toàn bộ thành phần thay vì chỉ thay đổi biến trạng thái một cách nhanh chóng.
 
 ```jsx
 function Person() {
@@ -91,23 +91,23 @@ function Person() {
 }
 ```
 
-These are the logs:
+Đây là nhật ký:
 
-![browser console of the bên trên mã snippet](https://cdn.statically.io/gh/TheOdinProject/curriculum/103edd69831b1f0e946258009fe36a462c70c163/react/states_and_effects/more_on_state/imgs/00.png)
+![bảng điều khiển trình duyệt của đoạn mã trên](https://cdn.statically.io/gh/TheOdinProject/curriculum/103edd69831b1f0e946258009fe36a462c70c163/react/states_and_effects/more_on_state/imgs/00.png)
 
-Uh-oh, điều gì is happening? Hãy  break it down (ignore the double `console.log`s for the render case; this is covered in the upcoming lessons).
+Uh-ồ, chuyện gì đang xảy ra vậy? Hãy chia nhỏ nó ra (bỏ qua `console.log`s kép trong trường hợp kết xuất; điều này sẽ được đề cập trong các bài học sắp tới).
 
-1. The component renders for the đầu tiên time. The `person` state variable is initialized to `{ name: 'John', age: 100 }`. The "during render" `console.log` prints the state variable.
-1. The button is clicked invoking `handleIncreaseAge`. Interestingly, the `console.log` Trước khi và Sau khi the `setPerson` call prints the giống nhau giá trị.
-1. The component re-renders. The `person` state variable is updated to `{ name: 'John', age: 101 }`.
+1. Thành phần này hiển thị lần đầu tiên. Biến trạng thái `person` được khởi tạo thành `{ name: 'John', age: 100 }`. "Trong khi kết xuất" `console.log` in biến trạng thái.
+1. Nút được nhấp vào sẽ gọi `handleIncreaseAge`. Điều thú vị là `console.log` trước và sau lệnh gọi `setPerson` in ra cùng một giá trị.
+1. Thành phần này được hiển thị lại. Biến trạng thái `person` được cập nhật thành `{ name: 'John', age: 101 }`.
 
-The `person` state stays the giống nhau throughout the current render of the component. This is điều gì "state as a snapshot" refers to. The `setState` call triggers a component re-render, và the `person` state is updated to the mới giá trị.
+Trạng thái `person` vẫn giữ nguyên trong suốt quá trình kết xuất hiện tại của thành phần. Đây là những gì "trạng thái như một ảnh chụp nhanh" đề cập đến. Lệnh gọi `setState` kích hoạt kết xuất lại thành phần và trạng thái `person` được cập nhật lên giá trị mới.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### The unexpected infinite loop
+#### Vòng lặp vô hạn bất ngờ
 
-The following sẽ cause an infinite loop, nhưng React có thể, bên dưới certain circumstances, detect infinite re-renders và throw an lỗi. Can you guess tại sao React sẽ throw an lỗi ở đây, cảnh báo you về too many re-renders? Drop by in the [TOP Discord server](https://discord.gg/fbFCkYabZB), tell us tại sao, và score a brownie point!
+Điều sau đây sẽ gây ra một vòng lặp vô hạn, nhưng trong một số trường hợp nhất định, React có thể phát hiện các lần hiển thị lại vô hạn và đưa ra lỗi. Bạn có thể đoán tại sao React sẽ đưa ra lỗi ở đây, cảnh báo bạn về quá nhiều lần kết xuất lại không? Ghé qua trong [Máy chủ Discord HÀNG ĐẦU](https://discord.gg/fbFCkYabZB), hãy cho chúng tôi biết lý do và ghi điểm bánh hạnh nhân!
 
 ```jsx
 function Component() {
@@ -121,9 +121,9 @@ function Component() {
 
 </div>
 
-#### state updater functions
+#### Chức năng cập nhật trạng thái
 
-A trick question. Hãy  look at another implementation of `handleIncreaseAge`; điều gì do you think it does?
+Một câu hỏi mẹo. Hãy xem cách triển khai khác của `handleIncreaseAge`; bạn nghĩ nó làm gì?
 
 ```jsx
 const handleIncreaseAge = () => {
@@ -132,11 +132,11 @@ const handleIncreaseAge = () => {
 };
 ```
 
-Surely, it sẽ increase the age by 2? Nope. The bên trên mã is saying to React:
+Chắc chắn là nó sẽ tăng tuổi lên 2? Không. Đoạn mã trên đang nói với React:
 
-> Hey, replace the current render's `person` với an increase in age by 1. Then, replace the current render's `person` với an increase in age by 1.
+> Xin chào, hãy thay thế `person` của kết xuất hiện tại bằng mức tăng tuổi lên 1. Sau đó, thay thế `person` của kết xuất hiện tại bằng mức tăng tuổi lên 1.
 
-Notice the word "replace". Khi you pass in the giá trị to the `setState` hàm, React sẽ replace the current state với the giá trị you passed in. You might be wondering, điều gì if I want to update the state multiple times sử dụng the latest state? This is nơi the state updater hàm comes in.
+Hãy chú ý đến từ "thay thế". Khi bạn chuyển giá trị vào hàm `setState`, React sẽ thay thế trạng thái hiện tại bằng giá trị bạn đã chuyển vào. Bạn có thể thắc mắc, nếu tôi muốn cập nhật trạng thái nhiều lần bằng trạng thái mới nhất thì sao? Đây là lúc chức năng cập nhật trạng thái xuất hiện.
 
 ```jsx
 const handleIncreaseAge = () => {
@@ -145,21 +145,21 @@ const handleIncreaseAge = () => {
 };
 ```
 
-Khi a callback is passed to the `setState` hàm, it ensures that the latest state is passed in as an argument to the callback.
+Khi một lệnh gọi lại được chuyển đến hàm `setState`, nó đảm bảo rằng trạng thái mới nhất được chuyển vào dưới dạng đối số cho lệnh gọi lại.
 
-sử dụng an updater is không always necessary. Nếu you want to change the state sử dụng your previous state và you prefer consistency over verbosity, then you might consider sử dụng an updater.
+Việc sử dụng trình cập nhật không phải lúc nào cũng cần thiết. Nếu bạn muốn thay đổi trạng thái bằng trạng thái trước đó và muốn tính nhất quán hơn là chi tiết thì bạn có thể cân nhắc sử dụng trình cập nhật.
 
 <div class="lesson-note" markdown=1>
 
-#### React batches state updates
+#### React cập nhật trạng thái hàng loạt
 
-ở đó are two `setPerson` calls in the bên trên ví dụ, và từ điều gì we've đã học so far, a `setState` call triggers a component re-render. So, the component nên re-render twice, right? You sẽ say yes, nhưng React is smart. Wherever possible, React batches the state updates. ở đây, the component chỉ re-renders Sau khi. We'd encourage you to sử dụng `console.log`s to verify this.
+Có hai lệnh gọi `setPerson` trong ví dụ trên và từ những gì chúng ta đã tìm hiểu cho đến nay, lệnh gọi `setState` sẽ kích hoạt kết xuất lại thành phần. Vì vậy, thành phần này sẽ phải hiển thị lại hai lần, phải không? Bạn sẽ nói có, nhưng React rất thông minh. Bất cứ khi nào có thể, React sẽ sắp xếp các bản cập nhật trạng thái theo đợt. Ở đây, thành phần chỉ hiển thị lại một lần. Chúng tôi khuyến khích bạn sử dụng `console.log`s để xác minh điều này.
 
 </div>
 
-### Controlled các component
+### Thành phần được kiểm soát
 
-ở đó are native HTML các phần tử that maintain their own internal state. The `input` phần tử is a great ví dụ. You type vào an `input` và it updates its own giá trị on every keystroke. For many sử dụng-cases, you sẽ like to *control* the giá trị of the `input` phần tử, i.e., set its giá trị yourself. This is nơi controlled các component come in.
+Có các phần tử HTML gốc duy trì trạng thái bên trong của riêng chúng. Phần tử `input` là một ví dụ tuyệt vời. Bạn gõ vào `input` và nó sẽ cập nhật giá trị của chính nó sau mỗi lần nhấn phím. Đối với nhiều trường hợp sử dụng, bạn muốn*điều khiển*giá trị của phần tử `input`, tức là, hãy tự đặt giá trị của nó. Đây là nơi các thành phần được kiểm soát xuất hiện.
 
 ```jsx
 function CustomInput() {
@@ -175,22 +175,22 @@ function CustomInput() {
 }
 ```
 
-Thay vào đó of letting the `input` maintain its own state, we define our own state sử dụng the `useState` hook. We then set the `value` prop of the `input` to the state variable và update the state variable on every `onChange` event. Now, every time the user types something in the input, React sẽ ensure you have the latest comment, Ôn lại, hoặc post (whatever the user was typing) in `value`.
+Thay vì để `input` duy trì trạng thái của chính nó, chúng ta xác định trạng thái của chính mình bằng cách sử dụng hook `useState`. Sau đó, chúng tôi đặt prop `value` của `input` thành biến trạng thái và cập nhật biến trạng thái trên mỗi sự kiện `onChange`. Giờ đây, mỗi khi người dùng nhập nội dung nào đó vào dữ liệu đầu vào, React sẽ đảm bảo bạn có nhận xét, bài đánh giá hoặc bài đăng mới nhất (bất kể nội dung người dùng đang nhập) trong `value`.
 
-This pattern is extremely useful wherever you cần thêm control over user input, such as live validation hoặc anything else that may require you to access the latest state giá trị từ these inputs. Contrarily, yes, the `input` phần tử có thể be left uncontrolled và access its giá trị qua some khác phương thức. You don't cần to worry về it yet, as it sẽ be covered later on in the course. For bây giờ, control your các component!
+Mẫu này cực kỳ hữu ích khi bạn cần kiểm soát nhiều hơn đối với thông tin đầu vào của người dùng, chẳng hạn như xác thực trực tiếp hoặc bất kỳ điều gì khác có thể yêu cầu bạn truy cập giá trị trạng thái mới nhất từ ​​những thông tin đầu vào này. Ngược lại, có, phần tử `input` có thể không được kiểm soát và truy cập giá trị của nó thông qua một số phương thức khác. Bạn không cần phải lo lắng về điều đó vì nó sẽ được đề cập ở phần sau của khóa học. Hiện tại, hãy kiểm soát các thành phần của bạn!
 
-### Bài tập
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. đọc the following articles từ the React documentation:
+1. Đọc các bài viết sau từ tài liệu React:
 
-   - [state as a Snapshot](https://react.dev/learn/state-as-a-snapshot)
-   - [Choosing the state Structure](https://react.dev/learn/choosing-the-state-structure)
-   - [Sharing state giữa các component](https://react.dev/learn/sharing-state-between-components)
+   - [Trạng thái dưới dạng ảnh chụp nhanh](https://react.dev/learn/state-as-a-snapshot)
+   - [Lựa chọn cấu trúc nhà nước](https://react.dev/learn/choosing-the-state-structure)
+   - [Trạng thái chia sẻ giữa các thành phần](https://react.dev/learn/sharing-state-between-components)
 
-1. Update the `Person` component we've been sử dụng bên trên.
-   - Thêm two separate input fields for the đầu tiên name và the last name. Either of these nên be able to update the full name in the `h1` phần tử với every keystroke.
-   - ở đó are many ways Bạn có thể do this. Keep in mind điều gì you've đã học Trong bài học này while coding it out.
+1. Cập nhật thành phần `Person` mà chúng tôi đang sử dụng ở trên.
+   - Thêm hai trường nhập riêng biệt cho họ và tên. Một trong hai thứ này sẽ có thể cập nhật tên đầy đủ trong phần tử `h1` sau mỗi lần nhấn phím.
+   - Có nhiều cách bạn có thể làm điều này. Hãy ghi nhớ những gì bạn đã học được trong bài học này khi viết mã.
 
 </div>

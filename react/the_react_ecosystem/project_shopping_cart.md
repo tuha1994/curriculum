@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-By now you've come far from your React-baby days. You have tools like routers and testing frameworks under your belt but you still have a long way to go. Now is a great time to put these concepts to use with a classic project - a mock shopping cart.
+Đến lúc này, bạn đã đi rất xa so với những ngày đầu làm quen với React. Bạn đã nắm các công cụ như router và framework kiểm thử, nhưng vẫn còn một chặng đường dài. Đây là thời điểm tuyệt vời để áp dụng các khái niệm này vào một project kinh điển — một giỏ hàng mô phỏng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Create a new React project.
-1. Think about the component and the folder structure. How could you set up your application? Which components or functionalities do you need? It's a good idea to note this down somewhere you can easily get to and refer back and add to it to keep track.
-1. You should have three pages: a home page, a shop page, and a cart page. Let the user navigate between the pages with a navigation bar, which will be shown on all pages.
-1. To your homepage, you can add whatever you'd like! A few images or information will be totally fine; it doesn't have to be something fancy - it's to test the concepts taught thus far.
-1. On the shop page, build individual card elements for each of your products. Display an input field on it, which lets a user manually type in how many items they want to buy. Also, add an increment and decrement button next to it for fine-tuning. You can also display a title for each product as well as an "Add To Cart" button.
-1. When there are items in your cart, the cart page link in the navbar should indicate how many items are in your cart. This should update in real time as the user adds or removes items from their cart.
-1. On the cart page, you should display the items and their quantities, and allow users to increase/decrease the quantity of items in their cart (including removal if appropriate). There's no need to implement any checkout/payment system.
-1. Fetch your shop items from [FakeStore API](https://fakestoreapi.com) or something similar.
-1. Make sure to test your app thoroughly using the React Testing Library. Be careful not to test `react-router` directly, since it is an external library and the developers working on it must have tested the library already.
-1. As usual, style your application so you can show it off! You have a host of options provided already.
-1. Lastly, it's time to deploy it! Depending on what hosting solution you're using, you may need some additional configuration so that your routing is handled correctly as a single page application (SPA).
+1. Tạo một project React mới.
+1. Hãy suy nghĩ về cấu trúc component và thư mục. Bạn có thể thiết lập application như thế nào? Bạn cần những component hoặc chức năng nào? Bạn nên ghi lại ở nơi dễ truy cập để có thể xem lại và bổ sung, nhờ đó theo dõi tiến độ.
+1. Bạn nên có ba page: trang chủ, trang shop và trang giỏ hàng. Cho phép người dùng điều hướng giữa các page bằng thanh navigation hiển thị trên mọi page.
+1. Bạn có thể thêm bất cứ thứ gì mình thích vào homepage! Một vài hình ảnh hoặc thông tin là hoàn toàn ổn; không cần phải cầu kỳ — mục đích là kiểm tra các khái niệm đã học.
+1. Trên shop page, xây dựng một card riêng cho mỗi sản phẩm. Hiển thị một input để người dùng nhập số lượng muốn mua. Đồng thời thêm button tăng và giảm bên cạnh để tinh chỉnh. Bạn cũng có thể hiển thị tiêu đề cho mỗi sản phẩm cùng button "Add To Cart".
+1. Khi giỏ hàng có sản phẩm, link tới cart page trên navbar phải cho biết có bao nhiêu sản phẩm trong giỏ. Con số này phải cập nhật theo thời gian thực khi người dùng thêm hoặc xóa sản phẩm.
+1. Trên cart page, hiển thị các sản phẩm và số lượng, đồng thời cho phép người dùng tăng/giảm số lượng (bao gồm xóa nếu phù hợp). Không cần triển khai hệ thống checkout/payment.
+1. Lấy các sản phẩm shop từ [FakeStore API](https://fakestoreapi.com) hoặc API tương tự.
+1. Hãy kiểm thử app thật kỹ bằng React Testing Library. Cẩn thận không kiểm thử trực tiếp `react-router`, vì đây là thư viện bên ngoài và các developer của thư viện hẳn đã kiểm thử nó.
+1. Như thường lệ, hãy style application để có thể giới thiệu sản phẩm của mình! Bạn đã có nhiều lựa chọn được cung cấp từ trước.
+1. Cuối cùng, đã đến lúc deploy! Tùy giải pháp hosting đang dùng, bạn có thể cần cấu hình thêm để routing được xử lý đúng như một single-page application (SPA).
 
-   - **Netlify**: You need to add a `_redirects` file to the `public/` directory of your project. Copy the following to redirect all routes to the index page and let `react-router` handle the rest. You can read more about this at the [Netlify documentation on redirects](https://docs.netlify.com/routing/redirects/).
+   - **Netlify**: Bạn cần thêm file `_redirects` vào thư mục `public/` của project. Chép nội dung sau để redirect mọi route về index page và để `react-router` xử lý phần còn lại. Bạn có thể đọc thêm tại [tài liệu Netlify về redirects](https://docs.netlify.com/routing/redirects/).
 
      ```text
      /* /index.html 200
      ```
 
-   - **Vercel**: You need to add a `vercel.json` file at the root of your project and copy the following configuration. Similar to Netlify, this redirects all routes to the index page and lets `react-router` handle the rest. More information can be found here at the [Vercel documentation for SPAs and Vite](https://vercel.com/docs/frameworks/vite#using-vite-to-make-spas).
+   - **Vercel**: Bạn cần thêm file `vercel.json` ở thư mục gốc của project và chép cấu hình sau. Tương tự Netlify, cấu hình này redirect mọi route về index page và để `react-router` xử lý phần còn lại. Xem thêm tại [tài liệu Vercel về SPA và Vite](https://vercel.com/docs/frameworks/vite#using-vite-to-make-spas).
 
      ```json
      {
@@ -37,6 +37,6 @@ By now you've come far from your React-baby days. You have tools like routers an
      }
      ```
 
-   - **Cloudflare Pages**: As of the time of writing, unlike Netlify and Vercel, no additional steps are required as the default behavior will allow `react-router` to correctly handle redirects for SPAs. You can learn more about this at the [Cloudflare documentation on serving pages](https://developers.cloudflare.com/pages/platform/serving-pages/).
+   - **Cloudflare Pages**: Tại thời điểm viết bài, khác với Netlify và Vercel, không cần thêm bước nào vì hành vi mặc định cho phép `react-router` xử lý đúng redirect cho SPA. Bạn có thể tìm hiểu thêm tại [tài liệu Cloudflare về serving pages](https://developers.cloudflare.com/pages/platform/serving-pages/).
 
 </div>

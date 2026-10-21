@@ -1,43 +1,43 @@
-### Introduction
+### Giới thiệu
 
-In the previous section, you've learned about a component's lifecycle. In functional components, we've primarily used the `useEffect` hook to perform tasks throughout the lifecycle, but in class components we have to use specific lifecycle methods instead.
+In the previous section, you've đã học về a component's lifecycle. In functional các component, we've primarily được sử dụng the `useEffect` hook to perform tasks throughout the lifecycle, nhưng in class các component we have to sử dụng specific lifecycle các phương thức Thay vào đó.
 
-We'll start with a short recap of what a component's lifecycle is. There are three stages to a component's life: mounting, updating, and unmounting. Each of these have a method assigned to them within class components, which is what we are going to cover in this lesson.
+We'll start với a short recap of điều gì a component's lifecycle is. ở đó are three stages to a component's life: mounting, updating, và unmounting. mỗi of these have a phương thức assigned to them within class các component, which is điều gì we are going to cover Trong bài học này.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa a general tổng quan of topics that you sẽ tìm hiểu Trong bài học này.
 
-- Learn how to use lifecycle methods in a class component.
+- tìm hiểu cách to sử dụng lifecycle các phương thức in a class component.
 
 ### render()
 
-The render function is the most used lifecycle method, and one that you've come across in the last class components lesson. It is the only required lifecycle method in a class component. It runs on mount and update of a component. Render should be pure, meaning it doesn't modify component state, returns the same thing each time it's called (given the same inputs), and doesn't directly interact with the browser.
+The render hàm is the most được sử dụng lifecycle phương thức, và one that you've come across in the last class các component bài học. It is the chỉ required lifecycle phương thức in a class component. It runs on mount và update of a component. render nên be pure, meaning it doesn't modify component state, trả về the giống nhau thing mỗi time it's được gọi là (given the giống nhau inputs), và doesn't directly interact với the browser.
 
 ### componentDidMount()
 
-This method is run after the component is mounted (inserted in the DOM tree). You should make any calls to fetch data that is needed for the component here. It is also a good place to perform any operations that depend on the component being mounted in the DOM.
+This phương thức is run Sau khi the component is mounted (inserted in the DOM tree). Bạn nên Tạo any calls to fetch dữ liệu that is needed for the component ở đây. It is cũng a good place to perform any operations that depend on the component being mounted in the DOM.
 
 ### componentDidUpdate()
 
-This method is run after a component re-renders. Because of this, you have to be careful about what you update in this method, as if you're updating state indiscriminately, a re-render is caused, and you'll end up in an endless loop. You can avoid this issue by using conditional statements about the equality of previous and current props when updating state.
+This phương thức is run Sau khi a component re-renders. vì of this, you have to be careful về điều gì you update in this phương thức, as if you're updating state indiscriminately, a re-render is caused, và you'll end up in an endless loop. Bạn có thể avoid this issue by sử dụng conditional statements về the equality of previous và current props Khi updating state.
 
-In this method you should be updating anything that needs to be changed in response to either the DOM changing, or any states that you might want to act on upon change. For example, you'd want to refetch user data if the user changes.
+In this phương thức Bạn nên be updating anything that cần to be changed in response to either the DOM changing, hoặc any states that you might want to act on upon change. Ví dụ, you'd want to refetch user dữ liệu if the user changes.
 
 ### componentWillUnmount()
 
-This is the last lifecycle method, which is called before a component is unmounted and destroyed. In this method you should be performing cleanup actions, so that would be cancelling network requests, clearing timers, etc.
+This is the last lifecycle phương thức, which is được gọi là Trước khi a component is unmounted và destroyed. In this phương thức Bạn nên be performing cleanup actions, so that sẽ be cancelling network requests, clearing timers, etc.
 
-### How useEffect() combines the lifecycle methods
+### How useEffect() combines the lifecycle các phương thức
 
-Now that we've learnt about class lifecycle methods, it's useful to understand that the `useEffect` hook used in functional components is essentially a combination of `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`. Which method/methods it relates to varies based on its dependency array, and if it returns anything.
+Now that we've learnt về class lifecycle các phương thức, it's useful to hiểu that the `useEffect` hook được sử dụng in functional các component is essentially a combination of `componentDidMount`, `componentDidUpdate`, và `componentWillUnmount`. Which phương thức/các phương thức it relates to varies based on its dependency array, và if it trả về anything.
 
-- An empty dependency array would be equivalent to `componentDidMount`.
-- A dependency array with a value/values in it would be a combination of `componentDidMount` and `componentDidUpdate`, but only updating when dependencies change.
-- No dependency array would be equivalent to `componentDidMount` and `componentDidUpdate` combined.
-- A return function inside of a `useEffect()` hook would be equivalent to `componentWillUnmount`.
+- An empty dependency array sẽ be equivalent to `componentDidMount`.
+- A dependency array với a giá trị/các giá trị in it sẽ be a combination of `componentDidMount` và `componentDidUpdate`, nhưng chỉ updating Khi dependencies change.
+- No dependency array sẽ be equivalent to `componentDidMount` và `componentDidUpdate` combined.
+- A return hàm bên trong of a `useEffect()` hook sẽ be equivalent to `componentWillUnmount`.
 
-For example:
+Ví dụ:
 
 ```javascript
   useEffect(() => {
@@ -46,14 +46,14 @@ For example:
   }, [])
 ```
 
-In this snippet, the useEffect contains the functionality of `componentDidMount`, and `componentWillUnmount` via the return function. This example doesn't have the `componentDidUpdate` functionality because of an empty dependency array.
+In this snippet, the useEffect contains the functionality of `componentDidMount`, và `componentWillUnmount` via the return hàm. This ví dụ doesn't have the `componentDidUpdate` functionality vì of an empty dependency array.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Check out this [component lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) to see a good visual representation of a component's lifecycle methods.
+1. Kiểm tra out this [component lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) to see a good visual representation of a component's lifecycle các phương thức.
 
-1. Read through [component documentation](https://react.dev/reference/react/Component) from 'constructor(props)' up to 'componentWillUnmount()' in the Reference section, being mindful of deprecated APIs. Consider other APIs as supplementary information.
+1. đọc qua [component documentation](https://react.dev/reference/react/Component) từ 'constructor(props)' up to 'componentWillUnmount()' in the Reference section, being mindful of deprecated APIs. Consider khác APIs as supplementary information.
 
 </div>

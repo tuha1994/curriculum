@@ -1,24 +1,24 @@
-### Introduction
+### Giới thiệu
 
-Think of your favorite messaging app - Discord, Telegram, WhatsApp, Facebook Messenger, AOL Instant Messenger, etc. - and imagine what it would be like if you could build your own. This project will give you a chance to do just that. You'll be building a web app that allows users to send messages to each other.
+Hãy nghĩ về ứng dụng nhắn tin yêu thích của bạn - Discord, Telegram, WhatsApp, Facebook Messenger, AOL Instant Messenger, v.v. - và tưởng tượng sẽ như thế nào nếu bạn có thể tự xây dựng ứng dụng này. Dự án này sẽ cho bạn cơ hội để làm điều đó. Bạn sẽ xây dựng một ứng dụng web cho phép người dùng gửi tin nhắn cho nhau.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Keep in mind that the apps we mentioned earlier have entire teams of developers working on them, so you shouldn't feel the need to go overboard with features in your app. At a minimum, though, your app should include the following core functionality:
-   1. Authorization
-   1. Sending messages to another user
-   1. Customizing a user profile
-1. Spend some time planning out your app. What will the user interface look like? What will the data model look like? What libraries will you need to use?
-1. Start building your app by implementing the core functionality in your backend and frontend.
-   1. You may have realized that a REST API backend cannot handle real time updates. It is "request-response", so the server can only respond to a request. If a user sends a message to another user, a REST API cannot automatically notify the recipient as the recipient will not have requested that data. Methods for real time server-client updates (particularly when dealing with a split front/backend) have not been taught, so you are not expected to implement any in this app.
-1. Deploy your app to the web and showcase it in the submissions below as well as on our Discord. We'd love to see what you've built!
+1. Hãy nhớ rằng các ứng dụng mà chúng tôi đã đề cập trước đó có toàn bộ nhóm nhà phát triển làm việc trên chúng, vì vậy bạn không cần phải sử dụng quá nhiều tính năng trong ứng dụng của mình. Tuy nhiên, ở mức tối thiểu, ứng dụng của bạn phải bao gồm các chức năng cốt lõi sau:
+   1. Ủy quyền
+   1. Gửi tin nhắn cho người dùng khác
+   1. Tùy chỉnh hồ sơ người dùng
+1. Dành thời gian lên kế hoạch cho ứng dụng của bạn. Giao diện người dùng sẽ trông như thế nào? Mô hình dữ liệu sẽ trông như thế nào? Bạn sẽ cần sử dụng những thư viện nào?
+1. Bắt đầu xây dựng ứng dụng của bạn bằng cách triển khai chức năng cốt lõi trong phần phụ trợ và giao diện người dùng của bạn.
+   1. Bạn có thể đã nhận ra rằng phần phụ trợ API REST không thể xử lý các cập nhật theo thời gian thực. Đó là "phản hồi yêu cầu", vì vậy máy chủ chỉ có thể phản hồi yêu cầu. Nếu người dùng gửi tin nhắn cho người dùng khác, API REST không thể tự động thông báo cho người nhận vì người nhận sẽ không yêu cầu dữ liệu đó. Các phương pháp cập nhật máy chủ-máy khách theo thời gian thực (đặc biệt là khi xử lý giao diện người dùng/phụ trợ phân tách) chưa được dạy, do đó bạn không cần phải triển khai bất kỳ phương pháp nào trong ứng dụng này.
+1. Triển khai ứng dụng của bạn lên web và giới thiệu ứng dụng đó trong các nội dung gửi bên dưới cũng như trên Discord của chúng tôi. Chúng tôi rất muốn xem những gì bạn đã xây dựng!
 
-#### Extra credit
+#### Tín dụng bổ sung
 
-- Allow sending images in chat
-- Add a friends list that users can add other users to and see when someone is online (alternative: "Add a users list to show which users are currently online"; same thing except maybe a step or two less since it doesn't require adding a friend)
-- Allow users to create and send messages in group chats
+- Cho phép gửi hình ảnh trong chat
+- Thêm danh sách bạn bè mà người dùng có thể thêm người dùng khác vào và xem khi ai đó trực tuyến (cách khác: "Thêm danh sách người dùng để hiển thị những người dùng nào hiện đang trực tuyến"; điều tương tự ngoại trừ có thể ít hơn một hoặc hai bước vì nó không yêu cầu thêm bạn bè)
+- Cho phép người dùng tạo và gửi tin nhắn trong nhóm chat
 
 </div>

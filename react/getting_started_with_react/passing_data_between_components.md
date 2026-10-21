@@ -1,21 +1,21 @@
-### Introduction
+### Giới thiệu
 
-By now you should be starting to understand just how powerful React and reusable components can be, but you may be left wondering ‘How can I share information between components?’ or ‘Am I able to customize the behavior of my components each time I use them?'. In this lesson, we will learn about React props (short for properties) and how to use props to pass data between components.
+Bây giờ bạn sẽ bắt đầu hiểu React và các thành phần có thể tái sử dụng mạnh mẽ như thế nào, nhưng bạn có thể tự hỏi ‘Làm thế nào tôi có thể chia sẻ thông tin giữa các thành phần?’ hoặc ‘Tôi có thể tùy chỉnh hành vi của các thành phần của mình mỗi khi tôi sử dụng chúng không?'. Trong bài học này, chúng ta sẽ tìm hiểu về React props (viết tắt của properties) và cách sử dụng props để truyền dữ liệu giữa các component.
 
-### Lesson overview
+### Tổng Quan Bài Học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này bao gồm tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Passing data between components.
-- Using data to create customizable reusable components.
+- Truyền dữ liệu giữa các thành phần.
+- Sử dụng dữ liệu để tạo các thành phần có thể tùy chỉnh có thể tái sử dụng.
 
-### Data transfer in React
+### Truyền dữ liệu trong React
 
-In React, data is transferred from parent components to child components via props. This data transfer is unidirectional, meaning it flows in only one direction. Any changes made to this data will only affect child components using the data, and not parent or sibling components. This restriction on the flow of data gives us more explicit control over it, resulting in fewer errors in our application.
+Trong React, dữ liệu được chuyển từ các component cha sang component con thông qua các props. Việc truyền dữ liệu này là một chiều, có nghĩa là nó chỉ chảy theo một hướng. Bất kỳ thay đổi nào được thực hiện đối với dữ liệu này sẽ chỉ ảnh hưởng đến các thành phần con sử dụng dữ liệu chứ không ảnh hưởng đến các thành phần cha mẹ hoặc anh chị em ruột. Hạn chế này đối với luồng dữ liệu cho phép chúng ta kiểm soát dữ liệu rõ ràng hơn, dẫn đến ít lỗi hơn trong ứng dụng của chúng ta.
 
-### Using props in React
+### Sử dụng đạo cụ trong React
 
-Now that we know *how* data transfers between components, let's explore *why* this might be a useful feature in React. Consider the following `Button` component, which gets rendered multiple times within our `App` component.
+Bây giờ chúng ta đã biết *cách* truyền dữ liệu giữa các thành phần, hãy khám phá *tại sao* đây có thể là một tính năng hữu ích trong React. Hãy xem xét thành phần `Button` sau đây, được hiển thị nhiều lần trong thành phần `App` của chúng tôi.
 
 ```jsx
 function Button() {
@@ -35,9 +35,9 @@ export default function App() {
 }
 ```
 
-So far so good right? We have a beautiful reusable button that we can use as many times as we like, there is just one small problem.
+Cho đến nay rất tốt phải không? Chúng tôi có một nút có thể tái sử dụng đẹp mắt mà chúng tôi có thể sử dụng bao nhiêu lần tùy thích, chỉ có một vấn đề nhỏ.
 
-What if we wanted the text within our second button to be “Don’t Click Me!"? Right now, we would have to create a second button component with this different text.
+Điều gì sẽ xảy ra nếu chúng ta muốn văn bản trong nút thứ hai của mình là "Đừng nhấp vào tôi!"? Ngay bây giờ, chúng ta sẽ phải tạo một thành phần nút thứ hai với văn bản khác này.
 
 ```jsx
 function Button() {
@@ -63,9 +63,9 @@ export default function App() {
 }
 ```
 
-This may not seem like a huge deal right now, but what if we had 10 buttons? Each one having different text, fonts, colors, sizes, and any other variation you can think of. Creating a new component for each of these button variations would very quickly lead to a LOT of code duplication.
+Điều này có vẻ không phải là một vấn đề lớn ngay bây giờ, nhưng nếu chúng ta có 10 nút thì sao? Mỗi loại có văn bản, phông chữ, màu sắc, kích thước và bất kỳ biến thể nào khác mà bạn có thể nghĩ đến. Tạo một thành phần mới cho mỗi biến thể nút này sẽ rất nhanh chóng dẫn đến rất NHIỀU mã trùng lặp.
 
-Let's see how by using props, we can account for any number of variations with a *single* button component.
+Hãy xem làm thế nào bằng cách sử dụng các đạo cụ, chúng ta có thể giải thích cho bất kỳ số lượng biến thể nào với một thành phần nút *đơn*.
 
 ```jsx
 function Button(props) {
@@ -90,15 +90,15 @@ export default function App() {
 }
 ```
 
-There are a few things going on here.
+Có một vài điều đang diễn ra ở đây.
 
-- The `Button` functional component now receives `props` as a function parameter. The individual properties are then referenced within the component via `props.propertyName`.
-- When rendering the `Button` components within `App`, the `prop` values are defined on each component.
-- Inline styles are dynamically generated and then applied to the `button` element.
+- Thành phần chức năng `Button` hiện nhận `props` dưới dạng tham số chức năng. Các thuộc tính riêng lẻ sau đó được tham chiếu trong thành phần thông qua `props.propertyName`.
+- Khi kết xuất các thành phần `Button` trong `App`, các giá trị `prop` được xác định trên mỗi thành phần.
+- Các kiểu nội tuyến được tạo động và sau đó được áp dụng cho phần tử `button`.
 
-### Prop destructuring
+### Đề xuất phá hủy cấu trúc
 
-A very common pattern you will come across in React is prop [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring). Unpacking your props in the component parameters allows for more concise and readable code. Check out prop destructuring in action in the example below.
+Một mô hình rất phổ biến mà bạn sẽ gặp trong React là prop [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring). Giải nén các đạo cụ của bạn trong các tham số thành phần cho phép mã ngắn gọn và dễ đọc hơn. Hãy xem hoạt động phá hủy prop trong ví dụ dưới đây.
 
 ```jsx
 function Button({ text, color, fontSize }) {
@@ -121,9 +121,9 @@ export default function App() {
 }
 ```
 
-### Default props
+### Đạo cụ mặc định
 
-You may have noticed in the above examples that there is some repetition when defining props on the `Button` components within `App`. In order to stop repeating ourselves by re-defining these common values, and to protect our application from undefined values, we can define default parameters to set default values for props.
+Bạn có thể nhận thấy trong các ví dụ trên rằng có một số sự lặp lại khi xác định đạo cụ trên các thành phần `Button` trong `App`. Để ngừng lặp lại chính mình bằng cách xác định lại các giá trị chung này và để bảo vệ ứng dụng của chúng ta khỏi các giá trị không xác định, chúng ta có thể xác định các tham số mặc định để đặt giá trị mặc định cho đạo cụ.
 
 ```jsx
 function Button({ text = "Click Me!", color = "blue", fontSize = 12 }) {
@@ -146,9 +146,9 @@ export default function App() {
 }
 ```
 
-As you can see, we now only need to supply prop values to `Button` when rendering within `App` if they differ from the default values defined in the function parameters.
+Như bạn có thể thấy, bây giờ chúng ta chỉ cần cung cấp các giá trị prop cho `Button` khi kết xuất trong `App` nếu chúng khác với các giá trị mặc định được xác định trong các tham số hàm.
 
-You may also come across the use of `defaultProps` in some codebases. This was traditionally used to set default values for props, particularly in class components. Here’s how it looks:
+Bạn cũng có thể bắt gặp việc sử dụng `defaultProps` trong một số cơ sở mã. Theo truyền thống, giá trị này được sử dụng để đặt các giá trị mặc định cho đạo cụ, đặc biệt là trong các thành phần lớp. Dưới đây là giao diện:
 
 ```jsx
 function Button({ text, color, fontSize }) {
@@ -177,11 +177,11 @@ export default function App() {
 }
 ```
 
-While React no longer accepts the latter approach for function components, understanding `defaultProps` is still useful, especially when working with class components or older codebases.
+Mặc dù React không còn chấp nhận cách tiếp cận thứ hai cho các thành phần chức năng, nhưng việc hiểu `defaultProps` vẫn hữu ích, đặc biệt là khi làm việc với các thành phần lớp hoặc các cơ sở mã cũ hơn.
 
-### Functions as props
+### Chức năng làm đạo cụ
 
-In addition to passing variables through to child components as props, you can also pass through functions. Consider the following example.
+Ngoài việc chuyển các biến thông qua các thành phần con làm đạo cụ, bạn cũng có thể chuyển qua các hàm. Hãy xem ví dụ sau.
 
 ```jsx
 function Button({ text = "Click Me!", color = "blue", fontSize = 12, handleClick }) {
@@ -210,15 +210,15 @@ export default function App() {
 }
 ```
 
-- The function `handleButtonClick` is defined in the parent component.
-- A reference to this function is passed through as the value for the `handleClick` prop on the `Button` component.
-- The function is received in `Button` and is called on a click event.
+- Hàm `handleButtonClick` được xác định trong thành phần cha.
+- Tham chiếu đến hàm này được truyền qua dưới dạng giá trị cho prop `handleClick` trên thành phần `Button`.
+- Hàm được nhận trong `Button` và được gọi trên một sự kiện nhấp chuột.
 
-There are a few things to note here.
+Có một vài điều cần lưu ý ở đây.
 
-- We only pass through a reference to `handleButtonClick`, i.e. we do not include parenthesis when passing the function to `Button`. If we were to do something like `handleClick={handleButtonClick()}` then the function would be called as the button renders.
+- Chúng tôi chỉ chuyển qua tham chiếu đến `handleButtonClick`, tức là chúng tôi không bao gồm dấu ngoặc đơn khi chuyển hàm sang `Button`. Nếu chúng ta làm điều gì đó như `handleClick={handleButtonClick()}` thì chức năng sẽ được gọi là kết xuất nút.
 
-- Every `Button` calling this function will navigate to the same page. We can refactor the function and supply an argument within `Button` to customize this functionality.
+- Mỗi `Button` gọi hàm này sẽ điều hướng đến cùng một trang. Chúng ta có thể cấu trúc lại chức năng và cung cấp một đối số trong `Button` để tùy chỉnh chức năng này.
 
 ```jsx
 function Button({ text = "Click Me!", color = "blue", fontSize = 12, handleClick }) {
@@ -247,22 +247,22 @@ export default function App() {
 }
 ```
 
-When supplying an argument to the function, we can't just write `onClick={handleClick('https://www.theodinproject.com')}`, and instead must attach a reference to an anonymous function which then calls the function with the argument. Like the previous example, this is to prevent the function being called during the render.
+Khi cung cấp một đối số cho hàm, chúng ta không thể chỉ viết `onClick={handleClick('https://www.theodinproject.com')}`, và thay vào đó phải đính kèm một tham chiếu đến một hàm ẩn danh mà sau đó gọi hàm với đối số. Giống như ví dụ trước, điều này là để ngăn chặn chức năng được gọi trong quá trình kết xuất.
 
 <div class="lesson-note" markdown="1" >
 
-#### Alternative implementation with curried functions
+#### Thực hiện thay thế với các chức năng cà ri
 
-There are also other ways to implement this behavior. Hint: [curried functions!](https://javascript.info/currying-partials)
+Ngoài ra còn có các cách khác để thực hiện hành vi này. Gợi ý: [chức năng curried!](https://javascript.info/currying-partials)
 
 </div>
 
-Hopefully, you can now understand from the examples in this lesson just how incredibly useful props are for writing reusable and customizable React components. However, we are still only scratching the surface of what React can offer us. Continue on to the next section to learn even more!
+Hy vọng rằng, bây giờ bạn có thể hiểu từ các ví dụ trong bài học này về cách các đạo cụ cực kỳ hữu ích để viết các thành phần React có thể tái sử dụng và có thể tùy chỉnh. Tuy nhiên, chúng tôi vẫn chỉ mới làm sáng tỏ những gì React có thể cung cấp cho chúng tôi. Tiếp tục đến phần tiếp theo để tìm hiểu thêm!
 
-### Assignment
+### Nhiệm vụ
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through the React docs on [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component). Make sure to edit the code examples and experiment with different prop values.
+1. Đọc qua các tài liệu React về [Chuyển đạo cụ cho Component](https://react.dev/learn/passing-props-to-a-component). Đảm bảo chỉnh sửa các ví dụ mã và thử nghiệm với các giá trị prop khác nhau.
 
 </div>

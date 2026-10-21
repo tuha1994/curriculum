@@ -1,32 +1,32 @@
-### Introduction
+### Giới thiệu
 
-All the components so far have been functional in style and syntax. This is common now, but you will see a different `class` based syntax too. In this lesson, we explore how a class-based component is written and how concepts like props and state are used in one.
+All the các component so far have been functional in style và syntax. This is common bây giờ, nhưng you sẽ see a khác `class` based syntax too. Trong bài học này, we explore cách a class-based component is written và cách concepts like props và state are được sử dụng in one.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa a general tổng quan of topics that you sẽ tìm hiểu Trong bài học này.
 
-- How class components are written.
-- How to use props and state in class components.
-- Uses of the `this` keyword in class components.
+- How class các component are written.
+- How to sử dụng props và state in class các component.
+- Uses of the `this` keyword in class các component.
 
 ### Historical React component patterns
 
-In your previous lessons, you have already been introduced to functional components, and the basic patterns in which components get written nowadays. However, React components did not look this way when React was introduced.
+In your previous lessons, you have already been introduced to functional các component, và the cơ bản patterns in which các component get written nowadays. Tuy nhiên, React các component did không look this way Khi React was introduced.
 
-If you look into any older React codebase, you'll notice a lot of classes. These are known as class-based components. Prior to February 2019, functional components were also called state-less, as there was no way to manage state in them. This was changed when hooks were introduced, leading to less verbose and 'neater' components.
+Nếu you look vào any older React codebase, you'll notice a lot of classes. These are known as component dựa trên class. Prior to February 2019, functional các component were cũng được gọi là state-ít hơn, as ở đó was no way to manage state in them. This was changed Khi hooks were introduced, leading to ít hơn verbose và 'neater' các component.
 
-In your career, chances are, you will be dealing with legacy code, so there will be days where you would be dealing with class components. Let's peek into the intricacies of a class-based component, and how they work.
+In your career, chances are, you sẽ be dealing với legacy mã, so ở đó sẽ be days nơi you sẽ be dealing với class các component. Hãy  peek vào the intricacies of a class-based component, và cách they work.
 
 ### Building a class component
 
-As we already know about functional components, let us build a class-based component from a functional one. Usually, you will want to divide the contents of a component, like the one we use, into smaller, reusable components, but for the purposes of this exercise, we will stick to everything in one component.
+As we already know về functional các component, let us Xây dựng a class-based component từ a functional one. Usually, you sẽ want to divide the contents of a component, like the one we sử dụng, vào smaller, reusable các component, nhưng for the purposes of this exercise, chúng ta sẽ stick to everything in one component.
 
-Firstly, go and fork then clone our [react-examples repo](https://github.com/TheOdinProject/react-examples) if you have not already done so. `cd` into the `class-components/` directory, install dependencies with `npm install` then open the dev server with `npm run dev`. You'll see we have two versions of the same feature - one made with a functional component, the other with a class component. Let's start by looking at the functional component inside `src/components/FunctionalInput.jsx`. It's a solid chunk of code so take a while, sip some water, and read it a couple of times.
+Firstly, go và fork then clone our [react-các ví dụ repo](https://github.com/TheOdinProject/react-examples) if you have không already done so. `cd` vào the `class-components/` directory, install dependencies với `npm install` then open the dev server với `npm run dev`. You'll see we have two versions of the giống nhau feature - one made với a functional component, the khác với a class component. Hãy  start by looking at the functional component bên trong `src/components/FunctionalInput.jsx`. It's a solid chunk of mã so take a while, sip some water, và đọc it a couple of times.
 
 #### The start of a class-based component
 
-You'll see in `src/components/ClassInput.jsx` that we have a completed class-based version of it. Let's take a few steps back and walk through step by step how it was recreated from the functional version. The first thing it should have is, *drumroll*, a class! But it cannot be just another class, it will need to have certain properties that qualifies it as a React component. React provides us with all those properties on a class called `Component`, and we can write our components by extending the given class, as shown below:
+You'll see in `src/components/ClassInput.jsx` that we have a completed class-based version of it. Hãy  take a few steps back và walk qua step by step cách it was recreated từ the functional version. The đầu tiên thing it nên have is, *drumroll*, a class! But it không thể be just another class, it sẽ cần to have certain properties that qualifies it as a React component. React provides us với tất cả those properties on a class được gọi là `Component`, và chúng ta có thể viết our các component by extending the given class, as shown below:
 
 ```jsx
 import { Component } from "react";
@@ -38,13 +38,13 @@ class ClassInput extends Component {
 export default ClassInput;
 ```
 
-#### The use of a constructor and props
+#### The sử dụng of a constructor và props
 
-A class is generally incomplete without a constructor, so let's add one.
+A class is generally incomplete không có a constructor, so Hãy  add one.
 
-The props passed into this component are passed to the class's `constructor`. This, along with the `super` method, allows you to use the props in the context of `this`, which, in *this* case, refers to the component. If you’re really curious about what `super` actually does, check out the [MDN docs on the `super` keyword](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super).
+The props passed vào this component are passed to the class's `constructor`. This, along với the `super` phương thức, cho phép you to sử dụng the props in the context of `this`, which, in *this* case, refers to the component. Nếu you’re really curious về điều gì `super` actually does, Kiểm tra out the [MDN docs on the `super` keyword](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super).
 
-If your component doesn't have any props, it is fine to leave the `constructor` and the `super` with no arguments.
+Nếu your component doesn't have any props, it is fine to leave the `constructor` và the `super` với no arguments.
 
 ```jsx
 import { Component } from "react";
@@ -59,11 +59,11 @@ class ClassInput extends Component {
 export default ClassInput;
 ```
 
-#### How you can render JSX
+#### How Bạn có thể render JSX
 
-Now that the props can be accessed inside of the class component, the next issue is to find a way to render the JSX.
+Now that the props có thể be accessed bên trong of the class component, the tiếp theo issue is to find a way to render the JSX.
 
-Well, you can do that by returning your JSX from a `render` method! You can use the props that you declared in the constructor too!
+Well, Bạn có thể do that by returning your JSX từ a `render` phương thức! Bạn có thể sử dụng the props that you declared in the constructor too!
 
 ```jsx
 import { Component } from "react";
@@ -95,11 +95,11 @@ class ClassInput extends Component {
 export default ClassInput;
 ```
 
-Notice how the props get provided by `this`, unlike the functional component that we saw, initially?
+Notice cách the props get provided by `this`, unlike the functional component that we saw, initially?
 
-#### How to use state and manage context
+#### How to sử dụng state và manage context
 
-Next comes the state. In a class-based component, the state gets initialized as a part of the constructor.
+tiếp theo comes the state. In a class-based component, the state gets initialized as a phần of the constructor.
 
 ```jsx
 import { Component } from "react";
@@ -134,9 +134,9 @@ class ClassInput extends Component {
 export default ClassInput;
 ```
 
-The pre-defined `setState` method can be used to set it again! Remember, state must not be mutated, so a new state must be set, every time.
+The pre-defined `setState` phương thức có thể be được sử dụng to set it again! Remember, state phải không be mutated, so a mới state phải be set, every time.
 
-Now, it is time to finish it off by adding all the functionality! It is nearly the same, except for a single difference. Whenever a method is declared, you must `bind` the `this` of the method to that of the class in order to work with it, as by default, the methods in a class are not bound to it. Usually, you do this inside the constructor and not at runtime [in the render method]. Alternatively, if you define your methods using the arrow function syntax, `this` is automatically bound to the class instance, and you can skip binding it in the constructor.
+Now, it is time to finish it off by adding tất cả the functionality! It is nearly the giống nhau, except for a single difference. Whenever a phương thức is declared, you phải `bind` the `this` of the phương thức to that of the class in order to work với it, as by default, the các phương thức in a class are không bound to it. Usually, you do this bên trong the constructor và không at runtime [in the render phương thức]. Alternatively, if you define your các phương thức sử dụng the arrow hàm syntax, `this` is automatically bound to the class instance, và Bạn có thể skip binding it in the constructor.
 
 ```jsx
 import { Component } from "react";
@@ -198,16 +198,16 @@ class ClassInput extends Component {
 export default ClassInput;
 ```
 
-And there we go, we have successfully made a class-based component as easy as that!
+And ở đó we go, we have successfully made a class-based component as easy as that!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Since we have a completed class-based component, let's add additional functionality to it.
+Since we have a completed class-based component, Hãy  add additional functionality to it.
 
-1. Implement a delete button for each task. The delete button should remove that specific task from the state array, thus deleting the task itself! Styling isn't a priority at this moment, but the button tag should be styled by default.
-1. Implement a new class component, `Count`, that displays the number of todos at any given time. Render it somewhere within the `ClassInput` component.
-1. Implement an edit button for each task. It should replace the todo with an input field, and change the button itself to 'Resubmit', so the edits can be saved. This is a comparatively harder task, kudos for when you finish it!
+1. Implement a delete button for mỗi task. The delete button nên Xóa that specific task từ the state array, thus deleting the task itself! Styling isn't a priority at this moment, nhưng the button tag nên be styled by default.
+1. Implement a mới class component, `Count`, that displays the number of todos at any given time. render it somewhere within the `ClassInput` component.
+1. Implement an edit button for mỗi task. It nên replace the todo với an input field, và change the button itself to 'Resubmit', so the edits có thể be saved. This is a comparatively harder task, kudos for Khi you finish it!
 
 </div>

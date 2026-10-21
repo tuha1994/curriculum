@@ -1,42 +1,42 @@
-### Introduction
+### Giới thiệu
 
 Congratulations 🎉, React has been conquered! You are officially a React guru. Take a moment to appreciate what you've learned throughout this course and give yourself a round of applause. With React under your tool belt, you are well-equipped to tackle complex projects confidently.
 
-However, your React learning (or learning in general) doesn’t stop here. As proponents of a growth mindset, we believe there’s so much more to explore and learn.
+Tuy nhiên, việc học React (hay việc học nói chung) không dừng lại ở đây. Là những người ủng hộ tư duy phát triển, chúng tôi tin rằng vẫn còn rất nhiều điều để khám phá và học hỏi.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài này.
 
-- Find out what next steps you should take.
-- Learn what benefits being able to build a backend brings.
+- Tìm hiểu những bước tiếp theo bạn nên thực hiện.
+- Tìm hiểu những lợi ích của việc có thể xây dựng backend.
 
-### What’s next
+### Tiếp theo là gì?
 
-After completing The Odin Project, you may be interested in learning about React metaframeworks which build on top of React to allow developers to make full use of React's latest features such as server components, as well as providing first class support for things like routing and data fetching. Completing the [Databases course](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) and [Node.js course](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs) will give you the perfect foundation for diving deeper into this stuff.
+Sau khi hoàn thành The Odin Project, bạn có thể quan tâm đến các React metaframework xây dựng trên React, cho phép developer tận dụng đầy đủ những tính năng mới nhất như server component, đồng thời hỗ trợ hạng nhất cho routing và lấy dữ liệu. Hoàn thành [khóa Databases](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) và [khóa Node.js](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs) sẽ tạo nền tảng lý tưởng để bạn tìm hiểu sâu hơn.
 
-You can also keep up with the future of React by following the [React RFC GitHub repository](https://github.com/reactjs/rfcs), which is where new features and changes to React are proposed, discussed, and eventually accepted or rejected. You may also be interested in reading the [official React blog](https://react.dev/blog), which will also keep you up-to-date on the latest features.
+Bạn cũng có thể theo dõi tương lai của React bằng cách theo dõi [repository React RFC trên GitHub](https://github.com/reactjs/rfcs), nơi các tính năng mới và thay đổi đối với React được đề xuất, thảo luận rồi chấp nhận hoặc từ chối. Bạn cũng có thể đọc [blog React chính thức](https://react.dev/blog) để cập nhật các tính năng mới nhất.
 
-You're at a point in your React journey where you can begin learning about design patterns and architecture. [patterns.dev](https://www.patterns.dev/) is an exceptional resource that will help you build better React apps by leveraging powerful patterns. They are worth a bookmark!
+Bạn đã đến lúc có thể bắt đầu học về design pattern và architecture trong hành trình với React. [patterns.dev](https://www.patterns.dev/) là một tài nguyên xuất sắc, giúp bạn xây dựng React app tốt hơn bằng cách tận dụng các pattern mạnh mẽ. Rất đáng để lưu bookmark!
 
-### Using a backend
+### Dùng backend
 
-As you've seen, you can get your apps to do a lot of pretty cool things already, just using client-side JavaScript. You may have noticed, though, that there is still an important piece of the puzzle missing: unless you use [Local Storage](http://coding.smashingmagazine.com/2010/10/11/local-storage-and-how-to-use-it/), your app 'forgets' the user's preferences, as well as any other changes made, as soon as the page gets reloaded.
+Như bạn đã thấy, chỉ với JavaScript phía máy khách, app đã có thể làm được nhiều điều khá thú vị. Tuy nhiên, có lẽ bạn cũng nhận ra một mảnh ghép quan trọng còn thiếu: nếu không dùng [Local Storage](http://coding.smashingmagazine.com/2010/10/11/local-storage-and-how-to-use-it/), app sẽ “quên” tùy chọn của người dùng cùng mọi thay đổi khác ngay khi page được reload.
 
-While Local Storage is great, it's not ideal: it only stores data on the computer from which the user is accessing the page. This approach does not allow for the app to 'remember' anything when the same user tries to access it again from a different device. For that, you're going to need a real backend, which you'll learn all about next in our [Databases](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) course. With a backend, we'll be able to add a bunch of cool features to your apps like user authentication, data persistence, and more.
+Local Storage rất hữu ích nhưng không lý tưởng: nó chỉ lưu dữ liệu trên máy tính mà người dùng dùng để truy cập page. Cách này không cho phép app “nhớ” điều gì khi cùng người dùng truy cập lại từ thiết bị khác. Để làm vậy, bạn cần một backend thực sự, và sẽ học tất cả về nó trong [khóa Databases](https://www.theodinproject.com/paths/full-stack-javascript/courses/databases) tiếp theo. Với backend, chúng ta có thể thêm nhiều tính năng thú vị như xác thực người dùng, lưu trữ dữ liệu lâu dài và hơn thế nữa.
 
-You have come very far and you should be proud of yourself for getting to this point.
+Bạn đã đi rất xa và nên tự hào vì đã đến được đây.
 
-### Contribute
+### Đóng góp
 
-The Odin Project wouldn’t exist if not for contributors sharing their precious time and resources. We'd love to hear your ideas and suggestions to improve the React course. You can share your thoughts over on our Discord or better yet, open an issue on the [The Odin Project's curriculum repository](https://github.com/TheOdinProject/curriculum/issues).
+The Odin Project sẽ không tồn tại nếu không có những contributor chia sẻ thời gian và nguồn lực quý giá. Chúng tôi rất muốn nghe ý tưởng và đề xuất của bạn để cải thiện khóa React. Bạn có thể chia sẻ suy nghĩ trên Discord hoặc tốt hơn nữa là mở issue trong [repository curriculum của The Odin Project](https://github.com/TheOdinProject/curriculum/issues).
 
-Good luck and happy learning!
+Chúc bạn may mắn và học vui vẻ!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Before you move onto the next section, fill out this very short [React course feedback survey](https://docs.google.com/forms/d/e/1FAIpQLSdj_tNMp0LEz3ZLPqYcF67V11tX_CCJP3CTictPZzZ6XQm2Gw/viewform?usp=sf_link) to add your input and experience with the section. This helps us improve the section as well as the overall course and is greatly appreciated.
+1. Trước khi chuyển sang phần tiếp theo, hãy điền [khảo sát phản hồi khóa React](https://docs.google.com/forms/d/e/1FAIpQLSdj_tNMp0LEz3ZLPqYcF67V11tX_CCJP3CTictPZzZ6XQm2Gw/viewform?usp=sf_link) rất ngắn này để chia sẻ ý kiến và trải nghiệm của bạn về phần học. Điều này giúp chúng tôi cải thiện phần học cũng như toàn bộ khóa học, và chúng tôi rất cảm kích.
 
 </div>

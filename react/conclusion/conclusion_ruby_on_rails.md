@@ -1,35 +1,35 @@
-### Introduction
+### Giới thiệu
 
-Congratulations 🎉, React has been conquered! You are officially a React guru. Take a moment to appreciate what you've learned throughout this course and give yourself a round of applause. With React under your tool belt, you are well-equipped to tackle complex projects confidently.
+Chúc mừng 🎉, bạn đã chinh phục React! Giờ đây bạn chính thức là một React guru. Hãy dành chút thời gian trân trọng những gì đã học trong khóa này và tự vỗ tay khen mình. Với React trong bộ công cụ, bạn đã được trang bị tốt để tự tin xử lý các project phức tạp.
 
-However, your React learning (or learning in general) doesn’t stop here. As proponents of a growth mindset, we believe there’s so much more to explore and learn.
+Tuy nhiên, việc học React (hay việc học nói chung) không dừng lại ở đây. Là những người ủng hộ tư duy phát triển, chúng tôi tin rằng vẫn còn rất nhiều điều để khám phá và học hỏi.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài này.
 
-- Find out what next steps you should take.
+- Tìm hiểu những bước tiếp theo bạn nên thực hiện.
 
-### What’s next
+### Tiếp theo là gì?
 
-You may be interested in learning about React metaframeworks which build on top of React to allow developers to make full use of React's latest features such as server components, as well as providing first class support for things like routing and data fetching, such as [Next.js](https://nextjs.org/learn?utm_source=next-site&utm_medium=navbar).
+Bạn có thể quan tâm đến các React metaframework xây dựng trên React, cho phép developer tận dụng đầy đủ những tính năng mới nhất như server component, đồng thời hỗ trợ hạng nhất cho routing và lấy dữ liệu, chẳng hạn [Next.js](https://nextjs.org/learn?utm_source=next-site&utm_medium=navbar).
 
-You can also keep up with the future of React by following the [React RFC GitHub repository](https://github.com/reactjs/rfcs), which is where new features and changes to React are proposed, discussed, and eventually accepted or rejected. You may also be interested in reading the [official React blog](https://react.dev/blog), which will also keep you up-to-date on the latest features.
+Bạn cũng có thể theo dõi tương lai của React bằng cách theo dõi [repository React RFC trên GitHub](https://github.com/reactjs/rfcs), nơi các tính năng mới và thay đổi đối với React được đề xuất, thảo luận rồi chấp nhận hoặc từ chối. Bạn cũng có thể đọc [blog React chính thức](https://react.dev/blog) để cập nhật các tính năng mới nhất.
 
-You're at a point in your React journey where you can begin learning about design patterns and architecture. [patterns.dev](https://www.patterns.dev/) is an exceptional resource that will help you build better React apps by leveraging powerful patterns. They are worth a bookmark!
+Bạn đã đến lúc có thể bắt đầu học về design pattern và architecture trong hành trình với React. [patterns.dev](https://www.patterns.dev/) là một tài nguyên xuất sắc, giúp bạn xây dựng React app tốt hơn bằng cách tận dụng các pattern mạnh mẽ. Rất đáng để lưu bookmark!
 
-You have come very far and you should be proud of yourself for getting to this point.
+Bạn đã đi rất xa và nên tự hào vì đã đến được đây.
 
-### Contribute
+### Đóng góp
 
-The Odin Project wouldn’t exist if not for contributors sharing their precious time and resources. We'd love to hear your ideas and suggestions to improve the React course. You can share your thoughts over on our Discord or better yet, open an issue on the [The Odin Project's curriculum repository](https://github.com/TheOdinProject/curriculum/issues).
+The Odin Project sẽ không tồn tại nếu không có những contributor chia sẻ thời gian và nguồn lực quý giá. Chúng tôi rất muốn nghe ý tưởng và đề xuất của bạn để cải thiện khóa React. Bạn có thể chia sẻ suy nghĩ trên Discord hoặc tốt hơn nữa là mở issue trong [repository curriculum của The Odin Project](https://github.com/TheOdinProject/curriculum/issues).
 
-Good luck and happy learning!
+Chúc bạn may mắn và học vui vẻ!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Before you move onto the next section fill out this very short [React course feedback survey](https://docs.google.com/forms/d/e/1FAIpQLSdj_tNMp0LEz3ZLPqYcF67V11tX_CCJP3CTictPZzZ6XQm2Gw/viewform?usp=sf_link) to add your input and experience with the section. This helps us improve the section as well as the overall course and is greatly appreciated.
+1. Trước khi chuyển sang phần tiếp theo, hãy điền [khảo sát phản hồi khóa React](https://docs.google.com/forms/d/e/1FAIpQLSdj_tNMp0LEz3ZLPqYcF67V11tX_CCJP3CTictPZzZ6XQm2Gw/viewform?usp=sf_link) rất ngắn này để chia sẻ ý kiến và trải nghiệm của bạn về phần học. Điều này giúp chúng tôi cải thiện phần học cũng như toàn bộ khóa học, và chúng tôi rất cảm kích.
 
 </div>

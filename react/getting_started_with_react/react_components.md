@@ -1,33 +1,33 @@
-### Introduction
+### Giới thiệu
 
-In this lesson we'll be going over the basics of React components - what they do, and how to write them. Make sure to use the project you set up in the previous lesson, but try not to copy and paste any code while you're coding along.
+Trong bài học này, chúng ta sẽ tìm hiểu các khái niệm cơ bản về các thành phần React - chúng hoạt động như thế nào và cách viết chúng. Đảm bảo sử dụng dự án bạn đã thiết lập trong bài học trước, nhưng cố gắng không sao chép và dán bất kỳ mã nào trong khi bạn đang viết mã.
 
-### Lesson overview
+### Tổng Quan Bài Học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này bao gồm tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Learn about React components.
-- Understand how to create components.
-- Describe where components reside in a React project.
+- Tìm hiểu về các thành phần React.
+- Hiểu cách tạo các thành phần.
+- Mô tả nơi các thành phần cư trú trong một dự án React.
 
-### What are components?
+### Các thành phần là gì?
 
-The beauty of React is that it allows you to break a UI (User Interface) down into independent reusable chunks, which we will refer to as components. The following picture should give you an idea of how to do that when building a very basic app.
+Ưu điểm của React là nó cho phép bạn chia nhỏ giao diện người dùng (Giao diện người dùng) thành các phần có thể tái sử dụng độc lập, mà chúng ta sẽ gọi là các thành phần. Hình ảnh sau đây sẽ cung cấp cho bạn ý tưởng về cách thực hiện điều đó khi xây dựng một ứng dụng rất cơ bản.
 
 ![Component Example](https://cdn.statically.io/gh/TheOdinProject/curriculum/91485eec76445d86b29d35894e83324e2967f2fb/react/imgs/00.png)
 
-For example, this website could be broken into the following components:
+Ví dụ: trang web này có thể được chia thành các thành phần sau:
 
-- `App`, which represents your main application and will be the parent of all other components.
-- `Navbar`, which will be the navigation bar.
-- `MainArticle`, which will be the component that renders your main content.
-- `NewsletterForm`, which is a form that lets a user input their email to receive the weekly newsletter.
+- `App`, đại diện cho ứng dụng chính của bạn và sẽ là thành phần chính của tất cả các thành phần khác.
+- `Navbar`, sẽ là thanh điều hướng.
+- `MainArticle`, sẽ là thành phần hiển thị nội dung chính của bạn.
+- `NewsletterForm`, là một biểu mẫu cho phép người dùng nhập email của họ để nhận bản tin hàng tuần.
 
-Think of these reusable chunks as JavaScript functions which can take some kind of input and return a React element.
+Hãy nghĩ về những khối có thể tái sử dụng này như các hàm JavaScript có thể lấy một số loại đầu vào và trả về một phần tử React.
 
-### How to create components
+### Cách tạo thành phần
 
-To get the feel of working with components, we're going to practice creating functional components. What are functional components? JavaScript functions! Let's have a look.
+Để có được cảm giác làm việc với các thành phần, chúng ta sẽ thực hành tạo ra các thành phần chức năng. Các thành phần chức năng là gì? Các hàm JavaScript! Chúng ta hãy xem.
 
 ```jsx
 function Greeting() {
@@ -35,17 +35,17 @@ function Greeting() {
 }
 ```
 
-This might look mostly familiar to you - it's a JavaScript function, which returns JSX. Open up the project you were working on, create a new file named `Greeting.jsx`, and in that file write your own handmade functional component. Name it whatever you wish, and have it return whatever JSX you wish.
+Điều này có thể trông gần như quen thuộc với bạn - đó là một hàm JavaScript, trả về JSX. Mở dự án bạn đang thực hiện, tạo một tệp mới có tên `Greeting.jsx` và trong tệp đó viết thành phần chức năng thủ công của riêng bạn. Đặt tên cho nó bất cứ điều gì bạn muốn, và yêu cầu nó trả lại bất cứ JSX nào bạn muốn.
 
-Are you done? Check the naming of your function! Is it capitalized? Keep this key difference in mind. **React components must be capitalized** or they will not function as expected, which is why we capitalized `Greeting()`. More about that later.
+Bạn đã hoàn tất chưa? Hãy kiểm tra việc đặt tên cho chức năng của bạn! Nó có được viết hoa không? Hãy ghi nhớ sự khác biệt chính này. ** Các thành phần React phải được viết hoa** nếu không chúng sẽ không hoạt động như mong đợi, đó là lý do tại sao chúng tôi viết hoa `Greeting()`. Tìm hiểu thêm về điều đó sau.
 
-#### What is HTML doing in my JavaScript?
+#### HTML đang làm gì trong JavaScript của tôi?
 
-It's JSX. It looks jarring at first, but soon we'll realize how cool it is. We'll learn all about it in the upcoming lessons!
+Đó là JSX. Lúc đầu nó có vẻ chói tai, nhưng chẳng mấy chốc chúng ta sẽ nhận ra nó tuyệt vời như thế nào. Chúng ta sẽ tìm hiểu tất cả về nó trong các bài học sắp tới!
 
-### Where do components live?
+### Các thành phần sống ở đâu?
 
-So remember how our component is just hanging out in its own dedicated file? This makes it independent from the rest of the codebase! That said, while independence is great, we do want the component to use functionality created elsewhere, and to share itself with other components. How can we do this? `import`ing and `export`ing! For a very long time in React development, it was necessary to `import` React in your JavaScript files that used React components, but since React v17.0 it is no longer required. Let's `export` our newly created component so that parent components can use it as a child throughout your project.
+Vì vậy, hãy nhớ làm thế nào thành phần của chúng tôi chỉ là treo trong tập tin chuyên dụng của riêng mình? Điều này làm cho nó độc lập với phần còn lại của cơ sở mã! Điều đó nói rằng, trong khi tính độc lập là rất tốt, chúng tôi muốn thành phần sử dụng chức năng được tạo ở nơi khác và chia sẻ chính nó với các thành phần khác. Chúng ta có thể làm điều này như thế nào? `import`ing và `export`ing! Trong một thời gian rất dài phát triển React, `import` React trong các tệp JavaScript của bạn sử dụng các thành phần React, nhưng kể từ React v17.0, nó không còn cần thiết nữa. Hãy `export` thành phần mới được tạo của chúng tôi để các thành phần cha có thể sử dụng nó như một đứa trẻ trong suốt dự án của bạn.
 
 ```jsx
 function Greeting() {
@@ -55,7 +55,7 @@ function Greeting() {
 export default Greeting;
 ```
 
-Are we done? Well let's think about this - we've declared our component, and exported it, but does `main.jsx` know about it yet? Nope! Let's fix that. Let's look at `main.jsx`, we can see that `render()` is rendering the `App` component. Let's replace that `App` component with our newly created greeting, which we'll have to make sure is first imported properly. The end result should look something like this:
+Chúng ta đã xong chưa? Hãy suy nghĩ về điều này - chúng ta đã khai báo thành phần của mình và xuất nó, nhưng `main.jsx` có biết về nó chưa? Không! Hãy khắc phục điều đó. Hãy nhìn vào `main.jsx`, chúng ta có thể thấy rằng `render()` đang hiển thị thành phần `App`. Hãy thay thế thành phần `App` đó bằng lời chào mới được tạo của chúng tôi, chúng tôi sẽ phải đảm bảo lần đầu tiên được nhập đúng cách. Kết quả cuối cùng sẽ trông như thế này:
 
 ```jsx
 import { StrictMode } from "react";
@@ -71,15 +71,15 @@ createRoot(document.getElementById("root")).render(
 );
 ```
 
-Remember that `<Greeting />` should be capitalized! Try using lower case for the import, function name and component and see what happens! When the JSX is parsed, React uses the capitalization to tell the difference between an HTML tag and an instance of a React component. `<greeting />` would be interpreted as a normal HTML element with no special meaning, instead of your shiny new React component.
+Hãy nhớ rằng `<Greeting />` nên được viết hoa! Hãy thử sử dụng chữ thường cho việc nhập, tên hàm và thành phần và xem điều gì sẽ xảy ra! Khi JSX được phân tích cú pháp, React sử dụng cách viết hoa để cho biết sự khác biệt giữa thẻ HTML và phiên bản của thành phần React. `<greeting />` sẽ được hiểu là một phần tử HTML bình thường không có ý nghĩa đặc biệt, thay vì thành phần React mới sáng bóng của bạn.
 
-Otherwise, just like that, you've successfully imported and used your first custom-made component, congratulations!
+Nếu không, chỉ cần như vậy, bạn đã nhập thành công và sử dụng thành phần tùy chỉnh đầu tiên của mình, xin chúc mừng!
 
-### Assignment
+### Nhiệm vụ
 
 <div class="lesson-content__panel" markdown="1">
 
-1. It's time to create some new components! Use the same project, but play around with it, try displaying something like your favorite food.
+1. Đã đến lúc tạo ra một số thành phần mới! Sử dụng cùng một dự án, nhưng chơi xung quanh với nó, hãy thử trưng bày một cái gì đó giống như món ăn yêu thích của bạn.
     - While components normally get exported as defaults, try using some named exports instead of default exports. If you're unsure how to do this, consult your best friend: [the MDN documentation about export statements](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export#description)
 
 </div>

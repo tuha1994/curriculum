@@ -1,37 +1,37 @@
-### Introduction
+### Giới thiệu
 
-You're likely somewhat familiar with JSX from previous React lessons, in this lesson we're going to explain *what* it is, *why* we use it, and *how* to use it in your React apps.
+Có lẽ bạn đã khá quen thuộc với JSX qua các bài học React trước đây. Trong bài học này, chúng ta sẽ giải thích JSX *là gì*, *tại sao* sử dụng nó và *cách* sử dụng nó trong các ứng dụng React.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan chung về những chủ đề bạn sẽ học trong bài học này.
 
-- What JSX is.
-- Differences between JSX and HTML.
+- JSX là gì.
+- Sự khác nhau giữa JSX và HTML.
 
-### What is JSX?
+### JSX là gì?
 
-JSX is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. It's not required to use JSX when writing React components, but it does make writing them more concise.
+JSX là một phần mở rộng cú pháp của JavaScript, cho phép bạn viết mã đánh dấu tương tự HTML bên trong một tệp JavaScript. JSX không bắt buộc khi viết các component React, nhưng giúp việc viết chúng ngắn gọn hơn.
 
-Essentially, JSX is syntactic sugar for the React [createElement function](https://react.dev/reference/react/createElement). This function creates a React element, which is a plain object, so JSX compiles down to plain JavaScript objects.
+Về cơ bản, JSX là cú pháp đường cho hàm [createElement](https://react.dev/reference/react/createElement) của React. Hàm này tạo ra một phần tử React, vốn là một đối tượng thuần túy, nên JSX được biên dịch thành các đối tượng JavaScript thuần túy.
 
-Here you can see the logged value of a div JSX element with some text:
+Dưới đây là giá trị được ghi lại của một phần tử JSX `div` có chứa văn bản:
 
-![JSX element's logged value](https://cdn.statically.io/gh/TheOdinProject/curriculum/1100fab7884b195379664e41b62dfa95588f3a15/react/getting_started_with_react/what_is_jsx/imgs/00.png)
+![Giá trị được ghi lại của phần tử JSX](https://cdn.statically.io/gh/TheOdinProject/curriculum/1100fab7884b195379664e41b62dfa95588f3a15/react/getting_started_with_react/what_is_jsx/imgs/00.png)
 
-### Why do we use JSX?
+### Tại sao chúng ta sử dụng JSX?
 
-Most of the time in apps, rendering logic and markup are inherently coupled, but we typically separate them by having our logic and markup in separate files. JSX allows React to separate concerns by containing both rendering logic and content in the same place (a component).
+Trong ứng dụng, logic kết xuất và mã đánh dấu vốn gắn liền với nhau, nhưng thông thường chúng ta tách chúng ra bằng cách đặt logic và mã đánh dấu trong các tệp riêng biệt. JSX cho phép React phân tách các mối quan tâm bằng cách chứa cả logic kết xuất lẫn nội dung tại cùng một nơi (một component).
 
-On top of this, it's a more intuitive, visual way to work with the UI inside your code, and allows React to show more useful error and warning messages.
+Ngoài ra, JSX là một cách trực quan và dễ hiểu hơn để làm việc với giao diện người dùng ngay trong mã của bạn, đồng thời cho phép React hiển thị các thông báo lỗi và cảnh báo hữu ích hơn.
 
-### Rules of JSX
+### Các quy tắc của JSX
 
-If you were to take some valid HTML and copy it straight into your React component, it would not work. This is due to some of the rules JSX implements, that aren't present in HTML.
+Nếu bạn lấy một đoạn HTML hợp lệ rồi chép thẳng vào component React, đoạn mã đó sẽ không hoạt động. Nguyên nhân là JSX áp dụng một số quy tắc không có trong HTML.
 
-1. Return a single root element.
+1. Trả về một phần tử gốc duy nhất.
 
-   If you wish to return multiple elements in a component, you can do so by wrapping them in a parent tag. This can be a `<div>`, or, if you don't want the elements to have a container, you could use a [React fragment](https://react.dev/reference/react/Fragment), like so: `<>Children</>`
+   Nếu muốn trả về nhiều phần tử trong một component, bạn có thể bọc chúng trong một thẻ cha. Thẻ đó có thể là `<div>`, hoặc nếu không muốn các phần tử có một vùng chứa, bạn có thể dùng [React fragment](https://react.dev/reference/react/Fragment), như sau: `<>Children</>`
 
    Correct:
 
@@ -58,11 +58,11 @@ If you were to take some valid HTML and copy it straight into your React compone
    }
    ```
 
-1. Close all tags.
+1. Đóng tất cả các thẻ.
 
-   In HTML, many tags are self-closing and self-wrapping. In JSX however, we must explicitly close and wrap these tags.
+   Trong HTML, nhiều thẻ tự đóng và tự bao quanh nội dung. Tuy nhiên, trong JSX, chúng ta phải đóng và bao quanh các thẻ này một cách tường minh.
 
-   `<input>` would become `<input />`, and `<li>` would become `<li></li>`
+   `<input>` sẽ trở thành `<input />`, còn `<li>` sẽ trở thành `<li></li>`
 
    Correct:
 
@@ -90,9 +90,9 @@ If you were to take some valid HTML and copy it straight into your React compone
    }
    ```
 
-1. camelCase **Most** things.
+1. Viết camelCase cho **hầu hết** mọi thứ.
 
-   JSX turns into JavaScript, and attributes of elements become keys of JavaScript objects, so you can't use dashes or reserved words such as `class`. Because of this, many HTML attributes are written in camelCase. Instead of `stroke-width`, you'd use `strokeWidth`, and instead of `class` you'd use `className`.
+   JSX được chuyển thành JavaScript, còn các thuộc tính của phần tử trở thành khóa của đối tượng JavaScript. Vì vậy, bạn không thể dùng dấu gạch ngang hoặc các từ dành riêng như `class`. Do đó, nhiều thuộc tính HTML được viết theo kiểu camelCase. Thay vì `stroke-width`, bạn sẽ dùng `strokeWidth`, và thay vì `class`, bạn sẽ dùng `className`.
 
    Correct:
 
@@ -122,9 +122,9 @@ If you were to take some valid HTML and copy it straight into your React compone
    }
    ```
 
-### Converting HTML to JSX
+### Chuyển đổi HTML sang JSX
 
-Now that we've covered the Rules of JSX, we'll go through the conversion of a chunk of HTML to JSX.
+Sau khi đã tìm hiểu các quy tắc của JSX, chúng ta sẽ chuyển một đoạn HTML sang JSX.
 
 ```jsx
 <h1>Test title</h1>
@@ -136,11 +136,11 @@ Now that we've covered the Rules of JSX, we'll go through the conversion of a ch
 </form>
 ```
 
-If you try to return this from a React component, you would get many errors, so we are going to fix that!
+Nếu thử trả về đoạn mã này từ một component React, bạn sẽ nhận được rất nhiều lỗi, vì vậy chúng ta sẽ sửa chúng!
 
- Make sure to follow along with this example in your local environment. Alternatively, you can go to [react.new](https://react.new/) to have a quick React environment up and going in your web browser.
+ Hãy thực hành theo ví dụ này trong môi trường cục bộ của bạn. Ngoài ra, bạn có thể truy cập [react.new](https://react.new/) để nhanh chóng khởi chạy một môi trường React trong trình duyệt web.
 
-The first issue we get is that this would not return a single root element, so let's give it a container.
+Vấn đề đầu tiên là đoạn mã này không trả về một phần tử gốc duy nhất, vì vậy hãy thêm một vùng chứa cho nó.
 
 ```jsx
 <div>
@@ -154,9 +154,9 @@ The first issue we get is that this would not return a single root element, so l
 </div>
 ```
 
-You should see that another error appears now that we've fixed the initial one. This doesn't mean we created the error with our previous changes, just that React wasn't showing this one yet.
+Bạn sẽ thấy một lỗi khác xuất hiện sau khi đã sửa lỗi ban đầu. Điều đó không có nghĩa là chúng ta tạo ra lỗi này do những thay đổi trước đó; chỉ là React chưa hiển thị nó mà thôi.
 
-Now, onto the second issue, which is that we haven't closed the `<input>` tag.
+Tiếp theo là vấn đề thứ hai: chúng ta chưa đóng thẻ `<input>`.
 
 ```jsx
 <div>
@@ -170,9 +170,9 @@ Now, onto the second issue, which is that we haven't closed the `<input>` tag.
 </div>
 ```
 
-If you are following along, at this point you will stop seeing an error being rendered on-screen, this time it will be in the console.
+Nếu đang thực hành theo, ở bước này bạn sẽ không còn thấy lỗi được hiển thị trên màn hình nữa; lần này lỗi sẽ xuất hiện trong console.
 
-The last issue is that we haven't camelCased our attributes, and so are using invalid DOM properties for JSX, specifically the `stroke-width`.
+Vấn đề cuối cùng là chúng ta chưa chuyển các thuộc tính sang camelCase, nên đang sử dụng các thuộc tính DOM không hợp lệ đối với JSX, cụ thể là `stroke-width`.
 
 ```jsx
 <div>
@@ -186,16 +186,16 @@ The last issue is that we haven't camelCased our attributes, and so are using in
 </div>
 ```
 
-Now that we've applied all of the fixes to the errors that React gave us, this is fully fledged JSX code that can be used in a React component without any issues.
+Sau khi áp dụng tất cả các cách sửa cho những lỗi React đưa ra, đây đã là mã JSX hoàn chỉnh có thể được dùng trong một component React mà không gặp vấn đề nào.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-In the following lessons, you will spend some time reading the React documentation. Most of them will have small tasks at the end to test what you have read. We will not       mention them explicitly each time, but be sure to do them. Practice makes perfect!
+Trong các bài học tiếp theo, bạn sẽ dành thời gian đọc tài liệu React. Hầu hết các bài sẽ có những bài tập nhỏ ở cuối để kiểm tra nội dung bạn đã đọc. Chúng tôi sẽ không       nhắc đến chúng một cách rõ ràng mỗi lần, nhưng hãy nhớ thực hiện. Có thực hành thì mới thành thạo!
 
-1. Read through the React docs [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx) page to review the content we have covered here.
+1. Đọc trang tài liệu React [Viết mã đánh dấu bằng JSX](https://react.dev/learn/writing-markup-with-jsx) để ôn lại nội dung chúng ta đã đề cập ở đây.
 
-1. Read through the React docs [JavaScript in JSX](https://react.dev/learn/javascript-in-jsx-with-curly-braces) page to introduce yourself to writing JavaScript logic and referencing dynamic values inside of your markup.
+1. Đọc trang tài liệu React [JavaScript trong JSX](https://react.dev/learn/javascript-in-jsx-with-curly-braces) để làm quen với việc viết logic JavaScript và tham chiếu các giá trị động bên trong mã đánh dấu.
 
 </div>

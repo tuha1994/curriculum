@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-In this lesson, we will cover keys in React. Keys are special props for our components and we'll learn why they are used.
+Trong bài học này, chúng ta sẽ đề cập đến các khóa trong React. Chìa khóa là đạo cụ đặc biệt cho các thành phần của chúng ta và chúng ta sẽ tìm hiểu lý do tại sao chúng được sử dụng.
 
-### Lesson overview
+### Tổng Quan Bài Học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này bao gồm tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- What keys are and how React uses them.
-- Good and bad usage of keys in React applications.
+- Chìa khóa là gì và React sử dụng chúng như thế nào.
+- Sử dụng khóa tốt và xấu trong các ứng dụng React.
 
-### Why does React need keys?
+### Tại sao React cần chìa khóa?
 
-You may recall that React uses a "virtual DOM" under the hood to decide what things in the real DOM to update, minimising unnecessary actions. When a re-render occurs, it first recreates this virtual DOM, diffs (compares changes) the new and previous virtual DOMs, then makes real DOM updates only to the things that actually did change.
+Bạn có thể nhớ lại rằng React sử dụng một "DOM ảo" dưới mui xe để quyết định những thứ trong DOM thực để cập nhật, giảm thiểu các hành động không cần thiết. Khi một kết xuất lại xảy ra, đầu tiên nó tái tạo DOM ảo này, khác biệt (so sánh các thay đổi) các Dom ảo mới và trước đó, sau đó chỉ cập nhật DOM thực sự với những thứ thực sự đã thay đổi.
 
-React needs to be able to tell the difference between each of these components, as they'll each have their own props and states. Therefore, every component will be given an ID under the hood - a **key**. For example, if you update state, it's still the same instance of the component and React will know this because the component's key hasn't changed, and it can avoid unnecessary action. If the key changes, however, React knows this is now a brand new instance of that component and can build a new one with fresh states.
+React cần phân biệt được từng component vì mỗi component có props và state riêng. Vì vậy, mỗi component được gán một ID ở bên dưới — một **key**. Ví dụ, khi bạn cập nhật state, đó vẫn là cùng một instance của component và React biết điều này vì key của component chưa thay đổi, nên có thể tránh thao tác không cần thiết. Nếu key thay đổi, React hiểu đây là một instance hoàn toàn mới và tạo nó với state mới.
 
-Normally, you do not need to manually give components keys, as React will handle this automatically. However, there are a couple of cases where we can make use of them.
+Thông thường, bạn không cần phải cung cấp các khóa thành phần theo cách thủ công, vì React sẽ tự động xử lý việc này. Tuy nhiên, có một vài trường hợp chúng ta có thể sử dụng chúng.
 
-### Keys when rendering lists
+### Các phím khi kết xuất danh sách
 
-In the previous lesson, we used the `.map()` method to iterate over an array of data and return a component, rendering a list of components. Now imagine, if any of the items in the list were to change, how would React know which item to update behind the scenes?
+Trong bài học trước, chúng ta đã sử dụng phương pháp `.map()` để lặp qua một mảng dữ liệu và trả về một thành phần, hiển thị danh sách các thành phần. Bây giờ hãy tưởng tượng, nếu bất kỳ mục nào trong danh sách thay đổi, làm thế nào React biết được mục nào cần cập nhật đằng sau hậu trường?
 
-If the list were to change, we might want one of two things to happen:
+Nếu danh sách thay đổi, chúng ta có thể muốn một trong hai điều xảy ra:
 
-1. Completely re-render the entire list
-1. Hunt down the specific items that were changed and only re-render those
+1. Hoàn toàn kết xuất lại toàn bộ danh sách
+1. Săn lùng các mục cụ thể đã được thay đổi và chỉ kết xuất lại các mục đó
 
-We want React to hunt down only the changed item(s) and NOT re-render the entire list (to avoid unnecessary work). Therefore, each item in that list needs a key.
+Chúng tôi muốn React chỉ săn lùng (các) mục đã thay đổi và KHÔNG hiển thị lại toàn bộ danh sách (để tránh công việc không cần thiết). Do đó, mỗi mục trong danh sách đó cần một chìa khóa.
 
-If we hard-coded the components in JSX, we can leave React to handle keys automatically, as instructions are explicit and static; across re-renders, there's no ambiguity between one component and another.
+Nếu chúng ta mã hóa cứng các thành phần trong JSX, chúng ta có thể để React tự động xử lý các khóa, vì các hướng dẫn là rõ ràng và tĩnh; trên các lần render lại, không có sự mơ hồ giữa thành phần này và thành phần khác.
 
-However, if we were to render a list via mapping over an array, things are dynamic. We'd write only a single return value for the `.map()` method but the end result could be 2, 3 or even 100 instances of that return component, and both the count and order of these could change between renders. React would not be able to automatically provide keys for each of these components in a way that lets it reliably match specific instances across re-renders. What if the count and/or order of items change? How will it know for certain which components need to be remade from scratch with new state and which are existing instances that keep/update their state?
+Tuy nhiên, nếu kết xuất danh sách bằng cách ánh xạ qua một mảng thì mọi thứ là động. Ta chỉ viết một giá trị trả về cho phương thức `.map()`, nhưng kết quả có thể là 2, 3 hoặc thậm chí 100 instance của component đó; cả số lượng và thứ tự đều có thể thay đổi giữa các lần render. React không thể tự cung cấp key theo cách đáng tin cậy để ghép đúng từng instance giữa các lần render. Nếu số lượng hoặc thứ tự thay đổi, làm sao React biết component nào cần tạo lại từ đầu với state mới và component nào là instance hiện có cần giữ hoặc cập nhật state?
 
-This is why we must provide our own key when dynamically rendering lists, so that when the list is updated for whatever reason (either from a server or a user interaction), React matches the keys of each of the previous list items to the updated list. If there were any changes, React will only update the items that have changed.
+Đây là lý do tại sao chúng ta phải cung cấp khóa riêng của mình khi tự động hiển thị danh sách, để khi danh sách được cập nhật vì bất kỳ lý do gì (từ máy chủ hoặc tương tác người dùng), React khớp các khóa của từng mục danh sách trước đó với danh sách được cập nhật. Nếu có bất kỳ thay đổi nào, React sẽ chỉ cập nhật các mục đã thay đổi.
 
-As long as `keys` remain consistent and unique, React can handle the DOM effectively and efficiently.
+Miễn là `keys` vẫn nhất quán và duy nhất, React có thể xử lý Dom một cách hiệu quả và hiệu quả.
 
-### Using keys
+### Sử dụng chìa khóa
 
-Keys are passed into the component or a DOM element as a prop. You should already be familiar with the syntax.
+Các khóa được truyền vào thành phần hoặc phần tử Dom dưới dạng prop. Bạn nên làm quen với cú pháp.
 
 ```jsx
 <Component key={keyValue} />
 <div key={keyValue}></div>
 ```
 
-An important difference to note is that the `key` prop is private, used only for internal React stuff. It is not passed to the component itself via the `props` param object.
+Một điểm khác biệt quan trọng cần lưu ý là prop `key` là riêng tư, chỉ được sử dụng cho các công cụ React nội bộ. Nó không được chuyển đến chính thành phần thông qua đối tượng tham số `props`.
 
-Now that we know the syntax, the next question is: what should be used as a key? Ideally, there should be some identifier that is unique to each item in the list. Most databases assign a unique id to each entry, so you shouldn't have to worry about assigning an id yourself. If you are defining data yourself, it is good practice to assign a unique `id` to each item. For example, you can use the [crypto.randomUUID() function](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) to generate a unique id. Let's look at an example:
+Bây giờ chúng ta đã biết cú pháp, câu hỏi tiếp theo là: cái gì nên được sử dụng làm khóa? Lý tưởng nhất là nên có một số mã định danh duy nhất cho từng mục trong danh sách. Hầu hết các cơ sở dữ liệu chỉ định một id duy nhất cho mỗi mục nhập, vì vậy bạn không cần phải lo lắng về việc tự chỉ định một id. Nếu bạn đang tự xác định dữ liệu, bạn nên chỉ định một `id` duy nhất cho mỗi mục. Ví dụ: bạn có thể sử dụng hàm [crypto.randomUUID ()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) để tạo một id duy nhất. Hãy xem một ví dụ:
 
 ```jsx
 // a list of todos, each todo object has a task and an id
@@ -69,7 +69,7 @@ function TodoList() {
 }
 ```
 
-Additionally, if you're sure the list will remain unchanged throughout the application's life,  you can use the array index as a key. However, this is not recommended since it can lead to confusing bugs if the list changes when items are deleted, inserted, or rearranged. You will learn more about this in the assignment section's linked article.
+Ngoài ra, nếu bạn chắc chắn rằng danh sách sẽ không thay đổi trong suốt vòng đời của ứng dụng,  bạn có thể sử dụng chỉ mục mảng làm khóa. Tuy nhiên, điều này không được khuyến khích vì nó có thể dẫn đến lỗi khó hiểu nếu danh sách thay đổi khi các mục bị xóa, chèn hoặc sắp xếp lại. Bạn sẽ tìm hiểu thêm về điều này trong bài viết được liên kết của phần bài tập.
 
 ```jsx
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -84,7 +84,7 @@ function MonthList() {
 }
 ```
 
-Keys are straightforward to use, though there is an anti-pattern you should be aware of. Keys should never be generated on the fly. Using `key={Math.random()}` or `key={crypto.randomUUID()}` *while* rendering the list defeats the purpose of the key, as now a new `key` will get created for every render of the list. As shown in the above example, `key` should be inferred from the data itself.
+Chìa khóa rất dễ sử dụng, mặc dù có một mẫu chống lại bạn nên biết. Không bao giờ được tạo khóa khi đang di chuyển. Sử dụng `key={Math.random()}` hoặc `key={crypto.randomUUID()}` *trong khi* kết xuất danh sách đánh bại mục đích của khóa, vì bây giờ một `key` mới sẽ được tạo cho mọi kết xuất của danh sách. Như được thể hiện trong ví dụ trên, `key` nên được suy ra từ chính dữ liệu.
 
 ```jsx
 const todos = [
@@ -105,13 +105,13 @@ function TodoList() {
 }
 ```
 
-### Keys and state
+### Khóa và trạng thái
 
-Dynamically rendering lists is definitely the most common situation where you'd need to manually provide a key, but it's certainly not the only time. Since keys are just internal IDs for React to differentiate between component instances, we can also provide our own keys if we purposely want control over when a specific component should be the same instance as its state updates or a brand new instance with fresh state.
+Tự động hiển thị danh sách chắc chắn là tình huống phổ biến nhất mà bạn cần cung cấp khóa theo cách thủ công, nhưng chắc chắn đó không phải là lần duy nhất. Vì các khóa chỉ là ID nội bộ để React phân biệt giữa các phiên bản thành phần, chúng tôi cũng có thể cung cấp các khóa riêng của mình nếu chúng tôi cố tình muốn kiểm soát khi nào một thành phần cụ thể phải là cùng một phiên bản với các cập nhật trạng thái của nó hoặc một phiên bản hoàn toàn mới với trạng thái mới.
 
-Imagine you have a game and when it ends, you want to be able to reset it to its original state. Refreshing the page is probably not sensible, especially if there are other components with their own states you want to keep untouched. You could write a function that will set each of the relevant states to its initial value, but then you'd have to make sure you didn't miss any states or set the wrong values, and you'd need to keep this up to date should you add or remove any states.
+Hãy tưởng tượng bạn có một trò chơi và khi nó kết thúc, bạn muốn có thể đặt lại nó về trạng thái ban đầu. Làm mới trang có thể không hợp lý, đặc biệt nếu có các thành phần khác có trạng thái riêng mà bạn muốn giữ nguyên. Bạn có thể viết một hàm sẽ đặt từng trạng thái có liên quan thành giá trị ban đầu của nó, nhưng sau đó bạn phải đảm bảo rằng bạn không bỏ lỡ bất kỳ trạng thái nào hoặc đặt sai giá trị và bạn cần cập nhật thông tin này nếu bạn thêm hoặc xóa bất kỳ trạng thái nào.
 
-What if we had a much simpler way of telling React "render this component from scratch with fresh state"? Well, we can just update the key. For example:
+Điều gì sẽ xảy ra nếu chúng ta có một cách đơn giản hơn để nói với React "render thành phần này từ đầu với trạng thái mới"? Vâng, chúng ta chỉ có thể cập nhật khóa. Ví dụ:
 
 ```jsx
 function GamePage() {
@@ -121,9 +121,9 @@ function GamePage() {
 }
 ```
 
-`Game` will have its own states and render its own components. When it re-renders, it's still the same instance of `Game` because its key hasn't changed, so its states are preserved/updated. If we have a button somewhere inside `Game` that calls `resetGame()` when clicked, clicking it would cause the `key` state to change. `GamePage` then re-renders and because `Game` now has a new key, React sees it as a brand new instance of `Game`, and will make a fresh one with new states.
+`Game` có state riêng và render các component riêng. Khi render lại, nó vẫn là cùng một instance của `Game` vì key chưa thay đổi, nên state được giữ hoặc cập nhật. Nếu có nút bên trong `Game` gọi `resetGame()` khi được nhấn, việc nhấn nút sẽ làm state `key` thay đổi. Sau đó `GamePage` render lại; vì `Game` có key mới, React xem đó là một instance hoàn toàn mới của `Game` và tạo lại nó với state mới.
 
-### Assignment
+### Nhiệm vụ
 
 <div class="lesson-content__panel" markdown="1">
 

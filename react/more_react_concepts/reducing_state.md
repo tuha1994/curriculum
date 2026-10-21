@@ -1,24 +1,22 @@
-### Introduction
+### Giới thiệu
 
-You have probably heard about reducers before. In this lesson we are going to
-learn *what* they are, *when* to use them and *how* to use them in React with the `useReducer` hook.
+Có lẽ bạn đã từng nghe về reducer. Trong bài học này, chúng ta sẽ tìm hiểu *chúng là gì*, *khi nào* nên sử dụng chúng và *cách* sử dụng chúng trong React với hook `useReducer`.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan chung về những chủ đề bạn sẽ học trong bài học này.
 
-- What are reducers.
-- When to use reducers.
-- What is the `useReducer` hook.
+- Reducer là gì.
+- Khi nào nên sử dụng reducer.
+- Hook `useReducer` là gì.
 
-### What are reducers?
+### Reducer là gì?
 
-Reducers are pure functions that take a previous state and an action to return a new state.
+Reducer là các hàm thuần túy, nhận state trước đó và một action để trả về state mới.
 
-The action is an object with a *type* property describing what the user did. This object can also contain
-any other properties that our reducer might need to produce the new state.
+Action là một đối tượng có thuộc tính *type* mô tả việc người dùng đã thực hiện. Đối tượng này cũng có thể chứa bất kỳ thuộc tính nào khác mà reducer cần để tạo ra state mới.
 
-We can define a reducer that updates the state of a counter like this:
+Chúng ta có thể định nghĩa một reducer cập nhật state của bộ đếm như sau:
 
 ```javascript
 function reducer(state, action) {
@@ -39,26 +37,21 @@ function reducer(state, action) {
 }
 ```
 
-Remember, reducers are pure functions so we shouldn't mutate the state.
+Hãy nhớ rằng reducer là hàm thuần túy, vì vậy chúng ta không nên thay đổi trực tiếp state.
 
-### When to use reducers?
+### Khi nào nên sử dụng reducer?
 
-If a component only needs to update its state in a couple of simple ways, you don't need to use reducers.
-The opposite can be said when a component has become too big, hard to read or debug because of its state logic.
+Nếu một component chỉ cần cập nhật state theo một vài cách đơn giản, bạn không cần dùng reducer. Ngược lại, reducer hữu ích khi component đã trở nên quá lớn, khó đọc hoặc khó gỡ lỗi vì logic state của nó.
 
-By using reducers, we can separate the state logic and even store it in a different file or directory, leading
-to smaller components that are easier to read.
+Bằng cách sử dụng reducer, chúng ta có thể tách logic state ra, thậm chí lưu logic đó trong một tệp hoặc thư mục khác, từ đó tạo ra các component nhỏ hơn và dễ đọc hơn.
 
-Since reducers use *actions*, we can easily track any state-related bugs back to the dispatched action,
-and because our reducers are just pure functions, we can test them in isolation.
+Vì reducer sử dụng *action*, chúng ta có thể dễ dàng lần ngược các lỗi liên quan đến state về action đã được dispatch. Ngoài ra, vì reducer chỉ là các hàm thuần túy, chúng ta có thể kiểm thử chúng một cách độc lập.
 
-### The useReducer hook
+### Hook useReducer
 
-React allows us to use reducers in our components through a hook called `useReducer`. This hook takes a reducer function and
-an initial state as arguments, then returns an array with two values: the current state and a `dispatch` function.
+React cho phép chúng ta sử dụng reducer trong component thông qua một hook có tên `useReducer`. Hook này nhận một hàm reducer và state ban đầu làm đối số, sau đó trả về một mảng gồm hai giá trị: state hiện tại và một hàm `dispatch`.
 
-This `dispatch` function receives an **action** object as argument, which is passed to our reducer function and
-the returned value from it is used to update the state.
+Hàm `dispatch` nhận một đối tượng **action** làm đối số. Đối tượng này được truyền cho hàm reducer, và giá trị mà reducer trả về sẽ được dùng để cập nhật state.
 
 ```javascript
 const [state, dispatch] = useReducer(reducer, { count: 0 });
@@ -68,17 +61,16 @@ function handleClick() {
 }
 ```
 
-Similarly to how React updates state with the `set` function in `useState`, React *only updates the state in the next render* after calling the `dispatch` function.
-Keep in mind that these functions use [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) to determine if the state has changed, if it hasn't, then the component won't re-render.
+Tương tự cách React cập nhật state bằng hàm `set` trong `useState`, React *chỉ cập nhật state trong lần render tiếp theo* sau khi gọi hàm `dispatch`. Hãy nhớ rằng các hàm này sử dụng [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) để xác định state có thay đổi hay không; nếu state không thay đổi, component sẽ không render lại.
 
-Whether you use `useState` or `useReducer` is up to you, they're both equivalent and you might use them both in the same component.
+Việc sử dụng `useState` hay `useReducer` tùy thuộc vào bạn. Hai hook này tương đương nhau và bạn có thể sử dụng cả hai trong cùng một component.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through the React docs [Extracting state logic into a reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer) to learn more about how to use reducers in React and how to refactor `useState` into `useReducer`. Don't forget to complete the challenges at the end.
+1. Đọc tài liệu React [Đưa logic state vào reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer) để tìm hiểu thêm về cách sử dụng reducer trong React và cách cấu trúc lại `useState` thành `useReducer`. Đừng quên hoàn thành các thử thách ở cuối.
 
-1. Read the [useReducer](https://react.dev/reference/react/useReducer) React docs to learn more about this hook. Pay close attention to the troubleshooting section for common problems that you might encounter.
+1. Đọc tài liệu React [useReducer](https://react.dev/reference/react/useReducer) để tìm hiểu thêm về hook này. Hãy chú ý đến phần xử lý sự cố để biết những vấn đề thường gặp mà bạn có thể gặp phải.
 
 </div>

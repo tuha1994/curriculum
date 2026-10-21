@@ -1,17 +1,17 @@
-### Introduction
+### Giới thiệu
 
-Now that we have learned about components, props and JSX, this lesson will cover how we can render multiple elements and conditionally render UI in JSX.
+Bây giờ chúng ta đã tìm hiểu về các thành phần, đạo cụ và JSX, bài học này sẽ đề cập đến cách chúng ta có thể hiển thị nhiều phần tử và hiển thị giao diện người dùng có điều kiện trong JSX.
 
-### Lesson overview
+### Tổng Quan Bài Học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này bao gồm tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Rendering list of components in JSX.
-- Conditionally rendering UI.
+- Hiển thị danh sách các thành phần trong JSX.
+- Kết xuất UI có điều kiện.
 
-### Rendering a list of elements in JSX
+### Kết xuất danh sách các phần tử trong JSX
 
-Let us say we want to create a component that lists multiple animals:
+Giả sử chúng ta muốn tạo một thành phần liệt kê nhiều động vật:
 
 ```jsx
 function App() {
@@ -29,7 +29,7 @@ function App() {
 }
 ```
 
-It is perfectly acceptable, but what if we want to render more than just four? It can be tedious and long, and most of the time, we will be dealing with a data structure (like an array) rather than hard-coding each animal. You have previously learned that we can embed expressions inside JSX with curly braces. So let us do just that:
+Nó hoàn toàn có thể chấp nhận được, nhưng nếu chúng ta muốn kết xuất nhiều hơn bốn thì sao? Nó có thể tẻ nhạt và dài, và hầu hết thời gian, chúng ta sẽ xử lý một cấu trúc dữ liệu (như một mảng) thay vì mã hóa cứng từng con vật. Trước đây bạn đã biết rằng chúng ta có thể nhúng các biểu thức bên trong JSX bằng dấu ngoặc nhọn. Vì vậy, chúng ta hãy làm điều đó:
 
 ```jsx
 function App() {
@@ -48,7 +48,7 @@ function App() {
 }
 ```
 
-We define an array called `animals`. Now inside our JSX, we use `map` to return a new array of `li` elements, adding `animal` as its text. It should now render the same as the previous snippet we wrote. This is because JSX has the ability to automatically render arrays. The following code is identical:
+Chúng tôi xác định một mảng gọi là `animals`. Bây giờ bên trong JSX của chúng tôi, chúng tôi sử dụng `map` để trả về một mảng mới của các phần tử `li`, thêm `animal` làm văn bản của nó. Bây giờ nó sẽ hiển thị giống như đoạn mã trước đó chúng tôi đã viết. Điều này là do JSX có khả năng tự động hiển thị các mảng. Mã sau giống hệt nhau:
 
 ```jsx
 function App() {
@@ -66,9 +66,9 @@ function App() {
 }
 ```
 
-You may be curious as to what the `key` prop is in our `<li>` element. When we dynamically render lists of components, we must give the top-level component a key, which you can think of for now as an ID for the component. For this lesson, you do not need to know why we need this key or how it works, as we will explore keys in the next lesson.
+Bạn có thể tò mò về `key` prop là gì trong phần tử `<li>` của chúng tôi. Khi chúng tôi tự động hiển thị danh sách các thành phần, chúng tôi phải cung cấp cho thành phần cấp cao nhất một khóa, mà bạn có thể nghĩ đến bây giờ là ID cho thành phần. Đối với bài học này, các em không cần phải biết lý do tại sao chúng ta cần chìa khóa này hoặc cách thức hoạt động của nó, vì chúng ta sẽ khám phá các chìa khóa trong bài học tiếp theo.
 
-### Rendering a list of components in JSX
+### Kết xuất danh sách các thành phần trong JSX
 
 ```jsx
 function ListItem(props) {
@@ -97,19 +97,19 @@ function App() {
 }
 ```
 
-We have moved our `<ul>` element to a different component called `List`. It still returns the `<ul>` element, but we can do a lot more with it as its own component. `List` accepts the array of animals as a prop, and passes each individual animal as a prop to a `ListItem` component.
+Chúng tôi đã chuyển phần tử `<ul>` của mình sang một thành phần khác có tên là `List`. Nó vẫn trả về phần tử `<ul>`, nhưng chúng ta có thể làm nhiều hơn nữa với nó như là thành phần riêng của nó. `List` chấp nhận dãy động vật làm chỗ dựa và chuyển mỗi động vật riêng lẻ làm chỗ dựa cho thành phần `ListItem`.
 
-We're of course not restricted to just `<li>`. When we say "list", we mean that very generally. You could dynamically render multiple `<option>` elements within a `<select>`, or multiple `<div>` as part of a grid.
+Tất nhiên, chúng tôi không chỉ giới hạn ở `<li>`. Khi chúng tôi nói "danh sách", chúng tôi có nghĩa là rất chung chung. Bạn có thể tự động kết xuất nhiều phần tử `<option>` trong `<select>` hoặc nhiều `<div>` như một phần của lưới.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### "Missing in props validation"
+#### "Thiếu trong xác thực đạo cụ"
 
-You may notice squiggly lines under your props, for example, under `animal` inside the `<ListItem />` component above.
+Bạn có thể nhận thấy các đường ngoằn ngoèo bên dưới đạo cụ của mình, ví dụ, bên dưới `animal` bên trong thành phần `<ListItem />` ở trên.
 
-Hovering over these will tell you they are `missing in props validation`. For now, this can safely be ignored as it is just a default ESLint rule warning about prop types, something that will be covered later in the course.
+Di chuột qua những thứ này sẽ cho bạn biết chúng là `missing in props validation`. Hiện tại, điều này có thể được bỏ qua một cách an toàn vì nó chỉ là một cảnh báo quy tắc ESLint mặc định về các loại prop, một cái gì đó sẽ được đề cập sau trong khóa học.
 
-You may want to turn off this rule by adding the following to your `eslint.config.js` file:
+Bạn có thể muốn tắt quy tắc này bằng cách thêm những điều sau vào tệp `eslint.config.js` của mình:
 
 ```javascript
   rules: {
@@ -120,13 +120,13 @@ You may want to turn off this rule by adding the following to your `eslint.confi
 
 </div>
 
-### Conditionally rendering UI
+### Kết xuất UI có điều kiện
 
-Let us make some decisions within our component. What if we only want to render an animal that starts with the letter L? To make these decisions, we would use some sort of conditional expression. Let us continue using the code above, but for brevity's sake, we will be removing the `<ListItem />` component.
+Hãy để chúng tôi đưa ra một số quyết định trong thành phần của chúng tôi. Điều gì sẽ xảy ra nếu chúng ta chỉ muốn kết xuất một con vật bắt đầu bằng chữ L? Để đưa ra những quyết định này, chúng tôi sẽ sử dụng một số loại biểu thức có điều kiện. Hãy để chúng tôi tiếp tục sử dụng mã ở trên, nhưng để ngắn gọn, chúng tôi sẽ loại bỏ thành phần `<ListItem />`.
 
-#### Using the ternary operator
+#### Sử dụng toán tử bậc ba
 
-One way to conditionally render an element is with a ternary operator, using a boolean value to decide what to render:
+Một cách để kết xuất có điều kiện một phần tử là với một toán tử bậc ba, sử dụng một giá trị boolean để quyết định những gì cần kết xuất:
 
 ```jsx
 function List(props) {
@@ -151,13 +151,13 @@ function App() {
 }
 ```
 
-We are using the [String method `startsWith`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith) to check if the `animal` starts with the letter L. This method either returns true or false.
+Chúng tôi đang sử dụng [String method `startsWith`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith) to check if the `animal` starts with the letter L. This method either returns true or false.
 
-If the animal starts with the letter L, then we return the `<li>` element, which renders the particular animal. Otherwise, we return `null` to indicate that no element will be rendered.
+Nếu con vật bắt đầu bằng chữ L, thì chúng ta trả về phần tử `<li>`, thể hiện con vật cụ thể. Nếu không, chúng tôi trả về `null` để cho biết rằng sẽ không có phần tử nào được hiển thị.
 
-#### Using the && operator
+#### Sử dụng toán tử &&
 
-Another quick way of conditionally rendering an element is by using the `&&` operator.
+Một cách nhanh chóng khác để kết xuất có điều kiện một phần tử là sử dụng toán tử `&&`.
 
 ```jsx
 function List(props) {
@@ -182,26 +182,26 @@ function App() {
 }
 ```
 
-We will leverage the return value of `startsWith` with the `&&` operator. If the result of the `startsWith` function is `true`, then it returns the second operand, which is the `<li>` element, and renders it. Otherwise, if the condition is `false`, then `false` gets returned and JSX will render nothing in its place.
+Chúng tôi sẽ tận dụng giá trị hoàn vốn của `startsWith` với toán tử `&&`. Nếu kết quả của hàm `startsWith` là `true`, thì nó trả về toán hạng thứ hai, là phần tử `<li>` và hiển thị nó. Nếu không, nếu điều kiện là `false`, thì `false` sẽ được trả lại và JSX sẽ không hiển thị gì thay thế.
 
 <div class="lesson-note lesson-note--warning" markdown="1" >
 
-#### Numbers with Logical AND (&&) - a common pitfall
+#### Các số có logic VÀ (&&) - một cạm bẫy phổ biến
 
-When using `&&` for conditional rendering, don't put numbers on the left side. The React docs on [conditional rendering](https://react.dev/learn/conditional-rendering#logical-and-operator-) provide more details about this in the `Pitfall` box in the section about `&&`.
+Khi sử dụng `&&` để kết xuất có điều kiện, không đặt các số ở phía bên trái. Tài liệu React về [conditional rendering](https://react.dev/learn/conditional-rendering#logical-and-operator-) cung cấp thêm chi tiết về điều này trong hộp `Pitfall` trong phần về `&&`.
 
 </div>
 
-#### Other ways to render conditionally
+#### Các cách khác để kết xuất có điều kiện
 
-We can also use `if`, `if/else`, and `switch` to conditionally render something.
+Chúng ta cũng có thể sử dụng `if`, `if/else`, và `switch` để kết xuất một cái gì đó có điều kiện.
 
-This time we will have two conditions:
+Lần này chúng ta sẽ có hai điều kiện:
 
-1. Check if the `animals` property is provided
-1. Check if the `animals` length is greater than 0
+1. Kiểm tra xem thuộc tính `animals` có được cung cấp không
+1. Kiểm tra xem độ dài `animals` có lớn hơn 0 không
 
-We will frequently be dealing with lists in the future, and we also need to consider what to render if the list is empty or does not exist at all. You certainly would not want to see a blank page, would you? Let us try to implement that:
+Chúng tôi sẽ thường xuyên xử lý các danh sách trong tương lai và chúng tôi cũng cần xem xét những gì cần kết xuất nếu danh sách trống hoặc hoàn toàn không tồn tại. Bạn chắc chắn sẽ không muốn nhìn thấy một trang trống, phải không? Hãy để chúng tôi cố gắng thực hiện điều đó:
 
 ```jsx
 function List(props) {
@@ -234,11 +234,11 @@ function App() {
 }
 ```
 
-In our `<List />` component, we have two `if` statements acting as a guard that immediately returns an element based on the condition.
+Trong thành phần `<List />` của chúng tôi, chúng tôi có hai câu lệnh `if` hoạt động như một người bảo vệ ngay lập tức trả về một phần tử dựa trên điều kiện.
 
-One is to check if the property `animals` exists, and the other is to check if the length of the list is greater than 0. In this case, our list is empty, so the second if statement executes, which immediately returns the `<div>` element that contains the text "There are no animals in the list".
+Một là kiểm tra xem thuộc tính `animals` có tồn tại hay không và hai là kiểm tra xem độ dài của danh sách có lớn hơn 0 hay không. Trong trường hợp này, danh sách của chúng tôi trống, vì vậy câu lệnh if thứ hai thực thi, ngay lập tức trả về phần tử `<div>` có chứa văn bản "Không có động vật nào trong danh sách".
 
-If we remove the `animals` property:
+Nếu chúng tôi xóa thuộc tính `animals`:
 
 ```jsx
 function App() {
@@ -253,11 +253,11 @@ function App() {
 }
 ```
 
-The first `if` statement will now execute and return a `<div>` with the text "Loading..." This is often the case when you are fetching from an API, since it might take some time to actually retrieve the data, it is good practice to show an indicator for that.
+Câu lệnh `if` đầu tiên bây giờ sẽ thực thi và trả về `<div>` với văn bản "Đang tải..." Điều này thường xảy ra khi bạn đang tìm nạp từ API, vì có thể mất một thời gian để thực sự truy xuất dữ liệu, nên thực hành tốt là hiển thị một chỉ báo cho điều đó.
 
-If none of those checks passed, then we have the data we need to render the list successfully. Try it out by adding items to the `animals` list and adding the property back.
+Nếu không có kiểm tra nào được thông qua, thì chúng tôi có dữ liệu cần thiết để hiển thị danh sách thành công. Hãy thử bằng cách thêm các mục vào danh sách `animals` và thêm lại thuộc tính.
 
-You can, of course, also accomplish this with just the ternary and `&&` operators.
+Tất nhiên, bạn cũng có thể thực hiện điều này chỉ với các toán tử ternary và `&&`.
 
 ```jsx
 function List(props) {
@@ -307,13 +307,13 @@ function App() {
 } 
 ```
 
-Nested ternaries and multiple `&&` operators can be intimidating to look at, so be sure to test things out!
+Các bậc ba lồng nhau và nhiều nhà khai thác `&&` có thể đáng sợ khi nhìn vào, vì vậy hãy chắc chắn kiểm tra mọi thứ!
 
-### Assignment
+### Nhiệm vụ
 
 <div class="lesson-content__panel" markdown="1">
 
-1. The React documentation has an excellent guide to [conditional rendering](https://react.dev/learn/conditional-rendering). Strengthen your understanding by reading through it and tackling all of the examples!
-1. From the same docs, explore more on what you can do with lists by working through the [Rendering Lists article](https://react.dev/learn/rendering-lists). You don't have to worry about the last part on keys, since we will be learning about them in the next lesson.
+1. Tài liệu React có hướng dẫn tuyệt vời về [conditional rendering](https://react.dev/learn/conditional-rendering). Tăng cường sự hiểu biết của bạn bằng cách đọc qua và giải quyết tất cả các ví dụ!
+1. Từ cùng một tài liệu, hãy khám phá thêm về những gì bạn có thể làm với danh sách bằng cách xem qua bài viết [Danh sách kết xuất] ](https://react.dev/learn/rendering-lists). Bạn không phải lo lắng về phần cuối cùng của các phím, vì chúng ta sẽ tìm hiểu về chúng trong bài học tiếp theo.
 
 </div>

@@ -1,13 +1,13 @@
-### Introduction
+### Giới thiệu
 
-Hello there, and welcome to The Odin Project’s React course. In this course, we'll start by learning about the basics of React and then move on to more advanced concepts. We'll be building projects along the way that you can add to your portfolio to impress recruiters with your React skills.
+Xin chào và chào mừng bạn đến với khóa học React của Dự án Odin. Trong khóa học này, chúng ta sẽ bắt đầu bằng cách tìm hiểu về các khái niệm cơ bản của React và sau đó chuyển sang các khái niệm nâng cao hơn. Chúng tôi sẽ xây dựng các dự án theo cách mà bạn có thể thêm vào danh mục đầu tư của mình để gây ấn tượng với nhà tuyển dụng bằng các kỹ năng React của bạn.
 
-Make sure you’ve completed our [JavaScript course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript) before starting this one. We can’t emphasize enough how important it is to have a solid understanding of JavaScript before diving into React. At the end of the day, React *is* vanilla JavaScript, so being able to navigate JavaScript is paramount to building a successful React project.
+Hãy chắc chắn rằng bạn đã hoàn thành [JavaScript course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript) của chúng tôi trước khi bắt đầu khóa học này. Chúng tôi không thể nhấn mạnh đủ tầm quan trọng của việc có một sự hiểu biết vững chắc về JavaScript trước khi đi sâu vào React. Vào cuối ngày, React *là* vanilla JavaScript, vì vậy có thể điều hướng JavaScript là điều tối quan trọng để xây dựng một dự án React thành công.
 
-### The journey ahead
+### Hành trình phía trước
 
-All the lessons follow a similar structure that you'll be accustomed to from prior courses: lesson content followed by assignments. We've also incorporated interactive examples via CodeSandbox to demonstrate the concepts you'll learn in those lessons.
+Tất cả các bài học đều tuân theo một cấu trúc tương tự mà bạn sẽ quen thuộc từ các khóa học trước: nội dung bài học sau đó là các bài tập. Chúng tôi cũng đã kết hợp các ví dụ tương tác qua CodeSandbox để minh họa các khái niệm mà bạn sẽ học được trong các bài học đó.
 
-As always, we'll preface this by saying that learning a new technology can be a frustrating endeavor, but we're confident you can persevere. There might be times when you think to yourself, “I can do this with vanilla JavaScript, why am I even learning React?” and that's fine. As you work through the lessons, you'll soon realize how convenient React can be in front-end development. Remember the dreaded [Todo List project](https://www.theodinproject.com/lessons/node-path-javascript-todo-list) from the JavaScript course? In React, it would typically take less time to build the core functionality. That should get you excited. By the end of the course, you’ll be a React Guru!
+Như mọi khi, chúng tôi muốn nói trước rằng việc học một công nghệ mới có thể gây khó chịu, nhưng chúng tôi tin bạn có thể kiên trì. Có lúc bạn sẽ nghĩ: “Tôi có thể làm điều này bằng JavaScript thuần, vậy tại sao phải học React?” và điều đó hoàn toàn bình thường. Khi học tiếp, bạn sẽ sớm nhận ra React tiện lợi thế nào trong phát triển front-end. Hãy nhớ dự án [Todo List](https://www.theodinproject.com/lessons/node-path-javascript-todo-list) đáng sợ từ khóa học JavaScript? Với React, việc xây dựng chức năng cốt lõi thường mất ít thời gian hơn. Đến cuối khóa học, bạn sẽ trở thành một React Guru!
 
-Now then, **let’s start Reactin’!**
+Bây giờ thì, **hãy bắt đầu Phản ứng!**

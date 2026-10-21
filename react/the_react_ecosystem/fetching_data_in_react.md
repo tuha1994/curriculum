@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-Up to this point, we have been using React to build client-side applications with interactive user interfaces, but what if we want to fetch data from the internet? In order to create full-fledged web applications, we need some way to get data from external sources and dynamically display it.
+Cho đến thời điểm này, chúng ta đã dùng React để xây dựng các ứng dụng phía máy khách với giao diện người dùng tương tác. Nhưng nếu muốn lấy dữ liệu từ Internet thì sao? Để tạo các ứng dụng web hoàn chỉnh, chúng ta cần một cách lấy dữ liệu từ các nguồn bên ngoài và hiển thị dữ liệu đó một cách động.
 
-In this lesson, we'll explore the ins and outs of fetching data in React, starting with the basics of making API calls, managing component state, and handling asynchronous operations using JavaScript's `fetch` function. You've already performed data fetching in earlier projects, so some material covered in the lesson will be familiar to you. Revision doesn't hurt!
+Trong bài học này, chúng ta sẽ tìm hiểu mọi khía cạnh của việc lấy dữ liệu trong React, bắt đầu với những điều cơ bản về gọi API, quản lý state của component và xử lý các thao tác bất đồng bộ bằng function `fetch` của JavaScript. Bạn đã từng lấy dữ liệu trong các project trước, nên một phần nội dung trong bài sẽ quen thuộc. Ôn tập cũng không bao giờ thừa!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài này.
 
-- Making fetch requests in React components.
-- Catching and handling errors.
-- Lifting requests up the component hierarchy.
+- Thực hiện các request fetch trong component React.
+- Bắt và xử lý lỗi.
+- Đưa request lên cấp cao hơn trong hệ thống phân cấp component.
 
-### A basic fetch request
+### Request fetch cơ bản
 
-Before we dive into the specifics of fetching data in React, let's briefly revisit how we can use the fetch API to get data from a server.
+Trước khi đi sâu vào việc lấy dữ liệu trong React, hãy cùng ôn lại ngắn gọn cách dùng fetch API để lấy dữ liệu từ server.
 
 ```javascript
 const image = document.querySelector("img");
@@ -26,13 +26,13 @@ fetch("https://picsum.photos/v2/list")
   .catch((error) => console.error(error));
 ```
 
-We're making a request to the Picsum API to retrieve an image, and then setting that URL to the src of an `<img>` element.
+Chúng ta gửi request tới Picsum API để lấy một hình ảnh, sau đó đặt URL của hình ảnh đó vào thuộc tính src của một phần tử `<img>`.
 
-### Using fetch in React components
+### Dùng fetch trong component React
 
-Now, let's take a look at how we can incorporate `fetch` into a React component, similar to our previous example. One common use case is to fetch data from an API when a component mounts, so that the data can be displayed on screen.
+Bây giờ, hãy xem cách tích hợp `fetch` vào một component React tương tự ví dụ trước. Một trường hợp thường gặp là lấy dữ liệu từ API khi component mount để có thể hiển thị dữ liệu trên màn hình.
 
-Whenever a component needs to make a request as it renders, it's often best to wrap that `fetch` inside of an effect.
+Khi component cần thực hiện request trong lúc render, thường tốt nhất là bọc `fetch` đó bên trong một effect.
 
 ```jsx
 import { useEffect, useState } from "react";
@@ -60,15 +60,15 @@ const Image = () => {
 export default Image;
 ```
 
-`useState` lets us add the `imageURL` state, whereas `useEffect` allows us to perform side effects. In this case, the side effect is fetching data from an external API. Since we need to fetch the data only once when the component mounts, we pass an empty dependency array.
+`useState` cho phép chúng ta thêm state `imageURL`, còn `useEffect` cho phép thực hiện side effect. Trong trường hợp này, side effect là lấy dữ liệu từ một API bên ngoài. Vì chỉ cần lấy dữ liệu một lần khi component mount, chúng ta truyền vào một dependency array rỗng.
 
-### Handling errors
+### Xử lý lỗi
 
-Working over the network is inherently unreliable. The API you're making a request to might be down, there could be network connectivity issues, or the response you receive could contain errors. A multitude of things can go wrong, and if you don't preemptively plan for errors, your website can break or appear unresponsive to users.
+Làm việc qua mạng vốn không đáng tin cậy. API mà bạn request có thể đang ngừng hoạt động, kết nối mạng có thể gặp vấn đề hoặc response nhận được có thể chứa lỗi. Có rất nhiều điều có thể xảy ra; nếu không chủ động dự liệu lỗi, website của bạn có thể bị hỏng hoặc có vẻ không phản hồi với người dùng.
 
-To simulate a network error, scroll up to the previous code snippet and change the `fetch` URL to something random. After a refresh of your browser window, the page will remain a blank white screen, without giving the user any indication that the page has finished loading or that there was an error.
+Để mô phỏng lỗi mạng, hãy cuộn lên đoạn code trước và đổi URL của `fetch` thành một URL bất kỳ. Sau khi refresh cửa sổ trình duyệt, trang sẽ vẫn là một màn hình trắng trống mà không cho người dùng biết trang đã tải xong hay đã xảy ra lỗi.
 
-To fix this, we need to check for *something* before Image component returns JSX. We'll call it: `error`.
+Để khắc phục, chúng ta cần kiểm tra *một giá trị nào đó* trước khi component Image trả về JSX. Hãy gọi giá trị đó là: `error`.
 
 ```jsx
 if (error) return <p>A network error was encountered</p>
@@ -83,14 +83,14 @@ return (
 );
 ```
 
-To set this `error`, we'll add it to the component's state.
+Để thiết lập `error`, chúng ta sẽ thêm nó vào state của component.
 
 ```jsx
 const [imageURL, setImageURL] = useState(null);
 const [error, setError] = useState(null);
 ```
 
-And finally, to assign `error` a value when a request fails, we'll add a conditional to check the response status, and set it where our console.error line was.
+Cuối cùng, để gán giá trị cho `error` khi request thất bại, chúng ta sẽ thêm điều kiện kiểm tra status của response và thiết lập nó tại vị trí trước đây có dòng console.error.
 
 ```jsx
 useEffect(() => {
@@ -108,17 +108,17 @@ useEffect(() => {
 
 <div class="lesson-note" markdown="1" >
 
-#### Handling response errors
+#### Xử lý lỗi response
 
-Notice how we also handle errors in the `then` block? This is because the `fetch` request itself might not fail, but rather complete successfully and yield a response. However, the response received may not be what our app expected. To handle this case, we check the response status codes.
+Bạn có để ý rằng chúng ta cũng xử lý lỗi trong block `then` không? Đó là vì bản thân request `fetch` có thể không thất bại mà hoàn tất thành công và trả về một response. Tuy nhiên, response nhận được có thể không đúng với điều app mong đợi. Để xử lý trường hợp này, chúng ta kiểm tra status code của response.
 
 </div>
 
-Now when a bad URL is passed or the API returns an unexpected response, the page will relay that information to the user.
+Bây giờ, khi truyền vào URL không hợp lệ hoặc API trả về response không mong đợi, trang sẽ thông báo thông tin đó cho người dùng.
 
-#### Loading state
+#### State loading
 
-In the same way we added an error value in state to check for errors, we can also add a loading value to check whether the request is resolved or not.
+Tương tự như khi thêm giá trị error vào state để kiểm tra lỗi, chúng ta cũng có thể thêm giá trị loading để kiểm tra request đã hoàn tất hay chưa.
 
 ```jsx
 const Image = () => {
@@ -151,13 +151,13 @@ const Image = () => {
 };
 ```
 
-### Using custom hooks
+### Dùng custom hook
 
-We can separate out the fetching logic altogether into a custom hook. This will allow us to make the logic reusable and easily testable.
+Chúng ta có thể tách toàn bộ logic lấy dữ liệu thành một custom hook. Điều này giúp logic có thể tái sử dụng và dễ kiểm thử hơn.
 
-Recall in the [Introduction to state](https://www.theodinproject.com/lessons/node-path-react-new-introduction-to-state) lesson we said that a React hook is just a function that lets you use features of React (like states, effects etc.) and that they follow a naming rule where they begin with `use` followed by a capital letter (e.g. `useState` or `useEffect`). If we tried to put a hook such as `useEffect` inside our own regular helper function like `getImageURL`, React would not be happy about this since it only wants hooks to be called in the top level of a component or another hook. Therefore, we can just turn our helper function into a custom hook by following the hook naming rule - `useImageURL`.
+Hãy nhớ trong bài [Introduction to state](https://www.theodinproject.com/lessons/node-path-react-new-introduction-to-state), chúng ta đã nói rằng React hook chỉ là một function cho phép dùng các tính năng của React (như state, effect, v.v.), và chúng tuân theo quy tắc đặt tên: bắt đầu bằng `use` rồi đến một chữ cái viết hoa (ví dụ `useState` hoặc `useEffect`). Nếu thử đặt một hook như `useEffect` bên trong helper function thông thường như `getImageURL`, React sẽ không chấp nhận vì hook chỉ được gọi ở cấp cao nhất của component hoặc hook khác. Vì vậy, chúng ta chỉ cần biến helper function thành custom hook bằng cách tuân theo quy tắc đặt tên hook: `useImageURL`.
 
-Here's how we would do it for our example:
+Với ví dụ của chúng ta, cách làm như sau:
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -198,41 +198,41 @@ const Image = () => {
 };
 ```
 
-If we ever needed to fetch images in different components, instead of rewriting all of that fetching logic we could call `useImageURL`.
+Nếu cần lấy hình ảnh trong các component khác, thay vì viết lại toàn bộ logic lấy dữ liệu, chúng ta có thể gọi `useImageURL`.
 
-### Managing multiple fetch requests
+### Quản lý nhiều request fetch
 
 <div class="lesson-note lesson-note--warning" markdown="1" >
 
-#### Using an artificial delay
+#### Dùng độ trễ nhân tạo
 
-In this section, we use a code example where we've added an artificial `delay` with the `setTimeout` function. As you've likely guessed by now, this is to help you walk through the data fetching basics in the lesson. We recommend removing these delays after finishing this section then playing around with the code examples to further cement the concepts.
+Trong phần này, chúng ta dùng một ví dụ code có thêm `delay` nhân tạo bằng function `setTimeout`. Có lẽ bạn đã đoán ra, mục đích là giúp bạn theo dõi các kiến thức cơ bản về lấy dữ liệu trong bài. Chúng tôi khuyên bạn xóa các độ trễ này sau khi hoàn thành phần này, rồi thử nghiệm với các ví dụ code để củng cố khái niệm.
 
 </div>
 
-In a full-scale web app, you're often going to be making more than one request, and you need to be careful with how you organize them. A common issue that new React developers face when their apps start making multiple requests is called a *waterfall of requests*. Let's look at an example in our [react-examples repo](https://github.com/TheOdinProject/react-examples) (fork and clone it if you haven't already), this time in the `fetching-data/` directory. `cd` into it, run `npm install` then start the dev server with `npm run dev`.
+Trong một web app quy mô đầy đủ, bạn thường sẽ thực hiện nhiều hơn một request và cần cẩn thận với cách tổ chức chúng. Một vấn đề phổ biến mà các React developer mới gặp phải khi app bắt đầu thực hiện nhiều request được gọi là *thác request*. Hãy xem ví dụ trong [repo react-examples](https://github.com/TheOdinProject/react-examples) của chúng ta (hãy fork và clone repo nếu bạn chưa làm), lần này trong thư mục `fetching-data/`. `cd` vào đó, chạy `npm install`, sau đó khởi động dev server bằng `npm run dev`.
 
-We have two components making fetch requests: `Profile` and its child component `Bio`. In both of those files, you'll see a component and another version of it commented out below - we'll return to these shortly. The requests in `Profile` and `Bio` are both firing inside of their respective components. On the surface this looks like a well-organized separation of concerns, but in this case, it comes at a cost in performance.
+Chúng ta có hai component thực hiện request fetch: `Profile` và component con `Bio`. Trong cả hai file, bạn sẽ thấy một component và một phiên bản khác của nó được comment bên dưới; chúng ta sẽ quay lại với chúng ngay sau đây. Các request trong `Profile` và `Bio` đều được thực hiện bên trong component tương ứng. Nhìn bề ngoài, đây có vẻ là cách tách biệt mối quan tâm được tổ chức tốt, nhưng trong trường hợp này nó phải trả giá bằng hiệu năng.
 
-Notice how whenever you load the page, `Bio` is taking an extra second to display? Their fetch requests should both take 1000ms to resolve so what's going on? In React, the component is not rendered until it is actually called. If JSX has conditional logic, the false branches will never render until they become true. `Bio` has to wait for the request inside of `Profile` to resolve before it starts rendering, which means the request inside `Bio` isn't sent.
+Bạn có nhận thấy mỗi khi tải trang, `Bio` mất thêm một giây mới hiển thị không? Cả hai request fetch lẽ ra đều mất 1000ms để hoàn tất, vậy chuyện gì đang xảy ra? Trong React, component không được render cho đến khi thực sự được gọi. Nếu JSX có logic điều kiện, các nhánh false sẽ không bao giờ render cho đến khi trở thành true. `Bio` phải đợi request bên trong `Profile` hoàn tất trước khi bắt đầu render, nghĩa là request bên trong `Bio` chưa được gửi.
 
-If we remove the short-circuiting conditional that waits for `imageURL`, `Bio` would send a request immediately, but that would mean abandoning our loading screen. Instead of compromising on design, we can lift the request up the component tree and pass its response as a prop to `Bio`.
+Nếu xóa điều kiện short-circuit đang chờ `imageURL`, `Bio` sẽ gửi request ngay lập tức, nhưng như vậy chúng ta phải bỏ màn hình loading. Thay vì thỏa hiệp về thiết kế, chúng ta có thể đưa request lên cao hơn trong cây component và truyền response của nó vào `Bio` dưới dạng prop.
 
-To see this in action, in both the `Profile` and `Bio` components, comment them out then uncomment the alternative versions below them.
+Để xem điều này hoạt động, trong cả component `Profile` và `Bio`, hãy comment chúng lại rồi bỏ comment các phiên bản thay thế bên dưới.
 
-Now we have both requests firing as soon as `Profile` renders. The request for `imageURL` resolves 2 seconds before the `bioText` request, and our div containing `<Bio />` renders. When `bioText` resolves, an update will be made in state which will trigger a rerender in `<Bio />`, adding that text description to the page.
+Bây giờ cả hai request đều được thực hiện ngay khi `Profile` render. Request cho `imageURL` hoàn tất sớm hơn request `bioText` 2 giây, và div chứa `<Bio />` được render. Khi `bioText` hoàn tất, state sẽ được cập nhật, từ đó kích hoạt việc render lại `<Bio />` và thêm phần mô tả văn bản đó vào trang.
 
-### Data fetching libraries
+### Thư viện lấy dữ liệu
 
-We've only just begun to scratch the surface of data fetching on the frontend. Keeping your frontend data up-to-date with the server is a challenging task to accomplish. Managing "async" state becomes increasingly complex with each added feature.
+Chúng ta mới chỉ bắt đầu tìm hiểu bề mặt của việc lấy dữ liệu ở frontend. Giữ cho dữ liệu frontend luôn cập nhật với server là một nhiệm vụ khó. Quản lý state “async” ngày càng phức tạp khi thêm từng tính năng.
 
-You've already tasted the complexity of data fetching in this lesson. Each request has to have a *minimum* of three states to achieve an optimal user experience: `data`, `loading`, and `error`. Although some libraries can help you with data fetching and more, it is highly recommended to use vanilla React data fetching for all the projects in this course. The lessons you will learn while doing so will be invaluable.
+Bạn đã nếm trải sự phức tạp của việc lấy dữ liệu trong bài này. Mỗi request cần có *tối thiểu* ba state để mang lại trải nghiệm người dùng tốt: `data`, `loading` và `error`. Dù một số thư viện có thể hỗ trợ lấy dữ liệu cùng nhiều việc khác, chúng tôi đặc biệt khuyên bạn dùng cách lấy dữ liệu bằng React thuần cho mọi project trong khóa học. Những bài học bạn nhận được khi làm như vậy sẽ vô cùng giá trị.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read [Modern API data fetching methods](https://blog.logrocket.com/modern-api-data-fetching-methods-react/) until you reach the Axios section for a brief overview of what was discussed in this lesson.
-1. Read [How to fetch data in React with performance in mind](https://www.developerway.com/posts/how-to-fetch-data-in-react) to learn more about efficiently handling fetch requests in React components.
+1. Đọc [Modern API data fetching methods](https://blog.logrocket.com/modern-api-data-fetching-methods-react/) cho đến phần Axios để có cái nhìn khái quát về những gì đã được thảo luận trong bài này.
+1. Đọc [How to fetch data in React with performance in mind](https://www.developerway.com/posts/how-to-fetch-data-in-react) để tìm hiểu thêm về cách xử lý request fetch hiệu quả trong component React.
 
 </div>

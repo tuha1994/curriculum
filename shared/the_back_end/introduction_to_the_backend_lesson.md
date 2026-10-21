@@ -1,25 +1,25 @@
-### Introduction
+### Giới thiệu
 
-The "front end" denotes the interface that a web user interacts with - what they see (and hear) when using the web. The three languages of the front end are fairly standardized: HTML for markup, CSS for presentation, and JavaScript for scripting.
+"Front-end" là giao diện mà người dùng web tương tác — những gì họ nhìn thấy (và nghe thấy) khi sử dụng web. Ba ngôn ngữ của front-end tương đối thống nhất: HTML để đánh dấu, CSS để trình bày và JavaScript để viết tập lệnh.
 
-The "back end", meanwhile, denotes all that goes on "behind the scenes" on web servers to make the user experience possible. In contrast to front-end development, you can run pretty much any language you want to on your server since it doesn't rely on your user's browser understanding what's going on.  All the browser cares about is whether you've sent it properly formatted HTML, CSS and JavaScript files (and other assets like images).  That's led to a whole lot of different choices for back-end languages.  As long as it can take in an HTTP request and spit out some HTML, you can probably put it on a server somehow.
+Trong khi đó, "back-end" là tất cả những gì diễn ra "phía sau hậu trường" trên các máy chủ web để tạo nên trải nghiệm cho người dùng. Không giống phát triển front-end, bạn gần như có thể chạy bất kỳ ngôn ngữ nào mình muốn trên máy chủ, vì nó không phụ thuộc vào việc trình duyệt của người dùng có hiểu những gì đang diễn ra hay không. Điều duy nhất trình duyệt quan tâm là bạn đã gửi cho nó các tệp HTML, CSS và JavaScript được định dạng đúng (cùng những tài nguyên khác như hình ảnh) hay chưa. Điều đó dẫn đến rất nhiều lựa chọn khác nhau về ngôn ngữ back-end. Miễn là ngôn ngữ đó có thể nhận một yêu cầu HTTP và xuất ra một phần HTML, bạn có thể tìm cách chạy nó trên máy chủ.
 
-That said, some languages are more popular and practical than others.  If you're running your own server, you have a ton of flexibility but plenty of headaches.  If you're using the cloud (which we will be doing later), you may be restricted to those languages that your cloud provider has installed on their platform... It doesn't do you much good if the servers you're "borrowing" from can't understand your code!
+Tuy vậy, một số ngôn ngữ phổ biến và thực tế hơn những ngôn ngữ khác. Nếu tự vận hành máy chủ, bạn có rất nhiều sự linh hoạt nhưng cũng phải đối mặt với không ít rắc rối. Nếu sử dụng đám mây (điều chúng ta sẽ làm sau này), bạn có thể bị giới hạn ở những ngôn ngữ mà nhà cung cấp dịch vụ đám mây đã cài đặt trên nền tảng của họ... Sẽ chẳng ích gì nếu các máy chủ bạn đang "mượn" không thể hiểu mã của bạn!
 
-Some of the most popular server-side languages are PHP, C#, Ruby, Python and Java (not to be confused with JavaScript). Just as we can say "Which way to the nearest pub?" in Swedish, French, Italian, English, and Bad English, so too can all of those languages perform almost exactly the same functions, just using different syntax.
+Một số ngôn ngữ phía máy chủ phổ biến nhất là PHP, C#, Ruby, Python và Java (đừng nhầm với JavaScript). Cũng như câu "Đi đến quán rượu gần nhất bằng đường nào?" có thể được nói bằng tiếng Thụy Điển, tiếng Pháp, tiếng Ý, tiếng Anh và tiếng Anh tồi, tất cả những ngôn ngữ đó đều có thể thực hiện gần như chính xác các chức năng giống nhau, chỉ khác nhau về cú pháp.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài này.
 
-- The difference between front-end and back-end development.
+- Sự khác biệt giữa phát triển front-end và back-end.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Check out this blog post on [back-end vs front-end programming](http://blog.teamtreehouse.com/i-dont-speak-your-language-frontend-vs-backend) for a quick refresher on the difference between the two.
-  1. [A good and short overview of the back end](https://techterms.com/definition/backend).
-  1. Codecademy provides a good step-by-step breakdown of [what happens in the back end when a browser makes a request to a server](https://www.codecademy.com/articles/back-end-architecture).
+  1. Đọc bài blog về [lập trình back-end và front-end](http://blog.teamtreehouse.com/i-dont-speak-your-language-frontend-vs-backend) để nhanh chóng ôn lại sự khác biệt giữa hai khái niệm này.
+  1. [Tổng quan ngắn gọn và hữu ích về back-end](https://techterms.com/definition/backend).
+  1. Codecademy cung cấp phần phân tích từng bước dễ hiểu về [những gì diễn ra ở back-end khi trình duyệt gửi yêu cầu đến máy chủ](https://www.codecademy.com/articles/back-end-architecture).
 
 </div>

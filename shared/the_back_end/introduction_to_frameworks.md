@@ -1,23 +1,23 @@
-### Introduction
+### Giới thiệu
 
-Programmers, the best of whom are pretty lazy folk (in a good way), got tired of having to write the same code over and over and over again just to cover the basic tasks that they wanted their applications to perform.  So they batched that recycled code together and called it a framework.
+Các lập trình viên, mà những người giỏi nhất trong số họ thường khá lười (theo nghĩa tích cực), đã phát ngán vì phải viết đi viết lại cùng một đoạn mã chỉ để xử lý những tác vụ cơ bản mà ứng dụng của họ cần thực hiện. Vì vậy, họ gom những đoạn mã được tái sử dụng đó lại với nhau và gọi chúng là một framework.
 
-In addition to preventing repetition, frameworks provide great organization.  They tend to force you to organize your files and code in a way that keeps it highly modular and really clean.  When you start a new app with any framework, you're given dozens of folders already organized in a hierarchy which makes sense and follows good practice such as Model-View-Controller (MVC) separation principles.  It's not quite "color-by-numbers" for code, but it certainly keeps things ordered.
+Ngoài việc ngăn chặn sự lặp lại, framework còn giúp tổ chức mã rất tốt. Chúng thường buộc bạn sắp xếp tệp và mã theo cách có tính mô-đun cao và thực sự gọn gàng. Khi bắt đầu một ứng dụng mới bằng bất kỳ framework nào, bạn sẽ có sẵn hàng chục thư mục được tổ chức theo một cấu trúc phân cấp hợp lý và tuân theo các thông lệ tốt, chẳng hạn như nguyên tắc phân tách Model-View-Controller (MVC). Đây không hẳn là kiểu viết mã "tô màu theo số", nhưng chắc chắn giúp mọi thứ được sắp xếp ngăn nắp.
 
-There are often several different popular frameworks for a given language.  They can have exciting names like [Ember](http://emberjs.com/), [Meteor](http://www.meteor.com/), [Django](https://www.djangoproject.com/), [Rails](http://rubyonrails.org/), etc.  Wikipedia has a [comprehensive comparison of frameworks](http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks) that should give you an appreciation of the number of them.  For Ruby alone, though Rails is the most popular, there are also [Sinatra](http://www.sinatrarb.com/) and [Padrino](http://www.padrinorb.com/) and more.
+Thường sẽ có nhiều framework phổ biến khác nhau cho một ngôn ngữ nhất định. Chúng có thể mang những cái tên thú vị như [Ember](http://emberjs.com/), [Meteor](http://www.meteor.com/), [Django](https://www.djangoproject.com/), [Rails](http://rubyonrails.org/), v.v. Wikipedia có một [bảng so sánh toàn diện các framework](http://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks), giúp bạn hình dung được số lượng framework hiện có. Chỉ riêng với Ruby, dù Rails là framework phổ biến nhất, vẫn còn [Sinatra](http://www.sinatrarb.com/), [Padrino](http://www.padrinorb.com/) và nhiều framework khác.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài này.
 
-- The definition of a framework.
-- The difference between a programming language and a framework.
+- Định nghĩa về framework.
+- Sự khác biệt giữa ngôn ngữ lập trình và framework.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read through this brief [introduction to frameworks by Dev.to](https://dev.to/aspittel/what-is-a-web-framework-and-why-should-i-use-one-38c0).
-  1. Glance over [MDN's overview on back-end frameworks](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Web_frameworks) to understand some of the thought process that goes into picking a framework.
+  1. Đọc [bài giới thiệu ngắn về framework của Dev.to](https://dev.to/aspittel/what-is-a-web-framework-and-why-should-i-use-one-38c0).
+  1. Xem qua [tổng quan của MDN về các framework back-end](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Web_frameworks) để hiểu một phần quy trình suy xét khi lựa chọn framework.
 
 </div>

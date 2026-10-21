@@ -183,9 +183,16 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `nodeJS/testing_express/testing_database_operations.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên test và code. |
 | `nodeJS/testing_express/testing_routes_and_controllers.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên test và code. |
 
+## Các bài shared đã dịch cho NodeJS
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `shared/the_back_end/introduction_to_the_backend_lesson.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Dùng chung cho NodeJS và Ruby on Rails; cần kiểm tra cả hai route. |
+| `shared/the_back_end/introduction_to_frameworks.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Dùng chung cho NodeJS và Ruby on Rails; cần kiểm tra cả hai route. |
+
 ## Quy tắc cập nhật
 
-1. Chỉ thêm bài thuộc `intermediate_html_css`.
+1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.
 2. Ghi Git commit SHA thật của bản gốc, không dùng SHA giả hoặc chỉ ghi ngày.
 3. Khi upstream thay đổi, xem diff trước rồi chỉ cập nhật phần tiếng Việt tương ứng.
 4. Sau khi kiểm tra lại code, HTML, URL, lệnh và nội dung hiển thị, cập nhật SHA và trạng thái.

@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-How can we do DOM manipulations that we usually do in vanilla JavaScript? Is it even possible in React because of its declarative nature? How about performance optimization? As we all know, when a state has been changed, React will try to re-render the component, which means that it will destroy all local variables not controlled by React and re-execute them. This mental model also works for a regular function that you create, as a component is just a function. Since this is the case, wouldn't it slow down the app if we have a very expensive calculation re-executed with each re-render?
+Làm thế nào chúng ta có thể thực hiện các thao tác DOM mà chúng ta thường làm trong JavaScript thuần? Liệu điều này có khả thi trong React vì tính chất khai báo của nó không? Còn về tối ưu hiệu suất thì sao? Như tất cả chúng ta đều biết, khi một trạng thái bị thay đổi, React sẽ cố gắng render lại component, điều này có nghĩa là nó sẽ hủy tất cả các biến cục bộ không được React quản lý và thực thi lại chúng. Mô hình tư duy này cũng áp dụng cho một hàm thông thường mà bạn tạo, vì một component chỉ là một hàm. Vì đây là trường hợp, liệu nó có làm chậm ứng dụng nếu chúng ta có một phép tính rất tốn kém bị thực thi lại với mỗi lần render không?
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- `useRef` hook and its use cases.
-- Memoization and how `useCallback` and `useMemo` can be used.
-- Automatic memoization with React Compiler.
+- `useRef` và các trường hợp sử dụng của nó.
+- Ghi nhớ kết quả tính toán trước (Memoization) và cách `useCallback` và `useMemo` có thể được sử dụng.
+- Ghi nhớ tự động với Trình biên dịch React.
 
-### The useRef hook
+### Hook useRef
 
-The `useRef` hook lets you manage a value that's not needed for rendering. They are an alternative to state, as when you want a component to “remember” some information, but you don't want that information to trigger new renders, you can use this hook.
+Hook `useRef` cho phép bạn quản lý một giá trị không cần thiết cho việc hiển thị. Chúng là một sự thay thế cho state, khi bạn muốn một component “ghi nhớ” một số thông tin, nhưng bạn không muốn thông tin đó kích hoạt các lần render mới, bạn có thể sử dụng hook này.
 
-They are often used when performing imperative actions or accessing specific elements rendered in the DOM. Refs can also *persist* values throughout the component's lifecycle, meaning that the value of the ref will not be destroyed every time a component re-renders. This is very useful when you want to store a value that you want to persist throughout the component's lifecycle without storing it in a state.
+Chúng thường được sử dụng khi thực hiện các hành động mệnh lệnh hoặc truy cập vào các phần tử cụ thể được hiển thị trong DOM. Refs cũng có thể *duy trì* giá trị trong suốt vòng đời của component, có nghĩa là giá trị của ref sẽ không bị phá hủy mỗi khi component được render lại. Điều này rất hữu ích khi bạn muốn lưu trữ một giá trị mà bạn muốn duy trì trong suốt vòng đời của component mà không cần lưu trữ nó trong state.
 
-#### DOM manipulation
+#### Thao tác DOM
 
-When building web applications, sometimes you need more direct control over specific elements in the DOM. The `useRef` hook comes to the rescue by providing a way to access and interact with those elements.
+Khi xây dựng các ứng dụng web, đôi khi bạn cần kiểm soát trực tiếp hơn các phần tử cụ thể trong DOM. Hook `useRef` giúp giải quyết vấn đề này bằng cách cung cấp cách tiếp cận và tương tác với các phần tử đó.
 
-Imagine a button on a web page, and you want to focus on that button when the page loads. You could achieve this using the `useRef` hook. Here's how it works:
+Hãy tưởng tượng một nút trên trang web, và bạn muốn tập trung vào nút đó khi trang tải. Bạn có thể thực hiện điều này bằng cách sử dụng hook `useRef`. Đây là cách nó hoạt động:
 
 ```jsx
 import { useRef, useEffect } from "react";
@@ -36,16 +36,16 @@ function ButtonComponent() {
 }
 ```
 
-The implementation is straightforward:
+Việc triển khai rất đơn giản:
 
-1. We imported `useRef` and `useEffect` in the `react` module.
-1. We call `useRef` with an argument of `null`, which returns an object with a property called `current` whose initial value is set to the passed argument (which in this case, is `null`). This argument—like the passed argument for `useState`—is ignored in subsequent renders.
-1. Created a `useEffect` to be executed once on the mount of the component that will try to call the `focus` method of the button element.
-1. We've attached `buttonRef` to the `ref` attribute of the button element. This establishes the connection between the `buttonRef` and the button in the DOM.
+1. Chúng tôi đã nhập `useRef` và `useEffect` trong mô-đun `react`.
+1. Chúng tôi gọi `useRef` với một đối số `null`, điều này trả về một đối tượng với một thuộc tính có tên là `current` mà giá trị ban đầu được đặt thành đối số được truyền vào (trong trường hợp này là `null`). Đối số này—giống như đối số được truyền cho `useState`—bị bỏ qua trong các lần kết xuất tiếp theo.
+1. Đã tạo một `useEffect` để được thực thi một lần trên mount của thành phần sẽ cố gắng gọi phương thức `focus` của phần tử nút.
+1. Chúng tôi đã đính kèm `buttonRef` vào thuộc tính `ref` của phần tử nút. Điều này thiết lập kết nối giữa `buttonRef` và nút trong DOM.
 
-Whenever your website loads, it will automatically focus on the button element. You might ask, how can it have the `focus` method when the initial value is `null`? You should by now know that `rendering` and `painting of the screen` comes first before React runs the `useEffect`. It has already established the connection between the ref and the button before the effect is executed.
+Bất cứ khi nào trang web của bạn tải, nó sẽ tự động tập trung vào phần tử nút. Bạn có thể hỏi, làm sao nó có thể có phương thức `focus` khi giá trị ban đầu là `null`? Bạn nên biết rằng `rendering` và `painting of the screen` xuất hiện trước khi React chạy `useEffect`. Nó đã thiết lập kết nối giữa ref và nút trước khi hiệu ứng được thực hiện.
 
-Also, remember that `useRef` hook isn't just limited to focusing elements. It can be used for various other DOM manipulation scenarios, such as scrolling to a specific position, measuring the dimensions of an element, triggering animations, and basically *any* DOM manipulation that you've done before with vanilla JavaScript. The possibilities are endless! For example, we can change the `useEffect` in the above snippet to do the following. Change the button's text, and after 2 seconds, change the text back. You **should not** do this and only use `useRef` for non-destructive DOM operations, but just an example:
+Ngoài ra, hãy nhớ rằng hook `useRef` không chỉ giới hạn cho các phần tử lấy nét. Nó có thể được sử dụng cho nhiều tình huống thao tác DOM khác nhau, chẳng hạn như cuộn đến một vị trí cụ thể, đo kích thước của một phần tử, kích hoạt hoạt ảnh, và cơ bản là *bất kỳ* thao tác DOM nào mà bạn đã làm trước đây với JavaScript thuần. Các khả năng là vô tận! Ví dụ, chúng ta có thể thay đổi `useEffect` trong đoạn mã trên để thực hiện những điều sau. Thay đổi văn bản của nút, và sau 2 giây, thay đổi văn bản trở lại. Bạn **không nên** làm điều này và chỉ sử dụng `useRef` cho các thao tác DOM không phá hủy, nhưng chỉ là một ví dụ:
 
 ```jsx
 useEffect(() => {
@@ -61,25 +61,25 @@ useEffect(() => {
 }, []);
 ```
 
-The interesting thing about this is that this will **never** trigger a component re-render!
+Điều thú vị về việc này là điều này sẽ **không bao giờ** kích hoạt việc render lại component!
 
-Another question that might pop up in your mind is, "Why not just use `querySelector` or other DOM manipulation methods that we've done previously in vanilla JavaScript?" Dealing with the DOM ourselves defeats the purpose of using React, and wherever possible we should let React *commit* to the DOM itself.
+Một câu hỏi khác có thể xuất hiện trong đầu bạn là, "Tại sao không chỉ sử dụng `querySelector` hoặc các phương pháp thao tác DOM khác mà chúng ta đã làm trước đây trong JavaScript thuần?" Tự chúng ta thao tác với DOM sẽ làm mất mục đích sử dụng React, và bất cứ khi nào có thể chúng ta nên để React *commit* vào chính DOM.
 
-We can also see that it's similar to the `useState` hook in that it can store some values. The main difference is that `useRef` creates a mutable reference, allowing you to update its value without triggering a re-render. But, `useState` manages an immutable state that triggers re-renders when updated.
+Chúng ta cũng có thể thấy rằng nó tương tự như hook `useState` ở chỗ nó có thể lưu trữ một số giá trị. Sự khác biệt chính là `useRef` tạo ra một tham chiếu có thể thay đổi, cho phép bạn cập nhật giá trị của nó mà không kích hoạt render lại. Nhưng `useState` quản lý một trạng thái không thể thay đổi, kích hoạt render lại khi được cập nhật.
 
-### The useMemo hook
+### Hook useMemo
 
-In all of the examples, we would advise you to use the [Profiler component](https://react.dev/reference/react/Profiler) that is provided in the `react` module. If you want a more interactive alternative, use the `Profiler` in the [React Developer Tools](https://react.dev/learn/react-developer-tools) to measure rendering performance. Note that sometimes you don't need to optimize anything because of how fast things are already. As the famous saying goes in software development:
+Trong tất cả các ví dụ, chúng tôi khuyên bạn nên sử dụng [thành phần Profiler](https://react.dev/reference/react/Profiler) được cung cấp trong module `react`. Nếu bạn muốn một lựa chọn tương tác hơn, hãy sử dụng `Profiler` trong [Công cụ Phát triển React](https://react.dev/learn/react-developer-tools) để đo hiệu suất kết xuất. Lưu ý rằng đôi khi bạn không cần tối ưu gì cả vì mọi thứ đã hoạt động rất nhanh. Như câu nói nổi tiếng trong phát triển phần mềm:
 
-> Premature optimization is the root of all evil -- The Art of Computer Programming by Donald Knuth
+> Tối ưu hóa sớm là nguồn gốc của mọi điều ác -- Nghệ thuật lập trình máy tính của Donald Knuth
 
-The `useMemo` hook provides a way to add memoization inside our components. It's used to optimize expensive or complex calculations where it caches the result of a function call and stores it to be used later without recalculating it. The memoized value is, however, recalculated *only* when the dependencies of the `useMemo` hook change. And yes, this hook's parameters are the same as the `useEffect` hook you already know. The hook takes in two arguments: a `calculateValue` callback and a `dependencies` array.
+Hook `useMemo` cung cấp một cách để thêm memoization bên trong các component của chúng ta. Nó được sử dụng để tối ưu hóa các phép tính tốn kém hoặc phức tạp, nơi nó lưu trữ kết quả của một lần gọi hàm và giữ lại để sử dụng sau mà không cần tính toán lại. Tuy nhiên, giá trị đã memo sẽ chỉ được tính toán lại *only* khi các phụ thuộc của hook `useMemo` thay đổi. Và đúng vậy, các tham số của hook này giống với hook `useEffect` mà bạn đã biết. Hook nhận vào hai đối số: một callback `calculateValue` và một mảng `dependencies`.
 
-#### Memoizing expensive calculations
+#### Ghi nhớ các phép tính tốn kém
 
-In the previous Shopping Cart Project, you have some logic where you calculate the total price of the products added to the cart. You might or might not have a `Cart` component that functions as a drawer, where the user can open the cart every time they either click on the `Add to Cart` button or the Cart icon in the header.
+Trong Dự án Giỏ Hàng trước, bạn có một số logic nơi bạn tính tổng giá của các sản phẩm được thêm vào giỏ. Bạn có thể có hoặc không có một thành phần `Cart` hoạt động như một ngăn kéo, nơi người dùng có thể mở giỏ hàng mỗi khi họ nhấn vào nút `Add to Cart` hoặc biểu tượng Giỏ hàng trong phần đầu trang.
 
-An example of a `Cart` component:
+Một ví dụ về một thành phần `Cart`:
 
 ```jsx
 function Cart({ products }) {
@@ -101,13 +101,13 @@ function Cart({ products }) {
 }
 ```
 
-In our `Cart` component, we have the total price of the products calculated directly inside the component. Every time the component is rendered or updated, the calculation is performed from scratch! That doesn't sound good... What if the user has added hundreds of thousands of products to the cart? Then it will lead to a sluggish user experience.
+Trong thành phần `Cart` của chúng tôi, chúng tôi đã tính tổng giá của các sản phẩm trực tiếp bên trong thành phần. Mỗi khi thành phần được hiển thị hoặc cập nhật, phép tính này được thực hiện từ đầu! Điều đó nghe không hay... Nếu người dùng đã thêm hàng trăm nghìn sản phẩm vào giỏ hàng thì sao? Khi đó nó sẽ dẫn đến trải nghiệm người dùng chậm chạp.
 
-The `reduce` method iterates over each product and performs multiplication and addition for every item in the cart. This operation becomes *increasingly* time-consuming as the number of products increases.
+Phương pháp `reduce` lặp qua từng sản phẩm và thực hiện phép nhân và cộng cho mỗi mặt hàng trong giỏ. Hoạt động này trở nên *ngày càng* tốn thời gian khi số lượng sản phẩm tăng lên.
 
-Now imagine a user who frequently opens/closes the cart. Every time the drawer is opened, the `Cart` component is rendered, executing everything inside the component. This results in unnecessary recomputations of the same value even if the cart's content hasn't changed.
+Bây giờ hãy tưởng tượng một người dùng thường xuyên mở/đóng giỏ hàng. Mỗi lần ngăn kéo được mở, thành phần `Cart` được kết xuất, thực thi tất cả mọi thứ bên trong thành phần. Điều này dẫn đến việc tính toán lại không cần thiết giá trị cùng một lúc ngay cả khi nội dung giỏ hàng không thay đổi.
 
-Let's see how we can use `useMemo` to address this:
+Hãy xem chúng ta có thể sử dụng `useMemo` để giải quyết điều này như thế nào:
 
 ```jsx
 import { useMemo } from "react";
@@ -133,17 +133,17 @@ function Cart({ products }) {
 }
 ```
 
-In the example above, we can easily memoize the calculated value by wrapping it in a `useMemo`, as the syntax is pretty much the same as `useEffect` and almost works the same. `useMemo` will run the callback on mount. On subsequent re-renders, it will only re-run the callback if a dependency changes, otherwise it will return the cached value from whenever it was last run. In our case, whenever the `products` prop changes.
+Trong ví dụ trên, chúng ta có thể dễ dàng ghi nhớ giá trị đã tính bằng cách bao nó trong một `useMemo`, vì cú pháp gần như giống với `useEffect` và hầu như hoạt động tương tự. `useMemo` sẽ chạy callback khi component được mount. Trong các lần render tiếp theo, nó chỉ chạy lại callback nếu một phụ thuộc thay đổi, nếu không nó sẽ trả về giá trị đã được lưu trong bộ nhớ cache từ lần cuối cùng nó được chạy. Trong trường hợp của chúng ta, mỗi khi prop `products` thay đổi.
 
-This way, whenever a user opens/closes the cart multiple times, it will not recalculate the `totalPrice` and use the cached value as long as `products` did not change.
+Theo cách này, bất cứ khi nào người dùng mở/đóng giỏ hàng nhiều lần, nó sẽ không tính lại `totalPrice` và sẽ sử dụng giá trị đã lưu trong bộ nhớ đệm miễn là `products` không thay đổi.
 
-#### Referential equality checks
+#### Kiểm tra bằng tham chiếu
 
-For this example, we will use the `Profiler` component in the `react` module to measure the component's performance. We will also introduce `memo`.
+Trong ví dụ này, chúng ta sẽ sử dụng thành phần `Profiler` trong mô-đun `react` để đo hiệu suất của thành phần. Chúng ta cũng sẽ giới thiệu `memo`.
 
-You do not need to start a React application for this as we've already got you covered. A bit later, we will be sharing an interactive example, but for now, think through the code about what you think will happen, what could happen, and so on. This could also be a great exercise in reading code and visualizing how it works.
+Bạn không cần phải khởi động một ứng dụng React cho việc này vì chúng tôi đã chuẩn bị sẵn cho bạn. Một chút sau, chúng tôi sẽ chia sẻ một ví dụ tương tác, nhưng hiện tại, hãy suy nghĩ về mã và dự đoán những gì bạn nghĩ sẽ xảy ra, những gì có thể xảy ra, v.v. Điều này cũng có thể là một bài tập tuyệt vời để đọc mã và hình dung cách nó hoạt động.
 
-Do note that this is just a very basic example. You will encounter a lot of passing of values to other components as props, components that are very heavy to render.
+Xin lưu ý rằng đây chỉ là một ví dụ rất cơ bản. Bạn sẽ gặp nhiều việc truyền giá trị cho các thành phần khác dưới dạng props, những thành phần mà việc render rất nặng.
 
 ```jsx
 import { useState } from "react";
@@ -183,21 +183,21 @@ function Counter() {
 }
 ```
 
-You will likely want to have a separate button component where you can handle stylings and other things in it. So we have created a component called `ButtonComponent` as an example. This component takes the `children` and `onClick` props.
+Bạn có khả năng sẽ muốn có một thành phần nút riêng mà bạn có thể xử lý các kiểu dáng và những thứ khác trong đó. Vì vậy, chúng tôi đã tạo một thành phần gọi là `ButtonComponent` làm ví dụ. Thành phần này nhận các props `children` và `onClick`.
 
-We can see that the click handler is defined in the `Counter` component, and we've passed it to the `onClick` prop of the `ButtonComponent`.
+Chúng ta có thể thấy rằng trình xử lý click được định nghĩa trong thành phần `Counter`, và chúng ta đã truyền nó vào prop `onClick` của `ButtonComponent`.
 
-We know that a component renders whenever either state changes or prop changes. Anything inside that is not controlled by React is destroyed and re-executed. Functions, variables, etc. As a result, the function `handleClick` is re-created each time, and the prop `onClick` of the `ButtonComponent` also changes. Alright, so how can `useMemo` help in here?
+Chúng ta biết rằng một component sẽ render bất cứ khi nào state thay đổi hoặc prop thay đổi. Bất cứ thứ gì bên trong mà không được React kiểm soát sẽ bị hủy và thực thi lại. Các hàm, biến, v.v. Do đó, hàm `handleClick` được tạo lại mỗi lần, và prop `onClick` của `ButtonComponent` cũng thay đổi. Được rồi, vậy `useMemo` có thể giúp gì ở đây?
 
-We already know we can memoize a value using `useMemo`, right? Then we can just cache the function reference and use an empty dependency array so that it won't change.
+Chúng ta đã biết rằng chúng ta có thể ghi nhớ một giá trị bằng cách sử dụng `useMemo`, đúng không? Sau đó, chúng ta chỉ cần lưu trữ tham chiếu hàm và sử dụng một mảng phụ thuộc trống để nó không thay đổi.
 
-Let's create a new function and name it `memoizedHandleClick`:
+Hãy tạo một hàm mới và đặt tên nó là `memoizedHandleClick`:
 
 ```jsx
 const memoizedHandleClick = useMemo(() => handleClick, []);
 ```
 
-We don't need to create a new function, but this is just to test these two functions. You can also directly do the following:
+Chúng ta không cần tạo một hàm mới, nhưng đây chỉ là để kiểm tra hai hàm này. Bạn cũng có thể thực hiện trực tiếp như sau:
 
 ```jsx
 // Syntax might be weird, but just remember that `useMemo` can take any value, and a function is also just a value `() => setCount((prevState) => prevState + 1)`
@@ -210,7 +210,7 @@ const handleClick = useMemo(
 );
 ```
 
-Great, `useMemo` should help us here right? It shouldn't possibly re-render the `ButtonComponent` again correct? Nope, it will still re-render because whenever a component's `state` changes, it will also re-render its children, which could also be said differently - a component will re-render itself if its parent re-renders. Is there a way to fix this? Yes, there is! React in one of its APIs provides the [memo wrapper function](https://react.dev/reference/react/memo) that lets you skip re-rendering a component when its props are unchanged (yes, even if the parent re-renders). We can use this `memo` and wrap the `ButtonComponent` in it.
+Tuyệt vời, `useMemo` sẽ giúp chúng ta ở đây đúng không? Nó không thể nào render lại `ButtonComponent` nữa đúng không? Không, nó vẫn sẽ render lại vì mỗi khi `state` của một component thay đổi, nó cũng sẽ render lại các component con của nó, điều này cũng có thể được nói khác đi - một component sẽ render lại chính nó nếu component cha của nó render lại. Có cách nào để khắc phục điều này không? Có, có chứ! React trong một trong các API của nó cung cấp [hàm bao bọc memo](https://react.dev/reference/react/memo) cho phép bạn bỏ qua việc render lại một component khi props của nó không thay đổi (vâng, ngay cả khi component cha render lại). Chúng ta có thể sử dụng `memo` và bao bọc `ButtonComponent` trong nó.
 
 ```jsx
 import { useState, memo } from "react";
@@ -235,16 +235,16 @@ const ButtonComponent = memo(({ children, onClick }) => {
 });
 ```
 
-Wrapping the component with a `memo` prevents the downward update that is triggered above the component. So, this component will only re-render when its `props` change or if its own `state` changes.
+Việc bao quanh thành phần bằng một `memo` ngăn chặn việc cập nhật xuống dưới được kích hoạt phía trên thành phần. Vì vậy, thành phần này sẽ chỉ render lại khi `props` của nó thay đổi hoặc nếu chính `state` của nó thay đổi.
 
-With all that said and done, go to our [react-examples repo](https://github.com/TheOdinProject/react-examples) (fork and clone it if you haven't already), `cd` into the `memoization/` directory and run `npm install` then `npm run dev`. Take some time to play around with the code. Experiment! Test things out and break stuff!
+Với tất cả những gì đã nói và làm, hãy đến với [repo ví dụ react của chúng tôi](https://github.com/TheOdinProject/react-examples) (nhánh và sao chép nó nếu bạn chưa làm), `cd` vào thư mục `memoization/` và chạy `npm install` rồi `npm run dev`. Dành chút thời gian để thử nghiệm với mã. Thử nghiệm đi! Kiểm tra mọi thứ và phá vỡ chúng!
 
-These are some scenarios that could happen:
+Đây là một số tình huống có thể xảy ra:
 
-1. If you've passed `handleClick` and the `ButtonComponent` has a `memo`. It will still re-render. Referential equality check fails (previous prop is *not equal* to the current prop).
-1. If you've passed `memoizedHandleClick` and the `ButtonComponent` has a `memo`. It will not re-render. Referential equality check passes (previous prop is *equal* to the current prop).
+1. Nếu bạn đã truyền `handleClick` và `ButtonComponent` có một `memo`. Nó vẫn sẽ render lại. Kiểm tra tương đương tham chiếu thất bại (prop trước đó là * không bằng * với prop hiện tại).
+1. Nếu bạn đã truyền `memoizedHandleClick` và `ButtonComponent` có một `memo`. Nó sẽ không được kết xuất lại. Kiểm tra bằng tham chiếu thành công (prop trước đó là *equal* với prop hiện tại).
 
-This works with all values that will be passed as a prop. You might see it being used frequently with the Context API:
+Điều này hoạt động với tất cả các giá trị sẽ được truyền như một prop. Bạn có thể thấy nó được sử dụng thường xuyên với Context API:
 
 ```jsx
 const value = useMemo(
@@ -255,9 +255,9 @@ const value = useMemo(
 return <Context value={value}>{children}</Context>;
 ```
 
-### The useCallback hook
+### Hook useCallback
 
-The `useCallback` hook provides another way to memoize a value, not just **any** value like `useMemo`. It can only memoize a function. Did you see the previous snippet that we have with memoizing a function reference with `useMemo`?
+Hook `useCallback` cung cấp một cách khác để ghi nhớ giá trị, không chỉ là **any** giá trị như `useMemo`. Nó chỉ có thể ghi nhớ một hàm. Bạn có thấy đoạn mã trước đó mà chúng tôi có với việc ghi nhớ một tham chiếu hàm bằng `useMemo` không?
 
 ```jsx
 const handleClick = useMemo(
@@ -268,7 +268,7 @@ const handleClick = useMemo(
 const memoizedHandleClick = useMemo(() => handleClick, []);
 ```
 
-With `useCallback`, we don't need to do that. It's specifically made for functions:
+Với `useCallback`, chúng ta không cần làm điều đó. Nó được tạo ra đặc biệt cho các hàm:
 
 ```jsx
 import { useCallback } from "react";
@@ -285,28 +285,28 @@ const handleClick = useCallback(
 const memoizedHandleClick = useCallback(handleClick, []);
 ```
 
-Yay, there's only one arrow function, and it's simpler to read. There's nothing extra to `useCallback` other than it only memoizes functions. So the main difference between `useMemo` and `useCallback` is just the type of value it returns.
+Tuyệt, chỉ có một hàm mũi tên, và nó dễ đọc hơn. Không có gì thêm vào `useCallback` ngoài việc nó chỉ ghi nhớ các hàm. Vì vậy, sự khác biệt chính giữa `useMemo` và `useCallback` chỉ là loại giá trị mà nó trả về.
 
-Which one should we use, then? Use `useMemo` for *any* value types, and use `useCallback` specifically for functions. At the end of the day, they both do similar things with a tiny difference, so use whatever you prefer.
+Vậy chúng ta nên dùng cái nào? Dùng `useMemo` cho *any* các loại giá trị, và dùng `useCallback` đặc biệt cho các hàm. Cuối cùng, cả hai đều làm những việc tương tự với một sự khác biệt nhỏ, nên dùng cái nào bạn thích.
 
-### React Compiler
+### Trình biên dịch React
 
-We now also have React Compiler, which is a relatively new build-time tool that can automatically optimize our React app. It will analyze our code and memoize appropriate components and hooks, primarily focusing on improving update performance (re-rendering existing components). This means that in most cases, we *don't have to* manually memoize components or hooks.
+Chúng ta hiện cũng có React Compiler, là một công cụ xây dựng thời gian chạy khá mới có thể tự động tối ưu hóa ứng dụng React của chúng ta. Nó sẽ phân tích mã của chúng ta và ghi nhớ các component và hook phù hợp, chủ yếu tập trung vào việc cải thiện hiệu suất cập nhật (render lại các component hiện có). Điều này có nghĩa là trong hầu hết các trường hợp, chúng ta *không phải* tự ghi nhớ các component hoặc hook.
 
-So if React Compiler memoizes our hooks and components automatically, do we need to know about `React.memo`, or hooks like `useMemo` and `useCallback`? Short answer - yes. Understanding manual memoization helps us understand what React Compiler does under the hood, not to mention that you will almost certainly run into manual memoization techniques in existing codebases. Lastly, there may be cases where we need more control over what gets memoized and how compared to what React Compiler will automatically do, such as making sure a `useEffect` dependency is memoized to ensure it doesn't change unnecessarily and fire the effect.
+Vậy nếu Trình biên dịch React tự động ghi nhớ (memoize) các hook và component của chúng ta, liệu chúng ta có cần biết về `React.memo` hay các hook như `useMemo` và `useCallback` không? Câu trả lời ngắn gọn - có. Hiểu về việc ghi nhớ thủ công sẽ giúp chúng ta hiểu những gì Trình biên dịch React thực hiện bên trong, chưa kể rằng bạn hầu như chắc chắn sẽ gặp phải các kỹ thuật ghi nhớ thủ công trong các codebase hiện có. Cuối cùng, có thể có những trường hợp chúng ta cần kiểm soát nhiều hơn về những gì được ghi nhớ và cách thức so với những gì Trình biên dịch React sẽ tự động thực hiện, chẳng hạn như đảm bảo một phụ thuộc `useEffect` được ghi nhớ để đảm bảo nó không thay đổi không cần thiết và kích hoạt hiệu ứng.
 
-### Conclusion
+### Kết luận
 
-Phew, this was a long lesson. Refs and memoization are difficult concepts to grasp, but we're sure you'll understand them with practice. Refs particularly are really useful for some use cases. As for automatic memoization, it can help optimize our app without needing to write any additional code. Manual memoization may also be necessary in certain cases, but you should only reach out for it when you absolutely need it. These topics also make for great interview questions, so make sure you know the difference between `useMemo` and `useCallback`!
+Hú, đây là một bài học dài. Refs và memoization là những khái niệm khó nắm bắt, nhưng chúng tôi chắc chắn bạn sẽ hiểu chúng qua thực hành. Refs đặc biệt rất hữu ích cho một số trường hợp sử dụng. Còn về memoization tự động, nó có thể giúp tối ưu hóa ứng dụng của chúng ta mà không cần viết thêm bất kỳ mã nào. Memoization thủ công cũng có thể cần thiết trong một số trường hợp, nhưng bạn chỉ nên sử dụng khi thực sự cần. Những chủ đề này cũng là các câu hỏi phỏng vấn tuyệt vời, vì vậy hãy chắc chắn bạn hiểu sự khác biệt giữa `useMemo` và `useCallback`!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. The article [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback) by Kent C. Dodds further introduces more examples of when to use `useMemo` and `useCallback` and when you shouldn't bother using them.
-1. We've only learned about a basic implementation of the `useRef` hook. For more examples about its usage and why we should be wary of using the hook (more on the links they provided in the guide), check out the interactive guide of the React documentation for [useRef hook](https://react.dev/reference/react/useRef) .
-1. For a deeper dive into how to safely access and modify DOM nodes, check out the React documentation on [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs).
-1. As we have learned, the `useRef` hook has other uses other than what we've primarily covered which is DOM Manipulation. Get to know more about its use-cases in this great article by Dan Abramov [Making setInterval Declarative with React Hooks](https://overreacted.io/making-setinterval-declarative-with-react-hooks/).
-1. Go through [React Compiler docs](https://react.dev/learn/react-compiler) to learn a bit more about it, and to find out how to install and configure it in your projects.
+1. Bài viết [Khi nào sử dụng useMemo và useCallback](https://kentcdodds.com/blog/usememo-and-usecallback) của Kent C. Dodds giới thiệu thêm nhiều ví dụ về khi nào sử dụng `useMemo` và `useCallback` và khi nào bạn không nên bận tâm sử dụng chúng.
+1. Chúng ta chỉ mới tìm hiểu về một triển khai cơ bản của hook `useRef`. Để biết thêm các ví dụ về cách sử dụng nó và lý do tại sao chúng ta nên cẩn thận khi sử dụng hook này (tìm hiểu thêm trong các liên kết mà họ cung cấp trong hướng dẫn), hãy xem hướng dẫn tương tác trong tài liệu React về [useRef hook](https://react.dev/reference/react/useRef).
+1. Để tìm hiểu sâu hơn về cách truy cập và chỉnh sửa các nút DOM một cách an toàn, hãy tham khảo tài liệu React về [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs).
+1. Như chúng ta đã học, hook `useRef` còn có những mục đích sử dụng khác ngoài những gì chúng ta đã đề cập chủ yếu là Manipulation DOM. Tìm hiểu thêm về các trường hợp sử dụng của nó trong bài viết tuyệt vời này của Dan Abramov [Making setInterval Declarative with React Hooks](https://overreacted.io/making-setinterval-declarative-with-react-hooks/).
+1. Xem qua [tài liệu trình biên dịch React](https://react.dev/learn/react-compiler) để tìm hiểu thêm về nó, và để biết cách cài đặt và cấu hình nó trong các dự án của bạn.
 
 </div>

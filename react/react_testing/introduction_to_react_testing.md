@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-We've learned how to test our vanilla JavaScript applications in a previous section. Testing is a powerful tool that allows us to write maintainable and flexible code. If you've followed along with our lessons, so far we've been using the [Jest](https://jestjs.io/) framework. However, since we're using [Vite](https://vitejs.dev/) we'll switch over to [Vitest](https://vitest.dev/) as our test runner since it integrates nicely with Vite. We'll add more capabilities to our tests using the [React Testing library (RTL)](https://testing-library.com/docs/react-testing-library/intro/).
+Chúng ta đã học cách kiểm thử các ứng dụng JavaScript thuần túy của mình trong một phần trước. Kiểm thử là một công cụ mạnh mẽ cho phép chúng ta viết mã dễ bảo trì và linh hoạt. Nếu bạn đã theo dõi các bài học của chúng tôi, cho đến nay chúng ta đã sử dụng framework [Jest](https://jestjs.io/). Tuy nhiên, vì chúng ta đang sử dụng [Vite](https://vitejs.dev/) nên chúng ta sẽ chuyển sang [Vitest](https://vitest.dev/) làm trình chạy kiểm thử của mình vì nó tích hợp tốt với Vite. Chúng ta sẽ thêm nhiều khả năng hơn cho các bài kiểm thử của mình bằng cách sử dụng [React Testing library (RTL)](https://testing-library.com/docs/react-testing-library/intro/).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Why UI testing is valuable.
-- How to set up a React testing environment.
-- How to test UI elements.
-- Understanding snapshot tests.
+- Tại sao kiểm thử giao diện người dùng lại có giá trị.
+- Cách thiết lập môi trường kiểm thử React.
+- Cách kiểm tra các yếu tố giao diện người dùng.
+- Hiểu về các bài kiểm tra snapshot.
 
-### UI testing
+### Kiểm thử giao diện người dùng
 
-By now, you'll have had some experience already with TDD and the idea of testing in general. You may remember in the Battleship project, you will have written tests limited to the underlying Battleship game, but without involving the DOM at all. You may have made non-UI changes, caused tests to fail, then resolved whatever was needed so you had tests that were relevant and passed.
+Đến bây giờ, bạn sẽ đã có một số kinh nghiệm với TDD và ý tưởng về kiểm thử nói chung. Bạn có thể nhớ trong dự án Battleship, bạn sẽ đã viết các bài kiểm thử giới hạn cho trò chơi Battleship cơ bản, nhưng không hề liên quan đến DOM. Bạn có thể đã thực hiện các thay đổi không liên quan đến giao diện người dùng, khiến các bài kiểm thử thất bại, rồi sau đó giải quyết những gì cần thiết để có các bài kiểm thử phù hợp và vượt qua.
 
-Despite this, you may have run into bugs in the UI because your tests only involved the underlying logic. You may have a working Battleship game, but that does not mean the UI actually displays what you intend nor lets users interact with the game as intended. And let's be honest, every time you make a change to any part of your code (whether related to UI or not), you're not going to remember to recheck every related UI aspect to make sure everything still works as you expect. i.e., this is no different to before, we're just involving the UI now.
+Mặc dù vậy, bạn có thể đã gặp phải lỗi trong giao diện người dùng (UI) vì các bài kiểm tra của bạn chỉ liên quan đến logic cơ bản. Bạn có thể có một trò chơi Battleship hoạt động tốt, nhưng điều đó không có nghĩa là UI thực sự hiển thị những gì bạn muốn hoặc cho phép người dùng tương tác với trò chơi như mong đợi. Và hãy thành thật, mỗi khi bạn thay đổi bất kỳ phần nào trong mã của mình (dù liên quan đến UI hay không), bạn sẽ không nhớ kiểm tra lại mọi khía cạnh liên quan đến UI để chắc chắn mọi thứ vẫn hoạt động như bạn mong đợi. Tức là, điều này không khác gì trước đây, chúng ta chỉ đang liên quan đến UI bây giờ.
 
-UI tests give us more confidence that our websites contain the intended contents and behave as we want, and notify us when something no longer satisfies our requirements. Perhaps you decide to change the exact structure of a state, such as changing from a plain object to an array, but now a list does not contain the text you intend. Or maybe you add a condition somewhere in a component and now suddenly, only the last three drop targets for your drag and drop cards are no longer valid targets. As your websites get more complex, the value of good tests (both UI and non-UI) will only increase.
+Các bài kiểm tra giao diện người dùng (UI) mang lại cho chúng ta sự tự tin hơn rằng các trang web của chúng ta chứa đúng nội dung dự định và hoạt động theo ý muốn của chúng ta, đồng thời thông báo cho chúng ta khi có thứ gì đó không còn đáp ứng yêu cầu của chúng ta. Có thể bạn quyết định thay đổi cấu trúc chính xác của một trạng thái, chẳng hạn như chuyển từ một đối tượng đơn giản sang một mảng, nhưng bây giờ danh sách lại không chứa văn bản mà bạn dự định. Hoặc có thể bạn thêm một điều kiện nào đó vào một thành phần và giờ đây, đột nhiên, chỉ có ba mục tiêu thả cuối cùng cho các thẻ kéo và thả của bạn không còn là mục tiêu hợp lệ. Khi các trang web của bạn trở nên phức tạp hơn, giá trị của các bài kiểm tra tốt (cả UI và không UI) sẽ chỉ tăng lên.
 
-### Setting up a React testing environment
+### Thiết lập môi trường kiểm thử React
 
-Follow along [Robin Wieruch's guide on setting up Vitest with RTL](https://www.robinwieruch.de/vitest-react-testing-library/). Once you've completed the setup, let's meet back here.
+Theo dõi [hướng dẫn của Robin Wieruch về cách thiết lập Vitest với RTL](https://www.robinwieruch.de/vitest-react-testing-library/). Khi bạn đã hoàn tất việc thiết lập, hãy quay lại đây gặp nhau.
 
 <div class="lesson-note" markdown="1">
 
-#### Vitest globals and ESLint
+#### Biến toàn cục Vitest và ESLint
 
-Even if you set `globals: true` in `vite.config.js` like in the setup tutorial, ESLint will still yell at you, as it will not recognize these globals without some extra configuration in your `eslint.config.js` file. The most straightforward resolution would be to explicitly import the globals you'd need instead. You can omit `globals: true` from `vite.config.js` in this case.
+Ngay cả khi bạn đặt `globals: true` trong `vite.config.js` như trong hướng dẫn cài đặt, ESLint vẫn sẽ cảnh báo bạn, vì nó sẽ không nhận diện được các biến toàn cục này nếu không có một số cấu hình bổ sung trong tệp `eslint.config.js` của bạn. Giải pháp đơn giản nhất là nhập rõ ràng các biến toàn cục mà bạn cần. Trong trường hợp này, bạn có thể bỏ `globals: true` khỏi `vite.config.js`.
 
 </div>
 
-Phew, that was a lot of setup. But there's one more tiny package to install before we can begin:
+Hú, thật là nhiều bước chuẩn bị. Nhưng vẫn còn một gói nhỏ nữa cần cài đặt trước khi chúng ta có thể bắt đầu:
 
 ```bash
 npm install @testing-library/user-event --save-dev
 ```
 
-Now that we have everything we need, let's briefly go over what some of those packages do. We'll primarily focus on the `@testing-library` packages.
+Bây giờ chúng ta đã có tất cả những gì cần thiết, hãy cùng điểm qua nhanh về chức năng của một số gói đó. Chúng ta sẽ tập trung chủ yếu vào các gói `@testing-library`.
 
-- `@testing-library/react` will give us access to useful functions like `render` which we'll demonstrate later on.
+- `@testing-library/react` sẽ cung cấp cho chúng ta quyền truy cập vào các chức năng hữu ích như `render` mà chúng ta sẽ trình bày sau.
 
-- `@testing-library/jest-dom` includes some handy custom matchers (assertive functions) like `toBeInTheDocument` and more. (complete list on [jest-dom's github](https://github.com/testing-library/jest-dom)). Jest already has a lot of matchers so this package is not compulsory to use.
+- `@testing-library/jest-dom` bao gồm một số bộ kiểm tra tùy chỉnh tiện lợi (các hàm assertive) như `toBeInTheDocument` và nhiều hơn nữa. (danh sách đầy đủ trên [github của jest-dom](https://github.com/testing-library/jest-dom)). Jest đã có rất nhiều bộ kiểm tra nên gói này không bắt buộc phải sử dụng.
 
-- `@testing-library/user-event` provides the `userEvent` API that simulates user interactions with the webpage.
+- `@testing-library/user-event` cung cấp API `userEvent` mô phỏng các tương tác của người dùng với trang web.
 
-### Our first query
+### Truy vấn đầu tiên của chúng tôi
 
-First, we'll render the component using `render` (you can read all about what the function can do in [the React Testing Library API docs about `render`](https://testing-library.com/docs/react-testing-library/api/#render)). We say "render", but you won't see any screen. Back in the RTL setup article just now, one of the packages installed is `jsdom`, which simulates the DOM (including events) in memory without actually laying anything out visually like in a browser, and that allows us to parse its contents for our tests. This is different to and much less complex than other libraries that actually run a real browser environment for more complex end-to-end tests - that's out of scope here.
+Đầu tiên, chúng ta sẽ kết xuất (render) thành phần sử dụng `render` (bạn có thể đọc tất cả về những gì hàm này có thể làm trong [tài liệu API React Testing Library về `render`](https://testing-library.com/docs/react-testing-library/api/#render)). Chúng tôi nói "kết xuất", nhưng bạn sẽ không thấy bất kỳ màn hình nào. Trong bài viết thiết lập RTL vừa rồi, một trong những gói được cài đặt là `jsdom`, gói này mô phỏng DOM (bao gồm các sự kiện) trong bộ nhớ mà không thực sự hiển thị bất cứ thứ gì giống như trong trình duyệt, và điều đó cho phép chúng ta phân tích nội dung của nó cho các bài kiểm tra của mình. Điều này khác và ít phức tạp hơn nhiều so với các thư viện khác thực sự chạy môi trường trình duyệt thực để thực hiện các bài kiểm tra end-to-end phức tạp hơn - điều đó không nằm trong phạm vi ở đây.
 
 ```jsx
 // App.jsx
@@ -73,13 +73,13 @@ describe("App component", () => {
 });
 ```
 
-Execute `npm test App.test.jsx` on the terminal and see the test pass. `getByRole` is just one of the dozen query methods that we could've used. Essentially, queries are classified into three types: `getBy`, `queryBy` and `findBy`. Go through [the React Testing Library docs page about queries](https://testing-library.com/docs/queries/about/). Pay extra attention to the "Types of Queries" and "Priority" sections.
+Thực thi `npm test App.test.jsx` trên terminal và xem bài kiểm tra vượt qua. `getByRole` chỉ là một trong hàng chục phương thức truy vấn mà chúng ta có thể đã sử dụng. Về cơ bản, các truy vấn được phân loại thành ba loại: `getBy`, `queryBy` và `findBy`. Hãy xem qua [trang tài liệu React Testing Library về các truy vấn](https://testing-library.com/docs/queries/about/). Hãy chú ý đặc biệt đến các phần "Các loại truy vấn" và "Ưu tiên".
 
-As stated by the React Testing Library docs, `ByRole` methods are favored methods for querying, especially when paired with the `name` option. For example, we could improve the specificity of the above query like so: `getByRole("heading", { name: "Our First Test" })`. Queries that are done through `ByRole` ensure that our UI is accessible to everyone no matter what mode they use to navigate the webpage (i.e. mouse or assistive technologies).
+Như đã nêu trong tài liệu của React Testing Library, các phương thức `ByRole` là các phương thức được ưa chuộng để truy vấn, đặc biệt khi kết hợp với tùy chọn `name`. Ví dụ, chúng ta có thể cải thiện độ cụ thể của truy vấn trên như sau: `getByRole("heading", { name: "Our First Test" })`. Các truy vấn được thực hiện thông qua `ByRole` đảm bảo rằng giao diện người dùng của chúng ta có thể truy cập được cho tất cả mọi người bất kể họ sử dụng chế độ nào để điều hướng trang web (ví dụ: chuột hoặc công nghệ hỗ trợ).
 
-### Simulating user events
+### Mô phỏng các sự kiện của người dùng
 
-There are numerous ways a user can interact with a webpage. Even though live user feedback and interaction is irreplaceable, we can still build some confidence in our components through tests. Here's a button which changes the heading of the App:
+Có nhiều cách mà người dùng có thể tương tác với một trang web. Mặc dù phản hồi và tương tác trực tiếp của người dùng là không thể thay thế, chúng ta vẫn có thể xây dựng một số độ tin cậy cho các thành phần thông qua các bài kiểm tra. Đây là một nút bấm thay đổi tiêu đề của Ứng dụng:
 
 ```jsx
 // App.jsx
@@ -106,7 +106,7 @@ const App = () => {
 export default App;
 ```
 
-Let's test if the button works as intended. In this test suite, we'll use a separate utility to query our UI elements. React Testing Library provides the `screen` object which has all the methods for querying.
+Hãy thử xem nút có hoạt động như mong đợi không. Trong bộ kiểm tra này, chúng ta sẽ sử dụng một tiện ích riêng để truy vấn các phần tử giao diện người dùng của mình. React Testing Library cung cấp đối tượng `screen`, đối tượng này có tất cả các phương thức để thực hiện truy vấn.
 
 ```jsx
 // App.test.jsx
@@ -136,13 +136,13 @@ describe("App component", () => {
 });
 ```
 
-The tests speak for themselves. In the first test, we utilize snapshots to check whether all the nodes render as we expect them to. In the second test, we simulate a click event. Then we check if the heading changed. `toMatch` is one of the various assertions we could have made. Notice that the callback function for the second test is an `async` one, as we need this in order to `await user.click()`.
+Các bài kiểm tra tự nói lên điều của chúng. Trong bài kiểm tra đầu tiên, chúng tôi sử dụng các ảnh chụp nhanh để kiểm tra xem tất cả các nút có hiển thị như chúng tôi mong đợi hay không. Trong bài kiểm tra thứ hai, chúng tôi mô phỏng một sự kiện nhấp chuột. Sau đó, chúng tôi kiểm tra xem tiêu đề có thay đổi hay không. `toMatch` là một trong nhiều xác nhận mà chúng tôi có thể đã thực hiện. Lưu ý rằng hàm callback cho bài kiểm tra thứ hai là một `async`, vì chúng tôi cần điều này để `await user.click()`.
 
-It's also important to note that after every test, React Testing Library unmounts the rendered components. That's why we render for each test. For a lot of tests for a component, a custom `setup` function could prove handy.
+Cũng quan trọng để lưu ý rằng sau mỗi bài kiểm tra, React Testing Library sẽ gỡ bỏ các thành phần đã được render. Đó là lý do tại sao chúng ta render cho mỗi bài kiểm tra. Đối với nhiều bài kiểm tra cho một thành phần, một hàm `setup` tùy chỉnh có thể sẽ rất hữu ích.
 
-### What are snapshots?
+### Snapshot là gì?
 
-Snapshot testing is just comparing our rendered component with an associated snapshot file. For example, the snapshot file which was automatically generated after we ran the *"renders magnificent monkeys"* test was:
+Kiểm tra ảnh chụp nhanh chỉ là so sánh thành phần được hiển thị của chúng ta với một tệp ảnh chụp nhanh liên quan. Ví dụ, tệp ảnh chụp nhanh được tạo tự động sau khi chúng ta chạy bài kiểm tra *"renders magnificent monkeys"* là:
 
 ```jsx
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
@@ -161,31 +161,31 @@ exports[`App component > renders magnificent monkeys 1`] = `
 `;
 ```
 
-It's an HTML representation of the `App` component. And it will be compared against the `App` in future snapshot assertions. If the `App` changes even slightly, the test fails.
+Đây là một biểu diễn HTML của thành phần `App`. Và nó sẽ được so sánh với `App` trong các khẳng định chụp nhanh trong tương lai. Nếu `App` thay đổi dù chỉ một chút, bài kiểm tra sẽ thất bại.
 
-Snapshot tests are fast and easy to write. One assertion saves us from writing multiple lines of code. For example, with a `toMatchSnapshot`, we're spared of asserting the existence of the button and the heading. They also don't let unexpected changes creep into our code. Read all about what can be achieved with snapshots in the [Vitest snapshot docs](https://vitest.dev/guide/snapshot.html).
+Các bài kiểm tra snapshot nhanh và dễ viết. Một phép khẳng định giúp chúng ta không phải viết nhiều dòng mã. Ví dụ, với một `toMatchSnapshot`, chúng ta không cần phải khẳng định sự tồn tại của nút và tiêu đề. Chúng cũng ngăn không cho những thay đổi không mong muốn len lỏi vào mã của chúng ta. Đọc tất cả về những gì có thể đạt được với snapshots trong [tài liệu snapshot của Vitest](https://vitest.dev/guide/snapshot.html).
 
-Snapshots might seem the best thing that has happened to us while testing thus far. But we are forced to wonder, *what* exactly are we testing? What's being validated? If a snapshot passes, what does it convey about the correctness of the component?
+Các bản chụp nhanh có vẻ là điều tốt nhất đã xảy ra với chúng tôi trong quá trình thử nghiệm cho đến nay. Nhưng chúng tôi buộc phải tự hỏi, *chính xác* chúng tôi đang thử nghiệm điều gì? Điều gì đang được xác thực? Nếu một bản chụp nhanh vượt qua, nó truyền đạt điều gì về sự đúng đắn của thành phần?
 
-Snapshot tests may cause false positives. Since we cannot ascertain the validity of the component from a snapshot test, a bug might go undetected. Over-reliance on snapshots can make developers more confident about their code than they should be.
+Các bài kiểm tra Snapshot có thể gây ra kết quả dương tính giả. Vì chúng ta không thể xác nhận tính hợp lệ của thành phần từ một bài kiểm tra snapshot, một lỗi có thể sẽ không được phát hiện. Việc phụ thuộc quá nhiều vào các snapshot có thể khiến các nhà phát triển tự tin hơn về mã của họ so với mức họ nên có.
 
-The other issue with snapshots is false negatives. Even the most insignificant of changes compel the test to fail. Fixing punctuation? Snapshot will fail. Replacing an HTML tag to a more semantic one? Snapshot will fail. This might cause us to lose our confidence in the test suite altogether. Snapshots aren't inherently bad; they do serve a purpose. But it's beneficial to understand when to snapshot, and when not to snapshot.
+Vấn đề khác với snapshot là kết quả âm tính giả. Ngay cả những thay đổi nhỏ nhất cũng khiến bài kiểm tra thất bại. Sửa dấu câu? Snapshot sẽ thất bại. Thay một thẻ HTML bằng thẻ có ngữ nghĩa hơn? Snapshot sẽ thất bại. Điều này có thể khiến chúng ta mất niềm tin vào bộ bài kiểm tra hoàn toàn. Snapshot không phải vốn xấu; chúng thực sự có mục đích. Nhưng hiểu khi nào nên chụp snapshot và khi nào không nên chụp snapshot là điều có lợi.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note" markdown="1">
 
-#### Focus on the concepts
+#### Tập trung vào các khái niệm
 
-Even though some articles use Jest and the Enzyme testing library, the concepts should be transferable.
+Mặc dù một số bài viết sử dụng Jest và thư viện kiểm thử Enzyme, nhưng các khái niệm nên có thể chuyển giao được.
 
 </div>
 
-1. [Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) by Kent C. Dodds shows us how we can reduce false test results and inflexible tests by avoiding testing the implementation of things.
-1. Take a glance at all of the available query methods on [the React Testing Library's cheatsheet page](https://testing-library.com/docs/dom-testing-library/cheatsheet/). There's no need to use them all, but it's optimal to employ a specific method for a specific query. If none of the query methods suffice, there's an option to use test ids. Learn about test ids on [the React Testing Library's test id docs](https://testing-library.com/docs/queries/bytestid/).
-1. Read [the userEvent API docs](https://testing-library.com/docs/user-event/intro) to get a feel of how to achieve user simulation.
-1. This article on the [Pros and Cons of Snapshot Tests](https://tsh.io/blog/pros-and-cons-of-jest-snapshot-tests/) goes in depth regarding the advantages and disadvantages of snapshot testing. And this one, [Snapshot Testing: Benefits and Drawbacks](https://www.sitepen.com/blog/snapshot-testing-benefits-and-drawbacks), does an excellent job of explaining what snapshot testing is for programming in general.
+1. [Chi tiết triển khai kiểm thử](https://kentcdodds.com/blog/testing-implementation-details) của Kent C. Dodds cho chúng ta thấy cách chúng ta có thể giảm các kết quả kiểm thử sai và các kiểm thử không linh hoạt bằng cách tránh kiểm thử việc triển khai của các thứ.
+1. Hãy xem qua tất cả các phương thức truy vấn có sẵn trên [trang cheatsheet của React Testing Library](https://testing-library.com/docs/dom-testing-library/cheatsheet/). Không cần phải sử dụng tất cả, nhưng tối ưu là sử dụng một phương thức cụ thể cho một truy vấn cụ thể. Nếu không có phương thức truy vấn nào đủ, có thể sử dụng test id. Tìm hiểu về test id trên [tài liệu test id của React Testing Library](https://testing-library.com/docs/queries/bytestid/).
+1. Đọc [tài liệu API userEvent](https://testing-library.com/docs/user-event/intro) để hiểu cách thực hiện mô phỏng người dùng.
+1. Bài viết này về [Ưu và nhược điểm của các bài kiểm tra Snapshot](https://tsh.io/blog/pros-and-cons-of-jest-snapshot-tests/) đi sâu vào các lợi ích và bất lợi của việc kiểm tra snapshot. Và bài viết này, [Kiểm tra Snapshot: Lợi ích và Nhược điểm](https://www.sitepen.com/blog/snapshot-testing-benefits-and-drawbacks), giải thích rất tốt về việc kiểm tra snapshot dùng để làm gì trong lập trình nói chung.
 
 </div>

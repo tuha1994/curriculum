@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-Throughout the lessons, we've learned how to manage state, and pass data and props between components. However, as our application grows in size, not only will this process of managing states and passing data around become repetitive and inconvenient, but it will also be hard to manage. In the [React Router lesson](https://www.theodinproject.com/lessons/node-path-react-new-react-router#outlets-and-state), we mentioned how we could use outlet context to pass data from a parent component through an `<Outlet />` to a child component. This lesson will cover how we can use the Context API to do similar things outside of outlet scenarios.
+Trong suốt các bài học, chúng ta đã học cách quản lý trạng thái và truyền dữ liệu cùng props giữa các thành phần. Tuy nhiên, khi ứng dụng của chúng ta phát triển về kích thước, quá trình quản lý trạng thái và truyền dữ liệu này không chỉ trở nên lặp đi lặp lại và bất tiện, mà còn khó quản lý. Trong [bài học React Router](https://www.theodinproject.com/lessons/node-path-react-new-react-router#outlets-and-state), chúng ta đã đề cập cách chúng ta có thể sử dụng outlet context để truyền dữ liệu từ một thành phần cha qua một `<Outlet />` đến một thành phần con. Bài học này sẽ đề cập cách chúng ta có thể sử dụng Context API để làm những việc tương tự ngoài các tình huống outlet.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Using the Context API to pass state and data deep into React components.
-- Real-world application of the Context API.
-- Drawbacks of using the Context API.
+- Sử dụng Context API để truyền trạng thái và dữ liệu sâu vào các thành phần React.
+- Ứng dụng thực tế của API Context.
+- Những hạn chế của việc sử dụng Context API.
 
-### Why do we need Context API
+### Tại sao chúng ta cần Context API
 
-The Context API in React is a feature that allows you to manage the global state of your application without the need to pass data through multiple levels of components using props. It provides a way to share data and functionality across different components, regardless of where they are located in the component tree.
+Context API trong React là một tính năng cho phép bạn quản lý trạng thái toàn cục của ứng dụng mà không cần phải truyền dữ liệu qua nhiều cấp của các thành phần thông qua props. Nó cung cấp một cách để chia sẻ dữ liệu và chức năng giữa các thành phần khác nhau, bất kể chúng nằm ở đâu trong cây thành phần.
 
-To give a more concrete example, let's go back to a project that we've already built previously. In the Shopping Cart project, you might have a Product Detail Page that might or might not look like this very awesome shop:
+Để đưa ra một ví dụ cụ thể hơn, hãy quay lại một dự án mà chúng ta đã từng xây dựng trước đó. Trong dự án Giỏ Hàng, bạn có thể có một Trang Chi Tiết Sản Phẩm mà có thể giống hoặc không giống với cửa hàng tuyệt vời này:
 
-![Rough layout of a shopping website product page](https://cdn.statically.io/gh/TheOdinProject/curriculum/e6a43abb8ad6836796159e0ab6160045293e2a27/react/more-react-concepts/managing-state-with-context-api/imgs/00.png)
+![Bố cục sơ bộ của trang sản phẩm trên website mua sắm](https://cdn.statically.io/gh/TheOdinProject/curriculum/e6a43abb8ad6836796159e0ab6160045293e2a27/react/more-react-concepts/managing-state-with-context-api/imgs/00.png)
 
-You have a counter in the header that displays the number of items currently in the cart. You can add items to the cart through the "Add to Cart" button.
+Bạn có một bộ đếm trong phần tiêu đề hiển thị số lượng mặt hàng hiện có trong giỏ hàng. Bạn có thể thêm mặt hàng vào giỏ hàng thông qua nút "Thêm vào giỏ hàng".
 
-For the examples below, we will omit the routing that we did in the project and other components that are not necessary for our examples. We will just look at the code relevant to this lesson.
+Đối với các ví dụ bên dưới, chúng ta sẽ bỏ qua việc định tuyến mà chúng ta đã thực hiện trong dự án và các thành phần khác không cần thiết cho các ví dụ của chúng ta. Chúng ta sẽ chỉ xem xét mã liên quan đến bài học này.
 
-As we already know, if we want the state to persist and be shared between components, what we want to do is to [Lift the state up](https://react.dev/learn/sharing-state-between-components) to a common ancestor/parent.
+Như chúng ta đã biết, nếu chúng ta muốn trạng thái tồn tại và được chia sẻ giữa các thành phần, điều chúng ta muốn làm là [Nâng trạng thái lên](https://react.dev/learn/sharing-state-between-components) lên một tổ tiên/cha chung.
 
-Our application code might look like this:
+Mã ứng dụng của chúng ta có thể trông như sau:
 
 ```jsx
 import { useState } from "react";
@@ -49,9 +49,9 @@ export default function App() {
 }
 ```
 
-Let's focus on the `Header` and `ProductDetail` components.
+Hãy tập trung vào các thành phần `Header` và `ProductDetail`.
 
-Our Header might look like this:
+Đầu trang của chúng tôi có thể trông như thế này:
 
 ```jsx
 // import for Link
@@ -82,7 +82,7 @@ export default function Header({ cartItemsCount }) {
 }
 ```
 
-Our `ProductDetail` component:
+Thành phần `ProductDetail` của chúng tôi:
 
 ```jsx
 export default function ProductDetail({ products, addToCart }) {
@@ -102,32 +102,32 @@ export default function ProductDetail({ products, addToCart }) {
 }
 ```
 
-Great. This is a very common pattern, we pass data/functions between components, nothing too complicated. But there's a lot to micro-manage, a lot of components that you need to pass props to, and there's even a little bit of prop drilling that's happening, where the `cartItemsCount` is passed from `App` -> `Header` -> `Links`.
+Tuyệt. Đây là một mô hình rất phổ biến, chúng ta truyền dữ liệu/hàm giữa các thành phần, không có gì quá phức tạp. Nhưng có rất nhiều thứ cần quản lý chi tiết, có nhiều thành phần mà bạn cần truyền props tới, và thậm chí còn có một chút prop drilling đang xảy ra, nơi `cartItemsCount` được truyền từ `App` -> `Header` -> `Links`.
 
-So far, what we've done in the `App` component is:
+Cho đến nay, những gì chúng ta đã làm trong thành phần `App` là:
 
-- Pass `products` and `addToCart` down to the `ProductDetail` component
-- Pass `cartItemsCount` down to the `Header` component and the `Links` component that is part of the `Header`
+- Truyền `products` và `addToCart` xuống thành phần `ProductDetail`
+- Truyền `cartItemsCount` xuống thành phần `Header` và thành phần `Links` là một phần của `Header`
 
-This is a very basic application, but imagine the application grows in size as more features are added, say in the Product Detail Page. There will be a lot more components to nest, and potentially more nested props. What if we have a `Cart` component and a `ProductListing` component? What if we added more functionalities other than just `addToCart`? It can get repetitive and complex because, as we all know, more features equal more complexities. This is especially frequent in component-based frameworks since we're more inclined to create separate reusable components instead of inlining elements, which in turn creates more nesting and passing of props.
+Đây là một ứng dụng rất cơ bản, nhưng hãy tưởng tượng ứng dụng phát triển về kích thước khi nhiều tính năng được thêm vào, chẳng hạn như trong Trang Chi Tiết Sản Phẩm. Sẽ có nhiều thành phần hơn cần lồng nhau, và có khả năng nhiều props lồng nhau hơn. Điều gì sẽ xảy ra nếu chúng ta có một thành phần `Cart` và một thành phần `ProductListing`? Điều gì sẽ xảy ra nếu chúng ta thêm nhiều chức năng khác ngoài chỉ `addToCart`? Nó có thể trở nên lặp đi lặp lại và phức tạp vì, như chúng ta đều biết, nhiều tính năng đồng nghĩa với nhiều độ phức tạp hơn. Điều này đặc biệt phổ biến trong các framework dựa trên thành phần vì chúng ta có xu hướng tạo các thành phần tái sử dụng riêng biệt thay vì chèn trực tiếp các phần tử, điều này dẫn đến việc lồng nhau nhiều hơn và truyền props nhiều hơn.
 
-### Implementing Context API
+### Triển khai Context API
 
-To simplify our application and reduce complexity, we can implement the Context API. There are three key elements in this API that we need to understand:
+Để đơn giản hóa ứng dụng của chúng ta và giảm độ phức tạp, chúng ta có thể triển khai Context API. Có ba yếu tố chính trong API này mà chúng ta cần hiểu:
 
-1. `createContext` - This "creates the context" Duh... But yes, it's how we can create the context. It takes in any value, be it a number, string, or object, which can be referred to as the *default value* of the context, and returns a context object that can be used to pass down data to components
-1. `useContext` - This hook is used to consume data from a context object created by `createContext`. We can use this hook inside our component to retrieve the data that we need. This hook accepts the context object as an argument
-1. `ContextObject` - The context object is a component that accepts a prop called `value`, which is the context value that's going to be passed down to the components no matter how deeply they're nested. In other words, a way to "provide" the context value to these components. Prior to React 19, `ContextObject.Provider` was used instead of `ContextObject`, so wherever you see `Provider` we mean `ContextObject`
+1. `createContext` - Điều này "tạo ra ngữ cảnh" Duh... Nhưng vâng, đó là cách chúng ta có thể tạo ra ngữ cảnh. Nó nhận bất kỳ giá trị nào, có thể là số, chuỗi hoặc đối tượng, mà có thể được gọi là *giá trị mặc định* của ngữ cảnh, và trả về một đối tượng ngữ cảnh có thể được sử dụng để truyền dữ liệu xuống các thành phần
+1. `useContext` - Hook này được sử dụng để tiêu thụ dữ liệu từ một đối tượng context được tạo bởi `createContext`. Chúng ta có thể sử dụng hook này bên trong component của mình để lấy dữ liệu mà chúng ta cần. Hook này nhận đối tượng context làm một đối số
+1. `ContextObject` - Đối tượng context là một thành phần nhận một prop gọi là `value`, đó là giá trị context sẽ được truyền xuống các thành phần bất kể chúng được lồng sâu như thế nào. Nói cách khác, đây là một cách để "cung cấp" giá trị context cho các thành phần này. Trước React 19, `ContextObject.Provider` được sử dụng thay cho `ContextObject`, vì vậy bất cứ nơi nào bạn thấy `Provider` chúng tôi có nghĩa là `ContextObject`
 
-We can start by using the `createContext` function that can be imported from the `react` module.
+Chúng ta có thể bắt đầu bằng cách sử dụng hàm `createContext` có thể được nhập từ mô-đun `react`.
 
 ```javascript
 import { createContext } from "react";
 ```
 
-As we have described earlier, when you create a new context using `createContext`, you can specify an initial value for the context. This is known as the default value of the context. The default value can be any type of value - a string, number, boolean, or even an object or array. Do note that this default value does not change, it's static.
+Như chúng tôi đã mô tả trước đó, khi bạn tạo một ngữ cảnh mới bằng cách sử dụng `createContext`, bạn có thể xác định một giá trị ban đầu cho ngữ cảnh. Đây được gọi là giá trị mặc định của ngữ cảnh. Giá trị mặc định có thể là bất kỳ loại giá trị nào - một chuỗi, số, boolean, hoặc thậm chí là một đối tượng hoặc mảng. Lưu ý rằng giá trị mặc định này không thay đổi, nó là tĩnh.
 
-In our case, we will be using an object that contains the following shape:
+Trong trường hợp của chúng tôi, chúng tôi sẽ sử dụng một đối tượng có chứa hình dạng sau:
 
 ```javascript
 const ShopContext = createContext({
@@ -137,17 +137,17 @@ const ShopContext = createContext({
 });
 ```
 
-In this example, our default value is an object with three properties - `products`, `cartItems`, and `addToCart`. `products` and `cartItems` are arrays that will hold the products and items in the user's cart, respectively. `addToCart` is a function that will allow us to add items to the cart.
+Trong ví dụ này, giá trị mặc định của chúng tôi là một đối tượng với ba thuộc tính - `products`, `cartItems` và `addToCart`. `products` và `cartItems` là các mảng sẽ chứa sản phẩm và các mặt hàng trong giỏ hàng của người dùng, tương ứng. `addToCart` là một hàm sẽ cho phép chúng tôi thêm các mặt hàng vào giỏ hàng.
 
-This object that we've defined is not necessary. We can of course do this as well and it will not be a problem at all:
+Đối tượng mà chúng ta đã định nghĩa không cần thiết. Tất nhiên chúng ta cũng có thể làm điều này và điều đó sẽ không thành vấn đề chút nào:
 
 ```javascript
 const ShopContext = createContext(null);
 ```
 
-However, the reason why we're adding the object, is so that even if we somehow use the context inside a component that is not nested inside a Provider, because we have set a *default value*, our application will not break (This is also good for testing since we don't need to wrap a component in a Provider to get a value) and also take advantage of IDE features like auto-completion when we have an object as the value. When we use this context in our components, we will be able to access the properties directly from the context. It's basically a bonus! It's up to you if you want to set the default value to the object or just `null` because we're going to overwrite this default value anyway.
+Tuy nhiên, lý do mà chúng tôi thêm đối tượng này là để ngay cả khi chúng ta vô tình sử dụng context bên trong một component không được bao bọc trong Provider, vì chúng tôi đã đặt giá trị *default value*, ứng dụng của chúng ta sẽ không bị hỏng (Điều này cũng hữu ích cho việc thử nghiệm vì chúng ta không cần phải bao một component trong Provider để lấy giá trị) và cũng tận dụng các tính năng của IDE như tự động điền khi chúng ta có một đối tượng làm giá trị. Khi chúng ta sử dụng context này trong các component của mình, chúng ta sẽ có thể truy cập trực tiếp các thuộc tính từ context. Về cơ bản đó là một lợi ích thêm! Bạn có thể quyết định có muốn đặt giá trị mặc định là đối tượng hay chỉ `null` vì dù sao chúng ta cũng sẽ ghi đè giá trị mặc định này.
 
-So how do we use this context? And that is by using the Context object as a component and nesting the children components inside it. In this example, we will remove the props altogether.
+Vậy chúng ta sử dụng ngữ cảnh này như thế nào? Và điều đó được thực hiện bằng cách sử dụng đối tượng Context như một thành phần và lồng các thành phần con bên trong nó. Trong ví dụ này, chúng ta sẽ loại bỏ hoàn toàn các props.
 
 ```jsx
 import { useState, createContext } from "react";
@@ -180,7 +180,7 @@ export default function App() {
 }
 ```
 
-Great! Now let's try to look at our `Header` component again, we will also remove all the props that we've defined earlier, and to retrieve the data, we'll be using the `useContext` hook that can be imported in the `react` module.
+Tuyệt! Bây giờ hãy thử nhìn lại thành phần `Header` của chúng ta, chúng ta cũng sẽ loại bỏ tất cả các props mà chúng ta đã định nghĩa trước đó, và để lấy dữ liệu, chúng ta sẽ sử dụng hook `useContext` có thể được nhập trong module `react`.
 
 ```jsx
 import { useContext } from "react";
@@ -215,9 +215,9 @@ export default function Header() {
 }
 ```
 
-We've completely removed the prop drill problem, and we can conveniently get the `cartItems` directly in the `Links` component itself as we already know that no matter how deeply nested the component is, we can still get the data as long as *it's nested inside the Provider*.
+Chúng tôi đã hoàn toàn loại bỏ vấn đề khoan prop, và chúng tôi có thể thuận tiện lấy `cartItems` trực tiếp trong chính thành phần `Links` vì chúng tôi đã biết rằng dù thành phần có lồng sâu đến đâu, chúng tôi vẫn có thể lấy dữ liệu miễn là *nó được lồng bên trong Provider*.
 
-Let's also change our `ProductDetail` component to do the same:
+Hãy thay đổi thành phần `ProductDetail` của chúng ta để làm điều tương tự:
 
 ```jsx
 import { useContext } from "react";
@@ -242,30 +242,30 @@ export default function ProductDetail() {
 ```
 
 <a name="context-api-benefits"></a>
-In the `Header` component, we used `useContext()` to access `cartItems` from the `ShopContext`. Similarly, in the `ProductDetail` component, we can use the `products` and `addToCart` function.
+Trong thành phần `Header`, chúng tôi đã sử dụng `useContext()` để truy cập `cartItems` từ `ShopContext`. Tương tự, trong thành phần `ProductDetail`, chúng tôi có thể sử dụng các chức năng `products` và `addToCart`.
 
-With this implementation, we no longer need to pass down props from the `App` component to the `Header` and `ProductDetail` components. The `Header` and `ProductDetail` components can access the `cartItems` state and `addToCart` function from the `ShopContext`.
+Với cách triển khai này, chúng ta không còn cần truyền props từ component `App` xuống các component `Header` và `ProductDetail` nữa. Các component `Header` và `ProductDetail` có thể truy cập trạng thái `cartItems` và hàm `addToCart` từ `ShopContext`.
 
-Overall, the implementation of the Context API has allowed for a more efficient, cleaner, and streamlined way of passing down data across multiple components. By using the `createContext()` function and the `useContext()` hook, we can easily pass down state and functions to child components without the need for prop drilling. It's also more centralized since we're keeping our data in a single location. All of these make our code easier to reason about.
+Tổng thể, việc triển khai Context API đã cho phép một cách hiệu quả, gọn gàng và tinh gọn hơn trong việc truyền dữ liệu giữa nhiều component. Bằng cách sử dụng hàm `createContext()` và hook `useContext()`, chúng ta có thể dễ dàng truyền trạng thái và các hàm xuống các component con mà không cần phải truyền prop nhiều cấp. Nó cũng tập trung hơn vì chúng ta giữ dữ liệu ở một vị trí duy nhất. Tất cả những điều này khiến mã của chúng ta dễ hiểu hơn.
 
-### Drawbacks of using Context API
+### Những hạn chế của việc sử dụng Context API
 
-Although the Context API can be a powerful tool for managing state in larger React applications, it also has some drawbacks that you should be aware of:
+Mặc dù Context API có thể là một công cụ mạnh mẽ để quản lý trạng thái trong các ứng dụng React lớn hơn, nhưng nó cũng có một số nhược điểm mà bạn nên biết:
 
-1. It can lead to performance issues: When you update the state in a context, it can cause all components that are consuming that context to re-render, even if the state that they are using hasn't changed. This can lead to performance issues, especially if you have a lot of components that are consuming the same context.
-1. It can make your code harder to follow: With the Context API, it's easier to access the state from any component in your application. However, this can also make your code harder to follow, especially if you have a lot of nested components that are consuming the same context. It's important to keep your code organized and well-structured to avoid confusion.
+1. Nó có thể dẫn đến các vấn đề về hiệu suất: Khi bạn cập nhật trạng thái trong một ngữ cảnh, điều này có thể khiến tất cả các thành phần đang sử dụng ngữ cảnh đó phải render lại, ngay cả khi trạng thái mà chúng đang sử dụng không thay đổi. Điều này có thể dẫn đến các vấn đề về hiệu suất, đặc biệt nếu bạn có nhiều thành phần đang sử dụng cùng một ngữ cảnh.
+1. Nó có thể làm cho mã của bạn khó theo dõi hơn: Với Context API, việc truy cập trạng thái từ bất kỳ thành phần nào trong ứng dụng của bạn trở nên dễ dàng hơn. Tuy nhiên, điều này cũng có thể làm cho mã của bạn khó theo dõi hơn, đặc biệt nếu bạn có nhiều thành phần lồng nhau đang sử dụng cùng một context. Việc giữ cho mã của bạn được tổ chức và có cấu trúc tốt là rất quan trọng để tránh nhầm lẫn.
 
-### Potential solutions
+### Các giải pháp tiềm năng
 
-1. Use multiple smaller contexts instead of a single large context. Instead of using a single large context to manage all of your application states, consider using multiple smaller contexts to manage related pieces of state. This can help to reduce the number of components that are consuming the context and minimize unnecessary re-renders.
-1. Sometimes Context API might not even be the best solution for the problems that we want to deal with. Take a look at [React Component Composition](https://www.robinwieruch.de/react-component-composition/) article by Robin Wieruch.
-1. You can rely on external state management systems like [Zustand](https://github.com/pmndrs/zustand) and [Redux](https://redux.js.org/). They have a lot of optimizations built-in and are feature rich. Unfortunately, they do have a learning curve, and we recommend sticking to the Context API for the rest of this course as it's still reliable for majority of the projects we're going to build.
+1. Sử dụng nhiều ngữ cảnh nhỏ thay vì một ngữ cảnh lớn duy nhất. Thay vì sử dụng một ngữ cảnh lớn duy nhất để quản lý tất cả trạng thái của ứng dụng, hãy xem xét việc sử dụng nhiều ngữ cảnh nhỏ hơn để quản lý các phần trạng thái liên quan. Điều này có thể giúp giảm số lượng thành phần đang sử dụng ngữ cảnh và giảm thiểu việc render lại không cần thiết.
+1. Đôi khi Context API thậm chí có thể không phải là giải pháp tốt nhất cho những vấn đề mà chúng ta muốn xử lý. Hãy xem bài viết [React Component Composition](https://www.robinwieruch.de/react-component-composition/) của Robin Wieruch.
+1. Bạn có thể dựa vào các hệ thống quản lý trạng thái bên ngoài như [Zustand](https://github.com/pmndrs/zustand) và [Redux](https://redux.js.org/). Chúng có nhiều tối ưu hóa tích hợp sẵn và có nhiều tính năng. Thật không may, chúng có một đường cong học tập, và chúng tôi khuyên bạn nên gắn bó với Context API cho phần còn lại của khóa học này vì nó vẫn đáng tin cậy cho phần lớn các dự án mà chúng ta sẽ xây dựng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. The React Docs provides more engaging examples and possible optimizations for the Context API. You can check it out by going through their [documentation on passing data deeply with Context](https://react.dev/learn/passing-data-deeply-with-context). Be sure to try out each example!
-1. Read the short article [Prop Drilling](https://kentcdodds.com/blog/prop-drilling) by Kent C. Dodds. This is a great article to get more understanding for prop drilling, it features digestible examples.
+1. Tài liệu React cung cấp các ví dụ sinh động hơn và các khả năng tối ưu hóa cho Context API. Bạn có thể xem qua bằng cách truy cập [tài liệu về việc truyền dữ liệu sâu với Context](https://react.dev/learn/passing-data-deeply-with-context) của họ. Hãy chắc chắn thử từng ví dụ!
+1. Đọc bài viết ngắn [Prop Drilling](https://kentcdodds.com/blog/prop-drilling) của Kent C. Dodds. Đây là một bài viết tuyệt vời để hiểu thêm về prop drilling, nó có những ví dụ dễ hiểu.
 
 </div>

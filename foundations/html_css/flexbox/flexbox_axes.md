@@ -1,18 +1,18 @@
-### Introduction
+### Giới thiệu
 
-Let's see how the orientation of items within a flex container can be controlled using the `flex-direction` property.
+Hãy xem cách điều khiển hướng của các item bên trong flex container bằng thuộc tính `flex-direction`.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- You'll learn about the 2 "axes" of a flex container.
-- You'll learn how to change those axes to arrange your content in columns instead of rows.
+- Bạn sẽ tìm hiểu về 2 "trục" của flex container.
+- Bạn sẽ học cách thay đổi các trục đó để sắp xếp nội dung thành các cột thay vì các hàng.
 
-### Axes
+### Các trục
 
-The most confusing thing about flexbox is that it can work either horizontally or vertically, and some rules change a bit depending on which direction you are working with.
-The default direction for a flex container is horizontal, or `row`, but you can change the direction to vertical, or `column`. The direction can be specified in CSS like so:
+Điều gây bối rối nhất về flexbox là nó có thể hoạt động theo chiều ngang hoặc chiều dọc, và một số quy tắc sẽ thay đổi đôi chút tùy theo hướng bạn đang dùng.
+Hướng mặc định của flex container là chiều ngang, hay `row`, nhưng bạn có thể đổi sang chiều dọc, hay `column`. Có thể chỉ định hướng trong CSS như sau:
 
 ```css
 .flex-container {
@@ -20,9 +20,9 @@ The default direction for a flex container is horizontal, or `row`, but you can 
 }
 ```
 
-No matter which direction you're using, you need to think of your flex-containers as having 2 axes: the main axis and the cross axis. It is the direction of these axes that changes when the `flex-direction` is changed. In *most* circumstances, `flex-direction: row` puts the main axis horizontal (left-to-right), and `column` puts the main axis vertical (top-to-bottom).
+Dù đang dùng hướng nào, bạn cũng cần hình dung flex container có 2 trục: trục chính và trục phụ. Khi thay đổi `flex-direction`, hướng của các trục này cũng thay đổi. Trong *hầu hết* trường hợp, `flex-direction: row` đặt trục chính theo chiều ngang (từ trái sang phải), còn `column` đặt trục chính theo chiều dọc (từ trên xuống dưới).
 
-In other words, in our very first example, we put `display: flex` on a div and it arranged its children horizontally. This is a demonstration of `flex-direction: row`, the default setting. The following example is very similar. If you uncomment the line that says `flex-direction: column`, those divs will stack vertically.
+Nói cách khác, trong ví dụ đầu tiên, chúng ta đặt `display: flex` cho một div và nó sắp xếp các phần tử con theo chiều ngang. Đây là minh họa cho `flex-direction: row`, thiết lập mặc định. Ví dụ sau cũng tương tự. Nếu bỏ chú thích dòng có `flex-direction: column`, các div đó sẽ xếp chồng theo chiều dọc.
 
 <p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="BaZKPdw" data-editable="true" data-user="TheOdinProjectExamples" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -33,22 +33,22 @@ In other words, in our very first example, we put `display: flex` on a div and i
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-One thing to note is that in this example, `flex-direction: column` would not work as expected if we used the shorthand `flex: 1`. Try it out now (i.e. go change the flex value on the `flex: 1 1 auto;` line). Can you figure out why it does not work if `flex: 1` is used? The divs collapse, even though they *clearly* have a `height` defined there.
+Một điều cần lưu ý là trong ví dụ này, `flex-direction: column` sẽ không hoạt động như mong đợi nếu ta dùng dạng viết tắt `flex: 1`. Hãy thử ngay (tức là đổi giá trị flex trên dòng `flex: 1 1 auto;`). Bạn có tìm ra lý do `flex: 1` không hoạt động không? Các div bị co lại, dù *rõ ràng* chúng có `height` được định nghĩa.
 
-The reason for this is that the  flex shorthand expands `flex-basis` to `0`, which means that all `flex-grow`ing and `flex-shrink`ing would begin their calculations from `0`. Empty divs by default have 0 height, so for our flex items to fill up the height of their container, they don't actually need to have any height at all.
+Lý do là dạng viết tắt flex mở rộng `flex-basis` thành `0`, nghĩa là mọi phép tính `flex-grow` và `flex-shrink` đều bắt đầu từ `0`. Mặc định, div rỗng có chiều cao bằng 0, nên để flex item lấp đầy chiều cao của container, chúng thực ra không cần có height nào cả.
 
-The example above fixed this by specifying `flex: 1 1 auto`, telling the flex items to default to their given `height`. We could also have fixed it by putting a height on the parent `.flex-container`, or by using `flex-grow: 1` instead of the shorthand.
+Ví dụ trên khắc phục điều này bằng cách chỉ định `flex: 1 1 auto`, cho flex item dùng `height` được chỉ định làm giá trị mặc định. Ta cũng có thể sửa bằng cách đặt chiều cao cho `.flex-container` cha, hoặc dùng `flex-grow: 1` thay cho dạng viết tắt.
 
-Another detail to notice: when we changed the flex-direction to `column`, `flex-basis` refers to `height` instead of `width`. Given the context this may be obvious, but it's something to be aware of.
+Một chi tiết khác cần chú ý: khi đổi flex-direction thành `column`, `flex-basis` sẽ tham chiếu đến `height` thay vì `width`. Điều này có thể khá hiển nhiên trong ngữ cảnh này, nhưng vẫn cần ghi nhớ.
 
-We've strayed from the point slightly... We were talking about flex-direction and axes. To bring it back home, the default behavior is `flex-direction: row` which arranges things horizontally. The reason this often works well without changing other details in the CSS is because block-level elements default to the full width of their parent. Changing things to vertical using `flex-direction: column` adds complexity because block-level elements default to the height of their content, and in this case there *is* no content.
+Chúng ta đã hơi đi chệch khỏi trọng tâm... Ta đang nói về flex-direction và các trục. Quay lại vấn đề chính, hành vi mặc định là `flex-direction: row`, sắp xếp mọi thứ theo chiều ngang. Điều này thường hoạt động tốt mà không cần thay đổi các chi tiết khác trong CSS vì phần tử dạng block mặc định có toàn bộ chiều rộng của phần tử cha. Chuyển sang chiều dọc bằng `flex-direction: column` phức tạp hơn vì phần tử dạng block mặc định có chiều cao bằng nội dung của nó, mà trong trường hợp này lại *không có* nội dung.
 
-There are situations where the behavior of `flex-direction` could change if you are using a language that is written right-to-left or even vertically, but you should not worry about that until you are ready to start making a website in Arabic or Manchu.
+Có những tình huống hành vi của `flex-direction` có thể thay đổi nếu bạn dùng ngôn ngữ viết từ phải sang trái hoặc thậm chí viết theo chiều dọc, nhưng bạn chưa cần lo về điều đó cho đến khi sẵn sàng làm website bằng tiếng Ả Rập hoặc tiếng Mãn Châu.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. As always, MDN docs will be your go-to, so have a look at the [MDN docs for `flex-direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-direction) and their examples.
+1. Như mọi khi, tài liệu MDN sẽ là nguồn tham khảo chính, vì vậy hãy xem [tài liệu MDN về `flex-direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-direction) và các ví dụ của họ.
 
 </div>

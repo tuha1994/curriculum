@@ -1,67 +1,67 @@
-### Introduction
+### Giới thiệu
 
-For this project you'll be creating an entire web page from a design we'll provide for you. If you've been following along you should have the skills you need to accomplish this, but it may not be easy!
+Trong dự án này, bạn sẽ tạo một trang web hoàn chỉnh dựa trên bản thiết kế chúng tôi cung cấp. Nếu đã học theo tiến độ, bạn sẽ có những kỹ năng cần thiết để hoàn thành, nhưng việc này có thể không dễ!
 
-The design we're providing you is an image of the complete website, along with details about the fonts and colors in the assignment section below.
+Bản thiết kế là hình ảnh của toàn bộ website, kèm theo thông tin về font chữ và màu sắc trong phần bài tập bên dưới.
 
-Do *not* be afraid to use Google or go back to previous lessons to look something up. **In real life, professional developers use Google *constantly* for things that they have been doing for years.** At this point it is not expected that you will have everything memorized, so don't worry about it. Additionally, there are a few small details that you may not have encountered in our lessons yet. *This is by design.* These details are minor, and easily searched (e.g. Google `css rounded corners`).
+Đừng *ngại* dùng Google hoặc quay lại các bài học trước để tra cứu. **Trong thực tế, các lập trình viên chuyên nghiệp dùng Google *liên tục* cho cả những việc họ đã làm suốt nhiều năm.** Ở giai đoạn này, bạn chưa cần ghi nhớ mọi thứ, nên đừng lo. Ngoài ra, có một vài chi tiết nhỏ chúng ta chưa đề cập trong các bài học. *Đó là có chủ ý.* Những chi tiết này không lớn và rất dễ tìm kiếm (ví dụ: Google `css rounded corners`).
 
-Get your project as close as you can to the design, but do not worry about getting it pixel-perfect. Don't get out your ruler or count pixels to find the exact margins between the various sections. The point of this assignment is to create something from scratch and get the various elements in more or less the right position relative to the rest. It doesn't matter if you use `margin: 24px` when the design actually has `margin: 48px`.
+Hãy làm dự án gần với bản thiết kế nhất có thể, nhưng đừng lo phải đạt độ chính xác đến từng pixel. Đừng lấy thước đo hoặc đếm pixel để tìm chính xác khoảng margin giữa các phần. Mục tiêu của bài tập là tạo một thứ gì đó từ đầu và đặt các phần tử vào vị trí tương đối phù hợp. Không sao nếu bạn dùng `margin: 24px` trong khi bản thiết kế thực tế dùng `margin: 48px`.
 
-*Finally*, feel free to substitute your own content into this design. The image has some meaningless dummy content, but if you want to make up a business and personalize this page, please feel free to do so! Insert actual images in the placeholders, and feel free to play with the colors and fonts a bit too.
+*Cuối cùng*, bạn cứ thoải mái thay nội dung của riêng mình vào thiết kế này. Hình ảnh có một số nội dung mẫu vô nghĩa, nhưng nếu muốn nghĩ ra một doanh nghiệp và cá nhân hóa trang web, bạn hoàn toàn có thể làm vậy! Hãy chèn hình ảnh thật vào các vị trí giữ chỗ, đồng thời thử thay đổi màu sắc và font chữ nếu thích.
 
 <div class="lesson-note" markdown="1">
 
-#### A note about images on the web
+#### Lưu ý về hình ảnh trên web
 
-You do not have the legal right to use just any image that you find on the web. There are many free images to be found, but make sure that the image you use is actually free for you to use, and make sure to credit the creator of the image in your project. An easy way to give credit is to put the creator's name and contact info in a README file in your repository.
+Bạn không có quyền pháp lý để sử dụng tùy ý bất kỳ hình ảnh nào tìm thấy trên web. Có rất nhiều hình ảnh miễn phí, nhưng hãy chắc chắn hình ảnh bạn dùng thực sự được phép sử dụng, đồng thời ghi công tác giả trong dự án. Một cách dễ để ghi công là đặt tên và thông tin liên hệ của tác giả trong file README của kho lưu trữ.
 
-Some good places to find free-to-use images on the web include [Pexels](https://www.pexels.com/), [Pixabay](https://pixabay.com/), and [Unsplash](https://unsplash.com/).
+Một số nơi tốt để tìm hình ảnh miễn phí được phép sử dụng trên web gồm [Pexels](https://www.pexels.com/), [Pixabay](https://pixabay.com/) và [Unsplash](https://unsplash.com/).
 
 </div>
 
-### Setting up your project's GitHub repository
+### Thiết lập kho GitHub cho dự án
 
-As we did in the Recipes project, go ahead and set up a git repository before beginning work on this project. Git and GitHub are going to act as a portfolio for you moving forward, so you need to keep everything in there! Look back at the [Recipes project](https://www.theodinproject.com/lessons/foundations-recipes) if you need a reminder on how to set it up.
+Giống như trong dự án Recipes, hãy thiết lập một kho git trước khi bắt đầu làm dự án này. Git và GitHub sẽ trở thành portfolio của bạn về sau, vì vậy hãy lưu mọi thứ ở đó! Xem lại [dự án Recipes](https://www.theodinproject.com/lessons/foundations-recipes) nếu cần nhắc lại cách thiết lập.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Don't forget to commit early & often! You can [reference the Commit Message lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages)!
+Đừng quên commit sớm và thường xuyên! Bạn có thể [tham khảo bài học về Commit Message](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages)!
 
-1. [Download the full design image](https://cdn.statically.io/gh/TheOdinProject/curriculum/81a5d553f4073e593d23a6ab00d50eef8620796d/foundations/html_css/project/imgs/01.png) and take a look at what you're going to be creating. Some fonts, colors and sizes are as follows (feel free to use your own if you wish):
-   - Font: `Roboto` (you will need to download and install this font if you don't already have it)
-   - Dark background color (header, hero section and footer): `#1F2937`
-   - Logo text:
-     - Font size: `24px`
-     - Color: `#F9FAF8`
-   - Hero section main text ("This website is awesome"):
-     - Font size: `48px`
-     - Color: `#F9FAF8`
-     - Weight: `900`
-   - Hero secondary text ("This website has some subtext...") and header links:
-     - Font size: `18px`
-     - Color: `#E5E7EB`
-   - Button and "Call to action" background color: `#3882F6`
-   - Information heading:
-     - Font size: `36px`
-     - Color: `#1F2937`
-     - Weight: `900`
-   - Quote:
-     - Background color: `#E5E7EB`
-     - Font size: `36px`
-     - Color: `#1F2937`
-     - Weight: `300`
-     - Font style: `italic`
-1. There are many ways to tackle a project like this, and it can be overwhelming to look at a blank HTML document and not know where to start. Our suggestion: take it one section at a time. The website you're creating has 4 main sections (and a footer), so pick one and get it into pretty good shape before moving on. Starting at the top is always a solid plan.
-1. For the section you're working on, begin by getting all the content onto the page before beginning to style it. In other words, do the HTML and *then* do the CSS. You'll probably have to go back to the HTML once you start styling, but bouncing back and forth from the beginning will take more time and may cause more frustration. (Note: you don't need to use more than one stylesheet. Using only one CSS file is adequate for this project).
-1. Many of the elements on this page are very similar to things you saw in our flexbox exercises... feel free to go back to those if you need a refresher.
-1. You do **not** need to make this project responsive. That means you don't have to adjust your design for different screen sizes, zoom levels, or mobile devices. For now, just focus on making it look good on a regular computer screen. You'll learn how to handle different screen sizes later.
-1. When you finish, don't forget to push it up to GitHub!
+1. [Tải xuống hình ảnh thiết kế đầy đủ](https://cdn.statically.io/gh/TheOdinProject/curriculum/81a5d553f4073e593d23a6ab00d50eef8620796d/foundations/html_css/project/imgs/01.png) và xem thử sản phẩm bạn sẽ tạo. Một số font, màu sắc và kích thước như sau (bạn có thể dùng giá trị riêng nếu muốn):
+   - Font: `Roboto` (bạn cần tải xuống và cài đặt font này nếu máy chưa có)
+   - Màu nền tối (header, hero section và footer): `#1F2937`
+   - Chữ logo:
+     - Cỡ font: `24px`
+     - Màu: `#F9FAF8`
+   - Chữ chính của hero section ("This website is awesome"):
+     - Cỡ font: `48px`
+     - Màu: `#F9FAF8`
+     - Độ đậm: `900`
+   - Chữ phụ của hero section ("This website has some subtext...") và các liên kết trong header:
+     - Cỡ font: `18px`
+     - Màu: `#E5E7EB`
+   - Màu nền của button và "Call to action": `#3882F6`
+   - Tiêu đề phần thông tin:
+     - Cỡ font: `36px`
+     - Màu: `#1F2937`
+     - Độ đậm: `900`
+   - Trích dẫn:
+     - Màu nền: `#E5E7EB`
+     - Cỡ font: `36px`
+     - Màu: `#1F2937`
+     - Độ đậm: `300`
+     - Kiểu font: `italic`
+1. Có nhiều cách để bắt đầu một dự án như thế này, và nhìn vào một tài liệu HTML trống mà không biết bắt đầu từ đâu có thể khiến bạn choáng ngợp. Gợi ý của chúng tôi: làm từng phần một. Website bạn đang tạo có 4 phần chính (và một footer), vì vậy hãy chọn một phần và hoàn thiện tương đối trước khi chuyển sang phần tiếp theo. Bắt đầu từ trên xuống luôn là một kế hoạch tốt.
+1. Với phần đang làm, hãy đưa toàn bộ nội dung lên trang trước khi bắt đầu tạo kiểu. Nói cách khác, làm HTML *trước*, rồi mới làm CSS. Có thể bạn sẽ phải quay lại HTML sau khi bắt đầu tạo kiểu, nhưng việc liên tục qua lại ngay từ đầu sẽ tốn nhiều thời gian hơn và dễ gây bực bội. (Lưu ý: bạn không cần dùng nhiều hơn một stylesheet. Chỉ một file CSS là đủ cho dự án này).
+1. Nhiều phần tử trên trang này rất giống những gì bạn đã thấy trong các bài tập flexbox... nếu cần ôn lại, hãy thoải mái xem lại các bài đó.
+1. Bạn **không** cần làm dự án này responsive. Điều đó có nghĩa là bạn không phải điều chỉnh thiết kế cho các kích thước màn hình, mức thu phóng hoặc thiết bị di động khác nhau. Hiện tại, chỉ cần tập trung làm cho trang trông đẹp trên màn hình máy tính thông thường. Sau này bạn sẽ học cách xử lý các kích thước màn hình khác nhau.
+1. Khi hoàn thành, đừng quên push dự án lên GitHub!
 
-#### Viewing your project on the web
+#### Xem dự án trên web
 
-To share your website with others, you'll need to **deploy it using GitHub Pages**. The full instructions for this process can be found in the [Recipes project](https://www.theodinproject.com/lessons/foundations-recipes#viewing-your-project-on-the-web) lesson.
+Để chia sẻ website với người khác, bạn cần **deploy nó bằng GitHub Pages**. Hướng dẫn đầy đủ cho quy trình này có trong bài học [dự án Recipes](https://www.theodinproject.com/lessons/foundations-recipes#viewing-your-project-on-the-web).
 
 </div>

@@ -1,16 +1,16 @@
-### Introduction
+### Giới thiệu
 
-So far everything we've touched with flexbox has used the rule `flex: 1` on all flex items, which makes the items grow or shrink equally to fill all of the available space. Very often, however, this is not the desired effect. Flex is also very useful for arranging items that have a specific size.
+Cho đến giờ, mọi thứ chúng ta làm với flexbox đều dùng quy tắc `flex: 1` cho tất cả flex item, khiến các item cùng tăng hoặc giảm để lấp đầy toàn bộ không gian khả dụng. Tuy nhiên, rất nhiều khi đó không phải là hiệu ứng mong muốn. Flex cũng rất hữu ích để sắp xếp các item có kích thước cụ thể.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- You'll learn how to align items inside a flex container both vertically and horizontally.
+- Bạn sẽ học cách căn chỉnh các item bên trong flex container theo cả chiều dọc lẫn chiều ngang.
 
-### Alignment
+### Căn chỉnh
 
-Let's look at an example.
+Hãy xem một ví dụ.
 
 <p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="MWoyBzR" data-editable="true" data-user="TheOdinProjectExamples" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -22,25 +22,25 @@ Let's look at an example.
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-You should be able to predict what happens if you put `flex: 1` on the `.item` by now. Give it a shot before we move on!
+Đến đây, hẳn bạn có thể đoán được điều gì xảy ra nếu đặt `flex: 1` cho `.item`. Hãy thử trước khi tiếp tục!
 
-Adding `flex: 1` to `.item` makes each of the items grow to fill the available space, but what if we wanted them to stay the same width, but distribute themselves differently inside the container? We can do this!
+Thêm `flex: 1` vào `.item` khiến mỗi item nở ra để lấp đầy không gian khả dụng, nhưng nếu muốn chúng giữ nguyên chiều rộng mà phân bố theo cách khác trong container thì sao? Làm được chứ!
 
-Remove `flex: 1` from `.item` and add `justify-content: space-between` to `.container`. Doing so should give you something like this:
+Xóa `flex: 1` khỏi `.item` rồi thêm `justify-content: space-between` vào `.container`. Kết quả sẽ trông gần như sau:
 
 ![space between](https://cdn.statically.io/gh/TheOdinProject/curriculum/495704c6eb6bf33bc927534f231533a82b27b2ac/html_css/v2/foundations/flexbox/imgs/07.png)
 
-`justify-content` aligns items across the **main axis**. There are a few values that you can use here. You'll learn the rest of them in the reading assignments, but for now try changing it to `center`, which should center the boxes along the main axis.
+`justify-content` căn chỉnh các item dọc theo **trục chính**. Bạn có thể dùng một vài giá trị ở đây. Bạn sẽ học những giá trị còn lại trong phần bài đọc, nhưng trước mắt hãy thử đổi thành `center`; các hộp sẽ được căn giữa theo trục chính.
 
-To change the placement of items along the **cross axis** use `align-items`. Try getting the boxes to the center of the container by adding `align-items: center` to `.container`. The desired result looks like this:
+Để thay đổi vị trí của các item dọc theo **trục phụ**, hãy dùng `align-items`. Thử đưa các hộp vào giữa container bằng cách thêm `align-items: center` vào `.container`. Kết quả mong muốn như sau:
 
 ![centered](https://cdn.statically.io/gh/TheOdinProject/curriculum/495704c6eb6bf33bc927534f231533a82b27b2ac/html_css/v2/foundations/flexbox/imgs/08.png)
 
-Because `justify-content` and `align-items` are based on the main and cross axis of your container, their behavior changes when you change the flex-direction of a flex-container. For example, when you change `flex-direction` to `column`, `justify-content` aligns vertically and `align-items` aligns horizontally. The most common behavior, however, is the default, i.e. `justify-content` aligns items horizontally (because the main axis defaults to horizontal), and `align-items` aligns them vertically. One of the biggest sticking points that beginners have with flexbox is confusion when this behavior changes.
+Vì `justify-content` và `align-items` dựa trên trục chính và trục phụ của container, hành vi của chúng sẽ thay đổi khi bạn đổi flex-direction của flex container. Ví dụ, khi đổi `flex-direction` thành `column`, `justify-content` sẽ căn chỉnh theo chiều dọc còn `align-items` sẽ căn chỉnh theo chiều ngang. Tuy vậy, hành vi phổ biến nhất là mặc định: `justify-content` căn các item theo chiều ngang (vì trục chính mặc định nằm ngang), còn `align-items` căn chúng theo chiều dọc. Đây là một trong những điểm khiến người mới học flexbox dễ bối rối nhất khi hành vi này thay đổi.
 
 #### Gap
 
-One very useful feature of flex is the `gap` property. Setting `gap` on a flex container adds a specified space between flex items, similar to adding a margin to the items themselves. `gap` is a *new* property so it doesn't show up in many resources yet, but it works reliably in all modern browsers, so it is safe to use and very handy! Adding `gap: 8px` to the centered example above produces the result below.
+Một tính năng rất hữu ích của flex là thuộc tính `gap`. Đặt `gap` trên flex container sẽ thêm một khoảng cách xác định giữa các flex item, tương tự như thêm margin cho chính các item đó. `gap` là một thuộc tính *mới* nên chưa xuất hiện trong nhiều tài liệu, nhưng hoạt động ổn định trên mọi trình duyệt hiện đại, vì vậy bạn có thể yên tâm dùng và sẽ thấy nó rất tiện! Thêm `gap: 8px` vào ví dụ đã căn giữa ở trên sẽ cho ra kết quả dưới đây.
 
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="qBjZyea" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -52,18 +52,18 @@ One very useful feature of flex is the `gap` property. Setting `gap` on a flex c
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-There's more for you to learn in the reading below, but at this point you can surely see how immensely useful flexbox is. With just the properties we've already covered, you could already put together some impressive layouts!
+Phần bài đọc bên dưới còn nhiều điều để bạn khám phá, nhưng đến đây chắc hẳn bạn đã thấy flexbox hữu ích đến mức nào. Chỉ với những thuộc tính đã học, bạn đã có thể tạo ra những bố cục khá ấn tượng!
 
-Take your time going through the reading. There will be some review of the items we've already covered here, but it goes into more depth and touches on a few things that haven't been mentioned yet. Don't stress too much about trying to memorize every little detail yet; just code along with the examples and do your best to internalize everything that is *possible* with flexbox. You'll have to reach for these resources again once you get to the practice exercises, but that's perfectly acceptable. The more you use this stuff the better it will stick in your mind... and you will be using it *constantly*. Have fun!
+Hãy dành thời gian đọc kỹ. Phần này sẽ ôn lại một số nội dung chúng ta đã học, đồng thời đi sâu hơn và đề cập đến vài điều chưa xuất hiện. Đừng quá áp lực vì phải ghi nhớ từng chi tiết ngay lúc này; hãy viết code theo các ví dụ và cố gắng hiểu những gì flexbox *có thể* làm. Khi đến các bài tập thực hành, bạn sẽ cần tra lại những tài liệu này, và điều đó hoàn toàn bình thường. Bạn càng dùng nhiều thì kiến thức càng ghi nhớ lâu... mà bạn sẽ dùng nó *liên tục*. Chúc bạn học vui!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. This beautiful [Interactive Guide to Flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) covers everything you need to know. It will help reinforce concepts we've already touched on with some really fun and creative examples. Spend some time here, some of it should be review at this point, but the foundations here are important!
-1. The [CSS Tricks "Guide to Flexbox"](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) is a classic. The images and examples are super helpful. It would be a good idea to review parts 1-3 and part 5 (don't worry about the media query parts, we will cover them later in the course) and then bookmark it as a great cheat sheet for future reference (keep it handy for the practice exercises).
-1. Complete [Flexbox Froggy](https://flexboxfroggy.com/), which is a funny little game to practice moving things around with flexbox.
-1. Do the exercises in our [CSS exercises repository's `foundations/flex` directory](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/flex) (remember that the instructions are in the README) in the order:
+1. [Hướng dẫn tương tác về Flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) tuyệt vời này bao quát mọi điều bạn cần biết. Nó giúp củng cố các khái niệm đã học qua những ví dụ rất thú vị và sáng tạo. Hãy dành thời gian xem qua; một phần có thể là nội dung ôn tập, nhưng những nền tảng ở đây rất quan trọng!
+1. ["Hướng dẫn về Flexbox" của CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) là tài liệu kinh điển. Hình ảnh và ví dụ trong đó rất hữu ích. Bạn nên xem lại phần 1–3 và phần 5 (đừng lo về các phần media query, chúng ta sẽ học sau trong khóa học), rồi lưu lại làm tài liệu tra cứu nhanh cho tương lai (hãy để sẵn để dùng trong các bài tập thực hành).
+1. Hoàn thành [Flexbox Froggy](https://flexboxfroggy.com/), một trò chơi nhỏ vui nhộn để luyện di chuyển các đối tượng bằng flexbox.
+1. Làm các bài tập trong [thư mục `foundations/flex` của kho bài tập CSS](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/flex) (nhớ rằng hướng dẫn nằm trong README) theo thứ tự:
     - `01-flex-center`
     - `02-flex-header`
     - `03-flex-header-2`
@@ -72,6 +72,6 @@ Take your time going through the reading. There will be some review of the items
     - `06-flex-layout`
     - `07-flex-layout-2`
 
-    Note: Solutions for these exercises can be found in the `solution` folder of each exercise.
+    Lưu ý: Bạn có thể tìm lời giải cho các bài tập này trong thư mục `solution` của từng bài.
 
 </div>

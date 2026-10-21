@@ -1,41 +1,41 @@
-### Introduction
+### Giới thiệu
 
-The controller's job is really to act as the ultimate middleman. It knows which questions it wants to ask the model, but lets the model do all the heavy lifting for actually solving those questions. It knows which view it wants to render and send back to the browser, but lets the view itself take care of putting all that HTML together. That's why it's a "controller" - it's smart enough to know what to do, then it delegates all the hard work.
+Controller thực sự đóng vai trò là người trung gian cuối cùng. Nó biết mình cần hỏi model điều gì, nhưng để model đảm nhiệm phần lớn công việc giải quyết các câu hỏi đó. Nó biết view nào cần render và gửi về trình duyệt, nhưng để view tự lo việc ghép toàn bộ HTML. Vì vậy, nó là một "controller": đủ thông minh để biết phải làm gì rồi ủy thác mọi phần việc nặng nhọc.
 
-Ultimately, the controller is the brains of the operation ensuring that each component plays its part in delivering the final result and is really just a function with well-defined responsibilities as part of the MVC pattern.
+Tóm lại, controller là bộ não của hoạt động: bảo đảm mỗi thành phần hoàn thành đúng vai trò để tạo ra kết quả cuối cùng. Về bản chất, controller chỉ là một hàm có các trách nhiệm được xác định rõ ràng trong mô hình MVC.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Explore various response methods.
-- Implement error handling middleware to catch and process errors gracefully.
-- Describe common use cases for middleware, such as validation and authentication.
+- Khám phá các phương pháp phản ứng khác nhau.
+- Triển khai middleware xử lý lỗi để bắt và xử lý lỗi một cách khéo léo.
+- Mô tả các trường hợp sử dụng phổ biến của middleware, chẳng hạn như validation và authentication.
 
-### Handling responses
+### Xử lý phản hồi
 
-When it comes to sending responses from our controllers, we have several methods at our disposal. Let's explore some of the commonly used methods and their use cases.
+Khi nói đến việc gửi phản hồi từ controller, chúng tôi có một số phương pháp tùy ý sử dụng. Hãy cùng khám phá một số phương pháp thường được sử dụng và trường hợp sử dụng của chúng.
 
-- [res.send](https://expressjs.com/en/5x/api/response/#ressend) - A general-purpose method for sending a response, it is flexible with what data we can send since it will automatically set the `Content-Type` header based on what data you pass it. For example, if we pass in an object, it will stringify it as JSON and set the `Content-Type` header to `application/json`.
-- [res.json](https://expressjs.com/en/5x/api/response/#resjson) - This is a more explicit way to respond to a request with JSON. This always sets the `Content-Type` header to `application/json` and sends the data as JSON.
-- [res.redirect](https://expressjs.com/en/5x/api/response/#resredirect) - When we want to redirect the client to a different URL, this method allows for that capability.
-- [res.render](https://expressjs.com/en/5x/api/response/#resrender) - `res.render` lets you render a view template and send the resulting HTML as the response. We'll cover this in a later lesson.
+- [res.send](https://expressjs.com/en/5x/api/response/#ressend) - Một phương pháp có mục đích chung để gửi phản hồi, nó linh hoạt với dữ liệu chúng tôi có thể gửi vì nó sẽ tự động đặt tiêu đề `Content-Type` dựa trên dữ liệu bạn chuyển. Ví dụ: nếu chúng ta truyền vào một đối tượng, nó sẽ xâu chuỗi nó thành JSON và đặt tiêu đề `Content-Type` thành `application/json`.
+- [res.json](https://expressjs.com/en/5x/api/response/#resjson) - Đây là cách rõ ràng hơn để phản hồi yêu cầu bằng JSON. Điều này luôn đặt tiêu đề `Content-Type` thành `application/json` và gửi dữ liệu dưới dạng JSON.
+- [res.redirect](https://expressjs.com/en/5x/api/response/#resredirect) - Khi chúng tôi muốn chuyển hướng máy khách đến một URL khác, phương pháp này cho phép khả năng đó.
+- [res.render](https://expressjs.com/en/5x/api/response/#resrender) - `res.render` cho phép bạn hiển thị mẫu view và gửi HTML kết quả làm phản hồi. Chúng ta sẽ đề cập đến điều này trong bài học sau.
 
-There is also a useful method that we can use to set the status code manually.
+Ngoài ra còn có một phương pháp hữu ích mà chúng ta có thể sử dụng để đặt mã trạng thái theo cách thủ công.
 
-- [res.status](https://expressjs.com/en/5x/api/response/#resstatus) - This sets the response's status code **but does not end the request-response cycle by itself**. We can chain other methods through this (e.g. `res.status(404).send(...)` but note that we can't do `res.send(...).status(404)`). We can omit this if we wish to use the default status code of `200`.
+- [res.status](https://expressjs.com/en/5x/api/response/#resstatus) - Lệnh này đặt mã trạng thái của phản hồi **nhưng không tự kết thúc chu kỳ yêu cầu-phản hồi**. Chúng ta có thể xâu chuỗi các phương thức khác thông qua điều này (ví dụ: `res.status(404).send(...)` nhưng lưu ý rằng chúng ta không thể thực hiện `res.send(...).status(404)`). Chúng tôi có thể bỏ qua điều này nếu muốn sử dụng mã trạng thái mặc định của `200`.
 
 <div class="lesson-note" markdown="1">
 
-#### res.send and res.json
+#### res.send và res.json
 
-If `res.send` automatically sets the `Content-Type` based on the data passed, why would we still use `res.json`? `res.json` enforces JSON and will automatically convert non-object values to JSON, but `res.send` will not. `res.json` is just a convenient method that also internally calls `res.send`. `res.send` will only handle things as JSON when dealing with booleans and objects (which includes arrays).
+Nếu `res.send` tự động đặt `Content-Type` dựa trên dữ liệu được truyền, tại sao chúng ta vẫn sử dụng `res.json`? `res.json` thực thi JSON và sẽ tự động chuyển đổi các giá trị không phải đối tượng thành JSON, nhưng `res.send` thì không. `res.json` chỉ là một phương thức thuận tiện cũng gọi nội bộ `res.send`. `res.send` sẽ chỉ xử lý mọi thứ dưới dạng JSON khi xử lý các boolean và đối tượng (bao gồm mảng).
 
-So for convenience it's more appropriate to use `res.json` instead of `res.send`, and if we're sending JSON, we might as well use a method that's literally named "json". It's like the perfect match!
+Vì vậy, để thuận tiện, sẽ thích hợp hơn khi sử dụng `res.json` thay vì `res.send` và nếu chúng tôi gửi JSON, chúng tôi cũng có thể sử dụng một phương thức có tên theo nghĩa đen là "json". Nó giống như một sự kết hợp hoàn hảo!
 
 </div>
 
-We also need to take note that these response methods only end the request-response cycle. They do not end the function execution. For example if we do this:
+Chúng ta cũng cần lưu ý rằng các phương thức phản hồi này chỉ kết thúc chu trình phản hồi yêu cầu. Chúng không kết thúc việc thực thi hàm. Ví dụ: nếu chúng ta làm điều này:
 
 ```javascript
 app.use((req, res) => {
@@ -52,45 +52,45 @@ app.use((req, res) => {
 
 ### Middleware
 
-Middleware functions are a core concept in Express and play a crucial role in handling requests and responses. They operate between the incoming request and the final intended route handler.
+Các hàm middleware là khái niệm cốt lõi trong Express và đóng vai trò quan trọng trong việc xử lý các yêu cầu và phản hồi. Chúng hoạt động giữa yêu cầu đến và trình xử lý route dự định cuối cùng.
 
-A middleware function typically takes three arguments (however, there is one that we will get into later that has four):
+Một hàm middleware thường có ba đối số (tuy nhiên, có một đối số mà chúng ta sẽ đề cập sau có bốn đối số):
 
-- `req` - The request object, representing the incoming HTTP request.
-- `res` - The response object, representing the HTTP response that will be sent back to the client.
-- `next` - The function that passes control to the next middleware function in the chain (we'll get to this later). This is optional.
+- `req` - Đối tượng yêu cầu, đại diện cho yêu cầu HTTP đến.
+- `res` - Đối tượng phản hồi, thể hiện phản hồi HTTP sẽ được gửi lại cho máy khách.
+- `next` - Hàm chuyển quyền kiểm soát cho hàm middleware tiếp theo trong chuỗi (chúng ta sẽ đề cập đến vấn đề này sau). Đây là tùy chọn.
 
 <div class="lesson-note" markdown="1">
 
-#### Naming convention
+#### Quy ước đặt tên
 
-Names are just convention, we can name them whatever we want, like `req` -> `request`, `res` -> `response`, etc.
+Tên gọi chỉ mang tính quy ước, chúng ta có thể đặt tên tùy thích như `req` -> `request`, `res` -> `response`, v.v.
 
 </div>
 
-A middleware function can perform various tasks, such as:
+Chức năng middleware có thể thực hiện nhiều tác vụ khác nhau, chẳng hạn như:
 
-- Modifying the request or response objects (some packages for example will do this, like adding a new property in the request object, or setting the `res.locals` that is used in templates rendered with `res.render`).
-- Executing additional code (validation middleware functions to validate the request before going to our main logic, authentication middleware functions, and so on).
-- Calling the next middleware function in the chain.
-- Ending the request-response cycle (meaning no further middleware functions are called, even if there are more in the chain).
+- Sửa đổi đối tượng yêu cầu hoặc phản hồi (ví dụ: một số gói sẽ thực hiện việc này, như thêm thuộc tính mới vào đối tượng yêu cầu hoặc đặt `res.locals` được sử dụng trong các mẫu được hiển thị bằng `res.render`).
+- Thực thi mã bổ sung (các hàm middleware xác thực để xác thực yêu cầu trước khi đi đến logic chính của chúng tôi, các hàm middleware xác thực, v.v.).
+- Gọi hàm middleware tiếp theo trong chuỗi.
+- Kết thúc chu trình yêu cầu-phản hồi (nghĩa là không còn hàm middleware nào được gọi nữa, ngay cả khi có nhiều chức năng hơn trong chuỗi).
 
-Express has a rich ecosystem, so you'll likely find a package that solves the problem you're encountering. For example, some packages provide middleware functions to handle authentication, CORS, rate limiting, sessions, logging, validation, and more! Throughout this lesson (and the course), we'll introduce middlewares needed to build projects in this course, but you’re welcome to explore on your own.
+Express có hệ sinh thái phong phú nên bạn có thể sẽ tìm thấy gói giải quyết được vấn đề bạn đang gặp phải. Ví dụ: một số gói cung cấp các hàm middleware để xử lý xác thực, CORS, giới hạn tốc độ, phiên, ghi nhật ký, xác thực, v.v.! Trong suốt bài học này (và khóa học), chúng tôi sẽ giới thiệu các middleware cần thiết để xây dựng dự án trong khóa học này, nhưng bạn có thể tự mình khám phá.
 
-#### Application-level middleware
+#### Middleware cấp ứng dụng
 
-Application-level middleware are bound to an *instance of Express* using `app.use` or using `app.METHOD` (e.g. `app.get`, `app.post`) functions. Express executes these middleware functions for every incoming request that matches the specified path. If we don't specify a path, Express defaults the path to `/`, matching every incoming request. As with any middleware functions, they will not run if the request-response cycle ends before reaching them. Typically, these middleware functions are placed on top of our application code to ensure they always run first.
+Middleware cấp ứng dụng được liên kết với một *phiên bản Express* bằng cách sử dụng các chức năng `app.use` hoặc `app.METHOD` (ví dụ: `app.get`, `app.post`). Express thực thi các hàm middleware này cho mọi yêu cầu đến phù hợp với đường dẫn đã chỉ định. Nếu chúng tôi không chỉ định đường dẫn, Express sẽ mặc định đường dẫn đến `/`, khớp với mọi yêu cầu đến. Giống như bất kỳ hàm middleware nào, chúng sẽ không chạy nếu chu kỳ phản hồi yêu cầu kết thúc trước khi tiếp cận chúng. Thông thường, các hàm middleware này được đặt ở đầu mã ứng dụng của chúng tôi để đảm bảo chúng luôn chạy trước.
 
-Express offers several essential built-in middleware functions that we'll frequently use in our applications. These include:
+Express cung cấp một số hàm middleware tích hợp cần thiết mà chúng ta sẽ thường xuyên sử dụng trong các ứng dụng của mình. Chúng bao gồm:
 
-- Body parsers (e.g. `express.json`, `express.urlencoded`) - These allow us to correctly parse the incoming request's body, so that we can use it through `req.body`.
-- Serving static files (e.g. `app.use(express.static('public'))`) - This middleware function serves static files like HTML, CSS, JavaScript, and images. We can pass an argument to specify which directory to serve the static files.
+- Trình phân tích cú pháp nội dung (ví dụ: `express.json`, `express.urlencoded`) - Các trình phân tích cú pháp này cho phép chúng tôi phân tích cú pháp chính xác nội dung của yêu cầu đến để chúng tôi có thể sử dụng nó thông qua `req.body`.
+- Cung cấp các tệp tĩnh (ví dụ: `app.use(express.static('public'))`) - Chức năng middleware này phục vụ các tệp tĩnh như HTML, CSS, JavaScript và hình ảnh. Chúng ta có thể truyền một đối số để chỉ định thư mục nào sẽ phục vụ các tệp tĩnh.
 
-#### Router-level middleware
+#### Middleware cấp router
 
-Router-level middleware works similarly to an application-level middleware, but it's bound to an *instance of Express router* using `router.use` or `router.METHOD` (e.g. router.get) functions. Because of this, Express only executes these middleware when the request matches and goes through that router.
+Middleware cấp router hoạt động tương tự như middleware cấp ứng dụng, nhưng nó bị ràng buộc với một *phiên bản của router Express* bằng cách sử dụng các chức năng `router.use` hoặc `router.METHOD` (ví dụ: router.get). Do đó, Express chỉ thực thi các middleware này khi yêu cầu khớp và đi qua router đó.
 
-Here is an example of a basic middleware function:
+Dưới đây là một ví dụ về hàm middleware cơ bản:
 
 ```javascript
 function myMiddleware(req, res, next) {
@@ -107,25 +107,25 @@ function myMiddleware(req, res, next) {
 app.use(myMiddleware);
 ```
 
-In this example, the middleware function logs a message, adds a custom property to the request object, and then calls the `next()` function to pass control to the next middleware function or route handler. We also register the middleware function through the usage of `app.use` which makes this an application-level middleware. Middleware functions following `myMiddleware` in this chain can now access `req.customProperty`, which contains the value `"Hello from myMiddleware"`.
+Trong ví dụ này, hàm middleware ghi lại thông báo, thêm thuộc tính tùy chỉnh vào đối tượng yêu cầu, sau đó gọi hàm `next()` để chuyển quyền điều khiển cho hàm middleware tiếp theo hoặc trình xử lý route. Chúng tôi cũng đăng ký hàm middleware thông qua việc sử dụng `app.use`, điều này làm cho phần mềm này trở thành middleware cấp ứng dụng. Các hàm middleware theo sau `myMiddleware` trong chuỗi này hiện có thể truy cập `req.customProperty`, chứa giá trị `"Hello from myMiddleware"`.
 
-One thing to note is that Express executes middleware functions in the order we define or register them in our application. This means that the sequence in which we define our middleware functions matters, as it determines the order in which they will be invoked during the request-response cycle. So we need to make sure and be aware that our middleware functions are placed in the correct order. As an example, some packages have middleware functions that changes the `Request` object, and as a result, these middleware functions should be placed at the very top of our application in order for us to be able to see their changes in all of your middleware functions below it.
+Một điều cần lưu ý là Express thực thi các chức năng của middleware theo thứ tự chúng ta xác định hoặc đăng ký chúng trong ứng dụng của mình. Điều này có nghĩa là trình tự mà chúng ta xác định các chức năng của middleware là quan trọng, vì nó xác định thứ tự chúng sẽ được gọi trong chu kỳ phản hồi yêu cầu. Vì vậy, chúng ta cần đảm bảo và lưu ý rằng các hàm middleware của chúng ta được đặt theo đúng thứ tự. Ví dụ: một số gói có hàm middleware thay đổi đối tượng `Request` và do đó, các hàm middleware này phải được đặt ở đầu ứng dụng của chúng tôi để chúng tôi có thể thấy những thay đổi của chúng trong tất cả các hàm middleware bên dưới nó.
 
-There is also a special type of middleware function that handles errors, which we will discuss shortly.
+Ngoài ra còn có một loại hàm middleware đặc biệt để xử lý lỗi mà chúng ta sẽ thảo luận sau.
 
-### Controllers
+### Controller
 
-As said earlier, controllers are just functions. They also classify as a middleware (at least in the Express world) that are used by route handlers. However, it's important to note that controller and middleware are distinct concepts. Controllers are a key component of the MVC (Model-View-Controller) pattern, a design approach for organizing software. Middleware, on the other hand, is a core feature of Express that allows you to run code, modify requests, or end the cycle at specific points in the request-response cycle. So we are using middleware in Express to implement the "Controller" part of the MVC pattern.
+Như đã nói trước đó, controller chỉ là chức năng. Họ cũng phân loại là middleware (ít nhất là trong thế giới Express) được sử dụng bởi trình xử lý route. Tuy nhiên, điều quan trọng cần lưu ý là controller và middleware là những khái niệm riêng biệt. Controller là thành phần chính của mẫu MVC (Model-View-Controller), một phương pháp thiết kế để tổ chức phần mềm. Mặt khác, Middleware là tính năng cốt lõi của Express cho phép bạn chạy mã, sửa đổi yêu cầu hoặc kết thúc chu trình tại các điểm cụ thể trong chu trình phản hồi yêu cầu. Vì vậy, chúng tôi đang sử dụng middleware trong Express để triển khai phần "Controller" của mẫu MVC.
 
-A controller comes into play whenever a request hits the server and a route matches the requested HTTP verb and path. The route determines which controller should handle the request based on the defined middleware chain. The appropriate controller then takes over, performing the necessary actions to fulfill the request. This could involve retrieving data from the model, processing the data, making decisions based on business logic, or updating the model with new data.
+Controller sẽ hoạt động bất cứ khi nào có yêu cầu truy cập vào máy chủ và route khớp với động từ và đường dẫn HTTP được yêu cầu. Route xác định controller nào sẽ xử lý yêu cầu dựa trên chuỗi middleware đã xác định. Sau đó, controller thích hợp sẽ tiếp quản, thực hiện các hành động cần thiết để thực hiện yêu cầu. Điều này có thể liên quan đến việc truy xuất dữ liệu từ mô hình, xử lý dữ liệu, đưa ra quyết định dựa trên logic nghiệp vụ hoặc cập nhật mô hình bằng dữ liệu mới.
 
-Once the controller completes its tasks, it passes the processed data to the view. The view then renders this data into a format suitable for sending back to the client. Typically, this would be HTML. Later, when we cover building APIs, we can also send JSON responses like with the APIs that we've previously used e.g. Giphy API.
+Sau khi controller hoàn thành nhiệm vụ của mình, nó sẽ chuyển dữ liệu đã xử lý sang view. Sau đó, view sẽ hiển thị dữ liệu này thành định dạng phù hợp để gửi lại cho khách hàng. Thông thường, đây sẽ là HTML. Sau này, khi đề cập đến việc xây dựng API, chúng tôi cũng có thể gửi phản hồi JSON giống như với các API mà chúng tôi đã sử dụng trước đây, ví dụ: API Giphy.
 
-The naming conventions for these controllers are usually based on the route they will be attached to e.g. `GET` route -> `getSomething`, `POST` route -> `createSomething`, `DELETE` route -> `deleteSomething`, etc. Nonetheless, there is no fixed rule since Express is not opinionated. It will always be based on you or someone else's conventions, and the requirements of the function.
+Quy ước đặt tên cho các controller này thường dựa trên route mà chúng sẽ được gắn vào, ví dụ: Tuyến `GET` -> `getSomething`, `POST` tuyến -> `createSomething`, tuyến `DELETE` -> `deleteSomething`, v.v. Tuy nhiên, không có quy tắc cố định nào vì Express không có ý kiến. Nó sẽ luôn dựa trên quy ước của bạn hoặc của người khác và các yêu cầu của chức năng.
 
-You should already have your application setup in-place from the previous lesson. Previously, we've defined a route for `/authors/:authorId`, but this time we will define a controller for that route and hook it up with sample data. But to make the example produce something, let's first create a mock database with a function that we can use to retrieve an author by their ID.
+Bạn đã thiết lập sẵn ứng dụng của mình từ bài học trước. Trước đây, chúng tôi đã xác định route cho `/authors/:authorId`, nhưng lần này chúng tôi sẽ xác định controller cho route đó và kết nối nó với dữ liệu mẫu. Nhưng để làm cho ví dụ tạo ra thứ gì đó, trước tiên hãy tạo một cơ sở dữ liệu mô phỏng với một hàm mà chúng ta có thể sử dụng để truy xuất tác giả theo ID của họ.
 
-Create the following file `db.js` at the root of the project, and add the following code:
+Tạo tệp sau `db.js` ở thư mục gốc của dự án và thêm mã sau:
 
 ```javascript
 // db.js
@@ -143,9 +143,9 @@ async function getAuthorById(authorId) {
 module.exports = { getAuthorById };
 ```
 
-The file name, content, and location aren't important here. This is just a quick mock "database" and query function so we can call it in a controller.
+Tên tệp, nội dung và vị trí không quan trọng ở đây. Đây chỉ là một "cơ sở dữ liệu" mô phỏng nhanh và hàm truy vấn để chúng ta có thể gọi nó trong controller.
 
-Then for the controller, create the following file `authorController.js` within a `controllers` folder:
+Sau đó, đối với controller, hãy tạo tệp `authorController.js` sau trong thư mục `controllers`:
 
 ```javascript
 // controllers/authorController.js
@@ -168,7 +168,7 @@ async function getAuthorById(req, res) {
 module.exports = { getAuthorById };
 ```
 
-In this example, the `getAuthorById` function is a controller that handles a specific action related to retrieving an author by their ID. We'll use this controller by importing it into the file where we define our routes, and using it like this:
+Trong ví dụ này, hàm `getAuthorById` là controller xử lý một hành động cụ thể liên quan đến việc truy xuất tác giả bằng ID của họ. Chúng tôi sẽ sử dụng controller này bằng cách nhập nó vào tệp nơi chúng tôi xác định route của mình và sử dụng nó như thế này:
 
 ```javascript
 // routes/authorRouter.js
@@ -182,22 +182,22 @@ const authorRouter = Router();
 authorRouter.get("/:authorId", getAuthorById);
 ```
 
-Let's break down what's happening in this controller:
+Hãy chia nhỏ những gì đang xảy ra trong controller này:
 
-1. The route path contains a route parameter (`/authors/:authorId`). The controller extracts the `authorId` from `req.params`.
-1. It then invokes a database query function `getAuthorById` to retrieve the author data based on the `authorId`.
-1. If the controller doesn't find the author, it sends a response with a 404 status code and the message `"Author not found"`, using `res.status(404).send(...)`. It then returns from the controller function to avoid invoking any other logic in the controller, as sending a response doesn't automatically stop the function execution.
-1. If the controller finds the author, it sends a response with a 200 status code with the text showing the author name using `res.send(...)`.
+1. Đường dẫn tuyến chứa tham số tuyến (`/authors/:authorId`). Controller trích xuất `authorId` từ `req.params`.
+1. Sau đó, nó gọi hàm truy vấn cơ sở dữ liệu `getAuthorById` để truy xuất dữ liệu tác giả dựa trên `authorId`.
+1. Nếu controller không tìm thấy tác giả, nó sẽ gửi phản hồi có mã trạng thái 404 và thông báo `"Author not found"`, sử dụng `res.status(404).send(...)`. Sau đó, nó trả về từ hàm controller để tránh gọi bất kỳ logic nào khác trong controller, vì việc gửi phản hồi không tự động dừng việc thực thi hàm.
+1. Nếu controller tìm thấy tác giả, nó sẽ gửi phản hồi với mã trạng thái 200 kèm theo văn bản hiển thị tên tác giả bằng cách sử dụng `res.send(...)`.
 
-Very simple right?
+Rất đơn giản phải không?
 
-### Handling errors
+### Xử lý lỗi
 
-When building robust applications, it's crucial to handle errors gracefully within our application. Implementing proper error handling allows you to provide meaningful error responses to the client and prevent your application from crashing unexpectedly. And as we know, errors may occur during async operations, and we are not exactly handling that in our previous code snippets. Let's see what we can do to handle these possibilities.
+Khi xây dựng các ứng dụng mạnh mẽ, điều quan trọng là phải xử lý các lỗi trong ứng dụng của chúng ta một cách khéo léo. Việc triển khai xử lý lỗi thích hợp cho phép bạn cung cấp các phản hồi lỗi có ý nghĩa cho máy khách và ngăn ứng dụng của bạn gặp sự cố bất ngờ. Và như chúng tôi biết, lỗi có thể xảy ra trong quá trình hoạt động không đồng bộ và chúng tôi không xử lý chính xác lỗi đó trong các đoạn mã trước đó. Hãy xem chúng ta có thể làm gì để xử lý những khả năng này.
 
-#### try/catch
+#### thử/bắt
 
-Using the same code from earlier, we can quickly handle errors by wrapping our controller logic in a `try/catch` block.
+Sử dụng cùng một mã từ trước đó, chúng ta có thể nhanh chóng xử lý lỗi bằng cách gói logic controller của mình vào khối `try/catch`.
 
 ```javascript
 async function getAuthorById(req, res) {
@@ -223,13 +223,13 @@ async function getAuthorById(req, res) {
 };
 ```
 
-What if we have many async middleware functions and a lot of them respond the same way just with things like different status codes and response messages? Instead of `try/catch` in each middleware, Express automatically catches any thrown errors and calls `next(error)`, which will pass control over to a special "error middleware function", meaning we wouldn't need to catch and handle in the original controller itself.
+Điều gì sẽ xảy ra nếu chúng ta có nhiều hàm middleware không đồng bộ và nhiều chức năng trong số đó phản hồi theo cùng một cách chỉ với những thứ như mã trạng thái và thông báo phản hồi khác nhau? Thay vì `try/catch` trong mỗi middleware, Express tự động phát hiện bất kỳ lỗi nào xảy ra và gọi `next(error)`, điều này sẽ chuyển quyền kiểm soát sang một "hàm middleware lỗi" đặc biệt, nghĩa là chúng ta sẽ không cần phải bắt và xử lý trong chính controller gốc.
 
-#### Error handler middleware
+#### Middleware xử lý lỗi
 
-An error handler middleware function handles all errors in our application that come down from other middleware functions. We want to place this error middleware function at the very end of the application code to ensure it's the last middleware function executed and only handles errors bubbling down from preceding middleware functions.
+Chức năng middleware xử lý lỗi xử lý tất cả các lỗi trong ứng dụng của chúng tôi xuất phát từ các hàm middleware khác. Chúng tôi muốn đặt hàm middleware báo lỗi này ở cuối mã ứng dụng để đảm bảo rằng đó là hàm middleware cuối cùng được thực thi và chỉ xử lý các lỗi xuất hiện từ các hàm middleware trước đó.
 
-Add the following code in `app.js` at the end of all middleware functions in our application:
+Thêm mã sau vào `app.js` vào cuối tất cả các chức năng của middleware trong ứng dụng của chúng tôi:
 
 ```javascript
 // Every thrown error in the application or the previous middleware function calling `next` with an error as an argument will eventually go to this middleware function
@@ -239,13 +239,13 @@ app.use((err, req, res, next) => {
 });
 ```
 
-However, take note that this is a middleware function that requires *four parameters* that we will need to provide even if they are not used. If for example we exclude one of the parameters, it will not be recognized as an error middleware function. You can try it out yourself ;)
+Tuy nhiên, hãy lưu ý rằng đây là chức năng của middleware yêu cầu *bốn tham số* mà chúng tôi sẽ cần cung cấp ngay cả khi chúng không được sử dụng. Ví dụ: nếu chúng tôi loại trừ một trong các tham số, thì tham số đó sẽ không được nhận dạng là hàm middleware có lỗi. Bạn có thể tự mình thử nhé ;)
 
-This is an odd one where the error object *must* be the first parameter in the callback.
+Đây là một trường hợp kỳ lạ trong đó đối tượng lỗi *phải* là tham số đầu tiên trong lệnh gọi lại.
 
-This middleware function handles the *errors thrown* in other middleware functions or something that is sent by a previous middleware function using the `next` function (e.g. `next(err)`).
+Hàm middleware này xử lý *lỗi xảy ra* trong các hàm middleware khác hoặc thứ gì đó được gửi bởi hàm middleware trước đó bằng cách sử dụng hàm `next` (ví dụ: `next(err)`).
 
-So the way Express distinguishes this middleware function is again through adding *four parameters*, not a single one missing. A route middleware function or a middleware function with *fewer than four parameters* will always be considered as a request middleware function instead of this error middleware function, even if we place it last.
+Vì vậy, cách Express phân biệt hàm middleware này một lần nữa là thông qua việc thêm *bốn tham số*, không thiếu một tham số nào. Chức năng middleware định tuyến hoặc hàm middleware có *ít hơn bốn tham số* sẽ luôn được coi là hàm middleware yêu cầu thay vì hàm middleware lỗi này, ngay cả khi chúng tôi đặt nó ở cuối cùng.
 
 ```javascript
 app.use((req, res, next) => {
@@ -260,11 +260,11 @@ app.use((err, req, res, next) => {
 });
 ```
 
-#### Creating custom errors
+#### Tạo lỗi tùy chỉnh
 
-With the solutions above, the error middleware function can only really respond with a `500` status code no matter what error it is. But what if we actually want to send a `404`? A common way to do this is to create our own custom error by extending the Error object.
+Với các giải pháp trên, hàm middleware báo lỗi chỉ có thể thực sự phản hồi bằng mã trạng thái `500` cho dù đó là lỗi gì. Nhưng nếu chúng ta thực sự muốn gửi `404` thì sao? Một cách phổ biến để làm điều này là tạo ra lỗi tùy chỉnh của riêng chúng ta bằng cách mở rộng đối tượng Error.
 
-Create the following file `CustomNotFoundError.js` within an `errors` folder:
+Tạo tệp sau `CustomNotFoundError.js` trong thư mục `errors`:
 
 ```javascript
 // errors/CustomNotFoundError.js
@@ -281,7 +281,7 @@ class CustomNotFoundError extends Error {
 module.exports = CustomNotFoundError;
 ```
 
-We can then use this custom error class and refactor the earlier version of `getAuthorById` like so:
+Sau đó, chúng tôi có thể sử dụng lớp lỗi tùy chỉnh này và cấu trúc lại phiên bản `getAuthorById` trước đó như sau:
 
 ```javascript
 const CustomNotFoundError = require("../errors/CustomNotFoundError");
@@ -299,9 +299,9 @@ const getAuthorById = async (req, res) => {
 };
 ```
 
-Since Express will auto-catch any thrown errors in the async middleware function, we don't need to send an error response inside of this function but instead just throw an error. Express calls `next()`, passing in the caught error as an argument, which passes control to our custom error handler!
+Vì Express sẽ tự động phát hiện bất kỳ lỗi nào xảy ra trong hàm middleware không đồng bộ nên chúng ta không cần gửi phản hồi lỗi bên trong hàm này mà thay vào đó chỉ cần đưa ra lỗi. Express gọi `next()`, chuyển lỗi đã bắt được làm đối số, chuyển quyền kiểm soát cho trình xử lý lỗi tùy chỉnh của chúng tôi!
 
-It will eventually end up in the error middleware function where we can also modify:
+Cuối cùng nó sẽ gặp lỗi ở hàm middleware và chúng ta cũng có thể sửa đổi:
 
 ```javascript
 app.use((err, req, res, next) => {
@@ -311,11 +311,11 @@ app.use((err, req, res, next) => {
 });
 ```
 
-This is a useful pattern and we can create more custom error classes for different use cases if needed.
+Đây là một mẫu hữu ích và chúng ta có thể tạo thêm các lớp lỗi tùy chỉnh cho các trường hợp sử dụng khác nhau nếu cần.
 
-#### What is the next function
+#### Chức năng tiếp theo là gì
 
-We've used the `next` function a few times now. But what exactly is it? Well, to put it simply, it is used to pass control to the next middleware function in the application's request-response cycle. To give an example:
+Chúng tôi đã sử dụng hàm `next` một vài lần. Nhưng chính xác thì nó là gì? Nói một cách đơn giản, nó được sử dụng để chuyển quyền kiểm soát cho hàm middleware tiếp theo trong chu trình phản hồi yêu cầu của ứng dụng. Để đưa ra một ví dụ:
 
 ```javascript
 function middleware1(req, res, next) {
@@ -340,20 +340,20 @@ app.use(middleware3);
 // will log `Middleware 1` -> `Middleware 2` and send a response with the text "Response from Middleware 2"
 ```
 
-Here we have `middleware1`, `middleware2`, and `middleware3`. `middleware1` calls the `next` function, and since we are not yet sending a response, we pass the control to the next middleware function - `middleware2` (as indicated by the order of `app.use` calls). In `middleware2`, we send a response which ends the request-response cycle. Since it has ended, the third middleware function (`middleware3`) does not run. But if we somehow did not call the `next` function in `middleware1`, do you know what would happen? Perhaps pop in the [TOP Discord server](https://discord.gg/fbFCkYabZB) and let us know what you think!
+Ở đây chúng ta có `middleware1`, `middleware2` và `middleware3`. `middleware1` gọi hàm `next` và vì chúng tôi chưa gửi phản hồi nên chúng tôi chuyển quyền điều khiển cho hàm middleware tiếp theo - `middleware2` (như được biểu thị theo thứ tự các lệnh gọi `app.use`). Trong `middleware2`, chúng tôi gửi phản hồi kết thúc chu trình phản hồi yêu cầu. Vì nó đã kết thúc nên hàm middleware thứ ba (`middleware3`) không chạy. Nhưng nếu bằng cách nào đó chúng ta không gọi hàm `next` trong `middleware1`, bạn có biết điều gì sẽ xảy ra không? Có lẽ hãy truy cập [máy chủ TOP Discord](https://discord.gg/fbFCkYabZB) và cho chúng tôi biết suy nghĩ của bạn!
 
-Also, as we've discussed earlier with regards to calling the `next` function. We have the following arguments that we can pass to it:
+Ngoài ra, như chúng ta đã thảo luận trước đó về cách gọi hàm `next`. Chúng tôi có các đối số sau đây mà chúng tôi có thể chuyển cho nó:
 
-1. No argument `next()` - Will pass control to the next middleware function. Very simple and straightforward.
-1. With an error argument `next(new Error(...))` - Will pass control directly to the error middleware function.
-1. With the string `next('route')` - Will pass control to the next route handler with the same matching path (if there is one). This only works for `app.METHOD` or `router.METHOD`. Potentially, it can also be the same as just calling `next` with no argument.
-1. With the string `next('router')` - Will skip all middleware functions attached to the specific router instance and pass control back out of the router instance. Basically, we exit the router and go back to the parent router, e.g. `app` (yes, the Express app is also just a router under the hood).
+1. Không có đối số `next()` - Sẽ chuyển quyền điều khiển cho hàm middleware tiếp theo. Rất đơn giản và dễ hiểu.
+1. Với đối số lỗi `next(new Error(...))` - Sẽ chuyển quyền điều khiển trực tiếp đến hàm middleware lỗi.
+1. Với chuỗi `next('route')` - Sẽ chuyển quyền điều khiển cho bộ xử lý tuyến tiếp theo có cùng đường dẫn khớp (nếu có). Điều này chỉ hoạt động với `app.METHOD` hoặc `router.METHOD`. Có khả năng, nó cũng có thể giống như việc chỉ gọi `next` mà không có đối số.
+1. Với chuỗi `next('router')` - Sẽ bỏ qua tất cả các chức năng của middleware được gắn vào phiên bản router cụ thể và chuyển quyền điều khiển trở lại phiên bản router. Về cơ bản, chúng tôi thoát khỏi router và quay trở lại router chính, ví dụ: `app` (vâng, ứng dụng Express cũng chỉ là một router ngầm).
 
-Out of the four, we will likely only use the first two, unless we have a very specific need that requires the other two.
+Trong số bốn cái, chúng tôi có thể sẽ chỉ sử dụng hai cái đầu tiên, trừ khi chúng tôi có nhu cầu rất cụ thể yêu cầu hai cái còn lại.
 
-### Consolidating what we've learned
+### Củng cố những gì chúng ta đã học được
 
-The following is the folder structure you'd end up with if you had been coding along:
+Sau đây là cấu trúc thư mục mà bạn sẽ có nếu bạn đã viết mã:
 
 ```text
 express-app/
@@ -368,32 +368,32 @@ express-app/
 ├─ db.js
 ```
 
-As an exercise, feel free to create more sample data in our `db.js` file and controllers for the other routes we've previously created.
+Như một bài tập, vui lòng tạo thêm dữ liệu mẫu trong tệp `db.js` và controller cho các route khác mà chúng tôi đã tạo trước đó.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. This article [Express Middlewares, Demystified](https://medium.com/@viral_shah/express-middlewares-demystified-f0c2c37ea6a1) Written by Viral Shah will help understand how middlewares work in a deeper way. The article also encourages you to read the source code of Express which you can likely do by now.
+1. Bài viết này [Express Middlewares, Demystified](https://medium.com/@viral_shah/express-middlewares-demystified-f0c2c37ea6a1) Viết bởi Viral Shah sẽ giúp hiểu sâu hơn về cách thức hoạt động của middleware. Bài viết cũng khuyến khích bạn đọc mã nguồn của Express mà bây giờ bạn có thể làm được.
 
-   <div class="lesson-note" markdown="1">
+<div class="lesson-note" markdown="1">
 
-   #### Asynchronous Handlers
+### # Trình xử lý không đồng bộ
 
-   While reading the article attached above, you might notice this paragraph:
+Trong khi đọc bài viết đính kèm ở trên, bạn có thể nhận thấy đoạn này:
 
-   >— Express was not built to await on handlers or handle returned promises. Hence, when a handler function is an async function, it will return a promise. When we throw an error, we are simply rejecting that promise. So, the only way to pass an error is via ‘next(err)’ function
+>— Express không được xây dựng để chờ đợi các trình xử lý hoặc xử lý các lời hứa được trả lại. Do đó, khi hàm xử lý là hàm không đồng bộ, nó sẽ trả về một lời hứa. Khi chúng tôi đưa ra một lỗi, chúng tôi chỉ đơn giản là từ chối lời hứa đó. Vì vậy, cách duy nhất để vượt qua lỗi là thông qua chức năng 'next(err)'
 
-   As of the current version of Express (v5), async route handlers are now natively supported. Please note that this article is outdated in this regard.
-
-   </div>
-
-1. Watch this short 10 minutes [video tutorial of the MVC pattern](https://www.youtube.com/watch?v=Cgvopu9zg8Y). There is not much to this other than consolidating what you already know.
+Kể từ phiên bản hiện tại của Express (v5), trình xử lý route không đồng bộ hiện được hỗ trợ nguyên bản. Xin lưu ý rằng bài viết này đã lỗi thời về vấn đề này.
 
 </div>
 
-### Additional resources
+1. Xem đoạn ngắn này trong 10 phút [video hướng dẫn về mẫu MVC](https://www.youtube.com/watch?v=Cgvopu9zg8Y). Không có gì nhiều ngoài việc củng cố những gì bạn đã biết.
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+</div>
 
-- The Express documentation for [Using Express Middleware](https://expressjs.com/en/guide/using-middleware.html) is a short one with the same information, but has more examples that you can run through.
+### Tài nguyên bổ sung
+
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
+
+- Tài liệu Express về [Sử dụng Express Middleware](https://expressjs.com/en/guide/using-middleware.html) là một tài liệu ngắn có cùng thông tin nhưng có nhiều ví dụ hơn mà bạn có thể xem qua.

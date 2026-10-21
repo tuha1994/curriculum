@@ -1,97 +1,97 @@
-### Guide: Install PostgreSQL on Linux
+### Hướng dẫn: Cài đặt PostgreSQL trên Linux
 
-#### Step 1: Make sure the system is up to date
+#### Bước 1: Đảm bảo hệ thống đã được cập nhật
 
-Before installing PostgreSQL, it's a good idea to make sure the operating system is up to date. To update our system, run this command:
+Trước khi cài đặt PostgreSQL, bạn nên đảm bảo hệ điều hành được cập nhật. Để cập nhật hệ thống của chúng tôi, hãy chạy lệnh này:
 
 ```bash
 sudo apt update && sudo apt upgrade
 ```
 
-#### Step 2: Install the PostgreSQL packages
+#### Bước 2: Cài đặt gói PostgreSQL
 
-After our system is up to date, we will install the packages for PostgreSQL.
+Sau khi hệ thống của chúng tôi được cập nhật, chúng tôi sẽ cài đặt các gói cho PostgreSQL.
 
 ```bash
 sudo apt install postgresql postgresql-contrib libpq-dev
 ```
 
-After installation is complete, let's start the server using this command:
+Sau khi cài đặt hoàn tất, hãy khởi động máy chủ bằng lệnh này:
 
 ```bash
 sudo systemctl start postgresql.service && systemctl status postgresql.service
 ```
 
-Got an error, or don't see an active service? Come visit [our Discord server](https://discord.gg/V75WSQG) for some help!
+Có lỗi hoặc không thấy dịch vụ đang hoạt động? Hãy đến thăm [máy chủ Discord](https://discord.gg/V75WSQG) của chúng tôi để được trợ giúp!
 
-If `postgresql` is active, you can press `Q` to quit the status screen and move on to the next step.
+Nếu `postgresql` đang hoạt động, bạn có thể nhấn `Q` để thoát khỏi màn hình trạng thái và chuyển sang bước tiếp theo.
 
-#### Step 3: Setting up PostgreSQL
+#### Bước 3: Thiết lập PostgreSQL
 
-PostgreSQL is now running, but we have to configure it in order to be able to use it with our local Express applications.
+PostgreSQL hiện đang chạy, nhưng chúng tôi phải định cấu hình nó để có thể sử dụng nó với các ứng dụng Express cục bộ của mình.
 
-PostgreSQL authenticates via roles. A role is like a user, which is how we interact with the service. The default PostgreSQL installation has set up a `postgres` role that we can use. This is great, but that would mean having to switch to that role every time we wanted to do something with the database server.
+PostgreSQL xác thực thông qua các vai trò. Vai trò giống như người dùng, đó là cách chúng ta tương tác với dịch vụ. Cài đặt PostgreSQL mặc định đã thiết lập vai trò `postgres` mà chúng ta có thể sử dụng. Điều này thật tuyệt, nhưng điều đó có nghĩa là phải chuyển sang vai trò đó mỗi khi chúng ta muốn làm điều gì đó với máy chủ cơ sở dữ liệu.
 
-Instead, we will set up our own role to avoid switching to the `postgres` role all the time.
+Thay vào đó, chúng tôi sẽ thiết lập vai trò của riêng mình để tránh phải chuyển sang vai trò `postgres` liên tục.
 
-1. We will be creating a new role with the same name as our Linux username. If you're not sure of your Linux username, you can run the command `whoami` in your terminal to get it. Once you have that information ready, let's create a role in PostgreSQL. The command to do so is:
+1. Chúng tôi sẽ tạo một vai trò mới có cùng tên với tên người dùng Linux của chúng tôi. Nếu không chắc chắn về tên người dùng Linux của mình, bạn có thể chạy lệnh `whoami` trong thiết bị đầu cuối của mình để lấy nó. Khi bạn đã có sẵn thông tin đó, hãy tạo một vai trò trong PostgreSQL. Lệnh để làm như vậy là:
 
    ```bash
    sudo -i -u postgres createuser --interactive
    ```
 
-   Remember that we want the role name to be the same as our Linux user name and be sure to make that new role a superuser. Setting up a role like this means we can leverage "peer authentication" making using the local database very easy.
+   Hãy nhớ rằng chúng tôi muốn tên vai trò giống với tên người dùng Linux của chúng tôi và đảm bảo đặt vai trò mới đó thành siêu người dùng. Thiết lập một vai trò như thế này có nghĩa là chúng ta có thể tận dụng "xác thực ngang hàng" khiến việc sử dụng cơ sở dữ liệu cục bộ trở nên rất dễ dàng.
 
-1. One other important step in setting up PostgreSQL is that each role must have its own database of the same name. Without it, the role we just created will not be able to log in or interact with PostgreSQL.
+1. Một bước quan trọng khác trong việc thiết lập PostgreSQL là mỗi vai trò phải có cơ sở dữ liệu riêng cùng tên. Nếu không có nó, vai trò chúng ta vừa tạo sẽ không thể đăng nhập hoặc tương tác với PostgreSQL.
 
-   You can try to run `psql` now, but you will get an error that the database does not exist. Not to worry, let's create one to fix this. Note that if setting a username containing capital letters, you **must** surround the username with quotes when running the command below.
+   Bạn có thể thử chạy `psql` ngay bây giờ, nhưng bạn sẽ gặp lỗi cho biết cơ sở dữ liệu không tồn tại. Đừng lo lắng, hãy tạo cơ sở dữ liệu đó để khắc phục vấn đề. Lưu ý rằng nếu tên người dùng có chứa chữ in hoa, bạn **phải** đặt tên người dùng trong dấu ngoặc kép khi chạy lệnh bên dưới.
 
    ```bash
    sudo -i -u postgres createdb <linux_username>
    ```
 
-   Now our role is fully set up: we've got `<role_name>` and that role has a database.
+   Bây giờ vai trò của chúng tôi đã được thiết lập đầy đủ: chúng tôi có `<role_name>` và vai trò đó có cơ sở dữ liệu.
 
-1. One important thing that we have to do is to set up a password for our new role so that the data is protected. Now that our role is set up, we can actually use it to administer PostgreSQL. All you have to do is enter this command to get into the PostgreSQL prompt:
+1. Một điều quan trọng mà chúng ta phải làm là thiết lập mật khẩu cho vai trò mới của mình để dữ liệu được bảo vệ. Bây giờ vai trò của chúng ta đã được thiết lập, chúng ta thực sự có thể sử dụng nó để quản trị PostgreSQL. Tất cả những gì bạn phải làm là nhập lệnh này để vào dấu nhắc PostgreSQL:
 
    ```bash
    psql
    ```
 
-   You should see the PostgreSQL prompt come up with the new role we just created, like so:
+   Bạn sẽ thấy lời nhắc PostgreSQL xuất hiện với vai trò mới mà chúng ta vừa tạo, như sau:
 
    ```sql
    role_name=#
    ```
 
-   If you don't see a similar prompt, then reach out in [our Discord server](https://discord.gg/V75WSQG) for some help. If you **do** see a similar prompt, then we can create a password for the role like so:
+   Nếu bạn không thấy lời nhắc tương tự, hãy vào [máy chủ Discord](https://discord.gg/V75WSQG) của chúng tôi để được trợ giúp. Nếu bạn **thấy** lời nhắc tương tự, chúng ta có thể tạo mật khẩu cho role như sau:
 
    ```sql
    \password <role_name>
    ```
 
-   You'll be prompted to enter a password and to verify it. Once you are done, the prompt will return to normal.
+   Bạn sẽ được nhắc nhập mật khẩu và xác minh nó. Khi bạn thực hiện xong, lời nhắc sẽ trở lại bình thường.
 
-1. Now, we will configure the permissions for our new role (note the semicolon at the end):
+1. Bây giờ, chúng tôi sẽ định cấu hình các quyền cho vai trò mới của mình (lưu ý dấu chấm phẩy ở cuối):
 
    ```sql
    GRANT ALL PRIVILEGES ON DATABASE <role_database_name> TO <role_name>;
    ```
 
-   Remember that you should change the `<role_database_name>` and `<role_name>` (they should both be the same)! If you see `GRANT` in response to the command, then you can type `\q` to exit the prompt.
+   Hãy nhớ rằng bạn nên thay đổi `<role_database_name>` và `<role_name>` (cả hai đều phải giống nhau)! Nếu bạn thấy `GRANT` phản hồi lệnh thì bạn có thể nhập `\q` để thoát khỏi lời nhắc.
 
-1. After finishing our configuration, the last step is to save it into the environment to access later.
+1. Sau khi cấu hình xong, bước cuối cùng là lưu nó vào môi trường để truy cập sau.
 
-   In order to save our password to the environment, we can run this command:
+   Để lưu mật khẩu của chúng tôi vào môi trường, chúng tôi có thể chạy lệnh này:
 
    ```bash
    echo 'export DATABASE_PASSWORD="<role_password>"' >> ~/.bashrc
    ```
 
-   Note here the name we've chosen for our environment variable: `DATABASE_PASSWORD`. Also, remember to update `<role_password>` in the command to what was set above!
+   Lưu ý ở đây tên chúng tôi đã chọn cho biến môi trường của mình: `DATABASE_PASSWORD`. Ngoài ra, hãy nhớ cập nhật `<role_password>` trong lệnh thành những gì đã được đặt ở trên!
 
-   Now, this variable lives in our environment for us to use. As the variable is new, we'll want to reload the environment so that we can access it. To reload the environment, you can close and re-open your terminal.
+   Bây giờ, biến này tồn tại trong môi trường của chúng ta để chúng ta sử dụng. Vì biến này là biến mới nên chúng tôi sẽ muốn tải lại môi trường để có thể truy cập vào nó. Để tải lại môi trường, bạn có thể đóng và mở lại thiết bị đầu cuối của mình.
 
-Once that's all done, we can move to testing it out!
+Khi đã xong, chúng ta có thể chuyển sang thử nghiệm nó!
 
-[Return to the Installing PostgreSQL lesson](https://www.theodinproject.com/lessons/nodejs-installing-postgresql#assignment)
+[Quay lại bài Cài đặt PostgreSQL](https://www.theodinproject.com/lessons/nodejs-installing-postgresql#assignment)

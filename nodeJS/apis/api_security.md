@@ -1,36 +1,36 @@
-### Introduction
+### Giới thiệu
 
-Securing your API is an important step. When we were using Express to serve view templates we used PassportJS along with a username and password to authenticate users, but that is not the only way to secure an Express app, and in the context of an API it often makes sense to use a different strategy.  The username and password session pattern that we learned previously will still work of course, though it is made a little more complicated by the fact that we've separated our front-end code from the back-end.
+Bảo mật API là một bước quan trọng. Khi dùng Express để phục vụ view template, chúng ta dùng PassportJS cùng username và password để xác thực người dùng. Tuy nhiên, đó không phải cách duy nhất để bảo mật một app Express, và trong bối cảnh API, thường nên dùng chiến lược khác. Mô hình session bằng username và password đã học trước đây dĩ nhiên vẫn hoạt động, dù trở nên phức tạp hơn một chút vì code front-end đã được tách khỏi back-end.
 
-Another strategy is to generate and pass a secure **token** between our back-end and front-end code.  Doing so will make sure that our user's username and password are not compromised and will also give us the ability to expire our user's session for added security. The basic idea is that when a user signs in to our app, a secure token is created, and then for all subsequent requests that token is passed in the header of our request object. In the end, the process is straightforward since you should already be comfortable with using passport to authenticate users.
+Một chiến lược khác là tạo và truyền một **token** bảo mật giữa code back-end và front-end. Cách này giúp bảo đảm username và password của người dùng không bị lộ, đồng thời cho phép ta đặt thời hạn cho session để tăng cường bảo mật. Ý tưởng cơ bản là khi người dùng đăng nhập app, một token bảo mật được tạo ra; sau đó, trong mọi request tiếp theo, token được truyền trong header của request object. Nhìn chung, quy trình khá đơn giản vì bạn đã quen dùng passport để xác thực người dùng.
 
-This strategy, while particularly useful with APIs can be used with a traditional view-template project as well. The main difference here is that instead of setting and checking a cookie we're passing a special token in the header of our request. In our previous Authentication Tutorial, the Passport middleware checked the cookie that was sent and then either authenticated or denied our user. In this case, we're going to do something very similar, but instead of using cookies, we're going to pass the token.
+Chiến lược này đặc biệt hữu ích với API nhưng cũng có thể dùng cho project view-template truyền thống. Điểm khác biệt chính là thay vì đặt và kiểm tra cookie, ta truyền một token đặc biệt trong header của request. Trong Authentication Tutorial trước đây, middleware Passport kiểm tra cookie được gửi đến rồi xác thực hoặc từ chối người dùng. Ở đây ta sẽ làm điều rất tương tự, nhưng thay cookie bằng token.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain how token authentication differs from session based authentication.
-- Learn about JSON Web Tokens.
-- Read about an authorization header and how to use it.
-- Identify and explain the methods used to sign and verify tokens.
-- Write custom middleware to verify tokens on a given route.
-- Have familiarity with token expiration with JWT.
-- Expand PassportJS implementations to use JSON Web Tokens.
+- Giải thích sự khác nhau giữa xác thực bằng token và xác thực dựa trên session.
+- Tìm hiểu về JSON Web Token.
+- Đọc về authorization header và cách sử dụng nó.
+- Nhận diện và giải thích các method dùng để ký và xác minh token.
+- Viết middleware tùy chỉnh để xác minh token trên một route.
+- Làm quen với việc token JWT hết hạn.
+- Mở rộng triển khai PassportJS để dùng JSON Web Token.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. This video is a great resource that explains everything you need to know about [creating and verifying JSON Web Tokens](https://www.youtube.com/watch?v=7nafaH9SddU).
-1. This video presents [different ways in which JWTs can be useful](https://www.youtube.com/watch?v=7Q17ubqLfaM).
+1. Video này là tài nguyên tuyệt vời, giải thích mọi điều bạn cần biết về [tạo và xác minh JSON Web Token](https://www.youtube.com/watch?v=7nafaH9SddU).
+1. Video này trình bày [những cách khác nhau JWT có thể hữu ích](https://www.youtube.com/watch?v=7Q17ubqLfaM).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ sung.
 
-- This article is a [guide for JWT Authentication Using Node.js and Express](https://web.archive.org/web/20230207144457/https://laptrinhx.com/a-practical-guide-for-jwt-authentication-using-node-js-and-express-917791379/).
-- This article is a [more concise guide for using JWTs in Express](https://medium.com/@paul.allies/stateless-auth-with-express-passport-jwt-7a55ffae0a5c).
-- [Not everyone agrees that JWTs are the best way to store authentication data](https://www.youtube.com/watch?v=JdGOb7AxUo0). This video is one argument against using them, and some of the pitfalls that you may encounter with using them.
+- Bài viết này là [hướng dẫn xác thực JWT bằng Node.js và Express](https://web.archive.org/web/20230207144457/https://laptrinhx.com/a-practical-guide-for-jwt-authentication-using-node-js-and-express-917791379/).
+- Bài viết này là [hướng dẫn ngắn gọn hơn về cách dùng JWT trong Express](https://medium.com/@paul.allies/stateless-auth-with-express-passport-jwt-7a55ffae0a5c).
+- [Không phải ai cũng đồng ý JWT là cách tốt nhất để lưu dữ liệu xác thực](https://www.youtube.com/watch?v=JdGOb7AxUo0). Video này trình bày một lập luận phản đối việc sử dụng JWT và một số cạm bẫy bạn có thể gặp phải khi dùng chúng.

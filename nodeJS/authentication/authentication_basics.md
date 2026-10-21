@@ -1,28 +1,28 @@
-### Introduction
+### Giới thiệu
 
-Creating users and allowing them to log in and out of your web apps is a crucial functionality that we are finally ready to learn! There is quite a bit of setup involved here, but thankfully none of it is too tricky. You'll be up and running in no time! In this lesson, we're going to be using [passport.js](https://www.passportjs.org), an excellent middleware to handle our authentication and sessions for us.
+Tạo người dùng và cho phép họ đăng nhập, đăng xuất khỏi ứng dụng web là một chức năng quan trọng mà cuối cùng chúng ta cũng sẵn sàng tìm hiểu! Có khá nhiều bước thiết lập, nhưng may mắn là không bước nào quá phức tạp. Bạn sẽ nhanh chóng có một ứng dụng chạy được! Trong bài học này, chúng ta sẽ sử dụng [Passport.js](https://www.passportjs.org), một middleware tuyệt vời giúp xử lý việc xác thực và session.
 
-We're going to be building a very minimal express app that will allow users to sign up, log in, and log out. For now, we're just going to keep everything except the views in one file to make for easier demonstration, but in a real-world project, it is best practice to split our concerns and functionality into separate modules.
+Chúng ta sẽ xây dựng một ứng dụng Express tối giản cho phép người dùng đăng ký, đăng nhập và đăng xuất. Để minh họa dễ hơn, hiện tại chúng ta sẽ giữ mọi thứ, ngoại trừ các view, trong một tệp. Tuy nhiên, trong dự án thực tế, cách làm tốt nhất là tách các mối quan tâm và chức năng thành những mô-đun riêng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Understand the use order for the required middleware for Passport.js.
-- Describe what Passport.js Strategies are.
-- Use the LocalStrategy to authenticate users.
-- Explain the purpose of cookies in authentication.
-- Review prior learning material (routes, templates, middleware, async/await, and promises).
-- Use Passport.js to set up user authentication with Express.
-- Describe what bcrypt is and its use.
-- Describe what a hash is and explain the importance of password hashing.
-- Describe bcrypt's `compare` function.
+- Hiểu rõ thứ tự sử dụng các middleware cần thiết cho Passport.js.
+- Mô tả chiến lược Passport.js là gì.
+- Sử dụng LocalStrategy để xác thực người dùng.
+- Giải thích mục đích của cookie trong xác thực.
+- Xem lại tài liệu học tập trước đó (route, mẫu, middleware, async/await và lời hứa).
+- Sử dụng Passport.js để thiết lập xác thực người dùng bằng Express.
+- Mô tả bcrypt là gì và công dụng của nó.
+- Mô tả hàm băm là gì và giải thích tầm quan trọng của việc băm mật khẩu.
+- Mô tả chức năng `compare` của bcrypt.
 
-### Set up
+### Cài đặt
 
-Before we start, create a new database within `psql`.
+Trước khi bắt đầu, hãy tạo cơ sở dữ liệu mới trong `psql`.
 
-To begin, let's set up a `users` table. So instead of `usernames` we will create a `users` table.
+Để bắt đầu, hãy thiết lập bảng `users`. Vì vậy, thay vì `usernames` chúng ta sẽ tạo bảng `users`.
 
 ```sql
 CREATE TABLE users (
@@ -32,7 +32,7 @@ CREATE TABLE users (
 );
 ```
 
-Next, let's set up a very minimal express app. Create a new directory and use `npm init` to start the package.json file then run the following to install all the dependencies we need:
+Tiếp theo, hãy thiết lập một ứng dụng Express tối giản. Tạo một thư mục mới và sử dụng `npm init` để khởi tạo tệp package.json, sau đó chạy lệnh sau để cài đặt mọi dependency cần thiết:
 
 ```bash
 npm install express express-session pg passport passport-local ejs
@@ -40,9 +40,9 @@ npm install express express-session pg passport passport-local ejs
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Securing passwords
+#### Bảo mật mật khẩu
 
-For the moment we are saving our users with just a plain text password. This is a *really* bad idea for any real-world project. At the end of this lesson, you will learn how to properly secure these passwords using bcrypt. Don't skip that part.
+Hiện tại, chúng tôi đang lưu người dùng của mình chỉ bằng một mật khẩu văn bản đơn giản. Đây là một ý tưởng *thực sự* tồi tệ đối với bất kỳ dự án thực tế nào. Ở cuối bài học này, bạn sẽ học cách bảo mật đúng cách các mật khẩu này bằng bcrypt. Đừng bỏ qua phần đó.
 
 </div>
 
@@ -78,9 +78,9 @@ app.listen(3000, (error) => {
 });
 ```
 
-Most of this should look familiar to you by now, except for the newly required modules `express-session` and `passport`. We are not actually going to be using `express-session` directly, it is a dependency that is used in the background by `passport.js`. You can [take a look at what the express-session package does in the Express docs](https://github.com/expressjs/session).
+Hầu hết những điều này hiện giờ có vẻ quen thuộc với bạn, ngoại trừ các mô-đun mới được yêu cầu là `express-session` và `passport`. Chúng tôi thực sự sẽ không trực tiếp sử dụng `express-session`, đây là một phần phụ thuộc được `passport.js` sử dụng ở chế độ nền. Bạn có thể [xem gói express-session hoạt động như thế nào trong tài liệu Express](https://github.com/expressjs/session).
 
-Our view engine is looking for `index.ejs` inside the `views`, so go ahead and create that:
+Công cụ xem của chúng tôi đang tìm kiếm `index.ejs` bên trong `views`, vì vậy hãy tiếp tục và tạo nó:
 
 ```html
 <!DOCTYPE html>
@@ -95,11 +95,11 @@ Our view engine is looking for `index.ejs` inside the `views`, so go ahead and c
 </html>
 ```
 
-### Creating users
+### Tạo người dùng
 
-The first thing we need is a sign up form so we can actually create users to authenticate! For the sake of brevity, we're going to leave sanitization and validation out here. But don't forget about it when you get to that point, we will have the opportunity to apply them later.
+Điều đầu tiên chúng tôi cần là một biểu mẫu đăng ký để chúng tôi thực sự có thể tạo người dùng để xác thực! Để cho ngắn gọn, chúng ta sẽ bỏ qua việc làm sạch và xác nhận ở đây. Nhưng đừng quên khi đạt đến điểm đó, chúng ta sẽ có cơ hội áp dụng chúng sau này.
 
-Create a new template called `sign-up-form`, and a route for `/sign-up` that points to it:
+Tạo một mẫu mới có tên `sign-up-form` và route cho `/sign-up` trỏ đến nó:
 
 ```html
 <!DOCTYPE html>
@@ -127,7 +127,7 @@ Create a new template called `sign-up-form`, and a route for `/sign-up` that poi
 app.get("/sign-up", (req, res) => res.render("sign-up-form"));
 ```
 
-Next, create an `app.post` for the sign up form so that we can add users to our database (remember our notes about sanitization, and using plain text to store passwords...).
+Tiếp theo, tạo `app.post` cho biểu mẫu đăng ký để chúng tôi có thể thêm người dùng vào cơ sở dữ liệu của mình (hãy nhớ các lưu ý của chúng tôi về việc làm sạch và sử dụng văn bản thuần túy để lưu trữ mật khẩu...).
 
 ```javascript
 app.post("/sign-up", async (req, res, next) => {
@@ -143,17 +143,17 @@ app.post("/sign-up", async (req, res, next) => {
 });
 ```
 
-Let's reiterate: this is not a particularly safe way to create users in your database... BUT you should now be able to visit `/sign-up`, and submit the form. If all goes well it'll redirect you to the index and you will be able to go see your newly created user inside your database. Open your database in `psql` and run your query to see your first user!
+Hãy nhắc lại: đây không phải là cách đặc biệt an toàn để tạo người dùng trong cơ sở dữ liệu của bạn... NHƯNG bây giờ bạn có thể truy cập `/sign-up` và gửi biểu mẫu. Nếu mọi việc suôn sẻ, nó sẽ chuyển hướng bạn đến chỉ mục và bạn sẽ có thể xem người dùng mới tạo trong cơ sở dữ liệu của mình. Mở cơ sở dữ liệu của bạn trong `psql` và chạy truy vấn để xem người dùng đầu tiên của bạn!
 
-### Authentication
+### Xác thực
 
-Now that we have the ability to put users in our database, let's allow them to log in to see a special message on our home page! We're going to step through the process one piece at a time, but first, take a minute to glance at the [passport.js website](http://www.passportjs.org/). The documentation here has pretty much everything you need to set it up. You're going to want to refer back to this when you're working on your project.
+Bây giờ chúng ta có khả năng đưa người dùng vào cơ sở dữ liệu của mình, hãy cho phép họ đăng nhập để xem thông báo đặc biệt trên trang chủ của chúng ta! Chúng ta sẽ thực hiện từng bước một của quy trình, nhưng trước tiên, hãy dành một phút để xem qua [trang web Passport.js](http://www.passportjs.org/). Tài liệu ở đây có khá nhiều thứ bạn cần để thiết lập. Bạn sẽ muốn tham khảo lại điều này khi thực hiện dự án của mình.
 
-Passport.js uses what they call *Strategies* to authenticate users. They have over 500 of these strategies, but we're going to focus on the most basic (and most common), the username-and-password, or what they call the `LocalStrategy` ([documentation for the LocalStrategy](http://www.passportjs.org/docs/username-password/)). We have already installed and required the appropriate modules so let's set it up!
+Passport.js sử dụng cái mà họ gọi là *Chiến lược* để xác thực người dùng. Họ có hơn 500 chiến lược như vậy, nhưng chúng tôi sẽ tập trung vào chiến lược cơ bản nhất (và phổ biến nhất), tên người dùng và mật khẩu hoặc cái mà họ gọi là `LocalStrategy` ([tài liệu cho LocalStrategy](http://www.passportjs.org/docs/username-password/)). Chúng tôi đã cài đặt và yêu cầu các mô-đun thích hợp, vì vậy hãy thiết lập nó!
 
-We need to add 3 functions to our app.js file, and then add an `app.post` for our `/log-in` path.
+Chúng ta cần thêm 3 hàm vào tệp app.js, sau đó thêm `app.post` cho đường dẫn `/log-in` của chúng ta.
 
-#### Function one: setting up the LocalStrategy
+#### Chức năng một: thiết lập LocalStrategy
 
 ```javascript
 passport.use(
@@ -176,13 +176,13 @@ passport.use(
 );
 ```
 
-This function is what will be called when we use the `passport.authenticate()` function later.  Basically, it takes a username and password, tries to find the user in our DB, and then makes sure that the user's password matches the given password. If all of that works out (there's a user in the DB, and the passwords match) then it authenticates our user and moves on! We will not be calling this function directly, so you won't have to supply the `done` function.  This function acts a bit like a middleware and will be called for us when we ask passport to do the authentication later.
+Hàm này sẽ được gọi khi chúng ta sử dụng hàm `passport.authenticate()` sau này.  Về cơ bản, nó lấy tên người dùng và mật khẩu, cố gắng tìm người dùng trong DB của chúng tôi và sau đó đảm bảo rằng mật khẩu của người dùng khớp với mật khẩu đã cho. Nếu tất cả những điều đó đều thành công (có một người dùng trong DB và mật khẩu trùng khớp) thì nó sẽ xác thực người dùng của chúng tôi và tiếp tục! Chúng tôi sẽ không gọi trực tiếp hàm này nên bạn sẽ không phải cung cấp hàm `done`.  Chức năng này hoạt động hơi giống một middleware và sẽ được gọi cho chúng tôi khi chúng tôi yêu cầu Passport thực hiện xác thực sau này.
 
-### Functions two and three: sessions and serialization
+### Chức năng hai và ba: phiên và tuần tự hóa
 
-To make sure our user is logged in, and to allow them to *stay* logged in as they move around our app, passport internally calls a function from `express-session` that uses some data to create a cookie called `connect.sid` which is stored in the user's browser. These next two functions define what bit of information passport is looking for when it creates and then decodes the cookie. The reason they require us to define these functions is so that we can make sure that whatever bit of data it’s looking for actually exists in our Database! `passport.serializeUser` takes a callback which contains the information we wish to store in the session data. `passport.deserializeUser` is called when retrieving a session, where it will extract the data we "serialized" in it then ultimately attach something to the `.user` property of the request object (`req.user`) for use in the rest of the request.
+Để đảm bảo người dùng của chúng tôi đã đăng nhập và cho phép họ *duy trì* đăng nhập khi họ di chuyển xung quanh ứng dụng của chúng tôi, Passport gọi nội bộ một hàm từ `express-session` sử dụng một số dữ liệu để tạo cookie có tên `connect.sid` được lưu trữ trong trình duyệt của người dùng. Hai hàm tiếp theo này xác định bit thông tin mà Passport đang tìm kiếm khi nó tạo và sau đó giải mã cookie. Lý do họ yêu cầu chúng tôi xác định các hàm này là để chúng tôi có thể đảm bảo rằng mọi dữ liệu mà nó đang tìm kiếm đều thực sự tồn tại trong Cơ sở dữ liệu của chúng tôi! `passport.serializeUser` thực hiện một cuộc gọi lại chứa thông tin chúng tôi muốn lưu trữ trong dữ liệu phiên. `passport.deserializeUser` được gọi khi truy xuất một phiên, trong đó nó sẽ trích xuất dữ liệu mà chúng tôi đã "tuần tự hóa" trong đó, sau đó đính kèm thứ gì đó vào thuộc tính `.user` của đối tượng yêu cầu (`req.user`) để sử dụng trong phần còn lại của yêu cầu.
 
-For our purposes, the functions that are listed in the passport docs will work just fine:
+Vì mục đích của chúng tôi, các chức năng được liệt kê trong tài liệu Passport sẽ hoạt động tốt:
 
 ```javascript
 passport.serializeUser((user, done) => {
@@ -201,13 +201,13 @@ passport.deserializeUser(async (id, done) => {
 });
 ```
 
-When a session is created, `passport.serializeUser` will receive the user object found from a successful login and store its id property in the session data. Upon some other request, if it finds a matching session for that request, `passport.deserializeUser` will retrieve the id we stored in the session data. We then use that id to query our database for the specified user, then `done(null, user)` attaches that user object to `req.user`. Now in the rest of the request, we have access to that user object via `req.user`.
+Khi một phiên được tạo, `passport.serializeUser` sẽ nhận đối tượng người dùng được tìm thấy từ lần đăng nhập thành công và lưu trữ thuộc tính id của nó trong dữ liệu phiên. Theo một số yêu cầu khác, nếu tìm thấy phiên phù hợp cho yêu cầu đó, `passport.deserializeUser` sẽ truy xuất id mà chúng tôi đã lưu trữ trong dữ liệu phiên. Sau đó, chúng tôi sử dụng id đó để truy vấn cơ sở dữ liệu của mình để tìm người dùng được chỉ định, sau đó `done(null, user)` gắn đối tượng người dùng đó vào `req.user`. Bây giờ trong phần còn lại của yêu cầu, chúng tôi có quyền truy cập vào đối tượng người dùng đó thông qua `req.user`.
 
-Again, we aren’t going to be calling these functions on our own and we just need to define them, they’re used in the background by passport.
+Một lần nữa, chúng ta sẽ không tự gọi các hàm này mà chỉ cần xác định chúng, chúng được Passport sử dụng ở chế độ nền.
 
-### Log-in form
+### Mẫu đăng nhập
 
-Let's go ahead and add the log-in form directly to our index template. The form will look just like our sign-up form, but instead of `POST`ing to `/sign-up` we'll add an `action` to it so that it `POST`s to `/log-in` instead. Add the following to your index template:
+Hãy tiếp tục và thêm biểu mẫu đăng nhập trực tiếp vào mẫu chỉ mục của chúng tôi. Biểu mẫu sẽ trông giống như biểu mẫu đăng ký của chúng tôi, nhưng thay vì `POST` chuyển thành `/sign-up`, chúng tôi sẽ thêm `action` vào biểu mẫu để nó chuyển từ `POST` thành `/log-in`. Thêm phần sau vào mẫu chỉ mục của bạn:
 
 ```html
 <h1>please log in</h1>
@@ -220,7 +220,7 @@ Let's go ahead and add the log-in form directly to our index template. The form 
 </form>
 ```
 
-... and now for the magical part! Add this route to your `app.js` file:
+... và bây giờ là phần phép thuật! Thêm route này vào tệp `app.js` của bạn:
 
 ```javascript
 app.post(
@@ -233,15 +233,15 @@ app.post(
 );
 ```
 
-As you can see, all we have to do is call `passport.authenticate()`. This middleware performs numerous functions behind the scenes. Among other things, it looks at the request body for parameters named `username` and `password` then runs the `LocalStrategy` function that we defined earlier to see if the username and password are in the database. It then creates a session cookie that gets stored in the user's browser and used in all future requests to see whether or not that user is logged in.  It can also redirect you to different routes based on whether the login is a success or a failure. To access any error messages we defined earlier, we can pass `failureMessage` a boolean and access it later in subsequent middleware through the `req.session.messages` array.
+Như bạn có thể thấy, tất cả những gì chúng ta phải làm là gọi `passport.authenticate()`. Middleware này thực hiện nhiều chức năng ở hậu trường. Trong số những thứ khác, nó xem xét nội dung yêu cầu cho các tham số có tên `username` và `password`, sau đó chạy hàm `LocalStrategy` mà chúng ta đã xác định trước đó để xem tên người dùng và mật khẩu có trong cơ sở dữ liệu hay không. Sau đó, nó tạo một cookie phiên được lưu trữ trong trình duyệt của người dùng và được sử dụng trong tất cả các yêu cầu trong tương lai để xem liệu người dùng đó có đăng nhập hay không. Nó cũng có thể chuyển hướng bạn đến các tuyến khác nhau dựa trên việc đăng nhập thành công hay thất bại. Để truy cập bất kỳ thông báo lỗi nào mà chúng tôi đã xác định trước đó, chúng tôi có thể chuyển `failureMessage` một boolean và truy cập nó sau trong middleware tiếp theo thông qua mảng `req.session.messages`.
 
-If we had a separate login page we might want to go back to that if the login failed, or we might want to take the user to their user dashboard if the login is successful. Since we're keeping everything in the index we want to go back to `/` no matter what.
+Nếu chúng tôi có một trang đăng nhập riêng, chúng tôi có thể muốn quay lại trang đó nếu đăng nhập không thành công hoặc chúng tôi có thể muốn đưa người dùng đến trang tổng quan người dùng của họ nếu đăng nhập thành công. Vì chúng tôi đang giữ mọi thứ trong chỉ mục nên chúng tôi muốn quay lại `/` bất kể điều gì.
 
-If you fill out and submit the form now, everything should technically work, but you won't actually SEE anything different on the page... let's fix that.
+Nếu bạn điền và gửi biểu mẫu ngay bây giờ, mọi thứ sẽ hoạt động về mặt kỹ thuật, nhưng bạn thực sự sẽ không THẤY bất kỳ điều gì khác biệt trên trang... hãy khắc phục điều đó.
 
-The passport middleware checks to see if there is a user logged in (by checking the cookies that come in with the `req` object) and if there is, it adds that user to the request object for us.  So, all we need to do is check for `req.user` to change our view depending on whether or not a user is logged in.
+Middleware Passport sẽ kiểm tra xem có người dùng nào đăng nhập hay không (bằng cách kiểm tra các cookie đi kèm với đối tượng `req`) và nếu có, nó sẽ thêm người dùng đó vào đối tượng yêu cầu cho chúng tôi.  Vì vậy, tất cả những gì chúng ta cần làm là kiểm tra xem `req.user` có thay đổi view của chúng ta hay không tùy thuộc vào việc người dùng có đăng nhập hay không.
 
-Edit your `app.get("/")` to send the user object to our view like so:
+Chỉnh sửa `app.get("/")` của bạn để gửi đối tượng người dùng tới view của chúng tôi như sau:
 
 ```javascript
 app.get("/", (req, res) => {
@@ -249,7 +249,7 @@ app.get("/", (req, res) => {
 });
 ```
 
-and then edit your view to make use of that object like this:
+và sau đó chỉnh sửa view của bạn để sử dụng đối tượng đó như thế này:
 
 ```html
 <!DOCTYPE html>
@@ -276,9 +276,9 @@ and then edit your view to make use of that object like this:
 </html>
 ```
 
-So, this code checks to see if there is a user defined... if so it offers a welcome message, and if NOT then it shows the login form.  Neat!
+Vì vậy, mã này sẽ kiểm tra xem liệu có người dùng nào được xác định hay không... nếu có, nó sẽ đưa ra thông báo chào mừng và nếu KHÔNG thì nó sẽ hiển thị biểu mẫu đăng nhập.  Gọn gàng!
 
-As one last step... let's make that log out link actually work for us. As you can see it's sending us to `/log-out` so all we need to do is add a route for that in our app.js.  Conveniently, the passport middleware adds a logout function to the `req` object, so logging out is as easy as this:
+Bước cuối cùng... hãy làm cho liên kết đăng xuất đó thực sự có tác dụng với chúng ta. Như bạn có thể thấy, nó đang đưa chúng ta đến `/log-out`, vì vậy tất cả những gì chúng ta cần làm là thêm một route cho điều đó trong app.js.  Thuận tiện, middleware Passport thêm chức năng đăng xuất vào đối tượng `req`, vì vậy việc đăng xuất dễ dàng như thế này:
 
 ```javascript
 app.get("/log-out", (req, res, next) => {
@@ -291,15 +291,15 @@ app.get("/log-out", (req, res, next) => {
 });
 ```
 
-You should now be able to visit `/sign-up` to create a new user, then log in using that user's username and password, and then log out by clicking the log out button!
+Bây giờ bạn có thể truy cập `/sign-up` để tạo người dùng mới, sau đó đăng nhập bằng tên người dùng và mật khẩu của người dùng đó, sau đó đăng xuất bằng cách nhấp vào nút đăng xuất!
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### A quick tip
+#### Mẹo nhanh
 
-In express, you can set and access various local variables throughout your entire app (even in views) with the `locals` object. We can use this knowledge to write ourselves a custom middleware that will simplify how we access our current user in our views.
+Nói cách khác, bạn có thể đặt và truy cập các biến cục bộ khác nhau trong toàn bộ ứng dụng của mình (ngay cả trong view) bằng đối tượng `locals`. Chúng ta có thể sử dụng kiến ​​thức này để viết cho mình một middleware tùy chỉnh nhằm đơn giản hóa cách chúng ta truy cập vào người dùng hiện tại trong view của mình.
 
-Middleware functions are functions that take the `req` and `res` objects, manipulate them, and pass them on through the rest of the app.
+Các hàm middleware là các hàm lấy các đối tượng `req` và `res`, thao tác với chúng và chuyển chúng qua phần còn lại của ứng dụng.
 
 ```javascript
 app.use((req, res, next) => {
@@ -308,23 +308,23 @@ app.use((req, res, next) => {
 });
 ```
 
-If you insert this code somewhere between where you instantiate the passport middleware and before you render your views, you will have access to the `currentUser` variable in all of your views, and you won't have to manually pass it into all of the controllers in which you need it.
+Nếu bạn chèn mã này vào đâu đó giữa nơi bạn khởi tạo middleware Passport và trước khi hiển thị các view của mình, bạn sẽ có quyền truy cập vào biến `currentUser` trong tất cả các view của mình và bạn sẽ không phải chuyển mã đó vào tất cả các controller mà bạn cần theo cách thủ công.
 
 </div>
 
-### Securing passwords with bcrypt
+### Bảo mật mật khẩu bằng bcrypt
 
-Now, let's go back and learn how to securely store user passwords so that if anything ever goes wrong, or if someone gains access to our database, our user passwords will be safe.  This is *insanely* important, even for the most basic apps.
+Bây giờ, hãy quay lại và tìm hiểu cách lưu trữ mật khẩu người dùng một cách an toàn để nếu có sự cố xảy ra hoặc nếu ai đó có quyền truy cập vào cơ sở dữ liệu của chúng tôi, mật khẩu người dùng của chúng tôi sẽ được an toàn.  Điều này *cực kỳ* quan trọng, ngay cả đối với những ứng dụng cơ bản nhất.
 
-First `npm install bcryptjs`. There is another module called `bcrypt` that does the same thing, but it is written in C++ and is sometimes a pain to get installed. The C++ `bcrypt` is technically faster, so in the future it might be worth getting it running, but for now, the modules work the same so we can just use `bcryptjs`.
+`npm install bcryptjs` đầu tiên. Có một mô-đun khác tên là `bcrypt` thực hiện chức năng tương tự, nhưng nó được viết bằng C++ và đôi khi rất khó cài đặt. C++ `bcrypt` nhanh hơn về mặt kỹ thuật, vì vậy trong tương lai có thể đáng để chạy nó, nhưng hiện tại, các mô-đun hoạt động giống nhau nên chúng ta chỉ có thể sử dụng `bcryptjs`.
 
-Once it's installed you need to require it at the top of your app.js and then we are going to put it to use where we save our passwords to the DB, and where we compare them inside the LocalStrategy.
+Sau khi cài đặt xong, bạn cần yêu cầu nó ở đầu app.js của mình và sau đó chúng tôi sẽ đưa nó vào sử dụng ở nơi chúng tôi lưu mật khẩu vào DB và nơi chúng tôi so sánh chúng trong LocalStrategy.
 
-#### Storing hashed passwords
+#### Lưu trữ mật khẩu băm
 
-Password hashes are the result of passing the user's password through a one-way hash function, which maps variable sized inputs to fixed size pseudo-random outputs.
+Băm mật khẩu là kết quả của việc chuyển mật khẩu của người dùng thông qua hàm băm một chiều, hàm này ánh xạ các đầu vào có kích thước thay đổi thành các đầu ra giả ngẫu nhiên có kích thước cố định.
 
-Edit your `app.post("/sign-up")` to use the bcrypt.hash function which works like this:
+Chỉnh sửa `app.post("/sign-up")` của bạn để sử dụng hàm bcrypt.hash hoạt động như sau:
 
 ```javascript
 //Don't forget to import bcrypt!
@@ -344,19 +344,19 @@ app.post("/sign-up", async (req, res, next) => {
 });
 ```
 
-The second argument is the length of the "salt" to use in the hashing function; salting a password means adding extra random characters to it, the password plus the extra random characters are then fed into the hashing function. Salting is used to make a password hash output unique, even for users who use the same password, and to protect against [rainbow tables](https://en.wikipedia.org/wiki/Rainbow_table) and [dictionary attacks](https://en.wikipedia.org/wiki/Dictionary_attack).
+Đối số thứ hai là độ dài của "muối" được sử dụng trong hàm băm; thêm muối cho mật khẩu có nghĩa là thêm các ký tự ngẫu nhiên vào mật khẩu, mật khẩu cộng với các ký tự ngẫu nhiên bổ sung sau đó sẽ được đưa vào hàm băm. Việc tạo muối được sử dụng để tạo đầu ra băm mật khẩu duy nhất, ngay cả đối với những người dùng sử dụng cùng một mật khẩu và để bảo vệ khỏi [bảng cầu vồng](https://en.wikipedia.org/wiki/Rainbow_table) và [tấn công từ điển](https://en.wikipedia.org/wiki/Dictionary_attack).
 
-Usually, the salt is stored in the database alongside the hashed value. However, in our case, there is no need to store the salt separately because the `bcryptjs` hashing algorithm automatically incorporates the salt within the hash itself.
+Thông thường, muối được lưu trữ trong cơ sở dữ liệu cùng với giá trị băm. Tuy nhiên, trong trường hợp của chúng tôi, không cần phải lưu trữ muối riêng biệt vì thuật toán băm `bcryptjs` tự động kết hợp muối trong chính hàm băm.
 
-The hash function is somewhat slow, so all of the DB storage stuff needs to go inside the callback. Check to see if you've got this working by signing up a new user with a password, then go look at your DB entries to see how it's being stored. If you've done it right, your password should have been transformed into a really long random string.
+Hàm băm hơi chậm nên tất cả nội dung lưu trữ DB cần được đưa vào bên trong hàm gọi lại. Kiểm tra xem liệu tính năng này có hoạt động hay không bằng cách đăng ký người dùng mới bằng mật khẩu, sau đó xem các mục nhập DB của bạn để xem nó được lưu trữ như thế nào. Nếu bạn làm đúng, mật khẩu của bạn sẽ được chuyển thành một chuỗi ngẫu nhiên thực sự dài.
 
-It's important to note that *how* hashing works, especially in the context of passwords, is beyond the scope of this lesson.
+Điều quan trọng cần lưu ý là *cách* hoạt động của hàm băm, đặc biệt là trong bối cảnh mật khẩu, nằm ngoài phạm vi của bài học này.
 
-#### Comparing hashed passwords
+#### So sánh mật khẩu đã băm
 
-We will use the `bcrypt.compare()` function to validate the password input. The function compares the plain-text password in the request object to the hashed password.
+Chúng tôi sẽ sử dụng chức năng `bcrypt.compare()` để xác thực việc nhập mật khẩu. Hàm so sánh mật khẩu văn bản thuần túy trong đối tượng yêu cầu với mật khẩu băm.
 
-Inside your `LocalStrategy` function we need to replace the `user.password !== password` expression with the `bcrypt.compare()` function.
+Bên trong hàm `LocalStrategy` của bạn, chúng ta cần thay thế biểu thức `user.password !== password` bằng hàm `bcrypt.compare()`.
 
 ```javascript
 const match = await bcrypt.compare(password, user.password);
@@ -366,24 +366,24 @@ if (!match) {
 }
 ```
 
-You should now be able to log in using the new user you've created (the one with a hashed password).  Unfortunately, users that were saved BEFORE you added bcrypt will no longer work, but that's a small price to pay for security! (and a good reason to include bcrypt from the start on your next project)
+Bây giờ bạn có thể đăng nhập bằng người dùng mới mà bạn đã tạo (người dùng có mật khẩu băm).  Thật không may, những người dùng đã được lưu TRƯỚC KHI bạn thêm bcrypt sẽ không còn hoạt động nữa, nhưng đó chỉ là một cái giá nhỏ phải trả cho sự bảo mật! (và một lý do chính đáng để đưa bcrypt vào ngay từ đầu trong dự án tiếp theo của bạn)
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Watch videos 1, 2, 3, 5 and 6 of this [Youtube Playlist on sessions in Express and local strategy authentication with Passport.js](https://www.youtube.com/playlist?list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK).
-   - You may notice at some points in the videos, the Express app contains the line `app.use(passport.initialize())`. This line is no longer required to include in current versions of Passport.
-   - They are using MongoDB and you can replace any instance of it with PostgreSQL.
-   - In [video 3: "Your complete guide to understanding the express-session library"](https://youtu.be/J1qXK66k1y4?list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK) and [video 5: "Passport Local Configuration (Node + Passport + Express)"](https://youtu.be/xMEOT9J0IvI?list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK), it shows using the `connect-mongo` library to use your MongoDB connection to store sessions, as opposed to storing them in memory. However, since we are using PostgreSQL, we need to replace it with a library called `connect-pg-simple` instead. You can view the implementation for doing this on the [npm page for connect-pg-simple](https://www.npmjs.com/package/connect-pg-simple).
-   - Do note that the table needed to be used for the session store is not automatically created by default, be sure to check the available options in their npm page.
-1. In [Passport: The Hidden Manual](https://github.com/jwalton/passport-api-docs), you can explore more comprehensive explanations of some of Passport's main functions, gaining a deeper understanding of what each function accomplishes.
+1. Xem video 1, 2, 3, 5 và 6 của [Danh sách phát Youtube về các phiên trong Express và xác thực chiến lược cục bộ với Passport.js](https://www.youtube.com/playlist?list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK).
+   - Các bạn có thể để ý ở một số điểm trong video, ứng dụng Express có chứa dòng `app.use(passport.initialize())`. Dòng này không còn bắt buộc phải có trong các phiên bản Passport hiện tại nữa.
+   - Họ đang sử dụng MongoDB và bạn có thể thay thế bất kỳ phiên bản nào của nó bằng PostgreSQL.
+   - Trong [video 3: "Hướng dẫn đầy đủ để bạn hiểu về thư viện phiên cấp tốc"](https://youtu.be/J1qXK66k1y4?list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK) và [video 5: "Cấu hình cục bộ Passport (Node + Passport + Express)"](https://youtu.be/xMEOT9J0IvI?list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK), nó hiển thị việc sử dụng thư viện `connect-mongo` để sử dụng kết nối MongoDB của bạn để lưu trữ các phiên, thay vì lưu trữ chúng trong bộ nhớ. Tuy nhiên, vì chúng ta đang sử dụng PostgreSQL nên chúng ta cần thay thế nó bằng một thư viện có tên `connect-pg-simple`. Bạn có thể xem cách triển khai để thực hiện việc này trên [trang npm dành cho connect-pg-simple](https://www.npmjs.com/package/connect-pg-simple).
+   - Xin lưu ý rằng bảng cần sử dụng cho kho lưu trữ phiên không được tạo tự động theo mặc định, hãy nhớ kiểm tra các tùy chọn có sẵn trong trang npm của chúng.
+1. Trong [Passport: Sổ tay hướng dẫn ẩn](https://github.com/jwalton/passport-api-docs), bạn có thể khám phá những giải thích toàn diện hơn về một số chức năng chính của Passport, hiểu sâu hơn về chức năng của từng chức năng.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- This video provides a broad overview of some of the [different methods to store passwords in databases and possible risks](https://www.youtube.com/watch?v=8ZtInClXe1Q).
-- If you would like a little more of a deeper dive into password hashing, read the following Wikipedia article to [learn more about how cryptographic hash functions work](https://en.wikipedia.org/wiki/Cryptographic_hash_function).
+- Video này cung cấp cái nhìn tổng quan về một số [các phương pháp khác nhau để lưu trữ mật khẩu trong cơ sở dữ liệu và những rủi ro có thể xảy ra](https://www.youtube.com/watch?v=8ZtInClXe1Q).
+- Nếu bạn muốn tìm hiểu sâu hơn một chút về băm mật khẩu, hãy đọc bài viết Wikipedia sau đây để [tìm hiểu thêm về cách hoạt động của hàm băm mật mã](https://en.wikipedia.org/wiki/Cryptographic_hash_function).

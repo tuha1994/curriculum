@@ -1,57 +1,57 @@
-### Introduction
+### Giới thiệu
 
-NodeJS (or just 'Node') has been steadily gaining popularity since its creation in 2009. The internet is flooded with courses and articles about it, installing it is a prerequisite for pretty much any back-end development work, and of course the number of jobs that require knowledge of it is also on the rise.
+NodeJS (hay chỉ gọi là 'Node') đã liên tục trở nên phổ biến kể từ khi được tạo ra vào năm 2009. Internet tràn ngập các khóa học và bài viết về nó, cài đặt nó là bước chuẩn bị cần thiết cho hầu hết công việc phát triển back-end, và dĩ nhiên số lượng việc làm yêu cầu kiến thức về nó cũng đang tăng lên.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Describe the purpose of a server.
-- Describe the differences between static and dynamic sites.
-- Explain why you might need a back-end for your project.
-- Explain when you wouldn't need a back-end for a project.
-- Explain the event loop.
-- Understand the origin of the Node.js runtime.
-- Write a basic "hello world" application and run it in the console of your machine.
-- Understand what Node.js really is.
+- Mô tả mục đích của server.
+- Mô tả sự khác nhau giữa website tĩnh và website động.
+- Giải thích vì sao project có thể cần back-end.
+- Giải thích khi nào project không cần back-end.
+- Giải thích event loop.
+- Hiểu nguồn gốc của Node.js runtime.
+- Viết một ứng dụng "hello world" cơ bản và chạy nó trong console trên máy của bạn.
+- Hiểu Node.js thực sự là gì.
 
-### What is Node?
+### Node là gì?
 
-The [Node.js website](https://nodejs.org/en/about/) declares:
+[Website Node.js](https://nodejs.org/en/about/) định nghĩa:
 
-> As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications.
+> Là một JavaScript runtime bất đồng bộ, hướng sự kiện, Node được thiết kế để xây dựng các ứng dụng mạng có khả năng mở rộng.
 
-This is a definition that requires a little unpacking.
+Đây là một định nghĩa cần được giải thích thêm một chút.
 
-The important bit to understand right up front is that Node is a "JavaScript runtime." When JavaScript was first created, it was designed to run *in the browser*. This means that it was impossible to use JavaScript to write any kind of program that was not a website. Node brings JavaScript *out* of browser-land. This allows developers to use JavaScript to accomplish pretty much anything that other popular server-side languages such as Ruby, PHP, C# and Python can do. So, at its most basic level, Node allows you to run JavaScript code on a machine such as your local computer or a server without having to go through a web browser.
+Điều quan trọng cần hiểu ngay từ đầu là Node là một "JavaScript runtime." Khi JavaScript mới được tạo ra, nó được thiết kế để chạy *trong trình duyệt*. Điều đó có nghĩa là không thể dùng JavaScript để viết bất kỳ loại chương trình nào không phải website. Node đưa JavaScript *ra khỏi* thế giới trình duyệt. Nhờ vậy, developer có thể dùng JavaScript để làm gần như mọi việc mà các ngôn ngữ phía máy chủ phổ biến khác như Ruby, PHP, C# và Python có thể làm. Ở mức cơ bản nhất, Node cho phép bạn chạy code JavaScript trên một máy như máy tính cá nhân hoặc server mà không cần thông qua trình duyệt web.
 
-To facilitate this, Node has some added functionality that is not found in browser-based JavaScript, such as the ability to read and write local files, create HTTP connections and listen to network requests.
+Để hỗ trợ việc này, Node có thêm một số chức năng không có trong JavaScript chạy trên trình duyệt, chẳng hạn khả năng đọc và ghi tệp cục bộ, tạo kết nối HTTP và lắng nghe network request.
 
-### Event driven
+### Hướng sự kiện
 
-Back to the definition from Node's website: Node is an **asynchronous event driven** JavaScript runtime. In this context, **asynchronous** means that when you write your code, you do not try to predict the exact sequence in which every line will run. Instead, you write your code as a collection of smaller functions that get called in response to specific events, such as a network request (**event driven**).
+Quay lại định nghĩa trên website Node: Node là một runtime JavaScript **asynchronous event driven**. Trong ngữ cảnh này, **asynchronous** nghĩa là khi viết code, bạn không cố dự đoán chính xác thứ tự mọi dòng sẽ chạy. Thay vào đó, bạn viết code thành tập hợp các hàm nhỏ được gọi để phản hồi những event cụ thể, chẳng hạn network request (**event driven**).
 
-For example, let's say you are writing a program and you need it to do the following. It should read some text from a file, print that text to the console, query a database for a list of users, and filter the users based on their age.
+Ví dụ, giả sử bạn đang viết một chương trình cần làm những việc sau: đọc văn bản từ một tệp, in văn bản đó ra console, truy vấn cơ sở dữ liệu để lấy danh sách người dùng và lọc người dùng theo độ tuổi.
 
-Instead of telling your code to do those steps sequentially like so:
+Thay vì yêu cầu code thực hiện tuần tự như sau:
 
-1. Read File
-1. Print File Contents
-1. Query Database
-1. Filter Database Query results
+1. Đọc tệp
+1. In nội dung tệp
+1. Truy vấn cơ sở dữ liệu
+1. Lọc kết quả truy vấn cơ sở dữ liệu
 
-You can break up the task like so:
+Bạn có thể chia nhiệm vụ như sau:
 
-1. Read File *AND THEN* Print File Contents
-1. Query Database *AND THEN* Filter Database Query Results.
+1. Đọc tệp *RỒI SAU ĐÓ* in nội dung tệp
+1. Truy vấn cơ sở dữ liệu *RỒI SAU ĐÓ* lọc kết quả truy vấn cơ sở dữ liệu.
 
-When you run this program, Node will start at the top and begin reading the file. But since that is an action that takes some time, it will immediately begin running the second step (querying the database) while it's waiting on the file to finish reading.
+Khi chạy chương trình, Node bắt đầu từ trên cùng và bắt đầu đọc tệp. Nhưng vì đây là thao tác mất thời gian, nó sẽ lập tức bắt đầu bước thứ hai (truy vấn cơ sở dữ liệu) trong khi chờ đọc xong tệp.
 
-While both of these processes are running, Node sits and waits on an *event*. In this case, it is waiting on the completion of both processes: the reading of a file and the database query. When either of these tasks is finished, Node will fire off an event that will run the next function we've defined. So if the read-file process finishes first, it will print the file contents. If the database query finishes first, it will start the filtering process. As the programmer, we don't know or care in which order the two processes are going to be completed. If this code were processed synchronously (rather than asynchronously), we would have to wait for each step in the program before moving on to the next one, which could cause things to slow down considerably. If the file that we needed to read was really long, then we might have to wait a few seconds before the database query could begin.
+Trong lúc cả hai process đang chạy, Node ngồi chờ một *event*. Ở đây, nó chờ cả hai process hoàn tất: đọc tệp và truy vấn cơ sở dữ liệu. Khi một trong hai nhiệm vụ hoàn tất, Node sẽ phát event để chạy hàm tiếp theo mà ta đã định nghĩa. Nếu process đọc tệp xong trước, nó sẽ in nội dung tệp. Nếu truy vấn cơ sở dữ liệu xong trước, nó sẽ bắt đầu quá trình lọc. Với vai trò programmer, ta không biết và cũng không cần quan tâm hai process hoàn tất theo thứ tự nào. Nếu code được xử lý đồng bộ (thay vì bất đồng bộ), ta phải chờ từng bước trong chương trình trước khi chuyển sang bước tiếp theo, điều này có thể làm mọi thứ chậm đi đáng kể. Nếu tệp cần đọc rất dài, ta có thể phải chờ vài giây trước khi truy vấn cơ sở dữ liệu bắt đầu.
 
-This process is almost exactly like the way that you would use `addEventListener` in front-end JavaScript to wait for a user action such as a mouse click or keyboard press. The main difference is that the events are going to be things such as network requests and database queries. This functionality is facilitated through the use of callbacks. Callbacks are incredibly important to Node, so take a minute to read through this [article about understanding callbacks](https://dev.to/i3uckwheat/understanding-callbacks-2o9e) to make sure you're up to speed.
+Quá trình này gần như giống hệt cách bạn dùng `addEventListener` trong JavaScript front-end để chờ hành động của người dùng như click chuột hoặc nhấn phím. Khác biệt chính là event ở đây sẽ là những thứ như network request và truy vấn cơ sở dữ liệu. Chức năng này được hỗ trợ thông qua callback. Callback cực kỳ quan trọng với Node, vì vậy hãy dành ít phút đọc [bài viết về callback](https://dev.to/i3uckwheat/understanding-callbacks-2o9e) để bảo đảm bạn đã nắm được.
 
-Let's look at a quick real-world example:
+Hãy xem một ví dụ thực tế nhanh:
 
 ```javascript
 http.createServer(function (req, res) {
@@ -60,28 +60,28 @@ http.createServer(function (req, res) {
 }).listen(8080);
 ```
 
-This snippet is from the very first lesson in a tutorial that you'll be following very soon. Basically this code is creating a server and saying, "Any time we get a network request, run this callback function." This function happens to respond with the text 'Hello World!'. So if you go to a browser and navigate to the correct address and port, you would see that text on your screen.
+Đoạn code này nằm trong bài đầu tiên của một tutorial mà bạn sẽ sớm học. Về cơ bản, code tạo một server và nói rằng: "Mỗi khi nhận được network request, hãy chạy callback function này." Hàm này trả về văn bản 'Hello World!'. Vì vậy, nếu mở trình duyệt và truy cập đúng địa chỉ cùng port, bạn sẽ thấy văn bản đó trên màn hình.
 
 <div class="lesson-note" markdown="1">
 
-#### Using React in the Node.js course
+#### Dùng React trong khóa học Node.js
 
-We will start by focusing on server-side concepts, so client-side things like React will be left for later when you start combining more complex frontends and backends together. You should follow the course as it is written; deviating from the directions can make it more difficult than it needs to be.
+Chúng ta sẽ bắt đầu bằng việc tập trung vào các khái niệm phía máy chủ, vì vậy những nội dung phía client như React sẽ để lại sau, khi bạn bắt đầu kết hợp các front-end và back-end phức tạp hơn. Bạn nên học theo đúng nội dung khóa học; đi chệch hướng dẫn có thể khiến mọi việc khó hơn không cần thiết.
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. This [short module on "The Server Side" from MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps) is a great source for the background knowledge you need. Read through the first two articles posted under the 'Tutorials' section: Introduction to the server-side and Client-Server overview.
-1. To gain a little more insight into the nature of Node and to unpack the rest of the above definition, read this [article about NodeJS](https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5). Make sure to rewatch the *really* good video about event loops at the end, which you may remember from an earlier part of the course!
-1. This [short video about NodeJS](https://www.youtube.com/watch?v=uVwtVBpw7RQ) is a great introduction as well!
+1. [Module ngắn về "The Server Side" của MDN](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps) là nguồn tuyệt vời cho kiến thức nền cần thiết. Hãy đọc hai bài viết đầu tiên trong phần 'Tutorials': Introduction to the server-side và Client-Server overview.
+1. Để hiểu sâu hơn bản chất của Node và giải thích phần còn lại trong định nghĩa trên, hãy đọc [bài viết về NodeJS](https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5). Hãy nhớ xem lại video *thực sự* hay về event loop ở cuối bài; có thể bạn còn nhớ video này từ phần trước của khóa học!
+1. [Video ngắn về NodeJS](https://www.youtube.com/watch?v=uVwtVBpw7RQ) này cũng là một phần giới thiệu tuyệt vời!
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ sung.
 
-- Read this article on [7 awesome things you can build with Node.js](https://blog.teamtreehouse.com/7-awesome-things-can-build-node-js).
+- Đọc bài viết về [7 điều tuyệt vời bạn có thể xây dựng bằng Node.js](https://blog.teamtreehouse.com/7-awesome-things-can-build-node-js).

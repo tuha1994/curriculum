@@ -1,50 +1,50 @@
-### Introduction
+### Giới thiệu
 
-You've come a long way, congratulations! At this point, you should feel comfortable with building new Express applications and using PostgreSQL to model and store data. This project will require you to put all of that knowledge to the test. It's not going to be easy, but it should be well within your capabilities and it will be a *great* portfolio piece.
+Bạn đã đi được một chặng đường dài, xin chúc mừng! Đến thời điểm này, bạn hẳn đã cảm thấy thoải mái khi xây dựng các ứng dụng Express mới và sử dụng PostgreSQL để mô hình hóa cũng như lưu trữ dữ liệu. Dự án này sẽ yêu cầu bạn vận dụng toàn bộ kiến thức đó. Dự án sẽ không dễ, nhưng chắc chắn nằm trong khả năng của bạn và sẽ là một sản phẩm *tuyệt vời* cho portfolio.
 
-You'll be building a clone of a social media site, such as Facebook, X, Myspace, or Threads. As with our previous lessons, how much effort you want to put into the styling and front end is up to you. The important stuff is the data and backend. You'll put together the core features of the platform like users, profiles, posts, following, and "liking".
+Bạn sẽ xây dựng một bản sao của một trang mạng xã hội, chẳng hạn như Facebook, X, Myspace hoặc Threads. Cũng như các bài học trước, mức độ đầu tư vào phần styling và front-end tùy thuộc vào bạn. Phần quan trọng là dữ liệu và back-end. Bạn sẽ ghép lại các tính năng cốt lõi của nền tảng như người dùng, profile, bài đăng, theo dõi và “thích”.
 
-You'll also implement some form of authentication. Ideally, you'll want to use passport.js to support authenticating via the social media site you're cloning, but some sites (such as Facebook), have recently made this process impossible. If this is the case for your site, you can use passport.js to support authenticating via username and password with `passport-local` or via Github with `passport-github2`.
+Bạn cũng sẽ triển khai một hình thức xác thực nào đó. Lý tưởng nhất là dùng passport.js để hỗ trợ xác thực thông qua trang mạng xã hội mà bạn đang sao chép, nhưng một số trang (chẳng hạn Facebook) gần đây đã khiến quy trình này trở nên bất khả thi. Nếu trang bạn chọn rơi vào trường hợp đó, bạn có thể dùng passport.js để hỗ trợ xác thực bằng username và password với `passport-local`, hoặc qua Github với `passport-github2`.
 
-There will probably be features you haven't been exposed to such as chat, real-time updates, and notifications. You won't be responsible for those unless you're feeling really confident in your skills at this point (e.g. [socket.io](https://socket.io/) allows you to use websockets for real-time communication).
+Có thể sẽ có những tính năng bạn chưa từng tiếp xúc, chẳng hạn như chat, cập nhật theo thời gian thực và thông báo. Bạn không phải chịu trách nhiệm về những tính năng đó, trừ khi hiện tại bạn cảm thấy rất tự tin vào kỹ năng của mình (ví dụ: [socket.io](https://socket.io/) cho phép bạn dùng websocket để giao tiếp theo thời gian thực).
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Build a social media site! You'll build a large portion of the core user functionality of your chosen site in this project. You don't have to worry about some of the more flashy front-end stuff unless you want to, but you don't need it to get a nice user experience.
+Hãy xây dựng một trang mạng xã hội! Trong dự án này, bạn sẽ xây dựng phần lớn chức năng cốt lõi dành cho người dùng của trang bạn chọn. Bạn không cần lo lắng về một số phần front-end cầu kỳ hơn nếu không muốn, vì bạn không cần chúng để tạo ra trải nghiệm người dùng tốt.
 
-This project will give you the chance to take a relatively high-level set of requirements and turn it into a functioning website. You'll need to do some of your own research and read the documentation for a few of the modules you'll be using in this project.
+Dự án này cho bạn cơ hội biến một tập hợp yêu cầu tương đối cấp cao thành một website hoạt động được. Bạn sẽ cần tự nghiên cứu và đọc tài liệu của một số module sẽ sử dụng trong dự án.
 
-#### Getting started
+#### Bắt đầu
 
-1. Think about what you need to do. It's really helpful to write your plan down on paper or a whiteboard ahead of time! A few hours of thought now will save you days of coding. Try to lay it ALL out. An important part of planning is **scope**. You obviously can't build the entire website (which presumably took a full team of engineers years to produce), so you'll need to identify the site's core functionality and the "nice-to-have" stuff. **Make sure you finish the core functionality BEFORE working on the rest.** If you try to do everything at once, you'll get lost and frustrated. Trust us. Everything takes longer than you expect.
-1. Think through the data architecture required to make this work. There are lots of models and the relationship between them is more complicated than anything you've done before. Take some time to plan your approach before diving in.
-1. Work your way down the list below! Each step will involve a new challenge, but you've got the tools.
-1. You can populate data like users and posts with fake data using the [Faker](https://github.com/faker-js/faker) module from npm. To accomplish this create a new JavaScript file named `seeds.js` which imports your Prisma models and uses the faker module to generate and save a bunch of new users.
+1. Hãy suy nghĩ về những việc cần làm. Viết kế hoạch trước ra giấy hoặc bảng trắng sẽ rất hữu ích! Vài giờ suy nghĩ lúc này có thể giúp bạn tiết kiệm nhiều ngày code. Hãy cố gắng liệt kê TẤT CẢ. Một phần quan trọng của việc lập kế hoạch là **scope**. Rõ ràng bạn không thể xây dựng toàn bộ website (mà có lẽ đã cần cả một đội ngũ kỹ sư làm việc trong nhiều năm), nên bạn sẽ phải xác định chức năng cốt lõi của trang và những phần “có thì tốt”. **Hãy đảm bảo hoàn thành chức năng cốt lõi TRƯỚC KHI làm phần còn lại.** Nếu cố làm mọi thứ cùng lúc, bạn sẽ bị lạc hướng và nản lòng. Hãy tin chúng tôi. Mọi thứ đều mất nhiều thời gian hơn bạn dự kiến.
+1. Suy nghĩ về kiến trúc dữ liệu cần thiết để hệ thống hoạt động. Có rất nhiều model và quan hệ giữa chúng phức tạp hơn bất kỳ điều gì bạn từng làm trước đây. Hãy dành thời gian lập kế hoạch tiếp cận trước khi bắt tay vào làm.
+1. Làm lần lượt theo danh sách bên dưới! Mỗi bước sẽ đem đến một thử thách mới, nhưng bạn đã có đủ công cụ.
+1. Bạn có thể tạo dữ liệu giả như user và post bằng module [Faker](https://github.com/faker-js/faker) từ npm. Để làm vậy, hãy tạo một file JavaScript mới có tên `seeds.js`, import các Prisma model của bạn và dùng module faker để tạo rồi lưu một loạt user mới.
 
-#### Requirements
+#### Yêu cầu
 
-The following requirements are a very global list of features your app should have. Because of the open-ended nature of this project, it's possible that not all of them may apply to your chosen site, and that there might be core features of your site that aren't mentioned here.
+Các yêu cầu sau là danh sách rất tổng quát về những tính năng app nên có. Vì dự án này có tính mở, có thể một số yêu cầu không phù hợp với trang bạn chọn, đồng thời trang của bạn có thể có những tính năng cốt lõi chưa được đề cập ở đây.
 
-1. Users must sign in to see anything except the sign-in page.
-1. Users should be able to sign in using your chosen authentication method.
-1. Users can send follow requests to other users.
-1. Users can create posts (begin with text only).
-1. Users can like posts.
-1. Users can comment on posts.
-1. Posts should always display the post content, author, comments, and likes.
-1. There should be an index page for posts, which shows all the recent posts from the current user and users they are following.
-1. Users can create a profile with a profile picture. Depending on how you handle authentication, for example via `passport-github2`, you may be able to use their account's existing profile picture. If this isn't the case you can use [Gravatar](https://www.gravatar.com/) to generate them.
-1. A user's profile page should contain their profile information, profile photo, and posts.
-1. There should be an index page for users, which shows all users and buttons for sending follow requests to users the user is not already following or have a pending request.
-1. Deploy your app to a hosting provider of your choice!
+1. Người dùng phải đăng nhập để xem bất kỳ nội dung nào ngoài trang đăng nhập.
+1. Người dùng có thể đăng nhập bằng phương thức xác thực bạn chọn.
+1. Người dùng có thể gửi yêu cầu theo dõi đến người dùng khác.
+1. Người dùng có thể tạo bài đăng (ban đầu chỉ cần văn bản).
+1. Người dùng có thể thích bài đăng.
+1. Người dùng có thể bình luận trên bài đăng.
+1. Bài đăng luôn phải hiển thị nội dung bài đăng, tác giả, bình luận và lượt thích.
+1. Cần có một trang index cho bài đăng, hiển thị tất cả bài đăng gần đây của người dùng hiện tại và những người mà họ đang theo dõi.
+1. Người dùng có thể tạo profile kèm ảnh profile. Tùy cách bạn xử lý xác thực, chẳng hạn qua `passport-github2`, bạn có thể dùng ảnh profile hiện có trong tài khoản của họ. Nếu không, bạn có thể dùng [Gravatar](https://www.gravatar.com/) để tạo ảnh.
+1. Trang profile của người dùng phải chứa thông tin profile, ảnh profile và các bài đăng của họ.
+1. Cần có một trang index cho user, hiển thị tất cả user và các nút gửi yêu cầu theo dõi đến những user mà người dùng hiện tại chưa theo dõi hoặc chưa có yêu cầu đang chờ.
+1. Deploy app lên một nhà cung cấp hosting mà bạn chọn!
 
-#### Extra credit
+#### Điểm cộng
 
-1. Make posts also allow images (either just via a URL or by uploading one). In the [File Uploader project](https://www.theodinproject.com/lessons/nodejs-file-uploader), you may recall [Cloudinary](https://cloudinary.com/documentation/node_integration) or [Supabase storage](https://supabase.com/docs/guides/storage) being good options for hosting user-uploaded images. The URLs they provide you can then be stored in your database instead of the raw image binary data.
-1. Allow users to update their profile photo.
-1. Create a guest sign-in functionality that allows visitors to bypass the login screen without creating an account or supplying credentials. This is especially useful if you are planning on putting this project on your résumé - most recruiters, hiring managers, etc. will not take the time to create an account. This feature will allow them to look at your hard work without going through a tedious sign-up process.
-1. Make it pretty!
+1. Cho phép bài đăng có cả ảnh (hoặc chỉ bằng URL, hoặc bằng cách tải ảnh lên). Trong [dự án File Uploader](https://www.theodinproject.com/lessons/nodejs-file-uploader), có thể bạn còn nhớ [Cloudinary](https://cloudinary.com/documentation/node_integration) hoặc [Supabase storage](https://supabase.com/docs/guides/storage) là những lựa chọn tốt để lưu trữ ảnh do người dùng tải lên. Sau đó, bạn có thể lưu các URL mà chúng cung cấp vào cơ sở dữ liệu thay vì dữ liệu nhị phân thô của ảnh.
+1. Cho phép người dùng cập nhật ảnh profile.
+1. Tạo chức năng đăng nhập khách cho phép khách truy cập bỏ qua màn hình đăng nhập mà không cần tạo tài khoản hoặc cung cấp thông tin xác thực. Tính năng này đặc biệt hữu ích nếu bạn dự định đưa dự án vào résumé - hầu hết recruiter, hiring manager, vân vân sẽ không dành thời gian tạo tài khoản. Tính năng này cho phép họ xem thành quả của bạn mà không phải trải qua quy trình đăng ký rườm rà.
+1. Làm cho nó đẹp mắt!
 
 </div>

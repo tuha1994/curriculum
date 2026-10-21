@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-In this project you'll be building an exclusive clubhouse where your members can write anonymous posts. Inside the clubhouse, members can see who the author of a post is, but outside they can only see the story and wonder who wrote it.
+Trong dự án này, bạn sẽ xây dựng một câu lạc bộ độc quyền nơi các thành viên của bạn có thể viết những bài đăng ẩn danh. Bên trong hội quán, các thành viên có thể biết tác giả của bài đăng là ai, nhưng ở bên ngoài họ chỉ có thể xem câu chuyện và tự hỏi ai đã viết nó.
 
-This will be a chance for you to use the authentication skills we learned in the last lesson. You will also be practicing your database skills so buckle up!
+Đây sẽ là cơ hội để bạn sử dụng các kỹ năng xác thực mà chúng ta đã học ở bài trước. Bạn cũng sẽ thực hành các kỹ năng cơ sở dữ liệu của mình vì vậy hãy sẵn sàng!
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Begin by thinking about how to set up the database models you are going to need to accomplish your goal. You will need users with full-names (first and last), usernames (you can use email for this), passwords and membership-status. Users should be able to create messages that have a title, a timestamp and some text.  Your database should keep track of who created each message.
-1. Setup your database on PostgreSQL and generate or otherwise create your project skeleton, including the models you designed in the last step.
-1. Start with a sign-up form so you can get some users into your DB! Don't forget to sanitize and validate the form fields and secure the passwords with `bcrypt`. You should add a confirmPassword field to your sign-up form and then validate it using a [custom validator](https://express-validator.github.io/docs/guides/customizing).
-1. When users sign up, they should not be automatically given membership status! What fun is a private club if just anyone can join? Add a page where members can "join the club" by entering a secret passcode. If they enter the passcode correctly then update their membership status.
-1. Create a login-form using passport.js like we did in the last assignment.
-1. When a user is logged in give them a link to "Create a new message" (but only show it if they're logged in!).  Create the new-message form.
-1. Display all member messages on the home page, but only show the author and date of the messages to other club-members.
-1. Add an optional field to the user model called Admin and then add the ability to delete messages, but only allow users who have `admin == true` to see the delete-button and delete messages.  You'll need to add a way to actually mark a user as an 'admin' so either add another secret pass-code page, or just put an "is admin" checkbox on the sign-up form.
-1. By this point, anyone who comes to the site should be able to see a list of all messages, with the author's name hidden. Users should be able to sign-up and create messages, but ONLY users that are members should be able to see the author and date of each message. Finally, you should have an Admin user that is able to see everything and also has the ability to delete messages. Obviously this is a silly little app, but the things you are practicing (creating and authenticating users and giving users different abilities and permissions) are things that will be *very* useful to you!
-1. When you're satisfied with your work, deploy your project on your chosen PaaS ([list of PaaS providers from the Deployment lesson](https://www.theodinproject.com/lessons/node-path-nodejs-deployment)) and share it below!
+1. Bắt đầu bằng cách suy nghĩ về cách thiết lập các mô hình cơ sở dữ liệu mà bạn sẽ cần để hoàn thành mục tiêu của mình. Bạn sẽ cần người dùng có tên đầy đủ (họ và tên), tên người dùng (bạn có thể sử dụng email cho việc này), mật khẩu và trạng thái thành viên. Người dùng có thể tạo tin nhắn có tiêu đề, dấu thời gian và một số văn bản.  Cơ sở dữ liệu của bạn sẽ theo dõi xem ai đã tạo từng tin nhắn.
+1. Thiết lập cơ sở dữ liệu trên PostgreSQL và tạo hoặc thiết lập bộ khung dự án, bao gồm các model bạn đã thiết kế ở bước trước.
+1. Bắt đầu với biểu mẫu đăng ký để bạn có thể thu hút một số người dùng vào cơ sở dữ liệu của mình! Đừng quên làm sạch và xác thực các trường biểu mẫu cũng như bảo mật mật khẩu bằng `bcrypt`. Bạn nên thêm trường confirmPassword vào biểu mẫu đăng ký của mình rồi xác thực nó bằng [trình xác thực tùy chỉnh](https://express-validator.github.io/docs/guides/customizing).
+1. Khi người dùng đăng ký, họ sẽ không tự động được cấp trạng thái thành viên! Câu lạc bộ tư nhân có gì thú vị nếu ai cũng có thể tham gia? Thêm một trang nơi các thành viên có thể "tham gia câu lạc bộ" bằng cách nhập mật mã bí mật. Nếu họ nhập đúng mật mã thì hãy cập nhật trạng thái thành viên của họ.
+1. Tạo biểu mẫu đăng nhập bằng Passport.js giống như chúng ta đã làm trong bài tập trước.
+1. Khi người dùng đăng nhập, hãy cung cấp cho họ liên kết đến "Tạo tin nhắn mới" (nhưng chỉ hiển thị nếu họ đã đăng nhập!).  Tạo mẫu tin nhắn mới.
+1. Hiển thị tất cả tin nhắn của thành viên trên trang chủ, nhưng chỉ hiển thị tác giả và ngày tháng của tin nhắn cho các thành viên câu lạc bộ khác.
+1. Thêm trường tùy chọn vào mô hình người dùng có tên Quản trị viên, sau đó thêm khả năng xóa tin nhắn, nhưng chỉ cho phép người dùng có `admin == true` nhìn thấy nút xóa và xóa tin nhắn.  Bạn sẽ cần thêm một cách để thực sự đánh dấu người dùng là 'quản trị viên', bằng cách thêm một trang mật mã bí mật khác hoặc chỉ cần đặt hộp kiểm "là quản trị viên" trên biểu mẫu đăng ký.
+1. Đến thời điểm này, bất kỳ ai truy cập trang web đều có thể xem danh sách tất cả các tin nhắn, với tên tác giả bị ẩn. Người dùng có thể đăng ký và tạo tin nhắn, nhưng CHỈ người dùng là thành viên mới có thể xem tác giả và ngày của mỗi tin nhắn. Cuối cùng, bạn phải có một người dùng Quản trị viên có thể xem mọi thứ và cũng có khả năng xóa tin nhắn. Rõ ràng đây là một ứng dụng nhỏ ngớ ngẩn, nhưng những điều bạn đang thực hành (tạo và xác thực người dùng cũng như cấp cho người dùng các khả năng và quyền khác nhau) là những điều sẽ *rất* hữu ích cho bạn!
+1. Khi bạn hài lòng với công việc của mình, hãy triển khai dự án trên PaaS đã chọn ([danh sách các nhà cung cấp PaaS từ bài học Triển khai](https://www.theodinproject.com/lessons/node-path-nodejs-deployment)) và chia sẻ dự án đó bên dưới!
 
 </div>

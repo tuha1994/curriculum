@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-In this lesson, we'll dive into forms and how to manage them using Express. We'll explore ways to secure your Node.js / Express applications by using `express-validator` for validation and sanitization. Understanding proper form handling is crucial for maintaining data integrity and protecting your web applications from security risks.
+Trong bài học này, chúng ta sẽ đi sâu vào các biểu mẫu và cách quản lý chúng bằng Express. Chúng ta sẽ khám phá các cách bảo mật ứng dụng Node.js / Express của bạn bằng cách sử dụng `express-validator` để xác thực và làm sạch. Hiểu cách xử lý biểu mẫu thích hợp là rất quan trọng để duy trì tính toàn vẹn dữ liệu và bảo vệ các ứng dụng web của bạn khỏi các rủi ro bảo mật.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Understanding HTML form elements and their actions.
-- Using `express-validator` for validation and sanitization.
-- Best practices for form design and data integrity.
+- Hiểu các thành phần biểu mẫu HTML và hành động của chúng.
+- Sử dụng `express-validator` để xác thực và làm sạch.
+- Thực tiễn tốt nhất về thiết kế biểu mẫu và tính toàn vẹn dữ liệu.
 
-### HTML forms overview
+### Tổng quan về biểu mẫu HTML
 
-First, a brief refresher on the actual HTML.
+Đầu tiên, hãy giới thiệu ngắn gọn về HTML thực tế.
 
-Let's create a simple HTML form, with a single text field for collecting a full name, and its associated label element.
+Hãy tạo một biểu mẫu HTML đơn giản, với một trường văn bản duy nhất để thu thập tên đầy đủ và thành phần nhãn liên quan của nó.
 
-The HTML structure would look something like this:
+Cấu trúc HTML sẽ trông giống như thế này:
 
 ```html
 <form action="/create" method="POST">
@@ -26,65 +26,65 @@ The HTML structure would look something like this:
 </form>
 ```
 
-We have the HTML form element itself, with an action pointing to some resource on our server, and a method defined. Notice how the method corresponds to an HTTP verb, typically either `GET` or `POST`.
+Chúng tôi có chính phần tử biểu mẫu HTML, với một hành động trỏ đến một số tài nguyên trên máy chủ của chúng tôi và một phương thức được xác định. Lưu ý cách phương thức này tương ứng với một động từ HTTP, thường là `GET` hoặc `POST`.
 
-The form consists of a text input with an associated label and a submit button.
+Biểu mẫu bao gồm nội dung nhập văn bản có nhãn liên quan và nút gửi.
 
-The input's `name` attribute plays a key role, as it defines how our input will be identified in the form data sent to our server. This is especially important when handling form submissions on the backend.
+Thuộc tính `name` của đầu vào đóng một vai trò quan trọng vì nó xác định cách xác định đầu vào của chúng tôi trong dữ liệu biểu mẫu được gửi đến máy chủ của chúng tôi. Điều này đặc biệt quan trọng khi xử lý việc gửi biểu mẫu ở phần phụ trợ.
 
-The `type="submit"` button then allows the user to upload the entered data to the server.
+Sau đó, nút `type="submit"` cho phép người dùng tải dữ liệu đã nhập lên máy chủ.
 
-The `form` attributes define how to communicate with the server:
+Thuộc tính `form` xác định cách giao tiếp với máy chủ:
 
-- `action`: The resource/URL where data is sent for processing when the form is submitted. If this is not set, or is an empty string, the form will be submitted back to the current page URL
-- `method`: Defines the HTTP method to use (`POST` or `GET`).
+- `action`: Tài nguyên/URL nơi dữ liệu được gửi để xử lý khi biểu mẫu được gửi. Nếu điều này không được đặt hoặc là một chuỗi trống, biểu mẫu sẽ được gửi trở lại URL trang hiện tại
+- `method`: Xác định phương thức HTTP sẽ sử dụng (`POST` hoặc `GET`).
 
-`POST` is generally more secure because it keeps sensitive information out of the URL, which means they won't show up in server logs, and is the standard choice for creating or updating data on the server side. `GET` is for forms that don't modify data, such as search forms, or when you want the form submission to be bookmarkable or shareable via URL. The form data here is sent as a query string as part of the request url.
+`POST` thường an toàn hơn vì nó loại bỏ thông tin nhạy cảm khỏi URL, điều đó có nghĩa là chúng sẽ không hiển thị trong nhật ký máy chủ và là lựa chọn tiêu chuẩn để tạo hoặc cập nhật dữ liệu ở phía máy chủ. `GET` dành cho các biểu mẫu không sửa đổi dữ liệu, chẳng hạn như biểu mẫu tìm kiếm hoặc khi bạn muốn việc gửi biểu mẫu có thể đánh dấu trang hoặc có thể chia sẻ qua URL. Dữ liệu biểu mẫu ở đây được gửi dưới dạng chuỗi truy vấn như một phần của url yêu cầu.
 
-#### Form handling process
+#### Quy trình xử lý biểu mẫu
 
-The form's `action` will point to some endpoint on our server, which will allow our controller to handle the request. The controller then communicates with the database to handle the data.
+`action` của biểu mẫu sẽ trỏ đến một số điểm cuối trên máy chủ của chúng tôi, điều này sẽ cho phép controller của chúng tôi xử lý yêu cầu. Controller sau đó giao tiếp với cơ sở dữ liệu để xử lý dữ liệu.
 
-We then generate a new or updated view with the controller's response and redirect the client. This is known as the [Post/Redirect/Get (PRG)](https://en.wikipedia.org/wiki/Post/Redirect/Get) design pattern which helps prevent duplicate `POST` requests.
+Sau đó, chúng tôi tạo view mới hoặc cập nhật với phản hồi của controller và chuyển hướng máy khách. Đây được gọi là mẫu thiết kế [Đăng/Chuyển hướng/Nhận (PRG)](https://en.wikipedia.org/wiki/Post/Redirect/Get) giúp ngăn chặn các yêu cầu `POST` trùng lặp.
 
-### Validation and sanitization
+### Xác thực và làm sạch
 
-Before the data from a form is sent off to our server, we should consider two important steps:
+Trước khi dữ liệu từ một biểu mẫu được gửi đến máy chủ của chúng tôi, chúng tôi nên xem xét hai bước quan trọng:
 
-- *Validation* ensures user input meets the specified criteria (e.g. required fields, correct format).
-- *Sanitization* cleans user input to prevent malicious data from being processed by removing or encoding potentially malicious characters.
+- *Xác thực* đảm bảo thông tin đầu vào của người dùng đáp ứng các tiêu chí đã chỉ định (ví dụ: các trường bắt buộc, định dạng đúng).
+- *Làm sạch* làm sạch đầu vào của người dùng để ngăn chặn việc xử lý dữ liệu độc hại bằng cách xóa hoặc mã hóa các ký tự có khả năng độc hại.
 
-We don't always have to sanitize data right when we get it - sometimes it makes sense to sanitize just before we use it instead.
+Không phải lúc nào chúng ta cũng phải làm sạch dữ liệu ngay khi nhận được - đôi khi, thay vào đó, việc làm sạch ngay trước khi sử dụng dữ liệu đó là điều hợp lý.
 
-We'll be using a library called `express-validator` to help us out with both of these. While it makes these processes much simpler, it's important to understand the underlying concepts of these two operations.
+Chúng tôi sẽ sử dụng thư viện có tên `express-validator` để giúp chúng tôi giải quyết cả hai điều này. Mặc dù nó làm cho các quy trình này đơn giản hơn nhiều nhưng điều quan trọng là phải hiểu các khái niệm cơ bản của hai thao tác này.
 
 <div class="lesson-note" markdown="1">
 
-#### Sanitization definition
+#### Định nghĩa làm sạch
 
-You will sometimes see "sanitization" used in a much stricter sense, involving only the removal of characters from incoming data, distinguishing it from "encoding" which is replacing certain characters. It is sometimes also used more loosely to refer to the entire process of changing the incoming data in some way, which includes both removing and encoding characters. This is how we will use the term in our own content in this lesson.
+Đôi khi bạn sẽ thấy "làm sạch" được sử dụng theo nghĩa chặt chẽ hơn nhiều, chỉ liên quan đến việc loại bỏ các ký tự khỏi dữ liệu đến, phân biệt nó với "mã hóa" đang thay thế một số ký tự nhất định. Đôi khi nó cũng được sử dụng một cách lỏng lẻo hơn để chỉ toàn bộ quá trình thay đổi dữ liệu đến theo một cách nào đó, bao gồm cả việc loại bỏ và mã hóa các ký tự. Đây là cách chúng ta sẽ sử dụng thuật ngữ này trong nội dung của bài học này.
 
 </div>
 
-#### Installing express-validator
+#### Cài đặt express-validator
 
-We start as usual by installing the correct package in the *root* folder of our project.
+Chúng tôi bắt đầu như thường lệ bằng cách cài đặt đúng gói trong thư mục *root* của dự án.
 
 ```bash
 npm install express-validator
 ```
 
-To get started using the package, we first need to `require` it in our project
+Để bắt đầu sử dụng gói, trước tiên chúng ta cần `require` nó trong dự án của mình
 
 ```javascript
 const { body, validationResult } = require("express-validator");
 ```
 
-`express-validator` comes with many functions for just about every form operation you could think of, but for this lesson, we'll be sticking with `body()` and `validationResult()`.
+`express-validator` có nhiều hàm cho hầu hết mọi thao tác trên biểu mẫu mà bạn có thể nghĩ tới, nhưng đối với bài học này, chúng ta sẽ tập trung vào `body()` và `validationResult()`.
 
-### Understanding the body() function
+### Tìm hiểu hàm body()
 
-The `body()` function allows you to specify which fields in the request body should be validated and sanitized, as well as how to handle it.
+Hàm `body()` cho phép bạn chỉ định trường nào trong nội dung yêu cầu cần được xác thực và làm sạch cũng như cách xử lý trường đó.
 
 ```javascript
 [
@@ -94,11 +94,11 @@ The `body()` function allows you to specify which fields in the request body sho
 ];
 ```
 
-This example marks `birthdate` field as optional, but still enforces the ISO8601 date format on inputs. This is because `{ values: "falsy" }` means values that aren't `undefined`, `null`, `false`, `0` or empty strings `""` will still be validated.
+Ví dụ này đánh dấu trường `birthdate` là tùy chọn nhưng vẫn thực thi định dạng ngày ISO8601 trên đầu vào. Điều này là do `{ values: "falsy" }` có nghĩa là các giá trị không phải là `undefined`, `null`, `false`, `0` hoặc các chuỗi trống `""` vẫn sẽ được xác thực.
 
-### Chaining validations
+### Xác thực chuỗi
 
-You can also chain multiple validation methods, with unique error messages if the checks fail.
+Bạn cũng có thể xâu chuỗi nhiều phương thức xác thực với các thông báo lỗi duy nhất nếu quá trình kiểm tra không thành công.
 
 ```javascript
 [
@@ -111,11 +111,11 @@ You can also chain multiple validation methods, with unique error messages if th
 ];
 ```
 
-This ensures that `name` is not only present and trimmed, but also only contains alphabet letters.
+Điều này đảm bảo rằng `name` không chỉ hiện diện và được cắt bớt mà còn chỉ chứa các chữ cái trong bảng chữ cái.
 
-### Escaping user input
+### Thoát khỏi đầu vào của người dùng
 
-While this might work for outputs we know won't have special characters, like names or ages, we also have to consider situations that do allow those characters. For example, when writing their "About Me" description, what would happen if the client decides to inject JavaScript code instead?
+Mặc dù điều này có thể hiệu quả đối với các kết quả đầu ra mà chúng tôi biết sẽ không có các ký tự đặc biệt, như tên hoặc tuổi, nhưng chúng tôi cũng phải xem xét các tình huống cho phép các ký tự đó. Ví dụ: khi viết mô tả "Giới thiệu về tôi", điều gì sẽ xảy ra nếu khách hàng quyết định chèn mã JavaScript thay thế?
 
 ```ejs
 <div>
@@ -126,7 +126,7 @@ While this might work for outputs we know won't have special characters, like na
 <script>alert("Hacked!");</script>
 ```
 
-When unescaped, this would be rendered into HTML as:
+Khi không thoát, nó sẽ được hiển thị thành HTML dưới dạng:
 
 ```html
 <div>
@@ -134,7 +134,7 @@ When unescaped, this would be rendered into HTML as:
 </div>
 ```
 
-To prevent this [cross-site scripting (XSS) attack](https://en.wikipedia.org/wiki/Cross-site_scripting), we can *escape* the output (you may also see this referred to as *encoding*). Escaped HTML replaces special characters, like `<`, with their respective HTML entities, in this case `&lt;`. In EJS, we can escape the output using `<%= %>`.
+Để ngăn chặn [cuộc tấn công tập lệnh chéo trang (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting), chúng tôi có thể *thoát* đầu ra (bạn cũng có thể thấy điều này được gọi là *mã hóa*). HTML thoát sẽ thay thế các ký tự đặc biệt, như `<`, bằng các thực thể HTML tương ứng của chúng, trong trường hợp này là `&lt;`. Trong EJS, chúng ta có thể thoát đầu ra bằng `<%= %>`.
 
 ```ejs
 <div>
@@ -145,13 +145,13 @@ To prevent this [cross-site scripting (XSS) attack](https://en.wikipedia.org/wik
 // About Me: &lt;script&gt;alert(&quot;Hacked!&quot;);&lt;/script&gt;!
 ```
 
-So why not escape the data when we receive it by adding .escape() to the end of our body() validation chain instead? "Dangerous characters" are only dangerous at the point of use, and also only in certain contexts. What's "dangerous" for HTML may not be dangerous for SQL and vice versa, and they won't pose risks until they get used in those contexts.
+Vậy tại sao không thoát dữ liệu khi chúng ta nhận được nó bằng cách thêm .escape() vào cuối chuỗi xác thực body() của chúng ta? "Nhân vật nguy hiểm" chỉ nguy hiểm ở điểm sử dụng và cũng chỉ trong một số bối cảnh nhất định. Điều "nguy hiểm" đối với HTML có thể không nguy hiểm đối với SQL và ngược lại, đồng thời chúng sẽ không gây rủi ro cho đến khi được sử dụng trong các bối cảnh đó.
 
-Also, if we have data with HTML entities after escaping them, if we used escaped output with (`<%= %>`), then `&lt;` wouldn't become `<` but output literally as the text `&lt;`. We'd need to either unescape them then re-escape them via escaped output, or end up using unescaped output (`<%- %>`), which, like using `.innerHTML`, is undesirable as shown above.
+Ngoài ra, nếu chúng ta có dữ liệu với các thực thể HTML sau khi thoát chúng, nếu chúng ta sử dụng đầu ra thoát với (`<%= %>`), thì `&lt;` sẽ không trở thành `<` mà xuất ra theo nghĩa đen là văn bản `&lt;`. Chúng ta cần phải hủy thoát chúng sau đó thoát lại chúng thông qua đầu ra thoát hoặc cuối cùng sử dụng đầu ra không thoát (`<%- %>`), giống như sử dụng `.innerHTML`, là điều không mong muốn như được hiển thị ở trên.
 
-### Validation results
+### Kết quả xác thực
 
-Once the validation rules are applied, you can use `validationResult` to handle any validation errors:
+Khi các quy tắc xác thực được áp dụng, bạn có thể sử dụng `validationResult` để xử lý mọi lỗi xác thực:
 
 ```javascript
 const controller = (req, res, next) => {
@@ -167,18 +167,18 @@ const controller = (req, res, next) => {
 };
 ```
 
-This setup checks for any failed validation checks, and if there are any (the errors array is NOT empty), then the server sends a [400 status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400), along with any errors that may be present, to our `index` view. Otherwise, we're redirected to the `/success` route in our router.
+Thiết lập này sẽ kiểm tra mọi lần kiểm tra xác thực không thành công và nếu có bất kỳ lỗi nào (mảng lỗi KHÔNG trống), thì máy chủ sẽ gửi [mã trạng thái 400](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400), cùng với mọi lỗi có thể xuất hiện, tới view `index` của chúng tôi. Nếu không, chúng tôi sẽ được chuyển hướng đến tuyến `/success` trong router của mình.
 
-### Forms and Express routes
+### Các route biểu mẫu và Express
 
-One final thing to cover is how to handle routes in Express. After all, our form needs somewhere to send the data to.
+Điều cuối cùng cần đề cập là cách xử lý các route trong Express. Rốt cuộc, biểu mẫu của chúng tôi cần một nơi nào đó để gửi dữ liệu đến.
 
 ```javascript
 exports.userUpdateGet = (req, res, next) => {};
 exports.userUpdatePost = (req, res, next) => {};
 ```
 
-Inside our router, we can then assign routes which correspond to the controller's functions:
+Sau đó, bên trong router của mình, chúng tôi có thể chỉ định các tuyến tương ứng với các chức năng của controller:
 
 ```javascript
 const { Router } = require("express");
@@ -192,27 +192,27 @@ usersRouter.post("/:id/update", usersController.userUpdatePost);
 module.exports = usersRouter;
 ```
 
-In our form, the action would look something like this:
+Trong biểu mẫu của chúng tôi, hành động sẽ trông giống như thế này:
 
 ```ejs
 <!-- Example using EJS with POST to submit an update to our Express server. -->
 <form action="/users/<%= user.userId %>/update" method="POST"></form>
 ```
 
-`/users/:id/update` is an *endpoint* we've created on our Express server.
+`/users/:id/update` là *điểm cuối* mà chúng tôi đã tạo trên máy chủ Express của mình.
 
-### Putting it together
+### Kết hợp nó lại với nhau
 
-Let's create a quick Express application to demonstrate how clients send data to servers with forms.
+Hãy tạo một ứng dụng Express nhanh để trình bày cách máy khách gửi dữ liệu đến máy chủ bằng biểu mẫu.
 
-Set up a new Express app with EJS templating:
+Thiết lập ứng dụng Express mới với khuôn mẫu EJS:
 
 ```bash
 npm init -y
 npm install express ejs express-validator
 ```
 
-Create folders for `routes`, `views`, `controllers`, `storages`, and an `app.js` file:
+Tạo thư mục cho `routes`, `views`, `controllers`, `storages` và tệp `app.js`:
 
 ```javascript
 // app.js
@@ -235,9 +235,9 @@ app.listen(PORT, (error) => {
 });
 ```
 
-Most simple forms will use the `Content-Type: application/x-www-form-urlencoded` HTTP header when sending data to the server. Express, however, can't natively parse that data. We can use the `express.urlencoded()` middleware to handle this for us and automatically set form's data to the `req.body` field. When `extended` is `false`,  our server will only accept a `string` or an array of data, so we set it to `true` for some added flexibility. Note that if the `Content-Type` doesn't match `application/x-www-form-urlencoded`, then your server will show the data as an empty object `{}`.
+Hầu hết các biểu mẫu đơn giản sẽ sử dụng tiêu đề HTTP `Content-Type: application/x-www-form-urlencoded` khi gửi dữ liệu đến máy chủ. Tuy nhiên, Express không thể phân tích dữ liệu đó một cách tự nhiên. Chúng tôi có thể sử dụng middleware `express.urlencoded()` để xử lý việc này cho chúng tôi và tự động đặt dữ liệu của biểu mẫu thành trường `req.body`. Khi `extended` là `false`, máy chủ của chúng tôi sẽ chỉ chấp nhận `string` hoặc một mảng dữ liệu, vì vậy chúng tôi đặt nó thành `true` để tăng thêm tính linh hoạt. Lưu ý rằng nếu `Content-Type` không khớp với `application/x-www-form-urlencoded` thì máy chủ của bạn sẽ hiển thị dữ liệu dưới dạng đối tượng trống `{}`.
 
-Let's create a new router called `usersRouter.js` in the routes folder:
+Hãy tạo một router mới có tên `usersRouter.js` trong thư mục route:
 
 ```javascript
 // routes/usersRouter.js
@@ -252,10 +252,10 @@ usersRouter.post("/create", usersController.usersCreatePost);
 module.exports = usersRouter;
 ```
 
-Next we'll create two views:
+Tiếp theo chúng ta sẽ tạo hai view:
 
-- `index.ejs` will list all the users we've created.
-- `createUser.ejs` will display our user creation form.
+- `index.ejs` sẽ liệt kê tất cả người dùng mà chúng ta đã tạo.
+- `createUser.ejs` sẽ hiển thị biểu mẫu tạo người dùng của chúng tôi.
 
 ```ejs
 <!-- views/index.ejs -->
@@ -301,7 +301,7 @@ Next we'll create two views:
 </html>
 ```
 
-The logic for this router will go inside of our controller:
+Logic cho router này sẽ nằm bên trong controller của chúng tôi:
 
 ```javascript
 // controllers/usersController.js
@@ -327,7 +327,7 @@ exports.usersCreatePost = (req, res) => {
 };
 ```
 
-And we'll use a storage class to hold the users we create. In real-world scenarios, you would almost certainly be using a database for this, which you'll explore further in upcoming lessons. This class is just for demonstration purposes before we get there.
+Và chúng tôi sẽ sử dụng lớp lưu trữ để giữ những người dùng mà chúng tôi tạo. Trong các tình huống thực tế, bạn gần như chắc chắn sẽ sử dụng cơ sở dữ liệu cho việc này và bạn sẽ khám phá thêm cơ sở dữ liệu này trong các bài học sắp tới. Lớp học này chỉ nhằm mục đích trình diễn trước khi chúng ta đến đó.
 
 ```javascript
 // storages/usersStorage.js
@@ -365,11 +365,11 @@ class UsersStorage {
 module.exports = new UsersStorage();
 ```
 
-We can test our server with: `node --watch app.js`.
+Chúng tôi có thể kiểm tra máy chủ của mình bằng: `node --watch app.js`.
 
-You'll see we're able to add new users at `http://localhost:3000/create`, as well as list all existing users at `http://localhost:3000/`.
+Bạn sẽ thấy chúng tôi có thể thêm người dùng mới tại `http://localhost:3000/create`, cũng như liệt kê tất cả người dùng hiện tại tại `http://localhost:3000/`.
 
-Let's add a few methods to our `usersController.js` for validating and sanitizing our form to get the type of data we want.
+Hãy thêm một số phương thức vào `usersController.js` để xác thực và làm sạch biểu mẫu của chúng tôi nhằm nhận được loại dữ liệu mà chúng tôi muốn.
 
 ```javascript
 // This just shows the new stuff we're adding to the existing contents
@@ -405,9 +405,9 @@ exports.usersCreatePost = [
 ];
 ```
 
-We retrieve all validated data via the [`matchedData()`](https://express-validator.github.io/docs/api/matched-data) function to ensure all the data we get will include any sanitization done (such as trimmed data).
+Chúng tôi truy xuất tất cả dữ liệu đã xác thực thông qua chức năng [`matchedData()`](https://express-validator.github.io/docs/api/matched-data) để đảm bảo tất cả dữ liệu chúng tôi nhận được sẽ bao gồm mọi dữ liệu đã được làm sạch (chẳng hạn như dữ liệu đã được cắt bớt).
 
-And now, we need to update our `createUser.ejs` view to render these errors. Let's create a new partial. Inside the `views` folder, create a new folder called `partials` and inside it, create `errors.ejs`:
+Và bây giờ, chúng ta cần cập nhật view `createUser.ejs` để hiển thị những lỗi này. Hãy tạo một phần mới. Bên trong thư mục `views`, tạo một thư mục mới có tên `partials` và bên trong thư mục đó, tạo `errors.ejs`:
 
 ```ejs
 <!-- views/partials/errors.ejs -->
@@ -420,15 +420,15 @@ And now, we need to update our `createUser.ejs` view to render these errors. Let
 <% } %>
 ```
 
-And we'll include the partial just above our form in `createUser.ejs`.
+Và chúng tôi sẽ bao gồm phần ngay phía trên biểu mẫu của chúng tôi trong `createUser.ejs`.
 
 ```ejs
 <%- include("partials/errors.ejs") %>
 ```
 
-If the form is filled out incorrectly, you'll see the page contains all the errors.
+Nếu biểu mẫu được điền không chính xác, bạn sẽ thấy trang chứa tất cả các lỗi.
 
-Now that we can create users, we also need a way to modify them. Let's create a form that lets us specify an ID and the values we want to update by making a new view: `updateUser.ejs`.
+Bây giờ chúng ta có thể tạo người dùng, chúng ta cũng cần một cách để sửa đổi họ. Hãy tạo một biểu mẫu cho phép chúng tôi chỉ định ID và các giá trị mà chúng tôi muốn cập nhật bằng cách tạo view mới: `updateUser.ejs`.
 
 ```ejs
 <!-- views/updateUser.ejs -->
@@ -450,7 +450,7 @@ Now that we can create users, we also need a way to modify them. Let's create a 
 </html>
 ```
 
-We'll modify `index.ejs` to include a new "Update" button next to each user to make our `GET` request to the route:
+Chúng tôi sẽ sửa đổi `index.ejs` để bao gồm nút "Cập nhật" mới bên cạnh mỗi người dùng nhằm thực hiện yêu cầu `GET` của chúng tôi đối với route:
 
 ```ejs
 <li>
@@ -459,14 +459,14 @@ We'll modify `index.ejs` to include a new "Update" button next to each user to m
 </li>
 ```
 
-Just like how we added a route for creating users, we'll add routes for updating them:
+Giống như cách chúng tôi thêm lộ trình tạo người dùng, chúng tôi sẽ thêm lộ trình để cập nhật họ:
 
 ```javascript
 usersRouter.get("/:id/update", usersController.usersUpdateGet);
 usersRouter.post("/:id/update", usersController.usersUpdatePost);
 ```
 
-Then we'll add the logic for the requests into our controller:
+Sau đó, chúng ta sẽ thêm logic cho các yêu cầu vào controller của mình:
 
 ```javascript
 exports.usersUpdateGet = (req, res) => {
@@ -496,9 +496,9 @@ exports.usersUpdatePost = [
 ];
 ```
 
-You'll see you're now able to update users, and this looks very similar to how we create our users.
+Bạn sẽ thấy bây giờ bạn có thể cập nhật người dùng và điều này trông rất giống với cách chúng tôi tạo người dùng.
 
-Finally, let's add a way to delete users as well by starting with another form inside our `index.ejs` view:
+Cuối cùng, hãy thêm một cách để xóa người dùng bằng cách bắt đầu với một biểu mẫu khác trong view `index.ejs` của chúng tôi:
 
 ```ejs
 <!-- In views/index.ejs -->
@@ -518,7 +518,7 @@ Finally, let's add a way to delete users as well by starting with another form i
 </ul>
 ```
 
-Then we add the logic to handle the request into our controller:
+Sau đó, chúng tôi thêm logic để xử lý yêu cầu vào controller của mình:
 
 ```javascript
 exports.usersDeletePost = (req, res) => {
@@ -527,56 +527,56 @@ exports.usersDeletePost = (req, res) => {
 };
 ```
 
-Don't forget to add the new route to your router!
+Đừng quên thêm route mới vào router của bạn!
 
 ```javascript
 usersRouter.post("/:id/delete", usersController.usersDeletePost);
 ```
 
-You'll notice we didn't need a `GET` route here since we're already redirecting to `/`.
+Bạn sẽ nhận thấy rằng chúng tôi không cần route `GET` ở đây vì chúng tôi đã chuyển hướng đến `/`.
 
-We could go much deeper into working safely with forms, but we'll stop there. By now you can already see how helpful `express-validator` is, and how you can do almost anything you want with the `req.body` object.
+Chúng ta có thể đi sâu hơn vào cách làm việc an toàn với biểu mẫu nhưng chúng ta sẽ dừng ở đó. Đến bây giờ bạn có thể thấy `express-validator` hữu ích như thế nào và bạn có thể làm hầu hết mọi thứ bạn muốn với đối tượng `req.body` như thế nào.
 
-To give you an overview of what this entire flow looks like visually, here's an example courtesy of MDN:
+Để cung cấp cho bạn cái nhìn tổng quan về toàn bộ quy trình này trông như thế nào về mặt trực quan, đây là một ví dụ do MDN cung cấp:
 
-![A diagram showing an outline of how a form interacts with a server using GET and POST requests.](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/web_server_form_handling.png)
+![Sơ đồ hiển thị phác thảo về cách một biểu mẫu tương tác với máy chủ bằng cách sử dụng các yêu cầu GET và POST.](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/web_server_form_handling.png)
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Add user details
+#### Thêm chi tiết người dùng
 
-Expand the `User` model we created to include more details. Implement the following fields and validations to your model:
+Mở rộng mô hình `User` mà chúng tôi đã tạo để bao gồm nhiều chi tiết hơn. Triển khai các trường và xác thực sau cho mô hình của bạn:
 
-- Email (required, must be formatted properly)
-- Age (optional, must be a number between 18 and 120)
-- Bio (optional, maximum 200 characters)
+- Email (bắt buộc, phải có định dạng đúng)
+- Tuổi (tùy chọn, phải là số từ 18 đến 120)
+- Tiểu sử (tùy chọn, tối đa 200 ký tự)
 
-Don't forget to update the view to display these new fields!
+Đừng quên cập nhật view để hiển thị các trường mới này!
 
-#### Implement searching
+#### Thực hiện tìm kiếm
 
-What if we want to search for a specific user in a list of thousands? We'll need a new route and view that lets clients search our list of users.
+Điều gì sẽ xảy ra nếu chúng ta muốn tìm kiếm một người dùng cụ thể trong danh sách hàng nghìn người? Chúng tôi sẽ cần một lộ trình và view mới cho phép khách hàng tìm kiếm danh sách người dùng của chúng tôi.
 
-1. Add a form with a `GET` method (in `createUser.ejs` or another view) which accepts a `name` or `email` (or both!)
-1. Create a new route `/search` which accepts a `GET` request.
-1. Add the search logic to your controller which searches your list for a matching user. Form data that has been sent via a `GET` request will not be available via `req.body`. You will need to use `req.query` instead.
-   - Your `GET` request should handle searching for the user and then render the search result.
-1. Display the search results in a new view: `search.ejs`.
+1. Thêm biểu mẫu bằng phương pháp `GET` (trong `createUser.ejs` hoặc view khác) chấp nhận `name` hoặc `email` (hoặc cả hai!)
+1. Tạo route mới `/search` chấp nhận yêu cầu `GET`.
+1. Thêm logic tìm kiếm vào controller để tìm kiếm người dùng phù hợp trong danh sách của bạn. Dữ liệu biểu mẫu đã được gửi qua yêu cầu `GET` sẽ không có sẵn qua `req.body`. Thay vào đó, bạn sẽ cần sử dụng `req.query`.
+   - Yêu cầu `GET` của bạn sẽ xử lý việc tìm kiếm người dùng và sau đó hiển thị kết quả tìm kiếm.
+1. Hiển thị kết quả tìm kiếm ở view mới: `search.ejs`.
 
-#### Further Reading
+#### Đọc thêm
 
-- This article expands on [what sanitizing and escaping means, and how they can help further secure your web applications](https://blog.presidentbeef.com/blog/2020/01/14/injection-prevention-sanitizing-vs-escaping/).
-- [express-validator](https://express-validator.github.io/docs/) contains the full documentation for `validator`, with some important sections being:
-  - [Getting Started with express-validator](https://express-validator.github.io/docs/guides/getting-started)
-  - [Validation Chains](https://express-validator.github.io/docs/guides/validation-chain)
+- Bài viết này mở rộng về [ý nghĩa của việc làm sạch và thoát cũng như cách chúng có thể giúp bảo mật hơn nữa các ứng dụng web của bạn](https://blog.presidentbeef.com/blog/2020/01/14/injection-prevention-sanitizing-vs-escaping/).
+- [express-validator](https://express-validator.github.io/docs/) chứa tài liệu đầy đủ về `validator`, với một số phần quan trọng là:
+  - [Bắt đầu với express-validator](https://express-validator.github.io/docs/guides/getting-started)
+  - [Chuỗi xác thực](https://express-validator.github.io/docs/guides/validation-chain)
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- Web Dev Simplified has a [tutorial on submitting forms and parsing form data in Express](https://youtu.be/SccSCuHhOw0?si=2dZ5Y4dvxyh7jpcy) if you want a refresher.
-- express-validator's docs has a good write-up on [implementing a custom validator in Express](https://express-validator.github.io/docs/guides/customizing#implementing-a-custom-validator).
+- Web Dev Simplified có [hướng dẫn gửi biểu mẫu và phân tích dữ liệu biểu mẫu trong Express](https://youtu.be/SccSCuHhOw0?si=2dZ5Y4dvxyh7jpcy) nếu bạn muốn ôn lại.
+- tài liệu của express-validator có bài viết hay về [triển khai trình xác thực tùy chỉnh trong Express](https://express-validator.github.io/docs/guides/customizing#implementing-a-custom-validator).

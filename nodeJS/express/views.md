@@ -1,41 +1,41 @@
-### Introduction
+### Giới thiệu
 
-Previously, a lot of projects you'll have made would have been SPAs: the served HTML file would essentially be empty with a script tag that lets the client render the page using JavaScript. Now we're focusing on rendering HTML on the server, i.e. using the server to create HTML files that actually contain contents of the page.
+Trước đây, rất nhiều dự án bạn thực hiện sẽ là SPA: tệp HTML được cung cấp về cơ bản sẽ trống với thẻ tập lệnh cho phép máy khách hiển thị trang bằng JavaScript. Bây giờ chúng tôi đang tập trung vào việc hiển thị HTML trên máy chủ, tức là sử dụng máy chủ để tạo các tệp HTML thực sự chứa nội dung của trang.
 
-Views are the user-facing part of the application, in this case, HTML files. We've dealt with views in an earlier project where the server would send HTML files to the user, but these files were static and many of our use cases require views to be dynamic with regards to data.
+Chế độ xem là phần hướng tới người dùng của ứng dụng, trong trường hợp này là các tệp HTML. Chúng tôi đã xử lý các chế độ xem trong một dự án trước đó, trong đó máy chủ sẽ gửi tệp HTML cho người dùng, nhưng các tệp này là tĩnh và nhiều trường hợp sử dụng của chúng tôi yêu cầu chế độ xem phải động đối với dữ liệu.
 
-Hence, we will use template engines to create our views. As the name suggests, we write template files in our codebase that get transformed into HTML when we respond to a server request. Any variables defined in our template files are replaced with actual data. Additionally, we can insert conditional and/or loop logic into our template file, e.g. render the user's username once they have logged in. This would not be possible with plain HTML. Any client-side JavaScript can still be added via a script tag (though we won't be doing much fancy with the client side for now).
+Do đó, chúng tôi sẽ sử dụng công cụ tạo mẫu để tạo chế độ xem của mình. Như tên cho thấy, chúng tôi viết các tệp mẫu trong cơ sở mã của mình để được chuyển đổi thành HTML khi chúng tôi phản hồi yêu cầu của máy chủ. Bất kỳ biến nào được xác định trong tệp mẫu của chúng tôi đều được thay thế bằng dữ liệu thực tế. Ngoài ra, chúng tôi có thể chèn logic có điều kiện và/hoặc vòng lặp vào tệp mẫu của mình, ví dụ: hiển thị tên người dùng của người dùng sau khi họ đăng nhập. Điều này không thể thực hiện được với HTML đơn giản. Mọi JavaScript phía máy khách vẫn có thể được thêm thông qua thẻ tập lệnh (mặc dù hiện tại chúng tôi sẽ không quan tâm nhiều đến phía máy khách).
 
-In this course, we will use [EJS](https://ejs.co/). EJS's syntax is very similar to that of HTML, meaning that the learning curve is relatively low compared to other template engines.
+Trong khóa học này, chúng tôi sẽ sử dụng [EJS](https://ejs.co/). Cú pháp của EJS rất giống với cú pháp của HTML, nghĩa là thời gian học tập tương đối thấp so với các công cụ tạo mẫu khác.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- How to set up EJS in an Express project.
-- How to use EJS.
+- Cách thiết lập EJS trong dự án Express.
+- Cách sử dụng EJS.
 
-### Setting up EJS
+### Thiết lập EJS
 
 <div class="lesson-note" markdown="1">
 
-#### Why not React?
+####Tại sao không phản ứng?
 
-We have not taught how to use React Server Components which are quite different to what you'll know about React so far. Setting these up on their own is not trivial unlike a template engine like EJS, and it would be hard to focus on learning back end fundamentals if using a preconfigured but highly abstracted full stack framework (which blurs the lines between both ends for more streamlined development).
+Chúng tôi chưa dạy cách sử dụng các Thành phần máy chủ React, vốn khá khác với những gì bạn biết về React cho đến nay. Việc tự thiết lập những thứ này không hề đơn giản, không giống như một công cụ tạo mẫu như EJS và sẽ khó tập trung vào việc tìm hiểu các nguyên tắc cơ bản về mặt sau nếu sử dụng khung ngăn xếp đầy đủ được cấu hình sẵn nhưng có tính trừu tượng cao (làm mờ ranh giới giữa cả hai đầu để phát triển hợp lý hơn).
 
 </div>
 
-Let's get started with EJS! Install EJS into your application by typing the following into your terminal:
+Hãy bắt đầu với EJS! Cài đặt EJS vào ứng dụng của bạn bằng cách nhập nội dung sau vào thiết bị đầu cuối của bạn:
 
 ```bash
 npm install ejs
 ```
 
-At the root of your project, create a subfolder called `views`.
+Ở thư mục gốc của dự án, hãy tạo một thư mục con có tên `views`.
 
-Next, we need to let our app know that we intend to use `EJS` as a template engine, as well as where to look for view files.
+Tiếp theo, chúng tôi cần cho ứng dụng của mình biết rằng chúng tôi dự định sử dụng `EJS` làm công cụ mẫu cũng như nơi tìm tệp xem.
 
-In your `app.js` file, set the following application properties:
+Trong tệp `app.js` của bạn, hãy đặt các thuộc tính ứng dụng sau:
 
 ```javascript
 // app.js
@@ -43,22 +43,22 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 ```
 
-And import the Path CommonJS module from Node near the top:
+Và nhập mô-đun Path CommonJS từ Node ở gần đầu:
 
 ```javascript
 // app.js
 const path = require("node:path");
 ```
 
-This enables EJS as the view engine, and that our app should look for templates in the `/views` subdirectory.
+Điều này sẽ bật EJS làm công cụ xem và ứng dụng của chúng tôi sẽ tìm kiếm các mẫu trong thư mục con `/views`.
 
-### EJS syntax
+### Cú pháp EJS
 
-In EJS, the `<%` and `%>` tags allow us to use JavaScript. This lets us write conditional statements, `for` loops, as well as use variables.
+Trong EJS, thẻ `<%` và `%>` cho phép chúng tôi sử dụng JavaScript. Điều này cho phép chúng ta viết các câu lệnh có điều kiện, vòng lặp `for`, cũng như sử dụng các biến.
 
-In order to output a variable as a value, we use the `<%=` tag.
+Để xuất một biến dưới dạng giá trị, chúng tôi sử dụng thẻ `<%=`.
 
-Here's a quick example that includes arrays and loop logic.
+Đây là một ví dụ nhanh bao gồm mảng và logic vòng lặp.
 
 ```ejs
 <% const animals = ["Cat", "Dog", "Lemur", "Hawk"] %>
@@ -70,9 +70,9 @@ Here's a quick example that includes arrays and loop logic.
 </ul>
 ```
 
-### Using EJS with Express
+### Sử dụng EJS với Express
 
-Let's use EJS with Express. First, create an EJS template file called `index.ejs` in the `views` subdirectory, and add the following:
+Hãy sử dụng EJS với Express. Đầu tiên, tạo tệp mẫu EJS có tên `index.ejs` trong thư mục con `views` và thêm thông tin sau:
 
 ```ejs
 <!-- index.ejs -->
@@ -83,7 +83,7 @@ Let's use EJS with Express. First, create an EJS template file called `index.ejs
 </html>
 ```
 
-And in `app.js`, render this template file in one of your routes:
+Và trong `app.js`, hiển thị tệp mẫu này theo một trong các tuyến đường của bạn:
 
 ```javascript
 // app.js
@@ -92,29 +92,29 @@ app.get("/", (req, res) => {
 });
 ```
 
-Ideally we would define the route in a separate router file, but for the purposes of this lesson we'll be defining it in `app.js`
+Lý tưởng nhất là chúng ta sẽ xác định tuyến đường trong một tệp bộ định tuyến riêng biệt, nhưng với mục đích của bài học này, chúng ta sẽ xác định nó trong `app.js`
 
-Start the server and go to the `/` route in the browser. You should see:
+Khởi động máy chủ và đi tới tuyến đường `/` trong trình duyệt. Bạn nên xem:
 
 ```html
 EJS rocks!
 ```
 
-If you inspect the HTML in the browser's dev tools, you can see the HTML is structured exactly like how we wrote the EJS template with the `message` variable replaced with its value.
+Nếu bạn kiểm tra HTML trong các công cụ phát triển của trình duyệt, bạn có thể thấy HTML có cấu trúc giống hệt như cách chúng tôi viết mẫu EJS với biến `message` được thay thế bằng giá trị của nó.
 
-When you hit the `/` route, `res.render("index", { message: "EJS rocks!" });` is the line that sends back the response. Since we've already defined the `views` and `view engine` app properties, the first argument of `res.render` is programmed to look for "a template called index in the specified folder", while the second argument is an object of variables that are to be made available to that specific template.
+Khi bạn nhấn tuyến đường `/`, `res.render("index", { message: "EJS rocks!" });` là dòng gửi phản hồi. Vì chúng ta đã xác định thuộc tính ứng dụng `views` và `view engine` nên đối số đầu tiên của `res.render` được lập trình để tìm kiếm "mẫu có tên là chỉ mục trong thư mục đã chỉ định", trong khi đối số thứ hai là đối tượng của các biến được cung cấp cho mẫu cụ thể đó.
 
-### The locals variable in EJS
+### Biến cục bộ trong EJS
 
-In the example above, how did the template file know about the `message` variable? When we render the view, EJS has access to any properties from the object we pass into `res.render`, as well as any properties on [Express's res.locals object](https://expressjs.com/en/5x/api/response/#reslocals) (`res.locals` can be useful if you need to pass values to the view in one middleware function, but won't call `res.render` until later in the middleware chain).
+Trong ví dụ trên, làm thế nào tệp mẫu biết về biến `message`? Khi chúng tôi hiển thị chế độ xem, EJS có quyền truy cập vào bất kỳ thuộc tính nào từ đối tượng mà chúng tôi chuyển vào `res.render`, cũng như mọi thuộc tính trên [Express's res.locals object](https://expressjs.com/en/5x/api/response/#reslocals) (`res.locals` có thể hữu ích nếu bạn cần chuyển giá trị cho chế độ xem trong một chức năng phần mềm trung gian, nhưng sẽ không gọi `res.render` cho đến sau này trong chuỗi phần mềm trung gian).
 
-EJS will store these properties in an object called `locals`, which you can access in the view. Similarly to the global `window` object in browsers, this allows you to access the `message` variable in the view via `locals.message`, or simply just `message`.
+EJS sẽ lưu trữ các thuộc tính này trong một đối tượng có tên `locals` mà bạn có thể truy cập trong dạng xem. Tương tự như đối tượng `window` toàn cầu trong trình duyệt, điều này cho phép bạn truy cập biến `message` trong chế độ xem thông qua `locals.message` hoặc đơn giản chỉ là `message`.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Undefined variables in locals
+#### Biến không xác định trong local
 
-If we try to access a variable in a rendered template file that was not defined in the `locals` argument of `res.render` or `res.locals`, this can cause a reference error. For instance if we try to access an undefined `foo` variable, `locals.foo` will return undefined, while `foo` will result in a reference error. Verify this by outputting `locals.foo` in `index.ejs`, then replacing it with`foo`:
+Nếu chúng tôi cố gắng truy cập một biến trong tệp mẫu được hiển thị chưa được xác định trong đối số `locals` của `res.render` hoặc `res.locals`, điều này có thể gây ra lỗi tham chiếu. Ví dụ: nếu chúng ta cố truy cập vào một biến `foo` không xác định, `locals.foo` sẽ trả về không xác định, trong khi `foo` sẽ dẫn đến lỗi tham chiếu. Xác minh điều này bằng cách xuất `locals.foo` trong `index.ejs`, sau đó thay thế nó bằng`foo`:
 
 ```ejs
 <!-- index.ejs -->
@@ -129,11 +129,11 @@ If we try to access a variable in a rendered template file that was not defined 
 
 </div>
 
-### Reusable templates
+### Mẫu có thể tái sử dụng
 
-You may want to include webpage components that are shared across different pages, such as a sidebar or a header. To insert such components into your pages, we make use of the `include` command. This requires the name of the file to be inserted, and optionally an object of data you wish to pass.
+Bạn có thể muốn bao gồm các thành phần trang web được chia sẻ trên các trang khác nhau, chẳng hạn như thanh bên hoặc tiêu đề. Để chèn các thành phần như vậy vào trang của bạn, chúng tôi sử dụng lệnh `include`. Điều này yêu cầu tên của tệp được chèn và tùy chọn một đối tượng dữ liệu bạn muốn chuyển.
 
-Create the following navbar component called `"navbar.ejs"`:
+Tạo thành phần thanh điều hướng sau có tên `"navbar.ejs"`:
 
 ```ejs
 <!-- navbar.ejs -->
@@ -150,7 +150,7 @@ Create the following navbar component called `"navbar.ejs"`:
 </nav>
 ```
 
-Note that the navbar expects a `links` variable. To pass this data into the navbar, pass it as a `locals` variable when rendering the template file at `res.render()`. We will render `index.ejs` to include the navbar. To do this, modify `app.js` such that a `links` object is defined and passed into the `render` function rendering `index.ejs` in the `"/"` route handler:
+Lưu ý rằng thanh điều hướng mong đợi một biến `links`. Để chuyển dữ liệu này vào thanh điều hướng, hãy chuyển nó dưới dạng biến `locals` khi hiển thị tệp mẫu tại `res.render()`. Chúng tôi sẽ kết xuất `index.ejs` để bao gồm thanh điều hướng. Để thực hiện việc này, hãy sửa đổi `app.js` sao cho đối tượng `links` được xác định và chuyển vào hàm `render` hiển thị `index.ejs` trong trình xử lý tuyến đường `"/"`:
 
 ```javascript
 // app.js
@@ -164,7 +164,7 @@ app.get("/", (req, res) => {
 });
 ```
 
-Then, modify the previously created `index.ejs` to remove the `<%= message %>` line and instead `include` the `navbar` with the `links` variable like so:
+Sau đó, sửa đổi `index.ejs` đã tạo trước đó để xóa dòng `<%= message %>` và thay vào đó là `include` `navbar` với biến `links` như sau:
 
 ```ejs
 <!-- index.ejs -->
@@ -178,11 +178,11 @@ Then, modify the previously created `index.ejs` to remove the `<%= message %>` l
 </html>
 ```
 
-This will include the navbar with links in `index.ejs`. Run your server and see! Reusable templates can be used to include headers and footers in all of your pages.
+Điều này sẽ bao gồm thanh điều hướng với các liên kết trong `index.ejs`. Chạy máy chủ của bạn và xem! Các mẫu có thể sử dụng lại có thể được sử dụng để bao gồm đầu trang và chân trang trong tất cả các trang của bạn.
 
-Note the use of the raw output tag `<%-` with the `include` which is used to avoid double-escaping the HTML output.
+Lưu ý việc sử dụng thẻ đầu ra thô `<%-` với `include` được sử dụng để tránh thoát kép đầu ra HTML.
 
-Let's use `include` to dynamically render a list of variables a different way. In `app.js`, add the following `users` array just below the `links` variable, and pass it to the `render` function when rendering `index`:
+Hãy sử dụng `include` để tự động hiển thị danh sách các biến theo cách khác. Trong `app.js`, thêm mảng `users` sau ngay bên dưới biến `links` và chuyển nó tới hàm `render` khi hiển thị `index`:
 
 ```javascript
 // app.js
@@ -199,14 +199,14 @@ app.get("/", (req, res) => {
 });
 ```
 
-Then create a new view called `user.ejs` in the `views` directory:
+Sau đó tạo chế độ xem mới có tên `user.ejs` trong thư mục `views`:
 
 ```ejs
 <!-- views/user.ejs -->
 <li><%= user %></li>
 ```
 
-Then add the following block to `index.ejs`:
+Sau đó thêm khối sau vào `index.ejs`:
 
 ```ejs
 <!-- index.ejs -->
@@ -217,13 +217,13 @@ Then add the following block to `index.ejs`:
 </ul>
 ```
 
-If successful, Rose, Cake and Biff will be visible when rendering `index.ejs`.
+Nếu thành công, Rose, Cake và Biff sẽ hiển thị khi hiển thị `index.ejs`.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Directories within the views folder
+#### Các thư mục trong thư mục dạng xem
 
-Let's create nested directories of EJS template files within the views. Change the `user.ejs` in the `views` directory to `users/user.ejs`, and in `index.ejs` change the path from `user` to `users/user` in the `users.forEach` block:
+Hãy tạo các thư mục lồng nhau của các tệp mẫu EJS trong các khung nhìn. Thay đổi `user.ejs` trong thư mục `views` thành `users/user.ejs` và trong `index.ejs` thay đổi đường dẫn từ `user` thành `users/user` trong khối `users.forEach`:
 
 ```ejs
 <!-- index.ejs -->
@@ -236,9 +236,9 @@ Let's create nested directories of EJS template files within the views. Change t
 
 </div>
 
-### Serving Static Assets
+### Cung cấp nội dung tĩnh
 
-Serving static assets with EJS is similar to how we served assets previously when working directly with HTML, in that we can add external files to the head of the template file using the `link` tag. The main thing to point out is that the app needs to know where to serve assets from. Assuming `express` is installed, set the following lines in `app.js`:
+Việc phân phát nội dung tĩnh bằng EJS tương tự như cách chúng tôi phân phát nội dung trước đây khi làm việc trực tiếp với HTML, trong đó chúng tôi có thể thêm các tệp bên ngoài vào phần đầu của tệp mẫu bằng thẻ `link`. Điều chính cần chỉ ra là ứng dụng cần biết phân phát nội dung từ đâu. Giả sử `express` đã được cài đặt, hãy đặt các dòng sau trong `app.js`:
 
 ```javascript
 // app.js
@@ -246,9 +246,9 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 ```
 
-`express.static()` is a middleware function that enables the use of static assets, and we tell it to look for assets with the `public` directory as the root.
+`express.static()` là một chức năng phần mềm trung gian cho phép sử dụng nội dung tĩnh và chúng tôi yêu cầu nó tìm kiếm nội dung có thư mục `public` làm gốc.
 
-Create the following `styles.css` file in the root of the `public` directory:
+Tạo tệp `styles.css` sau trong thư mục gốc của `public`:
 
 ```css
 /* public/styles.css */
@@ -257,7 +257,7 @@ body {
 }
 ```
 
-To serve `styles.css` in `index.ejs`, set the following `link` tag like so in the head:
+Để phục vụ `styles.css` trong `index.ejs`, hãy đặt thẻ `link` sau đây trong phần đầu:
 
 ```ejs
 <!-- index.ejs -->
@@ -266,21 +266,21 @@ To serve `styles.css` in `index.ejs`, set the following `link` tag like so in th
 </head>
 ```
 
-Your `index.ejs` file should now display red text!
+Tệp `index.ejs` của bạn bây giờ sẽ hiển thị văn bản màu đỏ!
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Have another read through the [EJS docs](https://ejs.co/#docs).
-1. Read through the [Express resource on template engines](https://expressjs.com/en/guide/using-template-engines.html). The resource uses Pug for the examples which has a different syntax, however the information should still be a useful supplement to this lesson.
-1. Let's add to the app we've been developing this lesson! Add a view for an about page, which should render on the `/about` route.
-1. Create a reusable footer template and render it in all of the app routes.
+1. Đọc lại [EJS docs](https://ejs.co/#docs).
+1. Đọc qua [Tài nguyên Express trên công cụ mẫu](https://expressjs.com/en/guide/using-template-engines.html). Tài nguyên sử dụng Pug cho các ví dụ có cú pháp khác, tuy nhiên thông tin vẫn phải là phần bổ sung hữu ích cho bài học này.
+1. Hãy thêm vào ứng dụng mà chúng ta đang phát triển bài học này nhé! Thêm chế độ xem cho trang giới thiệu, trang này sẽ hiển thị trên tuyến `/about`.
+1. Tạo mẫu chân trang có thể sử dụng lại và hiển thị nó trong tất cả các tuyến ứng dụng.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- [How to Use EJS to Template Your Node.js Application](https://blog.logrocket.com/how-to-use-ejs-template-node-js-application/)
+- [Cách sử dụng EJS để tạo mẫu cho ứng dụng Node.js của bạn](https://blog.logrocket.com/how-to-use-ejs-template-node-js-application/)

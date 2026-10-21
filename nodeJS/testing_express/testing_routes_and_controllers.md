@@ -1,25 +1,25 @@
-### Introduction
+### Giới thiệu
 
-Unit Testing is important for many reasons that we probably don't need to cover right now. If you've already taken our basic JavaScript course you've already encountered Unit Testing, and the point of *this* lesson is not to teach you the philosophy or mechanics of writing tests, but how they apply to our Express applications and APIs.
+Kiểm thử unit quan trọng vì nhiều lý do mà có lẽ hiện tại chúng ta không cần đề cập hết. Nếu bạn đã học khóa JavaScript cơ bản của chúng tôi, bạn đã từng gặp kiểm thử unit; mục đích của *bài học này* không phải dạy triết lý hay cơ chế viết test, mà là cách áp dụng chúng vào các ứng dụng và API Express.
 
-If you haven't finished our [front-end JavaScript course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript), go back and take a look at those lessons before progressing.
+Nếu bạn chưa hoàn thành [khóa JavaScript front-end](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript) của chúng tôi, hãy quay lại xem những bài học đó trước khi tiếp tục.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp cái nhìn tổng quát về những chủ đề bạn sẽ học trong bài học này.
 
-- Use the `supertest` module to test Express routes/controllers.
-- Describe how SuperTest handles our express application.
-- Explain the functionality `superagent` provides to SuperTest.
-- Describe what the `done` parameter is used for.
-- Explain and have a firm understanding of `.expect()` method's functionality.
-- Have familiarity with `supertest`'s documentation and methods.
+- Sử dụng module `supertest` để kiểm thử route/controller của Express.
+- Mô tả cách SuperTest xử lý ứng dụng express của chúng ta.
+- Giải thích chức năng mà `superagent` cung cấp cho SuperTest.
+- Mô tả tham số `done` được dùng để làm gì.
+- Giải thích và hiểu vững chức năng của method `.expect()`.
+- Làm quen với tài liệu và các method của `supertest`.
 
-### Routes testing with supertest
+### Kiểm thử route bằng supertest
 
-The most important, basic requirement for testing something in your code is that it must be in an exported module. This is true for both custom middleware and your routes/controllers, so the very first thing you need to do is separate those things into their own modules, if they aren't already.
+Yêu cầu cơ bản và quan trọng nhất để kiểm thử một phần nào đó trong mã của bạn là phần đó phải nằm trong một module được export. Điều này đúng với cả custom middleware lẫn route/controller, vì vậy việc đầu tiên bạn cần làm là tách chúng thành các module riêng nếu chúng chưa được tách.
 
-In the case of routes, you already know how to do this using Express.Router. Below is a very basic example.
+Với route, bạn đã biết cách thực hiện việc này bằng Express.Router. Dưới đây là một ví dụ rất cơ bản.
 
 ```javascript
 //// app.js
@@ -60,11 +60,11 @@ index.post("/test", (req, res) => {
 module.exports = index;
 ```
 
-These two files, `app.js` and `index.js` define a couple of routes and then set up and start our express app. For the moment we do *not* need to test `app.js` because it only contains code that starts and runs an express app! It doesn't include any of our own logic so we don't need to test it. `index.js` however *does* include some things that we want to test.
+Hai file `app.js` và `index.js` này định nghĩa một vài route, sau đó thiết lập và khởi chạy ứng dụng express. Hiện tại chúng ta *không* cần kiểm thử `app.js` vì file này chỉ chứa mã khởi động và chạy ứng dụng express! Nó không chứa logic do chúng ta tự viết, nên không cần kiểm thử. Tuy nhiên, `index.js` *có* chứa một số phần chúng ta muốn kiểm thử.
 
-To facilitate actually testing these routes we're going to use a library called [SuperTest](https://github.com/visionmedia/supertest), and for familiarity of test syntax, we'll use it in conjunction with Jest in this lesson's examples. Go ahead and `npm install jest supertest --save-dev` and while it's installing, take a few minutes to look through the README on SuperTest's Git repo (linked above).
+Để thực sự kiểm thử các route này, chúng ta sẽ dùng một thư viện có tên [SuperTest](https://github.com/visionmedia/supertest); để làm quen với cú pháp test, trong các ví dụ của bài học này chúng ta sẽ kết hợp nó với Jest. Hãy chạy `npm install jest supertest --save-dev` và trong lúc cài đặt, dành vài phút đọc README trong repo Git của SuperTest (đã liên kết ở trên).
 
-Here's our test file:
+Đây là file test của chúng ta:
 
 ```javascript
 const index = require("../index");
@@ -97,15 +97,15 @@ test("testing route works", done => {
 });
 ```
 
-Let's step through it piece by piece.
+Hãy cùng đi qua từng phần.
 
-To begin, we have to import the module we're testing, in this case it's the file `index.js` from above.
+Trước tiên, chúng ta phải import module đang kiểm thử; trong trường hợp này là file `index.js` ở trên.
 
 ```javascript
 const index = require("../index");
 ```
 
-Next, we include both `supertest` and `express`.  We're setting up a new Express app and then using the index router that we imported previously. The reason we have to do this setup here is because we are not actually touching our original `app.js` file. The main reason that we're doing it this way is so that we can avoid calling the `app.listen` command and starting our server, but it's also useful because, in larger apps, we can skip some of the optional configuration steps and only include the bits that we need for our testing purposes.  In a larger test suite, it would probably be useful to abstract this part out to its own file that gets imported into each test file.
+Tiếp theo, chúng ta đưa cả `supertest` và `express` vào. Chúng ta thiết lập một ứng dụng Express mới, sau đó sử dụng index router đã import trước đó. Lý do phải thực hiện phần thiết lập này ở đây là vì chúng ta không thực sự chạm vào file `app.js` gốc. Lý do chính của cách làm này là để tránh gọi lệnh `app.listen` và khởi động server, nhưng nó cũng hữu ích vì trong các ứng dụng lớn hơn, chúng ta có thể bỏ qua một số bước cấu hình tùy chọn và chỉ đưa vào những phần cần thiết cho mục đích kiểm thử. Trong một test suite lớn hơn, có lẽ sẽ hữu ích nếu tách phần này thành file riêng để import vào từng file test.
 
 ```javascript
 const request = require("supertest");
@@ -116,9 +116,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/", index);
 ```
 
-The tests themselves are relatively straightforward, thanks to the SuperTest library! Remember that we imported supertest as the function `request` which we use as seen below. We call it on our freshly created express app, pass it our route, and then use it to make sure that the responses match the types and content that we expect.
+Bản thân các test khá dễ hiểu nhờ thư viện SuperTest! Hãy nhớ rằng chúng ta đã import supertest dưới dạng hàm `request`, và sử dụng nó như bên dưới. Chúng ta gọi hàm này trên ứng dụng express vừa tạo, truyền route cho nó, rồi dùng nó để đảm bảo các response khớp với kiểu và nội dung mà chúng ta mong đợi.
 
-Notice the parameter `done` that is passed into the test callback.  Most testing libraries use this to signal that the test is complete in the case of asynchronous operations. In this case, SuperTest allows us to pass it into the last `.expect` and calls it for us.  Thanks, SuperTest!
+Hãy chú ý tham số `done` được truyền vào callback của test. Hầu hết thư viện kiểm thử dùng tham số này để báo hiệu test đã hoàn thành trong trường hợp có thao tác bất đồng bộ. Trong trường hợp này, SuperTest cho phép chúng ta truyền nó vào `.expect` cuối cùng và tự gọi nó. Cảm ơn SuperTest!
 
 ```javascript
 test("index route works", done => {
@@ -130,7 +130,7 @@ test("index route works", done => {
 });
 ```
 
-Our second test is very similar to the first one, but tests the `post` method. You can (and should) read about all the possible functions on the SuperTest readme, so we won't go into the details of every step here. The last bit however is important to us. By this point in your JavaScript career, you should be familiar with Promises, so the `.then()` syntax should be familiar. In this case we wait for the POST request to finish and then we call the GET request when that promise resolves to check if that item has been pushed into the array.
+Test thứ hai rất giống test đầu tiên, nhưng kiểm thử method `post`. Bạn có thể (và nên) đọc về tất cả các hàm có thể dùng trong README của SuperTest, nên chúng ta sẽ không đi vào chi tiết từng bước ở đây. Tuy nhiên, phần cuối rất quan trọng. Đến giai đoạn này trong quá trình học JavaScript, bạn hẳn đã quen với Promise, vì vậy cú pháp `.then()` cũng không xa lạ. Trong trường hợp này, chúng ta chờ request POST hoàn tất, sau đó gọi request GET khi promise đó được resolve để kiểm tra xem item đã được thêm vào array hay chưa.
 
 ```javascript
 test("testing route works", done => {
@@ -146,13 +146,13 @@ test("testing route works", done => {
 });
 ```
 
-If we were using a real database here, then we would want to do something similar using either a test or a mock database. We'll talk about setting something like that up in a separate lesson. Suffice it to say for now that you do not want to run test code on your production database!
+Nếu ở đây dùng một cơ sở dữ liệu thật, chúng ta sẽ muốn làm điều tương tự bằng cơ sở dữ liệu kiểm thử hoặc cơ sở dữ liệu giả. Chúng ta sẽ nói về cách thiết lập một hệ thống như vậy trong một bài học riêng. Tạm thời chỉ cần nhớ rằng bạn không muốn chạy mã test trên cơ sở dữ liệu production!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Make sure that you read through the [SuperTest docs](https://github.com/forwardemail/supertest)
-1. SuperTest actually pulls from another related project called SuperAgent.  Any method that you can call in SuperAgent you can also call from SuperTest, so you'll need to take a look through the [SuperAgent docs](https://forwardemail.github.io/superagent/) as well.
+1. Hãy đọc kỹ [tài liệu SuperTest](https://github.com/forwardemail/supertest)
+1. SuperTest thực tế lấy chức năng từ một dự án liên quan khác có tên SuperAgent. Bất kỳ method nào bạn có thể gọi trong SuperAgent cũng có thể gọi từ SuperTest, vì vậy bạn cũng cần xem qua [tài liệu SuperAgent](https://forwardemail.github.io/superagent/).
 
 </div>

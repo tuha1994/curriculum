@@ -1,46 +1,46 @@
-### Introduction
+### Giới thiệu
 
-In the previous lesson, we broke down a basic Express app and a request's journey through it. However, in a real app, we'd want to handle many different types of requests for different things.
+Trong bài học trước, chúng ta đã chia nhỏ một ứng dụng Express cơ bản và hành trình của một yêu cầu thông qua ứng dụng đó. Tuy nhiên, trong một ứng dụng thực, chúng tôi muốn xử lý nhiều loại yêu cầu khác nhau cho những mục đích khác nhau.
 
-Routes essentially just match a request's HTTP verb (e.g. GET or POST) and URL path to the appropriate set of middleware functions - the controllers. We will explore controllers and middleware in more detail in the next lesson. For now, let's dive into how we can use routes.
+Về cơ bản, các tuyến chỉ khớp với động từ HTTP của yêu cầu (ví dụ: GET hoặc POST) và đường dẫn URL tới tập hợp các chức năng phần mềm trung gian thích hợp - bộ điều khiển. Chúng ta sẽ khám phá bộ điều khiển và phần mềm trung gian chi tiết hơn trong bài học tiếp theo. Bây giờ, hãy đi sâu vào cách chúng ta có thể sử dụng các tuyến đường.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Describe how routes are defined.
-- Explain route parameters and query parameters.
-- Set up new routers on a path.
+- Trình bày cách xác định đường đi.
+- Giải thích các tham số tuyến đường và các tham số truy vấn.
+- Thiết lập bộ định tuyến mới trên một đường dẫn.
 
-### The anatomy of a route
+### Cấu trúc của một tuyến đường
 
-Let's return to our sole route from our previous basic Express app.
+Hãy quay lại lộ trình duy nhất của chúng ta từ ứng dụng Express cơ bản trước đây.
 
 ```javascript
 app.get("/", (req, res) => res.send("Hello, world!"));
 ```
 
-`app.get("/" ...` tells us that this route will match any GET requests that go through the `app` router (which is our whole server!) to the `/` path. If instead we had the following:
+`app.get("/" ...` cho chúng tôi biết rằng tuyến đường này sẽ khớp với mọi yêu cầu GET đi qua bộ định tuyến `app` (là toàn bộ máy chủ của chúng tôi!) với đường dẫn `/`. Nếu thay vào đó chúng ta có những điều sau đây:
 
 ```javascript
 app.post("/messages", (req, res) => res.send("This is where you can see any messages."));
 ```
 
-That would tell us the route matches any POST requests to the `/messages` path of our `app`. If you sent a GET request to the `/messages` path, it would not match this route. Each HTTP verb has its own Express route method, and you can also use [app.all()](https://expressjs.com/en/5x/api/application/#appall) to make a route match all verbs.
+Điều đó sẽ cho chúng ta biết tuyến đường khớp với bất kỳ yêu cầu POST nào với đường dẫn `/messages` của `app` của chúng ta. Nếu bạn gửi yêu cầu GET tới đường dẫn `/messages`, nó sẽ không khớp với tuyến đường này. Mỗi động từ HTTP có phương thức lộ trình Express riêng và bạn cũng có thể sử dụng [app.all()](https://expressjs.com/en/5x/api/application/#appall) để tạo một lộ trình khớp với tất cả các động từ.
 
 <div class="lesson-note" markdown="1">
 
-#### HTTP verbs
+#### Động từ HTTP
 
-[There are many HTTP verbs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), but for now, we will primarily be using GET (used to retrieve data from the server only) and POST (used to send data to the server e.g. forms). Later, when we cover REST APIs, you will often also encounter verbs like PUT and DELETE.
+[Có nhiều động từ HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), nhưng hiện tại, chúng tôi sẽ chủ yếu sử dụng GET (chỉ được sử dụng để truy xuất dữ liệu từ máy chủ) và POST (được sử dụng để gửi dữ liệu đến máy chủ, ví dụ: biểu mẫu). Sau này, khi chúng tôi đề cập đến API REST, bạn cũng sẽ thường gặp các động từ như PUT và DELETE.
 
 </div>
 
-### Paths
+### Đường dẫn
 
-The first argument we pass a route is the path to match, which can either be a string or a regular expression. `/messages` matches that exactly, while `/messages/all` only matches if the path is `/messages/all` (not `/messages`, nor `/messages/new`).
+Đối số đầu tiên chúng ta truyền vào một tuyến đường là đường dẫn cần khớp, có thể là một chuỗi hoặc một biểu thức chính quy. `/messages` khớp chính xác với điều đó, trong khi `/messages/all` chỉ khớp nếu đường dẫn là `/messages/all` (không phải `/messages` hay `/messages/new`).
 
-With string paths, we can also use `{}` to make characters optional. For example:
+Với đường dẫn chuỗi, chúng ta cũng có thể sử dụng `{}` để tạo các ký tự tùy chọn. Ví dụ:
 
 ```javascript
 // Matches both /message and /messages
@@ -53,9 +53,9 @@ With string paths, we can also use `{}` to make characters optional. For example
 "/foo{/bar}/baz"
 ```
 
-With `*` (a "splat" or "wildcard"), we can match any number of any characters. [Splats in Express paths must always be followed by a name](https://expressjs.com/en/5x/guide/routing/#wildcards).
+Với `*` ("splat" hoặc "ký tự đại diện"), chúng ta có thể khớp bất kỳ số lượng ký tự nào. [Các biểu tượng trong đường dẫn Express phải luôn được theo sau bởi tên](https://expressjs.com/en/5x/guide/routing/#wildcards).
 
-A common use case for a splat would be as a catch-all for all otherwise unmatched paths, e.g. for custom 404 error handling.
+Trường hợp sử dụng phổ biến cho biểu tượng sẽ là trường hợp tổng hợp cho tất cả các đường dẫn chưa từng có, ví dụ: để xử lý lỗi 404 tùy chỉnh.
 
 ```javascript
 // Matches / and /odin as well as /sdds8fjsdifhj98sdfh
@@ -64,9 +64,9 @@ A common use case for a splat would be as a catch-all for all otherwise unmatche
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Order matters!
+#### Thứ tự rất quan trọng!
 
-Your routes will be set up in your server in the order they are defined.
+Các tuyến đường của bạn sẽ được thiết lập trong máy chủ theo thứ tự chúng được xác định.
 
 ```javascript
 app.get("/{*splat}", (req, res) => {
@@ -77,15 +77,15 @@ app.get("/messages", (req, res) => {
 });
 ```
 
-In order for our `GET /messages` request to match the `/messages` route, we will need to reverse the order our routes are defined. Doing so will prevent it from reaching the `/{*splat}` route, as it will match the `/messages` route first.
+Để yêu cầu `GET /messages` của chúng tôi khớp với tuyến đường `/messages`, chúng tôi sẽ cần đảo ngược thứ tự các tuyến đường mà chúng tôi đã xác định. Làm như vậy sẽ ngăn nó tiếp cận tuyến đường `/{*splat}` vì trước tiên nó sẽ khớp với tuyến đường `/messages`.
 
 </div>
 
-#### Route parameters
+#### Tham số tuyến đường
 
-What if we wanted to have a route for all messages for any username, for example, `/odin/messages` or `/thor/messages`, or even `/theodinproject79687378/messages`? Just like with React Router, we can use `route parameters`, and a path can contain as many of these parameters as we need.
+Điều gì sẽ xảy ra nếu chúng ta muốn có lộ trình cho tất cả tin nhắn cho bất kỳ tên người dùng nào, ví dụ: `/odin/messages` hoặc `/thor/messages` hoặc thậm chí `/theodinproject79687378/messages`? Giống như với React Router, chúng ta có thể sử dụng `route parameters` và một đường dẫn có thể chứa bao nhiêu tham số này mà chúng ta cần.
 
-To denote a route parameter, we start a segment with a `:` followed by the name of the parameter (which can only consist of case-sensitive alphanumeric characters, or `_`). Whatever we name that route parameter, Express will automatically populate the `req.params` object in any of the following middleware functions with whatever value the path passed into the parameter, using the parameter name as its key.
+Để biểu thị một tham số tuyến đường, chúng tôi bắt đầu một phân đoạn bằng `:`, theo sau là tên của tham số (chỉ có thể bao gồm các ký tự chữ và số phân biệt chữ hoa chữ thường hoặc `_`). Dù chúng ta đặt tên cho tham số tuyến đường đó là gì, Express sẽ tự động điền đối tượng `req.params` vào bất kỳ hàm phần mềm trung gian nào sau đây với bất kỳ giá trị nào mà đường dẫn được truyền vào tham số, sử dụng tên tham số làm khóa.
 
 ```javascript
 /**
@@ -110,15 +110,15 @@ app.get("/:username/messages/:messageId", (req, res) => {
 });
 ```
 
-Now we can easily extract values from the request path for use within our middleware chain!
+Bây giờ chúng ta có thể dễ dàng trích xuất các giá trị từ đường dẫn yêu cầu để sử dụng trong chuỗi phần mềm trung gian của mình!
 
-#### Query parameters
+#### Tham số truy vấn
 
-Query parameters are a unique and optional part of a URL that appear at the end. A `?` denotes the start of the query parameters, with each query being a key-value pair with the format `key=value`, and each query separated by an `&`. They are special as they are not actually considered part of the path itself, but are essentially more like arguments we can pass in to a given path.
+Tham số truy vấn là phần duy nhất và tùy chọn của URL xuất hiện ở cuối. `?` biểu thị sự bắt đầu của các tham số truy vấn, với mỗi truy vấn là một cặp khóa-giá trị có định dạng `key=value` và mỗi truy vấn được phân tách bằng `&`. Chúng đặc biệt vì chúng không thực sự được coi là một phần của con đường mà về cơ bản giống như những đối số mà chúng ta có thể truyền vào một con đường nhất định.
 
-For example, `/odin/messages?sort=date&direction=ascending` will still match the route with the `/:username/messages` path, but we can access the `sort=date` and `direction=ascending` key-value pairs inside the middleware chain.
+Ví dụ: `/odin/messages?sort=date&direction=ascending` vẫn sẽ khớp tuyến với đường dẫn `/:username/messages`, nhưng chúng ta có thể truy cập các cặp khóa-giá trị `sort=date` và `direction=ascending` bên trong chuỗi phần mềm trung gian.
 
-Express automatically parses any query parameters in a request and will populate the `req.query` object with any key-value pairs it finds. If any keys are repeated, Express will put all values for that key into an array.
+Express tự động phân tích cú pháp bất kỳ tham số truy vấn nào trong một yêu cầu và sẽ điền vào đối tượng `req.query` bất kỳ cặp khóa-giá trị nào mà nó tìm thấy. Nếu bất kỳ khóa nào được lặp lại, Express sẽ đưa tất cả giá trị của khóa đó vào một mảng.
 
 ```javascript
 /**
@@ -137,15 +137,15 @@ app.get("/:username/messages", (req, res) => {
 });
 ```
 
-You may have already seen this with websites like YouTube. Every YouTube video is given a code and to watch that video, you navigate to `https://www.youtube.com/watch`, passing that video code as a query parameter with the `v` key. You could even specify at what timestamp in seconds the video should start at via the `t` key. So appending `?v=xm3YgoEiEDc&t=424s` will [request `/watch` from YouTube for the `xm3YgoEiEDc` video starting `424` seconds in](https://www.youtube.com/watch?v=xm3YgoEiEDc&t=424s).
+Bạn có thể đã thấy điều này trên các trang web như YouTube. Mỗi video YouTube đều được cấp một mã và để xem video đó, bạn điều hướng đến `https://www.youtube.com/watch`, chuyển mã video đó dưới dạng tham số truy vấn bằng phím `v`. Bạn thậm chí có thể chỉ định dấu thời gian tính bằng giây mà video sẽ bắt đầu thông qua phím `t`. Vì vậy, việc thêm `?v=xm3YgoEiEDc&t=424s` sẽ [yêu cầu `/watch` từ YouTube cho video `xm3YgoEiEDc` bắt đầu từ `424` giây trong](https://www.youtube.com/watch?v=xm3YgoEiEDc&t=424s).
 
-### Routers
+### Bộ định tuyến
 
-So far, we've not been using many routes, and all routes we've shown have been attached to `app`, our server itself. In a real application with lots of routes, we'd probably want to organize our routes into groups and extract each group out to their own file. We could also then more easily write things that affect only the routes in that file, and not any others.
+Cho đến nay, chúng tôi chưa sử dụng nhiều tuyến đường và tất cả các tuyến đường chúng tôi hiển thị đều được gắn vào `app`, chính máy chủ của chúng tôi. Trong một ứng dụng thực tế có nhiều tuyến đường, có lẽ chúng ta muốn sắp xếp các tuyến đường của mình thành các nhóm và trích xuất từng nhóm ra tệp riêng của chúng. Sau đó, chúng tôi cũng có thể dễ dàng viết những thứ chỉ ảnh hưởng đến các tuyến đường trong tệp đó chứ không ảnh hưởng đến bất kỳ tuyến đường nào khác.
 
-Say we were making a library app and we wanted pages that dealt with books and pages that dealt with authors. That's on top of the homepage and any other miscellaneous pages like "about" or "contact".
+Giả sử chúng tôi đang tạo một ứng dụng thư viện và chúng tôi muốn các trang liên quan đến sách và các trang liên quan đến tác giả. Nó nằm ở đầu trang chủ và bất kỳ trang linh tinh nào khác như "giới thiệu" hoặc "liên hệ".
 
-We might want our server to handle the following routes:
+Chúng tôi có thể muốn máy chủ của mình xử lý các tuyến sau:
 
 ```text
 GET /
@@ -162,9 +162,9 @@ GET /authors
 GET /authors/:authorId
 ```
 
-It'd be nice if we could extract the route groups to their own files, and we can do that using routers! Going back to our basic Express app from before, let's add some routers to handle each of our route groups.
+Sẽ thật tuyệt nếu chúng ta có thể trích xuất các nhóm định tuyến vào các tệp của riêng chúng và chúng ta có thể làm điều đó bằng cách sử dụng bộ định tuyến! Quay trở lại ứng dụng Express cơ bản của chúng ta trước đó, hãy thêm một số bộ định tuyến để xử lý từng nhóm tuyến đường của chúng ta.
 
-We'll need a router first, which we can place in a new `routes` folder. For example, `routes/authorRouter.js`:
+Trước tiên, chúng ta sẽ cần một bộ định tuyến để có thể đặt bộ định tuyến này vào thư mục `routes` mới. Ví dụ: `routes/authorRouter.js`:
 
 ```javascript
 // routes/authorRouter.js
@@ -181,11 +181,11 @@ authorRouter.get("/:authorId", (req, res) => {
 module.exports = authorRouter;
 ```
 
-In the above, we destructure the Express object to get a Router function and use it to create our `authorRouter`. We can use the same `.get` or `.post` methods on this router instead of on the whole server object, meaning we can write routes and middleware scoped to this router (we will dive deeper into these in the next lesson). Since we'll make this router usable only for paths that start with `/authors`, our route paths here don't need to include it. Instead, they *extend* the parent path (we wouldn't want our route to match `/authors/authors/:authorId`).
+Ở phần trên, chúng ta hủy cấu trúc đối tượng Express để lấy chức năng Bộ định tuyến và sử dụng nó để tạo `authorRouter` của mình. Chúng ta có thể sử dụng các phương thức `.get` hoặc `.post` tương tự trên bộ định tuyến này thay vì trên toàn bộ đối tượng máy chủ, nghĩa là chúng ta có thể viết các tuyến và phần mềm trung gian trong phạm vi bộ định tuyến này (chúng ta sẽ đi sâu hơn vào những điều này trong bài học tiếp theo). Vì chúng tôi sẽ làm cho bộ định tuyến này chỉ có thể sử dụng được cho các đường dẫn bắt đầu bằng `/authors` nên các đường dẫn định tuyến của chúng tôi ở đây không cần bao gồm nó. Thay vào đó, chúng *extend* là đường dẫn gốc (chúng tôi không muốn tuyến đường của mình khớp với `/authors/authors/:authorId`).
 
-Create the other two routers for the other route groups - `routes/bookRouter.js` and `routes/indexRouter.js`! Their middleware functions don't need to do much, just send something unique to each route so you know which route is being matched.
+Tạo hai bộ định tuyến khác cho các nhóm tuyến khác - `routes/bookRouter.js` và `routes/indexRouter.js`! Các chức năng phần mềm trung gian của họ không cần phải làm gì nhiều, chỉ cần gửi nội dung nào đó duy nhất cho từng tuyến để bạn biết tuyến nào đang được khớp.
 
-Once you've made the other two routers, let's add them to our server in `app.js`:
+Khi bạn đã tạo xong hai bộ định tuyến còn lại, hãy thêm chúng vào máy chủ của chúng tôi trong `app.js`:
 
 ```javascript
 // app.js
@@ -208,20 +208,20 @@ app.listen(PORT, (error) => {
 });
 ```
 
-We specify that any requests with paths starting with `/authors` will be passed through `authorRouter` for route matching. If our request starts with `/books`, it will skip these author routes and then check the routes in `bookRouter` instead. Any other requests that don't start with either of these will run through `indexRouter`.
+Chúng tôi chỉ định rằng mọi yêu cầu có đường dẫn bắt đầu bằng `/authors` sẽ được chuyển qua `authorRouter` để khớp tuyến đường. Nếu yêu cầu của chúng tôi bắt đầu bằng `/books`, nó sẽ bỏ qua các tuyến tác giả này và sau đó kiểm tra các tuyến trong `bookRouter`. Bất kỳ yêu cầu nào khác không bắt đầu bằng một trong hai yêu cầu này sẽ chạy qua `indexRouter`.
 
-To test these routes, use [Postman](https://www.postman.com/downloads/) which will allow you to send `GET` and `POST` requests without the browser (we can't send `POST` requests from the browser address bar).
+Để kiểm tra các tuyến này, hãy sử dụng [Postman](https://www.postman.com/downloads/) để cho phép bạn gửi yêu cầu `GET` và `POST` mà không cần trình duyệt (chúng tôi không thể gửi yêu cầu `POST` từ thanh địa chỉ trình duyệt).
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through the Express' [primer on Routing](https://expressjs.com/en/guide/routing.html) for an overview of this lesson's topics. Remember to reference the [Express documentation](https://expressjs.com/en/api.html) for more information on specific methods.
+1. Đọc qua Express' [mồi về Routing](https://expressjs.com/en/guide/routing.html) để biết tổng quan về các chủ đề của bài học này. Hãy nhớ tham khảo [Tài liệu nhanh](https://expressjs.com/en/api.html) để biết thêm thông tin về các phương pháp cụ thể.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- This video about [Express Routes](https://youtu.be/0Hu27PoloYw?si=LZ8wQkOTP-e50Zvi) offers a comprehensive overview of Express routes.
+- Video này về [Tuyến tốc hành](https://youtu.be/0Hu27PoloYw?si=LZ8wQkOTP-e50Zvi) cung cấp cái nhìn tổng quan toàn diện về các tuyến tốc hành.

@@ -150,6 +150,39 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `databases/databases/databases_and_sql.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
 | `databases/databases/project_sql_zoo.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
 
+## Các bài NodeJS đã dịch
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `nodeJS/apis/api_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/apis/api_security.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/apis/project_blog_api.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/authentication/authentication_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/authentication/project_members_only.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/express/controllers.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/express/deployment.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/express/forms_and_data_handling.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/express/installation_guides/postgresql/linux.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh cài đặt. |
+| `nodeJS/express/installation_guides/postgresql/macos.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh cài đặt. |
+| `nodeJS/express/installing_postgresql.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh và SQL. |
+| `nodeJS/express/introduction_to_express.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/express/project_inventory_application.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/express/project_mini_message_board.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/express/routing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/express/using_postgresql.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên SQL. |
+| `nodeJS/express/views.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/final_project/conclusion.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/final_project/project_odin_book.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/introduction_to_nodeJS/debugging_node.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/introduction_to_nodeJS/environment_variables.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên tên biến và lệnh. |
+| `nodeJS/introduction_to_nodeJS/getting_started.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/introduction_to_nodeJS/introduction_what_is_nodeJS.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `nodeJS/introduction_to_nodeJS/project_basic_informational_site.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/orms/prisma_orm.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên code ORM. |
+| `nodeJS/orms/project_file_uploader.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `nodeJS/testing_express/testing_database_operations.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên test và code. |
+| `nodeJS/testing_express/testing_routes_and_controllers.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên test và code. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc `intermediate_html_css`.
@@ -196,6 +229,6 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 
 - `chưa dịch`: chưa có bản dịch được chấp nhận.
 - `bản nháp`: đã có bản dịch nhưng chưa qua đủ kiểm tra.
-- `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị`: kiểm tra bất biến và cấu trúc đạt, chưa xem web local.
+- `đã kiểm tra code, cấu trúc và chờ hiển thị local`: kiểm tra bất biến và cấu trúc đạt, chưa cập nhật hoặc xem web local.
 - `đã kiểm tra code, cấu trúc và hiển thị local`: mọi kiểm tra của bài đạt.
 - `cần cập nhật`: upstream đã đổi hoặc kiểm tra lại phát hiện vấn đề.

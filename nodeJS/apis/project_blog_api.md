@@ -1,36 +1,36 @@
-### Introduction
+### Giới thiệu
 
-Do you know what you need? You need a blog. Or maybe you don't, or maybe you already have one, in any case, this project will be a great way to practice and see the benefits of creating an API only backend. We're actually going to create the backend and *two* different front-ends for accessing and editing your blog posts. One of the front-end sites will be for people that want to read and comment on your posts, while the other one will be just for you to write, edit and publish your posts.
+Bạn biết mình cần gì không? Bạn cần một blog. Hoặc có thể không, hoặc bạn đã có blog rồi; dù thế nào, project này cũng là cách tuyệt vời để thực hành và thấy được lợi ích của việc tạo back-end chỉ dành cho API. Thực tế, chúng ta sẽ tạo back-end và *hai* front-end khác nhau để truy cập và chỉnh sửa bài viết trên blog. Một website front-end dành cho những người muốn đọc và bình luận bài viết, còn website kia chỉ dành cho bạn viết, chỉnh sửa và xuất bản bài viết.
 
-Why are we setting it up like this? Because we can! The important exercise here is setting up the API and then accessing it from the outside. There are some security benefits to setting up separate websites for blog consumption and blog editing, but really we're just doing it like this to demonstrate the power and flexibility of separating your backend code from your frontend code.
+Tại sao lại thiết lập như vậy? Vì ta có thể làm thế! Bài tập quan trọng ở đây là thiết lập API rồi truy cập nó từ bên ngoài. Tách riêng website đọc blog và chỉnh sửa blog có một số lợi ích về bảo mật, nhưng thực ra ta làm vậy chủ yếu để minh họa sức mạnh và tính linh hoạt của việc tách code back-end khỏi code front-end.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. How you structure this project is up to you. Some people prefer separate GitHub repos for each of the three apps you will make, to keep them and their commit histories separate. Some people prefer a monorepo, with each app in their own directory within the same single repo.
-1. Begin by designing your back end models and schemas. How you design it is up to you, but you might want to think through a few things:
-   - Your blog should have posts and comments, so think about the fields you are going to want to include for each of those.
-   - Are you going to require users to leave a username or email with their comments?
-   - Are you going to display a date or a timestamp for posts and comments?
-   - Posts should probably have a title, but should comments?
-   - A useful feature for a blog is the ability to have posts that are in the database but not published for the public to read. How might you designate published vs unpublished posts in your DB?
-   - You will want a user model that will contain any blog authors and any normal user accounts. Even if you decide to only have a single author and no normal user accounts, a minimal user model will still be helpful to allow for easier route protection via authentication.
-1. Set up your Express app, and define the models in Prisma.
-1. Set up your routes and controllers!  Think about RESTful organization for this one. Most of the examples in the previous lesson were centered around posts and comments so this shouldn't be too tricky.
-   - You can test your routes however you want. Using `curl` in a terminal is one handy way, but it can be just as effective to use a web browser. There are some platforms that allow you to send `PUT` and `POST` requests without needing to set up and fill out HTML forms. [Postman](https://www.postman.com/downloads/) is probably the most popular.
-1. Certain routes will need to be protected via authentication. You wouldn't want any random stranger online to edit your articles! If you also implement normal user accounts then you may also want to protect some routes behind being logged in.
-   - Though there are many ways you can handle authentication, in this project, use JWTs.
-   - You can use [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) to create and verify JWTs. You may wish to use [Passport's JWT strategy](https://github.com/mikenicholson/passport-jwt) for verifying JWTs, especially if you already have Passport set up with a local strategy to handle logging in.
-   - A successful login will grant the user a JWT. That user can then attach their JWT to any future requests, where your API can verify the JWT in order to allow or deny access to the rest of the protected route. When the user logs out, you can have the client remove the JWT from storage.
-   - There are many ways to send and store JWTs, such as via cookies, storing in localStorage, using access/refresh tokens etc. Some of these methods are more complicated (though with the right implementation, potentially more secure), especially once you deploy both ends. For example, cross-site cookies can be a real headache if you aren't aware of certain extra details. You may wish to explore some of these alternatives in the future. For now, keep it simple and send your JWTs via an "Authorization" header with "Bearer" schema, and have the client store a JWT in localStorage.
-1. Once your API is working you can focus on your front-end code. Really, how you go about this is up to you. If you are comfortable with React, then go for it! If you're happier using plain HTML, CSS and vanilla JavaScript, that's fine too. All you should have to do to get your posts into a website is to `fetch` the correct API endpoint and then display the results. Working with fetch and APIs from a front-end perspective is covered in the [Working with APIs lesson](https://www.theodinproject.com/lessons/javascript-working-with-apis).
-1. Create a second website for authoring and editing your posts. You can set this up however you like but the following features might be useful:
-   - A list of all posts that shows whether or not they have been published.
-   - A button to publish unpublished posts, or to unpublish published ones!
-   - A 'NEW POST' form. If you want to get fancy, you could use a rich text editor such as [TinyMCE](https://www.tiny.cloud/docs/tinymce/6/cloud-quick-start/).
-   - The ability to manage comments (i.e. delete or edit them).
-1. How much work you want to put into the front-end code on this one is up to you. Technically this is a backend focused course so if you would prefer, feel free to focus on the REST API.
-1. Deploying your separate apps isn't anything fancy. Deploy your API like with your previous projects using a PaaS from the [Deployment lesson](https://www.theodinproject.com/lessons/node-path-nodejs-deployment), and deploy your front-ends like you would have deployed your front-ends before. If you used React, recall several hosting options from the [CV Application project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application).
+1. Bạn tự quyết định cách cấu trúc project. Một số người thích tạo repository GitHub riêng cho mỗi app trong ba app sẽ làm, để tách biệt chúng và lịch sử commit. Một số khác thích monorepo, trong đó mỗi app nằm trong một thư mục riêng của cùng một repository.
+1. Bắt đầu bằng việc thiết kế model và schema back-end. Cách thiết kế tùy bạn, nhưng có thể cân nhắc vài điều:
+   - Blog phải có post và comment, vì vậy hãy nghĩ đến các field muốn đưa vào mỗi loại.
+   - Bạn có yêu cầu người dùng để lại username hoặc email cùng comment không?
+   - Bạn có hiển thị ngày hoặc timestamp cho post và comment không?
+   - Post có lẽ nên có title, nhưng comment thì sao?
+   - Một tính năng hữu ích của blog là cho phép có những post nằm trong database nhưng chưa được công khai. Bạn sẽ đánh dấu post đã published và chưa published trong DB như thế nào?
+   - Bạn sẽ cần một user model chứa các tác giả blog và các tài khoản người dùng thông thường. Ngay cả khi quyết định chỉ có một tác giả và không có tài khoản người dùng thông thường, một user model tối thiểu vẫn hữu ích để dễ bảo vệ route bằng authentication.
+1. Thiết lập app Express và định nghĩa model trong Prisma.
+1. Thiết lập route và controller! Hãy nghĩ về cách tổ chức RESTful cho phần này. Hầu hết ví dụ trong bài trước tập trung vào post và comment nên việc này không quá khó.
+   - Bạn có thể kiểm thử route theo cách tùy ý. Dùng `curl` trong terminal là một cách tiện lợi, nhưng dùng web browser cũng hiệu quả tương đương. Một số nền tảng cho phép gửi request `PUT` và `POST` mà không cần thiết lập và điền HTML form. [Postman](https://www.postman.com/downloads/) có lẽ là nền tảng phổ biến nhất.
+1. Một số route cần được bảo vệ bằng authentication. Bạn chắc chắn không muốn người lạ bất kỳ trên Internet chỉnh sửa bài viết của mình! Nếu triển khai cả tài khoản người dùng thông thường, bạn cũng có thể muốn bảo vệ một số route, chỉ cho phép truy cập sau khi đăng nhập.
+   - Dù có nhiều cách xử lý authentication, trong project này hãy dùng JWT.
+   - Bạn có thể dùng [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) để tạo và xác minh JWT. Bạn có thể muốn dùng [JWT strategy của Passport](https://github.com/mikenicholson/passport-jwt) để xác minh JWT, đặc biệt nếu đã thiết lập Passport với local strategy để xử lý đăng nhập.
+   - Đăng nhập thành công sẽ cấp cho người dùng một JWT. Người dùng có thể đính kèm JWT vào các request sau đó; API có thể xác minh JWT để cho phép hoặc từ chối quyền truy cập phần còn lại của route được bảo vệ. Khi người dùng đăng xuất, client có thể xóa JWT khỏi storage.
+   - Có nhiều cách gửi và lưu JWT, chẳng hạn qua cookie, lưu trong localStorage, dùng access/refresh token, v.v. Một số cách phức tạp hơn (dù nếu triển khai đúng có thể bảo mật hơn), đặc biệt sau khi triển khai cả hai phía. Ví dụ, cross-site cookie có thể thực sự đau đầu nếu bạn không biết một số chi tiết bổ sung. Bạn có thể tìm hiểu các lựa chọn này trong tương lai. Hiện tại, hãy giữ mọi thứ đơn giản: gửi JWT qua header "Authorization" với schema "Bearer", và để client lưu JWT trong localStorage.
+1. Khi API hoạt động, bạn có thể tập trung vào code front-end. Cách làm hoàn toàn tùy bạn. Nếu quen React thì cứ dùng! Nếu thích HTML, CSS và vanilla JavaScript thuần thì cũng không sao. Tất cả những gì cần làm để đưa post vào website là `fetch` đúng endpoint API rồi hiển thị kết quả. Làm việc với fetch và API từ góc nhìn front-end được đề cập trong [bài Working with APIs](https://www.theodinproject.com/lessons/javascript-working-with-apis).
+1. Tạo website thứ hai để viết và chỉnh sửa post. Bạn có thể thiết lập theo cách tùy ý, nhưng các tính năng sau có thể hữu ích:
+   - Danh sách tất cả post, cho biết chúng đã được published hay chưa.
+   - Nút publish các post chưa published hoặc unpublish các post đã published!
+   - Form 'NEW POST'. Nếu muốn nâng cao hơn, bạn có thể dùng trình soạn thảo rich text như [TinyMCE](https://www.tiny.cloud/docs/tinymce/6/cloud-quick-start/).
+   - Khả năng quản lý comment (tức là xóa hoặc chỉnh sửa chúng).
+1. Mức độ đầu tư vào code front-end của project này tùy bạn. Về kỹ thuật, đây là khóa học tập trung vào back-end, nên nếu muốn, bạn hoàn toàn có thể tập trung vào REST API.
+1. Việc triển khai các app riêng biệt không có gì đặc biệt. Hãy triển khai API như các project trước bằng PaaS từ [bài Deployment](https://www.theodinproject.com/lessons/node-path-nodejs-deployment), và triển khai front-end như cách bạn đã từng triển khai front-end. Nếu dùng React, hãy nhớ lại một số lựa chọn hosting từ [project CV Application](https://www.theodinproject.com/lessons/node-path-react-new-cv-application).
 
 </div>

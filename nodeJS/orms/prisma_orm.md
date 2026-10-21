@@ -1,24 +1,24 @@
-### Introduction
+### Giới thiệu
 
-Tired of writing raw SQL queries in your projects? In this lesson, we'll talk about Object Relational Mappers (ORM for short). ORMs are tools that let you manipulate data in your database and are widely used in the software industry. We'll dive deep into one ORM popular in the Node.js landscape: [Prisma ORM](https://www.prisma.io/orm).
+Bạn đã chán việc phải viết các truy vấn SQL thuần trong những dự án của mình? Trong bài học này, chúng ta sẽ nói về Object Relational Mapper (gọi tắt là ORM). ORM là những công cụ cho phép bạn thao tác với dữ liệu trong cơ sở dữ liệu và được sử dụng rộng rãi trong ngành phần mềm. Chúng ta sẽ tìm hiểu sâu về một ORM phổ biến trong hệ sinh thái Node.js: [Prisma ORM](https://www.prisma.io/orm).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp cái nhìn tổng quát về những chủ đề bạn sẽ học trong bài học này.
 
-- What ORMs are and why they are used.
-- Introduce Prisma ORM.
-- Describe the features of Prisma ORM.
+- ORM là gì và vì sao chúng được sử dụng.
+- Giới thiệu Prisma ORM.
+- Mô tả các tính năng của Prisma ORM.
 
-### Challenges with raw SQLin'
+### Những thách thức của SQL thuần
 
-With the couple of projects you've done earlier, you might've run into the tediousness of raw SQL queries. Let's briefly discuss some of these challenges.
+Với một vài dự án bạn đã thực hiện trước đây, có thể bạn đã gặp sự rườm rà của các truy vấn SQL thuần. Hãy cùng thảo luận ngắn gọn về một số thách thức này.
 
-#### So much more code
+#### Quá nhiều mã hơn
 
-You need a `SELECT` statement? Cool, write a query. Need a `SELECT` statement for a different table? Write another query. Or if your programmer senses are tingling, you could create a utility function for `SELECT`. But now you need a `SELECT` statement for specific columns? You'll have to modify the utility function. What about filters and sorting? You get the point.
+Bạn cần một câu lệnh `SELECT`? Được thôi, hãy viết một truy vấn. Cần một câu lệnh `SELECT` cho một bảng khác? Hãy viết một truy vấn khác. Hoặc nếu bản năng lập trình của bạn đang mách bảo, bạn có thể tạo một hàm tiện ích cho `SELECT`. Nhưng giờ bạn cần một câu lệnh `SELECT` cho các cột cụ thể? Bạn sẽ phải sửa đổi hàm tiện ích đó. Còn bộ lọc và sắp xếp thì sao? Bạn hiểu ý rồi đấy.
 
-Replicate the above for insert queries, and all of its variations. Or you could go in a different direction. Create modules per entity. For example, the books module would have:
+Hãy lặp lại những việc trên với các truy vấn insert và tất cả biến thể của chúng. Hoặc bạn có thể đi theo một hướng khác. Tạo các module theo từng entity. Ví dụ, module books sẽ có:
 
 ```javascript
 class Book {
@@ -33,39 +33,39 @@ class Book {
 }
 ```
 
-Or you could mix and match the two approaches. Create a `Database` class and inherit from it in your entity classes. Or you fancy composition, and just want to deal with pure functions.
+Hoặc bạn có thể kết hợp hai cách tiếp cận này. Tạo một lớp `Database` rồi kế thừa nó trong các lớp entity. Hoặc nếu thích composition, bạn chỉ muốn làm việc với các hàm thuần.
 
-Now do this over and over for each entity, across multiple projects. You get the point. It can be argued that writing more code is not necessarily bad, as you're learning and practicing, and it isn't. It's sufficient for solo projects and we even suggest you explore the above ideas. But as you work in teams, and with large scale software, it becomes imperative to have a standard way of interacting with the database, either with an external library or a homegrown solution. You'll realize how much an ORM really helps you focus on writing code that's business critical.
+Bây giờ hãy làm đi làm lại việc này cho từng entity, trong nhiều dự án. Bạn hiểu ý rồi đấy. Có thể lập luận rằng viết nhiều mã hơn không nhất thiết là điều xấu, vì bạn đang học và luyện tập, và đúng là như vậy. Cách này đủ dùng cho các dự án cá nhân, thậm chí chúng tôi còn khuyến khích bạn khám phá những ý tưởng trên. Nhưng khi làm việc theo nhóm và với phần mềm quy mô lớn, việc có một cách chuẩn hóa để tương tác với cơ sở dữ liệu trở nên bắt buộc, dù đó là thư viện bên ngoài hay giải pháp tự xây dựng. Bạn sẽ nhận ra ORM thực sự giúp mình tập trung vào việc viết những mã quan trọng đối với nghiệp vụ đến mức nào.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Refactor your previous projects
+#### Refactor các dự án trước đây
 
-If you haven't applied any of the above paradigms in your previous projects, we highly recommend going back and refactoring. You might end up with a very basic mini ORM for your project. This will help you appreciate a bit more how a proper ORM will make your life easier.
+Nếu bạn chưa áp dụng những mô hình trên vào các dự án trước đây, chúng tôi đặc biệt khuyến khích bạn quay lại và refactor chúng. Có thể cuối cùng bạn sẽ tạo ra một mini ORM rất cơ bản cho dự án của mình. Việc này sẽ giúp bạn hiểu rõ hơn ORM đúng nghĩa có thể làm cho công việc của bạn dễ dàng hơn như thế nào.
 
 </div>
 
-#### Navigating the codebase
+#### Điều hướng codebase
 
-When all database interactions are done in raw SQL, there's nowhere in the codebase where you can understand the database tables, their relations, and column data types. You might have to log in to your database to make sense of what the codebase is doing. To attain a technical understanding of the project, you now rely on the codebase as well as access to the database.
+Khi mọi tương tác với cơ sở dữ liệu đều được thực hiện bằng SQL thuần, trong codebase sẽ không có nơi nào giúp bạn hiểu các bảng cơ sở dữ liệu, quan hệ giữa chúng và kiểu dữ liệu của các cột. Có thể bạn sẽ phải đăng nhập vào cơ sở dữ liệu để hiểu codebase đang làm gì. Để đạt được hiểu biết kỹ thuật về dự án, giờ đây bạn phải dựa vào cả codebase lẫn quyền truy cập vào cơ sở dữ liệu.
 
-Most ORMs out there solve this problem by bringing database definitions into the codebase. This is called a "schema". This allows you to quickly glance at the schema of a table and understand what columns it has and so forth.
+Hầu hết ORM hiện có đều giải quyết vấn đề này bằng cách đưa các định nghĩa cơ sở dữ liệu vào codebase. Đây được gọi là “schema”. Nhờ đó, bạn có thể nhanh chóng xem qua schema của một bảng và hiểu bảng đó có những cột nào, vân vân.
 
-#### Altering production data
+#### Thay đổi dữ liệu production
 
-Databases inevitably change as the requirements of the project evolve. You might have to add a new column or populate a new table with existing data. In technical terms, this is called a migration. Without an ORM or a similar library, you'll be hand rolling these migrations, which will be error-prone and tedious. ORMs standardize migrations via changelogs, and have processes to deal with conflicts. Granted, you won't be running as many migrations in your curriculum projects, but as you work professionally, you might do it every other day.
+Cơ sở dữ liệu chắc chắn sẽ thay đổi khi các yêu cầu của dự án phát triển. Có thể bạn phải thêm một cột mới hoặc điền dữ liệu hiện có vào một bảng mới. Về mặt kỹ thuật, việc này được gọi là migration. Nếu không có ORM hoặc thư viện tương tự, bạn sẽ phải tự viết các migration, một công việc dễ phát sinh lỗi và rất tẻ nhạt. ORM chuẩn hóa migration thông qua changelog và có các quy trình để xử lý xung đột. Đúng là trong các dự án curriculum, bạn sẽ không chạy nhiều migration đến vậy, nhưng khi làm việc chuyên nghiệp, có thể bạn sẽ thực hiện việc này cách ngày.
 
-### Introducing Prisma ORM
+### Giới thiệu Prisma ORM
 
-ORMs pretty much solve all of the pain points mentioned above, but it's not all sunshine and roses. There can be a learning curve to fully understand the ins and outs of an ORM, and some don't even fully support all SQL features. Even with these shortcomings, using an ORM can be extremely worthwhile.
+ORM gần như giải quyết tất cả những vấn đề khó chịu đã nêu trên, nhưng mọi chuyện không phải lúc nào cũng hoàn toàn thuận lợi. Có thể cần một thời gian học để hiểu đầy đủ các chi tiết của một ORM, và thậm chí một số ORM không hỗ trợ trọn vẹn mọi tính năng SQL. Dù có những hạn chế này, sử dụng ORM vẫn có thể cực kỳ đáng giá.
 
-In the Node.js ecosystem, there are *a lot* of ORMs to choose from, and the community has not landed on a go-to yet. We've decided to cover [Prisma ORM](https://www.prisma.io/orm) in the curriculum because of its popularity and community support.
+Trong hệ sinh thái Node.js, có *rất nhiều* ORM để lựa chọn, và cộng đồng vẫn chưa thống nhất một lựa chọn mặc định. Chúng tôi quyết định giới thiệu [Prisma ORM](https://www.prisma.io/orm) trong curriculum vì mức độ phổ biến và sự hỗ trợ của cộng đồng.
 
-Prisma ORM has all the features we need to complete this curriculum and then some. Prisma ORM consists of several libraries, so we can use npm to install whichever one(s) our application needs. We'll start by discussing some of its features, and then link to some official Prisma ORM guides to help you get started.
+Prisma ORM có tất cả các tính năng chúng ta cần để hoàn thành curriculum này và còn hơn thế nữa. Prisma ORM gồm một số thư viện, vì vậy chúng ta có thể dùng npm để cài đặt những thư viện mà ứng dụng cần. Trước hết, chúng ta sẽ thảo luận về một số tính năng của nó, sau đó liên kết đến một số hướng dẫn Prisma ORM chính thức để giúp bạn bắt đầu.
 
 ### Prisma Schema
 
-The Prisma schema is a file where you will define your models. For example, consider a message table in a chat app:
+Prisma schema là một file nơi bạn định nghĩa các model. Ví dụ, hãy xem xét một bảng message trong ứng dụng trò chuyện:
 
 ```text
 model Message {
@@ -81,13 +81,13 @@ model User {
 }
 ```
 
-There's a bunch of new stuff up here. Prisma schema files are written in Prisma Schema Language. You can see how not only are there column definitions for the table, but also a relation to another table defined within the `Message` model. You'll learn more about this in the assignment readings.
+Có khá nhiều điều mới mẻ ở đây. Các file Prisma schema được viết bằng Prisma Schema Language. Bạn có thể thấy không chỉ có định nghĩa các cột của bảng, mà còn có một quan hệ với bảng khác được định nghĩa bên trong model `Message`. Bạn sẽ học thêm về điều này trong các tài liệu đọc của bài tập.
 
-This schema file lives in your codebase and is tracked by version control. You can guess by now how useful this is.
+File schema này nằm trong codebase và được theo dõi bằng hệ thống quản lý phiên bản. Đến đây chắc bạn đã đoán được điều này hữu ích đến mức nào.
 
 ### Prisma Client
 
-The client is a separate library that you will use to interact with your database. The Prisma client is a bit special in that it's customized to your schema. Um... what?
+Client là một thư viện riêng mà bạn sẽ dùng để tương tác với cơ sở dữ liệu. Prisma client đặc biệt ở chỗ nó được tùy chỉnh theo schema của bạn. Ừm... là sao?
 
 ```javascript
 // instantiate the client
@@ -106,51 +106,51 @@ await prisma.message.create({
 const messages = await prisma.message.findMany();
 ```
 
-Notice the `prisma.message` object? How did Prisma Client know that there's a `message` model? Once you create or update the schema file, all you have to do is run
+Bạn có để ý đối tượng `prisma.message` không? Làm thế nào Prisma Client biết có một model `message`? Sau khi tạo hoặc cập nhật file schema, tất cả những gì bạn cần làm là chạy
 
 ```bash
 npx prisma generate
 ```
 
-in the CLI, and Prisma ORM will generate the client for you. The client can handle all sorts of querying: joins, filters, sorting, pagination, and more.
+trong CLI, và Prisma ORM sẽ tạo client cho bạn. Client có thể xử lý đủ loại truy vấn: join, lọc, sắp xếp, phân trang và nhiều thao tác khác.
 
-You might have a complex query that you just are unable to get right via the Prisma client, or if you feel more comfortable writing a query raw, you can do that too. Prisma Client supports raw queries as well.
+Có thể bạn gặp một truy vấn phức tạp mà không thể viết đúng bằng Prisma client, hoặc bạn cảm thấy thoải mái hơn khi tự viết một truy vấn thuần; bạn cũng có thể làm vậy. Prisma Client cũng hỗ trợ các truy vấn thuần.
 
 ### Prisma Migrate
 
-Prisma migrate is a tool that helps you perform database migrations. You won't be using it a whole ton in the curriculum, but it's good to be aware of it. When you decide to change the schema in any way, you run a Prisma migration to apply the schema changes to the database. These changes are tracked in a `migrations` folder in your codebase.
+Prisma migrate là một công cụ giúp bạn thực hiện migration cơ sở dữ liệu. Bạn sẽ không sử dụng nó quá nhiều trong curriculum, nhưng vẫn nên biết về nó. Khi quyết định thay đổi schema theo bất kỳ cách nào, bạn chạy một Prisma migration để áp dụng các thay đổi schema vào cơ sở dữ liệu. Những thay đổi này được theo dõi trong thư mục `migrations` của codebase.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Prisma ORM limitations
+#### Hạn chế của Prisma ORM
 
-In the [Using PostgreSQL lesson](https://www.theodinproject.com/lessons/nodejs-using-postgresql), we learned about Identity columns. PostgreSQL recommends the use of Identity columns, as they comply with the SQL standard. Prisma ORM, however, does not support these columns, and will create PostgreSQL specific [Serial Types](https://www.postgresql.org/docs/16/datatype-numeric.html#DATATYPE-SERIAL) instead. This most likely will not affect your projects, but it can be important to keep in mind. See this Stackoverflow answer for a short description on the [difference between Serial and Identity](https://stackoverflow.com/a/55300741/1882858).
+Trong [bài Using PostgreSQL](https://www.theodinproject.com/lessons/nodejs-using-postgresql), chúng ta đã học về các cột Identity. PostgreSQL khuyến nghị sử dụng cột Identity vì chúng tuân thủ tiêu chuẩn SQL. Tuy nhiên, Prisma ORM không hỗ trợ các cột này và thay vào đó sẽ tạo [Serial Types](https://www.postgresql.org/docs/16/datatype-numeric.html#DATATYPE-SERIAL) đặc thù của PostgreSQL. Điều này nhiều khả năng sẽ không ảnh hưởng đến các dự án của bạn, nhưng vẫn là điều quan trọng cần ghi nhớ. Hãy xem câu trả lời trên Stackoverflow này để đọc mô tả ngắn về [sự khác nhau giữa Serial và Identity](https://stackoverflow.com/a/55300741/1882858).
 
 </div>
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Official Prisma extension on Visual Studio Code
+#### Extension Prisma chính thức trên Visual Studio Code
 
-If you use VS Code, you may want to install the [official Prisma VS Code extension](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) to get features like syntax highlighting, IntelliSense / auto-completion, schema linting, and easier navigation between models. It makes working with Prisma schema files much more pleasant.
+Nếu sử dụng VS Code, bạn có thể muốn cài đặt [extension Prisma VS Code chính thức](https://marketplace.visualstudio.com/items?itemName=Prisma.prisma) để có các tính năng như tô màu cú pháp, IntelliSense / tự động hoàn thành, lint schema và điều hướng dễ dàng hơn giữa các model. Nó giúp việc làm việc với các file Prisma schema dễ chịu hơn nhiều.
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Go through the [Quickstart with Prisma v7 ORM and PostgreSQL](https://www.prisma.io/docs/v7/prisma-orm/quickstart/postgresql), which covers migrations, schema, and the Prisma client.
+1. Làm theo [Quickstart with Prisma v7 ORM and PostgreSQL](https://www.prisma.io/docs/v7/prisma-orm/quickstart/postgresql), tài liệu này trình bày về migration, schema và Prisma client.
 
    <div class="lesson-note" markdown="1">
 
-   #### Getting Prisma to work with JavaScript
+   #### Để Prisma hoạt động với JavaScript
 
-   Recently, Prisma has decided to only continue supporting Typescript. This means we will need to modify their Quickstart guide to have it work with JavaScript.
+   Gần đây, Prisma đã quyết định chỉ tiếp tục hỗ trợ Typescript. Điều này có nghĩa là chúng ta cần sửa đổi hướng dẫn Quickstart của họ để nó hoạt động với JavaScript.
 
-   As you follow along the Prisma Quickstart guide, modify the Quickstart's steps as described below.
+   Khi làm theo hướng dẫn Prisma Quickstart, hãy sửa các bước của Quickstart như mô tả dưới đây.
 
-   **Step 1:** Skip these commands:
+   **Bước 1:** Bỏ qua các lệnh sau:
 
    ```bash
    npm init
@@ -158,37 +158,37 @@ If you use VS Code, you may want to install the [official Prisma VS Code extensi
    npx tsc --init
    ```
 
-   **Step 2:** You do not need to install `@types/pg`. If you get a warning about "install scripts not yet covered by allowScripts", you can safely ignore this as Prisma will perform the necessary actions in a later step anyway.
+   **Bước 2:** Bạn không cần cài đặt `@types/pg`. Nếu nhận được cảnh báo về “install scripts not yet covered by allowScripts”, bạn có thể yên tâm bỏ qua vì Prisma sẽ thực hiện các thao tác cần thiết ở bước sau.
 
-   **Step 3:** We're not using Typescript, so we will completely skip this step.
+   **Bước 3:** Chúng ta không sử dụng Typescript, vì vậy sẽ bỏ qua hoàn toàn bước này.
 
-   **Step 4:** We want to be using the `prisma-client-js` generator instead of the default, so add `--generator-provider prisma-client-js` to the Prisma init command. We also don't want any AI features being installed from the Prisma Skills catalog by default, so add `--no-skills` to opt out:
+   **Bước 4:** Chúng ta muốn sử dụng generator `prisma-client-js` thay vì generator mặc định, vì vậy hãy thêm `--generator-provider prisma-client-js` vào lệnh Prisma init. Chúng ta cũng không muốn mặc định cài đặt các tính năng AI từ Prisma Skills catalog, nên hãy thêm `--no-skills` để chọn không tham gia:
 
    ```bash
    npx prisma init --datasource-provider postgresql --output ../generated/prisma --generator-provider prisma-client-js --no-skills
    ```
 
-   We will also rename `prisma7.config.ts` to `prisma7.config.js`.
+   Chúng ta cũng sẽ đổi tên `prisma7.config.ts` thành `prisma7.config.js`.
 
-   **Steps 5 and 6:** No changes necessary.
+   **Bước 5 và 6:** Không cần thay đổi gì.
 
-   **Step 7:**  Instead of `lib/prisma.ts`, create `lib/prisma.js`. You must also add the `.js` file extension when importing `PrismaClient` in that file:
+   **Bước 7:** Thay vì `lib/prisma.ts`, hãy tạo `lib/prisma.js`. Bạn cũng phải thêm phần mở rộng file `.js` khi import `PrismaClient` trong file đó:
 
    ```javascript
    import { PrismaClient } from '../generated/prisma/client.js';
    ```
 
-   **Step 8:** File created should be named `script.js`, and when importing `prisma` in that file, add the `.js` file extension, so the first line is:
+   **Bước 8:** File được tạo phải có tên `script.js`, và khi import `prisma` trong file đó, hãy thêm phần mở rộng file `.js`, để dòng đầu tiên là:
 
    ```javascript
    import { prisma } from './lib/prisma.js';
    ```
 
-   To run the script, run `node script.js`.
+   Để chạy script, hãy chạy `node script.js`.
 
-   **Step 9:** No changes necessary.
+   **Bước 9:** Không cần thay đổi gì.
 
-1. Read the following articles from Prisma's documentation. Try to code along with the examples. Don't worry if things don't stick yet, we'll be practicing *a lot* of Prisma in the coming projects.
+1. Đọc các bài viết sau trong tài liệu Prisma. Hãy thử code theo các ví dụ. Đừng lo nếu bạn chưa nhớ ngay mọi thứ; chúng ta sẽ luyện tập *rất nhiều* Prisma trong các dự án tiếp theo.
    - [What is Prisma ORM?](https://www.prisma.io/docs/orm/v7)
    - [Prisma schema overview](https://www.prisma.io/docs/orm/v7/prisma-schema/overview)
    - [Data models](https://www.prisma.io/docs/orm/v7/prisma-schema/data-model/models)
@@ -201,8 +201,8 @@ If you use VS Code, you may want to install the [official Prisma VS Code extensi
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- [Prisma Crash Course](https://www.youtube.com/watch?v=CYH04BJzamo) by Traversy Media.
+- [Prisma Crash Course](https://www.youtube.com/watch?v=CYH04BJzamo) của Traversy Media.

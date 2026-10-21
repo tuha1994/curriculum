@@ -1,23 +1,23 @@
-### Introduction
+### Giới thiệu
 
-By now you should know enough to be dangerous. There's *definitely* more to learn but you already know enough about Node to actually make something! So let's do it! You will be creating a very basic informational site that contains 4 pages: index, about, contact-me and 404. Keep in mind that the content of these pages isn't really all that important. So there's no need to spend a lot of time filling them up or trying to make them look pretty.
+Đến lúc này, bạn đã biết đủ để bắt tay làm việc. *Chắc chắn* vẫn còn nhiều điều phải học, nhưng bạn đã biết đủ về Node để thực sự tạo ra một sản phẩm! Vậy hãy bắt đầu thôi! Bạn sẽ tạo một website thông tin rất cơ bản gồm 4 trang: index, about, contact-me và 404. Hãy nhớ rằng nội dung của các trang này không thực sự quan trọng. Vì vậy, bạn không cần dành nhiều thời gian để viết thật nhiều nội dung hoặc cố làm chúng thật đẹp.
 
-If you get stuck at anytime, feel free to go back to the [Getting Started lesson](https://www.theodinproject.com/lessons/nodejs-getting-started).
+Nếu gặp khó khăn, bạn có thể quay lại [bài Getting Started](https://www.theodinproject.com/lessons/nodejs-getting-started) bất cứ lúc nào.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Make a project directory and create the following files inside that directory:
+1. Tạo một thư mục project và tạo các tệp sau bên trong thư mục đó:
     - `index.html`
     - `about.html`
     - `contact-me.html`
     - `404.html`
 
-1. Create your node.js server file `index.js` and add the code needed to serve the right page according to the url.
-    - [localhost:8080](http://localhost:8080) should take users to `index.html`
-    - [localhost:8080/about](http://localhost:8080/about) should take users to `about.html`
-    - [localhost:8080/contact-me](http://localhost:8080/contact-me) should take users to `contact-me.html`
-    - `404.html` should display any time the user tries to go to a page not listed above.
+1. Tạo tệp server node.js `index.js` và thêm code cần thiết để phục vụ đúng trang tương ứng với url.
+    - [localhost:8080](http://localhost:8080) phải đưa người dùng đến `index.html`
+    - [localhost:8080/about](http://localhost:8080/about) phải đưa người dùng đến `about.html`
+    - [localhost:8080/contact-me](http://localhost:8080/contact-me) phải đưa người dùng đến `contact-me.html`
+    - `404.html` phải được hiển thị bất cứ khi nào người dùng truy cập một trang không có trong danh sách trên.
 
 </div>

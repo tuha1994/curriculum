@@ -1,57 +1,57 @@
-### Introduction
+### Giới thiệu
 
-When you run your code, your code runs in a specific environment. Run your code on a different machine? Different environment. Host your website somewhere like Netlify or Vercel? Different environment to your machine. Each environment is a unique collection of tools and configurations.
+Khi chạy code, code của bạn chạy trong một môi trường cụ thể. Chạy code trên một máy khác ư? Đó là môi trường khác. Lưu trữ website ở nơi như Netlify hoặc Vercel ư? Đó cũng là môi trường khác với máy của bạn. Mỗi môi trường là một tập hợp công cụ và cấu hình riêng.
 
-You will have certainly written many functions that you've called multiple times with different arguments. The function may behave differently or return a different value depending on those arguments. Just like with function parameters, your applications themselves can make use of **environment variables**. When you run your code, you can pass in values to those environment variables, and different environments can be given different values.
+Chắc chắn bạn đã viết nhiều hàm và gọi chúng nhiều lần với các đối số khác nhau. Hàm có thể hoạt động khác hoặc trả về giá trị khác tùy vào các đối số đó. Tương tự tham số hàm, bản thân ứng dụng cũng có thể sử dụng **biến môi trường**. Khi chạy code, bạn có thể truyền giá trị vào các biến môi trường đó, và mỗi môi trường có thể nhận những giá trị khác nhau.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Describe what environment variables are and their benefits.
-- Use a `.env` file to store and make environment variables available in your code.
-- Access environment variables using Node's `process.env` object.
+- Mô tả biến môi trường là gì và lợi ích của chúng.
+- Sử dụng tệp `.env` để lưu trữ và cung cấp biến môi trường cho code.
+- Truy cập biến môi trường bằng đối tượng `process.env` của Node.
 
-### Environment variables
+### Biến môi trường
 
-Environment variables are just variables that have environment-specific values. For example, since they are specific to individual environments, we can use them to:
+Biến môi trường đơn giản là các biến có giá trị phụ thuộc vào môi trường. Vì chúng gắn với từng môi trường, ta có thể dùng chúng để:
 
-- Provide different values for different environments, such as your machine during development and a website host when deployed, without having to modify the source code.
-- Store secrets, such as database URLs and credentials, or API keys.
+- Cung cấp các giá trị khác nhau cho từng môi trường, chẳng hạn máy của bạn khi phát triển và máy chủ website khi triển khai, mà không phải sửa source code.
+- Lưu trữ bí mật như URL và thông tin xác thực cơ sở dữ liệu hoặc API key.
 
-For example, a production environment may want additional logging and analytics compared to a development environment. The source code may therefore have an environment variable for whether it's running in "dev" or "prod" mode and do different things based on that. This is very common and by convention, this environment variable is named `NODE_ENV`, though it would still work with any other name.
+Ví dụ, môi trường production có thể cần ghi log và phân tích bổ sung so với môi trường development. Vì vậy, source code có thể có một biến môi trường cho biết ứng dụng đang chạy ở chế độ "dev" hay "prod" để thực hiện các hành vi khác nhau. Đây là cách làm rất phổ biến; theo quy ước, biến môi trường này có tên `NODE_ENV`, dù dùng tên khác thì vẫn hoạt động.
 
-Or perhaps you're building an API connected to a database, but you want to use a separate test database during development instead of the production one. You can pass your test database's URL and credentials into your app when you develop locally, but the deployment will have the values for the production database. On top of this, you can store environment variable values in a file that you add to your `.gitignore`, preventing the contents of that file from being exposed when changes are pushed.
+Hoặc có thể bạn đang xây dựng một API kết nối với cơ sở dữ liệu nhưng muốn dùng cơ sở dữ liệu kiểm thử riêng trong quá trình phát triển thay vì cơ sở dữ liệu production. Khi phát triển cục bộ, bạn có thể truyền URL và thông tin xác thực của cơ sở dữ liệu kiểm thử vào app, còn bản triển khai sẽ nhận các giá trị của cơ sở dữ liệu production. Ngoài ra, bạn có thể lưu giá trị biến môi trường trong một tệp được thêm vào `.gitignore`, nhờ đó nội dung tệp không bị công khai khi đẩy các thay đổi.
 
-### Loading environment variables
+### Nạp biến môi trường
 
-There are multiple ways you can load environment variables, though some are more cumbersome or may not have stable support yet in many Node versions. One way is by defining the environment variables and their values directly in the command to run your code. Instead of running your app with just `node index.js`, you could run the following (note that quotes are optional for values that do not contain certain special characters like spaces or `=`):
+Có nhiều cách nạp biến môi trường, dù một số cách rườm rà hơn hoặc chưa được hỗ trợ ổn định trong nhiều phiên bản Node. Một cách là định nghĩa biến môi trường và giá trị của chúng trực tiếp trong lệnh chạy code. Thay vì chỉ chạy app bằng `node index.js`, bạn có thể chạy lệnh sau (lưu ý rằng dấu ngoặc kép là tùy chọn với các giá trị không chứa những ký tự đặc biệt như dấu cách hoặc `=`):
 
 ```bash
 NODE_ENV=prod VIDEO_URL="https://www.youtube.com/watch?v=X2CYWg9-2N0" node index.js
 ```
 
-In the above, we define environment variables called `NODE_ENV` and `VIDEO_URL`, and assign them their respective values. Now any part of our code that uses those variables will have those values, just like function parameters! The convention for naming environment variables is to use `UPPER_SNAKE_CASE` (sometimes endearingly referred to as `SCREAMING_SNAKE_CASE` or `SHOUTY_CASE`).
+Trong ví dụ trên, ta định nghĩa các biến môi trường có tên `NODE_ENV` và `VIDEO_URL`, rồi gán cho chúng các giá trị tương ứng. Bất kỳ phần nào trong code sử dụng các biến đó sẽ nhận những giá trị này, giống như tham số hàm! Quy ước đặt tên biến môi trường là `UPPER_SNAKE_CASE` (đôi khi được gọi thân mật là `SCREAMING_SNAKE_CASE` hoặc `SHOUTY_CASE`).
 
-You might see that this could quickly get quite cumbersome though, especially if you had lots of environment variables. If you had sensitive data like database credentials, that's even worse since you wouldn't want to push your `package.json` if it contained those values in an npm script!
+Tuy nhiên, bạn sẽ thấy cách này nhanh chóng trở nên khá rườm rà, đặc biệt khi có nhiều biến môi trường. Nếu có dữ liệu nhạy cảm như thông tin xác thực cơ sở dữ liệu thì còn tệ hơn, vì bạn sẽ không muốn đẩy `package.json` nếu các giá trị đó nằm trong npm script!
 
 #### export
 
-Instead of setting environment variables directly in the command for running your code, you can use the shell command `export`, which will save environment variables and their values to the current shell session.
+Thay vì đặt biến môi trường trực tiếp trong lệnh chạy code, bạn có thể dùng lệnh shell `export`, lệnh này sẽ lưu biến môi trường và giá trị của chúng trong phiên shell hiện tại.
 
 ```bash
 export NODE_ENV=prod VIDEO_URL="https://www.youtube.com/watch?v=X2CYWg9-2N0"
 ```
 
-The above command will set the two environment variables in the current shell environment only, meaning if you were to open a new shell, it would not have access to those environment variables since it's a new environment. If we ran `node index.js` in the first shell (the one with the environment variables set), anything that used the `NODE_ENV` environment variable would have the value `"prod"`. If we instead ran `node index.js` in the second shell, it would have the value `undefined` instead since nothing was set in its environment. Neat, no?
+Lệnh trên chỉ đặt hai biến môi trường trong môi trường shell hiện tại. Nghĩa là nếu mở một shell mới, shell đó sẽ không truy cập được các biến này vì đó là một môi trường mới. Nếu chạy `node index.js` trong shell đầu tiên (shell đã đặt các biến môi trường), phần code sử dụng biến môi trường `NODE_ENV` sẽ nhận giá trị `"prod"`. Nếu chạy `node index.js` trong shell thứ hai, giá trị sẽ là `undefined` vì môi trường của nó chưa được đặt gì. Khá thú vị, phải không?
 
-This is definitely nicer than the previous directly-in-the-command method, and means we can really keep sensitive data hidden. To overwrite any variables, just rerun `export` with the new values for those variables like above.
+Cách này chắc chắn tốt hơn cách đặt biến trực tiếp trong lệnh trước đó và giúp ta giữ dữ liệu nhạy cảm kín hơn. Để ghi đè biến, chỉ cần chạy lại `export` với các giá trị mới như trên.
 
-To view all environment variables in the current shell, you can run `printenv`. Hang on, it's showing *a lot* of stuff we never set ourselves! That's because the shell itself has a lot of environment variables already set and loaded when it first loads. That's a bit annoying, we just want to deal with our app's environment variables! Also, our environment variables will be lost when we terminate the shell. What if we had lots of variables? It'd be a nightmare to try and remember them all and export them again in the new shell. Well...
+Để xem tất cả biến môi trường trong shell hiện tại, bạn có thể chạy `printenv`. Khoan đã, lệnh hiển thị *rất nhiều* thứ mà ta chưa từng tự đặt! Đó là vì bản thân shell đã có nhiều biến môi trường được đặt và nạp ngay khi khởi động. Hơi phiền nhỉ, ta chỉ muốn xử lý biến môi trường của app thôi! Ngoài ra, biến môi trường sẽ mất khi ta kết thúc shell. Nếu có nhiều biến thì sao? Việc cố nhớ tất cả rồi export lại trong shell mới sẽ thật sự là ác mộng. Vậy thì...
 
-#### Node env files
+#### Tệp env của Node
 
-Node (as of v24.10) has built-in stable support for files containing environment variables. You can create a file called `.env` (by convention) in the root of your project, and it will contain all of your environment variables in the format `NAME=VALUE`. For example:
+Node (từ v24.10) có hỗ trợ ổn định được tích hợp sẵn cho các tệp chứa biến môi trường. Bạn có thể tạo một tệp có tên `.env` (theo quy ước) ở thư mục gốc của project; tệp sẽ chứa tất cả biến môi trường theo định dạng `NAME=VALUE`. Ví dụ:
 
 ```properties
 # .env
@@ -60,29 +60,29 @@ NODE_ENV=prod
 VIDEO_URL="https://www.youtube.com/watch?v=X2CYWg9-2N0"
 ```
 
-**This file must be added to your `.gitignore` file** to keep secrets safe from being published!
+**Bạn phải thêm tệp này vào tệp `.gitignore`** để giữ an toàn cho các bí mật và không công khai chúng!
 
-Node provides several ways to load it, such as using the [`--env-file` CLI option](https://nodejs.org/docs/latest-v24.x/api/cli.html#--env-filefile) (that allows you to run `node --env-file=.env index.js` for example) or directly inside JavaScript with the [`process.loadEnvFile()` method](https://nodejs.org/docs/latest-v24.x/api/process.html#processloadenvfilepath). Both of these will throw an error if the `.env` file is missing.
+Node cung cấp nhiều cách để nạp tệp, chẳng hạn dùng [tùy chọn CLI `--env-file`](https://nodejs.org/docs/latest-v24.x/api/cli.html#--env-filefile) (cho phép bạn chạy `node --env-file=.env index.js`, chẳng hạn) hoặc trực tiếp trong JavaScript bằng [method `process.loadEnvFile()`](https://nodejs.org/docs/latest-v24.x/api/process.html#processloadenvfilepath). Cả hai cách đều ném lỗi nếu thiếu tệp `.env`.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Environment variables and deployment
+#### Biến môi trường và triển khai
 
-When you deploy an app that uses environment variables, your repo will not contain your `.env` file, so you will have to research how your chosen deployment service handles setting environment variable values. Typically, there will be a way via their website interface, but otherwise, always check their documentation!
+Khi triển khai app sử dụng biến môi trường, repo của bạn sẽ không chứa tệp `.env`, vì vậy bạn phải tìm hiểu dịch vụ triển khai đã chọn xử lý việc đặt giá trị biến môi trường như thế nào. Thông thường sẽ có cách thực hiện qua giao diện website của dịch vụ, nhưng trong mọi trường hợp, hãy luôn kiểm tra tài liệu của họ!
 
-Because of this, you won't want to load your variables in production like you do in development, as it would likely throw an error for when it can't find a `.env` file. Instead, you can prevent that in many ways, like adding an npm script for production that doesn't use `--env-file`, using the `--env-file-if-exists` CLI option, or implementing error handling with `process.loadEnvFile()`.
+Vì lý do này, bạn không nên nạp biến trong production giống như trong development, vì app có thể ném lỗi khi không tìm thấy tệp `.env`. Thay vào đó, bạn có thể ngăn điều này bằng nhiều cách, chẳng hạn thêm npm script cho production không dùng `--env-file`, dùng tùy chọn CLI `--env-file-if-exists`, hoặc xử lý lỗi bằng `process.loadEnvFile()`.
 
 </div>
 
 #### dotenv
 
-Node did not always have built-in support for environment variable files. You will likely see libraries like [dotenv](https://www.npmjs.com/package/dotenv) used out in the wild. The principle will be the same as the built-in feature, just with whatever library-specific instructions are required. Such libraries may also offer more sophisticated features that Node does not have built-in, which may be of benefit to teams working on more complex projects, but as far as TOP goes, they won't be necessary.
+Node không phải lúc nào cũng có sẵn hỗ trợ cho tệp biến môi trường. Bạn có thể sẽ bắt gặp các thư viện như [dotenv](https://www.npmjs.com/package/dotenv) được sử dụng trong thực tế. Nguyên tắc sẽ giống tính năng tích hợp sẵn, chỉ khác là cần làm theo hướng dẫn riêng của thư viện. Những thư viện này cũng có thể cung cấp các tính năng nâng cao hơn những gì Node tích hợp sẵn, có thể hữu ích cho các nhóm làm những project phức tạp hơn; nhưng trong phạm vi TOP, chúng không cần thiết.
 
-Anyway, awesome! You can load environment variables now, but how do you actually access them in your code?
+Dù sao thì tuyệt! Giờ bạn đã có thể nạp biến môi trường, nhưng làm thế nào để thực sự truy cập chúng trong code?
 
-### Accessing environment variables
+### Truy cập biến môi trường
 
-Environment variables are accessed via Node's built-in `process` object, more specifically its `env` property. Node will load each environment variable to the `process.env` object, using its name as the property. You can then access them like any normal object property.
+Có thể truy cập biến môi trường thông qua đối tượng tích hợp sẵn `process` của Node, cụ thể hơn là thuộc tính `env`. Node sẽ nạp từng biến môi trường vào đối tượng `process.env`, dùng tên biến làm tên thuộc tính. Sau đó bạn có thể truy cập chúng như bất kỳ thuộc tính đối tượng thông thường nào.
 
 ```javascript
 if (process.env.NODE_ENV === "prod") {
@@ -94,28 +94,28 @@ if (process.env.NODE_ENV === "prod") {
 redirectUserToSuperSecretVideo(process.env.VIDEO_URL);
 ```
 
-No hardcoding of those values into the source code! If you want to change the value of an environment variable, you can just change it in your `.env` file then rerun the program. Do also note that environment variables will always be strings, so you must convert if you want to use any as a number or boolean, for example.
+Không cần hardcode các giá trị đó vào source code! Nếu muốn thay đổi giá trị biến môi trường, bạn chỉ cần sửa nó trong tệp `.env` rồi chạy lại chương trình. Cũng cần lưu ý rằng biến môi trường luôn là string, vì vậy bạn phải chuyển đổi nếu muốn dùng một biến làm number hoặc boolean chẳng hạn.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Documenting your environment variables
+#### Ghi chép biến môi trường
 
-When your projects include environment variables, those that assist you will need to know what environment variables are needed to run your project. Therefore, we highly recommend that you document them in your `README.md` file, like which ones are required and what they should contain. You could also include a dummy example `.env` file, such as an `.env.sample`, that others can rename then edit with the values they need.
+Khi project có biến môi trường, những người hỗ trợ bạn sẽ cần biết project cần những biến nào để chạy. Vì vậy, chúng tôi thực sự khuyến nghị bạn ghi chép chúng trong tệp `README.md`, chẳng hạn biến nào bắt buộc và chúng phải chứa gì. Bạn cũng có thể cung cấp một tệp `.env` mẫu, chẳng hạn `.env.sample`, để người khác đổi tên rồi chỉnh sửa bằng các giá trị họ cần.
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note lesson-note--critical" markdown="1">
 
-#### Keep your secrets safe!
+#### Giữ an toàn cho các bí mật!
 
-Environment variables aren't only for sensitive data, but you will often need them for that. In your projects, make sure you add `.env` to `.gitignore` so you **do not publish it**.
+Biến môi trường không chỉ dành cho dữ liệu nhạy cảm, nhưng thường bạn sẽ cần chúng cho mục đích đó. Trong project, hãy chắc chắn thêm `.env` vào `.gitignore` để **không công khai tệp này**.
 
 </div>
 
-1. Check out [Node's documentation on environment variables](https://nodejs.org/docs/latest-v24.x/api/environment_variables.html) for more information about file syntax and CLI usage.
+1. Xem [tài liệu của Node về biến môi trường](https://nodejs.org/docs/latest-v24.x/api/environment_variables.html) để biết thêm về cú pháp tệp và cách dùng CLI.
 
 </div>

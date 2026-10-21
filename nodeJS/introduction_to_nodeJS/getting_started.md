@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-Like we learned in the introduction lesson, Node.js is really just JavaScript. So a basic understanding of JavaScript is necessary in order to understand Node. For this reason, it is highly recommended that you take our prerequisite [JavaScript course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript) before continuing with this course.
+Như đã học trong bài giới thiệu, Node.js thực chất chỉ là JavaScript. Vì vậy, để hiểu Node, bạn cần có kiến thức nền tảng về JavaScript. Do đó, chúng tôi đặc biệt khuyến nghị bạn hoàn thành [khóa học JavaScript](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript) tiên quyết trước khi tiếp tục khóa học này.
 
-This lesson will take you through a tutorial that will teach you the basic modules and functions that you need to get up and running with Node.js. The project that comes at the end of this section will ask you to use Node to create a basic website that will include an `Index`, `About` and `Contact Me` page. So while learning the topics in this lesson, be on the lookout for things that might help you complete the project.
+Bài học này sẽ hướng dẫn bạn qua một tutorial về các module và hàm cơ bản cần thiết để bắt đầu với Node.js. Project ở cuối phần này yêu cầu bạn dùng Node để tạo một website cơ bản gồm các trang `Index`, `About` và `Contact Me`. Vì vậy, trong lúc học các chủ đề của bài, hãy chú ý đến những điều có thể giúp bạn hoàn thành project.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain some things that Node.js is commonly used for.
-- Create and use modules in Node.js (both built-in and user created).
-- Set up a basic webserver with Node.js using the HTTP module.
-- Read, create, update, and delete files from Node.js.
-- Use the URL module to parse a url address and split it into readable parts.
-- Understand how to use NPM.
-- Create, fire and listen for your own events.
+- Giải thích một số việc Node.js thường được dùng để làm.
+- Tạo và sử dụng module trong Node.js (cả module tích hợp sẵn lẫn module do người dùng tạo).
+- Thiết lập webserver cơ bản bằng Node.js với module HTTP.
+- Đọc, tạo, cập nhật và xóa tệp bằng Node.js.
+- Dùng module URL để phân tích địa chỉ url và tách thành các phần dễ đọc.
+- Hiểu cách sử dụng NPM.
+- Tạo, phát và lắng nghe các event của riêng bạn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note" markdown="1">
 
-#### Important notice
+#### Lưu ý quan trọng
 
-Recently the NodeJS.dev team removed a large amount of content from their website. Several of those removed pages were linked to in this lesson. Until we find a replacement for that content we will be linking directly to the markdown files on their GitHub repository. The formatting may look a bit odd, but the content should still be just as good.
+Gần đây, nhóm NodeJS.dev đã gỡ bỏ một lượng lớn nội dung khỏi website. Một số trang bị gỡ đã được liên kết trong bài học này. Cho đến khi tìm được nội dung thay thế, chúng tôi sẽ liên kết trực tiếp đến các tệp markdown trong repository GitHub của họ. Định dạng có thể trông hơi lạ, nhưng nội dung vẫn phải hữu ích tương đương.
 
 </div>
 
-Let's dive in and start looking at Node server-side code! We will be hopping around lessons in the [NodeJS.org](https://nodejs.org/en/learn) docs which you should follow along.
+Hãy bắt đầu tìm hiểu code phía máy chủ Node! Chúng ta sẽ lần lượt xem các bài trong tài liệu [NodeJS.org](https://nodejs.org/en/learn); bạn nên học theo các bài đó.
 
-1. Learn [how to run Node.js scripts from the terminal](https://nodejs.org/en/learn/command-line/run-nodejs-scripts-from-the-command-line).
+1. Học [cách chạy script Node.js từ terminal](https://nodejs.org/en/learn/command-line/run-nodejs-scripts-from-the-command-line).
 1. HTTP Module
-   - Learn [how to make HTTP requests with Node](https://nodejs.org/learn/getting-started/fetch).
-   - Check out the docs for [Node's http module](https://nodejs.org/api/http.html). In particular, check out `http.createServer`. The documentation shows optional parameters it can accept which you may or may not use. For now, you just need to know that the `createServer` method creates an HTTP server that accepts handlers that will be executed every time we get a request.
+   - Học [cách thực hiện HTTP request bằng Node](https://nodejs.org/learn/getting-started/fetch).
+   - Xem tài liệu về [module http của Node](https://nodejs.org/api/http.html). Đặc biệt, hãy xem `http.createServer`. Tài liệu cho biết các tham số tùy chọn mà method này có thể nhận, bạn có thể sẽ dùng hoặc không. Hiện tại, bạn chỉ cần biết method `createServer` tạo một HTTP server nhận các handler được thực thi mỗi khi có request.
 1. File System
-   - First, take a look at the [fs module](https://github.com/nodejs/nodejs.dev/blob/aa4239e87a5adc992fdb709c20aebb5f6da77f86/content/learn/node-js-modules/node-module-fs.en.md) that we use heavily for working with files in Node.
-   - Then, let’s start [writing files with Node](https://nodejs.org/en/learn/manipulating-files/writing-files-with-nodejs).
-   - Finally, we’ll learn how to [read files with Node](https://nodejs.org/en/learn/manipulating-files/reading-files-with-nodejs).
+   - Trước hết, xem [module fs](https://github.com/nodejs/nodejs.dev/blob/aa4239e87a5adc992fdb709c20aebb5f6da77f86/content/learn/node-js-modules/node-module-fs.en.md), module được dùng nhiều để làm việc với tệp trong Node.
+   - Sau đó, bắt đầu [ghi tệp bằng Node](https://nodejs.org/en/learn/manipulating-files/writing-files-with-nodejs).
+   - Cuối cùng, học [đọc tệp bằng Node](https://nodejs.org/en/learn/manipulating-files/reading-files-with-nodejs).
 1. The URL Class
-   - Check out this [documentation on the URL class](https://nodejs.org/api/url.html#url_the_whatwg_url_api). Play with the code samples to see how it works!
+   - Xem [tài liệu về lớp URL](https://nodejs.org/api/url.html#url_the_whatwg_url_api). Hãy thử các mẫu code để xem cách hoạt động!
 1. Events
-   - Follow along the [Event Emitter](https://nodejs.org/en/learn/asynchronous-work/the-nodejs-event-emitter) section.
-   - Look into the [Node events module](https://github.com/nodejs/nodejs.dev/blob/aa4239e87a5adc992fdb709c20aebb5f6da77f86/content/learn/node-js-modules/node-module-events.en.md).
+   - Học theo phần [Event Emitter](https://nodejs.org/en/learn/asynchronous-work/the-nodejs-event-emitter).
+   - Xem [module events của Node](https://github.com/nodejs/nodejs.dev/blob/aa4239e87a5adc992fdb709c20aebb5f6da77f86/content/learn/node-js-modules/node-module-events.en.md).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ sung.
 
-- This [Node crash course playlist of 12 episodes](https://www.youtube.com/watch?v=zb3Qk8SG5Ms&list=PL4cUxeGkcC9jsz4LDYc6kv3ymONOKxwBU) from Net Ninja is a great resource to learn Node.js. There are 12 videos in this playlist, you can consider them all.
+- [Playlist crash course Node gồm 12 tập](https://www.youtube.com/watch?v=zb3Qk8SG5Ms&list=PL4cUxeGkcC9jsz4LDYc6kv3ymONOKxwBU) của Net Ninja là tài nguyên tuyệt vời để học Node.js. Playlist có 12 video; bạn có thể xem hết.

@@ -1,259 +1,259 @@
-### Introduction
+### Giới thiệu
 
-Before continuing our web development journey, we must address one important task - showcasing our hard work to the world.
+Trước khi tiếp tục hành trình phát triển web, chúng tôi phải giải quyết một nhiệm vụ quan trọng - giới thiệu công việc khó khăn của chúng tôi với thế giới.
 
-Whether it's to share our creations with friends, create a portfolio for future employers, or launch an online business, we need to host our applications somewhere others can publicly access on the internet.
+Cho dù đó là để chia sẻ những sáng tạo của chúng tôi với bạn bè, tạo danh mục đầu tư cho các nhà tuyển dụng trong tương lai hay khởi động một doanh nghiệp trực tuyến, chúng tôi cần lưu trữ ứng dụng của mình ở nơi mà những người khác có thể truy cập công khai trên internet.
 
-In this lesson, we will learn how to deploy our apps to a hosting provider, allowing us to run, build, and operate our web applications in the cloud.
+Trong bài học này, chúng ta sẽ tìm hiểu cách triển khai ứng dụng của mình cho nhà cung cấp dịch vụ lưu trữ, cho phép chúng ta chạy, xây dựng và vận hành các ứng dụng web của mình trên đám mây.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Understand what a hosting provider is.
-- Understand the difference between static and dynamic sites.
-- Understand what a PaaS is and how they work.
-- Know how to deploy to a PaaS provider.
-- Know how to troubleshoot common deployment issues.
+- Hiểu nhà cung cấp dịch vụ lưu trữ là gì.
+- Hiểu được sự khác biệt giữa trang web tĩnh và trang web động.
+- Hiểu PaaS là gì và cách chúng hoạt động.
+- Biết cách triển khai tới nhà cung cấp PaaS.
+- Biết cách khắc phục các sự cố triển khai thường gặp.
 
-### What are hosting providers?
+### Nhà cung cấp dịch vụ lưu trữ là gì?
 
-Hosting providers are like server landlords. They own servers and rent space on them to customers, who can then use the space to store their websites and make them accessible to anyone on the web.
+Các nhà cung cấp dịch vụ lưu trữ giống như chủ sở hữu máy chủ. Họ sở hữu máy chủ và cho khách hàng thuê không gian trên đó, sau đó họ có thể sử dụng không gian đó để lưu trữ trang web của mình và giúp mọi người trên web có thể truy cập chúng.
 
-You've already had some experience using a hosting provider when you deployed projects to Github pages earlier in the curriculum. GitHub pages is great for hosting **static** web pages for free, but we won't be able to use it for hosting our **dynamic** Node apps. We're going to need something more powerful.
+Bạn đã có một số kinh nghiệm sử dụng nhà cung cấp dịch vụ lưu trữ khi triển khai dự án lên GitHub Pages trong các phần trước của chương trình học. GitHub Pages rất phù hợp để lưu trữ miễn phí các trang web **tĩnh**, nhưng không thể dùng để lưu trữ các ứng dụng Node **động**. Chúng ta sẽ cần một giải pháp mạnh mẽ hơn.
 
-### Static vs dynamic sites
+### Trang web tĩnh và trang web động
 
-Static websites consist of pre-written HTML pages. They are "static" because everyone who visits them will see the same content. To build static sites, you only need HTML, CSS and JavaScript.
+Các trang web tĩnh bao gồm các trang HTML được viết sẵn. Chúng "tĩnh" vì mọi người truy cập sẽ thấy nội dung giống nhau. Để xây dựng trang web tĩnh, bạn chỉ cần HTML, CSS và JavaScript.
 
-Dynamic websites, on the other hand, are websites that can change content based on the user who is visiting them. X (formerly known as Twitter) is a good example; every user sees different content on their homepage feed based on who they follow. To build dynamic sites, you still need HTML, CSS and JS. But additionally, you need a server-side application and a database.
+Mặt khác, trang web động là những trang web có thể thay đổi nội dung dựa trên người dùng đang truy cập chúng. X (trước đây gọi là Twitter) là một ví dụ điển hình; mỗi người dùng sẽ thấy nội dung khác nhau trên nguồn cấp dữ liệu trang chủ của họ dựa trên người họ theo dõi. Để xây dựng trang web động, bạn vẫn cần HTML, CSS và JS. Nhưng ngoài ra, bạn cần một ứng dụng phía máy chủ và cơ sở dữ liệu.
 
-This additional tech prohibits us from using GitHub Pages for hosting our Node apps. GitHub pages cannot run Node.js applications and doesn't have database services we can use. Similarly, host providers like Netlify and Vercel, which you may have used back in the React course, do not have the same capabilities to run our Node.js servers and databases. They're not the right tools for our back ends.
+Công nghệ bổ sung này cấm chúng tôi sử dụng GitHub Pages để lưu trữ các ứng dụng Node của mình. Các trang GitHub không thể chạy các ứng dụng Node.js và không có dịch vụ cơ sở dữ liệu mà chúng tôi có thể sử dụng. Tương tự, các nhà cung cấp máy chủ như Netlify và Vercel mà bạn có thể đã sử dụng trong khóa học React, không có khả năng tương tự để chạy các máy chủ và cơ sở dữ liệu Node.js của chúng tôi. Chúng không phải là công cụ phù hợp cho phần hỗ trợ của chúng tôi.
 
-Luckily, many hosting providers do offer everything we need. They range from the big and complex cloud providers like [AWS](https://aws.amazon.com/), [Google Cloud](https://cloud.google.com/), and [Microsoft Azure](https://azure.microsoft.com/) to the more beginner-friendly platform as a service (PaaS) providers like [Railway](https://railway.app/) and [Render](https://render.com/). We will be focusing on and utilizing these latter providers in this lesson.
+May mắn thay, nhiều nhà cung cấp dịch vụ lưu trữ cung cấp mọi thứ chúng tôi cần. Chúng bao gồm từ các nhà cung cấp đám mây lớn và phức tạp như [AWS](https://aws.amazon.com/), [Google Cloud](https://cloud.google.com/) và [Microsoft Azure](https://azure.microsoft.com/) cho đến các nhà cung cấp nền tảng dịch vụ (PaaS) thân thiện với người mới bắt đầu hơn như [Railway](https://railway.app/) và [Render](https://render.com/). Chúng ta sẽ tập trung và sử dụng những nhà cung cấp sau này trong bài học này.
 
-### What is a PaaS?
+### PaaS là gì?
 
-Platform as a Service is a specific kind of hosting provider. The most important thing to know about them is they are much easier to use and more approachable for beginners than other hosting providers. They manage many of the low-level nitty-gritty details with the underlying server infrastructure, which allows us as developers to focus more of our time on building our applications instead of configuring and managing the servers they run on.
+Nền tảng dưới dạng Dịch vụ là một loại nhà cung cấp dịch vụ lưu trữ cụ thể. Điều quan trọng nhất cần biết về chúng là chúng dễ sử dụng hơn và dễ tiếp cận hơn với người mới bắt đầu so với các nhà cung cấp dịch vụ lưu trữ khác. Họ quản lý nhiều chi tiết thực tế ở cấp độ thấp bằng cơ sở hạ tầng máy chủ cơ bản, cho phép chúng tôi, với tư cách là nhà phát triển, tập trung nhiều thời gian hơn vào việc xây dựng các ứng dụng của mình thay vì định cấu hình và quản lý các máy chủ mà chúng chạy trên đó.
 
-Taking the landlord metaphor we used earlier a little further, a PaaS platform is like having a landlord who takes care of all the utilities, building maintenance and security. Meanwhile, you, the developer, focus on furnishing, decorating and living in the space.
+Lấy phép ẩn dụ chủ nhà mà chúng ta đã sử dụng trước đó xa hơn một chút, nền tảng PaaS giống như có một chủ nhà đảm nhiệm tất cả các tiện ích, bảo trì tòa nhà và an ninh. Trong khi đó, bạn, nhà phát triển, tập trung vào việc trang trí nội thất, trang trí và sinh hoạt trong không gian.
 
-It's an incredibly powerful model and perfect for us right now. Using a PaaS provider for deployment, we can focus on learning and mastering Node without taking a significant diversion to learn the specialized knowledge needed to manage and maintain servers ourselves.
+Đó là một mô hình cực kỳ mạnh mẽ và hoàn hảo cho chúng tôi hiện nay. Bằng cách sử dụng nhà cung cấp PaaS để triển khai, chúng ta có thể tập trung vào việc học và thành thạo Node mà không cần mất nhiều thời gian để học kiến ​​thức chuyên môn cần thiết để tự quản lý và bảo trì máy chủ.
 
-We will provide a list of our recommended PaaS providers later in the lesson. First, let us explore from a high level how PaaS providers work.
+Chúng tôi sẽ cung cấp danh sách các nhà cung cấp PaaS được đề xuất ở phần sau của bài học. Trước tiên, chúng ta hãy khám phá ở cấp độ cao hơn cách các nhà cung cấp PaaS hoạt động.
 
-### How do PaaS services work?
+### Dịch vụ PaaS hoạt động như thế nào?
 
-PaaS providers work by giving you easy access to a few resources that any Node app can't live without to function on the web.
+Các nhà cung cấp PaaS hoạt động bằng cách cung cấp cho bạn quyền truy cập dễ dàng vào một số tài nguyên mà bất kỳ ứng dụng Node nào cũng không thể thiếu để hoạt động trên web.
 
-#### Instances
+#### Phiên bản
 
-The first and most crucial thing PaaS providers give you are virtual "computers" called instances which run your app. Basically, one instance means a single instance of your application running at one time. That's like having a single computer run your app like you do on Localhost. Multiple instances are like having several copies of your app running simultaneously, which allows you to handle more traffic.
+Điều đầu tiên và quan trọng nhất mà các nhà cung cấp PaaS cung cấp cho bạn là các "máy tính" ảo được gọi là phiên bản chạy ứng dụng của bạn. Về cơ bản, một phiên bản có nghĩa là một phiên bản duy nhất của ứng dụng của bạn đang chạy cùng một lúc. Điều đó giống như có một máy tính chạy ứng dụng của bạn giống như bạn làm trên Localhost. Nhiều phiên bản giống như có nhiều bản sao ứng dụng của bạn chạy đồng thời, cho phép bạn xử lý nhiều lưu lượng truy cập hơn.
 
-For most of your apps, one instance is plenty enough. You can support a lot of traffic using just a single instance. Many of the PaaS providers we will recommend later in this lesson give you your first one for free.
+Đối với hầu hết các ứng dụng của bạn, một phiên bản là đủ. Bạn có thể hỗ trợ nhiều lưu lượng truy cập chỉ bằng một phiên bản duy nhất. Nhiều nhà cung cấp PaaS mà chúng tôi sẽ giới thiệu ở phần sau của bài học này sẽ cung cấp miễn phí cho bạn nhà cung cấp đầu tiên.
 
 <div class="lesson-note" markdown="1">
 
-#### Server instance and database instance
+#### Phiên bản máy chủ và phiên bản cơ sở dữ liệu
 
-Learners can keep their server instance and database instance on one PaaS or use separate PaaSes if necessary. When you deal with paid plans, it might even reduce hosting costs!
+Người học có thể giữ phiên bản máy chủ và phiên bản cơ sở dữ liệu của họ trên một PaaS hoặc sử dụng các PaaS riêng biệt nếu cần. Khi bạn sử dụng các gói trả phí, nó thậm chí có thể giảm chi phí lưu trữ!
 
 </div>
 
-#### Databases
+#### Cơ sở dữ liệu
 
-The second most important thing PaaS providers give you is databases. They make it easy to spin up a new database for each app by doing all the setup and configuration for you.
+Điều quan trọng thứ hai mà các nhà cung cấp PaaS cung cấp cho bạn là cơ sở dữ liệu. Chúng giúp bạn dễ dàng tạo cơ sở dữ liệu mới cho từng ứng dụng bằng cách thực hiện tất cả việc thiết lập và cấu hình cho bạn.
 
-Many providers even manage the database for you by setting up automatic backups, ensuring the database is constantly updated with the latest critical security patches and ongoing maintenance that keeps your databases up and running smoothly.
+Nhiều nhà cung cấp thậm chí còn quản lý cơ sở dữ liệu cho bạn bằng cách thiết lập sao lưu tự động, đảm bảo cơ sở dữ liệu được cập nhật liên tục với các bản vá bảo mật quan trọng mới nhất và bảo trì liên tục giúp cơ sở dữ liệu của bạn luôn hoạt động trơn tru.
 
-The peace of mind this affords you can't be overstated. You never want to be in a position where you're waking at 4 am to multiple alerts. Your database is on the fritz because of some security patch you forgot to apply, and there are no backups to fall back on.
+Sự an tâm mà điều này mang lại cho bạn không thể bị phóng đại. Bạn không bao giờ muốn rơi vào tình trạng phải thức dậy lúc 4 giờ sáng với nhiều cảnh báo. Cơ sở dữ liệu của bạn đang gặp sự cố do một số bản vá bảo mật mà bạn quên áp dụng và không có bản sao lưu nào để dự phòng.
 
-Many PaaS services come with SQL databases included.
+Nhiều dịch vụ PaaS đi kèm với cơ sở dữ liệu SQL.
 
-For now, we encourage you to try and figure out how to deploy your mini-message board project with just what you learn in this lesson.
+Hiện tại, chúng tôi khuyến khích bạn thử tìm hiểu cách triển khai dự án bảng tin nhỏ của mình chỉ với những gì bạn học được trong bài học này.
 
-#### Domain names
+#### Tên miền
 
-PaaS providers will give you a random domain name when you first deploy. In Heroku's case, it's usually something zen-like "afternoon-falls-4209". If you want to visit the app, you can go directly to `http://afternoon-falls-4209.herokuapp.com` to see your app live on the web in all its glory.
+Các nhà cung cấp PaaS sẽ cung cấp cho bạn một tên miền ngẫu nhiên khi bạn triển khai lần đầu. Trong trường hợp của Heroku, nó thường giống như "buổi chiều-mùa thu-4209". Nếu bạn muốn truy cập ứng dụng, bạn có thể truy cập trực tiếp vào `http://afternoon-falls-4209.herokuapp.com` để xem ứng dụng của bạn trực tiếp trên web với tất cả vinh quang của nó.
 
-The domain name will always be yours on a PaaS provider. They give each app a unique domain name that's yours as long as your app lives on their platform.
+Tên miền sẽ luôn là của bạn khi sử dụng nhà cung cấp PaaS. Họ cấp cho mỗi ứng dụng một tên miền duy nhất là của bạn miễn là ứng dụng của bạn tồn tại trên nền tảng của họ.
 
-In the real world, you'll want to link it to your own custom domain, for example, `http://mycooldomain.com`. It's worth mentioning that you don't need custom domain names for the portfolio projects you'll be building in this course. The random domains your PaaS provider gives you will be good enough. However, if you have an itch for tricking out your app with a custom domain name, you'll first need to purchase a domain from a registrar like [Porkbun](https://porkbun.com/) or [NameSilo](https://www.namesilo.com/).
+Trong thế giới thực, bạn sẽ muốn liên kết nó với miền tùy chỉnh của riêng mình, ví dụ: `http://mycooldomain.com`. Điều đáng nói là bạn không cần tên miền tùy chỉnh cho các dự án danh mục đầu tư mà bạn sẽ xây dựng trong khóa học này. Các miền ngẫu nhiên mà nhà cung cấp PaaS cung cấp cho bạn sẽ đủ tốt. Tuy nhiên, nếu bạn muốn đánh lừa ứng dụng của mình bằng một tên miền tùy chỉnh, trước tiên bạn cần mua miền từ nhà đăng ký như [Porkbun](https://porkbun.com/) hoặc [NameSilo](https://www.namesilo.com/).
 
-To find a new domain, try using [Domainr](https://domainr.com/).
+Để tìm miền mới, hãy thử sử dụng [Domainr](https://domainr.com/).
 
-Once you have your domain, you need to point it to your project. The provider you are using will have exhaustive documentation on using custom domain names on their platform.
+Khi bạn có tên miền, bạn cần trỏ nó đến dự án của mình. Nhà cung cấp bạn đang sử dụng sẽ có tài liệu đầy đủ về cách sử dụng tên miền tùy chỉnh trên nền tảng của họ.
 
-### Our recommended PaaS services
+### Các dịch vụ PaaS được chúng tôi đề xuất
 
-Choosing a PaaS provider was once a simple decision. Heroku had a free tier that gave you everything needed to host as many small apps as you wanted, but they unfortunately discontinued it in 2022.
+Chọn nhà cung cấp PaaS đã từng là một quyết định đơn giản. Heroku có cấp độ miễn phí cung cấp cho bạn mọi thứ cần thiết để lưu trữ bao nhiêu ứng dụng nhỏ tùy thích, nhưng rất tiếc là họ đã ngừng cung cấp cấp độ này vào năm 2022.
 
-Luckily, there are still plenty of other great options out there. The downside is that they all have very limited free tiers. For this reason, and to accommodate as many of our learners as possible, we're going to recommend a range of options instead of just one.
+May mắn thay, vẫn còn rất nhiều lựa chọn tuyệt vời khác ngoài kia. Nhược điểm là tất cả chúng đều có số lượng miễn phí rất hạn chế. Vì lý do này và để thu hút càng nhiều người học càng tốt, chúng tôi sẽ đề xuất nhiều lựa chọn thay vì chỉ một.
 
-You can host most of your projects for free using a combination of the different providers we recommend, but you'll have a bit more leg work to do. You'll have to create an account and get familiar with a few different providers.
+Bạn có thể lưu trữ miễn phí hầu hết các dự án của mình bằng cách sử dụng kết hợp các nhà cung cấp khác nhau mà chúng tôi đề xuất, nhưng bạn sẽ có nhiều việc phải làm hơn một chút. Bạn sẽ phải tạo một tài khoản và làm quen với một số nhà cung cấp khác nhau.
 
-If you can pay for hosting, things are more straightforward. It will afford you the luxury of choosing one provider you can learn deeply, and you'll be able to manage all your apps from one place.
+Nếu bạn có thể trả tiền cho việc lưu trữ, mọi thứ sẽ đơn giản hơn. Nó sẽ mang lại cho bạn sự thoải mái khi chọn một nhà cung cấp mà bạn có thể tìm hiểu sâu và bạn sẽ có thể quản lý tất cả ứng dụng của mình từ một nơi.
 
-Whatever your circumstances, we've got you covered. Here are the PaaS providers we recommend.
+Dù hoàn cảnh của bạn là gì, chúng tôi đều có thể hỗ trợ bạn. Dưới đây là các nhà cung cấp PaaS mà chúng tôi đề xuất.
 
 ---
 
 #### Railway.app
 
-Can deploy both servers and databases.
+Có thể triển khai cả máy chủ và cơ sở dữ liệu.
 
-- Railway has a convenient deployment process. You link to your project's GitHub repo.
-- Pay for what you use model.
-- $5 a month should be enough to host four applications.
+- Railway có quá trình triển khai thuận lợi. Bạn liên kết tới kho GitHub của dự án của bạn.
+- Trả tiền cho những gì bạn sử dụng mô hình.
+- $5 một tháng là đủ để lưu trữ bốn ứng dụng.
 
-##### Railway.app: Free Plan
+##### Railway.app: Gói miễn phí
 
-- You get a free one-time grant of $5 on their free trial, and the applications are never put to sleep when inactive.
-- After 30 days has passed or you have used up $5 grant, Railway rolls you back to their limited trial, which you can only deploy database.
+- Bạn nhận được khoản trợ cấp miễn phí một lần trị giá $5 khi dùng thử miễn phí và các ứng dụng không bao giờ chuyển sang chế độ ngủ khi không hoạt động.
+- Sau 30 ngày trôi qua hoặc bạn đã sử dụng hết khoản trợ cấp $5, Rail sẽ đưa bạn trở lại bản dùng thử giới hạn của họ, nơi bạn chỉ có thể triển khai cơ sở dữ liệu.
 
-##### Railway.app: Links
+##### Railway.app: Liên kết
 
-- [Railway homepage](https://railway.app/)
-- [Railway documentation](https://docs.railway.app/)
+- [Trang chủ Railway](https://railway.app/)
+- [Tài liệu Railway](https://docs.railway.app/)
 
 ---
 
 #### Render
 
-Can deploy both servers and databases.
+Có thể triển khai cả máy chủ và cơ sở dữ liệu.
 
-- Render allows you to deploy using "Blueprints", which link to your project's GitHub repo.
-- The free 750-hour allowance is enough to host a few apps without paying anything. However, databases are separate on Render, and the lowest spec databases cost $7 each.
-- $21 a month is enough to host three applications as each app's database will cost $7.
+- Render cho phép bạn triển khai bằng cách sử dụng "Blueprints", liên kết tới kho lưu trữ GitHub của dự án của bạn.
+- 750 giờ miễn phí đủ để lưu trữ một vài ứng dụng mà không phải trả bất kỳ khoản nào. Tuy nhiên, cơ sở dữ liệu riêng biệt trên Render và cơ sở dữ liệu có thông số kỹ thuật thấp nhất có giá 7 USD mỗi cơ sở dữ liệu.
+- 21 USD một tháng là đủ để lưu trữ ba ứng dụng vì cơ sở dữ liệu của mỗi ứng dụng sẽ có giá 7 USD.
 
-##### Render: Free Plan
+##### Render: Gói miễn phí
 
-- 750 hours of free usage per month.
-- Applications are put to sleep automatically after 15 minutes of inactivity, so the 750 free hours should be enough to host a few apps for the entire month.
-- You can only have one active free database at a time, which expires 30 days after creation.
+- 750 giờ sử dụng miễn phí mỗi tháng.
+- Các ứng dụng sẽ tự động chuyển sang chế độ ngủ sau 15 phút không hoạt động, vì vậy 750 giờ miễn phí sẽ đủ để lưu trữ một vài ứng dụng trong cả tháng.
+- Bạn chỉ có thể có một cơ sở dữ liệu miễn phí đang hoạt động tại một thời điểm, cơ sở dữ liệu này sẽ hết hạn sau 30 ngày kể từ ngày tạo.
 
-##### Render: Links
+##### Render: Liên kết
 
-- [Render homepage](https://render.com/)
-- [Render documentation](https://render.com/docs/)
-- [Guide: Official getting started with Node/Express on Render guide](https://render.com/docs/deploy-node-express-app)
+- [Render trang chủ](https://render.com/)
+- [Tài liệu Render](https://render.com/docs/)
+- [Hướng dẫn: Chính thức bắt đầu với hướng dẫn Node/Express trên Render](https://render.com/docs/deploy-node-express-app)
 
 ---
 
 #### Neon
 
-Can deploy databases only.
+Chỉ có thể triển khai cơ sở dữ liệu.
 
-- 24/7 for your main database.
-- 20 additional hours of database branching.
-- Point-in-time restore (24 Hours)
-- No credit card required.
+- 24/7 cho cơ sở dữ liệu chính của bạn.
+- Thêm 20 giờ phân nhánh cơ sở dữ liệu.
+- Khôi phục tại thời điểm (24 giờ)
+- Không cần thẻ tín dụng.
 
-##### Neon: Free Plan
+##### Neon: Gói miễn phí
 
-- 10 projects
-- 0.5 GiB of storage per project
-- 24/7 for your main compute
-- No credit card required
+- 10 dự án
+- 0,5 GiB dung lượng lưu trữ cho mỗi dự án
+- 24/7 cho máy tính chính của bạn
+- Không cần thẻ tín dụng
 
-##### Neon: Links
+##### Neon: Liên kết
 
-- [Neon homepage](https://neon.tech/)
-- [Neon documentation](https://neon.tech/docs/introduction)
-- [Guide: Connect a Node.js application to Neon](https://neon.tech/docs/guides/node)
+- [Trang chủ neon](https://neon.tech/)
+- [Tài liệu về Neon](https://neon.tech/docs/introduction)
+- [Hướng dẫn: Kết nối ứng dụng Node.js với Neon](https://neon.tech/docs/guides/node)
 
 ---
 
 #### Aiven
 
-Can deploy databases only.
+Chỉ có thể triển khai cơ sở dữ liệu.
 
-- 24/7 for all database services.
-- High availability and automatic backups.
-- Point-in-time recovery (varies by service).
-- No credit card required.
+- 24/7 cho tất cả các dịch vụ cơ sở dữ liệu.
+- Tính sẵn sàng cao và sao lưu tự động.
+- Phục hồi tại thời điểm (thay đổi tùy theo dịch vụ).
+- Không cần thẻ tín dụng.
 
-##### Aiven: Free Plan
+##### Aiven: Gói miễn phí
 
-- 5 GiB of storage.
-- 24/7 for all database services.
-- One free database for every services including PostgreSQL, MySQL and Redis.
-- No credit card required.
+- Dung lượng lưu trữ 5 GiB.
+- 24/7 cho tất cả các dịch vụ cơ sở dữ liệu.
+- Một cơ sở dữ liệu miễn phí cho mọi dịch vụ bao gồm PostgreSQL, MySQL và Redis.
+- Không cần thẻ tín dụng.
 
-##### Aiven: Links
+##### Aiven: Liên kết
 
-- [Aiven homepage](https://aiven.io/)
-- [Aiven documentation](https://aiven.io/docs/get-started)
-- [Guide: Connect a Node.js application to Aiven](https://aiven.io/docs/products/postgresql/howto/connect-node)
+- [Trang chủ Aiven](https://aiven.io/)
+- [Tài liệu Aiven](https://aiven.io/docs/get-started)
+- [Hướng dẫn: Kết nối ứng dụng Node.js với Aiven](https://aiven.io/docs/products/postgresql/howto/connect-node)
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Keep your secrets safe!
+#### Giữ bí mật của bạn an toàn!
 
-This guide provides a sample for configuring a database connection. Please do not store credentials directly in your code. Refer to the [Environment Variables](https://www.theodinproject.com/lessons/nodejs-environment-variables) section for best practices.
+Hướng dẫn này cung cấp mẫu để định cấu hình kết nối cơ sở dữ liệu. Vui lòng không lưu trữ thông tin xác thực trực tiếp trong mã của bạn. Tham khảo phần [Biến môi trường](https://www.theodinproject.com/lessons/nodejs-environment-variables) để biết các phương pháp hay nhất.
 
 </div>
 
 ---
 
-### Debugging and troubleshooting deployments
+### Triển khai gỡ lỗi và khắc phục sự cố
 
-Errors are an inevitable part of the software development process. They especially have a habit of popping up when deploying to a new environment like a hosting provider. When this happens, the key is not to panic and to follow a calm, step-by-step debugging process.
+Lỗi là một phần không thể tránh khỏi trong quá trình phát triển phần mềm. Họ đặc biệt có thói quen xuất hiện khi triển khai sang môi trường mới như nhà cung cấp dịch vụ lưu trữ. Khi điều này xảy ra, điều quan trọng là đừng hoảng sợ và làm theo quy trình gỡ lỗi từng bước một cách bình tĩnh.
 
-In most cases, you'll be running into errors that thousands of developers have encountered before. These errors are well documented and often have solutions you can find with a little bit of Google-fu.
+Trong hầu hết các trường hợp, bạn sẽ gặp phải lỗi mà hàng nghìn nhà phát triển đã gặp phải trước đây. Những lỗi này được ghi chép đầy đủ và thường có giải pháp mà bạn có thể tìm thấy bằng tìm kiếm trên Google.
 
-There are two stages of the deployment process where you are most likely to encounter problems. These are during deployment and right after.
+Có hai giai đoạn của quá trình triển khai mà bạn có nhiều khả năng gặp phải sự cố nhất. Đây là trong quá trình triển khai và ngay sau đó.
 
-#### Node version compatibility
+#### Khả năng tương thích phiên bản Node
 
-Depending on the host provider you use, the supported Node versions and default selected version may differ. You can refer to the providers' documentation for more information on what is supported and selected, and depending on what features you use in your code, you may need to [specify what Node versions your project is compatible with in your `package.json`](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#engines).
+Tùy thuộc vào nhà cung cấp máy chủ bạn sử dụng, phiên bản Node được hỗ trợ và phiên bản được chọn mặc định có thể khác nhau. Bạn có thể tham khảo tài liệu của nhà cung cấp để biết thêm thông tin về những gì được hỗ trợ và lựa chọn, đồng thời tùy thuộc vào tính năng bạn sử dụng trong mã của mình, bạn có thể cần [chỉ định phiên bản Node nào mà dự án của bạn tương thích trong `package.json`](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#engines).
 
-#### On deployment
+#### Đang triển khai
 
-If you run into an error while deploying, the first thing to do is to check the build logs. Finding the build logs should be easy; it's the stream of output you'll see after kicking off a new deployment.
+Nếu bạn gặp lỗi khi triển khai, điều đầu tiên cần làm là kiểm tra nhật ký bản dựng. Việc tìm kiếm nhật ký xây dựng phải dễ dàng; đó là luồng đầu ra mà bạn sẽ thấy sau khi bắt đầu triển khai mới.
 
-Scroll through these logs and find the point where the deployment encountered the error. It should stand out from the rest of the output and will often look like the stack traces you've already seen with JavaScript/Node. The error output will tell you exactly what went wrong.
+Cuộn qua các nhật ký này và tìm điểm mà quá trình triển khai gặp phải lỗi. Nó phải nổi bật so với phần còn lại của đầu ra và thường trông giống như dấu vết ngăn xếp mà bạn đã thấy với JavaScript/Node. Đầu ra lỗi sẽ cho bạn biết chính xác điều gì đã xảy ra.
 
-If you don't recognize the error or what might cause it, your next step will be to copy and paste it into your favorite online search engine. You'll likely find a Stack Overflow post with a solution. You can get support in our Discord server if searching doesn't lead to anything conclusive.
+Nếu bạn không nhận ra lỗi hoặc nguyên nhân có thể gây ra lỗi đó, bước tiếp theo của bạn sẽ là sao chép và dán lỗi đó vào công cụ tìm kiếm trực tuyến yêu thích của bạn. Bạn có thể sẽ tìm thấy một bài viết về Stack Overflow kèm theo giải pháp. Bạn có thể nhận hỗ trợ trên máy chủ Discord của chúng tôi nếu việc tìm kiếm không dẫn đến kết quả gì.
 
-Most of the errors you'll face during this stage will be related to properly setting up your app with what your hosting provider needs. Double-checking the deployment guide for your hosting provider is always a good place to start. It's very easy to miss a step or mistype something.
+Hầu hết các lỗi bạn gặp phải trong giai đoạn này sẽ liên quan đến việc thiết lập ứng dụng đúng cách với những gì nhà cung cấp dịch vụ lưu trữ của bạn cần. Kiểm tra kỹ hướng dẫn triển khai cho nhà cung cấp dịch vụ lưu trữ của bạn luôn là nơi tốt để bắt đầu. Rất dễ bỏ sót một bước hoặc gõ nhầm nội dung nào đó.
 
-#### After deployment
+#### Sau khi triển khai
 
-You've just deployed your app successfully; everything is going your way, and this will be a great day! However, when you visit your app... you are greeted with the dreaded 500 page.
+Bạn vừa triển khai thành công ứng dụng của mình; mọi thứ đang diễn ra theo cách của bạn và đây sẽ là một ngày tuyệt vời! Tuy nhiên, khi bạn truy cập ứng dụng của mình... bạn sẽ được chào đón với trang 500 đáng sợ.
 
-Nothing induces panic in a developer quite like a 500 page. It could mean just about anything. Error pages in production are deliberately vague to let users know something went wrong without all the overwhelming technical jargon. Another important reason is to prevent attackers from using errors in your system to their advantage.
+Không có gì khiến một nhà phát triển hoảng sợ như một trang 500. Nó có thể có nghĩa là bất cứ điều gì. Các trang lỗi trong quá trình sản xuất được cố tình mơ hồ để cho người dùng biết đã xảy ra sự cố mà không cần sử dụng nhiều thuật ngữ kỹ thuật phức tạp. Một lý do quan trọng khác là ngăn chặn kẻ tấn công sử dụng lỗi trong hệ thống của bạn để làm lợi thế cho chúng.
 
-You have a few tools at your disposal to help you diagnose the problem. The first is the application logs.
+Bạn có sẵn một số công cụ để giúp bạn chẩn đoán vấn đề. Đầu tiên là nhật ký ứng dụng.
 
-The application logs are the output of your application as it's running. It tells you what's happening with your app as it's happening. All the incoming requests and database queries are recorded, and you can see them being recorded in real-time.
+Nhật ký ứng dụng là đầu ra của ứng dụng của bạn khi nó đang chạy. Nó cho bạn biết điều gì đang xảy ra với ứng dụng của bạn khi nó đang diễn ra. Tất cả các yêu cầu đến và truy vấn cơ sở dữ liệu đều được ghi lại và bạn có thể thấy chúng được ghi lại trong thời gian thực.
 
-So if you're getting a 500 error, you can open up the logs and watch them closely as you refresh the page on your app in the browser to reproduce the error. This will either tell you exactly what the problem is or generate some leads you can use to dig further.
+Vì vậy, nếu gặp lỗi 500, bạn có thể mở nhật ký và theo dõi kỹ khi làm mới trang trên ứng dụng của mình trong trình duyệt để tái tạo lỗi. Điều này sẽ cho bạn biết chính xác vấn đề là gì hoặc tạo ra một số khách hàng tiềm năng mà bạn có thể sử dụng để tìm hiểu thêm.
 
-#### Going further with troubleshooting tools
+#### Tiến xa hơn với các công cụ khắc phục sự cố
 
-As your application grows, you'll want to get more sophisticated with your error-tracking tools. For example, you can use services like [Sentry](https://sentry.io/) to track and monitor errors using a slick, easy-to-use interface and get notified when they happen.
+Khi ứng dụng của bạn phát triển, bạn sẽ muốn các công cụ theo dõi lỗi của mình trở nên phức tạp hơn. Ví dụ, bạn có thể sử dụng các dịch vụ như [Sentry](https://sentry.io/) để theo dõi và giám sát lỗi bằng giao diện trực quan, dễ sử dụng, đồng thời nhận thông báo khi lỗi xảy ra.
 
-These services will give you more information about the error and the request that caused it, saving you a ton of time. However, setting up and using these services are out of the scope of this lesson. You can get by just fine with the logs for your first few apps.
+Các dịch vụ này sẽ cung cấp cho bạn thêm thông tin về lỗi và yêu cầu gây ra lỗi đó, giúp bạn tiết kiệm rất nhiều thời gian. Tuy nhiên, việc thiết lập và sử dụng các dịch vụ này nằm ngoài phạm vi của bài học này. Bạn có thể hoàn thành tốt công việc với nhật ký cho một số ứng dụng đầu tiên của mình.
 
-#### One final tip
+#### Một mẹo cuối cùng
 
-If something has broken in your latest deployment after successful deployments in the past, backtrack to the last working version to determine what changes you made and slowly reintroduce those changes again if you need to.
+Nếu có sự cố xảy ra trong lần triển khai mới nhất của bạn sau khi triển khai thành công trước đây, hãy quay lại phiên bản hoạt động gần đây nhất để xác định những thay đổi bạn đã thực hiện và từ từ giới thiệu lại những thay đổi đó nếu cần.
 
-This will be where the Git skills you've been learning will start to really pay off and save you an immense amount of time. You'll be able to use `git log` to see the history of your latest changes and `git checkout` to revert to a previous working version quickly.
+Đây sẽ là lúc các kỹ năng Git mà bạn đã học sẽ bắt đầu phát huy tác dụng và giúp bạn tiết kiệm rất nhiều thời gian. Bạn sẽ có thể sử dụng `git log` để xem lịch sử các thay đổi mới nhất của mình và `git checkout` để nhanh chóng hoàn nguyên về phiên bản hoạt động trước đó.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Deploy your [Mini Message Board project](https://www.theodinproject.com/lessons/node-path-nodejs-mini-message-board) to one of the hosting providers we've mentioned. Any of the free options will work for curriculum purposes, so it doesn’t matter which you pick for your projects. The important thing to take away from this first deployment is getting experience deploying. Don’t worry if you don’t understand everything that’s happening. That will come with time.
-   - Use one of the linked deploy guides for your PaaS provider to help you through the process.
-   - If you're having trouble deploying, check out the [Debugging and Troubleshooting Deployments](#debugging-and-troubleshooting-deployments) section for some tips.
+1. Triển khai [Dự án Bảng tin Mini](https://www.theodinproject.com/lessons/node-path-nodejs-mini-message-board) của bạn cho một trong những nhà cung cấp dịch vụ lưu trữ mà chúng tôi đã đề cập. Bất kỳ tùy chọn miễn phí nào cũng sẽ hoạt động cho mục đích chương trình giảng dạy, vì vậy việc bạn chọn tùy chọn nào cho dự án của mình không quan trọng. Điều quan trọng cần rút ra từ lần triển khai đầu tiên này là tích lũy kinh nghiệm triển khai. Đừng lo lắng nếu bạn không hiểu mọi thứ đang xảy ra. Điều đó sẽ đến với thời gian.
+   - Sử dụng một trong các hướng dẫn triển khai được liên kết dành cho nhà cung cấp PaaS của bạn để giúp bạn trong suốt quá trình.
+   - Nếu bạn gặp sự cố khi triển khai, hãy xem phần [Gỡ lỗi và khắc phục sự cố triển khai](#debugging-and-troubleshooting-deployments) để biết một số mẹo.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- [free-for.dev](https://free-for.dev/). This is a huge repository of software such as SaaS, PaaS, IaaS, etc. and other offerings with free developer tiers.
+- [free-for.dev](https://free-for.dev/). Đây là một kho phần mềm khổng lồ như SaaS, PaaS, IaaS, v.v. và các dịch vụ khác với các cấp độ nhà phát triển miễn phí.

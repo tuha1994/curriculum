@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-Now let's explore CSS animations using keyframes. This will expand upon your encounter with CSS transitions and delve into the differences between them.
+Bây giờ hãy cùng tìm hiểu về hoạt ảnh CSS bằng keyframes. Phần này sẽ mở rộng những gì bạn đã biết về CSS transitions và đi sâu vào sự khác biệt giữa chúng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- The differences between CSS transitions and CSS animations.
-- How to configure animation sub-properties.
-- How to sequence an animation using keyframes.
+- Sự khác biệt giữa CSS transitions và CSS animations.
+- Cách cấu hình các thuộc tính con của animation.
+- Cách sắp xếp trình tự của một animation bằng keyframes.
 
-### Animations vs transitions
+### Animations và transitions
 
-Animations let you animate elements from one style configuration to another. Does this sound familiar? You wouldn't be wrong for thinking, "Well, what's the point in learning animations if they are basically the same as transitions?", but animations greatly expand on some capabilities that transitions do not have. A few of the differences include:
+Animations cho phép bạn tạo hoạt ảnh cho các phần tử từ cấu hình kiểu dáng này sang cấu hình kiểu dáng khác. Nghe quen thuộc chứ? Bạn sẽ không sai khi nghĩ rằng: "Nếu chúng về cơ bản giống transitions thì học animations để làm gì?", nhưng animations mở rộng đáng kể một số khả năng mà transitions không có. Một vài khác biệt gồm:
 
-- Transitions were designed to animate an element from one state to another. They *can* loop, but they weren't designed for that. Animations, on the other hand, *were* designed with the purpose of explicitly enabling loops.
+- Transitions được thiết kế để tạo hoạt ảnh cho một phần tử từ trạng thái này sang trạng thái khác. Chúng *có thể* lặp lại, nhưng không được thiết kế cho mục đích đó. Ngược lại, animations *được* thiết kế với mục đích cho phép lặp lại một cách rõ ràng.
 
-- Transitions need a trigger, such as the use of pseudo-classes like `:hover` or `:focus`, or by adding/removing a class via JavaScript. Animations, on the other hand, do not need such a trigger. Once you have your elements in place and CSS defined, an animation will start running immediately if that's what you told it to do.
+- Transitions cần một tác nhân kích hoạt, chẳng hạn sử dụng pseudo-class như `:hover` hoặc `:focus`, hay thêm/xóa một class bằng JavaScript. Ngược lại, animations không cần tác nhân như vậy. Khi các phần tử đã được đặt vào vị trí và CSS đã được định nghĩa, animation sẽ bắt đầu chạy ngay nếu đó là điều bạn yêu cầu.
 
-- Transitions are not as flexible as using animations. When you define a transition, imagine you are sending that element on a journey in a straight line from point A to point B. Yes, the `transition-timing-function` can add some variation to the timing of this change, but it doesn't compare to the amount of flexibility added by using animations.
+- Transitions không linh hoạt bằng animations. Khi định nghĩa một transition, hãy hình dung bạn đang đưa phần tử đó đi theo một đường thẳng từ điểm A đến điểm B. Đúng là `transition-timing-function` có thể tạo thêm một số biến đổi về thời gian của thay đổi này, nhưng vẫn không thể sánh với mức độ linh hoạt mà animations mang lại.
 
-All in all, both animations and transitions have their use, so in addition to considering the above differences you should also use your best judgment. For example, if you need to change the opacity of an element when it is active then an animation would be overkill, but if you need to carry out something more complicated, animations will provide you with the tools you need.
+Nhìn chung, cả animations và transitions đều có trường hợp sử dụng riêng. Vì vậy, ngoài việc cân nhắc những khác biệt trên, bạn cũng nên dùng phán đoán của mình. Ví dụ, nếu cần thay đổi độ mờ của một phần tử khi nó đang active thì dùng animation sẽ là quá mức cần thiết, nhưng nếu cần thực hiện điều gì đó phức tạp hơn, animations sẽ cung cấp những công cụ bạn cần.
 
-### Animation properties
+### Các thuộc tính animation
 
-Let's see an animation in action to see what we've been talking about.
+Hãy xem một animation hoạt động để hiểu rõ hơn điều chúng ta đang nói đến.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="jOGENZz" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -36,7 +36,7 @@ Let's see an animation in action to see what we've been talking about.
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Note how the animation is already running and how it keeps repeating itself. We'll cover that `@keyframes` rule at the bottom of our example in a bit, so for now focus on the actual animation properties used in the example above:
+Hãy chú ý rằng animation đã chạy sẵn và liên tục lặp lại. Chúng ta sẽ đề cập đến rule `@keyframes` ở cuối ví dụ sau, nên trước hết hãy tập trung vào các thuộc tính animation thực sự được sử dụng trong ví dụ trên:
 
 ```css
 #ball {
@@ -48,19 +48,19 @@ Note how the animation is already running and how it keeps repeating itself. We'
 }
 ```
 
-This is known as the configuration stage where we define our animation properties on the `#ball` element, and it is only the first half of defining an animation. In our example, we have:
+Đây được gọi là giai đoạn cấu hình, trong đó chúng ta định nghĩa các thuộc tính animation trên phần tử `#ball`; và đây mới chỉ là nửa đầu của việc định nghĩa một animation. Trong ví dụ này, chúng ta đã:
 
-- An `animation-duration` of two seconds. This means that it will take two seconds for the `#ball` element to complete one animation cycle.
+- Đặt `animation-duration` là hai giây. Điều này có nghĩa là phần tử `#ball` sẽ mất hai giây để hoàn thành một chu kỳ animation.
 
-- Defined the `animation-name` to be "change-color" which is essential for the `@keyframes` section coming up next. This is just a custom name that is not a particular CSS value. We could have called it "pineapples" if we so wished, but for our purposes "change-color" suits us well.
+- Đặt `animation-name` là "change-color", tên này rất quan trọng đối với phần `@keyframes` sắp xuất hiện. Đây chỉ là một tên tùy chỉnh, không phải một giá trị CSS cụ thể. Nếu muốn, chúng ta có thể gọi nó là "pineapples", nhưng với mục đích của mình, "change-color" phù hợp hơn.
 
-- Set the `animation-iteration-count` to `infinite`, which means this animation will run forever. You could set this to 1, 2, or as many iterations as you wish.
+- Đặt `animation-iteration-count` là `infinite`, nghĩa là animation này sẽ chạy mãi mãi. Bạn có thể đặt giá trị này là 1, 2 hoặc bao nhiêu lần lặp tùy ý.
 
-- Set the `animation-direction`  to `alternate`. This property decides if our animation should alternate direction on the completion of one cycle, or reset to the start point and repeat itself. Here it means that the `#ball` will smoothly change back to its original color instead of "jumping" straight back to red.
+- Đặt `animation-direction` là `alternate`. Thuộc tính này quyết định animation sẽ đổi hướng khi hoàn thành một chu kỳ hay đặt lại về điểm bắt đầu và lặp lại. Ở đây, điều đó có nghĩa là `#ball` sẽ đổi mượt trở lại màu ban đầu thay vì "nhảy" thẳng về màu đỏ.
 
 ### Keyframes
 
-Now it's time to tackle the second half of our animation definition by exploring the `@keyframes` at-rule.
+Bây giờ là lúc xử lý nửa còn lại của định nghĩa animation bằng cách tìm hiểu at-rule `@keyframes`.
 
 ```css
 @keyframes change-color {
@@ -74,13 +74,13 @@ Now it's time to tackle the second half of our animation definition by exploring
 }
 ```
 
-The `@keyframes` at-rule references the 'change-color' name we defined earlier. Then, we use the `from` and `to` properties to change the `background-color` of `#ball` from red to green.
+At-rule `@keyframes` tham chiếu đến tên 'change-color' mà chúng ta đã định nghĩa trước đó. Sau đó, chúng ta dùng các thuộc tính `from` và `to` để thay đổi `background-color` của `#ball` từ đỏ sang xanh lá.
 
-It's important to know that keyframes use a percentage to indicate the times for an animation to take place and that the `from` and `to` statements are actually aliases for `0%` and `100%`, respectively. You can read `from/0%` as meaning 'at zero seconds' and `to/100%` as 'at 2 seconds' according to our `animation-duration` in our example from above. There is no hard and fast rule on whether or not you should use `from/to` or `0%/100%`. Just pick a style and be consistent with it.
+Điều quan trọng cần biết là keyframes dùng phần trăm để biểu thị thời điểm animation diễn ra, và các câu lệnh `from` và `to` thực chất lần lượt là bí danh của `0%` và `100%`. Bạn có thể hiểu `from/0%` là 'ở giây thứ 0' và `to/100%` là 'ở giây thứ 2', theo `animation-duration` trong ví dụ trên. Không có quy tắc cứng nhắc nào về việc nên dùng `from/to` hay `0%/100%`. Chỉ cần chọn một kiểu và dùng nhất quán.
 
-The `@keyframes` at-rule also defines one animation cycle. So if we were to change our `animation-iteration-count` from earlier to 2 then the ball would change its `background-color` from red to green, then from green to red, and then the animation would stop. Be careful not to think of one iteration as a complete loop, but rather a single cycle from beginning to end (or end to beginning when alternating the direction).
+At-rule `@keyframes` cũng định nghĩa một chu kỳ animation. Vì vậy, nếu đổi `animation-iteration-count` ở trên thành 2, quả bóng sẽ đổi `background-color` từ đỏ sang xanh lá, rồi từ xanh lá sang đỏ, sau đó animation sẽ dừng. Đừng nhầm một lần lặp với một vòng lặp hoàn chỉnh; một lần lặp là một chu kỳ đơn từ đầu đến cuối (hoặc từ cuối đến đầu khi đổi hướng).
 
-Now it's time to introduce the shorthand notation for our animation properties and glimpse a little into the added flexibility of the keyframe notation. Check out the live example below then have a look at the notation.
+Bây giờ là lúc giới thiệu cú pháp viết tắt cho các thuộc tính animation và xem qua một chút về tính linh hoạt được bổ sung của cú pháp keyframe. Hãy xem ví dụ trực tiếp bên dưới, rồi xem cách viết.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="zYExOLQ" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -115,18 +115,18 @@ Now it's time to introduce the shorthand notation for our animation properties a
 }
 ```
 
-Here we added another keyframe for when the `animation-duration` is at 50%, or 1 second. This means as well as the `background-color` changing to an additional value, we have also specified that the ball doubles in size. Just be aware that additional keyframes are always defined in percentages. Only the `0%/100%` values may use the `from/to` alias.
+Ở đây, chúng ta đã thêm một keyframe khác tại thời điểm `animation-duration` đạt 50%, tức là 1 giây. Điều này có nghĩa là ngoài việc `background-color` đổi sang một giá trị bổ sung, chúng ta còn chỉ định quả bóng tăng gấp đôi kích thước. Hãy nhớ rằng các keyframe bổ sung luôn được định nghĩa bằng phần trăm. Chỉ các giá trị `0%/100%` mới có thể dùng bí danh `from/to`.
 
-Hopefully, this gives you a glimpse into the power the `@keyframes` syntax provides to you when it comes to controlling the animation of an element's properties. You can add keyframes whenever you want, control whatever CSS-animatable properties you want, and have the control to add some real creative flair to your website elements.
+Hy vọng phần này giúp bạn hình dung được sức mạnh mà cú pháp `@keyframes` mang lại khi điều khiển các thuộc tính animation của một phần tử. Bạn có thể thêm keyframe bất cứ khi nào muốn, điều khiển bất kỳ thuộc tính CSS nào có thể tạo animation, và thỏa sức thêm nét sáng tạo cho các phần tử trên website.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Code along with this [MDN article for using CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
-1. Read the [@keyframes reference](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) to gain a deeper understanding of how keyframes are implemented.
-1. Read this [interactive guide to keyframes](https://www.joshwcomeau.com/animation/keyframe-animations/).
-1. Now let's make some cool animations! Complete the exercises in our [CSS exercises repository's `advanced-html-css/animation` directory](https://github.com/TheOdinProject/css-exercises/tree/main/advanced-html-css/animation) (remember that the instructions are in the README) in the order:
+1. Viết code theo [bài viết MDN về cách sử dụng CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
+1. Đọc [tài liệu tham khảo về @keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) để hiểu sâu hơn cách keyframes được triển khai.
+1. Đọc [hướng dẫn tương tác về keyframes](https://www.joshwcomeau.com/animation/keyframe-animations/) này.
+1. Bây giờ hãy tạo một số animation thú vị! Hoàn thành các bài tập trong [thư mục `advanced-html-css/animation` của repository bài tập CSS](https://github.com/TheOdinProject/css-exercises/tree/main/advanced-html-css/animation) (nhớ rằng hướng dẫn nằm trong README) theo thứ tự:
    - `01-button-hover`
    - `02-pop-up`
    - `03-dropdown-menu`

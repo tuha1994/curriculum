@@ -1,82 +1,82 @@
-### Introduction
+### Giới thiệu
 
-The first step to making responsive websites is using techniques that are *naturally* flexible. In a later lesson you'll learn how to completely rearrange items on a page based on screen size, but in most cases, it's preferable to rely on tools like flexbox and grid to make your pages work on a wide range of screens first.
+Bước đầu tiên để tạo website responsive là sử dụng những kỹ thuật *tự nhiên* linh hoạt. Trong một bài học sau, bạn sẽ học cách sắp xếp lại hoàn toàn các phần tử trên trang dựa trên kích thước màn hình, nhưng trong hầu hết trường hợp, trước tiên nên dựa vào các công cụ như flexbox và grid để trang hoạt động trên nhiều loại màn hình.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- You'll learn a few tips for keeping your sites naturally responsive.
+- Bạn sẽ học một số mẹo để giữ cho website responsive một cách tự nhiên.
 
-### Not everything needs CSS
+### Không phải mọi thứ đều cần CSS
 
-Plain HTML, with no CSS is responsive. Visit this [HTML-only page with no CSS](https://codyloyd.github.io/responsive-html/) and shrink your browser down to the size of a phone. It works perfectly! You could read that site on an apple watch.
+HTML thuần, không có CSS, vốn đã responsive. Hãy truy cập [trang chỉ có HTML và không có CSS này](https://codyloyd.github.io/responsive-html/) rồi thu nhỏ trình duyệt xuống kích thước điện thoại. Trang hoạt động hoàn hảo! Bạn thậm chí có thể đọc nó trên một chiếc Apple Watch.
 
-It's not realistic for every website you create to be as basic as plain text on a page, but it is important to keep in mind that most of the elements you're using to build your project are responsive until **you** change that with CSS. If you approach your project with this mindset and do your best to maintain that natural responsiveness, you might find that there isn't *that* much extra you need to do to make your sites properly responsive.
+Việc mọi website bạn tạo đều đơn giản như văn bản thuần trên một trang là không thực tế, nhưng điều quan trọng là nhớ rằng hầu hết phần tử bạn dùng để xây dựng dự án đều responsive cho đến khi **bạn** thay đổi điều đó bằng CSS. Nếu tiếp cận dự án với tư duy này và cố gắng duy trì tính responsive tự nhiên, bạn có thể thấy rằng mình không cần làm *quá* nhiều việc thêm để website thực sự responsive.
 
-The rest of this lesson is a list of tips you can use to maintain natural responsiveness.
+Phần còn lại của bài học là danh sách các mẹo bạn có thể dùng để duy trì tính responsive tự nhiên.
 
-### The viewport meta tag
+### Thẻ meta viewport
 
-When mobile phones first started getting web browsers, most websites were *not* optimized for such small screen resolutions. To get around this, most phone browsers simulated a larger screen and displayed a zoomed-out version of the page. These days, however, we almost never want that behavior so we have to specify that we want our websites to be viewed at the actual non-zoomed screen resolution.
+Khi điện thoại di động mới bắt đầu có trình duyệt web, hầu hết website *không* được tối ưu cho độ phân giải màn hình nhỏ như vậy. Để giải quyết, hầu hết trình duyệt điện thoại mô phỏng một màn hình lớn hơn và hiển thị phiên bản thu nhỏ của trang. Tuy nhiên, ngày nay chúng ta gần như không bao giờ muốn hành vi đó, vì vậy phải chỉ định rằng website được xem ở độ phân giải thực tế, không phóng to hay thu nhỏ.
 
-For this reason, you should add this snippet into the `<head>` of your HTML file in just about every project you work on.
+Vì lý do này, bạn nên thêm đoạn mã sau vào `<head>` của file HTML trong gần như mọi dự án.
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
-It sets the initial width of the webpage to the size of the actual screen you're viewing it on, and telling it not to zoom in or out. Easy!
+Đoạn mã đặt chiều rộng ban đầu của webpage bằng kích thước màn hình thực tế đang xem, đồng thời yêu cầu không phóng to hay thu nhỏ. Đơn giản phải không!
 
-You have most likely already been using this tag if you've been using Emmet to generate HTML boilerplate for you. (<kbd>!</kbd> + <kbd>ENTER</kbd>)
+Rất có thể bạn đã dùng thẻ này nếu sử dụng Emmet để tạo HTML boilerplate. (<kbd>!</kbd> + <kbd>ENTER</kbd>)
 
-### Avoid fixed width and height
+### Tránh chiều rộng và chiều cao cố định
 
-The number one enemy of flexibility is a fixed width on an element. If you put `width: 600px` on anything, then it will never be able to shrink below that width, which ruins your chances of getting that thing to fit on most phone screens. Likewise, sticking a fixed height on an element can cause issues if the contents of that element run out of room.
+Kẻ thù số một của tính linh hoạt là chiều rộng cố định trên một phần tử. Nếu đặt `width: 600px` cho bất kỳ thứ gì, nó sẽ không bao giờ thu nhỏ xuống dưới chiều rộng đó, làm hỏng khả năng khiến phần tử vừa với hầu hết màn hình điện thoại. Tương tự, đặt chiều cao cố định cho phần tử có thể gây vấn đề nếu nội dung bên trong không còn đủ chỗ.
 
-Obviously the context will determine what works in a given situation, but an easy fix in many cases is replacing `width` or `height` with `max-width` or `min-height` (`min-width` and `max-height` are also valid and may be useful depending on the context).
+Rõ ràng, ngữ cảnh sẽ quyết định điều gì phù hợp trong từng tình huống, nhưng trong nhiều trường hợp, cách sửa đơn giản là thay `width` hoặc `height` bằng `max-width` hoặc `min-height` (`min-width` và `max-height` cũng hợp lệ và có thể hữu ích tùy ngữ cảnh).
 
-In the following example, notice how the fixed width causes our div to overflow the screen! Change it to `max-width` and watch it shrink down to fit the preview screen! Click 'Fork on CodePen', then 'Save', and navigate to the 'Open Live View in a New Window' icon at the bottom to see it in full window size. Try changing the size of the window to see how `max-width` works. When a `max-width` is defined, the element will not exceed that width but will shrink if the screen is too small to accommodate it.
+Trong ví dụ sau, hãy chú ý cách chiều rộng cố định khiến div tràn khỏi màn hình! Đổi nó thành `max-width` và xem nó thu nhỏ để vừa màn hình xem trước! Nhấp vào 'Fork on CodePen', sau đó 'Save', rồi chuyển đến biểu tượng 'Open Live View in a New Window' ở phía dưới để xem ở kích thước cửa sổ đầy đủ. Thử thay đổi kích thước cửa sổ để xem `max-width` hoạt động thế nào. Khi `max-width` được định nghĩa, phần tử sẽ không vượt quá chiều rộng đó nhưng sẽ thu nhỏ nếu màn hình quá nhỏ để chứa nó.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="GRMpreM" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/GRMpreM">
-  max-width | CSS Responsiveness</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/GRMpreM">
+  max-width | CSS Responsiveness</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-This example shown below demonstrates the problem with static heights. On a full-sized screen the text would fit inside the pink box just fine, but here on this cramped embed, it overflows! What we want here is for the div to be `300px` in most cases, but to grow instead of causing an overflow when the text gets cramped. In this case changing `height: 300px` to `min-height: 300px` will fix the issue.
+Ví dụ dưới đây minh họa vấn đề với chiều cao tĩnh. Trên màn hình đầy đủ, văn bản có thể vừa vặn trong hộp màu hồng, nhưng trong phần nhúng chật chội này, nó bị tràn! Điều chúng ta muốn là div có `300px` trong hầu hết trường hợp, nhưng sẽ phát triển thay vì gây tràn khi văn bản bị chèn ép. Trong trường hợp này, đổi `height: 300px` thành `min-height: 300px` sẽ khắc phục vấn đề.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="qBjxVYg" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/qBjxVYg">
-  height | CSS Responsiveness</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/qBjxVYg">
+  height | CSS Responsiveness</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-#### Avoid heights altogether
+#### Tránh hoàn toàn việc đặt chiều cao
 
-In *most* cases, you should avoid setting a height altogether. There are some exceptions to this rule (headers and footers perhaps) but you should prefer using margin and padding to increase space around your content. Using margin and padding will keep your elements flexible no matter what the content inside does.
+Trong *hầu hết* trường hợp, bạn nên tránh đặt height hoàn toàn. Có một số ngoại lệ cho quy tắc này (có thể là header và footer), nhưng bạn nên ưu tiên dùng margin và padding để tăng khoảng trống quanh nội dung. Dùng margin và padding sẽ giữ cho phần tử linh hoạt bất kể nội dung bên trong thay đổi thế nào.
 
-#### When fixed widths are appropriate
+#### Khi nào chiều rộng cố định phù hợp
 
-There are cases when a fixed width is appropriate. It's hard to make a universal rule, but, in general, the smaller your widths, the more acceptable it is to make them fixed. For example, a `32px` icon on your page isn't going to benefit from using `max-width` because you probably *don't* want it to shrink. Likewise, a `250px` sidebar probably needs to *always* be `250px`. As with anything, you need to consider your options and pick what seems to be the most appropriate.
+Có những trường hợp chiều rộng cố định là phù hợp. Khó đưa ra một quy tắc chung, nhưng nhìn chung, chiều rộng càng nhỏ thì càng có thể chấp nhận việc đặt cố định. Ví dụ, một icon `32px` trên trang sẽ không hưởng lợi từ `max-width` vì có lẽ bạn *không* muốn nó thu nhỏ. Tương tự, một sidebar `250px` có lẽ cần *luôn* là `250px`. Như với mọi thứ khác, bạn cần cân nhắc các lựa chọn và chọn điều có vẻ phù hợp nhất.
 
-### Use flex and grid
+### Dùng flex và grid
 
-Here's a statement so obvious that it sounds like a joke: flexbox was *created* to enable the creation of flexible layouts. Using flex and grid doesn't necessarily guarantee perfect responsiveness, but they are really helpful tools. You've already learned about the relevant properties here, but things like `flex-wrap` and grid's `minmax`, `auto-fill` and similar properties can make some impressively responsive layouts without much extra work.
+Sau đây là một nhận định hiển nhiên đến mức nghe như một trò đùa: flexbox được *tạo ra* để cho phép xây dựng các bố cục linh hoạt. Dùng flex và grid không đảm bảo responsive hoàn hảo, nhưng chúng thực sự là những công cụ hữu ích. Bạn đã học các thuộc tính liên quan ở đây, nhưng những thứ như `flex-wrap` và `minmax`, `auto-fill` cùng các thuộc tính tương tự của grid có thể tạo ra những bố cục responsive ấn tượng mà không cần nhiều công sức thêm.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read ["Using the viewport meta tag"](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) on MDN to get a little more background and detail about the viewport meta tag and the nature of screen resolutions.
-1. [Using Percentages in CSS](https://web.archive.org/web/20251116005914/https://codyloyd.com/2021/percentages/) is an article that tackles another common pitfall. Don't focus too much on the `@media` parts, as we will cover media queries very soon.
+1. Đọc ["Using the viewport meta tag"](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) trên MDN để hiểu thêm về thẻ meta viewport và bản chất của độ phân giải màn hình.
+1. [Using Percentages in CSS](https://web.archive.org/web/20251116005914/https://codyloyd.com/2021/percentages/) là một bài viết đề cập đến một cạm bẫy phổ biến khác. Đừng tập trung quá nhiều vào phần `@media`, vì chúng ta sẽ sớm học về media query.
 
 </div>

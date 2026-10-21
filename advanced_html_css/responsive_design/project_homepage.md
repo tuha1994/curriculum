@@ -1,36 +1,36 @@
-### Introduction
+### Giới thiệu
 
-For your final HTML/CSS project, you're going to create a responsive homepage, something you might find on a portfolio site of sorts. When you get to the point that you want to start sharing your work or applying for jobs, it's useful to have a well-designed portfolio to share. While we won't be making one yet, you'll want practice with these more advanced HTML and CSS concepts first, so take this as an opportunity to practice them!
+Trong dự án HTML/CSS cuối cùng, bạn sẽ tạo một homepage responsive, tương tự thứ bạn có thể thấy trên một dạng portfolio. Khi muốn bắt đầu chia sẻ công việc hoặc ứng tuyển, một portfolio được thiết kế tốt để giới thiệu sẽ rất hữu ích. Dù chúng ta chưa tạo portfolio ngay, trước tiên bạn sẽ muốn luyện tập những khái niệm HTML và CSS nâng cao này, vì vậy hãy xem đây là cơ hội để thực hành!
 
-Similar to the landing page and admin dashboard from previous projects, you are tasked with building a given design brief. We're providing a full design in 3 different sizes: desktop, tablet, and mobile. Match each design as closely as possible for its respective viewport, and ensure that your layout looks good at any screen size between 320 and 1,920 pixels wide.
+Tương tự landing page và admin dashboard ở các dự án trước, bạn sẽ xây dựng theo một bản mô tả thiết kế có sẵn. Chúng tôi cung cấp thiết kế đầy đủ ở 3 kích thước: desktop, tablet và mobile. Hãy khớp từng thiết kế sát nhất có thể với viewport tương ứng, đồng thời bảo đảm bố cục trông đẹp ở mọi kích thước màn hình trong khoảng rộng từ 320 đến 1,920 pixel.
 
-Feel free to pick your own fonts and colors and use something other than a stock-photo for your header. The main focus is on achieving the specified layouts and responsive behaviour rather than a complete portfolio.
+Bạn được tự chọn font và màu, cũng như dùng thứ gì đó khác ảnh stock cho header. Trọng tâm chính là đạt được các bố cục và hành vi responsive được chỉ định, chứ không phải tạo một portfolio hoàn chỉnh.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Step 1: Set up and planning
+#### Bước 1: Thiết lập và lập kế hoạch
 
-1. Set up your HTML and CSS files with some dummy content, just to make sure you have everything linked correctly.
-1. Download a full-resolution copy of the design files ([desktop design file](https://cdn.statically.io/gh/TheOdinProject/curriculum/fd6d4d2e2abbac4a3bd183bba6b6eaf1548a1458/advanced_html_css/responsive_design/project_personal_portfolio/imgs/portfolio.png), [tablet design file](https://cdn.statically.io/gh/TheOdinProject/curriculum/ca8588077887c9b653898537e84b1346967a4f0b/advanced_html_css/responsive_design/project_personal_portfolio/imgs/portfolio%20tablet.png), [mobile design file](https://cdn.statically.io/gh/TheOdinProject/curriculum/1c8b5c739efd263e8cc48703988b18d6e3afe034/advanced_html_css/responsive-design/project_personal_portfolio/imgs/portfolio%20mobile.png)), and get a general idea for how you're going to need to lay things out in your HTML document.
+1. Thiết lập các file HTML và CSS với một ít nội dung mẫu, chỉ để bảo đảm mọi thứ được liên kết chính xác.
+1. Tải bản đầy đủ độ phân giải của các file thiết kế ([file thiết kế desktop](https://cdn.statically.io/gh/TheOdinProject/curriculum/fd6d4d2e2abbac4a3bd183bba6b6eaf1548a1458/advanced_html_css/responsive_design/project_personal_portfolio/imgs/portfolio.png), [file thiết kế tablet](https://cdn.statically.io/gh/TheOdinProject/curriculum/ca8588077887c9b653898537e84b1346967a4f0b/advanced_html_css/responsive_design/project_personal_portfolio/imgs/portfolio%20tablet.png), [file thiết kế mobile](https://cdn.statically.io/gh/TheOdinProject/curriculum/1c8b5c739efd263e8cc48703988b18d6e3afe034/advanced_html_css/responsive-design/project_personal_portfolio/imgs/portfolio%20mobile.png)), rồi hình dung tổng quát cách bạn sẽ sắp xếp mọi thứ trong tài liệu HTML.
 
-#### Step 2: Gather assets
+#### Bước 2: Thu thập tài nguyên
 
-1. The portraits we've used in the design files are stock photos downloaded from [pexels.com](https://www.pexels.com/). If you don't have a picture of yourself handy, feel free to go grab a placeholder for now.
-1. Select your fonts! We're using `Playfair Display` and `Roboto` in the design, both available with Google fonts.
-1. In the design, we have icon-links for GitHub, LinkedIn, and X (formerly known as Twitter). Obviously, feel free to add whatever links you want to your own site. We got those icons from [https://devicon.dev/](https://devicon.dev/).
-1. Other icons (phone, email, and external link) were downloaded as SVGs from [https://materialdesignicons.com/](https://materialdesignicons.com/).
+1. Các ảnh chân dung dùng trong file thiết kế là ảnh stock được tải từ [pexels.com](https://www.pexels.com/). Nếu hiện chưa có ảnh của chính mình, bạn có thể lấy ảnh placeholder để dùng tạm.
+1. Chọn font! Trong thiết kế, chúng tôi dùng `Playfair Display` và `Roboto`, cả hai đều có trên Google Fonts.
+1. Trong thiết kế có các icon-link cho GitHub, LinkedIn và X (trước đây có tên Twitter). Tất nhiên, bạn có thể thêm bất kỳ liên kết nào mình muốn vào website. Chúng tôi lấy các icon đó từ [https://devicon.dev/](https://devicon.dev/).
+1. Các icon khác (điện thoại, email và liên kết ngoài) được tải dưới dạng SVG từ [https://materialdesignicons.com/](https://materialdesignicons.com/).
 
-#### Step 3: Some tips!
+#### Bước 3: Một vài mẹo!
 
-1. As you might expect, you can organize your work on this project however you please. We've given you many tips over the past several lessons, and you are likely already comfortable starting from a blank page.
-1. If you like being told what to do: The author of this lesson feels most comfortable starting out with the larger sections of the layout, and then working from the top of the page to the bottom. In other words, get the various sections in more or less the right place (header, projects, contact, etc.) while ignoring a lot of specific style and content details, then go back through from the top-to-bottom filling-in, styling, and cleaning up everything.
-1. It doesn't matter when or how you accomplish the responsiveness of this project, as long as your layout doesn't break for viewports between 320 and 1,920 pixels wide. There are people who will tell you that you should always start with the mobile experience and then use media queries to tell your layout how to expand. The 'mobile-first' crew *does* have some good points (Google it!), but in the end, how you accomplish it doesn't matter as long as it works. Good luck!
-1. When you're done, don't forget to push it to GitHub and use GitHub Pages to publish it to the world! You should be proud of what you've accomplished here!
+1. Như bạn có thể đoán, bạn muốn tổ chức công việc trong dự án này thế nào cũng được. Chúng tôi đã đưa ra nhiều mẹo trong các bài học trước, và có lẽ bạn đã khá thoải mái khi bắt đầu từ một trang trống.
+1. Nếu thích được hướng dẫn cụ thể: tác giả bài học này cảm thấy thoải mái nhất khi bắt đầu với các phần lớn của bố cục, rồi đi từ đầu trang xuống cuối trang. Nói cách khác, hãy đưa các phần khác nhau về đúng vị trí tương đối (header, projects, contact, v.v.) trong khi bỏ qua nhiều chi tiết style và nội dung cụ thể, sau đó quay lại từ trên xuống dưới để điền nội dung, tạo style và dọn dẹp mọi thứ.
+1. Bạn hoàn thành tính responsive của dự án lúc nào và bằng cách nào không quan trọng, miễn là bố cục không bị vỡ với viewport rộng từ 320 đến 1,920 pixel. Có người sẽ nói rằng bạn luôn nên bắt đầu từ trải nghiệm mobile rồi dùng media query để chỉ cho bố cục cách mở rộng. Nhóm 'mobile-first' *có* một số điểm hợp lý (hãy tự tìm hiểu!), nhưng cuối cùng thì cách bạn thực hiện không quan trọng miễn là nó hoạt động. Chúc may mắn!
+1. Khi hoàn thành, đừng quên push dự án lên GitHub và dùng GitHub Pages để xuất bản nó cho mọi người! Bạn nên tự hào về những gì mình đã hoàn thành!
 
-#### Step 4: Give your feedback
+#### Bước 4: Gửi phản hồi
 
-1. Before you move on, we would love it if you could [send us your feedback on the Advanced HTML and CSS course](https://docs.google.com/forms/d/e/1FAIpQLSdVvT-2TiczhXP9qGfr28Aq6w6wzct0ypDqcpztaocA9bypXw/viewform?usp=sf_link). Getting user (you) feedback is important so we can continue to improve the curriculum and get an idea of your experience.
+1. Trước khi chuyển tiếp, chúng tôi rất mong bạn [gửi phản hồi về khóa học Advanced HTML và CSS](https://docs.google.com/forms/d/e/1FAIpQLSdVvT-2TiczhXP9qGfr28Aq6w6wzct0ypDqcpztaocA9bypXw/viewform?usp=sf_link). Phản hồi từ người dùng (là bạn) rất quan trọng để chúng tôi tiếp tục cải thiện curriculum và hiểu hơn về trải nghiệm của bạn.
 
 </div>

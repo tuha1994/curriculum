@@ -1,38 +1,38 @@
-### Introduction
+### Giới thiệu
 
-Now that you are equipped with the necessary knowledge to make your websites more accessible to many users, the question arises: How can we verify the correct implementation of a11y features? Are there any mistakes to be corrected, or potential improvements to be made?  In this lesson, we will answer those questions to help push your a11y skills over the top.
+Giờ bạn đã có kiến thức cần thiết để làm website dễ tiếp cận hơn với nhiều người dùng, câu hỏi là: làm sao kiểm tra việc triển khai các tính năng a11y có đúng không? Có lỗi nào cần sửa hoặc điểm nào có thể cải thiện không? Bài học này sẽ trả lời các câu hỏi đó và giúp nâng cao kỹ năng a11y của bạn.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Open the accessibility section within your browser's DevTools.
-- Audit a web page with a third-party auditing tool.
+- Mở phần accessibility trong DevTools của trình duyệt.
+- Audit một trang web bằng công cụ audit của bên thứ ba.
 
-### Accessibility DevTools
+### DevTools cho accessibility
 
-Using your browser's DevTools is beyond useful for several things, from checking the styles applied to a page to debugging code, but you already know that! Here's something you may not know: you can even use the DevTools to look at various accessibility features as well, which can be great as a sort of "quick audit". You can check contrast ratios (as we mentioned in a previous lesson), view various accessibility properties, and view the accessibility tree, to name a few features.
+DevTools của trình duyệt rất hữu ích cho nhiều việc, từ kiểm tra style áp dụng cho trang tới debug code, điều này bạn đã biết! Nhưng có thể bạn chưa biết rằng DevTools còn cho phép xem nhiều tính năng accessibility, rất phù hợp để thực hiện một dạng "quick audit". Bạn có thể kiểm tra contrast ratio (như đã đề cập ở bài trước), xem các thuộc tính accessibility và xem accessibility tree, cùng nhiều tính năng khác.
 
-### Accessibility auditing
+### Audit accessibility
 
-There are plenty of third-party tools to audit the accessibility of a web page, each with its own pros and cons. Here, we're only going to mention three of those tools. By getting into the habit of auditing your web pages, you'll be able to track down any outstanding a11y issues that you may have missed. Whether you decide to utilize one of these tools or any other auditing tool you prefer, you should only focus on fixing issues related to the concepts introduced in this portion of the curriculum for now.
+Có rất nhiều công cụ bên thứ ba để audit accessibility của trang web, mỗi công cụ đều có ưu và nhược điểm. Ở đây chúng ta chỉ nhắc đến ba công cụ. Tạo thói quen audit website sẽ giúp bạn tìm các vấn đề a11y còn sót mà mình bỏ lỡ. Dù chọn một trong các công cụ này hay công cụ khác, hiện tại bạn chỉ nên tập trung sửa các vấn đề liên quan đến những khái niệm đã được giới thiệu trong phần curriculum này.
 
-- [axe DevTools for Chrome](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US) is an extension-based tool that returns a list of issues ranked by severity level, and will note any issues for you to manually check.
+- [axe DevTools for Chrome](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US) là công cụ dạng extension, trả về danh sách vấn đề được xếp theo mức độ nghiêm trọng và đánh dấu các vấn đề cần bạn kiểm tra thủ công.
 
-- [Lighthouse for Chrome](https://developers.google.com/web/tools/lighthouse) is available in the Chrome DevTools by default (it might also be listed as the Auditing tab) or it can be run from the command line. Lighthouse provides more than just a11y auditing, including performance, best practices, search engine optimization (SEO), and progressive web app (PWA) if applicable. Issues are separated by category, and like the axe DevTools, there may be a list of issues for you to manually check.
+- [Lighthouse for Chrome](https://developers.google.com/web/tools/lighthouse) có sẵn mặc định trong Chrome DevTools (có thể cũng được liệt kê là tab Auditing), hoặc có thể chạy từ command line. Lighthouse không chỉ audit a11y mà còn kiểm tra performance, best practices, search engine optimization (SEO) và progressive web app (PWA) nếu phù hợp. Các vấn đề được chia theo danh mục; giống axe DevTools, có thể có danh sách vấn đề cần kiểm tra thủ công.
 
-- [WebAIM's WAVE](https://wave.webaim.org/) is a website-based tool where you enter the URL of the page you want to audit. There are also browser extensions and API options. WAVE will return a preview of the page with an overlay of icons on it, and issues are separated into categories of alerts, warnings, and contrast errors. Unfortunately, the icons that are placed on the page may cause the layout to break, but that could be a minor issue if you're more focused on the a11y issues that are found.
+- [WebAIM's WAVE](https://wave.webaim.org/) là công cụ trên website, nơi bạn nhập URL của trang muốn audit. Công cụ cũng có extension trình duyệt và API. WAVE trả về bản xem trước trang với lớp phủ biểu tượng; các vấn đề được chia thành cảnh báo, warning và lỗi tương phản. Những biểu tượng đặt trên trang có thể làm hỏng layout, nhưng đây có thể là vấn đề nhỏ nếu bạn tập trung hơn vào các vấn đề a11y được tìm thấy.
 
-Of course, one of the best ways to check the accessibility of your websites is to get feedback from users who rely on these accessibility features. This isn't always an easy option, but it's worth hearing from those who may be affected by your site's accessibility (or lack of it).
+Dĩ nhiên, một trong những cách tốt nhất để kiểm tra accessibility của website là nhận phản hồi từ người dùng dựa vào các tính năng accessibility đó. Không phải lúc nào cũng dễ làm, nhưng rất đáng lắng nghe những người có thể bị ảnh hưởng bởi accessibility (hoặc việc thiếu accessibility) của trang.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the following resources:
-    - [Accessibility features reference](https://developer.chrome.com/docs/devtools/accessibility/reference/#tab), starting from the Accessibility tab section, provides a brief overview of Chrome's accessibility features in the DevTools.
-    - The [Emulate vision deficiencies](https://developer.chrome.com/blog/new-in-devtools-83/#vision-deficiencies) section from the Chrome 83 update page.
-    - The [Open the Issues tab](https://developer.chrome.com/docs/devtools/issues/#open) section. You can ignore any mentions of anything that isn't accessibility-related on this page, as we just want you to know how to open this tab in your DevTools. Once you do, you'll be able to see a11y issues in addition to any other issues found.
-    - Although there will be differences between different browsers, such as the value of the role property or how a11y properties are presented, check out [the "Features of the Accessibility panel" section in MDN's documentation](https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/index.html#features-of-the-accessibility-panel). There is useful information that, while more tailored to Firefox, may still be useful for Chrome users.
+1. Đọc các tài nguyên sau:
+    - [Accessibility features reference](https://developer.chrome.com/docs/devtools/accessibility/reference/#tab), bắt đầu từ phần Accessibility tab, để có cái nhìn ngắn gọn về các tính năng accessibility của Chrome trong DevTools.
+    - Phần [Emulate vision deficiencies](https://developer.chrome.com/blog/new-in-devtools-83/#vision-deficiencies) trong trang cập nhật Chrome 83.
+    - Phần [Open the Issues tab](https://developer.chrome.com/docs/devtools/issues/#open). Bạn có thể bỏ qua các nội dung không liên quan đến accessibility; mục tiêu chỉ là biết cách mở tab này trong DevTools. Khi mở được, bạn sẽ thấy các vấn đề a11y cùng những vấn đề khác.
+    - Dù các trình duyệt có khác biệt, chẳng hạn giá trị của thuộc tính role hoặc cách hiển thị thuộc tính a11y, hãy xem phần ["Features of the Accessibility panel" trong tài liệu MDN](https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/index.html#features-of-the-accessibility-panel). Thông tin này thiên về Firefox nhưng vẫn có thể hữu ích cho người dùng Chrome.
 
 </div>

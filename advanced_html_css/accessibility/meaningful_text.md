@@ -1,18 +1,16 @@
-### Introduction
+### Giới thiệu
 
-Meaningful text is pretty straightforward: when a user reads text or has it announced to them, they should be able to immediately understand what it means even without any surrounding context. A lack of meaningful text can affect all users, but especially those who rely on assistive technologies. In this lesson we'll be going over a few instances where you should start making sure you provide meaningful text to users.
+Meaningful text khá dễ hiểu: khi người dùng đọc văn bản hoặc nghe văn bản được đọc, họ phải lập tức hiểu ý nghĩa ngay cả khi không có ngữ cảnh xung quanh. Thiếu meaningful text có thể ảnh hưởng mọi người dùng, đặc biệt người dựa vào assistive technologies. Bài học này trình bày một số trường hợp bạn cần cung cấp meaningful text.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+- Biết cách cung cấp link có ý nghĩa.
+- Biết cách cung cấp văn bản có ý nghĩa trong form.
+- Biết cách cung cấp thuộc tính `alt` có ý nghĩa cho hình ảnh.
 
-- Know how to provide meaningful links.
-- Know how to provide meaningful text in forms.
-- Know how to provide meaningful `alt` attributes for images.
+### Link
 
-### Links
-
-Let's take a look at two different examples of a link:
+Hãy xem hai ví dụ link:
 
 ```html
 <!-- Example 1: Where's "here"? -->
@@ -22,15 +20,15 @@ Let's take a look at two different examples of a link:
 Visit <a href='...'>The Odin Project</a> to start your career in web development!
 ```
 
-To a sighted user, the link in Example 1 makes perfect sense. However, in addition to being able to navigate a page via landmarks and headings (as mentioned in the Semantic HTML lesson), a screen reader may be able to navigate between each element of a specific type, such as links. If a user were to navigate between all of the links on a page, the only thing that would get announced in Example 1 is, "Click here, link." Where's "here" exactly? Without any surrounding context, the link is meaningless. Not only that, but if you have multiple links on a page with that same text content, then users will be told to "click here" many times.
+Với người nhìn thấy, link ở Ví dụ 1 có vẻ hoàn toàn rõ. Tuy nhiên, ngoài khả năng điều hướng bằng landmark và heading (như trong bài Semantic HTML), screen reader có thể điều hướng giữa các phần tử cùng loại, chẳng hạn link. Nếu người dùng điều hướng qua tất cả link trên trang, thứ duy nhất được đọc ở Ví dụ 1 là "Click here, link." Chính xác "here" là đâu? Không có ngữ cảnh xung quanh, link không có ý nghĩa. Nếu nhiều link trên trang có cùng nội dung, người dùng còn được bảo phải "click here" nhiều lần.
 
-The link in Example 2, however, not only makes sense in context for all users, but it also makes sense *out of context* for screen reader users when it gets announced: "The Odin Project, link."
+Ngược lại, link trong Ví dụ 2 có ý nghĩa với mọi người trong ngữ cảnh, và cũng có ý nghĩa *ngoài ngữ cảnh* với người dùng screen reader: "The Odin Project, link."
 
-When you add links to a page, there are a few rules you should be following:
+Khi thêm link vào trang, hãy tuân theo vài quy tắc:
 
-1. Make sure that the text content of the `<a>` element somehow indicates where the link redirects to and that it's brief (around 100 characters). So avoid using phrases like "click here" or "this page".
-1. If a link would open or download a file, include text that tells the user what kind of file it is as well as the file size.
-1. If a link would automatically open in a new tab or window with the `target="_blank"` attribute, you should indicate this to the user in some way.
+1. Nội dung văn bản của phần tử `<a>` phải cho biết link dẫn đến đâu và nên ngắn (khoảng 100 ký tự). Tránh các cụm như "click here" hoặc "this page".
+1. Nếu link mở hoặc tải file, hãy cho biết loại file và kích thước.
+1. Nếu link tự động mở tab hoặc cửa sổ mới bằng thuộc tính `target="_blank"`, hãy báo cho người dùng biết.
 
 ```html
 <!-- Example 1: Now the user is aware that this link will open or download a PDF file. -->
@@ -40,11 +38,11 @@ When you add links to a page, there are a few rules you should be following:
 <a href='...'>GitHub (opens in new tab)</a>
 ```
 
-The next time you need to use links, try saying the contents of the element out loud to yourself. Does it reasonably indicate where that link would take you, such as the title of the page, article, or video? Are you aware whether it'll open in a new tab automatically or not, or that it'll open a download dialog? If you've been testing out using a screen reader up to this point, then an even better way to test whether a link has meaningful text is with the screen reader itself!
+Lần tới khi dùng link, hãy tự đọc thành tiếng nội dung phần tử. Nó có cho biết hợp lý link sẽ đưa bạn tới đâu, chẳng hạn tiêu đề trang, bài viết hoặc video không? Bạn có biết link tự mở tab mới hay mở hộp thoại tải xuống không? Nếu đã thử screen reader, cách tốt hơn nữa là dùng chính screen reader để kiểm tra meaningful text của link.
 
-### Forms
+### Form
 
-Providing meaningful errors to users when they are filling out or submitting a form can turn the experience from frustrating to... well, maybe not fun, but at the very least just a bit less frustrating. Let's take a look at a few error examples, ranging from not helpful at all to very helpful:
+Cung cấp lỗi có ý nghĩa khi người dùng điền hoặc gửi form có thể biến trải nghiệm từ khó chịu thành... có lẽ chưa vui, nhưng ít nhất bớt khó chịu. Hãy xem các lỗi từ không hữu ích đến hữu ích:
 
 ```html
 <!-- Example 1: Huh? -->
@@ -57,17 +55,17 @@ Providing meaningful errors to users when they are filling out or submitting a f
 <div class='input-error'>Error: 'JohnSmith@@test.com' is not valid. Example of a valid email: example@yourdomain.com.</div>
 ```
 
-Even if you could tell what input caused the error in Example 1, which may not always be the case, the error doesn't provide any meaningful text. What input is invalid? Why is it invalid? How can you fix it? None of these questions are answered. Now imagine how meaningless this error must be to users of assistive technologies, who may not be able to see where an error is rendered on the page and may only have "invalid input" announced to them.
+Ngay cả khi biết input nào gây lỗi ở Ví dụ 1, điều không phải lúc nào cũng đúng, thông báo vẫn không có meaningful text. Input nào không hợp lệ? Vì sao? Sửa thế nào? Không câu hỏi nào được trả lời. Hãy tưởng tượng lỗi này vô nghĩa thế nào với người dùng assistive technologies, khi họ có thể không thấy lỗi hiển thị ở đâu và chỉ nghe "invalid input".
 
-The error in Example 2 clearly tells you what input is invalid, so you now know exactly where to go. While this might be all a user needs to know, it's worth keeping in mind that it is still a rather vague error. We don't know *why* our email is invalid.
+Lỗi ở Ví dụ 2 cho biết rõ input nào không hợp lệ, nên bạn biết phải đi đâu. Dù có thể đó là tất cả điều người dùng cần, lỗi vẫn khá mơ hồ: ta không biết email không hợp lệ *vì sao*.
 
-The error in Example 3 is even more meaningful. It not only tells you what input is invalid, but also how to fix the error. Generally when you inform a user of a form error, you should be informing them what input caused the error and, when possible, how to fix the error or why the error occurred in some way.
+Lỗi ở Ví dụ 3 có ý nghĩa hơn nữa. Nó cho biết input sai và cách sửa. Nhìn chung, khi báo lỗi form, hãy cho biết input gây lỗi và khi có thể, cách sửa hoặc lý do lỗi xảy ra.
 
-Another way to provide meaningful text in forms is with instructions, such as when a password input lists any characters that the password must contain ("Must include at least one uppercase letter and one number..."). For instructions that are unique to an input, they should be placed alongside the input itself. Instructions that are more global across the form, such as indicating which inputs are required, should either be placed at the top of the form ("* indicates a required field"), or placed alongside the input or its label ("Name (required)").
+Một cách khác để cung cấp meaningful text trong form là dùng instruction, chẳng hạn password input liệt kê các ký tự bắt buộc ("Must include at least one uppercase letter and one number..."). Instruction riêng cho một input nên đặt cạnh input. Instruction áp dụng chung cho form, như cho biết input nào bắt buộc, nên đặt ở đầu form ("* indicates a required field") hoặc cạnh input/label ("Name (required)").
 
-### Alternative text
+### Văn bản thay thế
 
-At this point you should be pretty familiar with the `alt` attribute on `img` elements. Whether you are or not, let's see if you can tell which of the following examples is valid:
+Đến đây bạn hẳn đã quen với thuộc tính `alt` trên phần tử `img`. Dù quen hay chưa, hãy xem ví dụ nào hợp lệ:
 
 ```html
 <!-- Example 1 -->
@@ -77,15 +75,15 @@ At this point you should be pretty familiar with the `alt` attribute on `img` el
 <img src='...' alt='Odin' />
 ```
 
-Believe it or not, both examples above are valid! While Example 1 doesn't actually have any meaningful text (perhaps a meaningful *lack of* text), you should still understand its importance. When you're using an image purely for decoration, or the image just isn't really important for the user to be aware of, you generally don't want users of assistive technologies to be made aware of it. In those cases, you should **always** use an empty string for the value of the `alt` attribute as seen in Example 1 (this is also known as a null value, not to be confused with the JavaScript data type). If you omitted the `alt` attribute, the presence of the image could still be announced, which may confuse the user (especially if the file name was a random string of letters and numbers).
+Cả hai ví dụ đều hợp lệ! Ví dụ 1 không có meaningful text (có thể là một *sự thiếu vắng* có chủ ý), nhưng bạn cần hiểu tầm quan trọng của nó. Khi hình ảnh chỉ để trang trí hoặc không quan trọng với người dùng, nhìn chung bạn không muốn assistive technologies thông báo về nó. Khi đó, **luôn** dùng chuỗi rỗng cho giá trị `alt` như Ví dụ 1 (còn gọi là null value, không phải data type JavaScript). Nếu bỏ thuộc tính `alt`, sự hiện diện của ảnh vẫn có thể được thông báo và gây khó hiểu, nhất là khi tên file là chuỗi chữ số ngẫu nhiên.
 
-For Example 2, the screen reader would announce, "Odin, graphic", making the user aware that there's an image and what it's an image of. What the alternative text should be for an image will ultimately depend on various factors, though.
+Ở Ví dụ 2, screen reader sẽ đọc "Odin, graphic", cho người dùng biết có hình ảnh và hình ảnh là gì. Tuy nhiên, alternative text phù hợp cuối cùng vẫn phụ thuộc nhiều yếu tố.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read [Alternative Text - WebAIM](https://webaim.org/techniques/alttext) to learn about when and how you should be adding alternative text for images based on the function of the image and the context surrounding it.
-  1. Read [Usable and Accessible Form Validation and Error Recovery](https://webaim.org/techniques/formvalidation/) to learn about different ways to provide errors to users, as well as the pros and cons of each.
+  1. Đọc [Alternative Text - WebAIM](https://webaim.org/techniques/alttext) để học khi nào và cách thêm alternative text cho hình ảnh dựa trên chức năng của ảnh cùng ngữ cảnh xung quanh.
+  1. Đọc [Usable and Accessible Form Validation and Error Recovery](https://webaim.org/techniques/formvalidation/) để học các cách cung cấp lỗi cho người dùng và ưu nhược điểm của từng cách.
 
 </div>

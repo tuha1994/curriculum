@@ -1,83 +1,79 @@
-### Introduction
+### Giới thiệu
 
-In the previous lessons, you learned several ways to make websites more accessible. Those lessons, however, were just the tip of the accessible iceberg. WAI-ARIA introduces attributes that can help make websites even more accessible by modifying the semantics and context of elements, which can give you greater control over how those elements are perceived by assistive technologies. Because this subject can get so complicated, we're only going to cover two attributes that you can get *a lot* of use from.
+Các bài trước đã trình bày nhiều cách làm website dễ tiếp cận hơn, nhưng đó mới chỉ là phần nổi của tảng băng accessibility. WAI-ARIA cung cấp các thuộc tính giúp website dễ tiếp cận hơn bằng cách thay đổi semantics và context của phần tử, cho bạn nhiều quyền kiểm soát hơn đối với cách assistive technologies nhận biết chúng. Vì chủ đề này phức tạp, bài chỉ tập trung vào một số thuộc tính hữu ích.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+- Biết mục đích của WAI-ARIA.
+- Biết ARIA không thể làm gì.
+- Hiểu năm quy tắc dùng ARIA.
+- Hiểu accessibility tree là gì.
+- Hiểu ba thuộc tính ARIA có thể thêm label cho phần tử.
+- Hiểu thuộc tính `aria-hidden` làm gì.
 
-- Know the purpose of WAI-ARIA.
-- Know what ARIA can't do.
-- Understand the five rules of ARIA use.
-- Understand what the accessibility tree is.
-- Understand the three ARIA attributes that can add labels to elements.
-- Understand what the `aria-hidden` attribute does.
+### WAI-ARIA là gì?
 
-### What is WAI-ARIA?
+WAI-ARIA là viết tắt của Web Accessibility Initiative's Accessible Rich Internet Applications specification. Mục đích của WAI-ARIA (thường gọi ngắn là ARIA) là định nghĩa cách làm web content dễ tiếp cận hơn khi HTML gốc không đáp ứng được. Hãy xem ARIA như phần lấp các khoảng trống accessibility của HTML gốc.
 
-WAI-ARIA stands for - *deep breath* - the Web Accessibility Initiative's Accessible Rich Internet Applications specification. The purpose of WAI-ARIA (often referred to as just ARIA) is to define a way to make web content more accessible when native HTML is unable to do so. Think of ARIA as something that fills in the accessible gaps left by native HTML.
+ARIA chỉ có thể thay đổi semantics hoặc context của phần tử. ARIA *không thể*:
 
-It's important to note that ARIA can only modify the semantics or context of an element. ARIA *can't*:
+- Thay đổi appearance của phần tử
+- Thay đổi behavior của phần tử
+- Thêm khả năng focus
+- Thêm keyboard event handling
 
-- Modify an element's appearance
-- Modify an element's behavior
-- Add focusability
-- Add keyboard event handling
+Khi dùng ARIA, thường bạn phải tự thêm semantics hoặc functionality còn thiếu. Hãy nhớ bài Keyboard Navigation và cách phải thêm functionality cho các "button" `<div>`.
 
-When you use ARIA, you will usually have to take additional steps to add in any missing semantics or functionality. Remember the Keyboard Navigation lesson and how we had to add in functionality to `<div>` "buttons"?
+#### Năm quy tắc của ARIA
 
-#### The five rules of ARIA
+ARIA rất mạnh khi dùng đúng nhưng cũng nguy hiểm khi dùng sai. Hãy nhớ **không có ARIA vẫn tốt hơn ARIA tệ**. WCAG có "The five rules of ARIA", một bộ quy tắc *thường* được dùng khi làm việc với ARIA:
 
-ARIA can be extremely powerful when used correctly, but it can be equally as dangerous when used incorrectly. Because of this, you should keep in mind that **no ARIA is better than bad ARIA**, even when you have the best intentions. The WCAG has something called "The five rules of ARIA," which as you may have guessed are rules you should follow when using ARIA. Although we don't cover all of the terms mentioned below, it's still important to understand the rules themselves, especially if you decide to dive deeper into ARIA on your own.
+1. Khi có thể, luôn dùng HTML element và attribute gốc thay cho ARIA.
+1. Không thay đổi semantics gốc trừ khi không còn lựa chọn.
+1. Mọi ARIA control tương tác phải dùng được bằng bàn phím.
+1. Không dùng `role="presentation"` hoặc `aria-hidden="true"` trên phần tử focus được.
+1. Mọi phần tử tương tác phải có accessible name.
 
-1. Always use native HTML elements and attributes over ARIA when possible.
-1. Never change native semantics, unless you have no other choice.
-1. All interactive ARIA controls must be usable with a keyboard.
-1. Never use `role="presentation"` or `aria-hidden="true"` on focusable elements.
-1. All interactive elements must have an accessible name.
+### Accessibility tree
 
-### The accessibility tree
+Accessibility tree dựa trên DOM. DOM biểu diễn node và object tạo nên trang, còn accessibility tree chỉ chứa thông tin liên quan đến accessibility được assistive technologies sử dụng. ARIA hoạt động bằng cách thay đổi thuộc tính của các object trong cây này. Bài học tập trung vào hai thuộc tính:
 
-Before we get into a couple of the ARIA attributes available to us, it's important to know some basics of what the accessibility tree is, as it will help you understand just what those attributes are actually doing.
+- **Name:** còn gọi là accessible name, là nội dung assistive technologies đọc cho người dùng và giúp phân biệt các phần tử cùng loại. Name có thể do label gốc, nội dung phần tử, `<label>`, `alt`...
+- **Description:** nội dung assistive technologies đọc thêm bên cạnh accessible name.
 
-The accessibility tree is based on the DOM, something you should be very familiar with by now. While the DOM represents nodes and objects that make up a web page, the accessibility tree contains only the accessibility related information that will be used by assistive technologies. The way ARIA works is by modifying properties of the objects that make up this accessibility tree. For this lesson, we're only going to focus on two of these properties:
+### ARIA label
 
-- **Name**: Also known as the "accessible name", this is what assistive technologies announce to a user and what separates elements of the same type from one another. The name may be set by one or more native labels, including the text contents of an element, the `<label>` element, or the `alt` attribute, to name a few.
-- **Description**: This is what assistive technologies announce in addition to its accessible name.
+Trong bài Semantic HTML, bạn có thể xem thêm [Semantic HTML](https://www.theodinproject.com/lessons/node-path-advanced-html-and-css-semantic-html) để ôn lại semantics và label.
 
-### ARIA labels
+ARIA label giúp người dùng assistive technologies hiểu nội dung trên trang bằng cách override label gốc hoặc thêm văn bản mô tả. Khác `<label>`, ARIA label không chỉ dùng cho một số ít phần tử, dù vẫn có giới hạn.
 
-ARIA labels help users of assistive technologies better understand the content on a web page by overriding native labels or providing additional descriptive text. Unlike the `<label>` element, ARIA labels aren't limited to being used on only a select few elements, though they still have their own limitations.
-
-You may remember being warned against using the `id` attribute earlier in the curriculum. To briefly recap, normally you want to avoid overusing `id` attributes or even using it when it isn't necessary (which more often than not, it isn't, and you should stick with using classes). There are several ARIA attributes, however, that actually *require* another element to have an `id`.
-
-When using such ARIA attributes, you would provide an `id` to one element, and you would then pass in that `id` value as another element's ARIA attribute value. This creates a link between the elements, similar to how a `<label>` element's `for` attribute creates a link to an input's `id`. Of the three types of ARIA labels mentioned below, `aria-labelledby` and `aria-describedby` are ARIA attributes that require another element to have an `id`.
+Một số thuộc tính ARIA yêu cầu phần tử khác có `id`. Bạn đặt `id` cho một phần tử rồi truyền giá trị đó vào thuộc tính ARIA của phần tử kia, tạo liên kết tương tự `for` của `<label>` với `id` của input. Các `id` này có thể được dùng nhiều lần theo đúng ngữ cảnh, nhưng phải hiểu cách từng thuộc tính xử lý `id`. Trong ba loại ARIA label dưới đây, `aria-labelledby` và `aria-describedby` yêu cầu phần tử khác có `id`; `aria-labelledby` liên kết label, còn `aria-label` cung cấp tên trực tiếp.
 
 #### aria-label
 
-The `aria-label` attribute overrides any native label of an element and modifies its name property in the accessibility tree. It is best used when an element doesn't already have a native label. When added, the string value of the `aria-label` attribute  becomes the element's accessible name. **However**, [`aria-label` does not have any effect on some HTML elements](https://github.com/w3c/aria/issues/756), such as `<div>` or a `<span>`.
+Thuộc tính `aria-label` override native label và thay đổi name property trong accessibility tree. Nên dùng khi phần tử chưa có native label. Giá trị chuỗi của `aria-label` trở thành accessible name. **Tuy nhiên**, [`aria-label` không có tác dụng trên một số HTML element](https://github.com/w3c/aria/issues/756), như `<div>` hoặc `<span>`.
 
-A common use for `aria-label` can be found in the "close" buttons of menus or modals:
+Một cách dùng phổ biến là button đóng menu hoặc modal:
 
 ```html
 <button type="button" aria-label="Close menu">X</button>
 ```
 
-Instead of a screen reader announcing, "X, button", which makes little sense to the user, it would announce, "Close menu, button". Another way you could use `aria-label` is on landmark elements (our [Semantic HTML](https://www.theodinproject.com/lessons/node-path-advanced-html-and-css-semantic-html) lesson gets another shoutout... again!):
+Thay vì đọc "X, button", screen reader sẽ đọc "Close menu, button". Cũng có thể dùng `aria-label` trên landmark:
 
 ```html
 <nav aria-label="main navigation">...</nav>
 ```
 
-Once a screen reader reaches the above HTML, it would announce "Main navigation, navigation landmark". If you had multiple navigation elements on a page, you could give each a different `aria-label` value in order to separate them from one another, making them more understandable for screen reader users. Pretty neat, huh?
+Screen reader sẽ đọc "Main navigation, navigation landmark". Nếu có nhiều navigation, giá trị `aria-label` khác nhau giúp phân biệt và dễ hiểu hơn.
 
-**Do not** use `aria-label` to change how a word is phonetically announced. Certain words may not get announced correctly by a screen reader, and you may have a temptation to try and fix this. You may end up fixing how a word is announced by a screen reader, but that "fix" could end up making no sense when announced by other assistive technologies like a [braille](https://en.wikipedia.org/wiki/Braille) reader.
+**Không** dùng `aria-label` để thay đổi cách phát âm. Cách sửa phát âm cho một screen reader có thể vô nghĩa với assistive technology khác như [braille](https://en.wikipedia.org/wiki/Braille) reader.
 
 #### aria-labelledby
 
-The `aria-labelledby` attribute overrides both the native label and the `aria-label` attribute. When you use `aria-labelledby`, the accessible name of the target element is created by concatenating the text contents or `alt` attributes of the elements whose `id` are referenced.
+`aria-labelledby` override cả native label và `aria-label`. Accessible name được tạo bằng cách nối nội dung hoặc `alt` của các phần tử có `id` được tham chiếu. Các `id` này tạo ra tên *dễ hiểu* và giúp người dùng *phân biệt* các phần tử.
 
-The great thing about `aria-labelledby` is that not only can you pass in any number of `id` references, but you can also have an element reference itself. Keep in mind that you can't pass in the same reference multiple times, because any subsequent references after the first will be ignored.
+Bạn có thể truyền nhiều `id` và cho phần tử tham chiếu chính nó bằng `aria-labelledby`, nhưng không truyền cùng một reference nhiều lần vì các reference sau lần đầu sẽ bị bỏ qua. Mỗi `id` nên trỏ tới một phần tử phù hợp.
 
 ```html
 <!-- Here's the labeling element -->
@@ -87,11 +83,11 @@ The great thing about `aria-labelledby` is that not only can you pass in any num
 <button type="button" id="shop-btn" aria-labelledby="label shop-btn">Shop Now</button>
 ```
 
-The HTML above would be announced by a screen reader as, "Shirts, shop now, button". This can make multiple "shop now" buttons on a page unique from one another and thus provide additional context, making the page more understandable.
+Screen reader sẽ đọc "Shirts, shop now, button". Nhờ vậy nhiều button "shop now" có thể phân biệt và có thêm ngữ cảnh.
 
-Another great thing about `aria-labelledby` is that even if a labeling element is visually hidden, either by the `hidden` HTML attribute or with CSS, it will still modify the accessible name of the labeled element. This can be useful if you want to label an element for users of assistive technologies, but you don't want that element's label (or labels) to be visible to sighted users.
+Ngay cả khi phần tử label bị ẩn bằng thuộc tính `hidden` hoặc CSS, nó vẫn thay đổi accessible name. Điều này hữu ích khi muốn label cho assistive technologies nhưng không muốn người nhìn thấy label.
 
-Although it may work somewhat similarly to the native `<label>` element, `aria-labelledby` does not have the same event handling by default. This is functionality you would have to add in yourself via JavaScript.
+Dù tương tự `<label>`, `aria-labelledby` không có event handling mặc định; bạn phải tự thêm bằng JavaScript. Hãy nhớ `aria-hidden` cũng là một thuộc tính riêng, không thay thế `aria-labelledby`. Thuộc tính này cần được dùng *cẩn thận*.
 
 ```html
 <!-- Clicking the <label> element gives focus to the input element -->
@@ -105,7 +101,7 @@ Although it may work somewhat similarly to the native `<label>` element, `aria-l
 
 #### aria-describedby
 
-The `aria-describedby` attribute modifies the description property in the accessibility tree. Similar to the `aria-labelledby` attribute, when you use this attribute, you pass in the `id` values of other elements as the `aria-describedby` value, and the elements whose `id` values are passed in can also be visually hidden.
+`aria-describedby` thay đổi description property trong accessibility tree. Tương tự `aria-labelledby`, truyền các `id` khác vào giá trị `aria-describedby`; các phần tử được tham chiếu cũng có thể bị ẩn về mặt thị giác.
 
 ```html
 <label>
@@ -117,11 +113,11 @@ The `aria-describedby` attribute modifies the description property in the access
 <span id="password-requirements">Password must be at least 10 characters long.</span>
 ```
 
-When the `<input>` element receives focus, a screen reader would announce, "Password, edit protected, password must be at least ten characters long." This immediately notifies a screen reader user of any requirements for the password they want to choose any time the input receives focus.
+Khi `<input>` nhận focus, screen reader sẽ đọc "Password, edit protected, password must be at least ten characters long." Người dùng được biết yêu cầu password mỗi lần input nhận focus.
 
-### Hiding content from the accessibility tree
+### Ẩn nội dung khỏi accessibility tree
 
-Similar to how you can visually hide elements with the `hidden` HTML attribute or the `display` and `visibility` CSS properties, you can use the `aria-hidden` attribute to hide certain elements, such as decorative images and icons, from the accessibility tree. The difference with `aria-hidden`, however, is that the element will remain visible to sighted users. This can be especially useful when you want to add an icon inside of another element. For example, if we were to use Material Icons inside of a button:
+Tương tự ẩn phần tử bằng thuộc tính `hidden` hoặc CSS `display` và `visibility`, có thể dùng `aria-hidden` để ẩn phần tử như ảnh và icon trang trí khỏi accessibility tree. Khác biệt là phần tử vẫn hiển thị với người nhìn thấy. Điều này hữu ích khi đặt icon trong button, chẳng hạn Material Icons:
 
 ```html
 <!-- Example 1 -->
@@ -137,17 +133,17 @@ Similar to how you can visually hide elements with the `hidden` HTML attribute o
 </button>
 ```
 
-While both of the above examples would look visually identical, the button in Example 1 would be announced by a screen reader as, "Add add book, button". The text content of the `<span>` and the text content of the button itself are concatenated as the accessible name of the button. The button in Example 2, however, hides the `<span>` from the accessibility tree so its text content *isn't* added to the button's accessible name, meaning a screen reader would correctly announce "Add book, button".
+Hai ví dụ trông giống nhau, nhưng screen reader đọc Ví dụ 1 là "Add add book, button" vì text của `<span>` và button được nối vào accessible name. Ở Ví dụ 2, `<span>` bị ẩn khỏi accessibility tree nên screen reader đọc đúng "Add book, button".
 
-Be careful when using this attribute, though. When you give an element `aria-hidden="true"`, all children of that element will also become hidden to the accessibility tree. Adding `aria-hidden="false"` to a child element won't have any effect if one of its parents still has `aria-hidden="true"`, either.
+Hãy cẩn thận: `aria-hidden="true"` trên phần tử cũng ẩn mọi phần tử con khỏi accessibility tree. Thêm `aria-hidden="false"` cho phần tử con không có tác dụng nếu cha vẫn có `aria-hidden="true"`.
 
-You should also be careful not to give an element `aria-hidden="true"` if it is focusable. Doing so would cause nothing to be announced when the element receives focus, which would confuse users that use a screen reader and navigate the page via a keyboard.
+Không đặt `aria-hidden="true"` trên phần tử focus được. Khi phần tử nhận focus, không có gì được đọc, khiến người dùng screen reader điều hướng bằng bàn phím bối rối.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through sections 1-5 of [W3's "ARIA in HTML"](https://www.w3.org/TR/html-aria/). It's a very thorough document but as usual, you're not expected to memorize anything; it's sufficient to get the gist of the contents. In later lessons, particularly when you come to front end testing, many tools use ARIA roles to encourage building with accessibility in mind from the get go. You'll likely find yourself coming back to this document or researching similar resources.
-1. [ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) are another type of ARIA attribute that are incredibly useful for having dynamic updates made to a page announced by assistive technologies.
+1. Đọc sections 1-5 của [W3's "ARIA in HTML"](https://www.w3.org/TR/html-aria/). Đây là tài liệu chi tiết nhưng bạn không cần ghi nhớ mọi thứ; chỉ cần nắm ý chính. Về sau, nhiều công cụ front end testing dùng ARIA roles để khuyến khích xây dựng accessibility ngay từ đầu, nên bạn có thể quay lại tài liệu này.
+1. [ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) là một loại ARIA attribute khác, rất hữu ích để assistive technologies đọc các cập nhật động trên trang.
 
 </div>

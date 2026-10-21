@@ -1,21 +1,19 @@
-### Introduction
+### Giới thiệu
 
-As useful as `<div>` and `<span>` elements can be as generic containers, they're not always the most a11y friendly elements to use. While it may be tempting or easier to just use them for everything, from containers to interactive areas, you should not only check whether there is a more appropriate element to use in certain situations, but also whether you're using an element correctly.
+Dù `<div>` và `<span>` hữu ích như các container tổng quát, chúng không phải lúc nào cũng thân thiện với a11y. Có thể dùng chúng cho mọi thứ, từ container đến vùng tương tác, nhưng bạn nên kiểm tra xem có phần tử phù hợp hơn không và mình có đang dùng phần tử đúng cách không.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+- Giải thích vì sao semantic HTML quan trọng với accessibility.
+- Kể tên tám phần tử HTML định nghĩa landmark trên trang.
 
-- Explain why semantic HTML is important for accessibility.
-- Name the eight HTML elements that define landmarks on a page.
+### Tầm quan trọng của semantics
 
-### The importance of semantics
+Trong web accessibility, dùng semantic HTML quan trọng vì nó cung cấp ý nghĩa và ngữ cảnh. Một số phần tử có *ý nghĩa ngữ nghĩa* nhưng không cung cấp nhiều *ngữ cảnh* khi assistive technologies đọc, chẳng hạn phần tử `<p>`. Một số phần tử vừa có ý nghĩa ngữ nghĩa vừa được đọc kèm ngữ cảnh giúp người dùng nhận biết hoặc thao tác, như `<button>`.
 
-In terms of web accessibility, using semantic HTML is important because it provides meaning and context. Some elements have a *semantic meaning*, but don't really provide any *context* when announced by assistive technologies, such as the `<p>` element. Then there are elements that have a semantic meaning *and* are announced with some sort of context to help users perceive or operate them, like a `<button>`.
+`<div>` và `<span>` là hai phần tử phổ biến nhưng trung tính về ngữ nghĩa. Bản thân chúng không có ý nghĩa ngữ nghĩa và không tự cung cấp ngữ cảnh cho assistive technologies, khiến người dùng khó nhận biết, thao tác và hiểu hơn. Điều đó không có nghĩa bạn không bao giờ được dùng `<div>` hoặc `<span>`; chúng vẫn hữu ích làm container tổng quát cho layout hoặc văn bản.
 
-The `<div>` and `<span>` elements, most likely two of the more common elements you use, are semantically neutral. That is, they themselves have no semantic meaning and provide no context on their own to assistive technologies, which can make it more difficult for users of such technologies to perceive, operate, and understand them. Don't let this lack of semantics and context make you feel like you can never use a `<div>` or `<span>` ever again, though. They still have their uses as generic containers, such as for layouts or for generic text.
-
-Okay, let's look at an actual example to help better understand this whole semantics and context thing. Think of any project you may have completed so far that required a user to click on something: Rock, Paper, Scissors; Calculator; Tic-Tac-Toe. If you used `<div>` or `<span>` elements for any clickable areas, things most likely worked as intended for you. For example, perhaps you had something similar to the HTML below for your Rock, Paper, Scissors UI back in Foundations:
+Hãy xét một ví dụ. Nghĩ tới dự án cần người dùng nhấp vào thứ gì đó: Rock, Paper, Scissors; Calculator; Tic-Tac-Toe. Nếu dùng `<div>` hoặc `<span>` cho vùng có thể nhấp, mọi thứ có thể vẫn hoạt động *theo dự định*. Chẳng hạn UI Rock, Paper, Scissors trong Foundations:
 
 ```html
 <!-- These are buttons... right? -->
@@ -26,9 +24,9 @@ Okay, let's look at an actual example to help better understand this whole seman
 </div>
 ```
 
-A sighted user would most likely have no trouble playing the game if the elements looked like something to interact with. A screen reader user, however, would have no idea what any of these elements mean. The screen reader would announce the text contents of the element ("Rock", "Paper", or "Scissors"), and the user might think it's just plain text on the page and move on. There's no context to tell the user that they're supposed to, or that they even *can*, interact with these elements.
+Người nhìn thấy có thể chơi nếu phần tử trông giống thứ có thể tương tác. Nhưng người dùng screen reader không biết các phần tử này có ý nghĩa gì. Screen reader chỉ đọc nội dung ("Rock", "Paper" hoặc "Scissors"), và người dùng có thể nghĩ đó chỉ là văn bản rồi bỏ qua. Không có ngữ cảnh cho biết họ phải, hoặc thậm chí có thể, tương tác.
 
-This issue can be easily fixed by using semantic HTML:
+Có thể sửa bằng semantic HTML:
 
 ```html
 <!-- Okay, these are *definitely* buttons -->
@@ -39,15 +37,15 @@ This issue can be easily fixed by using semantic HTML:
 </div>
 ```
 
-Because the `<button>` element has a semantic meaning and provides context, a screen reader would announce the text content as well as the role of the element: "Rock, button".
+Vì `<button>` có ý nghĩa ngữ nghĩa và cung cấp ngữ cảnh, screen reader sẽ đọc nội dung cùng role: "Rock, button".
 
-#### Using semantic HTML correctly
+#### Dùng semantic HTML đúng cách
 
-When it comes to using semantic HTML correctly, you want to think about what your intent for users is and what context you want (or need) to provide to them. This can vary depending on the situation, but there are some things you should absolutely be checking for moving forward:
+Hãy nghĩ về ý định của mình với người dùng và ngữ cảnh cần cung cấp. Tình huống khác nhau có thể khác nhau, nhưng luôn nên kiểm tra:
 
-- If a user is meant to click something, whether it's an actual button or not, you will usually want to use a `<button>` element. This will let the user know that they can interact with the element by clicking on it.
-- If you want to provide some sort of tabular data to a user, use a `<table>` element along with the elements related to it. This will allow a user to more easily navigate and understand the data being presented.
-- When you use an input element, you should always create a relationship between it and a `<label>` element. A `<label>` provides context for what an input actually means to assistive technologies, announcing the label contents each time the input is announced. Not only that, but a proper `<label>` increases the clickable area of the input itself, which is useful for users who have trouble clicking on smaller items. There are two ways you can create this relationship:
+- Nếu người dùng cần nhấp vào một thứ, dù đó có phải button thật hay không, thường nên dùng `<button>`. Nó cho biết phần tử có thể tương tác bằng cách nhấp.
+- Nếu muốn cung cấp dữ liệu dạng bảng, dùng `<table>` cùng các phần tử liên quan để người dùng dễ điều hướng và hiểu dữ liệu.
+- Khi dùng input, luôn tạo quan hệ giữa input và `<label>`. `<label>` cung cấp ngữ cảnh, được đọc mỗi lần input được đọc; một `<label>` đúng còn tăng vùng có thể nhấp. Có hai cách tạo quan hệ:
 
   ```html
   <!-- Useful when you need the input itself to have an ID -->
@@ -61,12 +59,12 @@ When it comes to using semantic HTML correctly, you want to think about what you
   </label>
   ```
 
-- Continuing with inputs, you should always use the `type` that makes the most sense for its intended use. `type="text"` makes more sense for a name or address field, while `type="email"` or `type="tel"` would of course make more sense for an e-mail or telephone field, respectively. For certain devices, using the correct `type` may show only the required or additional characters on the keyboard. A `type="tel"` input, for example, might make it much easier for users to fill out their phone number by providing larger, numerical-only keys on mobile or tablet devices.
-- When you want to present a list of some sort to a user, you should use the appropriate list element (`<ol>`, `<ul>`, or `<dl>`) and their related list item elements. This will not only let the user know when they are entering or exiting a list, but also how many items are in the list.
+- Với input, luôn dùng `type` và thuộc tính *type* phù hợp mục đích. Dùng đúng `type` giúp trình duyệt hỗ trợ người dùng. `type="text"` hợp với tên hoặc địa chỉ, còn `type="email"` hay `type="tel"` hợp với email hoặc điện thoại. Trên một số thiết bị, type đúng sẽ hiển thị các phím cần thiết; `type="tel"` có thể giúp nhập số điện thoại dễ hơn trên mobile hoặc tablet.
+- Khi trình bày danh sách, dùng phần tử phù hợp (`<ol>`, `<ul>` hoặc `<dl>`) và phần tử item liên quan. Người dùng biết khi vào/ra danh sách và danh sách có bao nhiêu item.
 
-### Headings and landmarks
+### Heading và landmark
 
-Headings are the `<h1>` through `<h6>` elements, and like the name implies, these elements act as headings to sections of a page. Landmarks, on the other hand, are HTML elements that act as regions of a page. There are eight native HTML elements that define these landmark regions:
+Heading là các phần tử `<h1>` đến `<h6>`, dùng làm tiêu đề cho các section. Landmark là phần tử HTML đại diện cho các vùng trên trang. Có tám phần tử HTML gốc định nghĩa các vùng landmark:
 
 - `<header>` - [MDN reference page for the header element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/header)
 - `<main>` - [MDN reference page for the main element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/main)
@@ -77,29 +75,29 @@ Headings are the `<h1>` through `<h6>` elements, and like the name implies, thes
 - `<search>` - [MDN reference page for the search element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/search)
 - `<form>`
 
-As an example, consider the following image which shows how this lesson in particular uses semantic HTML for the different areas in the page. If you want to examine the page in more detail, feel free to use the developer tools to do so.
+Hình sau cho thấy bài học này dùng semantic HTML cho các vùng khác nhau ra sao. Bạn có thể dùng developer tools để xem chi tiết hơn.
 
 ![How a typical Odin lesson uses semantic HTML by including the nav, header, main, section, aside, and footer elements](https://cdn.statically.io/gh/TheOdinProject/curriculum/b71f39e8c0934cc6cc80daaae9ed375f00753b09/advanced_html_css/accessibility/semantic_html/imgs/semantic_html_example.png)
 
-By properly using landmarks and headings, you provide users of assistive technologies a more operable and understandable page: not only can screen reader users navigate a page via landmarks and headings by using navigation keyboard commands (or opening a menu in their screen reader), but these elements also have their roles announced to provide additional context.
+Dùng landmark và heading đúng cách giúp trang dễ thao tác và dễ hiểu hơn với người dùng assistive technologies: người dùng screen reader có thể điều hướng bằng lệnh bàn phím hoặc menu của screen reader, đồng thời role của các phần tử cũng được đọc để cung cấp thêm ngữ cảnh.
 
-If you were to use only `<div>` elements to act as these landmarks and headings, maybe adding in some CSS to visually style them, then a screen reader user would have to go through the entire page just to get to a specific section, and they may not be able to actually tell what is a heading or a landmark on the page.
+Nếu chỉ dùng `<div>` làm landmark và heading rồi trang trí bằng CSS, người dùng screen reader phải đi qua toàn bộ trang để tới section cụ thể và có thể không biết đâu là heading hay landmark.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. The best way to understand how screen readers work is to use one! Take some time to explore relevant guides/docs and play around! As we introduce you to more accessibility concepts and features, experiencing some of them firsthand with a screen reader can be invaluable and really help you appreciate accessibility. You may even find yourself changing the way you build sites!
+1. Cách tốt nhất để hiểu screen reader là dùng một cái! Hãy khám phá tài liệu phù hợp và thử nghiệm. Trải nghiệm trực tiếp các khái niệm accessibility có thể rất hữu ích và giúp bạn trân trọng accessibility hơn.
 
-   There are many screen readers around, some free and some paid, but what screen reader(s) you'll have access to will depend on your OS (there will be slight differences in features/controls between them, but they're by and large the same):
+   Có nhiều screen reader miễn phí và trả phí; loại bạn dùng phụ thuộc OS:
 
-   - Windows users (applies if you're using WSL2) can install [NVDA](https://www.nvaccess.org/download/) for free.
-   - macOS has [VoiceOver](https://support.apple.com/en-gb/guide/voiceover/welcome/mac) built in.
-   - Linux has [Orca](https://gnome.pages.gitlab.gnome.org/orca/help/) built in.
-   - ChromeOS has [ChromeVox](https://support.google.com/chromebook/answer/7031755) built in.
+   - Người dùng Windows (kể cả WSL2) có thể cài [NVDA](https://www.nvaccess.org/download/) miễn phí.
+   - macOS tích hợp [VoiceOver](https://support.apple.com/en-gb/guide/voiceover/welcome/mac).
+   - Linux tích hợp [Orca](https://gnome.pages.gitlab.gnome.org/orca/help/).
+   - ChromeOS tích hợp [ChromeVox](https://support.google.com/chromebook/answer/7031755).
 
-1. Read [How screen readers navigate data tables](https://tink.uk/how-screen-readers-navigate-data-tables/) to see a great example of just how much context a proper `<table>` element provides.
-1. Watch [Introduction to accessible tables and a screen reader demo](https://youtu.be/ACmYzyN0b3U?si=o5PptrjVGJGj2OT7&t=83) to see how a screen reader announces a table.
-1. Watch [Why headings and landmarks are so important](https://www.youtube.com/watch?v=vAAzdi1xuUY&list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g&index=19) to see how a screen reader interacts with the heading and landmark elements.
+1. Đọc [How screen readers navigate data tables](https://tink.uk/how-screen-readers-navigate-data-tables/) để thấy `<table>` đúng cung cấp nhiều ngữ cảnh thế nào.
+1. Xem [Introduction to accessible tables and a screen reader demo](https://youtu.be/ACmYzyN0b3U?si=o5PptrjVGJGj2OT7&t=83) để nghe screen reader đọc table.
+1. Xem [Why headings and landmarks are so important](https://www.youtube.com/watch?v=vAAzdi1xuUY&list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g&index=19) để thấy screen reader tương tác với heading và landmark ra sao.
 
 </div>

@@ -1,36 +1,37 @@
-### Introduction
+### Giới thiệu
 
-At this point in the curriculum you've learned incredibly valuable concepts in whichever full stack path you chose, you've created some awesome, resume worthy projects, and you should have a better understanding of some HTML and CSS concepts. One could even argue that you may now love working with CSS...?
+Đến thời điểm này, bạn đã học những khái niệm rất có giá trị trong lộ trình full stack đã chọn, tạo được các dự án đáng đưa vào hồ sơ, và hiểu rõ hơn về HTML cùng CSS. Thậm chí có thể nói bạn đã bắt đầu thích làm việc với CSS...?
 
-What you may not have too much an understanding of, though, is the topic of accessibility, often referred to as "a11y" (due to there being 11 letters between the first and last letters). Unfortunately, this is a topic that many people either don't know much about, or just don't take into account when developing websites. If you fit into either of those two categories, you may have adopted some habits that aren't exactly a11y friendly. Before we get into how you can break away from such habits and begin implementing a11y friendly concepts, it's important to first understand some basic information about web accessibility.
+Tuy vậy, có lẽ bạn chưa hiểu nhiều về accessibility (khả năng tiếp cận), thường được gọi là "a11y" (vì có 11 chữ cái nằm giữa chữ cái đầu và cuối). Đáng tiếc là nhiều người không biết nhiều về chủ đề này hoặc không tính đến nó khi phát triển website. Nếu thuộc một trong hai nhóm đó, bạn có thể đã hình thành những thói quen không thật sự thân thiện với a11y. Trước khi tìm hiểu cách thay đổi các thói quen ấy và triển khai những khái niệm thân thiện với a11y, điều quan trọng là phải nắm một số thông tin cơ bản về khả năng tiếp cận web.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain what web accessibility is.
+- Giải thích khả năng tiếp cận web là gì.
 
-### What is web accessibility?
+### Khả năng tiếp cận web là gì?
 
-Web accessibility means that websites, tools, and technologies are designed and developed so that people with disabilities and other circumstantial limitations can use them with as few barriers as possible.
+Khả năng tiếp cận web nghĩa là website, công cụ và công nghệ được thiết kế, phát triển để người khuyết tật cùng những người gặp các hạn chế do hoàn cảnh có thể sử dụng với ít rào cản nhất có thể.
 
-There are different types of disabilities, including (but not limited to) auditory, physical/motor, cognitive, or visual. A disability can be permanent, such as a user who is completely blind or deaf, or it can be temporary, such as a user with a broken arm. Users can have multiple disabilities at any given time. Older users with changing abilities may even have similar conditions as those who have a disability.
+Có nhiều dạng khuyết tật, gồm (nhưng không chỉ gồm) khiếm khuyết thính giác, thể chất/vận động, nhận thức hoặc thị giác. Khuyết tật có thể vĩnh viễn, chẳng hạn người hoàn toàn mù hoặc điếc, hoặc tạm thời, chẳng hạn người bị gãy tay. Một người có thể đồng thời có nhiều khuyết tật. Người lớn tuổi với năng lực thay đổi cũng có thể gặp những tình trạng tương tự người khuyết tật.
 
-Situational limitations are a little different. Using a phone outside on a bright day, browsing a site with one hand while you're busy doing something else with the other, or living in an area where the internet is slow or the bandwidth is expensive are all examples of situational limitations. These limitations, unlike a disability, occur to users only in specific situations, but are still important to keep in mind when developing a website.
+Các hạn chế do hoàn cảnh hơi khác. Dùng điện thoại ngoài trời vào ngày nắng, duyệt website bằng một tay khi tay kia đang bận, hoặc sống ở nơi Internet chậm hay băng thông đắt đều là những ví dụ. Không giống khuyết tật, các hạn chế này chỉ xuất hiện trong những tình huống cụ thể, nhưng vẫn rất quan trọng khi phát triển website.
 
-### Why web accessibility matters
+### Vì sao khả năng tiếp cận web quan trọng?
 
-Let's first look at a non-web example to gain a little perspective. Imagine being in a multi-storied building that has no elevator. For some people, this might only be an annoyance. "Huh, no elevator. I guess I'll walk up a few flights of stairs, then." A person that requires a wheelchair, however, would find it impossible, or at the very least much more difficult, to go anywhere beyond the first floor. Even if a person in a wheelchair had someone to lift the wheelchair up each step, it would be a much more difficult process. The point here is that an elevator would have made this building more accessible.
+Hãy xem một ví dụ không liên quan đến web để có thêm góc nhìn. Hãy tưởng tượng bạn ở trong một tòa nhà nhiều tầng không có thang máy. Với một số người, điều đó chỉ gây bất tiện: "Không có thang máy à? Vậy đi bộ lên vài tầng thôi." Nhưng với người cần xe lăn, việc đi lên trên tầng một là bất khả thi hoặc ít nhất khó khăn hơn rất nhiều. Ngay cả khi có người nâng xe lăn qua từng bậc, quá trình ấy vẫn khó hơn nhiều. Điểm chính là thang máy sẽ khiến tòa nhà dễ tiếp cận hơn.
 
-The building is your website, and the elevator is a collection of various accessibility features and tools (...it's a pretty big elevator). When you develop a website, you're developing it for users, and you need that website to actually be *usable* by them. People with disabilities, older people with changing abilities, people who aren't as tech savvy, and people with some sort of situational limitation are still users, and websites should be as equally usable by them as possible.
+Tòa nhà là website, còn thang máy là tập hợp nhiều tính năng và công cụ accessibility (...một chiếc thang máy khá lớn). Khi phát triển website, bạn đang phát triển cho người dùng, và website phải thực sự *usable* (có thể sử dụng được) đối với họ. Người khuyết tật, người lớn tuổi có năng lực thay đổi, người chưa thành thạo công nghệ và người gặp hạn chế do hoàn cảnh đều là người dùng; website nên có khả năng sử dụng công bằng nhất có thể đối với họ.
 
-One other pretty big reason that accessibility matters is that, depending on the country, there could actually be laws *requiring* accessibility to be implemented.
+Một lý do lớn khác khiến accessibility quan trọng là tùy quốc gia, có thể có luật *yêu cầu* triển khai khả năng tiếp cận.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Go through the [Diverse Abilities and Barriers article from W3C](https://www.w3.org/WAI/people-use-web/abilities-barriers/) to get a better understanding of how some users with disabilities are affected by inaccessible sites.
-1. Watch the [videos on Web Accessibility Perspectives by W3C](https://www.w3.org/WAI/perspective-videos/) to see how (and which) users can benefit from accessibility features. Each video is pretty short and has audio descriptions and transcripts. If you prefer, the page also has a link to a compiled version of all of the videos on YouTube.
+1. Đọc các tài nguyên sau:
+   - [Tài liệu tham khảo về tính năng accessibility](https://www.w3.org/WAI/people-use-web/abilities-barriers/) của W3C để hiểu rõ hơn một số người khuyết tật bị ảnh hưởng thế nào bởi website không dễ tiếp cận.
+1. Xem [các video về những góc nhìn của Web Accessibility](https://www.w3.org/WAI/perspective-videos/) của W3C để thấy người dùng nào có thể hưởng lợi từ các tính năng accessibility và hưởng lợi ra sao. Mỗi video khá ngắn, có mô tả âm thanh và bản chép lời. Nếu muốn, trang này cũng liên kết tới bản tổng hợp toàn bộ video trên YouTube.
 
 </div>

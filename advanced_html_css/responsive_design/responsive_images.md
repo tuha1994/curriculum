@@ -1,62 +1,62 @@
-### Introduction
+### Giới thiệu
 
-Images require special care on responsive websites. This lesson presents a few issues that arise when working with responsive images and the options you have when dealing with them.
+Hình ảnh cần được xử lý đặc biệt cẩn thận trên các website responsive. Bài học này trình bày một số vấn đề phát sinh khi làm việc với hình ảnh responsive và những lựa chọn bạn có khi xử lý chúng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- You'll learn how to make your images behave properly when resizing them with CSS.
-- You'll learn how to serve up different images based on screen size.
+- Bạn sẽ học cách khiến hình ảnh hoạt động đúng khi thay đổi kích thước bằng CSS.
+- Bạn sẽ học cách cung cấp các hình ảnh khác nhau dựa trên kích thước màn hình.
 
-### The basics
+### Kiến thức cơ bản
 
-The most basic problem you are going to face when working with responsive images is the aspect ratio or the relationship between width and height. If you shrink the width of an image on smaller screens and do not manipulate the height, the image will appear distorted!
+Vấn đề cơ bản nhất bạn sẽ gặp khi làm việc với hình ảnh responsive là aspect ratio, hay mối quan hệ giữa chiều rộng và chiều cao. Nếu thu nhỏ chiều rộng của hình ảnh trên màn hình nhỏ hơn mà không điều chỉnh chiều cao, hình ảnh sẽ bị méo!
 
-The solution to this issue is incredibly easy, and we've already mentioned it in an earlier lesson: don't define both a width and a height. If an image is given a flexible width, and the height is set to `auto`, then it should retain its aspect ratio correctly.
+Giải pháp cho vấn đề này cực kỳ đơn giản, và chúng ta đã đề cập đến nó trong một bài học trước: không định nghĩa cả chiều rộng lẫn chiều cao. Nếu hình ảnh được đặt chiều rộng linh hoạt và chiều cao là `auto`, nó sẽ giữ đúng aspect ratio.
 
-### background-size, background-position and object-fit
+### background-size, background-position và object-fit
 
-What if you don't want your image to shrink (in both height and width)? `background-size` and `object-fit` are two properties that can provide a little more flexibility (pun intended) with how aspect ratios are handled.
+Nếu bạn không muốn hình ảnh thu nhỏ (cả chiều cao lẫn chiều rộng) thì sao? `background-size` và `object-fit` là hai thuộc tính có thể mang đến thêm một chút linh hoạt (đúng là một cách chơi chữ) trong việc xử lý aspect ratio.
 
-`background-position` and `background-size` are properties that work on elements with a background image, and do not work on normal `img` tags. You'll see some examples and specifics in the reading assignment later, but you can get quite a lot of control over the display and placement of background images by working with these properties. For example, `background-position: center` will make sure the image is always centered in its container, even if the container is too small to fit the whole image. `background-size: cover` will resize the image so that it is always completely filling its container while cropping as little as possible.
+`background-position` và `background-size` là các thuộc tính hoạt động trên phần tử có background image, không hoạt động trên tag `img` thông thường. Bạn sẽ thấy một số ví dụ và chi tiết cụ thể trong bài đọc được giao sau đây, nhưng bằng cách dùng các thuộc tính này, bạn có thể kiểm soát khá nhiều cách hiển thị và vị trí của background image. Ví dụ, `background-position: center` sẽ bảo đảm hình ảnh luôn được căn giữa trong container, ngay cả khi container quá nhỏ để chứa toàn bộ hình ảnh. `background-size: cover` sẽ thay đổi kích thước hình ảnh để nó luôn phủ kín container, đồng thời cắt ít nhất có thể.
 
-Here's a little demo you can play with:
+Đây là một demo nhỏ để bạn thử:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="powxJXV" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/powxJXV">
-  background | CSS Responsiveness</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/powxJXV">
+  background | CSS Responsiveness</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-`object-fit` works similarly, but is meant for `img` tags. With the `object-fit` property you *can* specify a width and height for your images and then tell an image how it is supposed to fit itself to those dimensions. The default value for `object-fit` is `fill`, which stretches the image to fit the dimensions, but much like `background-size` you can also tell it to `cover` or `contain` the image.
+`object-fit` hoạt động tương tự, nhưng được thiết kế cho tag `img`. Với thuộc tính `object-fit`, bạn *có thể* chỉ định chiều rộng và chiều cao cho hình ảnh, sau đó cho hình ảnh biết nó cần tự khớp với các kích thước đó như thế nào. Giá trị mặc định của `object-fit` là `fill`, làm giãn hình ảnh để vừa các kích thước, nhưng tương tự `background-size`, bạn cũng có thể yêu cầu nó `cover` hoặc `contain` hình ảnh.
 
-Here's a demo of `object-fit` on an image. Open this one up on CodePen and resize the browser to see how the image reacts.
+Đây là demo về `object-fit` trên một hình ảnh. Hãy mở nó trên CodePen và thay đổi kích thước trình duyệt để xem hình ảnh phản ứng thế nào.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="NWgOGGX" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/NWgOGGX">
-  object-fit</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/NWgOGGX">
+  object-fit</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Even more control!
+### Kiểm soát nhiều hơn nữa!
 
-It is also possible to literally use *different* images for different screen sizes. This gives you the most control over exactly how your images are displayed at various resolutions. For example, instead of just trusting `object-fit` to keep the subject of a photograph in a frame, you could present a cropped version of it on smaller screens. There are two ways of achieving this, but the most flexible is using the `<picture>` tag, which you'll learn more about in the assignment.
+Bạn cũng có thể dùng đúng nghĩa là những hình ảnh *khác nhau* cho các kích thước màn hình khác nhau. Điều này cho phép kiểm soát tối đa cách hiển thị hình ảnh ở các độ phân giải khác nhau. Ví dụ, thay vì chỉ tin tưởng `object-fit` sẽ giữ chủ thể của một bức ảnh trong khung, bạn có thể đưa ra một phiên bản đã cắt cho màn hình nhỏ hơn. Có hai cách để thực hiện, nhưng cách linh hoạt nhất là dùng tag `<picture>`, nội dung bạn sẽ học thêm trong bài tập.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. First check out the docs for [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size), [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position), and [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit). The demos on those pages should make their usage clear.
-1. MDN's [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) is an introduction to serving up responsive images in HTML.
-1. CSS Tricks's [Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/) is a great article that goes into more depth on how to actually implement responsive images.
+1. Trước tiên, hãy xem tài liệu về [background-size](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size), [background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position) và [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit). Các demo trên những trang đó sẽ giúp cách sử dụng trở nên rõ ràng.
+1. [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) của MDN là phần giới thiệu về việc cung cấp hình ảnh responsive trong HTML.
+1. [Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/) của CSS Tricks là một bài viết hay, đi sâu hơn vào cách thực sự triển khai hình ảnh responsive.
 
 </div>

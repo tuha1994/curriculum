@@ -1,35 +1,35 @@
-### Introduction
+### Giới thiệu
 
-"Responsive Design" is an incredibly important concept when it comes to developing for the web. In many ways, you are already equipped to create beautiful responsive websites. In this section we're going to fill in the gaps.
+"Responsive Design" là một khái niệm cực kỳ quan trọng khi phát triển cho web. Theo nhiều cách, bạn đã có đủ công cụ để tạo ra các website responsive đẹp mắt. Trong phần này, chúng ta sẽ bổ sung những mảnh ghép còn thiếu.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- You'll learn what "Responsive Design" is and why it's important.
+- Bạn sẽ học Responsive Design là gì và vì sao nó quan trọng.
 
-### Terminology
+### Thuật ngữ
 
-"Responsive Design" is the term used to describe creating websites that *respond* to changes in browser size in order to create something that works on any device. Unfortunately, that phrase is a little bit misleading, due to the word 'design'. These lessons are not going to focus much on the actual *design* of responsive websites, but the techniques you can use to implement responsiveness on websites.
+"Responsive Design" là thuật ngữ dùng để mô tả việc tạo ra các website *phản hồi* trước những thay đổi về kích thước trình duyệt, nhằm tạo ra thứ hoạt động trên mọi thiết bị. Đáng tiếc là cụm từ này hơi gây hiểu lầm vì có từ 'design'. Các bài học này sẽ không tập trung nhiều vào *thiết kế* thực tế của website responsive, mà tập trung vào những kỹ thuật bạn có thể sử dụng để triển khai tính responsive trên website.
 
-The word 'design' refers to making decisions about what kinds of things look nice, crafting a user experience, and deciding exactly what a project should look like. There might be some tidbits about that sprinkled throughout these lessons, but it is not the primary focus. *However*, since this phrase has been pretty much universally adopted, it's the phrase we'll use here.
+Từ 'design' nói đến việc đưa ra quyết định về những thứ trông đẹp mắt, xây dựng trải nghiệm người dùng và quyết định chính xác một dự án nên trông như thế nào. Có thể một vài mẩu kiến thức về điều đó sẽ được rải rác trong các bài học này, nhưng đó không phải trọng tâm chính. *Tuy nhiên*, vì cụm từ này gần như đã được mọi người sử dụng thống nhất, chúng ta sẽ dùng nó ở đây.
 
-### So what is it?
+### Vậy nó là gì?
 
-Since the release of the first iPhone in 2007, it has become a *requirement* that your web projects function correctly on everything from normal desktop monitors to tiny phone screens.
+Kể từ khi chiếc iPhone đầu tiên ra mắt vào năm 2007, việc các dự án web của bạn hoạt động đúng trên mọi thứ, từ màn hình desktop thông thường đến màn hình điện thoại nhỏ xíu, đã trở thành một *yêu cầu bắt buộc*.
 
-As you have likely discovered, this kind of responsiveness doesn't often happen automatically, especially once your projects get more complex than simple text on a page (your first HTML-only recipe project probably worked just fine on a phone, aside from the images getting cut off). So, when it comes down to it, "Responsive Web Design" is a set of techniques you can use to make your sites work on any size screen.
+Như bạn có lẽ đã nhận ra, kiểu responsive này thường không tự động xảy ra, đặc biệt khi dự án trở nên phức tạp hơn việc đặt văn bản đơn giản trên một trang (dự án công thức nấu ăn chỉ dùng HTML đầu tiên của bạn có lẽ hoạt động khá ổn trên điện thoại, ngoại trừ việc hình ảnh bị cắt). Vì vậy, nói cho cùng, "Responsive Web Design" là một tập hợp các kỹ thuật bạn có thể dùng để khiến website hoạt động trên màn hình có kích thước bất kỳ.
 
-There are ways to make your designs flexible enough that they work well on most screens, and there are ways to dramatically change the layout of your page at certain sizes. You'll probably end up relying on both in most of your projects.
+Có những cách làm cho thiết kế đủ linh hoạt để hoạt động tốt trên hầu hết màn hình, và cũng có những cách thay đổi đáng kể bố cục trang ở các kích thước nhất định. Trong phần lớn dự án, có lẽ bạn sẽ dựa vào cả hai.
 
-### What screens sizes should you support?
+### Bạn nên hỗ trợ những kích thước màn hình nào?
 
-The smallest phones in common circulation rarely get smaller than `320px`, so that should serve as a reliable lower end target. If your website works as low as `320px` width, then it should work on any small device. The upper limit is a little harder to clarify. These days super-duper-ultra-wide monitors aren't uncommon, so you should plan for the possibility that your site could be viewed on some ridiculously wide monitor. Often, this is accomplished by setting up a max-width for *all* of your content and then centering that on the page. With a setup like that your content will look fine even on super-wide resolutions.
+Những điện thoại nhỏ nhất đang được sử dụng phổ biến hiếm khi nhỏ hơn `320px`, vì vậy đây nên là mốc giới hạn dưới đáng tin cậy. Nếu website hoạt động ở chiều rộng `320px`, nó sẽ hoạt động trên mọi thiết bị nhỏ. Giới hạn trên khó xác định hơn một chút. Ngày nay, màn hình siêu rộng không còn hiếm, vì vậy bạn nên tính đến khả năng website được xem trên một màn hình rộng đến mức khó tưởng tượng. Thông thường, điều này được thực hiện bằng cách đặt max-width cho *toàn bộ* nội dung rồi căn giữa nội dung trên trang. Với cách thiết lập như vậy, nội dung sẽ trông ổn ngay cả ở độ phân giải siêu rộng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this Google Chrome DevTools guide on [how to simulate mobile device displays](https://developer.chrome.com/docs/devtools/device-mode/).
+1. Đọc hướng dẫn của Google Chrome DevTools về [cách mô phỏng màn hình thiết bị di động](https://developer.chrome.com/docs/devtools/device-mode/).
 
 </div>

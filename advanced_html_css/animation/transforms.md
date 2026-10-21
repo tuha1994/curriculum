@@ -1,31 +1,31 @@
-### Introduction
+### Giới thiệu
 
-The `transform` property is a powerful tool to change the appearance of elements without affecting the natural document flow.
+Thuộc tính `transform` là một công cụ mạnh mẽ để thay đổi diện mạo của các phần tử mà không ảnh hưởng đến luồng tự nhiên của tài liệu.
 
-You have likely seen it in action on many of your favorite websites! Transforms are very commonly used for animated effects. While we are sure you'll like to create sleek animations of your own, we first need to understand how transforms work.
+Có lẽ bạn đã thấy nó hoạt động trên nhiều website yêu thích của mình! Transforms thường được dùng để tạo các hiệu ứng animation. Chúng tôi tin rằng bạn sẽ thích tự tạo những animation đẹp mắt, nhưng trước tiên chúng ta cần hiểu cách transforms hoạt động.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- How to use 2D transforms.
-- How to use 3D transforms.
-- How to chain multiple transforms.
-- The benefits of using the `transform` property.
+- Cách sử dụng transforms 2D.
+- Cách sử dụng transforms 3D.
+- Cách xâu chuỗi nhiều transform.
+- Lợi ích của việc sử dụng thuộc tính `transform`.
 
-### Basics of transforms
+### Những điều cơ bản về transforms
 
-The `transform` property takes in one or more [CSS transform functions](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/transform-function) as its values, with those functions taking in their own value, usually an angle or a number.
+Thuộc tính `transform` nhận một hoặc nhiều [hàm CSS transform](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/transform-function) làm giá trị; các hàm đó lại nhận giá trị riêng, thường là một góc hoặc một con số.
 
-Almost all elements can have the `transform` property applied to them, with the exceptions being `<col>`, `<colgroup>`, and non-replaced inline elements. "Non-replaced" refers to elements whose content is contained within the HTML document (`<span>`, `<b>`, and `<em>`, for example), as opposed to a "replaced" element's content being contained outside of the document, the element itself being "replaced" by the external content (`<video>`, `<iframe>`, and `<img>`, for example). You do not need to memorize every element that is non-replaced, but rather keep this knowledge in mind should you try to apply the `transform` property to an element and aren't sure why it isn't working.
+Gần như mọi phần tử đều có thể áp dụng thuộc tính `transform`, ngoại trừ `<col>`, `<colgroup>` và các phần tử inline không được thay thế. "Không được thay thế" chỉ những phần tử có nội dung nằm trong tài liệu HTML (chẳng hạn `<span>`, `<b>` và `<em>`), trái ngược với nội dung của phần tử "được thay thế" nằm bên ngoài tài liệu, còn bản thân phần tử bị "thay thế" bởi nội dung bên ngoài (`<video>`, `<iframe>` và `<img>` là các ví dụ). Bạn không cần ghi nhớ mọi phần tử không được thay thế, mà chỉ cần lưu ý điều này khi thử áp dụng thuộc tính `transform` cho một phần tử nhưng không hiểu tại sao nó không hoạt động.
 
-### Two-dimensional transforms
+### Transforms hai chiều
 
-In this section, we'll go through 2D transforms with the following transform functions: `rotate`, `scale`, `skew`, and `translate`.
+Trong phần này, chúng ta sẽ đi qua các transform 2D với những hàm transform sau: `rotate`, `scale`, `skew` và `translate`.
 
 #### Rotate
 
-This is the transform function value to rotate an element on a 2D plane:
+Đây là giá trị hàm transform dùng để xoay một phần tử trên mặt phẳng 2D:
 
 ```css
 .element {
@@ -33,7 +33,7 @@ This is the transform function value to rotate an element on a 2D plane:
 }
 ```
 
-Below is a CodePen that shows how the value affects the target element.
+Bên dưới là một CodePen cho thấy giá trị này ảnh hưởng đến phần tử đích như thế nào.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="GRMgKeE" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -47,7 +47,7 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 #### Scale
 
-These are the transform function values to scale an element on a 2D plane:
+Đây là các giá trị hàm transform dùng để thay đổi tỷ lệ của một phần tử trên mặt phẳng 2D:
 
 ```css
 .element {
@@ -57,7 +57,7 @@ These are the transform function values to scale an element on a 2D plane:
 }
 ```
 
-Below is a CodePen that shows how each value affects the target element.
+Bên dưới là một CodePen cho thấy từng giá trị ảnh hưởng đến phần tử đích như thế nào.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="XWeJrGL" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -71,7 +71,7 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 #### Skew
 
-These are the transform function values to skew an element on a 2D plane:
+Đây là các giá trị hàm transform dùng để làm nghiêng một phần tử trên mặt phẳng 2D:
 
 ```css
 .element {
@@ -81,7 +81,7 @@ These are the transform function values to skew an element on a 2D plane:
 }
 ```
 
-Below is a CodePen that shows how each value affects the target element.
+Bên dưới là một CodePen cho thấy từng giá trị ảnh hưởng đến phần tử đích như thế nào.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="mdBybgm" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -95,7 +95,7 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 #### Translate
 
-These are the transform function values to translate an element on a 2D plane:
+Đây là các giá trị hàm transform dùng để dịch chuyển một phần tử trên mặt phẳng 2D:
 
 ```css
 .element {
@@ -105,7 +105,7 @@ These are the transform function values to translate an element on a 2D plane:
 }
 ```
 
-Below is a CodePen that shows how each value affects the target element.
+Bên dưới là một CodePen cho thấy từng giá trị ảnh hưởng đến phần tử đích như thế nào.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="PoJwYrO" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -117,9 +117,9 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Chaining multiple transforms
+### Xâu chuỗi nhiều transform
 
-Now that you have a grasp of 2D transforms, we will learn how to chain them. Chaining multiple transforms is done by adding more transform functions with a space between each one. Take a look at the code below:
+Bây giờ bạn đã nắm được transforms 2D, chúng ta sẽ học cách xâu chuỗi chúng. Để xâu chuỗi nhiều transform, hãy thêm nhiều hàm transform và đặt một khoảng trắng giữa mỗi hàm. Hãy xem đoạn code dưới đây:
 
 ```html
 <div class="red-box"></div>
@@ -145,7 +145,7 @@ Now that you have a grasp of 2D transforms, we will learn how to chain them. Cha
 }
 ```
 
-There are two boxes located at the same position. We chained `rotate` and `translate` function values to both boxes, but in different orders. Make a guess on what happens to each box, then click the "Result" link in the Codepen below to see if you were right.
+Có hai hộp nằm ở cùng một vị trí. Chúng ta đã xâu chuỗi các giá trị hàm `rotate` và `translate` cho cả hai hộp, nhưng theo thứ tự khác nhau. Hãy đoán xem điều gì xảy ra với mỗi hộp, sau đó nhấp vào liên kết "Result" trong CodePen bên dưới để xem bạn đoán đúng không.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css" data-slug-hash="XWeJWWr" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -157,19 +157,19 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-If you guessed correctly, congratulations! The blue box translates on the X axis by 200%, moving it directly to the right, then rotates in place by 45 degrees. The red box rotates by 45 degrees first, then translates on the now-rotated X axis by 200%, moving it to the bottom-right.
+Nếu bạn đoán đúng thì xin chúc mừng! Hộp màu xanh dịch chuyển trên trục X 200%, đi thẳng sang phải, sau đó xoay tại chỗ 45 độ. Hộp màu đỏ xoay 45 độ trước, rồi dịch chuyển 200% trên trục X đã xoay, khiến nó đi xuống dưới bên phải.
 
-While you can generally chain multiple transforms in any order for various results, there is one exception: `perspective`. This brings us nicely to the next section where `perspective` is involved.
+Nhìn chung, bạn có thể xâu chuỗi nhiều transform theo bất kỳ thứ tự nào để tạo ra nhiều kết quả khác nhau, nhưng có một ngoại lệ: `perspective`. Điều này đưa chúng ta đến phần tiếp theo, nơi `perspective` được sử dụng.
 
-### Three-dimensional transforms
+### Transforms ba chiều
 
-The `rotate`, `scale`, and `translate` transform functions aren't limited to just 2D planes. They also work for 3D planes as well! However, to perceive a 3D effect on some of these function values, `perspective` is required.
+Các hàm transform `rotate`, `scale` và `translate` không chỉ giới hạn ở mặt phẳng 2D. Chúng cũng hoạt động trên mặt phẳng 3D! Tuy nhiên, để cảm nhận hiệu ứng 3D ở một số giá trị hàm này, cần có `perspective`.
 
-From here on, the examples get more complicated. Feel free to play around with these properties, but be careful not to get too sidetracked with them.
+Từ đây trở đi, các ví dụ sẽ phức tạp hơn. Bạn cứ thoải mái thử các thuộc tính này, nhưng cẩn thận đừng để chúng khiến bạn đi quá xa khỏi mục tiêu chính.
 
 #### Perspective
 
-This is the transform function value to set the distance from the user to the z = 0 plane:
+Đây là giá trị hàm transform dùng để đặt khoảng cách từ người dùng đến mặt phẳng z = 0:
 
 ```css
 .element {
@@ -177,13 +177,13 @@ This is the transform function value to set the distance from the user to the z 
 }
 ```
 
-Essentially, by setting a `perspective` value, we are telling the object to render as if we were viewing it from a specific distance on the z-axis.
+Về cơ bản, khi đặt giá trị `perspective`, chúng ta yêu cầu đối tượng được hiển thị như thể ta đang nhìn nó từ một khoảng cách cụ thể trên trục z.
 
-Unlike other transform function values, `perspective` must be declared first (leftmost) when there are multiple transform function values. In the upcoming examples for `rotate`, `scale`, and `translate`, we will be able to see how it affects the target element.
+Không giống các giá trị hàm transform khác, `perspective` phải được khai báo đầu tiên (ở ngoài cùng bên trái) khi có nhiều giá trị hàm transform. Trong các ví dụ sắp tới về `rotate`, `scale` và `translate`, chúng ta sẽ thấy nó ảnh hưởng đến phần tử đích như thế nào.
 
-#### Rotate specific axis
+#### Rotate theo trục cụ thể
 
-These are the additional transform function values to rotate an element in a 3D space:
+Đây là các giá trị hàm transform bổ sung để xoay một phần tử trong không gian 3D:
 
 ```css
 .element {
@@ -194,7 +194,7 @@ These are the additional transform function values to rotate an element in a 3D 
 }
 ```
 
-Below is a CodePen that shows how the first three values affects the target element.
+Bên dưới là một CodePen cho thấy ba giá trị đầu tiên ảnh hưởng đến phần tử đích như thế nào.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="PoJwozR" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -206,9 +206,9 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-#### Scale specific axis
+#### Scale theo trục cụ thể
 
-These are the additional transform function values to scale an element in a 3D space:
+Đây là các giá trị hàm transform bổ sung để thay đổi tỷ lệ của một phần tử trong không gian 3D:
 
 ```css
 .element {
@@ -217,11 +217,11 @@ These are the additional transform function values to scale an element in a 3D s
 }
 ```
 
-See MDN's 3D cube in action with [`scaleZ`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scaleZ()) and [`scale3d`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale3d()).
+Hãy xem khối lập phương 3D của MDN hoạt động với [`scaleZ`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scaleZ()) và [`scale3d`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale3d()).
 
-#### Translate specific axis
+#### Translate theo trục cụ thể
 
-These are the additional transform function values to translate an element in a 3D space:
+Đây là các giá trị hàm transform bổ sung để dịch chuyển một phần tử trong không gian 3D:
 
 ```css
 .element {
@@ -230,7 +230,7 @@ These are the additional transform function values to translate an element in a 
 }
 ```
 
-`translateZ` doesn't do much without `perspective`. Instead, `perspective` and `translateZ` work together to create the illusion of 3-dimensional distance from the rendered object, as shown in the example below.
+`translateZ` không làm được nhiều điều nếu không có `perspective`. Thay vào đó, `perspective` và `translateZ` phối hợp với nhau để tạo ảo giác về khoảng cách ba chiều từ đối tượng được hiển thị, như trong ví dụ dưới đây.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="MWEYWpN" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -244,7 +244,7 @@ on <a href="https://codepen.io">CodePen</a>.</span>
 
 #### Matrix
 
-While not strictly a 3D transform function, matrix is mentioned last in this lesson due to how uncommonly used it is. These are the transform function values for it.
+Dù không hẳn là một hàm transform 3D, matrix được nhắc đến cuối bài vì rất ít khi được sử dụng. Đây là các giá trị hàm transform cho nó.
 
 ```css
 .element {
@@ -253,25 +253,25 @@ While not strictly a 3D transform function, matrix is mentioned last in this les
 }
 ```
 
-Matrix is a way of combining all transform functions into one. It is seldom used due to its poor readability, and almost never written by hand. Unless you have a very complex transformation to apply, you should use other transform function values instead.
+Matrix là cách kết hợp tất cả các hàm transform thành một. Nó hiếm khi được sử dụng vì khó đọc, và gần như không bao giờ được viết bằng tay. Trừ khi cần áp dụng một phép biến đổi rất phức tạp, bạn nên dùng các giá trị hàm transform khác.
 
-It is enough for you to know *that* these functions exist and generally how they work. However, it is not important for you to feel comfortable building with them.
+Bạn chỉ cần biết *rằng* các hàm này tồn tại và nhìn chung chúng hoạt động như thế nào. Tuy nhiên, việc bạn cảm thấy thoải mái khi xây dựng với chúng là không quan trọng.
 
-### Benefits of transforms
+### Lợi ích của transforms
 
-In order to understand why the `transform` property is great, you have to be aware of CSS triggers. You can learn about it in [The Pixel Pipeline](https://developers.google.com/web/fundamentals/performance/rendering/#the_pixel_pipeline) section from Google's Web Fundamentals.
+Để hiểu tại sao thuộc tính `transform` lại hữu ích, bạn cần biết về các CSS trigger. Bạn có thể tìm hiểu về chúng trong phần [The Pixel Pipeline](https://developers.google.com/web/fundamentals/performance/rendering/#the_pixel_pipeline) của Web Fundamentals từ Google.
 
-The key benefit of using `transform` is that it occurs during **composition**. This makes it cheaper to use compared to many other CSS properties. You can see what triggers are executed with each CSS property in this [table of CSS triggers](https://web.archive.org/web/20220727225220/https://csstriggers.com/).
+Lợi ích chính của việc dùng `transform` là nó diễn ra trong giai đoạn **composition**. Điều này khiến nó rẻ hơn khi sử dụng so với nhiều thuộc tính CSS khác. Bạn có thể xem các trigger được thực thi với từng thuộc tính CSS trong [bảng CSS triggers](https://web.archive.org/web/20220727225220/https://csstriggers.com/) này.
 
-Another benefit of `transform` is that it can be hardware-accelerated via a device's [GPU](https://en.wikipedia.org/wiki/Graphics_processing_unit) (you don't have to understand how a GPU works but it is good to be aware of the term and what it means). This benefit is more prominent when it comes to transitions and animations which you will learn about in the following lessons.
+Một lợi ích khác của `transform` là nó có thể được tăng tốc bằng phần cứng thông qua [GPU](https://en.wikipedia.org/wiki/Graphics_processing_unit) của thiết bị (bạn không cần hiểu GPU hoạt động thế nào, nhưng biết thuật ngữ này và ý nghĩa của nó là điều hữu ích). Lợi ích này thể hiện rõ hơn khi nói đến transitions và animations, những chủ đề bạn sẽ học trong các bài tiếp theo.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Take a look at this [MDN demonstration of `rotate3d`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate3d()) then read more about the property in this [QHMIT article on `rotate3d`](https://www.qhmit.com/css/functions/css_rotate3d_function.cfm).
-1. Learn more about [perspective in CSS](https://3dtransforms.desandro.com/perspective).
-1. MDN has another great [demonstration using `translate3d`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d()).
-1. Go through [The World of CSS Transforms](https://www.joshwcomeau.com/css/transforms/) by Josh Comeau.
+1. Xem [minh họa `rotate3d` của MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate3d()), sau đó đọc thêm về thuộc tính này trong [bài viết về `rotate3d` của QHMIT](https://www.qhmit.com/css/functions/css_rotate3d_function.cfm).
+1. Tìm hiểu thêm về [perspective trong CSS](https://3dtransforms.desandro.com/perspective).
+1. MDN còn có một [minh họa tuyệt vời dùng `translate3d`](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d()).
+1. Đọc [The World of CSS Transforms](https://www.joshwcomeau.com/css/transforms/) của Josh Comeau.
 
 </div>

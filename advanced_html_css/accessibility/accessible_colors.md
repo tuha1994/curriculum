@@ -1,48 +1,48 @@
-### Introduction
+### Giới thiệu
 
-Although adding color to a page can make it more visually appealing, using the wrong color combination or relying solely on color to convey information can end up making things more difficult to perceive and understand for some users. This doesn't mean you have to limit yourself when choosing color schemes for a website, but it does mean you have to take extra care when actually *using* those colors.
+Màu sắc có thể khiến trang hấp dẫn hơn về mặt thị giác, nhưng phối màu sai hoặc chỉ dựa vào màu để truyền đạt thông tin có thể khiến một số người khó nhận biết và hiểu nội dung hơn. Điều đó không có nghĩa bạn phải hạn chế khi chọn bảng màu; bạn chỉ cần cẩn thận hơn khi thực sự *sử dụng* chúng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Understand what a contrast ratio is.
-- Know how to check contrast ratios.
-- Understand why color alone should not be used to convey information.
+- Hiểu contrast ratio là gì.
+- Biết cách kiểm tra contrast ratio.
+- Hiểu vì sao không nên chỉ dùng màu để truyền đạt thông tin.
 
-### Color contrast
+### Độ tương phản màu
 
 ![Contrast ratio issues](https://user-images.githubusercontent.com/70952936/125673709-dd42bdf0-a4bc-4103-9a1b-e73e6c3bc85b.jpg)
 
-Can you easily read the text in all three (yes, three) examples from the image above? If you can't, then that's because the contrast ratio is too low. If you can, then consider me jealous of your eye sight, but you still need to provide an easily perceivable website for visually impaired users.
+Bạn có dễ đọc chữ trong cả ba (đúng vậy, ba) ví dụ trong hình trên không? Nếu không, đó là vì contrast ratio quá thấp. Nếu có, xin chúc mừng thị lực của bạn, nhưng bạn vẫn cần cung cấp website dễ nhận biết cho người khiếm thị.
 
-A contrast ratio is the difference in brightness between two colors expressed as a ratio. White text on a white background would have lowest ratio (1:1), while black text on a white background would have the highest (21:1). Contrast ratios refer to both normal text as well as images of text.
+Contrast ratio là chênh lệch độ sáng giữa hai màu, được biểu diễn dưới dạng một tỷ lệ. Chữ trắng trên nền trắng có tỷ lệ thấp nhất (1:1), còn chữ đen trên nền trắng có tỷ lệ cao nhất (21:1). Contrast ratio áp dụng cho cả văn bản thông thường lẫn hình ảnh chứa văn bản.
 
-There are two different conformance levels for contrast ratios, both of which have rules for normal text and large text. **Normal text** is defined as text with a font size that's less than 18 points/24px (or less than 14 points/18.66px for bold text), and **large text** is defined as text with a font size that is at least 18 points/24px (or at least 14 points/18.66px for bold text).
+Có hai mức độ tuân thủ contrast ratio, mỗi mức đều có quy tắc cho văn bản thông thường và văn bản lớn. **Văn bản thông thường** là chữ có cỡ nhỏ hơn 18 points/24px (hoặc nhỏ hơn 14 points/18.66px nếu in đậm), còn **văn bản lớn** có cỡ ít nhất 18 points/24px (hoặc ít nhất 14 points/18.66px nếu in đậm).
 
-1. **Level AA** (minimum) requires a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text.
-1. **Level AAA** (enhanced) requires a contrast ratio of at least 7:1 for normal text and 4.5:1 for large text.
+1. **Level AA** (tối thiểu) yêu cầu tỷ lệ ít nhất 4.5:1 cho văn bản thông thường và 3:1 cho văn bản lớn.
+1. **Level AAA** (nâng cao) yêu cầu tỷ lệ ít nhất 7:1 cho văn bản thông thường và 4.5:1 cho văn bản lớn.
 
-Both conformance levels have exceptions that don't need to follow the contrast ratio rules:
+Cả hai mức đều có ngoại lệ không cần tuân theo các quy tắc về tỷ lệ:
 
-- Incidental text, such as text that just *happens* to be within an image that has other significant visual content, or text that is purely decorative.
-- Text that is part of an inactive or disabled user interface component, such as a button that is disabled and has a lowered opacity.
-- Text that is part of a logo or brand name.
+- Văn bản tình cờ xuất hiện, chẳng hạn chữ *vô tình* nằm trong một hình ảnh có nội dung thị giác quan trọng khác, hoặc văn bản chỉ mang tính trang trí.
+- Văn bản thuộc một thành phần giao diện không hoạt động hoặc bị vô hiệu hóa, chẳng hạn nút bị vô hiệu hóa và có opacity thấp.
+- Văn bản thuộc logo hoặc tên thương hiệu.
 
-At this point you might be thinking, "18.66 pixels? 4.5:1? How the heck am I supposed to remember these numbers? Wait, how am I supposed to calculate the ratios in the first place?!" Luckily for you, you don't have to!
+Có thể bạn đang nghĩ: "18.66 pixel? 4.5:1? Làm sao nhớ được các con số này? Mà tính tỷ lệ ban đầu thế nào?!" May mắn là bạn không cần phải làm vậy!
 
-[WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) is a fantastic tool for checking contrast ratios. Just enter the HEX code of the foreground and background colors and it calculates what conformance levels, if any, the contrast ratio passes. The page also has a link for a link contrast checker, which goes over what the contrast ratio should be if a text link isn't underlined.
+[WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) là công cụ tuyệt vời để kiểm tra contrast ratio. Chỉ cần nhập mã HEX của màu tiền cảnh và màu nền, công cụ sẽ tính xem tỷ lệ đạt mức tuân thủ nào, nếu có. Trang này cũng có liên kết tới công cụ kiểm tra tương phản của liên kết, giải thích tỷ lệ cần có khi liên kết văn bản không được gạch chân.
 
-You can also check the contrast ratio of the text within an element using your browser's dev tools. In **Chrome**, click the "element picker" tool in the Elements tab, then hover over an element on the web page. This displays a tooltip showing the contrast ratio under the Accessibility section. You can also view the contrast ratio by selecting an element with text in the Elements tab and clicking on the color picker tool for the "color" property in the Styles pane.
+Bạn cũng có thể kiểm tra contrast ratio của văn bản trong một phần tử bằng dev tools của trình duyệt. Trong **Chrome**, nhấp công cụ "element picker" ở tab Elements rồi di chuột lên phần tử trên trang. Tooltip sẽ hiển thị contrast ratio trong phần Accessibility. Bạn cũng có thể chọn phần tử có văn bản trong tab Elements rồi nhấp công cụ chọn màu cho thuộc tính "color" trong pane Styles để xem tỷ lệ.
 
-### Conveying information
+### Truyền đạt thông tin
 
-Now that you know to take the contrast ratio into account when adding color for text and backgrounds, let's see if you can tell which of the buttons in the image below is red:
+Giờ bạn biết cần tính đến contrast ratio khi thêm màu cho văn bản và nền; hãy thử xem bạn có nhận ra nút nào trong hình dưới đây màu đỏ không:
 
 ![Color blindness simulation](https://user-images.githubusercontent.com/70952936/125673910-66b43803-3228-4920-98f8-80ac063ef344.jpg)
 
-The answer, by the way, is button 4. The image above is simulating achromatopsia, which is also known as total color blindness. This illustrates a key point when using color: **you shouldn't use color alone to convey information**. There may be exceptions where it's necessary to only use color, but generally you want to follow this rule.
+Đáp án là nút 4. Hình trên mô phỏng achromatopsia, còn gọi là mù màu toàn phần. Đây là điểm quan trọng khi dùng màu: **không nên chỉ dùng màu để truyền đạt thông tin**. Có thể có ngoại lệ cần chỉ dùng màu, nhưng nhìn chung bạn nên tuân theo quy tắc này.
 
-Let's look at another example. Let's say you want to create a form that has an instruction stating that required fields are indicated by red text. If a user is color blind or otherwise has difficulty telling some colors apart, having to rely solely on the color of this text can make it difficult or even impossible to perceive or operate the form. Instead of only using color, your form could indicate all required fields with red text and an asterisk:
+Hãy xem ví dụ khác. Giả sử bạn tạo biểu mẫu với hướng dẫn rằng các trường bắt buộc được biểu thị bằng chữ màu đỏ. Nếu người dùng bị mù màu hoặc khó phân biệt một số màu, việc chỉ dựa vào màu của chữ có thể khiến họ khó, thậm chí không thể, nhận biết hoặc sử dụng biểu mẫu. Thay vì chỉ dùng màu, biểu mẫu có thể đánh dấu mọi trường bắt buộc bằng chữ đỏ và dấu sao:
 
 ![Conveying information with color](https://user-images.githubusercontent.com/70952936/125674026-9baafc58-2339-48f4-8b12-892375b87ad7.jpg)

@@ -1,17 +1,17 @@
-### Introduction
+### Giới thiệu
 
-With media queries, it is possible to completely restyle your web projects based on the size of a user's screen. All of the lessons we've had so far have focused on making sure that the individual elements of your layout are as flexible as possible, but sometimes you will need to actually *change* some of your CSS values to accommodate a specific screen size. These changes could be subtle shifts, such as adjusting margin, padding, or font-size to squeeze more content onto the screen, or they could be big obvious shifts in layout. The nature of the exact changes will depend on your design, but the underlying technique is the same.
+Với media query, bạn có thể thay đổi hoàn toàn kiểu hiển thị của dự án web dựa trên kích thước màn hình của người dùng. Tất cả bài học trước đây tập trung vào việc bảo đảm từng phần tử trong bố cục linh hoạt hết mức có thể, nhưng đôi khi bạn sẽ cần thực sự *thay đổi* một số giá trị CSS để phù hợp với một kích thước màn hình cụ thể. Những thay đổi này có thể rất tinh tế, chẳng hạn điều chỉnh margin, padding hoặc font-size để đưa thêm nội dung lên màn hình, hoặc có thể là những thay đổi lớn, rõ ràng trong bố cục. Bản chất của thay đổi cụ thể sẽ phụ thuộc vào thiết kế của bạn, nhưng kỹ thuật nền tảng vẫn giống nhau.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Conditionally applying styles via media queries.
-- Container queries.
+- Áp dụng style có điều kiện bằng media query.
+- Container query.
 
-### Media query syntax
+### Cú pháp media query
 
-The basic syntax for media queries is as follows:
+Cú pháp cơ bản của media query như sau:
 
 ```css
 body {
@@ -25,60 +25,60 @@ body {
 }
 ```
 
-In the above example, the margin is changed based on screen size.  Specifically, on all screens *below or equal to* 600px, the margin will be `8px`, and on all screens *above* `600px`, it will be `24px`.
+Trong ví dụ trên, margin được thay đổi dựa trên kích thước màn hình. Cụ thể, trên mọi màn hình *nhỏ hơn hoặc bằng* 600px, margin sẽ là `8px`, còn trên mọi màn hình *lớn hơn* `600px`, nó sẽ là `24px`.
 
-Really, that's all there is to it. You can create some complex shifting layouts with just this knowledge alone. You can create an unlimited number of media queries in a single document (Click the 'Edit on CodePen' button so you can resize your screen and see the changes):
+Thực sự thì chỉ có vậy. Chỉ với kiến thức này, bạn đã có thể tạo ra những bố cục chuyển đổi khá phức tạp. Bạn có thể tạo không giới hạn số lượng media query trong một tài liệu (hãy nhấp vào nút 'Edit on CodePen' để thay đổi kích thước màn hình và xem sự thay đổi):
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="yLzYgZw" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/yLzYgZw">
-  Media Queries 1 | CSS Responsiveness</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/yLzYgZw">
+  Media Queries 1 | CSS Responsiveness</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-You can also put any number of style definitions inside a media query:
+Bạn cũng có thể đặt bao nhiêu định nghĩa style tùy ý bên trong một media query:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="css,result" data-slug-hash="XWempGr" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/XWempGr">
-  Media Queries 2 | CSS Responsiveness</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/XWempGr">
+  Media Queries 2 | CSS Responsiveness</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-#### Other queries
+#### Các query khác
 
-In all of the above examples, our queries specify a `max-width` which will apply styles to any screen resolution *below* or equal to the specified value. Said another way: a `max-width` query will apply on any screen up to the defined `max-width`. It is also possible to define a `min-width`, which applies to any screen resolution *above* or equal to the given value. `max-height` and `min-height` are also valid.
+Trong tất cả ví dụ trên, query của chúng ta chỉ định `max-width`, thuộc tính này sẽ áp dụng style cho mọi độ phân giải màn hình *nhỏ hơn* hoặc bằng giá trị được chỉ định. Nói cách khác: query `max-width` sẽ áp dụng cho mọi màn hình có chiều rộng không vượt quá `max-width` đã định nghĩa. Bạn cũng có thể định nghĩa `min-width`, áp dụng cho mọi độ phân giải màn hình *lớn hơn* hoặc bằng giá trị đã cho. `max-height` và `min-height` cũng hợp lệ.
 
-### Limit media queries
+### Hạn chế media query
 
-As mentioned earlier, it is possible to create an unlimited number of media queries for every possible screen size. However, it is best to minimize your media-query usage and rely more on the natural flexibility of your layouts. Consider the second embedded example above ("my cool site"). It only *needs* one media query to accommodate all desktop and mobile sizes, and there's no real need to create more.
+Như đã đề cập, bạn có thể tạo không giới hạn số lượng media query cho mọi kích thước màn hình có thể có. Tuy nhiên, tốt nhất là nên giảm việc sử dụng media query và dựa nhiều hơn vào tính linh hoạt tự nhiên của bố cục. Hãy xem xét ví dụ nhúng thứ hai ở trên ("my cool site"). Nó chỉ *cần* một media query để phù hợp với mọi kích thước desktop và mobile, và không thực sự cần tạo thêm.
 
-### Common breakpoints
+### Breakpoint thường gặp
 
-'Breakpoint' is the term for the screen size that triggers your media query. You will find quite a lot of differing opinions on what exactly your breakpoints should be. In general, it's helpful to think about the kinds of devices and screens that your users will be using. Mobile phones are usually under `500px`. Tablets are often between `500px` and `1000px`. Anything larger than `1000px` is likely to be a normal browser screen. Super wide screens are also becoming more common, which means that your site *could* end up being viewed on a screen wider than `2000px`!
+'Breakpoint' là thuật ngữ chỉ kích thước màn hình kích hoạt media query của bạn. Bạn sẽ thấy rất nhiều ý kiến khác nhau về chính xác breakpoint nên là gì. Nhìn chung, sẽ hữu ích nếu bạn nghĩ đến loại thiết bị và màn hình mà người dùng sẽ sử dụng. Điện thoại thường nhỏ hơn `500px`. Tablet thường nằm trong khoảng `500px` đến `1000px`. Mọi thứ lớn hơn `1000px` có khả năng là màn hình trình duyệt thông thường. Màn hình siêu rộng cũng ngày càng phổ biến, nghĩa là website *có thể* được xem trên màn hình rộng hơn `2000px`!
 
-This does *not* mean that you should just start your project with media queries for each device. Each project is going to have different requirements based on the design you're trying to achieve. As mentioned above, try to limit your breakpoints to just what you *need*. With many relatively basic layouts, you can get by with only one mobile-centric breakpoint somewhere around `500`-`600px`. More complex layouts might benefit from doing a full-sized layout above `1200px`, an altered "tablet" layout between `600px` and `1200px` and mobile below `600px`. The real takeaway here is that it doesn't really matter exactly where you set your breakpoints, just do what makes sense for your project.
+Điều này *không* có nghĩa là bạn nên bắt đầu dự án bằng media query cho từng thiết bị. Mỗi dự án sẽ có yêu cầu khác nhau dựa trên thiết kế bạn muốn đạt được. Như đã nói ở trên, hãy cố gắng giới hạn breakpoint ở mức bạn *cần*. Với nhiều bố cục tương đối cơ bản, bạn có thể chỉ cần một breakpoint tập trung vào mobile ở khoảng `500`-`600px`. Bố cục phức tạp hơn có thể hưởng lợi từ bố cục đầy đủ phía trên `1200px`, bố cục "tablet" đã điều chỉnh trong khoảng `600px` đến `1200px`, và mobile dưới `600px`. Điều thực sự cần rút ra ở đây là vị trí chính xác của breakpoint không quá quan trọng; chỉ cần làm điều hợp lý cho dự án của bạn.
 
-### Zooming!
+### Phóng to!
 
-In most browsers, **zooming in on a webpage will change the effective resolution of that page**. If your browser window is exactly `1000px` wide, zooming in will cause the page to behave as if the screen is *smaller*, and will trigger media queries based on the simulated/zoomed screen resolution. Zooming *out* can be handy for debugging issues that arise on screens that are larger than your own computer screen. Forgetting that you've zoomed in or out on a webpage can cause some real confusion when breakpoints refuse to trigger at the correct points.
+Trong hầu hết trình duyệt, **phóng to một trang web sẽ thay đổi độ phân giải hiệu dụng của trang đó**. Nếu cửa sổ trình duyệt rộng chính xác `1000px`, việc phóng to sẽ khiến trang hoạt động như thể màn hình *nhỏ hơn*, đồng thời kích hoạt media query dựa trên độ phân giải màn hình được mô phỏng/phóng to. Phóng to *thu nhỏ* có thể hữu ích khi gỡ lỗi các vấn đề phát sinh trên màn hình lớn hơn màn hình máy tính của bạn. Quên rằng bạn đã phóng to hoặc thu nhỏ một trang web có thể gây ra nhiều nhầm lẫn khi breakpoint không kích hoạt đúng thời điểm.
 
-### Print styles
+### Style khi in
 
-You'll often see media queries defined with the `screen` keyword like so:
+Bạn thường sẽ thấy media query được định nghĩa với từ khóa `screen` như sau:
 
 ```css
 @media screen and (max-width: 480px) {
 }
 ```
 
-This is not necessary, but it *does* point toward another very useful capability of media queries: changing styles based on the media type. Everything we've covered so far has been specifically intended for viewing on some kind of screen so specifying `screen` is redundant. However, it is possible to create a different set of styles for your website when it is sent to your printer or viewed in print-preview mode by using the `print` keyword.
+Điều này không bắt buộc, nhưng *có* gợi mở một khả năng rất hữu ích khác của media query: thay đổi style dựa trên loại môi trường. Mọi thứ chúng ta đã đề cập cho đến nay đều dành riêng cho việc xem trên một loại màn hình nào đó, nên việc chỉ định `screen` là dư thừa. Tuy nhiên, bạn có thể tạo một bộ style khác cho website khi gửi tới máy in hoặc xem ở chế độ xem trước khi in bằng cách dùng từ khóa `print`.
 
 ```css
 @media print {
@@ -86,16 +86,16 @@ This is not necessary, but it *does* point toward another very useful capability
 }
 ```
 
-This is not something we're going to focus on in our curriculum, but it may be something you want to consider taking advantage of in some cases. It's fairly common to change some colors (i.e. make things black/white), and add `display: none` to hide elements that are useless in a printed environment (buttons, nav links, etc).
+Đây không phải nội dung chúng ta sẽ tập trung trong curriculum, nhưng trong một số trường hợp, bạn có thể muốn tận dụng nó. Việc thay đổi một số màu (ví dụ: chuyển thành đen/trắng) và thêm `display: none` để ẩn các phần tử vô ích trong môi trường in (nút, liên kết điều hướng, v.v.) khá phổ biến.
 
-### Container queries
+### Container query
 
-While media queries allow you to conditionally apply styles based on characteristics of things like the viewport or device etc., you can do the same thing but based on characteristics of a "container" element instead via container queries (`@container`); Depending on the exact styles you're trying to conditionally apply, one or the other may make more sense to base your conditions on. There are subtle differences in the syntax of course, but ultimately the concept is the same and plenty of documentation exists as usual.
+Trong khi media query cho phép bạn áp dụng style có điều kiện dựa trên các đặc điểm như viewport hoặc thiết bị, container query (`@container`) cho phép bạn làm điều tương tự dựa trên đặc điểm của một phần tử "container". Tùy thuộc vào style cụ thể bạn muốn áp dụng có điều kiện, việc dựa trên bên này hay bên kia có thể hợp lý hơn. Tất nhiên, cú pháp có những khác biệt nhỏ, nhưng về cơ bản khái niệm là giống nhau và như thường lệ, có rất nhiều tài liệu.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Look through [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) on MDN. There are a few additional things you can do with media queries that might be worth knowing about, though their usage is much less common.
+1. Xem qua [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) trên MDN. Có một vài việc bổ sung bạn có thể làm với media query đáng để biết, dù chúng ít được sử dụng hơn nhiều.
 
 </div>

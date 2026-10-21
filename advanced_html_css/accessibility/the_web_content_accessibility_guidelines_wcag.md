@@ -1,55 +1,50 @@
-### Introduction
+### Giới thiệu
 
-After the previous lesson, you should now have a better understanding of how important web accessibility can be for certain users, and how beneficial it can be for *all* users. But how do we know not only what should be a11y friendly, but how to make those things a11y friendly? Well, there are many sources available to tell us the what and how, those who actually rely on accessibility being one of the best sources we can consult.
+Sau bài trước, bạn đã hiểu hơn accessibility quan trọng thế nào với một số người dùng và có lợi cho *tất cả* người dùng ra sao. Nhưng làm thế nào biết điều gì nên thân thiện với a11y và triển khai thế nào? Có nhiều nguồn giải thích, trong đó người thực sự dựa vào accessibility là nguồn tham khảo tốt nhất.
 
-Another source, one that goes over many different ways to help make websites more accessible, is the Web Content Accessibility Guidelines (WCAG). In this lesson we're going to skim the surface of the WCAG, just to familiarize you with them at a more basic level.
+Một nguồn khác trình bày nhiều cách làm website *dễ tiếp cận hơn* là Web Content Accessibility Guidelines (WCAG). Bài này chỉ lướt qua WCAG để bạn làm quen ở mức cơ bản.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
-
-- Explain the purpose of the Web Content Accessibility Guidelines.
-- Name the 4 principles of the WCAG.
+- Giải thích mục đích của Web Content Accessibility Guidelines.
+- Kể tên 4 nguyên tắc của WCAG.
 
 ### Web Content Accessibility Guidelines
 
-The WCAG exist in order to help create a shared standard when it comes to web accessibility. Think of web accessibility as the destination, and the WCAG as one of the tools that can help get us closer to it.
+WCAG giúp tạo ra một tiêu chuẩn chung về web accessibility. Hãy xem accessibility là đích đến, còn WCAG là một trong những công cụ giúp ta tiến gần tới đích.
 
-It's important to understand that while the WCAG can be incredibly helpful for building an a11y foundation, they are not the finish line when it comes to accessibility. Like the name says, they are guidelines, and they will only help us make websites *more* accessible.
+WCAG rất hữu ích để xây nền tảng a11y, nhưng không phải đích cuối của accessibility. Đúng như tên gọi, đây là các hướng dẫn; chúng chỉ giúp website *dễ tiếp cận hơn*.
 
-### The four principles
+### Bốn nguyên tắc
 
-The WCAG are organized around four, core principles (POUR) that should be kept in mind when implementing any sort of accessibility feature:
+WCAG được tổ chức quanh bốn nguyên tắc cốt lõi (POUR) cần ghi nhớ khi triển khai tính năng accessibility:
 
-1. **Perceivable:** Users must be able to perceive the information or user interfaces being presented. For example, light text on a light background could be difficult for some users with a visual impairment to perceive.
+1. **Perceivable:** Người dùng phải nhận biết được thông tin hoặc giao diện được trình bày. Ví dụ, chữ sáng trên nền sáng có thể khó nhận biết với người khiếm thị.
+1. **Operable:** Người dùng phải thao tác được với giao diện và điều hướng; giao diện không được yêu cầu một tương tác người dùng không thể thực hiện. Thanh điều hướng chỉ mở menu con khi con trỏ chuột hover chẳng hạn sẽ không thao tác được bằng bàn phím.
+1. **Understandable:** Người dùng phải hiểu thông tin hoặc giao diện được trình bày. Nếu gửi form và nhận lỗi "Error 113: Bad data", họ không biết lỗi nghĩa là gì hay sửa thế nào.
+1. **Robust:** Nội dung phải truy cập được bằng assistive technologies và user agent hiện tại, đồng thời vẫn truy cập được khi các công nghệ ấy tiến bộ.
 
-1. **Operable:** Users must be able to operate any user interfaces or navigation, and interfaces cannot require an interaction which the user cannot perform. A navigation bar with drop-down menus that only expand when a mouse cursor hovers over them, for example, would not be operable by keyboard users giving those menu items focus.
+#### Mức độ tuân thủ
 
-1. **Understandable:** Users must be able to understand any information or user interface that is presented to them. For example, if a user tried submitting a form and received an error such as "Error 113: Bad data", they wouldn't be able to understand what the error actually means or how to fix whatever caused the error.
+WCAG có ba mức tuân thủ, mỗi mức gồm các success criteria (quy tắc) cần đáp ứng. Bạn không cần đáp ứng hoàn toàn mức nào trong các bài này, chỉ cần biết chúng tồn tại:
 
-1. **Robust:** Content must be accessible by current assistive technologies and other user agents, and must remain accessible as those technologies advance.
+- **Level A**, hay hỗ trợ thiết yếu, là mức tuân thủ tối thiểu của WCAG.
+- **Level AA**, hay hỗ trợ lý tưởng, là mức nhiều tổ chức hướng tới; đạt mức này cũng phải đạt Level A.
+- **Level AAA**, hay hỗ trợ chuyên biệt, không được khuyến nghị cho toàn bộ website vì một số nội dung có thể khiến việc đạt mức này bất khả thi; đạt mức này phải đạt cả Level A và Level AA.
 
-#### Conformance levels
+### (Trước khi) triển khai accessibility
 
-Conformance levels get mentioned at a couple of other points in these lessons, and we're only mentioning them here to briefly explain what they are ahead of time. The WCAG has three different conformance levels, each of which is made up of various success criteria, or rules, that must be followed in order to successfully meet that level of conformance. You don't need to worry about meeting any of these conformance levels completely for the purposes of these lessons, you only need to know that they exist (luckily their naming is pretty easy to remember).
+Các bài sau trình bày nhiều khái niệm giúp cải thiện accessibility nhưng không bao quát *mọi* khía cạnh. Mục tiêu chỉ là giới thiệu một số khái niệm phổ biến bạn nên hình thành thói quen kiểm tra.
 
-- **Level A**, or essential support, is the minimum level of conformance for the WCAG.
-- **Level AA**, or ideal support, is the level many organizations strive for. Meeting this level also requires meeting Level A.
-- **Level AAA**, or specialized support, isn't recommended for entire sites to meet in full, as some content may make it impossible to meet this conformance level. Meeting this level would require also meeting both Level A and Level AA.
+Dù chỉ mới làm quen một số khái niệm a11y, bạn có thể lo website chưa đủ accessible. Điều đầu tiên cần nhớ là **không website nào đạt 100% accessibility**, vì vậy đừng nhắm tới mục tiêu bất khả thi. Đôi khi mục đích hoặc khái niệm của website còn yêu cầu một số phần không accessible theo một cách nào đó.
 
-### (Before) implementing accessibility
+Điều thứ hai là những bước đầu tiên hướng tới website accessible cũng quan trọng như các bước sau này. Dù hiện tại chỉ thêm một tính năng a11y, điều bạn nghĩ là bổ sung nhỏ có thể cải thiện rất lớn cho nhiều người. Đừng nghĩ phải hoàn hảo hoặc thêm mọi thứ cùng lúc, nhất là khi mới bắt đầu.
 
-The lessons that follow dive into several concepts that can help you improve the accessibility of your websites, but they don't cover *every* facet of accessibility. The goal of these lessons is just to introduce you to some of the more common concepts that you should get into the habit of checking for moving forward.
-
-Even though we're only introducing you to some of these a11y concepts, you may still worry that your site isn't accessible enough. The first thing to keep in mind is that **no site will ever be 100% accessible**, so don't try to aim for such an impossible goal. Sometimes the purpose or concept of a site even requires some things to not be accessible in certain ways.
-
-The second thing to keep in mind is that just taking those first few steps towards creating accessible websites matters just as much as the many more steps you'll take in the future. Even if you only add one a11y feature to your websites for now, what you may think is a minor addition could actually be a huge improvement for more users than you realize. So don't feel like you have to make everything perfect or that you need to add everything at once when implementing accessibility, especially when you're just starting out.
-
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through the [WCAG Overview](https://www.w3.org/WAI/standards-guidelines/wcag/) page. Don't worry about all of the other links for now. The goal of reading this page is to understand more of the included overview and to get familiar with the site itself for when you *do* need to visit other pages on it.
-1. Skim through [WebAIM's WCAG 2 Checklist](https://webaim.org/standards/wcag/checklist), keeping in mind to read the important disclaimer. For now the goal is just to get an idea of common accessibility issues, some of which you'll be ready to fix by the time you finish this set of lessons, rather than read through every issue listed on the page. Keep this resource bookmarked, though, as using it as your checklist when you start actively implementing accessibility will be really handy.
+1. Đọc trang [WCAG Overview](https://www.w3.org/WAI/standards-guidelines/wcag/). Chưa cần lo các link khác; mục tiêu là hiểu phần tổng quan và làm quen với website để dùng khi cần.
+1. Đọc lướt [WebAIM's WCAG 2 Checklist](https://webaim.org/standards/wcag/checklist), chú ý disclaimer quan trọng. Hiện chỉ cần hình dung các vấn đề accessibility phổ biến; hãy lưu tài nguyên này để dùng làm checklist khi bắt đầu triển khai accessibility.
 
 </div>

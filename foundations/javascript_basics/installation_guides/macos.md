@@ -1,18 +1,18 @@
-### Guide: Install nvm on macOS
+### Hướng dẫn: Cài đặt nvm trên macOS
 
-On macOS 10.15 and above, the default shell is now zsh. During installation, nvm will look for a `.zshrc` file in your user home directory. By default, this file does not exist so we need to create it by running the following command in your terminal:
+Trên macOS 10.15 trở lên, shell mặc định hiện là zsh. Trong quá trình cài đặt, nvm sẽ tìm file `.zshrc` trong thư mục home của người dùng. Theo mặc định, file này không tồn tại, vì vậy chúng ta cần tạo nó bằng cách chạy lệnh sau trong terminal:
 
 ```bash
 touch ~/.zshrc
 ```
 
-Now we can run the following command to install nvm:
+Bây giờ chúng ta có thể chạy lệnh sau để cài đặt nvm:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 ```
 
-Restart your terminal, or copy and paste the following into your terminal and press <kbd>Enter</kbd>:
+Hãy khởi động lại terminal, hoặc sao chép và dán nội dung sau vào terminal rồi nhấn <kbd>Enter</kbd>:
 
 ```bash
 export NVM_DIR="$HOME/.nvm"
@@ -20,12 +20,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 ```
 
-Test your nvm installation by running, which should give you the version number installed:
+Kiểm tra cài đặt nvm bằng cách chạy lệnh sau; lệnh này sẽ hiển thị số phiên bản đã cài đặt:
 
 ```bash
 nvm --version
 ```
 
-For more information, read about [installing and updating from NVM's GitHub](https://github.com/nvm-sh/nvm#installation-and-update).
+Để biết thêm thông tin, hãy đọc về [cách cài đặt và cập nhật từ GitHub của NVM](https://github.com/nvm-sh/nvm#installation-and-update).
 
-[Return to the Installing Node.js lesson](https://www.theodinproject.com/lessons/foundations-installing-node-js#assignment)
+[Quay lại bài học Cài đặt Node.js](https://www.theodinproject.com/lessons/foundations-installing-node-js#assignment)

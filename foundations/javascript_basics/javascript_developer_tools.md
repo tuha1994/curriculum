@@ -1,47 +1,47 @@
-### Introduction
+### Giới thiệu
 
-Knowing how to use the Developer Tools inside your browser is an important skill for any web developer. The Developer Tools are useful for running JavaScript code, editing HTML and CSS styles without having to refresh the page, and viewing performance data. They also save you lots of time. Getting started couldn't be any easier. You should already be familiar with using them for debugging and working on HTML and CSS, so let's take a look at how they can benefit us when writing JavaScript.
+Biết cách sử dụng Developer Tools trong trình duyệt là một kỹ năng quan trọng đối với mọi web developer. Developer Tools hữu ích khi chạy code JavaScript, chỉnh sửa style HTML và CSS mà không cần tải lại trang, cũng như xem dữ liệu hiệu năng. Chúng còn giúp bạn tiết kiệm rất nhiều thời gian. Bắt đầu sử dụng chúng cũng không thể dễ dàng hơn. Có lẽ bạn đã quen dùng chúng để debug và làm việc với HTML, CSS, vậy hãy cùng xem chúng có thể hỗ trợ chúng ta như thế nào khi viết JavaScript.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- Change screen size of a website with developer tools.
-- View and change the DOM.
+- Thay đổi kích thước hiển thị của website bằng developer tools.
+- Xem và thay đổi DOM.
 - Debug JavaScript.
-- Use breakpoints.
-- View and edit HTML in the Elements tab.
-- View the Resources Panel to check the scripts running on a website.
-- Add CSS Pseudostate to a Class.
-- View CSS Properties in Alphabetical Order.
-- View and edit the Box Model of any Element in Chrome DevTools.
-- View a page in print mode.
-- Enable or Disable CSS Classes.
-- Simulate media queries in Device Mode.
+- Sử dụng breakpoint.
+- Xem và chỉnh sửa HTML trong tab Elements.
+- Xem Resources Panel để kiểm tra các script đang chạy trên website.
+- Thêm CSS Pseudostate vào một Class.
+- Xem các thuộc tính CSS theo thứ tự alphabet.
+- Xem và chỉnh sửa Box Model của bất kỳ Element nào trong Chrome DevTools.
+- Xem trang ở chế độ in.
+- Bật hoặc tắt các Class CSS.
+- Mô phỏng media query trong Device Mode.
 
-### Opening DevTools
+### Mở DevTools
 
-There are three ways to open the Chrome DevTools menu:
+Có ba cách để mở menu Chrome DevTools:
 
-1. From the `Chrome Menu` > `More Tools` > `Developer Tools`
-1. Right-click anywhere on a webpage and select `Inspect`
-1. Use the keyboard shortcut <kbd>F12</kbd> or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> (Mac: <kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd>)
+1. Từ `Chrome Menu` > `More Tools` > `Developer Tools`
+1. Nhấp chuột phải vào bất kỳ vị trí nào trên trang web rồi chọn `Inspect`
+1. Dùng phím tắt <kbd>F12</kbd> hoặc <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> (Mac: <kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd>)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Google has updated some of the required sections in the below tutorials and some elements have changed or no longer exist, but you can still follow along using the same functionality and tools that they cover. For example, you may be asked to inspect a button that is no longer on the page—you can still follow along and inspect existing elements without issue.
+Google đã cập nhật một số phần bắt buộc trong các bài hướng dẫn bên dưới, đồng thời một số thành phần đã thay đổi hoặc không còn tồn tại, nhưng bạn vẫn có thể làm theo bằng cách sử dụng các chức năng và công cụ tương tự mà chúng đề cập. Ví dụ, bạn có thể được yêu cầu inspect một button không còn trên trang; bạn vẫn có thể làm theo và inspect các element hiện có mà không gặp vấn đề gì.
 
-1. Complete this [tutorial on debugging in Chrome](https://javascript.info/debugging-chrome) from JavaScript.info.
-1. Head to the [Chrome DevTools Documentation](https://developer.chrome.com/docs/devtools/) by Google. The following subsections cover what you'll be using the Developer Tools for 95% of the time. You do not need to memorize these as this is just to gain awareness of how to debug on the browser. Feel free to revisit whenever you need to look up something:
+1. Hoàn thành [bài hướng dẫn debug trong Chrome](https://javascript.info/debugging-chrome) của JavaScript.info.
+1. Truy cập [tài liệu Chrome DevTools](https://developer.chrome.com/docs/devtools/) của Google. Các mục con sau bao quát những việc bạn sẽ dùng Developer Tools cho 95% thời gian. Bạn không cần ghi nhớ chúng; mục tiêu ở đây chỉ là làm quen với cách debug trên trình duyệt. Hãy quay lại đây bất cứ khi nào cần tra cứu:
    - CSS
-      1. [View and change CSS](https://developer.chrome.com/docs/devtools/css/)
-      1. [CSS features reference](https://developer.chrome.com/docs/devtools/css/reference/)
-   - [Get Started With Viewing And Changing The DOM](https://developer.chrome.com/docs/devtools/dom/)
+      1. [Xem và thay đổi CSS](https://developer.chrome.com/docs/devtools/css/)
+      1. [Tài liệu tham khảo về các tính năng CSS](https://developer.chrome.com/docs/devtools/css/reference/)
+   - [Bắt đầu với việc xem và thay đổi DOM](https://developer.chrome.com/docs/devtools/dom/)
    - JavaScript
-      1. [Different types of breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints/)
+      1. [Các loại breakpoint khác nhau](https://developer.chrome.com/docs/devtools/javascript/breakpoints/)
 
-1. Go through the [Chrome DevTools console overview](https://developer.chrome.com/docs/devtools/console/) to familiarize yourself with the console and its usage.
+1. Học qua [tổng quan về console của Chrome DevTools](https://developer.chrome.com/docs/devtools/console/) để làm quen với console và cách sử dụng nó.
 
 </div>

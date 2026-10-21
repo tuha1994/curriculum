@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-Things are about to get *really* exciting. So far you have been writing an impressive amount of code to solve various problems, but that code has not been as useful as it could be.
+Mọi thứ sắp trở nên *thật sự* thú vị. Cho đến nay, bạn đã viết một lượng code ấn tượng để giải quyết nhiều vấn đề khác nhau, nhưng code đó chưa hữu ích được như khả năng vốn có.
 
-Imagine taking one of your scripts and bundling it into a little package that you could use over and over again without having to rewrite or change the code. That's the power of functions, and they're used *constantly* in JavaScript.
+Hãy tưởng tượng bạn lấy một script, đóng gói nó thành một package nhỏ để có thể dùng đi dùng lại mà không phải viết lại hay thay đổi code. Đó chính là sức mạnh của function, và chúng được sử dụng *liên tục* trong JavaScript.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- How to define and invoke different kinds of functions.
-- How to use the return value.
-- What function scope is.
+- Cách định nghĩa và gọi nhiều loại function khác nhau.
+- Cách sử dụng giá trị trả về.
+- Function scope là gì.
 
-### Functions
+### Function
 
-Let's discuss parameters and arguments in the context of the following example function:
+Hãy cùng bàn về parameter và argument trong ngữ cảnh của function ví dụ sau:
 
 ```javascript
 function favoriteAnimal(animal) {
@@ -25,19 +25,19 @@ const message = favoriteAnimal('Goat')
 console.log(message)
 ```
 
-In JavaScript, parameters are the items listed between the parentheses `()` in the function declaration. Function arguments are the actual values we decide to pass to the function.
+Trong JavaScript, parameter là các mục được liệt kê giữa hai dấu ngoặc đơn `()` trong khai báo function. Argument của function là những giá trị thực tế mà chúng ta quyết định truyền vào function.
 
-In the example above, the function definition is written on the first line: `function favoriteAnimal(animal)`. The parameter, `animal`, is found inside the parentheses. We could just as easily replace `animal` with `pet`, `x`, or `blah`. But in this case, naming the parameter `animal` gives someone reading our code a bit of context so that they don't have to guess what `animal` may eventually contain.
+Trong ví dụ trên, phần định nghĩa function được viết ở dòng đầu tiên: `function favoriteAnimal(animal)`. Parameter `animal` nằm bên trong dấu ngoặc đơn. Chúng ta cũng có thể dễ dàng thay `animal` bằng `pet`, `x` hoặc `blah`. Nhưng trong trường hợp này, đặt tên parameter là `animal` giúp người đọc code có thêm ngữ cảnh, để họ không phải đoán xem sau này `animal` có thể chứa gì.
 
-By putting `animal` inside the parentheses of the `favoriteAnimal` function declaration, we are telling JavaScript that we will send *some* value to our `favoriteAnimal` function. This means that `animal` is just a **placeholder** for some future value. But what value are we sending?
+Khi đặt `animal` bên trong dấu ngoặc đơn của khai báo function `favoriteAnimal`, chúng ta đang cho JavaScript biết rằng sẽ truyền *một* giá trị nào đó vào function `favoriteAnimal`. Điều này có nghĩa là `animal` chỉ là một **placeholder** cho một giá trị sẽ xuất hiện sau. Nhưng giá trị chúng ta truyền vào là gì?
 
-In the fifth line, `favoriteAnimal('Goat')` is where we are calling our `favoriteAnimal` function and passing the value `'Goat'` inside that function call. Here, `'Goat'` is our argument. We are telling the `favoriteAnimal` function, "Please send `'Goat'` to the `favoriteAnimal` function and use `'Goat'` wherever the `animal` placeholder is." Because of the flexibility that using a parameter provides, we can declare any animal to be our favorite.
+Ở dòng thứ năm, `favoriteAnimal('Goat')` là nơi chúng ta gọi function `favoriteAnimal` và truyền giá trị `'Goat'` vào trong lời gọi function đó. Ở đây, `'Goat'` là argument của chúng ta. Chúng ta đang nói với function `favoriteAnimal`: "Hãy truyền `'Goat'` vào function `favoriteAnimal` và dùng `'Goat'` ở mọi nơi có placeholder `animal`." Nhờ tính linh hoạt mà parameter mang lại, chúng ta có thể chọn bất kỳ con vật nào làm con vật yêu thích.
 
-Here is a diagram to help you visualize how parameters are passed to a function, and how values get returned from it.
+Sơ đồ dưới đây sẽ giúp bạn hình dung cách parameter được truyền vào một function và cách các giá trị được trả về từ đó.
 
-![how parameters are passed to a function and how values are returned from it](https://cdn.statically.io/gh/TheOdinProject/curriculum/c53dd9a12f0c9afde0d9229f82a176170f12e120/foundations/javascript_basics/function_basics/imgs/00.png)
+![cách parameter được truyền vào một function và cách các giá trị được trả về từ đó](https://cdn.statically.io/gh/TheOdinProject/curriculum/c53dd9a12f0c9afde0d9229f82a176170f12e120/foundations/javascript_basics/function_basics/imgs/00.png)
 
-Make note that, while we are storing the outcome of `favoriteAnimal('Goat')` inside the `message` variable, and later passing `message` as an argument for `log()`, it is also possible to pass in a function call as an argument in a different function call.
+Lưu ý rằng dù chúng ta lưu kết quả của `favoriteAnimal('Goat')` vào biến `message`, rồi sau đó truyền `message` làm argument cho `log()`, ta cũng có thể truyền một lời gọi function làm argument trong một lời gọi function khác.
 
 ```javascript
 function favoriteAnimal(animal) {
@@ -47,43 +47,43 @@ function favoriteAnimal(animal) {
 console.log(favoriteAnimal('Goat'))
 ```
 
-In the example above, we pass in `favoriteAnimal('Goat')` as an argument in `log()`. When doing so, the return value of the `favoriteAnimal('Goat')` function call (the string `"Goat is my favorite animal!"`) is used as the argument for `log()`, without first storing it in a separate variable.
+Trong ví dụ trên, chúng ta truyền `favoriteAnimal('Goat')` làm argument cho `log()`. Khi đó, giá trị trả về của lời gọi function `favoriteAnimal('Goat')` (chuỗi `"Goat is my favorite animal!"`) được dùng làm argument cho `log()` mà không cần lưu trước vào một biến riêng.
 
-Keep this possibility in mind because you'll be passing in function calls as arguments somewhat often. If we just called `favoriteAnimal('Goat')` on its own without passing it as an argument for `console.log` to print it's return value, it would still return that string... to nowhere. Nothing would appear in the console, nor would the string get stored in a variable.
+Hãy ghi nhớ khả năng này, vì bạn sẽ thường xuyên truyền các lời gọi function làm argument. Nếu chỉ gọi riêng `favoriteAnimal('Goat')` mà không truyền nó làm argument cho `console.log` để in giá trị trả về, nó vẫn trả về chuỗi đó... nhưng chẳng đi đến đâu cả. Không có gì xuất hiện trong console và chuỗi cũng không được lưu vào biến nào.
 
-Feel free to experiment with the code on your own and replace `'Goat'` with your favorite animal. Notice how we can change the argument to anything we like? Try changing `animal` in the function declaration and in the function body, too. What happens when you do?
+Bạn cứ tự thử nghiệm với code và thay `'Goat'` bằng con vật yêu thích của mình. Bạn thấy chúng ta có thể thay argument bằng bất kỳ thứ gì mình muốn chứ? Hãy thử thay `animal` trong phần khai báo function và trong phần thân function nữa. Điều gì xảy ra?
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### MDN exercises
+#### Bài tập MDN
 
-Note that the assigned MDN articles also have their own exercises attached, which you should **not** do, as they involve knowledge we haven't touched yet.
+Lưu ý rằng các bài viết MDN được giao cũng có bài tập riêng đi kèm; bạn **không nên** làm những bài đó, vì chúng cần đến các kiến thức chúng ta chưa học.
 
 </div>
 
-1. Read the [function basics](http://javascript.info/function-basics) article from JavaScript.info. We've mentioned this before, but JavaScript has changed a bit over the years and functions have recently received some innovation. This article covers one of the more useful new abilities: 'default parameters'. \(NOTE: The "Functions == Comments" section, as well as the last "task" at the end of this lesson uses loops, which you will learn about in the next lesson.  Don't worry about them.\)
-1. Read this [MDN article on functions](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions). Don't worry as there may be some functions that can be beyond the reach of this particular lesson, but do pay special attention to the sections on 'Function Scope'. Scope is a topic that commonly trips up both beginner and intermediate coders, so it pays to spend some time with it upfront.  
-1. Read this article about [return values](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Return_values).
-1. Now, read the [function expressions](http://javascript.info/function-expressions) article about functions in JavaScript to give you a little more context, and read the article on [arrow functions](http://javascript.info/arrow-functions-basics) for an introduction to arrow functions. Arrow functions are useful but not crucial, so don't worry about them too much just yet. We include them here because you are likely to encounter them as you move forward, and it's better that you have at least *some* idea of what you're looking at whenever they crop up.
-1. Finally, learn about the [JavaScript Call Stack](https://www.javascripttutorial.net/javascript-call-stack/). The article goes in-depth about call stacks and how `return` works in the context of chained function calls. Don't worry if you don't fully understand this yet, but it's important to keep in mind where your `return`ed values are going. This doubles as a bit of early computer science as well.
+1. Đọc bài viết [function basics](http://javascript.info/function-basics) của JavaScript.info. Chúng ta đã đề cập đến điều này trước đây, nhưng JavaScript đã thay đổi đôi chút qua nhiều năm và function gần đây đã có thêm một số cải tiến. Bài viết này trình bày một khả năng mới khá hữu ích: 'default parameters'. \(LƯU Ý: Phần "Functions == Comments" cũng như "task" cuối bài sử dụng vòng lặp, nội dung mà bạn sẽ học trong bài tiếp theo. Đừng lo về chúng.\)
+1. Đọc [bài viết của MDN về function](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions). Đừng lo nếu có một số function nằm ngoài phạm vi của bài học này, nhưng hãy đặc biệt chú ý đến các phần về 'Function Scope'. Scope là chủ đề thường khiến cả người mới bắt đầu lẫn lập trình viên trình độ trung cấp vướng mắc, nên dành thời gian tìm hiểu sớm sẽ rất đáng giá.
+1. Đọc bài viết này về [giá trị trả về](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Return_values).
+1. Tiếp theo, đọc bài về [function expressions](http://javascript.info/function-expressions) trong JavaScript để có thêm ngữ cảnh, rồi đọc bài về [arrow functions](http://javascript.info/arrow-functions-basics) để làm quen với arrow function. Arrow function hữu ích nhưng chưa mang tính thiết yếu, nên hiện tại bạn chưa cần quá lo về chúng. Chúng tôi đưa phần này vào đây vì có thể bạn sẽ gặp chúng khi học tiếp, và tốt hơn hết là bạn có ít nhất *một chút* hình dung về thứ mình đang nhìn thấy mỗi khi chúng xuất hiện.
+1. Cuối cùng, tìm hiểu về [JavaScript Call Stack](https://www.javascripttutorial.net/javascript-call-stack/). Bài viết đi sâu vào call stack và cách `return` hoạt động trong ngữ cảnh của các lời gọi function liên kết với nhau. Đừng lo nếu bạn chưa hiểu hoàn toàn ngay bây giờ, nhưng điều quan trọng là phải để ý các giá trị được `return` của bạn đang đi về đâu. Đây cũng là một phần nhập môn khoa học máy tính.
 
-Let's write some functions!  Write these in the `script` tag of a skeleton HTML file. If you've forgotten how to set it up, review our instructions on [how to run JavaScript code](https://www.theodinproject.com/lessons/foundations-fundamentals-part-1#how-to-run-javascript-code).
+Hãy cùng viết một số function! Viết chúng trong thẻ `script` của một file HTML khung. Nếu bạn quên cách thiết lập, hãy xem lại hướng dẫn của chúng tôi về [cách chạy code JavaScript](https://www.theodinproject.com/lessons/foundations-fundamentals-part-1#how-to-run-javascript-code).
 
-For now, just write each function and test the output with `console.log`.
+Hiện tại, chỉ cần viết từng function và kiểm tra output bằng `console.log`.
 
-1. Write a function called `add7` that takes one number and returns that number + 7.
-    - `add7(10)` should return `17`
-1. Write a function called `multiply` that takes 2 numbers and returns their product.
-    - `multiply(3, 2)` should return `6`
-1. Write a function called `capitalize` that takes a string and returns that string with *only* the first letter capitalized.  Make sure that it can take strings that are lowercase, UPPERCASE or BoTh.
-    - `capitalize("abcd")` should return `"Abcd"`
-    - `capitalize("ABCD")` should return `"Abcd"`
-    - `capitalize("aBcD")` should return `"Abcd"`
-1. Write a function called `lastLetter` that takes a string and returns the very last letter of that string:
-    - `lastLetter("abcd")` should return `"d"`
+1. Viết một function có tên `add7`, nhận một số và trả về số đó + 7.
+    - `add7(10)` phải trả về `17`
+1. Viết một function có tên `multiply`, nhận 2 số và trả về tích của chúng.
+    - `multiply(3, 2)` phải trả về `6`
+1. Viết một function có tên `capitalize`, nhận một chuỗi và trả về chuỗi đó với *chỉ* chữ cái đầu tiên được viết hoa. Hãy bảo đảm function xử lý được chuỗi viết thường, VIẾT HOA hoặc ViẾt HoA.
+    - `capitalize("abcd")` phải trả về `"Abcd"`
+    - `capitalize("ABCD")` phải trả về `"Abcd"`
+    - `capitalize("aBcD")` phải trả về `"Abcd"`
+1. Viết một function có tên `lastLetter`, nhận một chuỗi và trả về chữ cái cuối cùng của chuỗi đó:
+    - `lastLetter("abcd")` phải trả về `"d"`
 
 </div>

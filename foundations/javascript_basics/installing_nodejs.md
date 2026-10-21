@@ -1,72 +1,72 @@
-### Introduction
+### Giới thiệu
 
-Node.js (or just "Node") is a JavaScript runtime environment that allows you to run JavaScript outside of your web browser. We will need this for some exercises in the upcoming lessons. To get started, there are some required tools we need before we can install Node on your system.
+Node.js (hay gọi ngắn gọn là "Node") là một môi trường runtime JavaScript cho phép bạn chạy JavaScript bên ngoài trình duyệt web. Chúng ta sẽ cần nó cho một số bài tập trong các bài học sắp tới. Để bắt đầu, trước khi cài đặt Node vào hệ thống, chúng ta cần một số công cụ bắt buộc.
 
-We're going to install it using nvm (Node Version Manager), because it makes it easy to change Node versions and upgrade Node. There is another tool called npm that we will later use to install the various libraries and tools used in JavaScript environments. It can be easy to confuse these two, so read carefully!
+Chúng ta sẽ cài đặt Node bằng nvm (Node Version Manager), vì công cụ này giúp việc chuyển đổi và nâng cấp phiên bản Node trở nên dễ dàng. Ngoài ra còn có một công cụ tên là npm, sau này chúng ta sẽ dùng để cài đặt nhiều thư viện và công cụ được sử dụng trong các môi trường JavaScript. Hai công cụ này rất dễ bị nhầm lẫn, nên hãy đọc kỹ!
 
-Node is also very easy to install using nvm, so this should go quickly :)
+Node cũng rất dễ cài đặt bằng nvm, vì vậy phần này sẽ diễn ra nhanh thôi :)
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- Install and configure nvm (Node Version Manager), Node, and npm.
-- Run the Node REPL.
+- Cài đặt và cấu hình nvm (Node Version Manager), Node và npm.
+- Chạy Node REPL.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Installing nvm
+#### Cài đặt nvm
 
-1. We first need to install nvm so that we can install and manage our Node installations easily. Follow the appropriate guide for the OS that you are using:
+1. Trước tiên, chúng ta cần cài đặt nvm để có thể dễ dàng cài đặt và quản lý các bản Node. Hãy làm theo hướng dẫn tương ứng với hệ điều hành bạn đang sử dụng:
    - [Linux](https://github.com/TheOdinProject/curriculum/tree/main/foundations/javascript_basics/installation_guides/linux.md "Linux nvm installation")
    - [macOS](https://github.com/TheOdinProject/curriculum/tree/main/foundations/javascript_basics/installation_guides/macos.md "macOS nvm installation")
 
-#### Installing Node
+#### Cài đặt Node
 
-Now that we have nvm installed, we can use it to install Node.
+Sau khi cài đặt nvm, chúng ta có thể dùng nó để cài đặt Node.
 
-1. In your terminal, run:
+1. Trong terminal, chạy:
 
    ```bash
    nvm install --lts
    ```
 
-   This will install the most recent stable version of Node in "long-term support" (LTS), and you’ll see a lot of output in the terminal. If everything worked, you should see something similar to this somewhere in the lines of output (with the Xs replaced with actual numbers):
+   Lệnh này sẽ cài đặt phiên bản Node ổn định mới nhất thuộc nhánh "long-term support" (LTS), và bạn sẽ thấy rất nhiều output trong terminal. Nếu mọi thứ hoạt động đúng, trong phần output bạn sẽ thấy một dòng tương tự như sau (các ký tự X sẽ được thay bằng những con số thực tế):
 
    ```text
    Downloading and installing Node vXX.xx.x...
    ```
 
-   If not, close the terminal, re-open it and run `nvm install --lts` again.
+   Nếu không thấy, hãy đóng terminal, mở lại rồi chạy `nvm install --lts` lần nữa.
 
-1. We need to tell nvm which version of Node to use when we run the `node` command. It's easy, just run the following command:
+1. Chúng ta cần cho nvm biết sẽ dùng phiên bản Node nào khi chạy lệnh `node`. Việc này rất đơn giản, chỉ cần chạy lệnh sau:
 
    ```bash
    nvm use --lts
    ```
 
-   We have told nvm to use the most recent LTS version of Node installed on our computer. You **must** use the LTS version of Node to avoid incompatibilities with packages we will be installing in future lessons.
+   Chúng ta đã yêu cầu nvm dùng phiên bản LTS mới nhất của Node đang được cài trên máy tính. Bạn **phải** dùng phiên bản LTS của Node để tránh tình trạng không tương thích với các package mà chúng ta sẽ cài trong những bài học sau.
 
-   Now when you run `node -v`, you should see `vXX.xx.x` or something similar (with the Xs replaced with actual numbers).
+   Bây giờ, khi chạy `node -v`, bạn sẽ thấy `vXX.xx.x` hoặc một giá trị tương tự (các ký tự X sẽ được thay bằng những con số thực tế).
 
-   Installing Node also installs npm alongside it. Run `npm -v` and like above you should see `XX.xx.x` or something similar.
+   Cài đặt Node cũng đồng thời cài npm. Hãy chạy `npm -v`; tương tự như trên, bạn sẽ thấy `XX.xx.x` hoặc một giá trị tương tự.
 
-   If you see those messages, you have successfully installed Node and npm!
+   Nếu thấy những thông báo đó, bạn đã cài đặt Node và npm thành công!
 
-1. Finally, we'll implement a setting introduced in npm v11.10.0 that delays the installation of newly released dependencies. Run the following command in your terminal:
+1. Cuối cùng, chúng ta sẽ triển khai một thiết lập được giới thiệu trong npm v11.10.0, giúp trì hoãn việc cài đặt các dependency mới phát hành. Hãy chạy lệnh sau trong terminal:
 
    ```bash
    npm config set min-release-age=3
    ```
 
-   This setting will prevent npm from installing dependencies that were released less than three days ago, which can help avoid issues with newly released packages that may have been compromised, and help protect us from supply chain attacks.
+   Thiết lập này sẽ ngăn npm cài đặt các dependency được phát hành chưa đầy ba ngày, giúp tránh các vấn đề do package mới phát hành có thể đã bị xâm nhập, đồng thời góp phần bảo vệ chúng ta trước các cuộc tấn công chuỗi cung ứng.
 
-#### Using the Node REPL
+#### Sử dụng Node REPL
 
-For convenience, Node provides a REPL which is an interactive console that lets you run and edit your JavaScript code right in your terminal, similar to the console in the browser you used in the previous lesson. This can be quite helpful to debug or test small snippets of non-browser-related code quickly without opening the browser every time.
+Để thuận tiện, Node cung cấp một REPL, tức là một console tương tác cho phép bạn chạy và chỉnh sửa code JavaScript ngay trong terminal, tương tự console trong trình duyệt mà bạn đã sử dụng ở bài học trước. Công cụ này rất hữu ích để nhanh chóng debug hoặc kiểm thử các đoạn code nhỏ không liên quan đến trình duyệt mà không phải mở trình duyệt mỗi lần.
 
-To run the Node console, open up your terminal and run `node` on its own to open the REPL. Type `.exit` to quit the REPL.
+Để chạy console Node, hãy mở terminal và tự chạy `node` để mở REPL. Gõ `.exit` để thoát REPL.
 
 </div>

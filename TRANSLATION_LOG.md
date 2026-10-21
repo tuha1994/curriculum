@@ -251,6 +251,17 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `foundations/html_css/flexbox/flexbox_intro.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên CSS và CodePen embed. |
 | `foundations/html_css/flexbox/project_landing_page.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải dự án. |
 
+## Foundations đã dịch — batch 5
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `foundations/javascript_basics/data_types_and_conditionals.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên JavaScript và tên kỹ thuật. |
+| `foundations/javascript_basics/function_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên JavaScript và tên kỹ thuật. |
+| `foundations/javascript_basics/installation_guides/linux.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh cài đặt. |
+| `foundations/javascript_basics/installation_guides/macos.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh cài đặt. |
+| `foundations/javascript_basics/installing_nodejs.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên lệnh, phiên bản và tên package. |
+| `foundations/javascript_basics/javascript_developer_tools.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên tên công cụ và đường dẫn menu. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

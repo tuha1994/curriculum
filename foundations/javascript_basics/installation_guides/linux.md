@@ -1,42 +1,42 @@
-### Guide: Install nvm on Linux
+### Hướng dẫn: Cài đặt nvm trên Linux
 
-#### Step 0: Prerequisites
+#### Bước 0: Điều kiện tiên quyết
 
-Firstly, run the following in your terminal to make sure your Ubuntu package lists are up-to-date:
+Trước hết, hãy chạy lệnh sau trong terminal để bảo đảm danh sách package của Ubuntu được cập nhật:
 
 ```bash
 sudo apt update && sudo apt upgrade
 ```
 
-Now, to install nvm properly, you'll need `curl`. Run the command below to install `curl`:
+Để cài đặt nvm đúng cách, bạn cần `curl`. Chạy lệnh dưới đây để cài đặt `curl`:
 
 ```bash
 sudo apt install curl
 ```
 
-#### Step 1: Downloading and installing nvm
+#### Bước 1: Tải xuống và cài đặt nvm
 
-Run this command to install `nvm`:
+Chạy lệnh này để cài đặt `nvm`:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 ```
 
-#### Step 2: Initializing nvm
+#### Bước 2: Khởi tạo nvm
 
-In the terminal, there should be some directions on how to initialize `nvm`. If not (or if you don't feel like copying from the terminal), run these commands:
+Trong terminal thường sẽ có hướng dẫn cách khởi tạo `nvm`. Nếu không có (hoặc bạn không muốn chép lại từ terminal), hãy chạy các lệnh sau:
 
 ```bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
-You can verify `nvm` is installed by running the command:
+Bạn có thể xác minh `nvm` đã được cài đặt bằng cách chạy lệnh:
 
 ```bash
 command -v nvm
 ```
 
-If this returns `nvm: command not found`, close the terminal and re-open it.
+Nếu lệnh này trả về `nvm: command not found`, hãy đóng terminal rồi mở lại.
 
-[Return to the Installing Node.js lesson](https://www.theodinproject.com/lessons/foundations-installing-node-js#assignment)
+[Quay lại bài học Cài đặt Node.js](https://www.theodinproject.com/lessons/foundations-installing-node-js#assignment)

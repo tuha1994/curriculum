@@ -1,26 +1,26 @@
-### Guide: Install Chrome on macOS
+### Hướng dẫn: Cài đặt Chrome trên macOS
 
-#### Step 1: Download Google Chrome
+#### Bước 1: Tải Google Chrome
 
-1. Visit [Google Chrome download page](https://www.google.com/chrome/)
-1. Click **Download Chrome for Mac**
+1. Truy cập [trang tải Google Chrome](https://www.google.com/chrome/)
+1. Nhấp vào **Tải Chrome cho Mac**
 
-#### Step 2: Install Google Chrome
+#### Bước 2: Cài đặt Google Chrome
 
-1. Open the **Downloads** folder
-1. Double click the file **googlechrome.dmg**
-1. Drag the Google Chrome icon to the **Applications** folder icon
+1. Mở thư mục **Downloads**
+1. Nhấp đúp vào tệp **googlechrome.dmg**
+1. Kéo biểu tượng Google Chrome vào biểu tượng thư mục **Applications**
 
-#### Step 3: Delete the installer file
+#### Bước 3: Xóa tệp cài đặt
 
-1. Open **Finder**
-1. Click the **arrow** next to Google Chrome in the sidebar
-1. Go to the **Downloads** folder
-1. Drag **googlechrome.dmg** to the trash
+1. Mở **Finder**
+1. Nhấp vào **mũi tên** bên cạnh Google Chrome trong thanh bên
+1. Mở thư mục **Downloads**
+1. Kéo **googlechrome.dmg** vào thùng rác
 
-#### Step 4: Using Google Chrome
+#### Bước 4: Sử dụng Google Chrome
 
-1. Go to your **Applications** folder
-1. Double click **Google Chrome**
+1. Mở thư mục **Applications**
+1. Nhấp đúp vào **Google Chrome**
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#google-chrome-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#google-chrome-installation)

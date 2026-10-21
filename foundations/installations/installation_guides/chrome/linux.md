@@ -1,9 +1,9 @@
-### Guide: Install Chrome on Linux
+### Hướng dẫn: Cài đặt Chrome trên Linux
 
-#### Step 1: Download Google Chrome
+#### Bước 1: Tải Google Chrome
 
-1. Open your **Terminal**
-1. Run the following command to download latest **Google Chrome** `.deb` package
+1. Mở **Terminal**
+1. Chạy lệnh sau để tải gói `.deb` **Google Chrome** mới nhất
 
    ```bash
    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -11,54 +11,54 @@
 
 <div class="lesson-note" markdown="1">
 
-#### Copy and paste keyboard shortcuts
+#### Phím tắt sao chép và dán
 
-You have probably noticed that the common keyboard shortcut: <kbd>Ctrl</kbd> + <kbd>V</kbd> to paste something doesn't work in the terminal. In order to paste your text input into your terminal you can use: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> keyboard shortcut combination, instead. It is also very handy to know that the: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> keyboard combination will copy any highlighted text from your terminal, which can then be pasted later.
+Có lẽ bạn đã nhận thấy phím tắt bàn phím thông dụng: <kbd>Ctrl</kbd> + <kbd>V</kbd> để dán nội dung không hoạt động trong terminal. Để dán nội dung văn bản vào terminal, thay vào đó bạn có thể dùng tổ hợp phím tắt <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>. Bạn cũng nên biết rằng tổ hợp phím <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> sẽ sao chép mọi văn bản được bôi đen trong terminal để bạn có thể dán vào lúc khác.
 
 </div>
 
-#### Step 2: Install Google Chrome
+#### Bước 2: Cài đặt Google Chrome
 
-1. Enter the following command in your terminal to install **Google Chrome** `.deb` package
+1. Nhập lệnh sau vào terminal để cài đặt gói `.deb` **Google Chrome**
 
    ```bash
    sudo apt install ./google-chrome-stable_current_amd64.deb
    ```
 
-1. Enter your password, if needed
+1. Nhập mật khẩu nếu được yêu cầu
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### A note on typing passwords in the terminal
+#### Lưu ý về việc nhập mật khẩu trong terminal
 
-When using a command in the terminal that requires you to enter your password for authentication (such as `sudo`), you will notice that the characters aren't visible as you type them. While it might seem like the terminal isn't responding, don't worry!
+Khi sử dụng một lệnh trong terminal yêu cầu bạn nhập mật khẩu để xác thực (chẳng hạn như `sudo`), bạn sẽ nhận thấy các ký tự không hiển thị khi nhập. Dù có vẻ terminal không phản hồi, bạn đừng lo!
 
-This is a security feature to protect confidential information, like how password fields on websites use asterisks or dots. By not displaying the characters you write, the terminal keeps your password secure.
+Đây là một tính năng bảo mật nhằm bảo vệ thông tin bí mật, tương tự như cách các trường mật khẩu trên website sử dụng dấu hoa thị hoặc dấu chấm. Bằng cách không hiển thị các ký tự bạn nhập, terminal giữ cho mật khẩu của bạn được an toàn.
 
-You can still enter your password as normal and press <kbd>Enter</kbd> to submit it.
+Bạn vẫn có thể nhập mật khẩu như bình thường rồi nhấn <kbd>Enter</kbd> để gửi mật khẩu.
 
 </div>
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Download is performed unsandboxed
+#### Tệp tải xuống được thực hiện mà không có sandbox
 
-You can [ignore any notes saying `N: Download is performed unsandboxed (...)`](https://www.reddit.com/r/linux4noobs/comments/ux6cwx/comment/i9x2twx/).
+Bạn có thể [bỏ qua mọi ghi chú có nội dung `N: Download is performed unsandboxed (...)`](https://www.reddit.com/r/linux4noobs/comments/ux6cwx/comment/i9x2twx/).
 
 </div>
 
-#### Step 3: Delete the installer file
+#### Bước 3: Xóa tệp cài đặt
 
 ```bash
 rm google-chrome-stable_current_amd64.deb
 ```
 
-#### Step 4: Using Google Chrome
+#### Bước 4: Sử dụng Google Chrome
 
-You can start chrome in two ways:
+Bạn có thể khởi động chrome theo hai cách:
 
-- Click **Google Chrome** from the Applications menu
-- **Or**, use the `google-chrome` command from the terminal
+- Nhấp vào **Google Chrome** trong menu Applications
+- **Hoặc**, dùng lệnh `google-chrome` trong terminal
 
   ```bash
   google-chrome
@@ -66,10 +66,10 @@ You can start chrome in two ways:
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Google Chrome as a background process
+#### Google Chrome dưới dạng tiến trình nền
 
-Chrome is going to use this terminal to output various messages and won't let you run other commands. Don't worry about those messages. If you want to use the same terminal that you run Chrome in for other commands, use `google-chrome &` instead.
+Chrome sẽ sử dụng terminal này để xuất nhiều thông báo khác nhau và không cho bạn chạy các lệnh khác. Bạn có thể bỏ qua những thông báo đó. Nếu muốn dùng chính terminal đã khởi chạy Chrome để chạy các lệnh khác, hãy dùng `google-chrome &` thay thế.
 
 </div>
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#google-chrome-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#google-chrome-installation)

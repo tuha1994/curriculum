@@ -1,25 +1,25 @@
-### Guide: Install Chrome for WSL2
+### Hướng dẫn: Cài đặt Chrome cho WSL2
 
-WSL does not have a graphical user interface (GUI) like Windows, so this step will guide you through installing Google Chrome for Windows instead. Later on, we'll cover how you can use the Windows installed Chrome to preview your work that lives within WSL.
+WSL không có giao diện người dùng đồ họa (GUI) như Windows, vì vậy bước này sẽ hướng dẫn bạn cài đặt Google Chrome cho Windows. Sau này, chúng ta sẽ tìm hiểu cách dùng Chrome đã cài trên Windows để xem trước sản phẩm của bạn nằm trong WSL.
 
-#### Step 1: Download Google Chrome
+#### Bước 1: Tải Google Chrome
 
-1. Visit [Google Chrome download page](https://www.google.com/chrome/).
-1. Click **Download Chrome**.
+1. Truy cập [trang tải Google Chrome](https://www.google.com/chrome/).
+1. Nhấp vào **Tải Chrome**.
 
-#### Step 2: Install Google Chrome
+#### Bước 2: Cài đặt Google Chrome
 
-1. Open the **Downloads** folder.
-1. Double click the file **ChromeSetup.exe** to start the install.
+1. Mở thư mục **Downloads**.
+1. Nhấp đúp vào tệp **ChromeSetup.exe** để bắt đầu cài đặt.
 
-#### Step 3: Using Google Chrome
+#### Bước 3: Sử dụng Google Chrome
 
-1. Search for **Google Chrome** in your Start Menu.
-1. Click **Google Chrome** to start the application.
+1. Tìm **Google Chrome** trong Start Menu.
+1. Nhấp vào **Google Chrome** để khởi động ứng dụng.
 
-#### Optional: Delete the installer file
+#### Tùy chọn: Xóa tệp cài đặt
 
-1. Open the **Downloads** folder.
-1. Select the **ChromeSetup.exe** file and hit the Delete key, or drag it the Recycling Bin.
+1. Mở thư mục **Downloads**.
+1. Chọn tệp **ChromeSetup.exe** và nhấn phím Delete, hoặc kéo tệp vào Recycling Bin.
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#google-chrome-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#google-chrome-installation)

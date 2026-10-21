@@ -1,33 +1,33 @@
-### Introduction
+### Giới thiệu
 
-In the previous lesson, we discovered that different display types have unique box models, and we can modify the box calculation by changing the `box-sizing` property. CSS has two box types: `block` and `inline` boxes, which determine element behavior and interaction. The `display` property controls how HTML elements appear on the webpage. We will explore its various options further in this lesson.
+Ở bài học trước, chúng ta đã phát hiện rằng các kiểu hiển thị khác nhau có mô hình hộp riêng, và có thể thay đổi cách tính hộp bằng cách đổi thuộc tính `box-sizing`. CSS có hai kiểu hộp: hộp `block` và hộp `inline`, quyết định cách phần tử hoạt động và tương tác. Thuộc tính `display` kiểm soát cách các phần tử HTML xuất hiện trên trang web. Trong bài này, chúng ta sẽ tìm hiểu thêm về các tùy chọn khác nhau của thuộc tính đó.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- You'll learn about "Normal flow".
-- You'll learn the difference between `block` and `inline` elements.
-- You'll learn which elements default to `block` and which elements default to `inline`.
-- You'll learn what divs and spans are.
+- Bạn sẽ tìm hiểu về "Normal flow".
+- Bạn sẽ tìm hiểu sự khác nhau giữa các phần tử `block` và `inline`.
+- Bạn sẽ tìm hiểu những phần tử nào mặc định là `block` và những phần tử nào mặc định là `inline`.
+- Bạn sẽ tìm hiểu div và span là gì.
 
-### Block vs inline
+### Block và inline
 
-Most of the elements that you have learned about so far are block elements.  In other words, their default style is `display: block`. By default, block elements will appear on the page stacked atop each other, each new element starting on a new line.
+Hầu hết những phần tử bạn đã học cho đến nay đều là phần tử block. Nói cách khác, kiểu hiển thị mặc định của chúng là `display: block`. Theo mặc định, các phần tử block sẽ xuất hiện trên trang, xếp chồng lên nhau; mỗi phần tử mới bắt đầu trên một dòng mới.
 
-Inline elements, however, do not start on a new line. They appear in line with whatever elements they are placed beside. A clear example of an inline element is a link, or `<a>` tag. If you stick one of these in the middle of a paragraph of text, [the link will behave like a part of the paragraph](https://www.youtube.com/watch?v=dQw4w9WgXcQ). Additionally, padding and margin behave differently on inline elements. In general, you do not want to try to put extra padding or margin on inline elements.
+Tuy nhiên, các phần tử inline không bắt đầu trên một dòng mới. Chúng nằm cùng dòng với những phần tử được đặt bên cạnh. Một ví dụ rõ ràng về phần tử inline là một liên kết, hay thẻ `<a>`. Nếu đặt một thẻ như vậy vào giữa đoạn văn, [liên kết sẽ hoạt động như một phần của đoạn văn](https://www.youtube.com/watch?v=dQw4w9WgXcQ). Ngoài ra, padding và margin cũng hoạt động khác trên các phần tử inline. Nhìn chung, bạn không nên cố thêm padding hoặc margin vào các phần tử inline.
 
-#### The middle ground inline-block
+#### Inline-block: điểm trung gian
 
-Inline-block elements behave like inline elements, but with block-style padding and margin. `display: inline-block` is a useful tool to know about, but in practice, you'll probably end up reaching for flexbox more often if you're trying to line up a bunch of boxes. Flexbox will be covered in-depth in the next lesson.
+Các phần tử inline-block hoạt động như phần tử inline, nhưng có padding và margin kiểu block. `display: inline-block` là một công cụ hữu ích cần biết, nhưng trên thực tế, nếu muốn xếp nhiều hộp thành hàng, có lẽ bạn sẽ thường dùng flexbox hơn. Flexbox sẽ được trình bày chi tiết trong bài học tiếp theo.
 
-### Divs and spans
+### Div và span
 
-When building a web page, not every piece of content has a specific semantic tag. Sometimes, you just need a container you can style or position! That's where `div` and `span` come in.
+Khi xây dựng một trang web, không phải mọi mẩu nội dung đều có một thẻ ngữ nghĩa cụ thể. Đôi khi, bạn chỉ cần một vùng chứa có thể tạo kiểu hoặc định vị! Đó là lúc `div` và `span` phát huy tác dụng.
 
-A `div` is a generic block-level container. It behaves like a rectangular section that, by default, stretches across the full width of its parent and starts on a new line. Typically, you would use a `div` to group related elements inside page components, such as grouping cards, sections, sidebars, or navigation bars.
+`div` là một vùng chứa cấp block chung. Theo mặc định, nó hoạt động như một khu vực hình chữ nhật kéo dài hết chiều rộng của phần tử cha và bắt đầu trên một dòng mới. Thông thường, bạn sẽ dùng `div` để nhóm các phần tử có liên quan trong những thành phần của trang, chẳng hạn như các thẻ, khu vực, thanh bên hoặc thanh điều hướng.
 
-In this case, when you wrap content in a `div` and give it a `class` or `id`, you create a convenient hook for CSS layout and styling!
+Trong trường hợp này, khi bọc nội dung trong một `div` rồi gán cho nó một `class` hoặc `id`, bạn tạo ra một điểm móc thuận tiện để CSS bố cục và tạo kiểu!
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="KKXXbwR" data-preview="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -39,7 +39,7 @@ In this case, when you wrap content in a `div` and give it a `class` or `id`, yo
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-A `span` is a generic inline container. It sits inside a line of text and only takes up as much space as its content. Unlike `div`, it does not start on a new line. You use `span` when you want to style or target just part of a sentence. For example, when you want to highlight a single word or attach a tooltip to a phrase, you can wrap it in a `span` then add a `class` or `id` so CSS can find and manipulate it.
+`span` là một vùng chứa inline chung. Nó nằm trong một dòng văn bản và chỉ chiếm đúng lượng không gian bằng nội dung bên trong. Khác với `div`, nó không bắt đầu trên một dòng mới. Bạn dùng `span` khi muốn tạo kiểu hoặc nhắm đến chỉ một phần của câu. Chẳng hạn, khi muốn làm nổi bật một từ hoặc gắn chú giải cho một cụm từ, bạn có thể bọc nó trong `span`, sau đó thêm `class` hoặc `id` để CSS tìm và thao tác với nó.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="abLLPor" data-preview="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
@@ -51,22 +51,22 @@ A `span` is a generic inline container. It sits inside a line of text and only t
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Neither `div` nor `span` adds meaning to the content the way semantic tags do, as they exist to give you flexible "building blocks". The key difference is how they behave in the layout: `div` participates in the flow as a block-level element, while `span` behaves as an inline element. Once you understand that, choosing between them becomes simple! You can use `div` when you're grouping and positioning bigger blocks of content, and `span` when you're styling or scripting small pieces inside a line.
+Cả `div` lẫn `span` đều không bổ sung ý nghĩa cho nội dung như các thẻ ngữ nghĩa, vì chúng tồn tại để cung cấp cho bạn những "khối xây dựng" linh hoạt. Điểm khác biệt cốt lõi là cách chúng hoạt động trong bố cục: `div` tham gia vào luồng như một phần tử cấp block, còn `span` hoạt động như một phần tử inline. Khi đã hiểu điều đó, việc chọn giữa hai loại trở nên đơn giản! Bạn có thể dùng `div` khi nhóm và định vị những khối nội dung lớn hơn, còn dùng `span` khi tạo kiểu hoặc viết script cho những phần nhỏ trong một dòng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. The concept of "Normal flow" is implied in the box-model resources, but isn't laid out very specifically. Read ["Normal Flow" from MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow) to make sure you understand how elements lay themselves out by default.
-1. W3 schools' ["HTML Block and Inline Elements"](https://www.w3schools.com/html/html_blocks.asp) has a description and a list of all the default block and inline elements.
-1. The Digital Ocean tutorial ["Inline vs Inline-block Display in CSS"](https://www.digitalocean.com/community/tutorials/css-display-inline-vs-inline-block) has a couple of great examples that clarify the difference between `inline` and `inline-block`.
-1. Do the exercises in our [CSS exercises repository's `foundations/block-and-inline` directory](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/block-and-inline) (remember that the instructions are in the README) in the order:
+1. Khái niệm "Normal flow" được ngầm đề cập trong các tài liệu về mô hình hộp, nhưng chưa được trình bày thật cụ thể. Hãy đọc ["Normal Flow" của MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow) để chắc chắn rằng bạn hiểu cách các phần tử tự bố trí theo mặc định.
+1. ["HTML Block and Inline Elements"](https://www.w3schools.com/html/html_blocks.asp) của W3 schools mô tả và liệt kê tất cả các phần tử block và inline mặc định.
+1. Bài hướng dẫn ["Inline vs Inline-block Display in CSS"](https://www.digitalocean.com/community/tutorials/css-display-inline-vs-inline-block) của Digital Ocean có một vài ví dụ rất hay giúp làm rõ sự khác nhau giữa `inline` và `inline-block`.
+1. Hãy làm các bài tập trong [thư mục `foundations/block-and-inline` của kho bài tập CSS](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/block-and-inline) của chúng ta (nhớ rằng hướng dẫn nằm trong README), theo thứ tự:
    - `01-margin-and-padding-1`
    - `02-margin-and-padding-2`
 
-   Note: Solutions for these exercises can be found in the `solution` folder of each exercise.
-1. Remember the Recipe page you created as practice from the HTML Foundations section? Well, it's rather *plain* looking, isn't it? Let's fix that by adding some CSS to it!
-   - How you actually style it is completely open, but you should use the external CSS method (for this practice and moving forward). You should also try to use several of the properties mentioned in the previous lesson (color, background color, typography properties, etc). Take some time to play around with the various properties to get a feel for what they do. For now, don't worry at all about making it look *good*. This is just to practice and get used to writing CSS, not to make something to show off on your resume.
-   - We haven't covered how to use a custom font for the `font-family` property yet, so for now take a look at [CSS Fonts](https://www.w3schools.com/Css/css_font.asp) for a list of generic font families to use, and [CSS Web Safe Fonts](https://www.w3schools.com/cssref/css_websafe_fonts.asp) for a list of fonts that are web safe. Web safe means that these are fonts that are installed on basically every computer or device (but be sure to still include a generic font family as a fallback).
+   Lưu ý: Bạn có thể tìm lời giải cho các bài tập này trong thư mục `solution` của từng bài.
+1. Bạn còn nhớ trang Recipe đã tạo để thực hành trong phần HTML Foundations chứ? Trông nó khá *đơn điệu*, đúng không? Hãy chỉnh sửa nó bằng cách thêm CSS!
+   - Cách bạn tạo kiểu hoàn toàn tùy ý, nhưng bạn nên dùng phương pháp CSS bên ngoài (cho bài thực hành này và về sau). Bạn cũng nên thử dùng một số thuộc tính đã đề cập trong bài trước (màu chữ, màu nền, các thuộc tính kiểu chữ, v.v.). Hãy dành thời gian thử nghiệm các thuộc tính khác nhau để hiểu tác dụng của chúng. Hiện tại, đừng lo làm cho trang trông *đẹp*. Bài này chỉ nhằm giúp bạn luyện tập và quen với việc viết CSS, không phải để tạo ra thứ gì đó đưa vào hồ sơ xin việc.
+   - Chúng ta chưa học cách dùng phông chữ tùy chỉnh cho thuộc tính `font-family`, nên trước mắt hãy xem [CSS Fonts](https://www.w3schools.com/Css/css_font.asp) để biết các họ phông chữ chung có thể dùng, và [CSS Web Safe Fonts](https://www.w3schools.com/cssref/css_websafe_fonts.asp) để xem danh sách phông chữ an toàn cho web. Phông chữ an toàn cho web là những phông chữ được cài trên hầu hết mọi máy tính hoặc thiết bị (nhưng bạn vẫn nên thêm một họ phông chữ chung làm phương án dự phòng).
 
 </div>

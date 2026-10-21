@@ -1,35 +1,35 @@
-### Introduction
+### Giới thiệu
 
-In the previous lesson, we covered basic CSS syntax and selectors. Now, it's time to combine our knowledge of selectors with the *C* of CSS -- the cascade.
+Ở bài trước, chúng ta đã học cú pháp CSS và các bộ chọn cơ bản. Bây giờ là lúc kết hợp kiến thức về bộ chọn với chữ *C* trong CSS — cascade (cơ chế xếp tầng).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- What the cascade does.
-- Specificity and combining CSS selectors.
-- How inheritance affects certain properties.
+- Cascade làm gì.
+- Độ đặc hiệu và cách kết hợp các bộ chọn CSS.
+- Cơ chế kế thừa ảnh hưởng đến một số thuộc tính.
 
-### The cascade of CSS
+### Cascade của CSS
 
-Sometimes we may have rules that conflict with one another, and we end up with some unexpected results. "But I wanted *these* paragraphs to be blue, why are they red like these other paragraphs?!" As frustrating as this can be, it's important to understand that CSS doesn't just *do* things against our wishes. CSS only does what we tell it to do. One exception to this is the default styles that are provided by a browser. These default styles vary from browser to browser, and they are why some elements create a large "gap" between themselves and other elements, or why buttons look the way they do, despite us not writing any CSS rules to style them that way.
+Đôi khi các quy tắc xung đột với nhau và cho ra kết quả ngoài dự đoán. "Nhưng tôi muốn *những* đoạn văn này màu xanh, sao chúng lại đỏ giống những đoạn kia?!" Dù điều này có thể gây bực bội, điều quan trọng là phải hiểu CSS không tự ý *làm* trái ý chúng ta. CSS chỉ làm những gì ta bảo nó làm. Một ngoại lệ là các kiểu mặc định do trình duyệt cung cấp. Những kiểu mặc định này khác nhau giữa các trình duyệt; chúng giải thích vì sao một số phần tử tạo ra "khoảng trống" lớn với phần tử khác, hoặc vì sao các nút trông như vậy dù ta không viết quy tắc CSS nào để tạo kiểu cho chúng.
 
-So if you end up with some unexpected behavior like this it's either because of these default styles, not understanding how a property works, or not understanding this little thing called the cascade.
+Vì vậy, nếu gặp hành vi ngoài dự đoán, nguyên nhân có thể là các kiểu mặc định đó, việc chưa hiểu cách một thuộc tính hoạt động, hoặc chưa hiểu cơ chế nhỏ gọi là cascade.
 
-The cascade is what determines which rules actually get applied to our HTML. There are different factors that the cascade uses to determine this. We will examine three of these factors, which will hopefully help you avoid those frustrating "I hate CSS" moments.
+Cascade quyết định quy tắc nào thực sự được áp dụng vào HTML. Cascade dùng nhiều yếu tố để đưa ra quyết định. Chúng ta sẽ xem xét ba yếu tố trong số đó, hy vọng giúp bạn tránh những khoảnh khắc bực bội kiểu "Tôi ghét CSS".
 
-#### Specificity
+#### Độ đặc hiệu
 
-A CSS declaration that is more specific will take precedence over less specific ones. Inline styles, which we went over in the previous lesson, have the highest specificity compared to selectors, while each type of selector has its own specificity level that contributes to how specific a declaration is. Other selectors contribute to specificity, but we're focusing only on the ones we've gone over so far:
+Một khai báo CSS đặc hiệu hơn sẽ được ưu tiên hơn khai báo kém đặc hiệu. Kiểu inline, đã học ở bài trước, có độ đặc hiệu cao nhất so với các bộ chọn; mỗi loại bộ chọn cũng có một mức độ đặc hiệu riêng, góp phần quyết định độ đặc hiệu của khai báo. Các bộ chọn khác cũng ảnh hưởng, nhưng hiện tại chúng ta chỉ tập trung vào những loại đã học:
 
-1. ID selectors (most specific selector)
-1. Class selectors
-1. Type selectors
+1. Bộ chọn ID (đặc hiệu nhất)
+1. Bộ chọn class
+1. Bộ chọn kiểu
 
-Specificity will only be taken into account when an element has multiple, conflicting declarations targeting it, sort of like a tie-breaker. An ID selector will always beat any number of class selectors, a class selector will always beat any number of type selectors, and a type selector will always beat any number of less specific selectors. If comparing specificity doesn't determine a winner, compare the number of selectors in the same category (ID, class, or type selectors). The rule with more selectors takes precedence.
+Độ đặc hiệu chỉ được xét khi một phần tử có nhiều khai báo xung đột cùng nhắm đến nó, gần giống một quy tắc phân định hòa. Bộ chọn ID luôn thắng mọi số lượng bộ chọn class, bộ chọn class luôn thắng mọi số lượng bộ chọn kiểu, và bộ chọn kiểu luôn thắng mọi số lượng bộ chọn kém đặc hiệu hơn. Nếu so sánh độ đặc hiệu chưa xác định được bên thắng, hãy so sánh số bộ chọn trong cùng nhóm (ID, class hoặc kiểu). Quy tắc có nhiều bộ chọn hơn sẽ được ưu tiên.
 
-Let's take a look at a few quick examples to visualize how specificity works.
-Consider the following HTML and CSS code:
+Hãy xem một vài ví dụ nhanh để hình dung cách độ đặc hiệu hoạt động.
+Xét đoạn mã HTML và CSS sau:
 
 ```html
 <!-- index.html -->
@@ -51,9 +51,9 @@ Consider the following HTML and CSS code:
 }
 ```
 
-In the example above, both rules are using only class selectors, but rule 2 is more specific because it is using more class selectors, so the `color: red` declaration would take precedence.
+Trong ví dụ trên, cả hai quy tắc chỉ dùng bộ chọn class, nhưng quy tắc 2 đặc hiệu hơn vì dùng nhiều bộ chọn class hơn; do đó khai báo `color: red` sẽ được ưu tiên.
 
-Now, let's change things a little bit:
+Bây giờ hãy thay đổi một chút:
 
 ```html
 <!-- index.html -->
@@ -75,9 +75,9 @@ Now, let's change things a little bit:
 }
 ```
 
-In the example above, despite rule 2 having more class selectors than ID selectors, rule 1 is more specific because ID beats class. In this case, the `color: blue` declaration would take precedence.
+Trong ví dụ này, dù quy tắc 2 có nhiều bộ chọn class hơn số bộ chọn ID, quy tắc 1 vẫn đặc hiệu hơn vì ID thắng class. Vì vậy, khai báo `color: blue` sẽ được ưu tiên.
 
-And a bit more complex:
+Và một ví dụ phức tạp hơn:
 
 ```html
 <!-- index.html -->
@@ -100,13 +100,13 @@ And a bit more complex:
 }
 ```
 
-In this final example, the first rule uses an ID selector, while the second rule combines an ID selector with a class selector. Therefore, neither rule is using a more specific selector than the other. The cascade then checks the number of each selector type. Both rules have only one ID selector, but rule 2 has a class selector in addition to the ID selector, so rule 2 has a higher specificity!
+Trong ví dụ cuối, quy tắc đầu dùng bộ chọn ID, còn quy tắc hai kết hợp bộ chọn ID với bộ chọn class. Vì vậy, không quy tắc nào dùng bộ chọn đặc hiệu hơn quy tắc kia. Cascade tiếp tục kiểm tra số lượng của từng loại bộ chọn. Cả hai quy tắc chỉ có một bộ chọn ID, nhưng quy tắc 2 có thêm một bộ chọn class bên cạnh ID, nên quy tắc 2 có độ đặc hiệu cao hơn!
 
-While the `color: red` declaration would take precedence, the `background-color: yellow` declaration would still be applied since there's no conflicting declaration for it.
+Khai báo `color: red` sẽ được ưu tiên, còn khai báo `background-color: yellow` vẫn được áp dụng vì không có khai báo nào xung đột với nó.
 
-#### Not everything adds to specificity
+#### Không phải mọi thứ đều tăng độ đặc hiệu
 
-When comparing selectors, you may come across special symbols for the universal selector (`*`) as well as combinators (`+`, `~`, `>`, and an empty space). The ones you have not yet seen, we will cover these later in the curriculum, so there is no need to dive into them yet. The core concept is that these symbols do not inherently convey any additional specificity.
+Khi so sánh các bộ chọn, bạn có thể gặp các ký hiệu đặc biệt của bộ chọn toàn cục (`*`) cũng như các bộ kết hợp (`+`, `~`, `>`, và khoảng trắng). Những ký hiệu bạn chưa gặp sẽ được trình bày ở phần sau của chương trình, nên hiện tại chưa cần đi sâu. Ý chính là bản thân các ký hiệu này không mang thêm độ đặc hiệu.
 
 ```css
 /* rule 1 */
@@ -120,7 +120,7 @@ When comparing selectors, you may come across special symbols for the universal 
 }
 ```
 
-Here both rule 1 and rule 2 have the same specificity. Rule 1 uses a chaining selector (no space) and rule 2 uses a descendant combinator (the empty space). But both rules have two classes and the combinator symbol itself does not add to the specificity.
+Ở đây, quy tắc 1 và quy tắc 2 có cùng độ đặc hiệu. Quy tắc 1 dùng bộ chọn nối (không có khoảng trắng), còn quy tắc 2 dùng bộ kết hợp hậu duệ (khoảng trắng). Nhưng cả hai đều có hai class và bản thân ký hiệu bộ kết hợp không làm tăng độ đặc hiệu.
 
 ```css
 /* rule 1 */
@@ -134,7 +134,7 @@ Here both rule 1 and rule 2 have the same specificity. Rule 1 uses a chaining se
 }
 ```
 
-This example shows the same thing. Even though rule 2 is using a child combinator (`>`), this does not change the specificity value. Both rules still have two classes so they have the same specificity values.
+Ví dụ này cũng cho thấy điều tương tự. Dù quy tắc 2 dùng bộ kết hợp con (`>`), điều đó không làm thay đổi giá trị độ đặc hiệu. Cả hai quy tắc vẫn có hai class nên có cùng độ đặc hiệu.
 
 ```css
 /* rule 1 */
@@ -148,13 +148,13 @@ h1 {
 }
 ```
 
-In this example, rule 2 would have higher specificity and the `orange` value would take precedence for this element. Rule 2 uses a type selector, which has the lowest specificity value. But rule 1 uses the universal selector (`*`) which has no specificity value.
+Trong ví dụ này, quy tắc 2 có độ đặc hiệu cao hơn và giá trị `orange` sẽ được ưu tiên cho phần tử. Quy tắc 2 dùng bộ chọn kiểu, vốn có mức độ đặc hiệu thấp nhất. Nhưng quy tắc 1 dùng bộ chọn toàn cục (`*`), không có giá trị độ đặc hiệu.
 
-#### Inheritance
+#### Kế thừa
 
-Inheritance refers to certain CSS properties that, when applied to an element, are inherited by that element's descendants, even if we don't explicitly write a rule for those descendants. Typography-based properties (`color`, `font-size`, `font-family`, etc.) are usually inherited, while most other properties aren't. You can find out if a property is inherited or not by going to its docs on MDN and heading to the **Formal Definition** section. For example, the [CSS `color` property formal definition](https://developer.mozilla.org/en-US/docs/Web/CSS/color#formal_definition) indicates that `color` is an inherited property, while the [`display` property formal definition](https://developer.mozilla.org/en-US/docs/Web/CSS/display#formal_definition) indicates that `display` is not.
+Kế thừa là cơ chế trong đó một số thuộc tính CSS khi áp dụng cho một phần tử sẽ được truyền xuống các phần tử hậu duệ, ngay cả khi ta không viết quy tắc riêng cho chúng. Các thuộc tính về typography (`color`, `font-size`, `font-family`, v.v.) thường được kế thừa, còn phần lớn thuộc tính khác thì không. Bạn có thể xem một thuộc tính có được kế thừa hay không trong tài liệu MDN của nó, ở phần **Formal Definition**. Chẳng hạn, [định nghĩa hình thức của thuộc tính CSS `color`](https://developer.mozilla.org/en-US/docs/Web/CSS/color#formal_definition) cho biết `color` được kế thừa, còn [định nghĩa hình thức của thuộc tính `display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#formal_definition) cho biết `display` thì không.
 
-The exception to this is when directly targeting an element, as this always beats inheritance:
+Ngoại lệ là khi nhắm trực tiếp đến một phần tử, vì cách đó luôn thắng kế thừa:
 
 ```html
 <!-- index.html -->
@@ -176,13 +176,13 @@ The exception to this is when directly targeting an element, as this always beat
 }
 ```
 
-Despite the `parent` element having a higher specificity with an ID, the `child` element would have the `color: blue` style applied since that declaration directly targets it, while `color: red` from the parent is only inherited.
+Dù phần tử `parent` có độ đặc hiệu cao hơn nhờ ID, phần tử `child` vẫn được áp dụng kiểu `color: blue` vì khai báo đó nhắm trực tiếp đến nó, còn `color: red` từ phần tử cha chỉ được kế thừa.
 
-#### Rule order
+#### Thứ tự quy tắc
 
-The final factor, the end of the line, the tie-breaker of the tie-breakers. Let's say that after every other factor has been taken into account, there are still multiple conflicting rules targeting an element. How does the cascade determine which rule to apply?
+Đây là yếu tố cuối cùng, chốt hạ sau mọi yếu tố phân định khác. Giả sử sau khi xét tất cả yếu tố khác, vẫn còn nhiều quy tắc xung đột cùng nhắm đến một phần tử. Cascade quyết định áp dụng quy tắc nào bằng cách nào?
 
-Whichever rule was the *last* defined is the winner.
+Quy tắc được định nghĩa *sau cùng* sẽ thắng.
 
 ```css
 /* styles.css */
@@ -196,16 +196,16 @@ Whichever rule was the *last* defined is the winner.
 }
 ```
 
-For an element that has both the `alert` and `warning` classes, the cascade would run through every other factor, including inheritance (none here) and specificity (neither rule is more specific than the other). Since the `.warning` rule was the last one defined, and no other factor was able to determine which rule to apply, it's the one that gets applied to the element.
+Với một phần tử có cả class `alert` và `warning`, cascade sẽ xét mọi yếu tố khác, bao gồm kế thừa (ở đây không có) và độ đặc hiệu (hai quy tắc có độ đặc hiệu ngang nhau). Vì quy tắc `.warning` được định nghĩa sau cùng và không yếu tố nào khác phân định được quy tắc cần áp dụng, quy tắc đó sẽ được áp dụng cho phần tử.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. [The CSS Cascade](https://2019.wattenberger.com/blog/css-cascade) is a great, interactive read that goes a little more in detail about other factors that affect what CSS rules actually end up being applied.
-1. Complete the exercise in our [CSS exercises repository's `foundations/cascade` directory](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/cascade) (remember that the instructions are in the README):
+1. [The CSS Cascade](https://2019.wattenberger.com/blog/css-cascade) là một bài đọc tương tác rất hay, trình bày chi tiết hơn một chút về những yếu tố khác ảnh hưởng đến các quy tắc CSS thực sự được áp dụng.
+1. Hoàn thành bài tập trong [thư mục `foundations/cascade` của kho bài tập CSS](https://github.com/TheOdinProject/css-exercises/tree/main/foundations/cascade) của chúng ta (nhớ rằng hướng dẫn nằm trong README):
    - `01-cascade-fix`
 
-    Note: Solutions for these exercises can be found in the `solution` folder of each exercise.
+    Lưu ý: Bạn có thể tìm lời giải cho bài tập này trong thư mục `solution` của bài.
 
 </div>

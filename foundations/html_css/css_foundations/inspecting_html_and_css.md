@@ -1,44 +1,44 @@
-### Introduction
+### Giới thiệu
 
-Being able to inspect and debug your HTML and CSS is critical for frontend development. This lesson will take us through the Chrome Dev Tools, which allow you to see detailed information about your elements and CSS rules, as well as assist you in finding and fixing problems in your code.
+Biết cách kiểm tra và gỡ lỗi HTML, CSS là kỹ năng thiết yếu trong phát triển frontend. Bài học này sẽ hướng dẫn bạn qua Chrome Dev Tools, công cụ cho phép xem thông tin chi tiết về các phần tử và quy tắc CSS, đồng thời hỗ trợ tìm và sửa lỗi trong mã.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- You will know how to access the element inspector.
-- You will know how to select and inspect specific elements.
-- You will know how to test out HTML and CSS in the inspector.
+- Bạn sẽ biết cách mở trình kiểm tra phần tử.
+- Bạn sẽ biết cách chọn và kiểm tra từng phần tử cụ thể.
+- Bạn sẽ biết cách thử nghiệm HTML và CSS trong trình kiểm tra.
 
-### The inspector
+### Trình kiểm tra
 
-To open up the inspector, you can right-click on any element of a webpage and click "Inspect" or press F12. Go ahead and do that right now to see the HTML and CSS used on this page.
+Để mở trình kiểm tra, bạn có thể nhấp chuột phải vào bất kỳ phần tử nào trên trang web rồi chọn "Inspect", hoặc nhấn F12. Hãy thử làm ngay bây giờ để xem HTML và CSS được sử dụng trên trang này.
 
-Don't get overwhelmed with all the tools you're now seeing! For this lesson, we want to focus on the Elements and Styles panels.
+Đừng để tất cả công cụ đang hiện ra làm bạn choáng ngợp! Trong bài này, chúng ta chỉ tập trung vào các bảng Elements và Styles.
 
-### Inspecting elements
+### Kiểm tra phần tử
 
-In the Elements panel, you can see the entire HTML structure of your page. You can click on any of the elements in this panel to select that specific element. Alternatively, you can click on the upper-left "element select" icon (shown in the image below), then hover over any element on the page.
+Trong bảng Elements, bạn có thể xem toàn bộ cấu trúc HTML của trang. Bạn có thể nhấp vào bất kỳ phần tử nào trong bảng để chọn đúng phần tử đó. Ngoài ra, bạn có thể nhấp vào biểu tượng "element select" ở góc trên bên trái (được hiển thị trong hình bên dưới), rồi di chuột qua bất kỳ phần tử nào trên trang.
 
-![Inspector Icon](https://cdn.statically.io/gh/TheOdinProject/curriculum/e7ab90e044fba9f8ef9b5915c62221e2822b102b/foundations/html_css/css-foundations/inspecting-html-and-css/imgs/00.jpg)
+![Biểu tượng trình kiểm tra](https://cdn.statically.io/gh/TheOdinProject/curriculum/e7ab90e044fba9f8ef9b5915c62221e2822b102b/foundations/html_css/css-foundations/inspecting-html-and-css/imgs/00.jpg)
 
-When an element is selected, the Styles tab will show all the currently applied styles, as well as any styles that are being overwritten (indicated by a strikethrough of the text). For example, if you use the inspector to click on the "Your" in the "Your Career in Web Development Starts Here" header on the [TOP homepage](https://www.theodinproject.com/home), on the right-hand side you’ll see all the styles that are currently affecting the element, as seen below (don't worry about the `var()` syntax as that's irrelevant to this point):
+Khi một phần tử được chọn, bảng Styles sẽ hiển thị mọi kiểu đang được áp dụng, cũng như những kiểu đang bị ghi đè (được biểu thị bằng cách gạch ngang văn bản). Ví dụ, nếu dùng trình kiểm tra để nhấp vào từ "Your" trong tiêu đề "Your Career in Web Development Starts Here" trên [trang chủ TOP](https://www.theodinproject.com/home), ở phía bên phải bạn sẽ thấy tất cả kiểu hiện đang tác động lên phần tử đó, như hình bên dưới (đừng lo về cú pháp `var()`, vì nó không liên quan đến điểm này):
 
-![Overwritten style](https://cdn.statically.io/gh/TheOdinProject/curriculum/e7ab90e044fba9f8ef9b5915c62221e2822b102b/foundations/html_css/css-foundations/inspecting-html-and-css/imgs/01.jpg)
+![Kiểu bị ghi đè](https://cdn.statically.io/gh/TheOdinProject/curriculum/e7ab90e044fba9f8ef9b5915c62221e2822b102b/foundations/html_css/css-foundations/inspecting-html-and-css/imgs/01.jpg)
 
-### Testing styles in the inspector
+### Thử nghiệm kiểu trong trình kiểm tra
 
-The Styles panel also allows you to edit styles directly in the browser. You can click inside of any individual selector to add a new rule or click on an existing attribute or value to alter it. When doing so, the webpage responds with the changes in real-time. This won’t affect the source code in your text editor, but it is extremely useful for quickly testing out various attributes and values without needing to reload the page over and over again.
+Bảng Styles cũng cho phép bạn chỉnh sửa kiểu trực tiếp trong trình duyệt. Bạn có thể nhấp vào bên trong một bộ chọn bất kỳ để thêm quy tắc mới, hoặc nhấp vào thuộc tính hay giá trị hiện có để thay đổi nó. Khi làm vậy, trang web sẽ phản hồi với các thay đổi theo thời gian thực. Việc này không ảnh hưởng đến mã nguồn trong trình soạn thảo, nhưng cực kỳ hữu ích để nhanh chóng thử nhiều thuộc tính và giá trị khác nhau mà không phải liên tục tải lại trang.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Go through the following sections of the [official Chrome DevTools docs](https://developers.google.com/web/tools/chrome-devtools):
+1. Hãy xem qua các phần sau trong [tài liệu Chrome DevTools chính thức](https://developers.google.com/web/tools/chrome-devtools):
 
-   - [Devtools overview](https://developer.chrome.com/docs/devtools/overview/): don't navigate to any other pages linked here; just get familiar with *what* tools are available in the DevTools, rather than how to use all of them right now.
-   - [Open Chrome DevTools](https://developer.chrome.com/docs/devtools/open/): similar to what we went over above, but with some nice extras.
-   - [Get Started With Viewing And Changing The DOM](https://developer.chrome.com/docs/devtools/dom/): skip through any part that uses the JavaScript console.
-   - [View and change CSS](https://developer.chrome.com/docs/devtools/css): be sure to follow along with any interactive instructions!
+   - [Tổng quan về DevTools](https://developer.chrome.com/docs/devtools/overview/): đừng chuyển sang các trang khác được liên kết ở đây; hiện tại chỉ cần làm quen với *những* công cụ có trong DevTools, thay vì học cách sử dụng tất cả chúng.
+   - [Mở Chrome DevTools](https://developer.chrome.com/docs/devtools/open/): tương tự những gì chúng ta vừa trình bày ở trên, nhưng có thêm một số nội dung hữu ích.
+   - [Bắt đầu xem và thay đổi DOM](https://developer.chrome.com/docs/devtools/dom/): bỏ qua mọi phần sử dụng bảng điều khiển JavaScript.
+   - [Xem và thay đổi CSS](https://developer.chrome.com/docs/devtools/css): nhớ làm theo các hướng dẫn tương tác!
 
 </div>

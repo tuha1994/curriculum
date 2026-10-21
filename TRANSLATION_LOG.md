@@ -231,6 +231,16 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `foundations/html_css/html_foundations/lists.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
 | `foundations/html_css/html_foundations/working_with_text.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên HTML và code mẫu. |
 
+## Foundations đã dịch — batch 3
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `foundations/html_css/css_foundations/block_and_inline.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/html_css/css_foundations/inspecting_html_and_css.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên HTML/CSS và công cụ kiểm tra. |
+| `foundations/html_css/css_foundations/intro_to_css.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên CSS và code mẫu. |
+| `foundations/html_css/css_foundations/the_box_model.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/html_css/css_foundations/the_cascade.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên CSS và code mẫu. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

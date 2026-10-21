@@ -1,21 +1,21 @@
-### Introduction
+### Giới thiệu
 
-Now that you understand the basic syntax of HTML and CSS, we're going to get serious. The most important skills you need to master with CSS are *positioning* and *layout*. Changing fonts and colors is a crucial skill, but being able to put things exactly where you want them on a webpage is even more crucial. After all, how many webpages can you find where absolutely every element is just stacked one on top of another?
+Giờ bạn đã hiểu cú pháp cơ bản của HTML và CSS, chúng ta sẽ đi vào phần quan trọng hơn. Những kỹ năng quan trọng nhất cần thành thạo trong CSS là *định vị* và *bố cục*. Thay đổi phông chữ và màu sắc là kỹ năng thiết yếu, nhưng đặt mọi thứ chính xác vào vị trí mong muốn trên trang web còn thiết yếu hơn. Suy cho cùng, có bao nhiêu trang web mà tuyệt đối mọi phần tử đều chỉ xếp chồng lên nhau?
 
-Learning to position elements on a webpage is not that difficult once you understand just a few key concepts. Unfortunately, many learners race through learning HTML and CSS to get to JavaScript and end up missing these fundamental concepts. This leads to frustration and pain ([and funny gifs](https://giphy.com/gifs/css-13FrpeVH09Zrb2)) because all the JavaScript skills in the world are meaningless if you can't stick your elements on the page where you need them to be. So with that in mind, let's get started.
+Khi đã hiểu một vài khái niệm then chốt, việc định vị các phần tử trên trang web không quá khó. Đáng tiếc là nhiều người học vội vàng đi qua HTML và CSS để đến JavaScript, rồi bỏ lỡ những khái niệm nền tảng này. Điều đó dẫn đến sự bực bội và đau đầu ([cùng những ảnh GIF hài hước](https://giphy.com/gifs/css-13FrpeVH09Zrb2)), vì mọi kỹ năng JavaScript trên đời đều trở nên vô nghĩa nếu bạn không thể đặt phần tử vào đúng vị trí cần thiết trên trang. Vì vậy, hãy bắt đầu.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- You'll learn all about *the box model*.
-- You'll learn how to make sure elements are just the right size with `margin`, `padding`, and `borders`.
+- Bạn sẽ tìm hiểu mọi điều về *mô hình hộp*.
+- Bạn sẽ học cách đảm bảo các phần tử có kích thước vừa vặn bằng `margin`, `padding` và `borders`.
 
-### The box model
+### Mô hình hộp
 
-The first important concept that you need to understand to be successful in CSS is the box model. It isn't complicated, but skipping over it now would cause you much frustration down the line.
+Khái niệm quan trọng đầu tiên cần hiểu để thành công với CSS là mô hình hộp. Nó không phức tạp, nhưng bỏ qua nó bây giờ sẽ khiến bạn vô cùng bối rối về sau.
 
-Every single thing on a webpage is a rectangular box. These boxes can have other boxes in them and can sit alongside one another. You can get a rough idea of how this works by applying an outline to every element on the page like this:
+Mọi thứ trên một trang web đều là một hộp hình chữ nhật. Những hộp này có thể chứa các hộp khác và nằm cạnh nhau. Bạn có thể hình dung sơ bộ cách hoạt động này bằng cách áp dụng đường viền ngoài cho mọi phần tử trên trang như sau:
 
 ```css
 * {
@@ -23,33 +23,33 @@ Every single thing on a webpage is a rectangular box. These boxes can have other
 }
 ```
 
-![boxes](https://cdn.statically.io/gh/TheOdinProject/curriculum/c547923a86efaccb0fc71adf70fda2ea340b4cb1/foundations/html_css/css_foundations/the_box_model/imgs/boxes.png)
+![các hộp](https://cdn.statically.io/gh/TheOdinProject/curriculum/c547923a86efaccb0fc71adf70fda2ea340b4cb1/foundations/html_css/css_foundations/the_box_model/imgs/boxes.png)
 
-You can use the browser's inspector to add the CSS above to this web page if you want, by clicking the `+` button in the top right of the "Styles" panel within the "Elements" tab. Boxes in boxes!
+Nếu muốn, bạn có thể dùng trình kiểm tra của trình duyệt để thêm CSS ở trên vào trang web này bằng cách nhấp vào nút `+` ở góc trên bên phải của bảng "Styles" trong thẻ "Elements". Hộp trong hộp!
 
-![lines](https://cdn.statically.io/gh/TheOdinProject/curriculum/c547923a86efaccb0fc71adf70fda2ea340b4cb1/foundations/html_css/css_foundations/the_box_model/imgs/odin-lined.png)
+![các đường](https://cdn.statically.io/gh/TheOdinProject/curriculum/c547923a86efaccb0fc71adf70fda2ea340b4cb1/foundations/html_css/css_foundations/the_box_model/imgs/odin-lined.png)
 
-OK, so there might be some circles in the above image... but when it comes to layout, they fit together like rectangular boxes and not circles. In the end, laying out a webpage and positioning all its elements is deciding how you are going to nest and stack these boxes.
+Được rồi, có thể hình trên có một vài hình tròn... nhưng khi nói về bố cục, chúng kết hợp với nhau giống những hộp chữ nhật chứ không phải hình tròn. Sau cùng, bố trí một trang web và định vị mọi phần tử trên đó chính là quyết định cách bạn lồng và xếp chồng các hộp này.
 
-The only real complication here is that there are many ways to manipulate the size of these boxes, and the space between them, using `padding`, `border`, and `margin`. The assigned articles go into more depth on this concept, but to sum it up briefly:
+Điểm phức tạp duy nhất là có nhiều cách thao tác kích thước của những hộp này và khoảng cách giữa chúng bằng `padding`, `border` và `margin`. Các bài đọc được giao sẽ trình bày sâu hơn về khái niệm này, nhưng tóm tắt ngắn gọn:
 
-- `padding` increases the space between the border of a box and the content of the box.
-- `border` adds space (even if it's only a pixel or two) between the margin and the padding.
-- `margin` increases the space between the borders of a box and the borders of adjacent boxes.
+- `padding` làm tăng khoảng cách giữa đường viền của hộp và nội dung trong hộp.
+- `border` tạo thêm khoảng cách (dù chỉ một hay hai pixel) giữa margin và padding.
+- `margin` làm tăng khoảng cách giữa đường viền của một hộp và đường viền của các hộp liền kề.
 
-Be sure to study the diagrams carefully.
+Hãy nhớ nghiên cứu kỹ các sơ đồ.
 
-![the box model](https://cdn.statically.io/gh/TheOdinProject/curriculum/c547923a86efaccb0fc71adf70fda2ea340b4cb1/foundations/html_css/css_foundations/the_box_model/imgs/box-model.png)
+![mô hình hộp](https://cdn.statically.io/gh/TheOdinProject/curriculum/c547923a86efaccb0fc71adf70fda2ea340b4cb1/foundations/html_css/css_foundations/the_box_model/imgs/box-model.png)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. [Learn CSS Box Model In 8 Minutes](https://www.youtube.com/watch?v=rIO5326FgPE) is a straightforward overview of the box model, padding and margin. Go ahead and watch this now; it informs everything else.
-1. [box-sizing: border-box (EASY!)](https://www.youtube.com/watch?v=HdZHcFWcAd8) is an add-on to the above resource with a better explanation of 'box-sizing'.
-1. Because the box model concept is so incredibly fundamental, let's dig a bit deeper with  [MDN's lesson on the box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model). It covers the same material as the video(s) above and will introduce you to inline boxes that we will explore in the next lesson. The article also mentions inner and outer display types when explaining how elements are rendered.
+1. [Learn CSS Box Model In 8 Minutes](https://www.youtube.com/watch?v=rIO5326FgPE) là phần tổng quan dễ hiểu về mô hình hộp, padding và margin. Hãy xem ngay; nội dung này là nền tảng cho mọi phần còn lại.
+1. [box-sizing: border-box (EASY!)](https://www.youtube.com/watch?v=HdZHcFWcAd8) bổ sung cho tài liệu trên bằng cách giải thích rõ hơn về 'box-sizing'.
+1. Vì khái niệm mô hình hộp có tính nền tảng đặc biệt quan trọng, hãy tìm hiểu sâu hơn một chút với [bài học về mô hình hộp của MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model). Bài này trình bày cùng nội dung với các video ở trên và giới thiệu các hộp inline mà chúng ta sẽ khám phá trong bài tiếp theo. Bài viết cũng đề cập đến kiểu hiển thị bên trong và bên ngoài khi giải thích cách các phần tử được hiển thị.
 
-   You don’t need to fully understand or memorize those details yet. Pay close attention to the examples and take the time to experiment with their in-browser editor!
-1. The [CSS Tricks page on margins](https://css-tricks.com/almanac/properties/m/margin/) has some further information about the `margin` property that you'll find useful. Specifically, the sections about `auto` and margin collapsing contain things you'll want to know.
+   Bạn chưa cần hiểu hoàn toàn hay ghi nhớ những chi tiết đó. Hãy chú ý kỹ các ví dụ và dành thời gian thử nghiệm với trình chỉnh sửa ngay trong trình duyệt!
+1. [Trang CSS Tricks về margin](https://css-tricks.com/almanac/properties/m/margin/) có thêm một số thông tin hữu ích về thuộc tính `margin`. Cụ thể, các phần nói về `auto` và hiện tượng gộp margin có những điều bạn cần biết.
 
 </div>

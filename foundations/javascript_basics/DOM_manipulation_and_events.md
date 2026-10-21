@@ -1,21 +1,21 @@
-### Introduction
+### Giới thiệu
 
-One of the most unique and useful abilities of JavaScript is its ability to manipulate the DOM. But what *is* the DOM, and how do we go about changing it? Let's jump right in...
+Một trong những khả năng độc đáo và hữu ích nhất của JavaScript là thao tác với DOM. Nhưng DOM *là gì*, và chúng ta thay đổi nó bằng cách nào? Hãy bắt đầu ngay...
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain what the DOM is in relation to a webpage.
-- Explain the difference between a "node" and an "element".
-- Explain how to target nodes with "selectors".
-- Explain the basic methods for finding, adding, removing, and altering DOM nodes.
-- Explain the difference between a "NodeList" and an "array of nodes".
-- Explain what "bubbling" is and how it works.
+- Giải thích DOM là gì trong mối liên hệ với một trang web.
+- Giải thích sự khác nhau giữa “node” và “element”.
+- Giải thích cách nhắm đến các node bằng “selector”.
+- Giải thích các phương thức cơ bản để tìm, thêm, xóa và thay đổi node DOM.
+- Giải thích sự khác nhau giữa “NodeList” và “mảng các node”.
+- Giải thích “bubbling” là gì và nó hoạt động ra sao.
 
-### Document Object Model
+### Mô hình đối tượng tài liệu
 
-The DOM (or Document Object Model) is a tree-like representation of the contents of a webpage - a tree of "nodes" with different relationships depending on how they're arranged in the HTML document. There are many types of nodes, most of which are not commonly used. In this lesson we will be focusing on "element" nodes which are primarily used for manipulating the DOM.
+DOM (hay Document Object Model) là một biểu diễn dạng cây của nội dung trang web — một cây gồm các “node” với những mối quan hệ khác nhau tùy theo cách chúng được sắp xếp trong tài liệu HTML. Có nhiều loại node, phần lớn không được dùng thường xuyên. Trong bài học này, chúng ta sẽ tập trung vào các node “element”, vốn chủ yếu được dùng để thao tác với DOM.
 
 ```html
 <div id="container">
@@ -24,18 +24,18 @@ The DOM (or Document Object Model) is a tree-like representation of the contents
 </div>
 ```
 
-In the above example, the `<div class="display"></div>` is a "child" of `<div id="container"></div>` and a "sibling" to `<div class="controls"></div>`. Think of it like a family tree. `<div id="container"></div>` is a **parent**, with its **children** on the next level, each on their own "branch".
+Trong ví dụ trên, `<div class="display"></div>` là một “child” của `<div id="container"></div>` và là “sibling” của `<div class="controls"></div>`. Hãy hình dung nó giống như một cây gia phả. `<div id="container"></div>` là **parent**, với các **child** ở cấp tiếp theo, mỗi child nằm trên một “nhánh” riêng.
 
-### Targeting nodes with selectors
+### Nhắm đến node bằng selector
 
-When working with the DOM, you use "selectors" to target the nodes you want to work with. You can use a combination of CSS-style selectors and relationship properties to target the nodes you want. Let's start with CSS-style selectors. In the above example, you could use the following selectors to refer to `<div class="display"></div>`:
+Khi làm việc với DOM, bạn dùng “selector” để nhắm đến những node muốn thao tác. Bạn có thể kết hợp các selector theo phong cách CSS với các thuộc tính quan hệ để nhắm đến node cần tìm. Hãy bắt đầu với selector theo phong cách CSS. Trong ví dụ trên, bạn có thể dùng các selector sau để tham chiếu đến `<div class="display"></div>`:
 
 - `div.display`
 - `.display`
 - `#container > .display`
 - `div#container > div.display`
 
-You can also use relational selectors (i.e., `firstElementChild` or `lastElementChild`, etc.) with special properties owned by the nodes.
+Bạn cũng có thể dùng các selector quan hệ (ví dụ `firstElementChild` hoặc `lastElementChild`, v.v.) cùng với những thuộc tính đặc biệt mà node sở hữu.
 
 ```javascript
 // selects the #container div (don't worry about the syntax, we'll get there)
@@ -55,68 +55,68 @@ const display = controls.previousElementSibling;
 console.log(display); // <div class="display"></div>
 ```
 
-So you're identifying a certain node based on its relationships to the nodes around it.
+Như vậy, bạn đang xác định một node cụ thể dựa trên mối quan hệ của nó với các node xung quanh.
 
 <div class="lesson-note" markdown="1">
 
-#### JavaScript objects
+#### Đối tượng JavaScript
 
-You might be wondering to yourself why there is a dot (`.`) notation following our variables. For example, `container.firstElementChild`.
+Có thể bạn đang tự hỏi tại sao lại có ký hiệu dấu chấm (`.`) sau các biến của chúng ta. Ví dụ: `container.firstElementChild`.
 
-This is how we access objects in JavaScript. An object in JavaScript is a data type that holds properties. A property is a "key: value" pair. For example, our `container` contains many properties and we can access its first element child by accessing the `firstElementChild` key, to retrieve its value. In this case, its value is a `<div>` element with the class `display`.
+Đây là cách chúng ta truy cập các đối tượng trong JavaScript. Một đối tượng trong JavaScript là kiểu dữ liệu chứa các thuộc tính. Một thuộc tính là một cặp “key: value”. Chẳng hạn, `container` có nhiều thuộc tính, và chúng ta có thể truy cập phần tử con đầu tiên bằng cách truy cập key `firstElementChild` để lấy giá trị của nó. Trong trường hợp này, giá trị là một phần tử `<div>` có class `display`.
 
-This is all you need to know about JavaScript objects for now. Look forward to the Objects Basics lesson to learn more!
+Hiện tại, đó là tất cả những gì bạn cần biết về đối tượng JavaScript. Hãy chờ đến bài Objects Basics để tìm hiểu thêm!
 
 </div>
 
-### DOM methods
+### Các phương thức DOM
 
-When your HTML code is parsed by a web browser, it is converted to the DOM, as was mentioned above. One of the primary differences is that these nodes are JavaScript objects that have many properties and methods attached to them. These properties and methods are the primary tools we are going to use to manipulate our webpage with JavaScript.
+Khi trình duyệt web phân tích mã HTML, nó chuyển mã thành DOM như đã đề cập ở trên. Một trong những điểm khác biệt chính là các node này là những đối tượng JavaScript có nhiều thuộc tính và phương thức gắn với chúng. Những thuộc tính và phương thức này là các công cụ chính chúng ta sẽ dùng để thao tác với trang web bằng JavaScript.
 
-#### Query selectors
+#### Query selector
 
-- `element.querySelector(selector)` - returns a reference to the first match of *selector*.
-- `element.querySelectorAll(selectors)` - returns a "NodeList" containing references to all of the matches of the *selectors*.
+- `element.querySelector(selector)` - trả về một tham chiếu đến kết quả khớp đầu tiên của *selector*.
+- `element.querySelectorAll(selectors)` - trả về một “NodeList” chứa các tham chiếu đến mọi kết quả khớp của *selectors*.
 
 <div class="lesson-note" markdown="1">
 
-#### Performance consideration
+#### Lưu ý về hiệu năng
 
-There are several other, more specific queries, that offer potential (marginal) performance benefits, but we won't be going over them now.
+Có một số truy vấn khác, cụ thể hơn, có thể đem lại lợi ích hiệu năng (dù không đáng kể), nhưng hiện tại chúng ta sẽ không tìm hiểu chúng.
 
 </div>
 
-It's important to remember that when using querySelectorAll, the return value is **not** an array. It looks like an array, and it somewhat acts like an array, but it's really a "NodeList". The big distinction is that several array methods are missing from NodeLists. One solution, if problems arise, is to convert the NodeList into an array. You can do this with `Array.from()` or the [spread operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+Điều quan trọng cần nhớ là khi dùng querySelectorAll, giá trị trả về **không phải** là một mảng. Nó trông giống mảng và hoạt động phần nào như mảng, nhưng thực sự là một “NodeList”. Điểm khác biệt lớn là NodeList thiếu một số phương thức mảng. Nếu gặp vấn đề, một cách giải quyết là chuyển NodeList thành mảng. Bạn có thể làm điều đó bằng `Array.from()` hoặc [spread operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
-#### Element creation
+#### Tạo element
 
-- `document.createElement(tagName, [options])` - creates a new element of tag type tagName. `[options]` in this case means you can add some optional parameters to the function. Don't worry about these at this point.
+- `document.createElement(tagName, [options])` - tạo một element mới thuộc loại tagName. `[options]` ở đây có nghĩa là bạn có thể thêm một số tham số tùy chọn vào hàm. Hiện tại chưa cần lo về chúng.
 
 ```javascript
 const div = document.createElement("div");
 ```
 
-This function does NOT put your new element into the DOM - it creates it in memory. This is so that you can manipulate the element (by adding styles, classes, ids, text, etc.) before placing it on the page. You can place the element into the DOM with one of the following methods.
+Hàm này KHÔNG đưa element mới vào DOM — nó tạo element trong bộ nhớ. Nhờ vậy, bạn có thể thao tác với element (thêm style, class, id, text, v.v.) trước khi đặt nó lên trang. Bạn có thể đưa element vào DOM bằng một trong các phương thức sau.
 
-#### Append elements
+#### Thêm element
 
-- `parentNode.appendChild(childNode)` - appends *childNode* as the last child of *parentNode*.
-- `parentNode.insertBefore(newNode, referenceNode)` - inserts *newNode* into *parentNode* before *referenceNode*.
+- `parentNode.appendChild(childNode)` - thêm *childNode* vào cuối danh sách con của *parentNode*.
+- `parentNode.insertBefore(newNode, referenceNode)` - chèn *newNode* vào *parentNode* trước *referenceNode*.
 
-#### Remove elements
+#### Xóa element
 
-- `parentNode.removeChild(child)` - removes *child* from *parentNode* on the DOM and returns a reference to *child*.
+- `parentNode.removeChild(child)` - xóa *child* khỏi DOM của *parentNode* và trả về một tham chiếu đến *child*.
 
-#### Altering elements
+#### Thay đổi element
 
-When you have a reference to an element, you can use that reference to alter the element's own properties. This allows you to do many useful alterations, like adding, removing, or altering attributes, changing classes, adding inline style information, and more.
+Khi có tham chiếu đến một element, bạn có thể dùng tham chiếu đó để thay đổi các thuộc tính của chính element. Điều này cho phép thực hiện nhiều thay đổi hữu ích, như thêm, xóa hoặc thay đổi thuộc tính, thay đổi class, thêm thông tin style nội tuyến, v.v.
 
 ```javascript
 // creates a new div referenced in the variable 'div'
 const div = document.createElement("div");
 ```
 
-#### Adding inline style
+#### Thêm style nội tuyến
 
 ```javascript
 // sets the indicated style rule to the element in the div variable
@@ -126,7 +126,7 @@ div.style.color = "blue";
 div.setAttribute("style", "color: blue; background: white;");
 ```
 
-When accessing a kebab-cased CSS property like `background-color` with JS, you will need to either use camelCase with dot notation or bracket notation. When using bracket notation, you can use either camelCase or kebab-case, but the property name must be a string.
+Khi truy cập một thuộc tính CSS dạng kebab-case như `background-color` bằng JS, bạn cần dùng camelCase với ký hiệu dấu chấm hoặc dùng ký hiệu ngoặc vuông. Khi dùng ký hiệu ngoặc vuông, bạn có thể dùng camelCase hoặc kebab-case, nhưng tên thuộc tính phải là một chuỗi.
 
 ```javascript
 // dot notation with kebab case: doesn't work as it attempts to subtract color from div.style.background
@@ -143,7 +143,7 @@ div.style["background-color"];
 div.style["backgroundColor"];
 ```
 
-#### Editing attributes
+#### Chỉnh sửa thuộc tính
 
 ```javascript
 // if id exists, update it to 'theDiv', else create an id with value "theDiv"
@@ -156,9 +156,9 @@ div.getAttribute("id");
 div.removeAttribute("id");
 ```
 
-See MDN's section on [HTML Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) for more information on available attributes.
+Xem phần [HTML Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) của MDN để biết thêm thông tin về các thuộc tính hiện có.
 
-#### Working with classes
+#### Làm việc với class
 
 ```javascript
 // adds class "new" to your new div
@@ -171,16 +171,16 @@ div.classList.remove("new");
 div.classList.toggle("active");
 ```
 
-It is often standard (and cleaner) to toggle a CSS style rather than adding and removing inline CSS.
+Thông thường, cách làm chuẩn (và sạch hơn) là bật/tắt một style CSS thay vì thêm rồi xóa CSS nội tuyến.
 
-#### Adding text content
+#### Thêm nội dung văn bản
 
 ```javascript
 // creates a text node containing "Hello World!" and inserts it in div
 div.textContent = "Hello World!";
 ```
 
-#### Adding HTML content
+#### Thêm nội dung HTML
 
 ```javascript
 // renders the HTML inside div
@@ -189,14 +189,14 @@ div.innerHTML = "<span>Hello World!</span>";
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Security risks of innerHTML
+#### Rủi ro bảo mật của innerHTML
 
-Using textContent is preferred over innerHTML for adding text, as innerHTML should be used sparingly to avoid potential security risks.
-To understand the dangers of using innerHTML, watch this [video about preventing the most common cross-site scripting attack](https://youtube.com/watch?v=ns1LX6mEvyM).
+Nên ưu tiên textContent thay cho innerHTML khi thêm văn bản, vì innerHTML chỉ nên được dùng hạn chế để tránh các rủi ro bảo mật tiềm ẩn.
+Để hiểu nguy hiểm khi dùng innerHTML, hãy xem [video về cách ngăn chặn cuộc tấn công cross-site scripting phổ biến nhất này](https://youtube.com/watch?v=ns1LX6mEvyM).
 
 </div>
 
-Let's take a minute to review what we've covered and give you a chance to practice this stuff before moving on. Check out this example of creating and appending a DOM element to a webpage.
+Hãy dành một phút ôn lại những gì đã học và thực hành trước khi tiếp tục. Xem ví dụ sau về cách tạo và thêm một element DOM vào trang web.
 
 ```html
 <!-- your HTML file: -->
@@ -217,7 +217,7 @@ content.textContent = "This is the glorious text-content!";
 container.appendChild(content);
 ```
 
-In the JavaScript file, first we get a reference to the `container` div that already exists in our HTML. Then we create a new div and store it in the variable `content`. We add a class and some text to the `content` div and finally append that div to `container`. After the JavaScript code is run, our DOM tree will look like this:
+Trong tệp JavaScript, trước hết chúng ta lấy tham chiếu đến element `container` đã tồn tại trong HTML. Sau đó, chúng ta tạo một div mới và lưu nó vào biến `content`. Chúng ta thêm một class và một đoạn văn bản vào div `content`, rồi cuối cùng thêm div đó vào `container`. Sau khi mã JavaScript chạy, cây DOM sẽ trông như sau:
 
 ```html
 <!-- The DOM -->
@@ -229,15 +229,15 @@ In the JavaScript file, first we get a reference to the `container` div that alr
 </body>
 ```
 
-Keep in mind that the JavaScript does *not* alter your HTML, but the DOM - your HTML file will look the same, but the JavaScript changes what the browser renders.
+Hãy nhớ rằng JavaScript *không* thay đổi HTML của bạn mà thay đổi DOM — tệp HTML vẫn trông như cũ, nhưng JavaScript làm thay đổi những gì trình duyệt hiển thị.
 
 <div id="important-note" class="lesson-note" markdown="1">
 
-#### Timing of JavaScript
+#### Thời điểm chạy JavaScript
 
-Your JavaScript, for the most part, is run whenever the JS file is run or when the script tag is encountered in the HTML. If you are including your JavaScript at the top of your file, many of these DOM manipulation methods will not work because the JS code is being run *before* the nodes are created in the DOM. The simplest way to fix this is to include your JavaScript at the bottom of your HTML file so that it gets run after the DOM nodes are parsed and created.
+Phần lớn thời gian, JavaScript được chạy khi tệp JS được chạy hoặc khi trình duyệt gặp thẻ script trong HTML. Nếu đưa JavaScript lên đầu tệp, nhiều phương thức thao tác DOM sẽ không hoạt động vì mã JS được chạy *trước* khi các node được tạo trong DOM. Cách đơn giản nhất để khắc phục là đưa JavaScript xuống cuối tệp HTML để nó chạy sau khi các node DOM được phân tích và tạo ra.
 
-Alternatively, you can link the JavaScript file in the `<head>` of your HTML document. Use the `<script>` tag with the `src` attribute containing the path to the JS file, and include the `defer` keyword to load the file *after* the HTML is parsed, as such:
+Ngoài ra, bạn có thể liên kết tệp JavaScript trong `<head>` của tài liệu HTML. Dùng thẻ `<script>` với thuộc tính `src` chứa đường dẫn đến tệp JS, đồng thời thêm từ khóa `defer` để tệp được tải *sau* khi HTML được phân tích, như sau:
 
 ```html
 <head>
@@ -245,46 +245,46 @@ Alternatively, you can link the JavaScript file in the `<head>` of your HTML doc
 </head>
 ```
 
-Find out more about the [`defer` attribute for script tags](https://javascript.info/script-async-defer#defer).
+Tìm hiểu thêm về [thuộc tính `defer` của thẻ script](https://javascript.info/script-async-defer#defer).
 
 </div>
 
-### Exercise
+### Bài tập
 
-Copy the example above into files on your own computer. To make it work, you'll need to supply the rest of the HTML skeleton and either link your JavaScript file or put the JavaScript into a script tag on the page. Make sure everything is working before moving on!
+Sao chép ví dụ trên vào các tệp trên máy tính của bạn. Để nó hoạt động, bạn cần cung cấp phần còn lại của khung HTML và liên kết tệp JavaScript hoặc đặt JavaScript vào một thẻ script trên trang. Hãy đảm bảo mọi thứ hoạt động trước khi tiếp tục!
 
-Add the following elements to the container using ONLY JavaScript and the DOM methods shown above:
+Chỉ dùng JavaScript và các phương thức DOM đã trình bày ở trên để thêm các element sau vào container:
 
-1. a `<p>` with red text that says "Hey I'm red!"
-1. an `<h3>` with blue text that says "I'm a blue h3!"
-1. a `<div>` with a black border and pink background color with the following elements inside of it:
-   - another `<h1>` that says "I'm in a div"
-   - a `<p>` that says "ME TOO!"
-   - Hint for this one: after creating the `<div>` with createElement, append the `<h1>` and `<p>` to it before adding it to the container.
+1. một `<p>` có văn bản màu đỏ, nội dung là "Hey I'm red!"
+1. một `<h3>` có văn bản màu xanh dương, nội dung là "I'm a blue h3!"
+1. một `<div>` có viền đen và màu nền hồng, bên trong chứa các element sau:
+   - một `<h1>` khác có nội dung "I'm in a div"
+   - một `<p>` có nội dung "ME TOO!"
+   - Gợi ý: sau khi tạo `<div>` bằng createElement, hãy thêm `<h1>` và `<p>` vào đó trước khi thêm nó vào container.
 
-### Events
+### Event
 
-Now that we have a handle on manipulating the DOM with JavaScript, the next step is learning how to make that happen dynamically or on demand! Events are how you make that magic happen on your pages. Events are actions that occur on your webpage, such as mouse-clicks or key-presses. Using JavaScript, we can make our webpage listen to and react to these events.
+Bây giờ bạn đã nắm được cách thao tác DOM bằng JavaScript, bước tiếp theo là học cách thực hiện việc đó một cách động hoặc theo yêu cầu! Event là cách bạn tạo ra điều kỳ diệu ấy trên các trang của mình. Event là những hành động xảy ra trên trang web, chẳng hạn nhấp chuột hoặc nhấn phím. Bằng JavaScript, chúng ta có thể khiến trang web lắng nghe và phản ứng với những event này.
 
-There are three primary ways to go about this:
+Có ba cách chính để thực hiện việc này:
 
-- You can specify function attributes directly on your HTML elements.
-- You can set properties in the form of `on<eventType>`, such as `onclick` or `onmousedown`, on the DOM nodes in your JavaScript.
-- You can attach event listeners to the DOM nodes in your JavaScript.
+- Bạn có thể chỉ định trực tiếp các thuộc tính hàm trên element HTML.
+- Bạn có thể đặt các thuộc tính theo dạng `on<eventType>`, chẳng hạn `onclick` hoặc `onmousedown`, trên các node DOM bằng JavaScript.
+- Bạn có thể gắn event listener vào các node DOM bằng JavaScript.
 
-Event listeners are definitely the preferred method, but you will regularly see the others in use, so we're going to cover all three.
+Event listener chắc chắn là phương pháp được ưu tiên, nhưng bạn sẽ thường xuyên gặp hai cách còn lại, nên chúng ta sẽ tìm hiểu cả ba.
 
-We're going to create three buttons that all alert "Hello World" when clicked. Try them all out using your own HTML file or using something like [CodePen](https://codepen.io/).
+Chúng ta sẽ tạo ba nút, và cả ba đều hiển thị cảnh báo "Hello World" khi được nhấp. Hãy thử cả ba cách bằng tệp HTML của riêng bạn hoặc dùng công cụ như [CodePen](https://codepen.io/).
 
-#### Method 1
+#### Phương pháp 1
 
 ```html
 <button onclick="alert('Hello World')">Click Me</button>
 ```
 
-This solution is less than ideal because we're cluttering our HTML with JavaScript. Also, we can only set one "onclick" property per DOM element, so we're unable to run multiple separate functions in response to a click event using this method.
+Giải pháp này chưa lý tưởng vì chúng ta làm HTML lộn xộn bằng JavaScript. Ngoài ra, mỗi element DOM chỉ có thể đặt một thuộc tính "onclick", nên với cách này chúng ta không thể chạy nhiều hàm riêng biệt để phản hồi cùng một event nhấp chuột.
 
-#### Method 2
+#### Phương pháp 2
 
 ```html
 <!-- the HTML file -->
@@ -299,15 +299,15 @@ btn.onclick = () => alert("Hello World");
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Reviewing arrow function syntax
+#### Ôn lại cú pháp hàm mũi tên
 
-If you need to review the arrow syntax `() =>`, check this [article about arrow functions](http://javascript.info/arrow-functions-basics).
+Nếu cần ôn lại cú pháp mũi tên `() =>`, hãy xem [bài viết về hàm mũi tên](http://javascript.info/arrow-functions-basics) này.
 
 </div>
 
-This is a little better. We've moved the JS out of the HTML and into a JS file, but we still have the problem that a DOM element can only have one "onclick" property.
+Cách này tốt hơn một chút. Chúng ta đã chuyển JS ra khỏi HTML và đưa vào tệp JS, nhưng vẫn còn vấn đề là một element DOM chỉ có thể có một thuộc tính "onclick".
 
-#### Method 3
+#### Phương pháp 3
 
 ```html
 <!-- the HTML file -->
@@ -322,9 +322,9 @@ btn.addEventListener("click", () => {
 });
 ```
 
-Now, we maintain separation of concerns, and we also allow multiple event listeners if the need arises. Method 3 is much more flexible and powerful, though it is a bit more complex to set up.
+Giờ đây, chúng ta duy trì sự tách biệt các mối quan tâm và cũng cho phép có nhiều event listener nếu cần. Phương pháp 3 linh hoạt và mạnh mẽ hơn nhiều, dù thiết lập nó phức tạp hơn đôi chút.
 
-Note that all three of these methods can be used with named functions like so:
+Lưu ý rằng cả ba phương pháp đều có thể dùng với các hàm được đặt tên như sau:
 
 ```html
 <!-- the HTML file -->
@@ -361,9 +361,9 @@ btn.onclick = alertFunction;
 btn.addEventListener("click", alertFunction);
 ```
 
-Using named functions can clean up your code considerably, and is a *really* good idea if the function is something that you are going to want to do in multiple places.
+Dùng các hàm được đặt tên có thể làm mã của bạn gọn gàng hơn đáng kể, và đây là một ý tưởng *thực sự* tốt nếu hàm đó là thứ bạn muốn thực hiện ở nhiều nơi.
 
-With all three methods, we can access more information about the event by passing a parameter to the function that we are calling. Try this out on your own machine:
+Với cả ba phương pháp, chúng ta có thể truy cập thêm thông tin về event bằng cách truyền một tham số vào hàm đang gọi. Hãy thử trên máy của bạn:
 
 ```javascript
 btn.addEventListener("click", function (e) {
@@ -373,15 +373,15 @@ btn.addEventListener("click", function (e) {
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Understanding callbacks
+#### Tìm hiểu callback
 
-When we pass in `alertFunction` or `function (e) {...}` as an argument to `addEventListener`, we call this a `callback`. A callback is simply a function that is passed into another function as an argument.
+Khi truyền `alertFunction` hoặc `function (e) {...}` làm đối số cho `addEventListener`, chúng ta gọi đó là một `callback`. Callback đơn giản là một hàm được truyền vào một hàm khác dưới dạng đối số.
 
 </div>
 
-The `e` parameter in that callback function contains an object that references the **event** itself. Within that object you have access to many useful properties and methods (functions that live inside an object) such as which mouse button or key was pressed, or information about the event's **target** - the DOM node that was clicked. There's nothing magical about `e` as a name or where it comes from. JavaScript knows the parameter is an event because an event listener callback takes an `Event` object by definition. When the callback is run, the event handler passes in its own reference to the event. You can read more about the event objects on [MDN's introduction to events](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events#event_objects).
+Tham số `e` trong hàm callback đó chứa một đối tượng tham chiếu đến chính **event**. Bên trong đối tượng ấy, bạn có thể truy cập nhiều thuộc tính và phương thức hữu ích (các hàm nằm bên trong một đối tượng), chẳng hạn nút chuột hoặc phím nào đã được nhấn, hay thông tin về **target** của event — node DOM đã được nhấp. Không có gì thần kỳ về tên `e` hay nguồn gốc của nó. JavaScript biết đây là tham số event vì theo định nghĩa, callback của event listener nhận một đối tượng `Event`. Khi callback chạy, event handler truyền vào tham chiếu của chính event đó. Bạn có thể đọc thêm về các đối tượng event trong [phần giới thiệu event của MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events#event_objects).
 
-Try this:
+Hãy thử:
 
 ```javascript
 btn.addEventListener("click", function (e) {
@@ -389,7 +389,7 @@ btn.addEventListener("click", function (e) {
 });
 ```
 
-and now this:
+và bây giờ:
 
 ```javascript
 btn.addEventListener("click", function (e) {
@@ -397,11 +397,11 @@ btn.addEventListener("click", function (e) {
 });
 ```
 
-Pretty cool, eh?
+Khá thú vị, đúng không?
 
-#### Attaching listeners to groups of nodes
+#### Gắn listener cho một nhóm node
 
-This might seem like a lot of code if you're attaching lots of similar event listeners to many elements. There are a few ways to go about doing that more efficiently. We learned above that we can get a NodeList of all of the items matching a specific selector with `querySelectorAll('selector')`. In order to add a listener to each of them, we need to iterate through the whole list, like so:
+Nếu phải gắn nhiều event listener tương tự cho nhiều element, bạn có thể thấy đây là khá nhiều mã. Có vài cách thực hiện việc đó hiệu quả hơn. Ở trên, chúng ta đã học rằng có thể lấy một NodeList gồm tất cả item khớp với selector cụ thể bằng `querySelectorAll('selector')`. Để thêm listener vào từng item, chúng ta cần lặp qua toàn bộ danh sách, như sau:
 
 ```html
 <div id="container">
@@ -424,38 +424,38 @@ buttons.forEach((button) => {
 });
 ```
 
-This is just the tip of the iceberg when it comes to DOM manipulation and event handling, but it's enough to get you started with some exercises. In our examples so far, we have been using the 'click' event exclusively, but there are *many* more available to you.
+Đây mới chỉ là phần nổi của tảng băng khi nói về thao tác DOM và xử lý event, nhưng chừng đó đủ để bạn bắt đầu làm bài tập. Trong các ví dụ cho đến giờ, chúng ta chỉ dùng event 'click', nhưng còn *rất nhiều* event khác để bạn sử dụng.
 
-Some useful events include:
+Một số event hữu ích gồm:
 
 - click
 - dblclick
 - keydown
 - keyup
 
-You can find a more complete list with explanations of each event on [W3Schools JavaScript Event Reference page](https://www.w3schools.com/jsref/dom_obj_event.asp).
+Bạn có thể tìm danh sách đầy đủ hơn cùng phần giải thích từng event trong [trang tham khảo Event JavaScript của W3Schools](https://www.w3schools.com/jsref/dom_obj_event.asp).
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Manipulating web pages is the primary benefit of the JavaScript language! These techniques are things that you are likely to be messing with *every day* as a front-end developer, so let's practice!
+Thao tác với trang web là lợi ích chính của ngôn ngữ JavaScript! Đây là những kỹ thuật bạn có thể sẽ dùng *mỗi ngày* với tư cách một lập trình viên front-end, vậy hãy cùng thực hành!
 
-1. Read the following sections from JavaScript Tutorial's series on the DOM to get a broader idea of how events can be used in your pages.
+1. Đọc các phần sau trong loạt bài về DOM của JavaScript Tutorial để hiểu rộng hơn cách event có thể được dùng trên trang của bạn.
 
-   As you read, remember that the general ideas can be applied to any event, not only the ones used in examples - but information specific to a certain event type can always be found by checking documentation. Remember that the goal here isn't to deeply understand these concepts and be able to immediately apply them. Instead, you should be building awareness of the various tools at your disposal related to events.
+   Khi đọc, hãy nhớ rằng các ý tưởng tổng quát có thể áp dụng cho mọi event, không chỉ những event trong ví dụ — còn thông tin cụ thể về từng loại event luôn có thể tìm thấy trong tài liệu. Mục tiêu ở đây không phải là hiểu thật sâu các khái niệm và lập tức áp dụng được chúng. Thay vào đó, bạn nên xây dựng nhận thức về những công cụ liên quan đến event mà mình có thể sử dụng.
 
-   - [JavaScript events](https://www.javascripttutorial.net/javascript-dom/javascript-events/)
-   - [Mouse events](https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/)
-   - [Keyboard events](https://www.javascripttutorial.net/javascript-dom/javascript-keyboard-events/)
-   - [Event delegation](https://www.javascripttutorial.net/javascript-dom/javascript-event-delegation/)
-   - [The dispatchEvent method](https://www.javascripttutorial.net/javascript-dom/javascript-dispatchevent/)
-   - [Custom events](https://www.javascripttutorial.net/javascript-dom/javascript-custom-events/)
+   - [Các event JavaScript](https://www.javascripttutorial.net/javascript-dom/javascript-events/)
+   - [Các event chuột](https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/)
+   - [Các event bàn phím](https://www.javascripttutorial.net/javascript-dom/javascript-keyboard-events/)
+   - [Ủy quyền event](https://www.javascripttutorial.net/javascript-dom/javascript-event-delegation/)
+   - [Phương thức dispatchEvent](https://www.javascripttutorial.net/javascript-dom/javascript-dispatchevent/)
+   - [Event tùy chỉnh](https://www.javascripttutorial.net/javascript-dom/javascript-custom-events/)
 
-1. Read through [Understanding Callbacks in JavaScript](https://dev.to/i3uckwheat/understanding-callbacks-2o9e) for a more in-depth understanding of callbacks.
+1. Đọc [Tìm hiểu callback trong JavaScript](https://dev.to/i3uckwheat/understanding-callbacks-2o9e) để hiểu sâu hơn về callback.
 
-1. Complete the following sections from MDN to test your skills:
-   - [Doing some basic DOM manipulation](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#doing_some_basic_dom_manipulation)
-   - [Creating a dynamic shopping list](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#creating_a_dynamic_shopping_list)
+1. Hoàn thành các phần sau của MDN để kiểm tra kỹ năng:
+   - [Thực hiện một số thao tác DOM cơ bản](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#doing_some_basic_dom_manipulation)
+   - [Tạo danh sách mua sắm động](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#creating_a_dynamic_shopping_list)
 
 </div>

@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-You might think that the majority of a developer's work involves writing code. However, in reality, a significant amount of time is spent on *reading* code. This includes code written by other team members, code written by people who are no longer part of your team, and even code that you wrote two weeks ago but may not remember much about.
+Bạn có thể nghĩ phần lớn công việc của một lập trình viên là viết mã. Tuy nhiên, trên thực tế, chúng ta dành rất nhiều thời gian để *đọc* mã. Đó có thể là mã do thành viên khác trong nhóm viết, mã do những người không còn ở trong nhóm viết, hoặc thậm chí là mã bạn đã tự viết từ hai tuần trước nhưng giờ không còn nhớ rõ.
 
-Don't think of these principles as something you need to master immediately. Everybody writes messy code sometimes, even professionals. What we want to do here is give you some guidelines that can help improve the readability of your code as you go along. The more you write code, the better it will become, both in terms of readability and other aspects.
+Đừng nghĩ rằng bạn phải lập tức thành thạo những nguyên tắc này. Ai cũng đôi lúc viết mã lộn xộn, kể cả các lập trình viên chuyên nghiệp. Mục tiêu ở đây là đưa ra một số hướng dẫn giúp bạn dần cải thiện khả năng đọc hiểu mã. Bạn càng viết nhiều, mã của bạn sẽ càng tốt hơn, cả về khả năng đọc hiểu lẫn những khía cạnh khác.
 
-Test out these ideas and try to incorporate them into your thought process while writing code, but don't beat yourself up for not writing elegant, crystal-clear code. Focus on gradual improvement, not perfection.
+Hãy thử các ý tưởng này và tìm cách đưa chúng vào cách suy nghĩ khi viết mã, nhưng đừng tự trách vì mình chưa viết được mã tao nhã, rõ ràng đến từng chi tiết. Hãy tập trung vào sự tiến bộ từng bước thay vì sự hoàn hảo.
 
-With that out of the way, let's get started!
+Vậy là xong phần mở đầu, hãy bắt đầu!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Know how to distinguish hard to read code from easy to read code.
-- Use programming principles to make your code cleaner.
-- Write good comments.
+- Biết phân biệt mã khó đọc với mã dễ đọc.
+- Áp dụng các nguyên tắc lập trình để làm mã sạch hơn.
+- Viết chú thích tốt.
 
-### What is clean code?
+### Mã sạch là gì?
 
-Consider the following examples:
+Hãy xem các ví dụ sau:
 
-Example A:
+Ví dụ A:
 
 ```javascript
 const x= function (z){
@@ -32,7 +32,7 @@ return w +  z
 x("John");
 ```
 
-Example B:
+Ví dụ B:
 
 ```javascript
 const generateUserGreeting = function (name) {
@@ -43,45 +43,45 @@ const generateUserGreeting = function (name) {
 generateUserGreeting("John");
 ```
 
-Which of these examples do you find easier to read? It's immediately clear that the latter one is more meaningful. Surprisingly, both of these functions perform the exact same task (in the exact same way!), and both are valid code. But the second one is much more readable. Why?
+Bạn thấy ví dụ nào dễ đọc hơn? Rõ ràng ngay lập tức là ví dụ sau có ý nghĩa hơn. Điều đáng ngạc nhiên là cả hai hàm đều thực hiện chính xác cùng một nhiệm vụ (theo chính xác cùng một cách!), và cả hai đều là mã hợp lệ. Nhưng tại sao ví dụ thứ hai lại dễ đọc hơn nhiều?
 
-In the first example, single-letter variables are used and the indentation and spacing are inconsistent. The result is a piece of code that is confusing and messy.
+Trong ví dụ đầu tiên, các biến chỉ có một chữ cái được sử dụng, còn thụt lề và khoảng cách thì không nhất quán. Kết quả là một đoạn mã khó hiểu và lộn xộn.
 
-Imagine you're collaborating on a project with someone who has written the first function. How long will it take you to decipher what's going on so you can continue with your work? Or perhaps you've written it yourself some time ago and completely forgotten that it even existed. In both situations, you will eventually understand what is happening, but it's not going to be fun.
+Hãy tưởng tượng bạn đang cộng tác trong một dự án với người đã viết hàm đầu tiên. Bạn sẽ mất bao lâu để giải mã xem nó đang làm gì rồi tiếp tục công việc? Hoặc có thể chính bạn đã viết nó từ lâu và hoàn toàn quên mất nó tồn tại. Trong cả hai tình huống, cuối cùng bạn vẫn sẽ hiểu chuyện gì đang diễn ra, nhưng quá trình đó sẽ chẳng thú vị gì.
 
-Example B represents cleaner code. While you may not know what each part does, it's much easier to guess what's happening because the functions and variables are named clearly. The indentation and spacing follow a consistent and logical pattern.
+Ví dụ B thể hiện mã sạch hơn. Có thể bạn chưa biết từng phần làm gì, nhưng việc đoán xem điều gì đang xảy ra dễ hơn nhiều vì tên hàm và biến rất rõ ràng. Cách thụt lề và khoảng cách tuân theo một khuôn mẫu nhất quán, hợp lý.
 
-Single characters can be used as variable names in the context of a loop or a callback function, but avoid them elsewhere.
+Bạn có thể dùng ký tự đơn làm tên biến trong ngữ cảnh của vòng lặp hoặc hàm callback, nhưng nên tránh dùng chúng ở những nơi khác.
 
-#### About camelCase
+#### Về camelCase
 
-camelCase is a naming convention that allows writing multiple words together without spaces or punctuation. In camelCase, when a variable name consists of multiple words like our `setTimeout` example, the first word is written completely in lowercase, while the first letter of the second word (and any subsequent words) are capitalized.
+camelCase là quy ước đặt tên cho phép viết nhiều từ liền nhau mà không có khoảng trắng hay dấu câu. Trong camelCase, khi tên biến gồm nhiều từ như ví dụ `setTimeout` của chúng ta, từ đầu tiên được viết hoàn toàn bằng chữ thường, còn chữ cái đầu của từ thứ hai (và mọi từ tiếp theo) được viết hoa.
 
-Throughout this lesson, most of our variables and functions will be named using camelCase. While not every language uses this convention, it's very common in JavaScript so it'll be a good example to follow.
+Trong suốt bài học này, phần lớn biến và hàm sẽ được đặt tên theo camelCase. Không phải ngôn ngữ nào cũng dùng quy ước này, nhưng nó rất phổ biến trong JavaScript nên đây là một quy ước tốt để noi theo.
 
 <div class="lesson-note" markdown="1">
 
-#### Conventions are only conventions
+#### Quy ước chỉ là quy ước
 
-While this lesson shares some examples on ways to clean up code, in reality, every organization will have different specific approaches, some of which may differ slightly from our examples in this lesson. Nothing is absolute.
+Bài học này đưa ra một số ví dụ về cách làm cho mã gọn gàng hơn, nhưng trên thực tế, mỗi tổ chức sẽ có những cách tiếp cận cụ thể khác nhau; một số cách có thể hơi khác với ví dụ trong bài. Không có gì là tuyệt đối.
 
-What matters most is that these approaches all serve the same overall purpose - improve code readability and maintainability. Until a time comes where you need to follow a specific set of conventions, it is sensible to follow some convention and be consistent with them.
+Điều quan trọng nhất là tất cả những cách tiếp cận đó đều phục vụ cùng một mục đích: cải thiện khả năng đọc hiểu và bảo trì mã. Cho đến khi cần tuân theo một bộ quy ước cụ thể, việc chọn một quy ước nào đó và sử dụng nó nhất quán là hợp lý.
 
 </div>
 
-### Naming functions and variables
+### Đặt tên hàm và biến
 
-In our first example, we already touched on the importance of naming things *meaningfully*. Let's break down further what makes a good variable or function name.
+Trong ví dụ đầu tiên, chúng ta đã đề cập đến tầm quan trọng của việc đặt tên *có ý nghĩa*. Hãy phân tích kỹ hơn xem một tên biến hoặc tên hàm tốt cần có gì.
 
-#### A good name is descriptive
+#### Tên tốt phải mang tính mô tả
 
-In our good example, we have a variable `greeting`, to which the parameter `name` is concatenated. The function is named `generateUserGreeting` and the function does what the name suggests. Nice, clean, and understandable.
+Trong ví dụ tốt, chúng ta có một biến `greeting`, được nối với tham số `name`. Hàm có tên `generateUserGreeting` và thực hiện đúng điều mà tên gọi gợi ý. Gọn gàng, sạch sẽ và dễ hiểu.
 
-Now, try picturing a conversation with someone about the bad example. The function is named `x` with variables like `z`, and `w`. Oof, not nice.
+Bây giờ, hãy thử hình dung một cuộc trò chuyện với ai đó về ví dụ tệ. Hàm tên là `x`, với các biến như `z` và `w`. Thật không ổn chút nào.
 
-#### Use consistent vocabulary
+#### Sử dụng từ vựng nhất quán
 
-Variables of the same type ideally follow a consistent naming system. Consider the following examples from a game:
+Các biến cùng loại lý tưởng nhất nên tuân theo một hệ thống đặt tên nhất quán. Hãy xem các ví dụ sau từ một trò chơi:
 
 ```javascript
 // Consistent naming
@@ -90,7 +90,7 @@ function getPlayerName();
 function getPlayerTag();
 ```
 
-They all follow the same naming system of "get a thing". Now consider the following:
+Tất cả đều tuân theo cùng một hệ thống đặt tên kiểu “get một thứ gì đó”. Bây giờ hãy xem ví dụ sau:
 
 ```javascript
 // Inconsistent naming
@@ -99,9 +99,9 @@ function fetchPlayerName();
 function retrievePlayer1Tag();
 ```
 
-In the inconsistent example, three different verbs are used for the functions. While they all mean a similar thing, at a glance you might assume different verbs were used for a specific reason (e.g. "getting" might not be *quite* the same thing as "fetching" in some contexts). Additionally, what's the difference between `User`, `Player` and `Player1`? If there is no difference then ideally, you'd use the same name e.g. `Player`. Consistency allows for predictability.
+Trong ví dụ không nhất quán, ba động từ khác nhau được dùng cho các hàm. Dù chúng có ý nghĩa gần giống nhau, thoạt nhìn bạn có thể cho rằng việc dùng các động từ khác nhau là có lý do cụ thể (chẳng hạn, trong một số ngữ cảnh, “get” có thể *không hoàn toàn* giống “fetch”). Ngoài ra, `User`, `Player` và `Player1` khác nhau ở điểm nào? Nếu không có khác biệt thì tốt nhất nên dùng cùng một tên, chẳng hạn `Player`. Sự nhất quán tạo ra khả năng dự đoán.
 
-Variables should preferably begin with a noun or an adjective (that is, a noun phrase), as they typically represent "things", whether that thing is a string, a number etc. Functions represent actions so ideally begin with a verb.
+Tên biến tốt nhất nên bắt đầu bằng danh từ hoặc tính từ (tức là một cụm danh từ), vì chúng thường đại diện cho “sự vật”, dù đó là chuỗi, số hay thứ gì khác. Hàm đại diện cho hành động nên lý tưởng là bắt đầu bằng một động từ.
 
 ```javascript
 // Preferable
@@ -124,17 +124,17 @@ function myName() {
 }
 ```
 
-### Use searchable and immediately understandable names
+### Dùng những tên có thể tìm kiếm và dễ hiểu ngay
 
-Sometimes, it can be tempting to use "magic values" i.e. explicit values, such as bare numbers or strings. Let's take another look at an example:
+Đôi khi chúng ta dễ bị cám dỗ dùng “giá trị ma thuật”, tức các giá trị cụ thể như số hoặc chuỗi đứng riêng. Hãy xem lại một ví dụ:
 
 ```javascript
 setTimeout(stopTimer, 3600000);
 ```
 
-The problem is obvious. What does the magic number `3600000` mean, and how long is this timeout going to count down before executing `stopTimer`? Even if you know that JavaScript understands time in milliseconds, you'd probably need a calculator or Google to figure out how many seconds or minutes it represents.
+Vấn đề rất rõ ràng. Con số ma thuật `3600000` có nghĩa là gì, và bộ hẹn giờ này sẽ đếm trong bao lâu trước khi thực thi `stopTimer`? Ngay cả khi biết JavaScript biểu diễn thời gian bằng mili giây, có lẽ bạn vẫn phải dùng máy tính hoặc Google để tính xem nó tương đương bao nhiêu giây hay phút.
 
-Now, let's make this code more meaningful by introducing a descriptive variable:
+Bây giờ, hãy làm cho mã này có ý nghĩa hơn bằng cách đưa vào một biến mang tính mô tả:
 
 ```javascript
 const ONE_HOUR = 3600000; // Can even write as 60 * 60 * 1000;
@@ -142,23 +142,23 @@ const ONE_HOUR = 3600000; // Can even write as 60 * 60 * 1000;
 setTimeout(stopTimer, ONE_HOUR);
 ```
 
-Much better, isn't it? The variable is declared with a descriptive name, and you don't need to perform any calculations when reading this code.
+Tốt hơn nhiều, đúng không? Biến được khai báo bằng một tên mô tả rõ ràng, và bạn không cần thực hiện phép tính nào khi đọc mã.
 
-You might wonder why this variable is declared with all caps when we recommended camelCase earlier. This is a convention to be used when the programmer is absolutely sure that the variable is *truly* a constant, especially if it represents some kind of concept like a specific duration of time. We know that the milliseconds in an hour will never change, so it's appropriate here. Remember, this is only a convention. Not everyone will necessarily do things the same way.
+Bạn có thể thắc mắc tại sao biến này lại được khai báo bằng chữ in hoa toàn bộ trong khi trước đó chúng ta khuyến nghị camelCase. Đây là quy ước dùng khi lập trình viên hoàn toàn chắc chắn rằng biến đó *thực sự* là một hằng số, đặc biệt khi nó đại diện cho một khái niệm như một khoảng thời gian cụ thể. Chúng ta biết số mili giây trong một giờ sẽ không bao giờ thay đổi, nên dùng như vậy là phù hợp. Hãy nhớ rằng đây chỉ là một quy ước. Không phải ai cũng nhất thiết làm mọi việc giống nhau.
 
-### Indentation and line length
+### Thụt lề và độ dài dòng
 
-Now it's time to head to more "controversial" topics (there's a joke about the [war between coders who indent with spaces versus tabs](https://www.reddit.com/r/programming/comments/p1j1c/tabs_vs_spaces_vs_both/)).
+Bây giờ là lúc chuyển sang những chủ đề “gây tranh cãi” hơn (có một câu đùa về [cuộc chiến giữa các lập trình viên thụt lề bằng dấu cách và bằng tab](https://www.reddit.com/r/programming/comments/p1j1c/tabs_vs_spaces_vs_both/)).
 
-What actually matters is *consistency*. Choose a way to indent and stick to it. Various JavaScript style guides recommend different options, and one is not really superior to the other. We will look at style guides and related tools in more detail later in the curriculum.
+Điều thực sự quan trọng là *tính nhất quán*. Hãy chọn một cách thụt lề rồi kiên trì dùng nó. Nhiều hướng dẫn phong cách JavaScript đề xuất các lựa chọn khác nhau, và không có lựa chọn nào thực sự vượt trội hơn lựa chọn khác. Chúng ta sẽ tìm hiểu kỹ hơn về các hướng dẫn phong cách và công cụ liên quan ở phần sau của chương trình học.
 
-#### Line length
+#### Độ dài dòng
 
-Again, different style guides will recommend different options for this one, but just about *all* of them suggest limiting the length of each line of code.
+Một lần nữa, các hướng dẫn phong cách khác nhau sẽ đưa ra các lựa chọn khác nhau, nhưng gần như *tất cả* đều khuyên giới hạn độ dài mỗi dòng mã.
 
-Generally, your code will be easier to read if you manually break lines that are longer than about 80 characters. Many code editors have a line in the display to show when you have crossed this threshold. When manually breaking lines, you should try to break immediately *after* an operator or comma.
+Nhìn chung, mã sẽ dễ đọc hơn nếu bạn chủ động ngắt những dòng dài hơn khoảng 80 ký tự. Nhiều trình soạn thảo mã có một vạch trên màn hình để báo khi bạn vượt qua ngưỡng này. Khi chủ động ngắt dòng, bạn nên cố gắng ngắt ngay *sau* một toán tử hoặc dấu phẩy.
 
-Then, there are a few ways to format continuation lines. For example, you can:
+Có một số cách định dạng các dòng tiếp nối. Ví dụ, bạn có thể viết:
 
 ```javascript
 // This line is a bit too long
@@ -177,21 +177,21 @@ let anotherReallyReallyLongLine = something + somethingElse + anotherThing +
                                   howManyTacos + oneMoreReallyLongThing;
 ```
 
-Different formats aren't necessarily right or wrong, and different people may prefer different things. Do things in a way that makes sense to you, and stay consistent with it.
+Các cách định dạng khác nhau không nhất thiết đúng hay sai, và mỗi người có thể thích một cách khác nhau. Hãy làm theo cách có ý nghĩa với bạn, đồng thời duy trì sự nhất quán.
 
-### Semicolons
+### Dấu chấm phẩy
 
-Semicolons are *mostly* optional in JavaScript because the JavaScript interpreter will automatically insert them if they are omitted. This functionality *can* break in certain situations, leading to bugs in your code, so we'd recommend getting used to adding semicolons.
+Dấu chấm phẩy *phần lớn* là tùy chọn trong JavaScript vì trình thông dịch JavaScript sẽ tự động chèn chúng nếu bị bỏ qua. Chức năng này *có thể* gặp lỗi trong một số tình huống, dẫn đến lỗi trong mã, vì vậy chúng tôi khuyên bạn nên tập thói quen thêm dấu chấm phẩy.
 
-Whether you do or not, again, consistency is the main thing.
+Dù có dùng hay không thì một lần nữa, điều quan trọng nhất vẫn là tính nhất quán.
 
-### About comments
+### Về chú thích
 
-Comments are a great tool but like any good tool, they can be misused. Especially for someone early in their coding journey, it might be tempting to have comments that explain *everything* the code is doing. This is generally not a good practice. Let's look at some common pitfalls when commenting and *why* they are pitfalls.
+Chú thích là một công cụ tuyệt vời, nhưng cũng như mọi công cụ tốt, chúng có thể bị sử dụng sai. Đặc biệt khi mới bắt đầu học lập trình, bạn có thể muốn viết chú thích giải thích *mọi thứ* mà mã đang làm. Nhìn chung, đó không phải là một thói quen tốt. Hãy xem một số cạm bẫy thường gặp khi viết chú thích và *vì sao* chúng là cạm bẫy.
 
-#### Don't comment when you should be using git
+#### Đừng dùng chú thích khi bạn nên dùng git
 
-It might be tempting to have comments in your code that explain the changes or additions you have made. For example:
+Bạn có thể muốn viết chú thích trong mã để giải thích những thay đổi hoặc phần bổ sung mình đã thực hiện. Ví dụ:
 
 ```javascript
 /**
@@ -202,11 +202,11 @@ It might be tempting to have comments in your code that explain the changes or a
  */
 ```
 
-The problem is that you already have a tool to track changes - git! Keeping track of these comments will become a chore, and you will have an incomplete picture of what has happened. Your files will also contain bloat that doesn't belong there.
+Vấn đề là bạn đã có sẵn một công cụ để theo dõi thay đổi: git! Việc duy trì những chú thích này sẽ trở thành một gánh nặng, và bạn vẫn chỉ có được bức tranh không đầy đủ về những gì đã xảy ra. Các tệp của bạn cũng sẽ chứa những phần dư thừa không nên có ở đó.
 
-By using git, all this information will be neatly organized in the repository and readily accessible with `git log`.
+Khi dùng git, toàn bộ thông tin này sẽ được sắp xếp gọn gàng trong kho mã và dễ dàng truy cập bằng `git log`.
 
-The same applies to code that is no longer used. If you need it again in the future, just turn to your git commits. Commenting out something while testing something else is, of course, ok, but once a piece of code is not needed, just delete it. Don't have something like this hanging around in your files:
+Điều tương tự cũng áp dụng cho mã không còn được sử dụng. Nếu sau này cần lại, bạn chỉ việc tìm trong các commit git. Việc tạm thời chú thích một đoạn mã trong lúc thử nghiệm điều gì đó dĩ nhiên không sao, nhưng khi một đoạn mã không còn cần thiết, hãy xóa nó. Đừng để những thứ như sau lảng vảng trong tệp:
 
 ```javascript
 theFunctionInUse();
@@ -215,11 +215,11 @@ theFunctionInUse();
 // whyAmIEvenHereImAncient();
 ```
 
-#### Tell why, not how
+#### Nói về lý do, không phải cách làm
 
-Ideally, comments do not provide pseudocode that duplicates your code. Good comments explain the *reasons* behind a piece of code. Sometimes you won't even need a comment at all!
+Lý tưởng nhất, chú thích không nên cung cấp đoạn mã giả lặp lại nội dung mã. Chú thích tốt giải thích *lý do* phía sau một đoạn mã. Đôi khi bạn thậm chí không cần chú thích nào cả!
 
-Say we had a string where part of the text was inside square brackets and we wanted to extract the text within those brackets.
+Giả sử chúng ta có một chuỗi trong đó một phần văn bản nằm giữa cặp dấu ngoặc vuông, và muốn lấy phần văn bản bên trong cặp ngoặc đó.
 
 ```javascript
 // Function to extract text
@@ -229,7 +229,7 @@ function extractText(s) {
 }
 ```
 
-The comments just describe what we can tell from the code itself. Slightly more useful comments could explain the reasons behind the code.
+Các chú thích trên chỉ mô tả những gì chúng ta đã có thể thấy từ chính mã. Những chú thích hữu ích hơn một chút có thể giải thích lý do phía sau đoạn mã.
 
 ```javascript
 // Extracts text inside square brackets (excluding the brackets)
@@ -238,7 +238,7 @@ function extractText(s) {
 }
 ```
 
-But often, we can make the code speak for itself without comments.
+Nhưng thường thì chúng ta có thể để mã tự nói lên ý nghĩa mà không cần chú thích.
 
 ```javascript
 function extractTextWithinBrackets(text) {
@@ -248,13 +248,13 @@ function extractTextWithinBrackets(text) {
 }
 ```
 
-In the first example, the comments repeat twice what the code does. But for this, you could've just read the code, so the comments are redundant.
+Trong ví dụ đầu tiên, các chú thích lặp lại hai lần điều mà mã thực hiện. Nhưng bạn chỉ cần đọc mã là đã hiểu được, nên các chú thích trở nên thừa.
 
-In the second example, the comment clarifies the purpose of the function: extracting the text between square brackets from a string and not just "extracting text". That's handy, but we can do *even* better.
+Trong ví dụ thứ hai, chú thích làm rõ mục đích của hàm: lấy phần văn bản giữa các dấu ngoặc vuông trong một chuỗi chứ không chỉ “lấy văn bản”. Điều đó hữu ích, nhưng chúng ta còn có thể làm *tốt hơn nữa*.
 
-In the last example, no comments are needed at all. The use of descriptive functions and variable names eliminates the need for additional explanations. Pretty neat, huh?
+Trong ví dụ cuối, hoàn toàn không cần chú thích. Việc dùng tên hàm và biến mang tính mô tả đã loại bỏ nhu cầu phải giải thích thêm. Khá hay, phải không?
 
-**This doesn't mean good code should lack comments.** Let's look at an example where a comment serves a helpful purpose:
+**Điều này không có nghĩa là mã tốt thì không nên có chú thích.** Hãy xem một ví dụ trong đó chú thích phục vụ một mục đích hữu ích:
 
 ```javascript
 function calculateBMI(height, weight) {
@@ -265,23 +265,23 @@ function calculateBMI(height, weight) {
 }
 ```
 
-This comment helps to refresh the reader on how BMI is calculated in plain English, helping the reader to see why the height needs to be converted and what the following calculation is doing. We are almost there with the naming, but the comment still adds further clarity.
+Chú thích này giúp người đọc nhớ lại cách tính BMI bằng ngôn ngữ thông thường, nhờ đó hiểu vì sao cần đổi chiều cao và phép tính tiếp theo đang làm gì. Cách đặt tên đã khá ổn, nhưng chú thích vẫn bổ sung thêm sự rõ ràng.
 
-In many situations, well-placed comments are priceless. They might explain why an unintuitive bit of code is necessary, or perhaps the bigger picture of why a certain function is *particularly* important to be called here and not there. The article linked in the assignment section goes into more depth on this.
+Trong nhiều tình huống, những chú thích được đặt đúng chỗ là vô giá. Chúng có thể giải thích vì sao một đoạn mã khó hiểu lại cần thiết, hoặc trình bày bức tranh lớn hơn về lý do một hàm cụ thể *đặc biệt* quan trọng khi được gọi ở đây chứ không phải ở nơi khác. Bài viết được liên kết trong phần bài tập sẽ phân tích sâu hơn về điều này.
 
-### In conclusion
+### Kết luận
 
-Now that we've covered these ideas, it's good to return to the reminder we shared at the start. Don't try to write perfectly clean code, this will only lead to frustration. Writing "spaghetti" is inevitable; everyone does it sometimes. Just keep these ideas in mind, and with time and patience, your code will start to get cleaner.
+Giờ đây, sau khi đã tìm hiểu những ý tưởng này, chúng ta nên quay lại lời nhắc ở phần đầu. Đừng cố viết mã sạch hoàn hảo; điều đó chỉ khiến bạn nản lòng. Viết mã “spaghetti” là điều không thể tránh khỏi; đôi lúc ai cũng làm vậy. Chỉ cần ghi nhớ những ý tưởng này, rồi theo thời gian và sự kiên nhẫn, mã của bạn sẽ dần sạch hơn.
 
-Learning to write clean code is a process of constant improvement. One that will extend beyond you *completing* The Odin Project. This lesson is meant to serve as a primer and a starting point for that journey.
+Học cách viết mã sạch là một quá trình không ngừng cải thiện. Quá trình đó sẽ tiếp tục ngay cả sau khi bạn *hoàn thành* The Odin Project. Bài học này nhằm làm phần nhập môn và điểm khởi đầu cho hành trình đó.
 
-> Great code comes from experience. Experience comes from not-so-great code.
+> Mã hay đến từ kinh nghiệm. Kinh nghiệm đến từ những đoạn mã chưa hay.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read [10 Principles for Keeping Your Programming Code Clean](https://onextrapixel.com/10-principles-for-keeping-your-programming-code-clean/) to get some great tips for clean code.
-1. To help better understand good comment practices, read about [comments telling us why code works](https://blog.codinghorror.com/code-tells-you-how-comments-tell-you-why/) as well as how to [code without comments](https://blog.codinghorror.com/coding-without-comments/).
+1. Đọc [10 nguyên tắc để giữ mã lập trình sạch](https://onextrapixel.com/10-principles-for-keeping-your-programming-code-clean/) để tìm hiểu một số mẹo hữu ích về mã sạch.
+1. Để hiểu rõ hơn về cách viết chú thích tốt, hãy đọc về [các chú thích cho biết vì sao mã hoạt động](https://blog.codinghorror.com/code-tells-you-how-comments-tell-you-why/) cũng như [viết mã không cần chú thích](https://blog.codinghorror.com/coding-without-comments/).
 
 </div>

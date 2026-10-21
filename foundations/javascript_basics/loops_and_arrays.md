@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-One of the challenges of programming is repetition. While some manual repetition is completely fine, sometimes we want to streamline repeated instructions to be more readable. Another challenge is dealing with large amounts of data. For example, if you want to store the names of all the students in your class, how would you do it? You could create a variable for each name, but that would be tedious and inefficient. It'll also be hard to manage and update. What if you want to change or access the names later?
+Một trong những thách thức của việc lập trình là sự lặp lại. Một chút lặp lại thủ công hoàn toàn không sao, nhưng đôi khi chúng ta muốn làm cho các chỉ dẫn lặp lại trở nên gọn gàng và dễ đọc hơn. Một thách thức khác là xử lý lượng dữ liệu lớn. Ví dụ, nếu muốn lưu tên của tất cả học sinh trong lớp, bạn sẽ làm thế nào? Bạn có thể tạo một biến cho mỗi cái tên, nhưng như vậy vừa tẻ nhạt vừa kém hiệu quả. Việc quản lý và cập nhật cũng sẽ khó khăn. Nếu sau này muốn thay đổi hoặc truy cập các tên đó thì sao?
 
-Luckily, there are ways to handle these problems. In this lesson, you'll learn about loops, which are control structures that allow you to execute a block of code repeatedly. You’ll also learn about arrays, which are data structures that can store multiple values in a single variable. Arrays are very useful for organizing and manipulating large amounts of data. Loops can often be very handy for performing the same operation on each element of an array. Finally, you’ll be introduced to test-driven development (TDD), which is the practice of writing tests for your code before you write the code itself.
+May mắn là có những cách để xử lý các vấn đề này. Trong bài học này, bạn sẽ tìm hiểu về vòng lặp, những cấu trúc điều khiển cho phép thực thi lặp đi lặp lại một khối mã. Bạn cũng sẽ học về mảng, những cấu trúc dữ liệu có thể lưu nhiều giá trị trong một biến duy nhất. Mảng rất hữu ích để tổ chức và thao tác với lượng dữ liệu lớn. Vòng lặp thường đặc biệt tiện lợi khi cần thực hiện cùng một thao tác trên từng phần tử của mảng. Cuối cùng, bạn sẽ được làm quen với phát triển hướng kiểm thử (TDD), tức thực hành viết các bài kiểm thử cho mã trước khi viết chính mã đó.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Using loops.
-- Using arrays.
-- Using array methods such as `map`, `filter` and `reduce`.
-- Getting your hands dirty with TDD exercises.
+- Sử dụng vòng lặp.
+- Sử dụng mảng.
+- Sử dụng các phương thức mảng như `map`, `filter` và `reduce`.
+- Bắt tay vào thực hiện các bài tập TDD.
 
-### Loops
+### Vòng lặp
 
-Computers don't get tired, and they're really, *really* fast! For that reason, they are well suited to solving problems that involve doing calculations multiple times. In some cases, a computer will be able to repeat a task *thousands* or even *millions* of times in just a few short seconds where it might take a human many hours (obviously, speed here depends on the complexity of the calculation and the speed of the computer itself).
+Máy tính không biết mệt, lại còn thực sự, *thực sự* nhanh! Vì vậy, chúng rất phù hợp để giải quyết những bài toán liên quan đến việc thực hiện phép tính nhiều lần. Trong một số trường hợp, máy tính có thể lặp lại một tác vụ *hàng nghìn* hoặc thậm chí *hàng triệu* lần chỉ trong vài giây, trong khi con người có thể mất nhiều giờ (dĩ nhiên, tốc độ còn phụ thuộc vào độ phức tạp của phép tính và tốc độ của chính máy tính).
 
-To repeat a set of instructions multiple times, we can use a **loop**. Go through the following resources on loops. Some of them will contain examples that use arrays, which we will go through in more detail in the next section, but for now it will suffice to know that arrays are just lists of items.
+Để lặp lại một tập hợp chỉ dẫn nhiều lần, chúng ta có thể dùng một **vòng lặp**. Hãy tìm hiểu các tài liệu sau về vòng lặp. Một số tài liệu có ví dụ sử dụng mảng; chúng ta sẽ tìm hiểu kỹ hơn về mảng ở phần tiếp theo, nhưng hiện tại chỉ cần biết rằng mảng đơn giản là danh sách các phần tử.
 
-1. Read [MDN's Looping Code](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code). It's a longer one, but make sure you tackle the exercises near the bottom of the page.
-1. Once again, same info, slightly different context from [JavaScript.info's "Loops: While and For"](http://javascript.info/while-for). Be sure to do the exercises at the end of the page. You learn best by doing.
+1. Đọc [Looping Code của MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code). Bài này khá dài, nhưng hãy nhớ làm các bài tập gần cuối trang.
+1. Một lần nữa, hãy đọc thông tin tương tự trong bối cảnh hơi khác qua bài ["Loops: While and For" của JavaScript.info](http://javascript.info/while-for). Nhớ làm các bài tập ở cuối trang. Cách học tốt nhất là thực hành.
 
-### Arrays
+### Mảng
 
-Strings and numbers may be our building blocks, but as your scripts get more complex, you're going to need a way to deal with large quantities of them. Luckily, JavaScript has a couple of data types that are used for just that. An Array is an ordered collection of items (strings, numbers, or other things). You may recognize that some of the array methods demonstrated in some of the following resources do similar things to loops. Sometimes you may need more control via an actual loop but sometimes the appropriate array method does the job just fine and you prefer the way it reads.
+Chuỗi và số có thể là những khối xây dựng cơ bản, nhưng khi các tập lệnh trở nên phức tạp hơn, bạn sẽ cần một cách để xử lý số lượng lớn các giá trị đó. May mắn là JavaScript có một vài kiểu dữ liệu phục vụ chính mục đích này. Mảng là một tập hợp có thứ tự gồm các phần tử (chuỗi, số hoặc những thứ khác). Bạn có thể nhận ra rằng một số phương thức mảng trong các tài liệu sau thực hiện những việc tương tự vòng lặp. Đôi khi bạn cần nhiều quyền kiểm soát hơn thông qua một vòng lặp thực sự, nhưng đôi khi phương thức mảng phù hợp đã đủ và bạn thích cách nó được diễn đạt hơn.
 
-1. This [JavaScript Arrays crash course](https://www.youtube.com/watch?v=7W4pQQ20nJg) explains an overview of arrays in JavaScript in about 6 minutes.
-1. Read through this [intro to arrays](https://javascript.info/array) from JavaScript.info. You do not need to do the exercises at the end of the page.
-1. Read through JavaScript.info's [array method guide](https://javascript.info/array-methods) for a deeper look at some further array methods in JavaScript. Again, you do not need to do the exercises at the end of the page; we will come back to these later.
-1. Bookmark [MDN's Array documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). You do not need to memorize anything here. This is where you'll find all built-in array properties and methods and their documentation. This will likely be something you regularly revisit as you code and solve problems.
+1. Khóa học cấp tốc về [Mảng JavaScript](https://www.youtube.com/watch?v=7W4pQQ20nJg) này trình bày tổng quan về mảng trong JavaScript trong khoảng 6 phút.
+1. Đọc phần [giới thiệu về mảng](https://javascript.info/array) của JavaScript.info. Bạn không cần làm các bài tập ở cuối trang.
+1. Đọc [hướng dẫn về phương thức mảng](https://javascript.info/array-methods) của JavaScript.info để tìm hiểu sâu hơn về một số phương thức mảng khác trong JavaScript. Một lần nữa, bạn không cần làm bài tập ở cuối trang; chúng ta sẽ quay lại với chúng sau.
+1. Đánh dấu trang tài liệu [Array của MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). Bạn không cần học thuộc bất cứ điều gì ở đây. Đây là nơi bạn sẽ tìm thấy tài liệu về tất cả thuộc tính và phương thức mảng dựng sẵn. Có lẽ bạn sẽ thường xuyên quay lại đây khi viết mã và giải quyết vấn đề.
 
-### Some examples of array magic
+### Một vài ví dụ về phép màu của mảng
 
-Besides being a quick and handy way to store data, arrays also have a set of functions for manipulating that data in very powerful ways. Once you get more experience with these functions, you will start to see ways to use them all over the place! There are really only a handful of these functions, but as you'll soon see, the possibilities of what you can do with them are near endless.
+Ngoài việc là một cách nhanh chóng và tiện lợi để lưu dữ liệu, mảng còn có một tập hợp các hàm cho phép thao tác với dữ liệu theo những cách rất mạnh mẽ. Khi có thêm kinh nghiệm với các hàm này, bạn sẽ bắt đầu thấy chúng có thể được dùng ở khắp nơi! Thực ra chỉ có một số ít hàm như vậy, nhưng bạn sẽ sớm thấy những khả năng mà chúng mở ra gần như vô tận.
 
-As an example of what we mean, let's consider a `sumOfTripledEvens` function. It will:
+Để minh họa, hãy xét một hàm `sumOfTripledEvens`. Hàm này sẽ:
 
-1. Take in an array.
-1. For every even number, it will triple it.
-1. Then it will sum all those even numbers.
+1. Nhận vào một mảng.
+1. Nhân ba mọi số chẵn.
+1. Sau đó cộng tất cả những số chẵn đó lại.
 
-Can you think of how you could implement a function like that using pseudocode?
+Bạn có nghĩ ra cách triển khai một hàm như vậy bằng mã giả không?
 
-1. We need to perform an operation only on the even numbers.
-1. We need to transform *those* numbers by multiplying them by 3.
-1. Finally, we need to add the result up from the previous transformation.
+1. Chúng ta cần thực hiện thao tác chỉ trên các số chẵn.
+1. Chúng ta cần biến đổi *những* số đó bằng cách nhân chúng với 3.
+1. Cuối cùng, chúng ta cần cộng kết quả của phép biến đổi trước đó.
 
-So using that logic, you may end up implementing something like this:
+Dựa trên logic đó, có thể bạn sẽ triển khai một hàm như sau:
 
 ```javascript
 function sumOfTripledEvens(array) {
@@ -66,21 +66,21 @@ function sumOfTripledEvens(array) {
 }
 ```
 
-In the above code, there are 3 important snippets to consider:
+Trong đoạn mã trên, có 3 phần quan trọng cần lưu ý:
 
-- `if (array[i] % 2 === 0)`: checks if a given number is even.
-- `const tripleEvenNumber = array[i] * 3`: gets triple that number.
-- `sum += tripleEvenNumber`: increments the sum by that number.
+- `if (array[i] % 2 === 0)`: kiểm tra một số đã cho có phải số chẵn hay không.
+- `const tripleEvenNumber = array[i] * 3`: lấy số đó nhân ba.
+- `sum += tripleEvenNumber`: cộng số đó vào tổng.
 
-Every single piece solves a crucial problem with our code. However, we can do the same thing with some array methods and sometimes, the result is a little easier to read and understand. Let's take a moment to see how we might be able to use some.
+Mỗi phần đều giải quyết một vấn đề quan trọng trong mã của chúng ta. Tuy nhiên, chúng ta có thể làm cùng một việc bằng một số phương thức mảng, và đôi khi kết quả sẽ dễ đọc, dễ hiểu hơn một chút. Hãy dành chút thời gian xem chúng ta có thể sử dụng các phương thức đó như thế nào.
 
-#### The map method
+#### Phương thức map
 
-`map` is one such function. It expects a `callback` as an argument, which is a fancy way to say "I want you to pass another function as an argument to my function".
+`map` là một hàm như vậy. Nó nhận một `callback` làm đối số; nói một cách hoa mỹ, điều đó có nghĩa là “tôi muốn bạn truyền một hàm khác làm đối số cho hàm của tôi”.
 
-Let's say we had a function `addOne`, which takes in `num` as an argument and outputs that `num` increased by 1, and an array of numbers, `[1, 2, 3, 4, 5]`. Let's say we'd like to increment all of these numbers by 1 using our `addOne` function.
+Giả sử chúng ta có một hàm `addOne`, nhận `num` làm đối số và trả về `num` sau khi tăng 1, cùng một mảng số `[1, 2, 3, 4, 5]`. Giả sử chúng ta muốn dùng hàm `addOne` để tăng tất cả các số này lên 1.
 
-Instead of making a `for` loop and iterating over the above array, we could use our `map` array method instead, which **automatically** iterates over an array for us. We don't need to do any extra work aside from simply passing the function we want to use in:
+Thay vì tạo một vòng lặp `for` và lặp qua mảng trên, chúng ta có thể dùng phương thức mảng `map`, phương thức này **tự động** lặp qua một mảng thay chúng ta. Chúng ta không cần làm gì thêm ngoài việc truyền vào hàm muốn sử dụng:
 
 ```javascript
 function addOne(num) {
@@ -91,14 +91,14 @@ const mappedArr = arr.map(addOne);
 console.log(mappedArr); // Outputs [2, 3, 4, 5, 6]
 ```
 
-`map` returns a new array and does not change the original array.
+`map` trả về một mảng mới và không thay đổi mảng ban đầu.
 
 ```javascript
 // The original array has not been changed!
 console.log(arr); // Outputs [1, 2, 3, 4, 5]
 ```
 
-Using `map` in this way can be more elegant than writing a `for` loop and iterating over the array. But we can do even better. Since we're not using `addOne` anywhere else and it's a simple function, we can define it inline using an arrow function, right inside of `map` like so:
+Dùng `map` theo cách này có thể thanh thoát hơn so với việc viết vòng lặp `for` rồi lặp qua mảng. Nhưng chúng ta còn có thể làm tốt hơn. Vì không dùng `addOne` ở nơi nào khác và đó là một hàm đơn giản, chúng ta có thể định nghĩa nó ngay bên trong `map` bằng một hàm mũi tên như sau:
 
 ```javascript
 const arr = [1, 2, 3, 4, 5];
@@ -106,13 +106,13 @@ const mappedArr = arr.map((num) => num + 1);
 console.log(mappedArr); // Outputs [2, 3, 4, 5, 6]
 ```
 
-#### The filter method
+#### Phương thức filter
 
-`filter` is somewhat similar to `map`. It still iterates over the array and applies the callback function on every item. However, instead of transforming the values in the array, it returns a new array where each item is only included *if* the callback function returns `true` for it.
+`filter` khá giống `map`. Nó vẫn lặp qua mảng và áp dụng hàm callback lên từng phần tử. Tuy nhiên, thay vì biến đổi các giá trị trong mảng, nó trả về một mảng mới trong đó mỗi phần tử chỉ được đưa vào *nếu* hàm callback trả về `true` cho phần tử đó.
 
-Let's say we had a function, `isOdd` that returns either `true` if a number is odd or `false` if it isn't.
+Giả sử chúng ta có một hàm `isOdd`, trả về `true` nếu một số là số lẻ hoặc `false` nếu không phải.
 
-The `filter` method expects the `callback` to return either `true` or `false`. If it returns `true`, the value is included in the output. Otherwise, it isn't. Consider the array from our previous example, `[1, 2, 3, 4, 5]`. If we wanted to remove all even numbers from this array, we could use `.filter()` like this:
+Phương thức `filter` yêu cầu `callback` trả về `true` hoặc `false`. Nếu trả về `true`, giá trị sẽ được đưa vào kết quả; nếu không thì không. Xét mảng trong ví dụ trước, `[1, 2, 3, 4, 5]`. Nếu muốn loại bỏ tất cả số chẵn khỏi mảng này, chúng ta có thể dùng `.filter()` như sau:
 
 ```javascript
 function isOdd(num) {
@@ -124,18 +124,18 @@ console.log(oddNums); // Outputs [1, 3, 5];
 console.log(arr); // Outputs [1, 2, 3, 4, 5], original array is not affected
 ```
 
-- `filter` will iterate through `arr` and pass **every value** into the `isOdd` callback function, one at a time.
-- `isOdd` will return `true` when the value is odd, which means this value is included in the output.
-- If it's an even number, `isOdd` will return `false` and not include it in the final output.
+- `filter` sẽ lặp qua `arr` và lần lượt truyền **mọi giá trị** vào hàm callback `isOdd`.
+- `isOdd` sẽ trả về `true` khi giá trị là số lẻ, nghĩa là giá trị đó được đưa vào kết quả.
+- Nếu là số chẵn, `isOdd` sẽ trả về `false` và không đưa nó vào kết quả cuối cùng.
 
-#### The reduce method
+#### Phương thức reduce
 
-Finally, let's say that we wanted to multiply all of the numbers in our `arr` together like this: `1 * 2 * 3 * 4 * 5`. First, we'd have to declare a variable `total` and initialize it to 1. Then, we'd iterate through the array with a `for` loop and multiply the `total` by the current number.
+Cuối cùng, giả sử chúng ta muốn nhân tất cả các số trong `arr` với nhau như sau: `1 * 2 * 3 * 4 * 5`. Trước hết, chúng ta phải khai báo một biến `total` và khởi tạo nó bằng 1. Sau đó, chúng ta sẽ lặp qua mảng bằng vòng lặp `for` và nhân `total` với số hiện tại.
 
-But we don't actually need to do all of that; we have our `reduce` method that will do the job for us. Just like `.map()` and `.filter()`, it expects a callback function. However, there are two key differences with this array method:
+Nhưng thực ra chúng ta không cần làm tất cả những việc đó; đã có phương thức `reduce` giúp chúng ta. Cũng giống `.map()` và `.filter()`, nó nhận một hàm callback. Tuy nhiên, phương thức mảng này có hai điểm khác biệt chính:
 
-- The callback function takes two arguments instead of one. The first argument is the `accumulator`, which is the current value of the result *at that point in the loop*. The first time through, this value will either be set to the `initialValue` (described in the next bullet point), or the first element in the array if no `initialValue` is provided. The second argument for the callback is the `current` value, which is the item currently being iterated on.
-- `reduce` itself also takes in an `initialValue` as an optional second argument (after the callback), which helps when we don't want our initial value to be the first element in the array. For instance, if we wanted to sum all numbers in an array, we could call reduce without an `initialValue`, but if we wanted to sum all numbers in an array and add 10, we could use 10 as our `initialValue`.
+- Hàm callback nhận hai đối số thay vì một. Đối số đầu tiên là `accumulator`, giá trị kết quả hiện tại *tại thời điểm đó trong vòng lặp*. Ở lần đầu tiên, giá trị này sẽ được đặt thành `initialValue` (được mô tả ở gạch đầu dòng tiếp theo), hoặc thành phần tử đầu tiên trong mảng nếu không cung cấp `initialValue`. Đối số thứ hai của callback là giá trị `current`, tức phần tử đang được lặp qua.
+- Bản thân `reduce` cũng nhận `initialValue` làm đối số thứ hai tùy chọn (sau callback). Điều này hữu ích khi chúng ta không muốn giá trị ban đầu là phần tử đầu tiên của mảng. Chẳng hạn, nếu muốn tính tổng mọi số trong mảng, chúng ta có thể gọi reduce mà không có `initialValue`; nhưng nếu muốn tính tổng mọi số rồi cộng thêm 10, chúng ta có thể dùng 10 làm `initialValue`.
 
 ```javascript
 const arr = [1, 2, 3, 4, 5];
@@ -146,22 +146,22 @@ console.log(productOfAllNums); // Outputs 120;
 console.log(arr); // Outputs [1, 2, 3, 4, 5]
 ```
 
-In the above function, we:
+Trong hàm trên, chúng ta:
 
-- Pass in a callback function, which is `(total, currentItem) => total * currentItem`.
-- Initialize `total` to `1` in the second argument.
+- Truyền vào một hàm callback, đó là `(total, currentItem) => total * currentItem`.
+- Khởi tạo `total` bằng `1` trong đối số thứ hai.
 
-So what `.reduce()` will do is go through every element in `arr` and apply the `callback` function to it. It updates `total` without actually changing the array itself. After it’s done, it returns `total`.
+Vậy `.reduce()` sẽ đi qua từng phần tử trong `arr` và áp dụng hàm `callback` lên phần tử đó. Nó cập nhật `total` mà không thực sự thay đổi chính mảng. Sau khi hoàn tất, nó trả về `total`.
 
-#### Summary
+#### Tóm tắt
 
-You've learnt about three powerful array methods which are `map`, `filter` and `reduce`. They can allow us to write potentially more readable code which in turn may be less prone to bugs.
+Bạn đã tìm hiểu về ba phương thức mảng mạnh mẽ là `map`, `filter` và `reduce`. Chúng cho phép chúng ta viết mã có khả năng dễ đọc hơn, từ đó có thể ít phát sinh lỗi hơn.
 
-For a quick recap of these array methods, consider this picture which should visually explain them in terms of sandwiches:
+Để ôn nhanh các phương thức mảng này, hãy xem bức hình minh họa chúng dưới dạng các bước làm bánh sandwich:
 
-![example of filter, map and reduce methods being used to visually represent making a sandwich](https://cdn.statically.io/gh/TheOdinProject/curriculum/335ab97a10d66d0f07e81d01fc6b1c63d31dc5ae/foundations/javascript_basics/loops_and_arrays/imgs/00.jpg)
+![ví dụ sử dụng các phương thức filter, map và reduce để minh họa trực quan việc làm một chiếc bánh sandwich](https://cdn.statically.io/gh/TheOdinProject/curriculum/335ab97a10d66d0f07e81d01fc6b1c63d31dc5ae/foundations/javascript_basics/loops_and_arrays/imgs/00.jpg)
 
-Before proceeding to the next section, have a look at how we can rewrite the `sumOfTripledEvens(array)` function using these three methods:
+Trước khi chuyển sang phần tiếp theo, hãy xem cách viết lại hàm `sumOfTripledEvens(array)` bằng ba phương thức này:
 
 ```javascript
 function sumOfTripledEvens(array) {
@@ -172,19 +172,19 @@ function sumOfTripledEvens(array) {
 }
 ```
 
-### Test-driven development
+### Phát triển hướng kiểm thử
 
-Test-driven development (TDD) is a phrase you often hear in the dev world. It refers to the practice of writing automated tests that describe how your code should work before you actually write the code. For example, if you want to write a function that adds a couple of numbers, you would first write a test that uses the function and supplies the expected output. The test will fail before you write your code, and you should be able to know that your code works correctly when the test passes.
+Phát triển hướng kiểm thử (TDD) là một cụm từ bạn thường nghe trong thế giới phát triển phần mềm. Nó chỉ việc viết các bài kiểm thử tự động mô tả cách mã cần hoạt động trước khi thực sự viết mã. Ví dụ, nếu muốn viết một hàm cộng hai số, trước tiên bạn sẽ viết một bài kiểm thử sử dụng hàm đó và cung cấp kết quả mong đợi. Bài kiểm thử sẽ thất bại trước khi bạn viết mã, và khi bài kiểm thử chạy thành công, bạn có thể biết mã của mình hoạt động đúng.
 
-In many ways, TDD is much more productive than writing code without tests. If we didn't have the test for the adding function above, we would have to run the code ourselves over and over, plugging in different numbers until we were sure that it was working... not a big deal for a basic `add(2, 2)`, but imagine having to do that for more complicated functions, like checking whether or not someone has won a game of tic tac toe: (`game_win(["o", null,"x",null,"x",null,"x", "o", "o"])`). If you didn't do TDD, then you might actually have to play multiple games against yourself just to test if the function was working correctly!
+Xét trên nhiều phương diện, TDD hiệu quả hơn nhiều so với việc viết mã không có kiểm thử. Nếu không có bài kiểm thử cho hàm cộng ở trên, chúng ta sẽ phải tự chạy mã hết lần này đến lần khác, thử nhiều số khác nhau cho đến khi chắc chắn rằng nó hoạt động... với một phép cộng đơn giản như `add(2, 2)` thì không đáng kể, nhưng hãy tưởng tượng phải làm vậy với các hàm phức tạp hơn, chẳng hạn kiểm tra xem ai đó đã thắng trò tic-tac-toe hay chưa: (`game_win(["o", null,"x",null,"x",null,"x", "o", "o"])`). Nếu không dùng TDD, có lẽ bạn sẽ phải tự chơi nhiều ván với chính mình chỉ để kiểm tra hàm có hoạt động đúng hay không!
 
-We will teach you the art of actually writing these tests later in the course. For now, you will continue to work on the JavaScript exercises from before.
+Sau này trong khóa học, chúng tôi sẽ dạy bạn cách thực sự viết các bài kiểm thử đó. Còn bây giờ, bạn sẽ tiếp tục làm các bài tập JavaScript từ trước.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Go to the [array methods exercises](https://javascript.info/array-methods#tasks) at the end of the JavaScript.info array methods article and do the following exercises only:
+1. Truy cập [các bài tập về phương thức mảng](https://javascript.info/array-methods#tasks) ở cuối bài viết về phương thức mảng của JavaScript.info và chỉ làm các bài sau:
    - `Translate border-left-width to borderLeftWidth`
    - `Filter range`
    - `Filter range "in place"`
@@ -192,7 +192,7 @@ We will teach you the art of actually writing these tests later in the course. F
    - `Copy and sort array`
    - `Shuffle an array`
    - `Filter unique array members`
-1. Go to the [JavaScript exercises repository's `foundations/loops_and_arrays` directory](https://github.com/TheOdinProject/javascript-exercises/tree/main/foundations/loops_and_arrays). Review each README file prior to completing the following exercises in order (it may have been a while, so take a moment to remind yourself of the [repo's own README](https://github.com/TheOdinProject/javascript-exercises#how-to-use-these-exercises "JavaScript exercises repo README") for general instructions):
+1. Truy cập [thư mục `foundations/loops_and_arrays` của kho bài tập JavaScript](https://github.com/TheOdinProject/javascript-exercises/tree/main/foundations/loops_and_arrays). Đọc từng tệp README trước khi làm các bài tập sau theo đúng thứ tự (có thể đã lâu rồi, nên hãy dành chút thời gian đọc lại [README của chính kho mã](https://github.com/TheOdinProject/javascript-exercises#how-to-use-these-exercises "JavaScript exercises repo README") để xem hướng dẫn chung):
     - `01_repeatString`
     - `02_reverseString`
     - `03_removeFromArray`
@@ -200,6 +200,6 @@ We will teach you the art of actually writing these tests later in the course. F
     - `05_leapYears`
     - `06_tempConversion`
 
-   Note: Solutions for these exercises can be found in the `solution` folder of each exercise.
+   Lưu ý: Có thể tìm lời giải cho các bài tập này trong thư mục `solution` của từng bài.
 
 </div>

@@ -1,330 +1,330 @@
-### Guide: Virtual Machine installation
+### Hướng dẫn: Cài đặt máy ảo
 
-Installing a Virtual Machine (VM) is the easiest and most reliable way to get started creating an environment for web development. A VM is an entire computer emulation that runs inside your current Operating System (OS), like Windows. The main drawback of a VM is that it can be slow because you're essentially running two computers at the same time. We'll do a few things to improve its performance.
+Cài đặt Máy ảo (VM) là cách dễ dàng và đáng tin cậy nhất để bắt đầu tạo môi trường phát triển web. VM là một máy tính được mô phỏng hoàn chỉnh, chạy bên trong Hệ điều hành (OS) hiện tại của bạn, chẳng hạn như Windows. Nhược điểm chính của VM là có thể chạy chậm vì về cơ bản bạn đang chạy hai máy tính cùng lúc. Chúng ta sẽ thực hiện một vài điều để cải thiện hiệu năng.
 
-### Step 1: Download VirtualBox and Xubuntu
+### Bước 1: Tải VirtualBox và Xubuntu
 
-Installing a VM is a straightforward process. This guide uses Oracle's VirtualBox program to create and run the VM. This program is open-source, free, and easy to use. What more can you ask for? Now, let's make sure we have everything downloaded and ready for installation.
+Cài đặt VM là một quy trình đơn giản. Hướng dẫn này sử dụng chương trình VirtualBox của Oracle để tạo và chạy VM. Đây là chương trình mã nguồn mở, miễn phí và dễ sử dụng. Còn mong gì hơn nữa? Bây giờ hãy đảm bảo chúng ta đã tải xuống mọi thứ và sẵn sàng cài đặt.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Use only your VM for The Odin Project
+#### Chỉ sử dụng VM cho The Odin Project
 
-Once you have completed these instructions, **you are expected to work entirely in the VM.** Maximize the window, add more virtual monitors if you have them, fire up the Internet Browser in the **Whisker Menu** ![The blue-white rodent Whisker Menu Icon](../../installations/imgs/00_whisker_icon.png) on the top left of the desktop. Any task you are working on for The Odin Project should take place within your VM. If you feel like you have a good understanding after using the VM for a while, and or want to improve your experience, we recommend dual-booting Ubuntu, which there are instructions for below.
+Sau khi hoàn tất các hướng dẫn này, **bạn được yêu cầu làm việc hoàn toàn trong VM.** Phóng to cửa sổ, thêm các màn hình ảo nếu có, mở Internet Browser trong **Whisker Menu** ![Biểu tượng Whisker Menu hình chuột xanh-trắng](../../installations/imgs/00_whisker_icon.png) ở góc trên bên trái desktop. Mọi nhiệm vụ bạn thực hiện cho The Odin Project đều phải diễn ra trong VM. Nếu cảm thấy đã hiểu rõ sau một thời gian sử dụng VM và/hoặc muốn cải thiện trải nghiệm, chúng tôi khuyến nghị khởi động kép Ubuntu; hướng dẫn nằm ở bên dưới.
 
 </div>
 
-#### Step 1.1: Download VirtualBox
+#### Bước 1.1: Tải VirtualBox
 
-[Download VirtualBox for Windows hosts version 7.2.4 (last known working version)](https://download.virtualbox.org/virtualbox/7.2.4/VirtualBox-7.2.4-170995-Win.exe).
+[Tải VirtualBox cho máy chủ Windows phiên bản 7.2.4 (phiên bản cuối cùng được biết là hoạt động)](https://download.virtualbox.org/virtualbox/7.2.4/VirtualBox-7.2.4-170995-Win.exe).
 
-#### Step 1.2: Download Xubuntu
+#### Bước 1.2: Tải Xubuntu
 
-There are thousands of distributions of Linux out there, but Ubuntu is undoubtedly one of the most popular and user friendly. When installing Linux on a VM, we recommend downloading Xubuntu, which is a lightweight flavor of Ubuntu. Xubuntu uses the same base software as Ubuntu but has a desktop environment that requires fewer computer resources and is therefore ideal for virtual machines. Click on the `Direct Downloads` button on the [24.04 release page for Xubuntu](https://xubuntu.org/release/24.04/), find your nearest server location and click on it. There are a few files listed here, download the one ending in `.iso`, which will also be the largest one (around 4 gigabytes). If you find the download speed slow, you can download the [Xubuntu `.iso` directly from the official Ubuntu image server](https://cdimage.ubuntu.com/xubuntu/releases/noble/release/), as the previous link points to a US-based server.
+Có hàng nghìn bản phân phối Linux, nhưng Ubuntu chắc chắn là một trong những bản phổ biến và thân thiện với người dùng nhất. Khi cài Linux trên VM, chúng tôi khuyến nghị tải Xubuntu, một biến thể Ubuntu nhẹ. Xubuntu sử dụng cùng phần mềm nền tảng với Ubuntu nhưng có môi trường desktop cần ít tài nguyên máy tính hơn, vì vậy rất phù hợp với máy ảo. Nhấp vào nút `Direct Downloads` trên [trang phát hành Xubuntu 24.04](https://xubuntu.org/release/24.04/), tìm vị trí máy chủ gần bạn nhất rồi nhấp vào đó. Có một vài tệp được liệt kê; hãy tải tệp kết thúc bằng `.iso`, cũng là tệp lớn nhất (khoảng 4 gigabyte). Nếu tốc độ tải chậm, bạn có thể tải [trực tiếp Xubuntu `.iso` từ máy chủ image Ubuntu chính thức](https://cdimage.ubuntu.com/xubuntu/releases/noble/release/), vì liên kết trước trỏ đến một máy chủ đặt tại Hoa Kỳ.
 
-If you reach the download page and are unsure about what version to choose, it is recommended that you pick the Long-Term Support (LTS) version 24.04 (Noble Numbat). You may be tempted to choose a more recent release, but this version is tried and tested by the Odin Project community and therefore the most reliable option for the purposes of this curriculum.
+Nếu không chắc nên chọn phiên bản nào trên trang tải xuống, bạn nên chọn phiên bản Hỗ trợ dài hạn (LTS) 24.04 (Noble Numbat). Bạn có thể muốn chọn bản phát hành mới hơn, nhưng cộng đồng Odin Project đã thử nghiệm kỹ phiên bản này, nên đây là lựa chọn đáng tin cậy nhất cho chương trình học này.
 
-### Step 2: Install VirtualBox and set up Xubuntu
+### Bước 2: Cài đặt VirtualBox và thiết lập Xubuntu
 
-#### Step 2.1: Install VirtualBox
+#### Bước 2.1: Cài đặt VirtualBox
 
-Installing VirtualBox is very straightforward. It doesn't require much technical knowledge and is the same process as installing any other program on your Windows computer. Double clicking the downloaded VirtualBox file will start the installation process.
+Cài đặt VirtualBox rất đơn giản. Bạn không cần nhiều kiến thức kỹ thuật; quy trình cũng giống như cài đặt bất kỳ chương trình nào khác trên máy tính Windows. Nhấp đúp vào tệp VirtualBox đã tải xuống sẽ bắt đầu quá trình cài đặt.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
 #### Microsoft Visual C++ 2019
 
-If you receive an error about needing the Microsoft Visual C++ 2019 Redistributable Package, you can find it on the [official Microsoft Learn page](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022). You most likely want the version with `X64` Architecture (that means 64-bit) - download and install it then try installing VirtualBox again.
+Nếu nhận được lỗi yêu cầu Microsoft Visual C++ 2019 Redistributable Package, bạn có thể tìm gói này trên [trang Microsoft Learn chính thức](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022). Nhiều khả năng bạn cần phiên bản có kiến trúc `X64` (nghĩa là 64-bit) - hãy tải xuống, cài đặt rồi thử cài VirtualBox lại.
 
 </div>
 
-During the installation, you'll be presented with various options. We suggest dropping the Python Support as you don't need it by clicking on the drive icon with an arrow and choosing **Entire feature will be unavailable**:
+Trong quá trình cài đặt, bạn sẽ thấy nhiều tùy chọn. Chúng tôi khuyên bạn bỏ Python Support vì không cần đến nó, bằng cách nhấp vào biểu tượng ổ đĩa có mũi tên và chọn **Entire feature will be unavailable**:
 
-![The Python option is at the bottom of the list](../../installations/imgs/01_turn_off_python.png)
+![Tùy chọn Python nằm ở cuối danh sách](../../installations/imgs/01_turn_off_python.png)
 
-This is how your installation window should look like after turning it off:
+Sau khi tắt, cửa sổ cài đặt của bạn sẽ trông như sau:
 
-![You want the Python option to have a scarlet "X" on it](../../installations/imgs/02_c_install.png)
+![Tùy chọn Python có dấu "X" màu đỏ tươi](../../installations/imgs/02_c_install.png)
 
-You do not have to exclude Python Support. It is an optional package to allow for automation Virtual Machines with VirtualBox, which is out of scope for this curriculum, and we simply do not want you to install more than what you have to.
+Bạn không bắt buộc phải loại trừ Python Support. Đây là gói tùy chọn cho phép tự động hóa máy ảo bằng VirtualBox, nằm ngoài phạm vi chương trình học này; chúng tôi chỉ không muốn bạn cài đặt nhiều hơn mức cần thiết.
 
-Make sure you install the application on `C:` drive, as it has a tendency to error out otherwise. The virtual machine itself can be installed anywhere but we'll get to that soon.
-As the software installs, the progress bar might appear to be stuck; just wait for it to finish.
+Hãy đảm bảo cài ứng dụng vào ổ `C:`, vì cài ở nơi khác có thể gây lỗi. Bản thân máy ảo có thể được cài ở bất kỳ đâu, chúng ta sẽ nói về việc đó ngay sau đây.
+Khi phần mềm đang cài đặt, thanh tiến trình có thể trông như bị kẹt; chỉ cần chờ cho đến khi hoàn tất.
 
-#### Step 2.2: New Virtual Machine
+#### Bước 2.2: Tạo máy ảo mới
 
-Now that you have VirtualBox installed, launch the program. Once open, you should see the start screen. Click on the **New** button to create a virtual operating system.
+Bây giờ VirtualBox đã được cài đặt, hãy khởi chạy chương trình. Khi mở lên, bạn sẽ thấy màn hình bắt đầu. Nhấp vào nút **New** để tạo một hệ điều hành ảo.
 
-![VirtualBox start screen](../../installations/imgs/03_start_screen.png)
+![Màn hình bắt đầu của VirtualBox](../../installations/imgs/03_start_screen.png)
 
-Give it a name of **Xubuntu-TOP**. If you want the VM installed somewhere else than default `C:` location, change that accordingly in the **Folder** option. This is the place where your virtual disk will reside, so make sure that you've got at least 30GB for that. In **ISO Image** choose **Other** - you'll see a window open for you to find the `.iso` file on your PC. It most likely is in the `Downloads` folder.
+Đặt tên là **Xubuntu-TOP**. Nếu muốn cài VM ở nơi khác thay vì vị trí mặc định trên ổ `C:`, hãy thay đổi tương ứng trong tùy chọn **Folder**. Đây là nơi lưu đĩa ảo, vì vậy hãy đảm bảo còn ít nhất 30GB. Trong **ISO Image**, chọn **Other** - một cửa sổ sẽ mở ra để bạn tìm tệp `.iso` trên máy tính. Tệp này thường nằm trong thư mục `Downloads`.
 
-**Uncheck "Proceed with Unattended Installation".** This feature does not work and you will not be able to control your installation. If you do enable it accidentally before installing just delete your VM and try again.
+**Bỏ chọn "Proceed with Unattended Installation".** Tính năng này không hoạt động và bạn sẽ không thể kiểm soát quá trình cài đặt. Nếu vô tình bật trước khi cài, hãy xóa VM rồi thử lại.
 
-The fields should auto-populate once you enter the VM Name.
+Các trường sẽ tự điền sau khi bạn nhập VM Name.
 
-![New Virtual Machine screen](../../installations/imgs/04_install_start.png)
+![Màn hình máy ảo mới](../../installations/imgs/04_install_start.png)
 
-Do **not** click Finish yet! We're not done. Continue the setup process by pressing the **Specify virtual hardware** accordion and follow the next steps.
+**Chưa** nhấp vào Finish! Chúng ta chưa xong. Tiếp tục thiết lập bằng cách nhấn vào mục **Specify virtual hardware** rồi làm theo các bước tiếp theo.
 
-#### Step 2.3: Specify Virtual Hardware
+#### Bước 2.3: Chỉ định phần cứng ảo
 
-You should see a window like this one now:
+Bây giờ bạn sẽ thấy một cửa sổ tương tự như sau:
 
-![Specify virtual hardware screen](../../installations/imgs/05_specify_virtual_hardware.png)
+![Màn hình chỉ định phần cứng ảo](../../installations/imgs/05_specify_virtual_hardware.png)
 
-In the **Hardware** section of the installation you want to set your **Base Memory** to at least 2048 MB or more if possible - the upper limit is half of your total RAM but 4096 MB with the settings we recommend should give you a smooth experience.
+Trong phần **Hardware** của quá trình cài đặt, hãy đặt **Base Memory** ít nhất là 2048 MB hoặc cao hơn nếu có thể - giới hạn trên là một nửa tổng RAM, nhưng 4096 MB với các cài đặt chúng tôi đề xuất sẽ mang lại trải nghiệm mượt mà.
 
-> For example, if you have 8 GB (8192 MB respectively) of RAM, you could allocate up to 4096 MB (1024 MB to 1 GB) to your VM's operating system. You can Google how to find out how much RAM you have available if you do not know this already. If the VM runs a bit slow, try allocating more memory!
+> Ví dụ, nếu có 8 GB (tương ứng 8192 MB) RAM, bạn có thể cấp tối đa 4096 MB (1024 MB đến 1 GB) cho hệ điều hành của VM. Bạn có thể Google cách kiểm tra lượng RAM còn trống nếu chưa biết. Nếu VM hơi chậm, hãy thử cấp thêm bộ nhớ!
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Converting gigabytes to megabytes
+#### Chuyển đổi gigabyte sang megabyte
 
-Difficulty converting your Gigabytes (GB) into Megabytes (MB)? 1 GB of RAM is equal to 1024 MB. Therefore, you can say that **8 GB = 8 x 1024 = 8192 MB.**
+Khó chuyển đổi Gigabyte (GB) sang Megabyte (MB)? 1 GB RAM bằng 1024 MB. Vì vậy, có thể nói **8 GB = 8 x 1024 = 8192 MB.**
 
 </div>
 
-As for **Processors** you want this to be at 2 and no more. Leave **Use EFI** unchecked.
+Đối với **Processors**, hãy đặt ở mức 2 và không cao hơn. Bỏ chọn **Use EFI**.
 
-We're still not ready for the Finish button yet. Click the **Specify virtual hard disk accordion** to continue.
+Chúng ta vẫn chưa sẵn sàng nhấn nút Finish. Nhấp vào mục **Specify virtual hard disk accordion** để tiếp tục.
 
-#### Step 2.4: Specify Virtual Hard Disk
+#### Bước 2.4: Chỉ định ổ cứng ảo
 
-Now, you want to leave all the settings as they are besides the **Disk Size**, we recommend giving the VM **at least 30GB** of space. Reminder that this disk will be created in the folder that you've specified on the very first step of the VM creation process but nonetheless, the disk can be moved and increased in the future if needed.
+Bây giờ, hãy giữ nguyên mọi cài đặt ngoại trừ **Disk Size**; chúng tôi khuyến nghị cấp cho VM **ít nhất 30GB** dung lượng. Lưu ý rằng đĩa này sẽ được tạo trong thư mục bạn đã chỉ định ở bước đầu tiên của quá trình tạo VM, nhưng về sau bạn vẫn có thể di chuyển và tăng dung lượng đĩa nếu cần.
 
-![Specify virtual hard disk screen](../../installations/imgs/06_specify_virtual_hard_disk.png)
+![Màn hình chỉ định ổ cứng ảo](../../installations/imgs/06_specify_virtual_hard_disk.png)
 
-We are now ready to hit **Finish**. Please do so.
+Bây giờ chúng ta đã sẵn sàng nhấn **Finish**. Hãy nhấn nút đó.
 
-#### Step 2.5: Virtual Video RAM
+#### Bước 2.5: RAM video ảo
 
-One last step is required before we start up the Virtual Machine and start the installation process. Please click on the **Settings** button.
+Cần thực hiện thêm một bước cuối trước khi khởi động VM và bắt đầu cài đặt. Hãy nhấp vào nút **Settings**.
 
-![Start screen but with settings highlighted](../../installations/imgs/07_start_screen_settings.png)
+![Màn hình bắt đầu với phần settings được đánh dấu](../../installations/imgs/07_start_screen_settings.png)
 
-The Settings page for your Virtual Machine will open and look like the image below.
+Trang Settings của VM sẽ mở ra và trông như hình bên dưới.
 
-![Settings screen](../../installations/imgs/08_settings_screen.png)
+![Màn hình Settings](../../installations/imgs/08_settings_screen.png)
 
-Please click on the **Display** button. You will then be on the Display settings screen. What you must do here is first enable **3D Acceleration** and then increase the **Video Memory** to maximum. You can also increase the number of Virtual Monitors if you have multiple physical monitors. We recommend to do this later once you are comfortable in your VM.
+Hãy nhấp vào nút **Display**. Bạn sẽ chuyển đến màn hình cài đặt Display. Trước tiên, hãy bật **3D Acceleration**, sau đó tăng **Video Memory** lên mức tối đa. Bạn cũng có thể tăng số lượng Virtual Monitors nếu có nhiều màn hình vật lý. Chúng tôi khuyên nên làm việc này sau, khi bạn đã quen với VM.
 
-![Display settings screen](../../installations/imgs/09_display_settings_screen.png)
+![Màn hình cài đặt Display](../../installations/imgs/09_display_settings_screen.png)
 
-Click **OK**. Now we're ready to begin the installation.
+Nhấp **OK**. Bây giờ chúng ta đã sẵn sàng bắt đầu cài đặt.
 
-### Step 3: Begin Xubuntu installation
+### Bước 3: Bắt đầu cài đặt Xubuntu
 
-You should find yourself back on the start screen. Click the **Start** button with your VM selected. If you accidentally open the dropdown for the Start button you can click **Start with GUI**, or click the Start button again. Another way to start your VM is by double-clicking the VM itself!
+Bạn sẽ quay lại màn hình bắt đầu. Khi VM được chọn, hãy nhấp vào nút **Start**. Nếu vô tình mở menu thả xuống của nút Start, bạn có thể nhấp **Start with GUI**, hoặc nhấp lại nút Start. Một cách khác để khởi động VM là nhấp đúp vào chính VM đó!
 
-![Start screen with the start button highlighted](../../installations/imgs/10_start_screen_start_button.png)
+![Màn hình bắt đầu với nút start được đánh dấu](../../installations/imgs/10_start_screen_start_button.png)
 
-A new window should appear that shows some images to indicate that you are loading an Oracle Virtual Machine. It will then transition to a start screen for Xubuntu called the GRUB Boot Menu. By default you have 30 seconds to choose an option by using the arrow keys and selecting via Enter. Typically the default option selected is the one you want, and in this case it's **Try or Install Xubuntu**. If you choose the wrong option just end the VM by clicking File and Close, or hitting the X button, and choosing **Power off the machine**.
+Một cửa sổ mới sẽ xuất hiện với một số hình ảnh cho biết bạn đang tải Oracle Virtual Machine. Sau đó, cửa sổ chuyển sang màn hình bắt đầu Xubuntu có tên GRUB Boot Menu. Theo mặc định, bạn có 30 giây để dùng phím mũi tên chọn một tùy chọn rồi xác nhận bằng Enter. Thông thường tùy chọn mặc định là tùy chọn cần dùng; trong trường hợp này là **Try or Install Xubuntu**. Nếu chọn nhầm, hãy kết thúc VM bằng cách nhấp File rồi Close, hoặc nhấn nút X, sau đó chọn **Power off the machine**.
 
-And yes, the screen will be small at this point. We will fix that later.
+Đúng vậy, lúc này màn hình sẽ nhỏ. Chúng ta sẽ sửa điều đó sau.
 
-![GRUB Boot Screen](../../installations/imgs/11_grub.png)
+![Màn hình GRUB Boot](../../installations/imgs/11_grub.png)
 
-You should then see some console text show up on the screen and disappear, and eventually make it to the Xubuntu desktop screen.
+Sau đó, một số dòng chữ trong console sẽ xuất hiện rồi biến mất, và cuối cùng bạn sẽ đến màn hình desktop Xubuntu.
 
-This is a temporary environment called a Live Desktop. Any changes you make here (besides installing the operating system on the VM) are not permanent.
+Đây là một môi trường tạm thời có tên Live Desktop. Mọi thay đổi bạn thực hiện ở đây (ngoại trừ việc cài hệ điều hành lên VM) đều không vĩnh viễn.
 
-To continue double click on the **Install Xubuntu** desktop icon.
+Để tiếp tục, hãy nhấp đúp vào biểu tượng desktop **Install Xubuntu**.
 
-![Xubuntu Live Desktop](../../installations/imgs/12_xubuntu_live_desktop.png)
+![Desktop Xubuntu Live](../../installations/imgs/12_xubuntu_live_desktop.png)
 
-Another window should open titled *Welcome to Xubuntu*. Select your language and click **Next**.
+Một cửa sổ khác có tiêu đề *Welcome to Xubuntu* sẽ mở ra. Chọn ngôn ngữ rồi nhấp **Next**.
 
 ![Welcome to Xubuntu](../../installations/imgs/13_choose_your_language.png)
 
-The next screen will ask you to *Select your keyboard layout*. You can optionally type in the input field to test and make sure your selection is correct. Do so and click **Next**.
+Màn hình tiếp theo yêu cầu bạn *Select your keyboard layout*. Bạn có thể nhập vào ô nhập liệu để kiểm tra và đảm bảo lựa chọn chính xác. Hãy làm vậy rồi nhấp **Next**.
 
 ![Select your keyboard layout](../../installations/imgs/14_select_keyboard_layout.png)
 
-The next screen will ask you to configure your settings so you can *Connect to the internet*. If it is not selected you should choose **Use wired connection**. VirtualBox is configured to use your host machine's network device, so whether the VM knows you're wired or wireless it **does not matter**, to it you are essentially hard wired to the internet.
+Màn hình tiếp theo yêu cầu bạn cấu hình cài đặt để *Connect to the internet*. Nếu chưa được chọn, hãy chọn **Use wired connection**. VirtualBox được cấu hình để sử dụng thiết bị mạng của máy chủ, vì vậy VM nhận biết bạn đang dùng mạng có dây hay không dây **không quan trọng**; đối với VM, về cơ bản bạn luôn được kết nối có dây với internet.
 
-If you cannot select **Use wired connection** then you should run the VirtualBox installer again and select **repair**.
+Nếu không thể chọn **Use wired connection**, hãy chạy lại trình cài đặt VirtualBox và chọn **repair**.
 
-> **Note for VPN Users**: If you are unable to continue with the installation or run updates because your VM seemingly cannot connect to the internet **and** you're using a VPN, consider whitelisting your VM, use a reverse split tunnel, or temporarily disable it all together. If split tunnel does not work try setting the VM Network Adapter to *Bridged Adapter* and try again.
+> **Lưu ý cho người dùng VPN**: Nếu không thể tiếp tục cài đặt hoặc chạy cập nhật vì VM dường như không kết nối được internet **và** bạn đang dùng VPN, hãy cân nhắc đưa VM vào danh sách cho phép, dùng reverse split tunnel hoặc tạm thời tắt VPN hoàn toàn. Nếu split tunnel không hoạt động, hãy thử đặt VM Network Adapter thành *Bridged Adapter* rồi thử lại.
 
 ![Connect to the internet](../../installations/imgs/15_connect_to_the_internet.png)
 
-The next screen will ask you *How would you like to install Xubuntu?* Once again we leave the default setting of **Interactive installation** because we do not have a configuration file prepared, nor do we want one in this case. This is more for IT professionals who are setting up workspaces for employees, or if you want to set up a homelab and have a solid OS installation template. This feature is out of scope for this curriculum, so let's click **Next** and move on.
+Màn hình tiếp theo hỏi bạn *How would you like to install Xubuntu?* Một lần nữa, chúng ta giữ tùy chọn mặc định **Interactive installation** vì chưa chuẩn bị tệp cấu hình và cũng không muốn dùng tệp này trong trường hợp hiện tại. Tính năng này phù hợp hơn với các chuyên gia CNTT đang thiết lập không gian làm việc cho nhân viên, hoặc người muốn dựng homelab và có một mẫu cài đặt OS hoàn chỉnh. Tính năng này nằm ngoài phạm vi chương trình học, nên hãy nhấp **Next** để tiếp tục.
 
 ![Type of installation](../../installations/imgs/16_type_of_installation.png)
 
-The next screen will ask you *What apps would you like to install to start with?*, of which once again we want the default option of all of them. If you're going to be using this VM as your studying tool then it should be fully featured. Click **Next** and move on.
+Màn hình tiếp theo hỏi *What apps would you like to install to start with?*; một lần nữa, chúng ta muốn giữ tùy chọn mặc định gồm tất cả ứng dụng. Nếu dùng VM làm công cụ học tập, bạn nên có đầy đủ tính năng. Nhấp **Next** để tiếp tục.
 
 ![Applications](../../installations/imgs/17_applications.png)
 
-The next screen will ask you if you want to *Install recommended proprietary software?*, to which we answer: yes. Click both checkboxes and **Next** to move on.
+Màn hình tiếp theo hỏi bạn có muốn *Install recommended proprietary software?* hay không; câu trả lời là có. Chọn cả hai hộp kiểm rồi nhấp **Next** để tiếp tục.
 
 ![Optimize your computer](../../installations/imgs/18_optimize_your_computer.png)
 
-The next screen will ask you *How do you want to install Xubuntu?* In this case, we will once again select the default option to **Erase disk and install Xubuntu**. This action is safe and does not touch your host hard drive/disk because it is virtualized. As for Manual installation this is out of scope for the curriculum but if you'd like to dive deeper in the future it is recommended. Click **Next** when you're ready to move on.
+Màn hình tiếp theo hỏi *How do you want to install Xubuntu?* Trong trường hợp này, chúng ta lại chọn tùy chọn mặc định **Erase disk and install Xubuntu**. Hành động này an toàn và không tác động đến ổ cứng/đĩa của máy chủ vì nó được ảo hóa. Cài đặt thủ công nằm ngoài phạm vi chương trình học, nhưng nếu muốn tìm hiểu sâu hơn về sau thì đây là lựa chọn đáng cân nhắc. Khi sẵn sàng, hãy nhấp **Next**.
 
 ![Disk setup](../../installations/imgs/19_disk_setup.png)
 
-The next screen will have you *Create your account* by entering your name and a password. The computer name and username are auto generated by the name input, but you can customize these to your hearts content with valid characters. You should absolutely set a password, make it something you will be able to remember, one that you will be using often, and then please click **Next**.
+Màn hình tiếp theo yêu cầu bạn *Create your account* bằng cách nhập tên và mật khẩu. Tên máy tính và tên người dùng được tự động tạo từ tên bạn nhập, nhưng bạn có thể tùy chỉnh theo ý muốn bằng các ký tự hợp lệ. Bạn nhất định nên đặt mật khẩu, chọn một mật khẩu có thể nhớ và sẽ thường xuyên sử dụng, rồi nhấp **Next**.
 
 ![Create your account](../../installations/imgs/20_create_your_account.png)
 
-The next screen will ask you to *Select your timezone*. Insert either your location or timezone in the provided input boxes and click **Next**.
+Màn hình tiếp theo yêu cầu bạn *Select your timezone*. Nhập vị trí hoặc múi giờ vào các ô tương ứng rồi nhấp **Next**.
 
 ![Select your timezone](../../installations/imgs/21_select_your_timezone.png)
 
-The next screen will ask you to *Review your choices* and finalize the installation. The information shown in the window, while a bit confusing to understand right now, should reflect the decisions we have made along the way during this process. Once you're ready to wait for a while click the **Install** button and go grab some more coffee.
+Màn hình tiếp theo yêu cầu bạn *Review your choices* và hoàn tất cài đặt. Thông tin hiển thị trong cửa sổ có thể hơi khó hiểu lúc này, nhưng sẽ phản ánh những lựa chọn chúng ta đã thực hiện trong quá trình này. Khi sẵn sàng chờ một lúc, hãy nhấp nút **Install** rồi đi lấy thêm cà phê.
 
 ![Ready to Install](../../installations/imgs/22_ready_to_install.png)
 
-The next few screens will go by automatically during the installation process. There is not much you can do but wait.
+Một vài màn hình tiếp theo sẽ tự động xuất hiện trong quá trình cài đặt. Bạn không thể làm gì nhiều ngoài việc chờ.
 
 ![Installer progress](../../installations/imgs/23_installation_in_progress.png)
 
-Once you have reached this screen that signals the installation has been successfully completed. You are now being prompted to exit your live desktop environment so you can boot your newly installed Xubuntu OS on your VM. Click **Restart now** to continue the process. If you end up clicking Continue testing and wish to continue, just click the ![Whisker Icon](../../installations/imgs/00_whisker_icon.png), click Log Out, and then click Restart. After restarting and you end up sitting on a black screen for a long time please have some patience. If it goes longer than 10 minutes then please close the VM and start again manually.
+Khi đến màn hình này, điều đó cho biết quá trình cài đặt đã hoàn tất thành công. Bây giờ bạn được yêu cầu thoát khỏi môi trường live desktop để khởi động hệ điều hành Xubuntu mới cài trên VM. Nhấp **Restart now** để tiếp tục. Nếu đã nhấp Continue testing nhưng muốn tiếp tục, hãy nhấp ![Biểu tượng Whisker](../../installations/imgs/00_whisker_icon.png), nhấp Log Out rồi nhấp Restart. Sau khi khởi động lại, nếu màn hình đen xuất hiện trong thời gian dài, hãy kiên nhẫn. Nếu quá 10 phút, hãy đóng VM và khởi động lại thủ công.
 
 ![Installation complete](../../installations/imgs/24_installation_complete.png)
 
-When your VM restarts you should end up on this screen here that is presenting you with a login screen. Enter your password and click **Log in**.
+Khi VM khởi động lại, bạn sẽ thấy màn hình đăng nhập. Nhập mật khẩu rồi nhấp **Log in**.
 
 ![Login screen](../../installations/imgs/25_login_screen.png)
 
-### Step 4: Updates and Guest Additions
+### Bước 4: Cập nhật và Guest Additions
 
-Before you can start using your Virtual Machine you might have noticed that it is a little choppy, a little laggy, and maybe even a little small. The reason being is that we have not installed all of the necessary drivers for Xubuntu to take advantage of the VM's "hardware". This is what the **Guest Additions** accomplishes. VirtualBox provides an image for Guest Additions, so we will use it. But even before we do that, we should run updates.
+Trước khi bắt đầu sử dụng VM, bạn có thể nhận thấy máy hơi giật, hơi trễ và thậm chí hơi nhỏ. Lý do là chúng ta chưa cài đủ trình điều khiển cần thiết để Xubuntu tận dụng "phần cứng" của VM. **Guest Additions** sẽ giải quyết việc này. VirtualBox cung cấp một image cho Guest Additions nên chúng ta sẽ sử dụng nó. Nhưng trước đó, chúng ta nên chạy các bản cập nhật.
 
-We're going to learn a neat shortcut right now to open one of the most helpful tools available to you in a Linux based OS: The Virtual Terminal, or Terminal for short. The Terminal is actually virtual whether you're running in a VM or not, but that is out of scope for the curriculum. If you'd like to learn more about Linux in general check out the free book [The Linux Command Line](https://linuxcommand.org/tlcl.php).
+Bây giờ chúng ta sẽ học một phím tắt hữu ích để mở một trong những công cụ quan trọng nhất trên hệ điều hành dựa trên Linux: Virtual Terminal, hay gọi ngắn là Terminal. Terminal thực ra luôn là ảo, dù bạn chạy trong VM hay không, nhưng điều đó nằm ngoài phạm vi chương trình học. Nếu muốn tìm hiểu thêm về Linux, hãy xem cuốn sách miễn phí [The Linux Command Line](https://linuxcommand.org/tlcl.php).
 
-When you press <kbd>win</kbd> + <kbd>T</kbd> a new window should open up that provides you with some information and prompts you for input. This is your terminal. You can have many terminals open at a time, but for now stick to one.
+Khi nhấn <kbd>win</kbd> + <kbd>T</kbd>, một cửa sổ mới sẽ mở ra, cung cấp thông tin và yêu cầu bạn nhập dữ liệu. Đây là terminal của bạn. Bạn có thể mở nhiều terminal cùng lúc, nhưng hiện tại hãy chỉ dùng một terminal.
 
-![The Terminal](../../installations/imgs/26_new_terminal.png)
+![Terminal](../../installations/imgs/26_new_terminal.png)
 
-Now that we have the terminal open we can start running updates the *cool* way. There is a graphical user interface (GUI) process for running updates, but it looks really impressive when you run some commands in a command line interface (CLI) and a bunch of text runs across your screen with a progress bar and everything.
+Bây giờ terminal đã mở, chúng ta có thể chạy cập nhật theo cách *ngầu* hơn. Có quy trình giao diện người dùng đồ họa (GUI) để chạy cập nhật, nhưng việc chạy vài lệnh trong giao diện dòng lệnh (CLI), để hàng loạt chữ chạy trên màn hình cùng thanh tiến trình, trông ấn tượng hơn nhiều.
 
-You're going to enter these commands exactly and hit enter after each new line. You cannot copy and paste yet.
+Bạn sẽ nhập chính xác các lệnh sau và nhấn enter sau mỗi dòng mới. Hiện tại bạn chưa thể sao chép và dán.
 
 ```bash
 sudo apt update
 ```
 
-When you entered that first command you were prompted for your password. When you try to enter it there will be no feedback from the terminal, as if you are not writing anything at all. This is not a bug; It's a feature. A security feature. A lot of applications will represent your password as a number of dots. Linux goes the next step and does not give onlookers the opportunity to count dots on a screen.
+Khi nhập lệnh đầu tiên, terminal yêu cầu mật khẩu. Khi nhập mật khẩu, terminal sẽ không phản hồi, như thể bạn không nhập gì cả. Đây không phải lỗi; đây là tính năng. Một tính năng bảo mật. Nhiều ứng dụng biểu diễn mật khẩu bằng một số dấu chấm. Linux tiến thêm một bước và không cho người đứng cạnh cơ hội đếm số dấu chấm trên màn hình.
 
-Enter your password and hit enter, and you'll pull down the latest available updates.
+Nhập mật khẩu rồi nhấn enter để tải các bản cập nhật mới nhất.
 
 ![sudo apt update](../../installations/imgs/27_sudo_apt_update.png)
 
-You will know when the process is done because the terminal will be available to take your input again. You'll get a print-out of how many packages can be upgraded.
+Bạn biết quá trình hoàn tất khi terminal lại sẵn sàng nhận dữ liệu. Terminal sẽ in ra số lượng gói có thể nâng cấp.
 
-Now that we have ran the update command, we still need to run the command to *upgrade* our packages. With Ubuntu flavored operating systems the process is two steps. Your mileage may vary in other systems.
+Sau khi chạy lệnh update, chúng ta vẫn cần chạy lệnh để *upgrade* các gói. Với các hệ điều hành biến thể Ubuntu, quy trình gồm hai bước. Trên các hệ thống khác, kết quả có thể khác.
 
-The next command is this, type it in and hit enter:
+Lệnh tiếp theo là lệnh này; hãy nhập rồi nhấn enter:
 
 ```bash
 sudo apt upgrade
 ```
 
-That will show a whole lot more text and then ask you if you want to continue by typing either `Y` for Yes and `n` for No. Type `Y` and hit enter.
+Lệnh đó sẽ hiển thị rất nhiều chữ, sau đó hỏi bạn có muốn tiếp tục bằng cách nhập `Y` để Yes hay `n` để No. Nhập `Y` rồi nhấn enter.
 
-Also notice that if you did these two commands in sequence you were not prompted for your password again. There is a timer that starts when you run a `sudo` command successfully in that it will only wait for that timer to conclude before asking you again. More security features!
+Cũng lưu ý rằng nếu chạy hai lệnh này liên tiếp, bạn sẽ không bị hỏi lại mật khẩu. Khi chạy thành công một lệnh `sudo`, một bộ đếm thời gian bắt đầu; terminal chỉ chờ đến khi bộ đếm kết thúc rồi mới hỏi lại. Thêm một tính năng bảo mật nữa!
 
-This may take a while.
+Quá trình này có thể mất một lúc.
 
 ![sudo apt upgrade](../../installations/imgs/28_sudo_apt_upgrade.png)
 
-Once the upgrade has been completed let us install some helpful packages that will ensure our success with installing Guest Additions.
+Sau khi nâng cấp xong, hãy cài một số gói hữu ích để đảm bảo chúng ta cài Guest Additions thành công.
 
 ```bash
 sudo apt install build-essential dkms
 ```
 
-Be sure to enter `Y` to allow these packages to install. These are two separate packages being installed. Explaining them is out of scope but feel free to look them up on your own time.
+Nhớ nhập `Y` để cho phép cài các gói này. Đây là hai gói riêng biệt. Giải thích về chúng nằm ngoài phạm vi, nhưng bạn có thể tự tìm hiểu khi rảnh.
 
 ![sudo apt install helper packages](../../installations/imgs/29_sudo_apt_install_helper_packages.png)
 
-This next step is something that is difficult to take a screenshot of, so the highlight here will be the menu that you must click on to find it. On the top VM toolbar click **Devices** and navigate to the bottom of the dropdown where you see **Insert Guest Additions CD image...** and click on that. It might take a few seconds but a notification will appear that the CD has been mounted and a file explorer will open showing you the contents of the image.
+Bước tiếp theo khó chụp ảnh màn hình, vì vậy phần được đánh dấu sẽ là menu bạn cần nhấp để tìm tùy chọn. Trên thanh công cụ VM ở phía trên, nhấp **Devices** rồi đi xuống cuối menu thả xuống, nơi có **Insert Guest Additions CD image...**, và nhấp vào đó. Có thể mất vài giây, sau đó một thông báo cho biết CD đã được gắn kết sẽ xuất hiện và trình quản lý tệp sẽ mở, hiển thị nội dung của image.
 
 ![Devices](../../installations/imgs/30_devices.png)
 
-The easiest way to install the Guest Additions from the contents of the image is to drag and drop the icon into the terminal. You are looking specifically for `VBoxLinuxAdditions.run`, and you want to click and hold and drag the icon onto your open terminal.
+Cách dễ nhất để cài Guest Additions từ nội dung image là kéo thả biểu tượng vào terminal. Bạn cần tìm chính xác `VBoxLinuxAdditions.run`, sau đó nhấp giữ và kéo biểu tượng vào terminal đang mở.
 
-First let us clear our terminal output to make it cleaner by typing `clear` and pressing enter. Once it has been cleared type `sudo` with a space after it because we need it for administrative privileges. Do *not* hit enter yet. Then drag and drop the icon into the terminal. Once your terminal has the path to the file, click back to your terminal, away from the file explorer.
+Trước hết, hãy xóa phần xuất ra trong terminal để gọn hơn bằng cách nhập `clear` rồi nhấn enter. Sau khi xóa, nhập `sudo` kèm một dấu cách vì chúng ta cần quyền quản trị. *Chưa* nhấn enter. Sau đó kéo thả biểu tượng vào terminal. Khi terminal đã có đường dẫn đến tệp, hãy nhấp trở lại terminal, rời khỏi trình quản lý tệp.
 
-Behold the mystical three-part instructional images.
+Hãy chiêm ngưỡng bộ ảnh hướng dẫn thần bí gồm ba phần.
 
-Press enter on your terminal and type your password if it is required to continue.
+Nhấn enter trong terminal và nhập mật khẩu nếu được yêu cầu để tiếp tục.
 
-![Guest Additions Drag and Drop Part 1](../../installations/imgs/31_drag_and_drop_part_1.png)
+![Phần 1 kéo thả Guest Additions](../../installations/imgs/31_drag_and_drop_part_1.png)
 
-![Guest Additions Drag and Drop Part 2](../../installations/imgs/32_drag_and_drop_part_2.png)
+![Phần 2 kéo thả Guest Additions](../../installations/imgs/32_drag_and_drop_part_2.png)
 
-![Guest Additions Drag and Drop Part 3](../../installations/imgs/33_drag_and_drop_part_3.png)
+![Phần 3 kéo thả Guest Additions](../../installations/imgs/33_drag_and_drop_part_3.png)
 
-Your window may change size during this process. To complete the installation of the Guest Additions you need to reboot your VM. New shortcut unlocked: `sudo reboot`
+Cửa sổ của bạn có thể thay đổi kích thước trong quá trình này. Để hoàn tất cài đặt Guest Additions, bạn cần khởi động lại VM. Mở khóa phím tắt mới: `sudo reboot`
 
-Upon logging in you may not notice anything different, but try to maximize your VM now. Look at all of this room for activities!
+Sau khi đăng nhập, bạn có thể không nhận thấy điều gì khác biệt, nhưng hãy thử phóng to VM ngay bây giờ. Hãy nhìn xem, thật nhiều không gian cho các hoạt động!
 
-![Maximized VM](../../installations/imgs/34_room_for_activities.png)
+![VM được phóng to](../../installations/imgs/34_room_for_activities.png)
 
-You should also have less performance issues overall and should now be ready to move on with the curriculum. Don't forget to eject the Guest Additions image. You can do so by either entering `sudo eject /dev/sr0` in the Terminal or by clicking the triangular eject button next to the mounted image (pictured below) in the file explorer. It doesn't hurt to leave mounted but it's far more tidy to remove it as we do not need it anymore.
+Nhìn chung, bạn cũng sẽ gặp ít vấn đề về hiệu năng hơn và sẵn sàng tiếp tục chương trình học. Đừng quên tháo image Guest Additions. Bạn có thể nhập `sudo eject /dev/sr0` trong Terminal hoặc nhấp nút tháo hình tam giác cạnh image đã gắn kết (như hình bên dưới) trong trình quản lý tệp. Để image vẫn được gắn kết cũng không sao, nhưng tháo ra sẽ gọn gàng hơn vì chúng ta không còn cần đến nó.
 
-![ISO Eject Button](../../installations/imgs/35_iso_eject_button.png)
+![Nút tháo ISO](../../installations/imgs/35_iso_eject_button.png)
 
-### Step 4: Understand your new VM
+### Bước 4: Tìm hiểu VM mới của bạn
 
-#### Step 4.1: Close TOP in the Windows browser and open the website in your VM
+#### Bước 4.1: Đóng TOP trong trình duyệt Windows và mở website trong VM
 
-From now on, stick with The Odin Project (TOP) website within your VM and follow the Linux instructions provided. The curriculum will often require you to copy and paste code between the lesson and your coding space, as well as the terminal. This won't work smoothly if you switch between the VM and Windows because they are entirely separate environments.
+Từ bây giờ, hãy chỉ sử dụng website The Odin Project (TOP) trong VM và làm theo các hướng dẫn Linux. Chương trình học thường yêu cầu bạn sao chép và dán code giữa bài học, không gian viết code và terminal. Việc này sẽ không hoạt động trơn tru nếu chuyển đổi giữa VM và Windows vì chúng là các môi trường hoàn toàn riêng biệt.
 
-**Remember:** For the remainder of the TOP curriculum, refer to the Linux instructions only.
+**Nhớ rằng:** Trong phần còn lại của chương trình học TOP, chỉ tham khảo các hướng dẫn Linux.
 
-Here are some tips to help you get started in a virtual environment:
+Dưới đây là một số mẹo giúp bạn bắt đầu trong môi trường ảo:
 
-- If the toolbar is not showing for you: Enable the toolbar in your VM settings - there are useful options there that you might want to play around with, especially the ones concerning full screen or multiple displays. To do so, click on **Settings** and then navigate to **User Interface** and finally tick **Show at Top of Screen**.
-  ![It's a good idea to look around the settings overall to get a feel of what's possible.](../../installations/imgs/16_toolbar.png)
-- All your work should happen in the VM. You will install everything you need for coding, including your text editor, language environments and various tools inside the VM. The Xubuntu installation inside of your VM also comes with a web browser pre-installed but we'll be installing Chrome shortly.
-- Enable Shared Clipboard - On the aforementioned toolbar, under devices, you can enable Bidirectional under **Shared Clipboard**. Now you can copy and paste if you need to from your Host to Guest and Guest to Host. Please do remember you should be working fully within your VM if you can help it. Extra tip: `ctrl+shift+v` to paste in your terminal.
-- To install software on your VM, you will follow the Linux (Ubuntu) installation instructions from inside the Xubuntu VM.
-- You might need to take screenshots when asking for help on our Discord, here's how depending on where you use it:
-  - **Inside the VM:** you can use <kbd>Shift</kbd> + <kbd>PrtSrc</kbd> to take screenshots of portion of your screen. Alternatively, you can click the **Whisker Menu** and type in **Screenshot**, in which you can choose to take a screenshot of your entire screen, the current window you are on or to select a certain area to capture.
-  - **On your host (Windows):** you can use a shortcut of the Host Key (<kbd>Right Ctrl</kbd> + <kbd>E</kbd>) or click **View -> Take Screenshot** for a full screenshot. A different way would be unfocusing your VM window by clicking outside of it and then using the regular Windows shortcut of <kbd>Windows key</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> to take screenshots of portion of your screen.
-- **Remember:** all of the development that you'll do related to TOP should be done in the VM.
-- We recommend going full screen (**View -> Full-screen Mode**) and forgetting about your host OS (Windows). For best performance, close all programs inside of your host OS when running your VM.
-- To add additional monitors, shut down the VM and go to the **Display** tab in the VirtualBox settings of the VM and increase the monitor count. Now, with the VM running, clicking **View -> Virtual Screen 2 -> Enable**. You can run fullscreen with multiple monitors, but it may ask for more **Video Memory**, which you should have increased when adding more monitors. **Make sure you enable your Virtual Screens in windowed mode before going fullscreen, otherwise they won't work.** Upon exiting fullscreen, your secondary display may close. You can reopen it with these instructions.
+- Nếu không thấy thanh công cụ: Hãy bật thanh công cụ trong cài đặt VM - ở đó có những tùy chọn hữu ích để bạn thử, đặc biệt là các tùy chọn liên quan đến toàn màn hình hoặc nhiều màn hình. Để làm vậy, nhấp **Settings**, đi đến **User Interface**, rồi đánh dấu **Show at Top of Screen**.
+  ![Bạn nên xem qua toàn bộ phần cài đặt để hiểu những gì có thể làm.](../../installations/imgs/16_toolbar.png)
+- Mọi công việc của bạn phải diễn ra trong VM. Bạn sẽ cài mọi thứ cần thiết cho việc lập trình, bao gồm trình soạn thảo văn bản, môi trường ngôn ngữ và nhiều công cụ khác, bên trong VM. Bản cài đặt Xubuntu trong VM cũng có sẵn trình duyệt web, nhưng chúng ta sẽ sớm cài Chrome.
+- Bật Shared Clipboard - Trên thanh công cụ nói trên, trong phần devices, bạn có thể bật Bidirectional dưới **Shared Clipboard**. Khi đó bạn có thể sao chép và dán giữa Host và Guest theo cả hai chiều. Tuy nhiên, hãy nhớ rằng nếu có thể thì bạn nên làm việc hoàn toàn trong VM. Mẹo thêm: `ctrl+shift+v` để dán trong terminal.
+- Để cài phần mềm trên VM, hãy làm theo hướng dẫn cài đặt Linux (Ubuntu) từ bên trong VM Xubuntu.
+- Bạn có thể cần chụp ảnh màn hình khi yêu cầu trợ giúp trên Discord; cách thực hiện tùy nơi bạn dùng Discord:
+  - **Trong VM:** bạn có thể dùng <kbd>Shift</kbd> + <kbd>PrtSrc</kbd> để chụp một phần màn hình. Ngoài ra, có thể nhấp **Whisker Menu**, nhập **Screenshot**, rồi chọn chụp toàn màn hình, cửa sổ hiện tại hoặc một vùng cụ thể.
+  - **Trên máy chủ (Windows):** bạn có thể dùng phím tắt Host Key (<kbd>Right Ctrl</kbd> + <kbd>E</kbd>) hoặc nhấp **View -> Take Screenshot** để chụp toàn màn hình. Cách khác là bỏ focus khỏi cửa sổ VM bằng cách nhấp ra ngoài, rồi dùng phím tắt Windows thông thường <kbd>Windows key</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> để chụp một phần màn hình.
+- **Nhớ rằng:** mọi hoạt động phát triển liên quan đến TOP phải được thực hiện trong VM.
+- Chúng tôi khuyên bạn dùng chế độ toàn màn hình (**View -> Full-screen Mode**) và quên hệ điều hành máy chủ (Windows). Để có hiệu năng tốt nhất, hãy đóng mọi chương trình trên hệ điều hành máy chủ khi chạy VM.
+- Để thêm màn hình, hãy tắt VM, vào tab **Display** trong cài đặt VirtualBox của VM và tăng số lượng màn hình. Khi VM đang chạy, nhấp **View -> Virtual Screen 2 -> Enable**. Bạn có thể chạy toàn màn hình với nhiều màn hình, nhưng có thể cần thêm **Video Memory**, vốn đáng lẽ đã được tăng khi thêm màn hình. **Hãy bật Virtual Screens ở chế độ cửa sổ trước khi chuyển sang toàn màn hình, nếu không chúng sẽ không hoạt động.** Khi thoát chế độ toàn màn hình, màn hình phụ có thể đóng. Bạn có thể mở lại bằng các hướng dẫn này.
 
-#### Frequent issues/questions
+#### Các vấn đề/câu hỏi thường gặp
 
-- If upon trying to start the VM you only get a black screen, close and `power off` the VM, click **Settings -> Display** in VirtualBox and make sure **Enable 3D Acceleration** is UNCHECKED, and Video memory is set to **AT LEAST 128MB**.
-- Running out of space? Look at these [instructions for increasing VM disk space from the TOP Discord server](https://discord.com/channels/505093832157691914/690588860085960734/1015965403572351047).
-- Are you using a touchscreen? [Watch a video on how to enable touchscreen controls for VirtualBox](https://www.youtube.com/watch?v=hW-iyHHoDy4).
+- Nếu khi cố khởi động VM bạn chỉ thấy màn hình đen, hãy đóng và `power off` VM, nhấp **Settings -> Display** trong VirtualBox, đảm bảo **Enable 3D Acceleration** được bỏ chọn và bộ nhớ Video được đặt **AT LEAST 128MB**.
+- Hết dung lượng? Xem [hướng dẫn tăng dung lượng đĩa VM từ máy chủ Discord TOP](https://discord.com/channels/505093832157691914/690588860085960734/1015965403572351047).
+- Bạn đang dùng màn hình cảm ứng? [Xem video hướng dẫn bật điều khiển màn hình cảm ứng cho VirtualBox](https://www.youtube.com/watch?v=hW-iyHHoDy4).
 
-- **VM performance tips**:
-  - When running the VM, minimize your Windows activity. You probably want to be plugged into power as well if you're using a laptop.
-  - Make sure your processors are set to only 2 and the Memory you've given your VM is at most half of your total RAM but at least 2GB. If you can't spare the 2GB, dual boot.
-  - If videos lag in the VM, make sure to max out Video Memory to whatever you can or alternatively play them on your Windows if your machine can handle it. Disable 3D Acceleration if you have it enabled.
-  - Do look out for the ![Icon with a green turtle and a V](../../installations/imgs/17_turtle.png) icon in the bottom right of your VM window. This signifies that something called Hyper-V is turned on. A thread on the VirtualBox forums describes [how to turn off Hyper-V completely](https://forums.virtualbox.org/viewtopic.php?f=25&t=99390). You want to have the icon of a chip with a V ![Icon of a chip with a V](../../installations/imgs/18_vboxV.png) icon instead. If you don't see either of these icons in the bottom right, you have to exit full screen mode to see them. *Yes, the turtle is present in all of the helpful screenshots above.*
-  - Prior WSL2 installation on your machine will rely on Hyper-V, so even disabling Hyper-V by itself will not affect your VM's performance. We recommend that you turn off WSL2 completely (if you had it installed) before running your VM while ensuring that Hyper-V is disabled. [ninjaOne's article on enabling and disabling WSL2 in Windows 10](https://www.ninjaone.com/blog/enable-or-disable-windows-subsystem-for-linux-wsl/) will help you find where to complete this operation.
-  - If your performance is still lacking, go for a dual boot as this will make sure you're using all of your specs for one OS only, thus improving your experience significantly.
-- If your scroll wheel behaves oddly in Google Chrome and/or in other applications and you have gone through VM performance tips to make sure your VM is working as intended, look into [whether your version of Guest Additions is correct](https://discord.com/channels/505093832157691914/690588860085960734/1195697147123867668).
+- **Mẹo về hiệu năng VM**:
+  - Khi chạy VM, hãy giảm hoạt động trên Windows. Nếu dùng laptop, có lẽ bạn cũng nên cắm sạc.
+  - Đảm bảo processors chỉ được đặt ở mức 2 và Memory cấp cho VM không quá một nửa tổng RAM nhưng ít nhất là 2GB. Nếu không thể dành 2GB, hãy khởi động kép.
+  - Nếu video bị giật trong VM, hãy tăng Video Memory lên mức tối đa có thể hoặc phát video trên Windows nếu máy đủ khả năng. Tắt 3D Acceleration nếu đang bật.
+  - Hãy chú ý biểu tượng ![Biểu tượng con rùa xanh lá và chữ V](../../installations/imgs/17_turtle.png) ở góc dưới bên phải cửa sổ VM. Biểu tượng này cho biết Hyper-V đang bật. Một chủ đề trên diễn đàn VirtualBox mô tả [cách tắt hoàn toàn Hyper-V](https://forums.virtualbox.org/viewtopic.php?f=25&t=99390). Bạn muốn thấy biểu tượng con chip có chữ V ![Biểu tượng con chip có chữ V](../../installations/imgs/18_vboxV.png) thay vào đó. Nếu không thấy biểu tượng nào trong hai biểu tượng ở góc dưới bên phải, bạn phải thoát chế độ toàn màn hình để nhìn thấy chúng. *Đúng vậy, con rùa xuất hiện trong tất cả ảnh chụp màn hình hữu ích ở trên.*
+  - Bản cài WSL2 trước đó trên máy tính sẽ phụ thuộc vào Hyper-V, nên chỉ tắt Hyper-V sẽ không ảnh hưởng đến hiệu năng VM. Chúng tôi khuyên bạn tắt hoàn toàn WSL2 (nếu đã cài) trước khi chạy VM, đồng thời đảm bảo Hyper-V đã tắt. [Bài viết của ninjaOne về cách bật và tắt WSL2 trong Windows 10](https://www.ninjaone.com/blog/enable-or-disable-windows-subsystem-for-linux-wsl/) sẽ giúp bạn tìm nơi thực hiện thao tác này.
+  - Nếu hiệu năng vẫn chưa đủ, hãy chọn khởi động kép để đảm bảo chỉ một hệ điều hành sử dụng toàn bộ thông số máy, nhờ đó trải nghiệm được cải thiện đáng kể.
+- Nếu con lăn chuột hoạt động bất thường trong Google Chrome và/hoặc các ứng dụng khác, đồng thời bạn đã xem qua các mẹo về hiệu năng VM để đảm bảo VM hoạt động đúng, hãy xem [phiên bản Guest Additions của bạn có chính xác không](https://discord.com/channels/505093832157691914/690588860085960734/1195697147123867668).
 
-- **Safely shutting down your VM**
+- **Tắt VM an toàn**
 
-  - You don't pull the plug on your everyday use computer, right? Why would you do the same to your virtual computer? When you click the X button and just close out your VM, you might as well say goodbye to your files. In this section, you'll understand three ways you can shut off your VM.
-    - Option 1 - Shutting down from inside the VM with UI
+  - Bạn không rút điện chiếc máy tính dùng hằng ngày của mình, đúng không? Vậy tại sao lại làm thế với máy tính ảo? Khi nhấp nút X và đóng VM, bạn có thể đang nói lời tạm biệt với các tệp của mình. Trong phần này, bạn sẽ hiểu ba cách tắt VM.
+    - Cách 1 - Tắt từ bên trong VM bằng giao diện
 
-      Clicking on the **Whisker Menu** ![The blue-white rodent Whisker Menu Icon](../../installations/imgs/00_whisker_icon.png) and clicking the power icon will give you several options on how to modify your session, including **Shutting Down**. Yep, that's the same place you might've used to **Restart** before!
+      Nhấp **Whisker Menu** ![Biểu tượng Whisker Menu hình chuột xanh-trắng](../../installations/imgs/00_whisker_icon.png) rồi nhấp biểu tượng nguồn sẽ hiển thị một số tùy chọn để thay đổi phiên làm việc, trong đó có **Shutting Down**. Đúng vậy, đây cũng là nơi bạn có thể đã dùng **Restart** trước đó!
 
-    - Option 2 - Shutting down from inside the VM with the terminal
+    - Cách 2 - Tắt từ bên trong VM bằng terminal
 
-      Typing `poweroff` inside the terminal will do in this case. Your system will immediately shutdown.
+      Nhập `poweroff` trong terminal là đủ. Hệ thống sẽ lập tức tắt.
 
-    - Option 3 - Shutting down from outside the VM
+    - Cách 3 - Tắt từ bên ngoài VM
 
-      The last way to accomplish this goal of safely shutting down is by using the VM interface. Clicking on the File tab and hitting the close button (which also has a Power Icon) will bring up a popup titled **Close Virtual Machine**. This popup asks if you want to **Save the machine state**, **Send the shutdown signal**, or **Power off the machine**.
+      Cách cuối cùng để tắt an toàn là dùng giao diện VM. Nhấp tab File rồi nhấn nút đóng (cũng có biểu tượng nguồn) sẽ mở một cửa sổ bật lên có tiêu đề **Close Virtual Machine**. Cửa sổ này hỏi bạn muốn **Save the machine state**, **Send the shutdown signal** hay **Power off the machine**.
 
-      ![VM File Menu](../../installations/imgs/19_vbox_close.png)
+      ![Menu File của VM](../../installations/imgs/19_vbox_close.png)
 
-      ![Close Virtual Machine Menu](../../installations/imgs/20_send_shutdown.png)
+      ![Menu Close Virtual Machine](../../installations/imgs/20_send_shutdown.png)
 
-      To be safe, click the **Send the shutdown signal** radio and hit OK. This will safely power down your VM and your files will not get corrupted.
+      Để an toàn, chọn radio **Send the shutdown signal** rồi nhấn OK. VM sẽ tắt an toàn và các tệp của bạn không bị hỏng.
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#os-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#os-installation)

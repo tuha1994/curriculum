@@ -1,8 +1,8 @@
-### Guide: Setting up Git in macOS
+### Hướng dẫn: Thiết lập Git trên macOS
 
-#### Step 1: Install Homebrew
+#### Bước 1: Cài đặt Homebrew
 
-First, you'll need to install Homebrew. To install it, you’ll first need to make sure you meet the [Homebrew macOS requirements](https://docs.brew.sh/Installation#macos-requirements). Once you meet the requirements, copy and paste the following into your terminal:
+Trước tiên, bạn cần cài đặt Homebrew. Để cài đặt, trước hết hãy đảm bảo bạn đáp ứng [các yêu cầu của Homebrew trên macOS](https://docs.brew.sh/Installation#macos-requirements). Sau khi đáp ứng các yêu cầu, hãy sao chép và dán nội dung sau vào terminal:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -10,39 +10,39 @@ First, you'll need to install Homebrew. To install it, you’ll first need to ma
 
 <div class="lesson-note lesson-note--warning" markdown=1>
 
-#### Potential "Next steps" after Homebrew installation
+#### Có thể xuất hiện "Next steps" sau khi cài đặt Homebrew
 
-If you look at the terminal output after installing Homebrew, you will see "Installation Successful!". Further down in the terminal, you may also see a section titled "Next steps".
+Nếu xem phần xuất ra trong terminal sau khi cài đặt Homebrew, bạn sẽ thấy "Installation Successful!". Ở phía dưới trong terminal, bạn cũng có thể thấy một phần có tiêu đề "Next steps".
 
-Reading the terminal may seem a bit intimidating, but this is a great chance to overcome those feelings. If you do see this section, follow the next steps as stated in your terminal (copy and paste the commands given) to add Homebrew to your `PATH`, which allows you to use the `brew` command prefix.
+Đọc nội dung terminal có thể khiến bạn hơi e ngại, nhưng đây là cơ hội tốt để vượt qua cảm giác đó. Nếu thấy phần này, hãy làm theo các bước tiếp theo được nêu trong terminal (sao chép và dán các lệnh được cung cấp) để thêm Homebrew vào `PATH`, nhờ đó bạn có thể sử dụng tiền tố lệnh `brew`.
 
 </div>
 
-#### Step 2: Update Git
+#### Bước 2: Cập nhật Git
 
-macOS already comes with a version of Git, but you should update to the latest version. In the terminal, type
+macOS đã có sẵn một phiên bản Git, nhưng bạn nên cập nhật lên phiên bản mới nhất. Trong terminal, hãy nhập
 
 ```bash
 brew install git
 ```
 
-This will install the latest version of Git. Easy, right?
+Lệnh này sẽ cài đặt phiên bản Git mới nhất. Đơn giản phải không?
 
-#### Step 3: Verify version
+#### Bước 3: Kiểm tra phiên bản
 
-If you have just installed and/or updated Git from the previous step, first close that terminal window.
+Nếu vừa cài đặt và/hoặc cập nhật Git ở bước trước, trước tiên hãy đóng cửa sổ terminal đó.
 
-**Open a new terminal window** and then make sure your Git version is **at least** 2.28 by running this command:
+**Mở một cửa sổ terminal mới** rồi đảm bảo phiên bản Git của bạn **ít nhất** là 2.28 bằng cách chạy lệnh sau:
 
 ```bash
 git --version
 ```
 
-If the version number is less than 2.28, follow the instructions again. If you are encountering a `no formulae found in taps` error:
+Nếu số phiên bản nhỏ hơn 2.28, hãy làm lại hướng dẫn. Nếu gặp lỗi `no formulae found in taps`:
 
-1. Run `brew doctor`.
-1. You will see an output like the one below. NOTE: The actual output of `brew doctor` may vary based on the version of macOS you're running, and any other issues you may have with your own installation. Ultimately, you must run each command line snippet that Homebrew provides after running `brew doctor` to repair your installation of Homebrew, including `brew cleanup` at the end.
-![Brew Doctor Sample Output](https://cdn.statically.io/gh/TheOdinProject/curriculum/284f0cdc998be7e4751e29e8458323ad5d320303/foundations/installations/setting_up_git/imgs/00.png)
-1. Run `brew install git`, **open a new terminal window**, and then check your version of Git, which should now be the latest.
+1. Chạy `brew doctor`.
+1. Bạn sẽ thấy nội dung xuất ra tương tự như bên dưới. LƯU Ý: Nội dung thực tế của `brew doctor` có thể thay đổi tùy theo phiên bản macOS bạn đang chạy và các vấn đề khác trong quá trình cài đặt của riêng bạn. Cuối cùng, bạn phải chạy từng đoạn lệnh mà Homebrew cung cấp sau khi chạy `brew doctor` để sửa chữa bản cài đặt Homebrew, bao gồm cả `brew cleanup` ở cuối.
+![Nội dung mẫu của Brew Doctor](https://cdn.statically.io/gh/TheOdinProject/curriculum/284f0cdc998be7e4751e29e8458323ad5d320303/foundations/installations/setting_up_git/imgs/00.png)
+1. Chạy `brew install git`, **mở một cửa sổ terminal mới**, rồi kiểm tra phiên bản Git; lúc này phiên bản này sẽ là phiên bản mới nhất.
 
-[Return to the Setting Up Git lesson](https://www.theodinproject.com/lessons/foundations-setting-up-git#assignment)
+[Quay lại bài học Thiết lập Git](https://www.theodinproject.com/lessons/foundations-setting-up-git#assignment)

@@ -1,8 +1,8 @@
-### Guide: Setting up Git in Linux
+### Hướng dẫn: Thiết lập Git trên Linux
 
-#### Step 1: Update the system
+#### Bước 1: Cập nhật hệ thống
 
-Run these commands in the terminal to update the Linux system:
+Chạy các lệnh sau trong terminal để cập nhật hệ thống Linux:
 
 ```bash
 sudo apt update
@@ -11,19 +11,19 @@ sudo apt upgrade
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Typing passwords in the terminal
+#### Nhập mật khẩu trong terminal
 
-When using a command in the terminal that requires you to enter your password for authentication (such as `sudo`), you will notice that the characters aren't visible as you type them. While it might seem like the terminal isn't responding, don't worry!
+Khi sử dụng một lệnh trong terminal yêu cầu bạn nhập mật khẩu để xác thực (chẳng hạn như `sudo`), bạn sẽ nhận thấy các ký tự không hiển thị khi nhập. Dù có vẻ như terminal không phản hồi, đừng lo!
 
-This is a security feature to protect confidential information, like how password fields on websites use asterisks or dots. By not displaying the characters you write, the terminal keeps your password secure.
+Đây là một tính năng bảo mật để bảo vệ thông tin bí mật, tương tự như cách các trường mật khẩu trên website dùng dấu hoa thị hoặc dấu chấm. Không hiển thị các ký tự bạn nhập giúp terminal giữ mật khẩu của bạn an toàn.
 
-You can still enter your password as normal and press <kbd>Enter</kbd> to submit it.
+Bạn vẫn có thể nhập mật khẩu như bình thường rồi nhấn <kbd>Enter</kbd> để gửi.
 
 </div>
 
-#### Step 2: Install Git
+#### Bước 2: Cài đặt Git
 
-You likely have Git installed already, but to make sure that we have the most up to date version, run the following commands:
+Có thể Git đã được cài đặt trên máy bạn, nhưng để chắc chắn chúng ta có phiên bản mới nhất, hãy chạy các lệnh sau:
 
 ```bash
 sudo add-apt-repository ppa:git-core/ppa
@@ -31,14 +31,14 @@ sudo apt update
 sudo apt install git
 ```
 
-#### Step 3: Verify Git version
+#### Bước 3: Kiểm tra phiên bản Git
 
-Make sure your Git version is **at least** 2.28 by running this command:
+Hãy đảm bảo phiên bản Git của bạn **ít nhất** là 2.28 bằng cách chạy lệnh sau:
 
 ```bash
 git --version
 ```
 
-If the version number is less than 2.28, follow the instructions from the beginning again.
+Nếu số phiên bản nhỏ hơn 2.28, hãy làm lại hướng dẫn từ đầu.
 
-[Return to the Setting Up Git lesson](https://www.theodinproject.com/lessons/foundations-setting-up-git#assignment)
+[Quay lại bài học Thiết lập Git](https://www.theodinproject.com/lessons/foundations-setting-up-git#assignment)

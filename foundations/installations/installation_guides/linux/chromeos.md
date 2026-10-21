@@ -1,12 +1,12 @@
-### Guide: ChromeOS setup
+### Hướng dẫn: Thiết lập ChromeOS
 
-With the recent addition of being able to run a Linux terminal, the ChromeOS platform has been opened up to the ability to install native Linux applications. If you wish to use your Chromebook to complete The Odin Project, you will need to ensure you meet a couple requirements:
+Với việc gần đây có thể chạy terminal Linux, nền tảng ChromeOS đã hỗ trợ cài đặt các ứng dụng Linux gốc. Nếu muốn dùng Chromebook để học The Odin Project, bạn cần đảm bảo đáp ứng một vài yêu cầu:
 
-1. You have a supported Chromebook:
-   - [Official Chromebooks](https://www.chromium.org/chromium-os/chrome-os-systems-supporting-linux)
-   - [ChromeOS Flex Chromebooks](https://support.google.com/chromeosflex/answer/11513094)
-1. [Set up Linux on your Chromebook](https://support.google.com/chromebook/answer/9145439?hl=en).
+1. Bạn có Chromebook được hỗ trợ:
+   - [Chromebook chính thức](https://www.chromium.org/chromium-os/chrome-os-systems-supporting-linux)
+   - [Chromebook ChromeOS Flex](https://support.google.com/chromeosflex/answer/11513094)
+1. [Thiết lập Linux trên Chromebook](https://support.google.com/chromebook/answer/9145439?hl=en).
 
-Once you have successfully met both of these requirements, you should be able to follow along with the Linux instructions throughout the entire curriculum.
+Sau khi đáp ứng thành công cả hai yêu cầu này, bạn có thể làm theo các hướng dẫn Linux trong toàn bộ chương trình học.
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#os-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#os-installation)

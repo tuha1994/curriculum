@@ -1,51 +1,51 @@
-### Guide: Dual-boot Ubuntu and Windows
+### Hướng dẫn: Khởi động kép Ubuntu và Windows
 
-Dual-booting provides two operating systems on your computer that you can switch between with a simple reboot. One OS will not modify the other unless you explicitly tell it to do so. There are many Ubuntu flavors out there and while our curriculum supports official flavors of Ubuntu, this guide will focus on installing the official Ubuntu Desktop running on GNOME. If you would like to install a different flavor, instructions this guide will still work. Just pay close attention to the installer's instructions on your flavor.
+Khởi động kép cung cấp hai hệ điều hành trên máy tính của bạn, giữa chúng bạn có thể chuyển đổi bằng cách khởi động lại đơn giản. Một hệ điều hành sẽ không sửa đổi hệ điều hành kia trừ khi bạn chủ động yêu cầu. Có rất nhiều biến thể Ubuntu, và dù chương trình học hỗ trợ các biến thể Ubuntu chính thức, hướng dẫn này tập trung vào việc cài đặt Ubuntu Desktop chính thức chạy trên GNOME. Nếu muốn cài đặt một biến thể khác, hướng dẫn này vẫn có thể áp dụng. Chỉ cần chú ý đến hướng dẫn của trình cài đặt dành cho biến thể đó.
 
-Before you continue, be sure to back up any important data and to have a way to ask for help. If you get lost, scared, or stuck, we're here to help in the [Odin Tech Support chat room](https://discordapp.com/channels/505093832157691914/514204667245363200). Come say "Hi"!
+Trước khi tiếp tục, hãy sao lưu mọi dữ liệu quan trọng và chuẩn bị cách thức để yêu cầu trợ giúp. Nếu bị lạc hướng, lo lắng hoặc mắc kẹt, chúng tôi sẵn sàng hỗ trợ trong [phòng chat hỗ trợ kỹ thuật Odin](https://discordapp.com/channels/505093832157691914/514204667245363200). Hãy vào chào "Hi"!
 
-### Step 0: BitLocker
+### Bước 0: BitLocker
 
-If you have Windows Pro (or any of the editions listed on [the official Microsoft BitLocker Overview](https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/#windows-edition-and-licensing-requirements)) then you may have [BitLocker](https://support.microsoft.com/en-us/windows/bitlocker-drive-encryption-76b92ac9-1040-48d6-9f5f-d14b3c5fa178) enabled on your main drive. BitLocker is Microsoft's drive encryption software. If the drive you want to install Ubuntu on has BitLocker enabled then you will not be able to at first.
+Nếu bạn dùng Windows Pro (hoặc bất kỳ phiên bản nào được liệt kê trong [Tổng quan BitLocker chính thức của Microsoft](https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/#windows-edition-and-licensing-requirements)), ổ đĩa chính của bạn có thể đã bật [BitLocker](https://support.microsoft.com/en-us/windows/bitlocker-drive-encryption-76b92ac9-1040-48d6-9f5f-d14b3c5fa178). BitLocker là phần mềm mã hóa ổ đĩa của Microsoft. Nếu ổ đĩa bạn muốn cài Ubuntu đã bật BitLocker thì ban đầu bạn sẽ không thể cài đặt.
 
-There are a few ways to resolve this dilemma but we're going to go with the most simple one: temporarily disabling BitLocker.
+Có một vài cách giải quyết tình huống này, nhưng chúng ta sẽ chọn cách đơn giản nhất: tạm thời tắt BitLocker.
 
-[Ubuntu's official guide for turning off BitLocker in Windows](https://ubuntu.com/desktop/docs/en/latest/how-to/turn-off-bitlocker-in-windows/#turn-off-bitlocker-in-windows) will provide you with instructions on how to disable BitLocker on both Windows 11 and prior Windows releases.
+[Hướng dẫn chính thức của Ubuntu về cách tắt BitLocker trong Windows](https://ubuntu.com/desktop/docs/en/latest/how-to/turn-off-bitlocker-in-windows/#turn-off-bitlocker-in-windows) sẽ hướng dẫn bạn tắt BitLocker trên cả Windows 11 và các bản Windows cũ hơn.
 
-If you're going to install Ubuntu on a separate drive/partition that does not have BitLocker enabled then you should have no issues dual booting and will not need to disable BitLocker.
+Nếu cài Ubuntu trên một ổ đĩa/phân vùng riêng không bật BitLocker, bạn sẽ không gặp vấn đề khi khởi động kép và không cần tắt BitLocker.
 
-### Step 1: Download Ubuntu
+### Bước 1: Tải Ubuntu
 
-First, you need to download the version of Ubuntu you want to install on your computer. Ubuntu comes in different versions ("flavors"), but we suggest the standard desktop [Ubuntu](https://releases.ubuntu.com/24.04/). Be sure to download the 64-bit version of Ubuntu. If you reach the download page and are unsure about what version to choose, it is recommended that you pick the Long-Term Support (LTS) version 24.04 (Noble Numbat). You may be tempted to choose a more recent release if one exists, but this version is tried and tested by the Odin Project community and therefore the most reliable option for the purposes of this curriculum.
+Trước tiên, bạn cần tải phiên bản Ubuntu muốn cài trên máy tính. Ubuntu có nhiều phiên bản ("biến thể"), nhưng chúng tôi đề xuất bản desktop tiêu chuẩn [Ubuntu](https://releases.ubuntu.com/24.04/). Hãy tải phiên bản 64-bit của Ubuntu. Nếu không chắc nên chọn phiên bản nào trên trang tải xuống, bạn nên chọn phiên bản Hỗ trợ dài hạn (LTS) 24.04 (Noble Numbat). Bạn có thể muốn chọn bản phát hành mới hơn nếu có, nhưng cộng đồng Odin Project đã thử nghiệm kỹ phiên bản này, nên đây là lựa chọn đáng tin cậy nhất cho chương trình học này.
 
-### Step 2: Create a bootable flash drive
+### Bước 2: Tạo ổ flash có thể khởi động
 
-Next, follow [step 3 from the official Install Ubuntu Desktop guide](https://ubuntu.com/tutorials/install-ubuntu-desktop#3-create-a-bootable-usb-stick) to create a bootable flash drive so that you can install Ubuntu on your hard drive. You will need a USB stick with at least 12GB or above available. Be sure to back up any data that you have on this USB stick because this step involves erasing all data available on this stick.
+Tiếp theo, làm theo [bước 3 trong hướng dẫn Cài đặt Ubuntu Desktop chính thức](https://ubuntu.com/tutorials/install-ubuntu-desktop#3-create-a-bootable-usb-stick) để tạo ổ flash có thể khởi động, nhờ đó bạn có thể cài Ubuntu lên ổ cứng. Bạn cần một USB còn trống ít nhất 12GB. Hãy sao lưu dữ liệu trên USB vì bước này sẽ xóa toàn bộ dữ liệu trên đó.
 
-### Step 3: Install Ubuntu
+### Bước 3: Cài đặt Ubuntu
 
-#### Step 3.1: Boot from the flash drive
+#### Bước 3.1: Khởi động từ ổ flash
 
-First, you need to boot Ubuntu from your flash drive. The exact steps may vary, but in general, you will need to do the following:
+Trước tiên, bạn cần khởi động Ubuntu từ ổ flash. Các bước chính xác có thể khác nhau, nhưng nhìn chung bạn cần làm như sau:
 
-1. Insert the flash drive into the computer.
-1. Reboot the computer.
-1. Select the flash drive as the bootable device instead of the hard drive.
+1. Cắm ổ flash vào máy tính.
+1. Khởi động lại máy tính.
+1. Chọn ổ flash làm thiết bị khởi động thay cho ổ cứng.
 
-For example, on a Dell computer, you would need to plug in the flash drive, reboot the computer, and press the F12 key while the computer is first booting up to bring up the boot menu. From there, you can select to boot from the flash drive. Your computer may not be exactly the same, but Google can help you figure it out.
+Ví dụ, trên máy Dell, bạn cần cắm ổ flash, khởi động lại máy tính và nhấn phím F12 trong lúc máy vừa bắt đầu khởi động để mở menu khởi động. Từ đó, bạn có thể chọn khởi động từ ổ flash. Máy tính của bạn có thể không giống hệt như vậy, nhưng Google có thể giúp bạn tìm hiểu.
 
-#### Step 3.2: Install Ubuntu
+#### Bước 3.2: Cài đặt Ubuntu
 
-Once you're in, you'll be greeted by Ubuntu's installer to select your language, accessibility settings, keyboard layout and wifi connection.
+Sau khi vào được, trình cài đặt Ubuntu sẽ hiển thị để bạn chọn ngôn ngữ, cài đặt hỗ trợ tiếp cận, bố cục bàn phím và kết nối wifi.
 
-If you would like to test out Ubuntu on the flash drive, click on **Try Ubuntu**. Once you're ready to install, double click on the **Install Ubuntu 24.04 LTS** icon on your home page
+Nếu muốn dùng thử Ubuntu trên ổ flash, hãy nhấp vào **Try Ubuntu**. Khi sẵn sàng cài đặt, hãy nhấp đúp vào biểu tượng **Install Ubuntu 24.04 LTS** trên màn hình chính.
 
-Installing Ubuntu is where the real changes start happening on your computer. The default settings are mostly perfect, but be sure to **Install Ubuntu alongside Windows** and change the allocated disk space allowed for Ubuntu to 30 GB (or more if you can).
+Cài đặt Ubuntu là lúc những thay đổi thực sự bắt đầu diễn ra trên máy tính. Các cài đặt mặc định hầu hết đều phù hợp, nhưng hãy nhớ chọn **Install Ubuntu alongside Windows** và đổi dung lượng ổ đĩa phân bổ cho Ubuntu thành 30 GB (hoặc nhiều hơn nếu có thể).
 
-For step-by-step instructions, please follow [step 6 from the official Install Ubuntu Desktop guide](https://ubuntu.com/tutorials/install-ubuntu-desktop#6-type-of-installation).
+Để xem hướng dẫn từng bước, hãy làm theo [bước 6 trong hướng dẫn Cài đặt Ubuntu Desktop chính thức](https://ubuntu.com/tutorials/install-ubuntu-desktop#6-type-of-installation).
 
 ### Intel RST (Rapid Storage Technology)
 
-If you encounter an error requesting you to disable **Intel RST** while attempting to install Ubuntu, follow this [workaround to install Ubuntu with Intel RST systems](https://askubuntu.com/questions/1233623/workaround-to-install-ubuntu-20-04-with-intel-rst-systems/1233644#1233644), specifically **Choice #2**. The process forces Windows to boot into safemode after you switch your motherboard storage driver to work with Ubuntu. Once it boots into Windows, the forced-on safemode is disabled and you are free to attempt an installation of Ubuntu once again.
+Nếu gặp lỗi yêu cầu tắt **Intel RST** khi đang cố cài Ubuntu, hãy làm theo [cách khắc phục để cài Ubuntu trên hệ thống Intel RST](https://askubuntu.com/questions/1233623/workaround-to-install-ubuntu-20-04-with-intel-rst-systems/1233644#1233644), cụ thể là **Choice #2**. Quy trình này buộc Windows khởi động vào chế độ an toàn sau khi bạn chuyển trình điều khiển lưu trữ của bo mạch chủ để tương thích với Ubuntu. Sau khi Windows khởi động, chế độ an toàn bị ép buộc sẽ được tắt và bạn có thể thử cài Ubuntu lại.
 
-[Return to Installations lesson](https://www.theodinproject.com/lessons/foundations-installations#os-installation)
+[Quay lại bài học Cài đặt](https://www.theodinproject.com/lessons/foundations-installations#os-installation)

@@ -34,9 +34,9 @@ Chúng tôi đã nhúng rất nhiều ví dụ tương tác trong các bài họ
 
 <p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="QWgNxrp" data-editable="true" data-user="TheOdinProjectExamples" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/QWgNxrp">
-  first flex example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/QWgNxrp">
+  ví dụ flex đầu tiên</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 

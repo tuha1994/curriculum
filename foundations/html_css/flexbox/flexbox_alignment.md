@@ -14,9 +14,9 @@ Hãy xem một ví dụ.
 
 <p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="MWoyBzR" data-editable="true" data-user="TheOdinProjectExamples" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/MWoyBzR">
-  flex-alignment example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/MWoyBzR">
+  ví dụ căn chỉnh flex</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -44,9 +44,9 @@ Một tính năng rất hữu ích của flex là thuộc tính `gap`. Đặt `g
 
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="qBjZyea" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/qBjZyea">
-  flex-alignment example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/qBjZyea">
+  ví dụ căn chỉnh flex</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 

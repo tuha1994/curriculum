@@ -31,9 +31,9 @@ Trong trường hợp này, khi bọc nội dung trong một `div` rồi gán ch
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="KKXXbwR" data-preview="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/KKXXbwR">
-  block-inline-lesson-div-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/KKXXbwR">
+  block-inline-lesson-div-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -43,9 +43,9 @@ Trong trường hợp này, khi bọc nội dung trong một `div` rồi gán ch
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="abLLPor" data-preview="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/abLLPor">
-  block-inline-lesson-span-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/abLLPor">
+  block-inline-lesson-span-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 

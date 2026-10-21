@@ -26,8 +26,8 @@ Nói cách khác, trong ví dụ đầu tiên, chúng ta đặt `display: flex` 
 
 <p class="codepen" data-height="400" data-default-tab="html,result" data-slug-hash="BaZKPdw" data-editable="true" data-user="TheOdinProjectExamples" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen [flex-direction example](https://codepen.io/TheOdinProjectExamples/pen/BaZKPdw) by TheOdinProject ([@TheOdinProjectExamples](https://codepen.io/TheOdinProjectExamples))
-  on [CodePen](https://codepen.io).</span>
+  <span>Xem Pen [ví dụ về flex-direction](https://codepen.io/TheOdinProjectExamples/pen/BaZKPdw) của TheOdinProject ([@TheOdinProjectExamples](https://codepen.io/TheOdinProjectExamples))
+  trên [CodePen](https://codepen.io).</span>
 
 </p>
 

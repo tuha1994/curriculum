@@ -30,9 +30,9 @@ Trong ví dụ sau, dạng viết tắt `flex` có các giá trị của `flex-s
 
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="YzQqvgK" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/YzQqvgK">
-  flex-grow example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/YzQqvgK">
+  ví dụ flex-grow</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -48,9 +48,9 @@ Hệ số co mặc định là `flex-shrink: 1`, nghĩa là mọi item sẽ co �
 
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="JjJXZVz" data-editable="true" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/JjJXZVz">
-  flex-shrink example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/JjJXZVz">
+  ví dụ flex-shrink</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 

@@ -1,96 +1,96 @@
-### Introduction
+### Giới thiệu
 
-What do web developers do? In short, they build and maintain websites.
+Nhà phát triển web làm gì? Nói ngắn gọn, họ xây dựng và duy trì các website.
 
-Web developers often work for clients who are trying to get their product or service onto the web. The work is typically project-focused and involves collaborating with a team to coordinate the client's needs into the end product. The client could be a tech company, an organization, or a government. The work could involve front-end, back-end, or full-stack web development.
+Nhà phát triển web thường làm việc cho những khách hàng muốn đưa sản phẩm hoặc dịch vụ của mình lên web. Công việc thường tập trung vào dự án và đòi hỏi phối hợp với một nhóm để biến nhu cầu của khách hàng thành sản phẩm hoàn chỉnh. Khách hàng có thể là một công ty công nghệ, một tổ chức hoặc cơ quan chính phủ. Công việc có thể liên quan đến phát triển web front-end, back-end hoặc full-stack.
 
-Web development could be a good profession for you if you like solving logical problems, building useful things, and experimenting with new technologies. Web developers are in high demand, generally have a good work-life balance, and command comfortable salaries. Look up your specific location to get a better sense of your local web development job opportunities.
+Phát triển web có thể là một nghề phù hợp nếu bạn thích giải quyết vấn đề logic, xây dựng những thứ hữu ích và thử nghiệm công nghệ mới. Nhu cầu tuyển dụng nhà phát triển web rất cao; họ thường có sự cân bằng tốt giữa công việc và cuộc sống, cùng mức thu nhập khá thoải mái. Hãy tìm hiểu theo địa điểm cụ thể của bạn để có hình dung chính xác hơn về cơ hội việc làm phát triển web tại nơi mình sống.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Different types of web developers.
-- Different types of clients and employers.
-- Tools you'll be using regularly.
+- Các kiểu nhà phát triển web khác nhau.
+- Các kiểu khách hàng và bên tuyển dụng khác nhau.
+- Những công cụ bạn sẽ thường xuyên sử dụng.
 
-### Types of web developers
+### Các kiểu nhà phát triển web
 
-Earlier, we mentioned that web development work could be in the front end, the back end, or the full stack. What exactly do these terms mean?
+Trước đó, chúng ta đã nói rằng công việc phát triển web có thể thuộc front end, back end hoặc full stack. Chính xác thì những thuật ngữ này có nghĩa là gì?
 
-The **front end** is the stuff you see on the website in your browser, including the presentation of content and user interface elements like the navigation bar. Front-end developers use HTML, CSS, JavaScript, and their relevant frameworks to ensure that content is presented effectively and that users have an excellent experience.
+**Front end** là những gì bạn nhìn thấy trên website trong trình duyệt, bao gồm cách trình bày nội dung và các thành phần giao diện người dùng như thanh điều hướng. Nhà phát triển front-end sử dụng HTML, CSS, JavaScript và các framework liên quan để bảo đảm nội dung được trình bày hiệu quả, đồng thời mang lại trải nghiệm tốt cho người dùng.
 
-The **back end** refers to the guts of the application, which live on the server. The back end stores and serves program data to ensure that the front end has what it needs. This process can become very complicated when a website has millions of users. Back-end developers use programming languages like Java, Python, Ruby, and JavaScript to work with data.
+**Back end** chỉ phần cốt lõi của ứng dụng, nằm trên máy chủ. Back end lưu trữ và cung cấp dữ liệu của chương trình để front end có những gì cần thiết. Quá trình này có thể trở nên rất phức tạp khi một website có hàng triệu người dùng. Nhà phát triển back-end sử dụng các ngôn ngữ lập trình như Java, Python, Ruby và JavaScript để làm việc với dữ liệu.
 
-**Full-stack developers** are comfortable working with both the front and back ends. At The Odin Project, we focus on teaching you full-stack development, covering all aspects of web development.
+**Nhà phát triển full-stack** thấy thoải mái khi làm việc với cả front end lẫn back end. Tại The Odin Project, chúng tôi tập trung dạy phát triển full-stack, bao quát mọi khía cạnh của phát triển web.
 
-### Types of careers
+### Các hướng nghề nghiệp
 
-Now that you know about the different types of web developers, let's cover what we mentioned earlier about the different types of clients and employers you may work with.
+Giờ bạn đã biết các kiểu nhà phát triển web khác nhau, hãy cùng tìm hiểu những kiểu khách hàng và bên tuyển dụng khác nhau mà bạn có thể làm việc cùng như đã đề cập trước đó.
 
-Large tech companies, such as Google, Meta, and Amazon, have very stringent hiring requirements. If you successfully meet these expectations, they offer excellent pay, benefits, and opportunities.
+Các công ty công nghệ lớn như Google, Meta và Amazon có yêu cầu tuyển dụng rất khắt khe. Nếu đáp ứng được những kỳ vọng này, bạn sẽ nhận được mức lương, phúc lợi và cơ hội phát triển tuyệt vời.
 
-Startups are a bit like the wild west. For a junior developer, it can feel like a trial by fire because of the pace of development. Startups often offer slightly lower salaries and require longer hours, but they may also offer equity in the company and highly unique environments.
+Các startup có phần giống miền Tây hoang dã. Với một nhà phát triển cấp junior, tốc độ phát triển nhanh có thể tạo cảm giác như bị ném vào thử thách khắc nghiệt. Startup thường trả lương thấp hơn một chút và yêu cầu thời gian làm việc dài hơn, nhưng cũng có thể cho bạn cổ phần trong công ty và một môi trường rất độc đáo.
 
-As a freelancer, you could command a strong hourly wage and the freedom to schedule and design your own products. However, you would be responsible for getting your own work (which means less coding time), managing billing from clients (which can be difficult), and being solely responsible. Strong people skills are necessary for this path.
+Làm freelancer có thể mang lại mức thù lao theo giờ cao cùng sự tự do tự sắp xếp lịch và thiết kế sản phẩm của riêng mình. Tuy nhiên, bạn phải tự tìm việc (đồng nghĩa với ít thời gian viết mã hơn), tự quản lý việc thanh toán từ khách hàng (việc này có thể khó khăn) và tự chịu hoàn toàn trách nhiệm. Hướng đi này đòi hỏi kỹ năng giao tiếp tốt.
 
-As a consultant for a web consultancy, you would give up some of your freelancing wage potential but be able to focus more on the code and less on the hustle. This option also provides a good work-life balance and pay.
+Làm tư vấn viên cho một công ty tư vấn web, bạn sẽ từ bỏ một phần tiềm năng thu nhập của freelancer nhưng có thể tập trung nhiều hơn vào mã nguồn và bớt phải lo chuyện tìm việc. Lựa chọn này cũng mang lại sự cân bằng tốt giữa công việc và cuộc sống cùng mức thu nhập ổn.
 
-Finally, large, older companies still need web developers. These companies offer a good work-life balance, pay, and benefits but often move slower than a company that is highly focused on tech.
+Cuối cùng, các công ty lớn và lâu đời vẫn cần nhà phát triển web. Những công ty này thường có sự cân bằng tốt giữa công việc và cuộc sống, mức lương và phúc lợi tốt, nhưng thường vận hành chậm hơn một công ty tập trung mạnh vào công nghệ.
 
-### Tools of the trade
+### Công cụ nghề nghiệp
 
-These are some of the basic tools you will use regularly. You may not know what they are now, but you most certainly will going forward.
+Đây là một số công cụ cơ bản bạn sẽ thường xuyên sử dụng. Có thể hiện giờ bạn chưa biết chúng là gì, nhưng chắc chắn bạn sẽ biết trong thời gian tới.
 
-- **Computer**
-- A **search engine**, such as [Google](https://www.google.com/)
-- **[Text Editor](https://en.wikipedia.org/wiki/Text_editor)**
-- **[Command Line Interface (CLI)](https://en.wikipedia.org/wiki/Command-line_interface)**
+- **Máy tính**
+- **Công cụ tìm kiếm**, chẳng hạn như [Google](https://www.google.com/)
+- **[Trình soạn thảo văn bản](https://en.wikipedia.org/wiki/Text_editor)**
+- **[Giao diện dòng lệnh (CLI)](https://en.wikipedia.org/wiki/Command-line_interface)**
 - **[Stack Overflow](http://stackoverflow.com/)**
 - **[Git](https://git-scm.com/)**
 - **[GitHub](https://github.com/)**
 
-### Motivation
+### Động lực
 
-Learning to code is incredibly rewarding but can also be difficult and frustrating. The strongest assets you can have as a student are a desire to build, a problem-solving mind, and persistence in the face of setbacks.
+Học lập trình vô cùng đáng giá, nhưng cũng có thể khó khăn và gây nản lòng. Những tài sản quý giá nhất bạn có thể có khi là người học là mong muốn xây dựng, tư duy giải quyết vấn đề và sự kiên trì trước những trở ngại.
 
-The web development industry has a long history of successful developers with varying backgrounds, so people tend to care more about what you've actually **built** than how you got there.
+Ngành phát triển web có lịch sử lâu dài về những nhà phát triển thành công với nhiều xuất thân khác nhau, vì vậy mọi người thường quan tâm đến những gì bạn thực sự **đã xây dựng** hơn là con đường bạn đã đi.
 
-### Why Odin?
+### Vì sao là Odin?
 
-We want you to know that this will not be easy.
+Chúng tôi muốn bạn biết rằng việc này sẽ không dễ dàng.
 
-There are plenty of other online curriculums for beginners, but they are often taught in an extremely isolated and controlled environment and cover only a specific topic.
+Có rất nhiều chương trình học trực tuyến khác dành cho người mới bắt đầu, nhưng chúng thường được dạy trong một môi trường cực kỳ tách biệt và được kiểm soát, đồng thời chỉ bao quát một chủ đề cụ thể.
 
-The Odin Project takes a realistic view of what you need to know and has you set up and work in your own environment, much like what you'll be doing when you get a job.
+The Odin Project nhìn nhận thực tế về những gì bạn cần biết và hướng dẫn bạn thiết lập, làm việc trong chính môi trường của mình, rất giống với những gì bạn sẽ làm khi đi làm.
 
-It acknowledges that you need a wide variety of skill sets and languages to reach an employable level.
+Chương trình thừa nhận rằng bạn cần nhiều nhóm kỹ năng và ngôn ngữ khác nhau để đạt đến mức có thể xin việc.
 
-The Odin Project is constantly evolving because of people like you who get further along in the curriculum and pay it forward by incrementally improving our content over time.
+The Odin Project không ngừng phát triển nhờ những người như bạn — những người tiến xa hơn trong chương trình rồi đóng góp trở lại bằng cách từng bước cải thiện nội dung của chúng tôi theo thời gian.
 
-Once you start to feel comfortable with the tools, start contributing to open source projects, like [contributing to The Odin Project](https://www.theodinproject.com/contributing)! The more you contribute, the more you will learn about what you can do, and the closer you will get to being hireable. These projects will also look great on your resume!
+Khi đã bắt đầu cảm thấy thoải mái với các công cụ, hãy bắt đầu đóng góp cho các dự án mã nguồn mở, chẳng hạn như [đóng góp cho The Odin Project](https://www.theodinproject.com/contributing)! Bạn càng đóng góp nhiều, bạn càng học được nhiều hơn về khả năng của mình và càng đến gần hơn với việc trở thành người có thể được tuyển dụng. Những dự án này cũng sẽ khiến hồ sơ xin việc của bạn nổi bật!
 
-### Conclusion
+### Kết luận
 
-Hopefully, you've gained a better idea of what a web developer actually does and what your life might look like if you decided to take it on as a career. This has only been a teaser into the world of web development.
+Hy vọng bạn đã hình dung rõ hơn về công việc thực tế của một nhà phát triển web và cuộc sống của bạn có thể sẽ như thế nào nếu chọn nó làm sự nghiệp. Đây mới chỉ là phần giới thiệu sơ lược về thế giới phát triển web.
 
-In this "Foundations" course, you'll take a journey through the entire spectrum of topics that you will eventually need to know. This course jumps around to a variety of topics that you may be totally unfamiliar with, providing you a small taste of each and then moving on.
+Trong khóa học "Foundations" này, bạn sẽ đi qua toàn bộ phạm vi các chủ đề mà cuối cùng bạn sẽ cần biết. Khóa học liên tục chuyển qua nhiều chủ đề mà có thể bạn hoàn toàn chưa quen, cho bạn nếm thử một chút ở mỗi chủ đề rồi tiếp tục.
 
-The following courses will dive deep into these topics. You will build dozens of scripts, projects, and websites to cement those skills that will get you hired.
+Các khóa học tiếp theo sẽ đi sâu vào những chủ đề này. Bạn sẽ xây dựng hàng chục script, dự án và website để củng cố những kỹ năng giúp bạn được tuyển dụng.
 
-Yes, it's going to be challenging.
+Đúng vậy, khóa học sẽ đầy thử thách.
 
-But it's also going to be fun.
+Nhưng cũng sẽ rất thú vị.
 
-And it might even be life-changing.
+Và thậm chí có thể thay đổi cuộc đời bạn.
 
-*What are you waiting for?*
+*Bạn còn chờ gì nữa?*
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Check out the post ["Why Learning to Code is **So Damn Hard**"](https://dev.to/theodinproject/why-learning-to-code-is-so-damn-hard-11nn), which was written by the founder of The Odin Project. This article gives a realistic view of what the journey ahead is like.
-1. Read Udacity's blog post on [front-end, back-end and full stack developers.](https://www.udacity.com/blog/2020/12/front-end-vs-back-end-vs-full-stack-web-developers.html)
+1. Xem bài viết ["Vì sao học lập trình lại **khó đến thế**"](https://dev.to/theodinproject/why-learning-to-code-is-so-damn-hard-11nn), do người sáng lập The Odin Project viết. Bài viết này cho bạn một góc nhìn thực tế về hành trình phía trước.
+1. Đọc bài viết trên blog của Udacity về [các nhà phát triển front-end, back-end và full stack.](https://www.udacity.com/blog/2020/12/front-end-vs-back-end-vs-full-stack-web-developers.html)
 
 </div>

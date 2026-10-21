@@ -1,47 +1,47 @@
-### Introduction
+### Giới thiệu
 
-Along your programming journey, you will inevitably need to ask questions in an online coding community like ours or in conversations with your colleagues. While asking questions may seem rather simple, in a programming environment it is essential to ask well-formed questions with as much context as needed so you can get the most out of asking for help. In essence, “help others help you!” This lesson will provide you with the tools to effectively ask questions in communities such as our Discord chat, Stack Overflow, and in the workplace!
+Trong hành trình học lập trình, sớm muộn gì bạn cũng sẽ cần đặt câu hỏi trong một cộng đồng lập trình trực tuyến như cộng đồng của chúng ta hoặc khi trao đổi với đồng nghiệp. Đặt câu hỏi có vẻ khá đơn giản, nhưng trong môi trường lập trình, điều quan trọng là câu hỏi phải được trình bày rõ ràng và có đủ ngữ cảnh cần thiết để bạn nhận được nhiều nhất từ việc nhờ giúp đỡ. Nói ngắn gọn: “hãy giúp người khác giúp bạn!” Bài học này sẽ cung cấp cho bạn những công cụ để đặt câu hỏi hiệu quả trong các cộng đồng như kênh trò chuyện Discord của chúng ta, Stack Overflow và nơi làm việc!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Explain techniques for asking programming questions.
-- Explain and avoid qualities of “bad” questions.
-- Ask effective and well-formed questions.
+- Giải thích các kỹ thuật đặt câu hỏi về lập trình.
+- Giải thích và tránh những đặc điểm của các câu hỏi “tồi”.
+- Đặt những câu hỏi hiệu quả và được trình bày rõ ràng.
 
-### Tips for getting the best help possible
+### Mẹo để nhận được sự giúp đỡ tốt nhất có thể
 
-#### Always provide your code and the surrounding context
+#### Luôn cung cấp mã của bạn và ngữ cảnh xung quanh
 
-When asking a question, it is essential to provide your code, error message, terminal command, server output, and other relevant details. You should provide as much context as possible and zero in on the specific problem, such as pointing people to a specific function or line number in your code. Providing this relevant information makes it easier for others to help you.
+Khi đặt câu hỏi, bạn cần cung cấp mã nguồn, thông báo lỗi, lệnh trong terminal, đầu ra của máy chủ và những chi tiết liên quan khác. Hãy cung cấp càng nhiều ngữ cảnh càng tốt, đồng thời tập trung vào vấn đề cụ thể, chẳng hạn như chỉ cho mọi người một hàm hoặc số dòng cụ thể trong mã của bạn. Những thông tin liên quan này sẽ giúp người khác dễ dàng hỗ trợ bạn hơn.
 
-If your question does not provide any code or other relevant information, it will be difficult for others to help you. In order to fully understand your question, there will be a lot of unnecessary back and forth conversation. This can be discouraging for you because any answers with incomplete information will not solve your problem. This process can be frustrating for those helping because the meaning of your original question changes as you add more context to it. If you truly want to ask a conceptual question, you should indicate this as part of your question.
+Nếu câu hỏi không có mã nguồn hoặc thông tin liên quan nào khác, người khác sẽ khó giúp bạn. Để hiểu đầy đủ câu hỏi, hai bên sẽ phải trao đổi qua lại rất nhiều điều không cần thiết. Điều này có thể khiến bạn nản lòng vì những câu trả lời dựa trên thông tin chưa đầy đủ sẽ không giải quyết được vấn đề. Quá trình này cũng có thể gây khó chịu cho người hỗ trợ, vì ý nghĩa của câu hỏi ban đầu thay đổi mỗi khi bạn bổ sung thêm ngữ cảnh. Nếu thực sự muốn hỏi về một khái niệm, bạn nên nói rõ điều đó trong câu hỏi.
 
-#### Ask about the problem at hand, not the solution itself
+#### Hỏi về vấn đề đang gặp, không hỏi thẳng lời giải
 
-A lot of learners ask exactly how to approach a given task or assignment in this curriculum, such as the following:
+Nhiều người học hỏi chính xác cách tiếp cận một nhiệm vụ hoặc bài tập trong chương trình này, chẳng hạn như:
 
-- “How do I complete Step 5 of the Rock Paper Scissors Assignment”?
+- “Làm thế nào để hoàn thành Bước 5 của Bài tập Rock Paper Scissors”?
 
-Keep in mind that you’re supposed to figure out how to solve the assignments yourself, and figuring out an approach is essential to your learning journey. A much better question might look like this:
+Hãy nhớ rằng bạn cần tự tìm ra cách giải bài tập, và việc tìm ra hướng tiếp cận là một phần thiết yếu trong hành trình học tập. Một câu hỏi tốt hơn có thể là:
 
-- “Hey, I’m trying to return a string that displays the winner in Rock Paper Scissors, but I’m getting a syntax error on line 12. How can I fix this? Here’s my code.”
+- “Mình đang cố trả về một chuỗi hiển thị người thắng trong Rock Paper Scissors, nhưng gặp lỗi cú pháp ở dòng 12. Mình sửa thế nào? Đây là mã của mình.”
 
-In sharing your attempt, people know what you’ve tried and won’t suggest things that might not have worked out for you. It also allows them to debug your current iteration of code, rather than sending you down a path that has you start all over again when you might be very close to a solution.
+Khi chia sẻ những gì đã thử, mọi người sẽ biết bạn đã làm đến đâu và không đề xuất những cách có thể bạn đã thử nhưng không hiệu quả. Điều đó cũng cho phép họ gỡ lỗi phiên bản mã hiện tại của bạn, thay vì đưa bạn đi theo một hướng khiến bạn phải bắt đầu lại từ đầu trong khi có thể bạn đã rất gần lời giải.
 
-Now, if you’re completely stuck with where to start, it’s completely fine to let people know that you’re stuck. Asking where you can start and what you can research to get on the right track empowers you to be able to resolve issues largely on your own in the future, and might even empower you to help others with the same issue later on. It is also recommended that you share your pseudo code so people can nudge you in the right direction or correct any misunderstandings you may have.
+Nếu hoàn toàn không biết bắt đầu từ đâu thì bạn cứ nói rõ rằng mình đang mắc kẹt. Hỏi nên bắt đầu từ đâu và nên tìm hiểu gì để đi đúng hướng sẽ giúp bạn tự giải quyết vấn đề nhiều hơn trong tương lai, thậm chí còn có thể giúp bạn hỗ trợ người khác gặp cùng vấn đề sau này. Bạn cũng nên chia sẻ mã giả để mọi người có thể hướng bạn đi đúng hướng hoặc sửa những hiểu lầm mà bạn có thể đang mắc phải.
 
-#### Don’t take asking for more context to heart
+#### Đừng tự ái khi được yêu cầu bổ sung ngữ cảnh
 
-People who volunteer in coding communities are here to help! A question you may feel is coherent and “obvious” probably isn’t if you are being asked for more context. While something may seem "obvious" to a beginner, it's sometimes nowhere near "obvious" to an expert. An expert knows about many, many more situations that could cause an issue someone is experiencing, and would want to refrain from sending a learner down the wrong path. People take time out of their day to help, so make it as easy as possible for them to help you! There’s probably a good reason why they need more information, so trust their judgment and experience when they ask. Many people who help in coding chats are unpaid volunteers, and are in no way obligated to answer your query. But because they truly want to help you, they will ask for more information when needed!
+Những người tình nguyện trong các cộng đồng lập trình có mặt để giúp đỡ! Một câu hỏi mà bạn cảm thấy mạch lạc và “hiển nhiên” có thể lại chưa đủ rõ nếu bạn được yêu cầu cung cấp thêm ngữ cảnh. Một điều có thể “hiển nhiên” với người mới bắt đầu đôi khi hoàn toàn không hiển nhiên với chuyên gia. Chuyên gia biết có rất nhiều tình huống khác nhau có thể gây ra vấn đề bạn đang gặp và sẽ không muốn hướng người học đi sai đường. Mọi người dành thời gian trong ngày để giúp đỡ, vì vậy hãy làm cho việc giúp bạn trở nên dễ dàng nhất có thể! Có lẽ họ có lý do chính đáng khi cần thêm thông tin, nên hãy tin vào phán đoán và kinh nghiệm của họ khi họ yêu cầu. Nhiều người hỗ trợ trong các kênh trò chuyện lập trình là tình nguyện viên không được trả công và hoàn toàn không có nghĩa vụ phải trả lời câu hỏi của bạn. Nhưng vì họ thực sự muốn giúp, họ sẽ hỏi thêm thông tin khi cần!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. [Don't ask to ask, just ask](https://dontasktoask.com/) demonstrates the importance of just asking your question and not asking to ask your question.
-1. Read about the [“XY Problem”](https://xyproblem.info/), which is a common pitfall both new and experienced programmers fall into when asking questions.
-1. Read and bookmark our community guide [How to Ask Technical Questions](https://www.theodinproject.com/guides/community/how_to_ask). It is a great reference to refer to whenever you find yourself needing to ask for help, and you might find yourself solving your own problem as you think about the points listed in the article.
+1. [Đừng hỏi xem có thể hỏi, cứ hỏi thẳng](https://dontasktoask.com/) cho thấy tầm quan trọng của việc cứ đặt câu hỏi thay vì hỏi xem mình có thể đặt câu hỏi hay không.
+1. Đọc về [“Vấn đề XY”](https://xyproblem.info/), một cạm bẫy phổ biến mà cả lập trình viên mới lẫn có kinh nghiệm đều dễ mắc phải khi đặt câu hỏi.
+1. Đọc và lưu lại hướng dẫn cộng đồng [Cách đặt câu hỏi kỹ thuật](https://www.theodinproject.com/guides/community/how_to_ask). Đây là tài liệu tham khảo hữu ích mỗi khi bạn cần nhờ giúp đỡ; có thể bạn sẽ tự giải quyết được vấn đề ngay khi suy nghĩ về những điểm được nêu trong bài viết.
 
 </div>

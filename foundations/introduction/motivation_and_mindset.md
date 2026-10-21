@@ -1,175 +1,175 @@
-### Introduction
+### Giới thiệu
 
-Learning to code is incredibly rewarding but can also be difficult and frustrating. Like any skill worth knowing, it takes time to acquire, and it can't be learned in a weekend or even a month. With that said, we believe anyone can learn how to program as long as they are willing to put in the time and effort.
+Học lập trình vô cùng đáng giá, nhưng cũng có thể khó khăn và gây nản lòng. Giống như bất kỳ kỹ năng đáng học nào, việc tiếp thu cần thời gian và không thể hoàn thành trong một cuối tuần hay thậm chí một tháng. Dù vậy, chúng tôi tin rằng bất kỳ ai cũng có thể học lập trình, miễn là sẵn sàng bỏ thời gian và công sức.
 
-So before we get into the meat of the curriculum, we'll cover the following aspects to help you get the most out of The Odin Project: factors that will help you succeed in learning to code and the pitfalls that you should try to avoid.
+Vì vậy, trước khi đi vào phần cốt lõi của chương trình, chúng ta sẽ xem xét những khía cạnh sau để giúp bạn tận dụng The Odin Project tốt nhất: những yếu tố giúp bạn thành công khi học lập trình và những cạm bẫy nên cố gắng tránh.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Helpful ways to approach learning and struggling.
-- Things to avoid along your learning journey with TOP.
+- Những cách hữu ích để tiếp cận việc học và những lúc gặp khó khăn.
+- Những điều cần tránh trong hành trình học với TOP.
 
-### Motivation
+### Động lực
 
-Take a moment to think about why you have decided to learn programming.
+Hãy dành một chút thời gian suy nghĩ về lý do bạn quyết định học lập trình.
 
-- Do you want to have a fulfilling career that pays well?
-- Are you excited by the creative outlet programming provides?
-- Are you determined to develop the skills and abilities to build any app you can think of?
-- Do you want to start your own company by turning an app idea into reality?
+- Bạn muốn có một sự nghiệp ý nghĩa với mức thu nhập tốt?
+- Bạn hào hứng với không gian sáng tạo mà lập trình mang lại?
+- Bạn quyết tâm phát triển kỹ năng và năng lực để xây dựng bất kỳ ứng dụng nào mình có thể nghĩ ra?
+- Bạn muốn khởi nghiệp bằng cách biến ý tưởng ứng dụng thành hiện thực?
 
-Your motivation could be a combination of these reasons or something else entirely. Whatever it is, hold on tightly to your motivation - this will be what pulls you through to the end of this journey, giving you a definitive goal to aim towards.
+Động lực của bạn có thể là sự kết hợp của những lý do này hoặc hoàn toàn là điều khác. Dù là gì, hãy nắm thật chặt động lực đó - nó sẽ kéo bạn đi đến cuối hành trình này và cho bạn một mục tiêu rõ ràng để hướng tới.
 
-### The learning process
+### Quá trình học tập
 
-Learning concepts and then practicing them will help you to more fully understand how things work and fit together. Projects are the ultimate method for ensuring that your theoretical understanding aligns with how the programming concepts and techniques actually operate.
+Học các khái niệm rồi thực hành chúng sẽ giúp bạn hiểu đầy đủ hơn cách mọi thứ vận hành và kết nối với nhau. Dự án là phương pháp tối ưu để bảo đảm hiểu biết lý thuyết của bạn phù hợp với cách các khái niệm và kỹ thuật lập trình thực sự hoạt động.
 
-When learning, your mind will consistently switch between focus mode and diffuse mode. **Focus mode** occurs when you are consciously focusing on learning, reading, watching videos, or working on a project. **Diffuse mode** occurs subconsciously, at times when you are not actively learning, such as when you're doing the dishes, exercising, or sleeping. In this state, your mind goes about the business of connecting what you have been learning to the other things you know. This is where breakthroughs happen.
+Khi học, tâm trí bạn sẽ liên tục chuyển đổi giữa chế độ tập trung và chế độ lan tỏa. **Chế độ tập trung** xảy ra khi bạn có ý thức tập trung vào việc học, đọc, xem video hoặc làm dự án. **Chế độ lan tỏa** xảy ra trong tiềm thức, vào những lúc bạn không chủ động học, chẳng hạn khi rửa bát, tập thể dục hoặc ngủ. Ở trạng thái này, tâm trí bạn kết nối những gì vừa học với những điều khác đã biết. Đây là lúc những bước đột phá xuất hiện.
 
-It's important to know that your mind goes through these two states when learning because you can utilize this to make your learning more efficient. When stuck on a concept or project, taking a break to refresh and let your subconscious work on making connections more often than not yields a solution to your problem. The trick is to put effort into solving the problem first and then take a break.
+Điều quan trọng là biết tâm trí chuyển qua hai trạng thái này khi học, vì bạn có thể tận dụng điều đó để học hiệu quả hơn. Khi mắc kẹt ở một khái niệm hoặc dự án, nghỉ một chút để làm mới đầu óc và cho tiềm thức thời gian tạo kết nối thường sẽ mang lại lời giải. Bí quyết là trước hết phải nỗ lực giải quyết vấn đề, rồi mới nghỉ.
 
-In short, understand it, practice it, and finally teach it.
+Tóm lại, hãy hiểu, thực hành và cuối cùng là dạy lại.
 
-Teaching what you know to others is a great way to solidify what you have learned and can often reveal holes in your knowledge that you wouldn't have identified otherwise.
+Dạy những gì mình biết cho người khác là một cách tuyệt vời để củng cố kiến thức đã học và thường có thể phát hiện những lỗ hổng mà nếu không thì bạn sẽ không nhận ra.
 
-You can practice this method of learning by helping others in our community.
+Bạn có thể thực hành phương pháp học này bằng cách giúp đỡ người khác trong cộng đồng.
 
-### What to do when you're stuck
+### Làm gì khi bị mắc kẹt
 
-You will inevitably get stuck at some point in the curriculum, perhaps due to a concept that you are having difficulty understanding or perhaps due to something not working correctly in a project. Whatever it is, use the following tools to get unstuck:
+Sớm muộn gì bạn cũng sẽ mắc kẹt ở một thời điểm nào đó trong chương trình, có thể vì một khái niệm khó hiểu hoặc vì một thứ trong dự án không hoạt động đúng. Dù là gì, hãy dùng những công cụ sau để thoát khỏi bế tắc:
 
-- Research it: You can be certain someone else out there has encountered the same problem as you at some point. A quick search with a search engine can often lead to a solution.
-- Take a break: Allow your diffuse learning state to work on the problem.
-- Ask for help in the [TOP Discord server](https://discord.gg/fbFCkYabZB); come prepared with your research. People will be more willing to help you when they can see you have already put effort into trying to figure out the solution on your own.
+- Nghiên cứu vấn đề: Bạn có thể chắc chắn rằng đã có ai đó gặp cùng vấn đề vào một thời điểm nào đó. Một lần tìm kiếm nhanh bằng công cụ tìm kiếm thường có thể dẫn đến lời giải.
+- Nghỉ một chút: Cho phép trạng thái học lan tỏa xử lý vấn đề.
+- Nhờ giúp đỡ trong [máy chủ Discord của TOP](https://discord.gg/fbFCkYabZB); hãy chuẩn bị với phần nghiên cứu của mình. Mọi người sẽ sẵn lòng giúp hơn khi thấy bạn đã nỗ lực tự tìm lời giải.
 
-![Diagram to help learners go through problems when they are stuck. Process described under the next heading "Problem solving steps"](https://cdn.statically.io/gh/TheOdinProject/curriculum/978ba0e91a6a47452de819246f4c495e6b092f54/foundations/introduction/motivation_and_mindset/imgs/00.png)
+![Sơ đồ giúp học viên xử lý vấn đề khi bị mắc kẹt. Quy trình được mô tả dưới tiêu đề tiếp theo "Các bước giải quyết vấn đề"](https://cdn.statically.io/gh/TheOdinProject/curriculum/978ba0e91a6a47452de819246f4c495e6b092f54/foundations/introduction/motivation_and_mindset/imgs/00.png)
 
-#### Problem solving steps
+#### Các bước giải quyết vấn đề
 
-1. Do the lesson.
-1. Practice the concept.
-1. Are you aware of how to solve the problem?
-   1. Yes: Nice!
-   1. No: Have you researched and experimented?
-      1. Yes: Have you asked for guidance?
-         1. Yes: Go back to step 2 (practice the concept).
-         1. No: Ask a question. Does the guidance received make any sense?
-            1. Yes: Go back to step 2 (practice the concept).
-            1. No: Go back to step 1 (do the lesson).
-      1. No: Research and experiment, then go back to step 2 (practice the concept).
+1. Học bài.
+1. Thực hành khái niệm.
+1. Bạn có biết cách giải quyết vấn đề không?
+   1. Có: Tuyệt!
+   1. Không: Bạn đã nghiên cứu và thử nghiệm chưa?
+      1. Có: Bạn đã nhờ hướng dẫn chưa?
+         1. Có: Quay lại bước 2 (thực hành khái niệm).
+         1. Không: Đặt câu hỏi. Hướng dẫn nhận được có dễ hiểu không?
+            1. Có: Quay lại bước 2 (thực hành khái niệm).
+            1. Không: Quay lại bước 1 (học bài).
+      1. Không: Nghiên cứu và thử nghiệm, rồi quay lại bước 2 (thực hành khái niệm).
 
-### A note on AI code generation
+### Lưu ý về việc tạo mã bằng AI
 
-As technology advances, we have seen some incredible tools emerge that can help accelerate coding capacity. One particular area that has exploded in popularity lately is the usage of Large Language Models (LLMs) and generative AIs for code completion (like GitHub Copilot) and code generation (like ChatGPT).
+Khi công nghệ tiến bộ, chúng ta đã chứng kiến sự xuất hiện của những công cụ đáng kinh ngạc có thể giúp tăng tốc khả năng viết mã. Một lĩnh vực đặc biệt bùng nổ gần đây là việc sử dụng Mô hình Ngôn ngữ Lớn (LLMs) và AI tạo sinh để hoàn thành mã (như GitHub Copilot) và tạo mã (như ChatGPT).
 
-While these tools are amazing, learners should be aware of the impacts that using such tools can have on core competency. David Humphrey, a computer science professor, [wrote about ChatGPT and its potentially negative impacts on core learning](https://blog.humphd.org/cheatgpt/). It is a good read about the pitfalls of using generative AI in an educational context.
+Dù những công cụ này rất tuyệt vời, người học nên nhận thức được tác động của việc sử dụng chúng đối với năng lực cốt lõi. David Humphrey, một giáo sư khoa học máy tính, đã [viết về ChatGPT và những tác động tiêu cực tiềm ẩn của nó đối với việc học cốt lõi](https://blog.humphd.org/cheatgpt/). Đây là một bài đọc hữu ích về những cạm bẫy của việc dùng AI tạo sinh trong bối cảnh giáo dục.
 
-For learners who are new to programming, tools like ChatGPT or GitHub Copilot can result in blindspots and gaps in your knowledge. This includes other AI output like Google's AI overview (which you can search up how to disable).
+Với những người mới học lập trình, các công cụ như ChatGPT hoặc GitHub Copilot có thể tạo ra những điểm mù và lỗ hổng kiến thức. Điều này bao gồm cả các đầu ra AI khác như AI overview của Google (bạn có thể tìm cách tắt tính năng này).
 
-1. By using a generative AI, learners may miss the opportunity to discover how something works and why things are done that way.
-1. Asking good questions is an important skill, and relying on generative AI instead of asking people (like our helpful Discord community) can delay the development of this skill.
-1. Learning to talk about the code that one writes is another important skill. In a professional environment, it is highly likely that you will be doing code reviews where you have to explain the how and why behind what you are presenting. Using the Odin community to ask good questions about your code when you require help can help develop this skill as well.
-1. As David Humphrey mentions, the output of generative AI must be closely scrutinized, and learners who are new to programming generally don't have a good overall understanding to be able to determine if the output is good or bad.
-1. While learning how to provide good prompts to an AI tool is a skill, it is supplementary to developing foundational programming skills. The Odin curriculum strives to teach that foundational skill.
-1. AI tools are designed to answer questions and are not designed to help learners develop research and problem solving skills. If you ask an AI for information, it will provide information to you. If you ask a human, they may invite you to share your understanding of the problem and offer some guidance on how to discover a solution.
-1. Without practice in research, problem solving and critical thinking, interviews could be a struggle since it is very likely that applicants would not be allowed to use AI tools.
+1. Khi dùng AI tạo sinh, người học có thể bỏ lỡ cơ hội khám phá cách một thứ hoạt động và lý do mọi thứ được làm theo cách đó.
+1. Đặt câu hỏi hay là một kỹ năng quan trọng, và dựa vào AI tạo sinh thay vì hỏi người khác (chẳng hạn cộng đồng Discord hữu ích của chúng ta) có thể làm chậm quá trình phát triển kỹ năng này.
+1. Học cách nói về mã mình viết cũng là một kỹ năng quan trọng khác. Trong môi trường chuyên nghiệp, rất có khả năng bạn sẽ tham gia các buổi code review, nơi phải giải thích cách thức và lý do đằng sau những gì mình trình bày. Dùng cộng đồng Odin để đặt câu hỏi hay về mã khi cần giúp đỡ cũng có thể phát triển kỹ năng này.
+1. Như David Humphrey đề cập, đầu ra của AI tạo sinh phải được xem xét kỹ lưỡng, mà người mới học lập trình thường chưa có hiểu biết tổng thể đủ tốt để xác định đầu ra là tốt hay xấu.
+1. Học cách viết prompt tốt cho công cụ AI là một kỹ năng, nhưng nó chỉ bổ trợ cho việc phát triển kỹ năng lập trình nền tảng. Chương trình Odin hướng tới việc dạy kỹ năng nền tảng đó.
+1. Công cụ AI được thiết kế để trả lời câu hỏi, không phải để giúp người học phát triển kỹ năng nghiên cứu và giải quyết vấn đề. Nếu hỏi AI một thông tin, nó sẽ cung cấp thông tin cho bạn. Nếu hỏi một người, họ có thể mời bạn chia sẻ hiểu biết của mình về vấn đề và đưa ra hướng dẫn để bạn tự khám phá lời giải.
+1. Nếu không thực hành nghiên cứu, giải quyết vấn đề và tư duy phản biện, các buổi phỏng vấn có thể trở nên khó khăn vì rất có thể ứng viên sẽ không được phép dùng công cụ AI.
 
-We do not recommend using AI tools for your learning.
+Chúng tôi không khuyến nghị dùng công cụ AI để học.
 
-### Managing your study time
+### Quản lý thời gian học
 
-You will have more success with Odin by putting **consistent** time into it rather than working on it once a week. Building a habit of studying every day at a specific time and with a specific goal will ensure that you make consistent progress.
+Bạn sẽ tiến bộ với Odin tốt hơn nếu dành thời gian **đều đặn** cho nó thay vì chỉ học mỗi tuần một lần. Hình thành thói quen học mỗi ngày vào một thời điểm cụ thể và với một mục tiêu cụ thể sẽ giúp bạn tiến bộ ổn định.
 
-It may take you longer than others to grasp concepts, or it may take you less time. This doesn't mean you're smarter or dumber than others, it means you've had differing life experiences that may or may not have prepared you for learning those concepts. Someone who grew up around an engineer may have some advantages over someone who didn't, but it doesn't mean you can't learn those skills.
+Bạn có thể mất nhiều thời gian hơn người khác để nắm khái niệm, hoặc cũng có thể mất ít thời gian hơn. Điều đó không có nghĩa bạn thông minh hay kém thông minh hơn người khác; chỉ là bạn có những trải nghiệm sống khác nhau, có thể đã hoặc chưa chuẩn bị cho bạn học những khái niệm đó. Người lớn lên bên cạnh một kỹ sư có thể có một số lợi thế so với người không có, nhưng điều đó không có nghĩa bạn không thể học được các kỹ năng ấy.
 
-The Odin Project isn't like college or university, it is self-paced and allows you to get a solid grasp of concepts before moving on. In school, you're forced to keep up, or you will fail. The difference with The Odin Project is that you’re not expected to have much prior knowledge; there are no prerequisites. We've had people be successful coming through here who only knew how to check their email with a computer. We've also seen success from computer science degree holders. Treating The Odin Project like a static timeline is understandable, but is a sign of misplaced expectations. You don't know what you don't know yet, and that's OK! There are no due-dates on lessons in The Odin Project, so you can spend enough time to do it right and discuss the topics.
+The Odin Project không giống cao đẳng hay đại học; đây là chương trình tự học theo tốc độ riêng và cho phép bạn nắm vững khái niệm trước khi tiếp tục. Ở trường, bạn buộc phải theo kịp, nếu không sẽ trượt. Điểm khác biệt của The Odin Project là không kỳ vọng bạn có nhiều kiến thức trước đó; không có điều kiện tiên quyết. Chúng tôi từng thấy những người thành công ở đây chỉ biết dùng máy tính để kiểm tra email. Chúng tôi cũng thấy những người có bằng khoa học máy tính thành công. Việc xem The Odin Project như một tiến độ cố định là điều dễ hiểu, nhưng đó là dấu hiệu của kỳ vọng đặt sai chỗ. Bạn chưa biết những điều mình chưa biết, và như vậy cũng không sao! The Odin Project không có hạn nộp cho bài học, nên bạn có thể dành đủ thời gian để học cho đúng và thảo luận về các chủ đề.
 
-Deadlines cause unneeded stress. Since The Odin Project is a free and open platform, you are not beholden to a deadline. Creating your own deadlines can lead to rushing through concepts that should not be rushed. This course is very research based, meaning you will have to do research to complete tasks and projects. There’s no guarantee you will find the right article or post quickly enough to meet your deadlines, but you will likely learn a TON along the way that you can use in the future. People that do this kind of research and strive to write better solutions tend to become better developers in the future. There’s no way to know how long it will take you to learn how to query concepts to find your answers. There are no solid guidelines on that. If you're doing The Odin Project because you need a high-paying job *right now*, you’re unlikely to become a solid developer within the timeframe you have set. Stress and anxiety absolutely do not help you learn either. Relax and just enjoy the ride.
+Thời hạn gây căng thẳng không cần thiết. Vì The Odin Project là một nền tảng miễn phí và mở, bạn không bị ràng buộc bởi hạn chót. Tự đặt hạn chót có thể khiến bạn vội vàng đi qua những khái niệm không nên vội. Khóa học này dựa rất nhiều vào nghiên cứu, nghĩa là bạn sẽ phải nghiên cứu để hoàn thành nhiệm vụ và dự án. Không có gì bảo đảm bạn sẽ nhanh chóng tìm thấy bài viết hoặc bài đăng phù hợp để kịp hạn chót, nhưng bạn có thể sẽ học được RẤT NHIỀU điều hữu ích trong tương lai. Những người thực hiện kiểu nghiên cứu này và cố gắng viết lời giải tốt hơn thường sẽ trở thành nhà phát triển giỏi hơn sau này. Không thể biết bạn sẽ mất bao lâu để học cách truy vấn khái niệm nhằm tìm câu trả lời. Không có hướng dẫn cố định cho việc đó. Nếu học The Odin Project vì cần một công việc lương cao *ngay bây giờ*, bạn khó có thể trở thành nhà phát triển vững vàng trong khoảng thời gian đã đặt ra. Căng thẳng và lo âu cũng hoàn toàn không giúp bạn học tốt hơn. Hãy thư giãn và tận hưởng hành trình.
 
-Long story short: Don't worry, just go learn!
+Nói ngắn gọn: Đừng lo, cứ học thôi!
 
-### Pitfalls to avoid
+### Những cạm bẫy cần tránh
 
-The following are some of the pitfalls that beginners often encounter when learning how to program. Try your best to avoid these.
+Dưới đây là một số cạm bẫy người mới thường gặp khi học lập trình. Hãy cố gắng hết sức để tránh chúng.
 
-#### Procrastination
+#### Trì hoãn
 
-Procrastination will be your biggest enemy when trying to make progress.
+Trì hoãn sẽ là kẻ thù lớn nhất khi bạn cố gắng tiến bộ.
 
-**Solution:** The [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a way of managing your time in order to stay focused. The idea is to set a timer for 25 minutes and to work on a task until the timer goes off. If you get distracted or interrupted during the 25 minutes, start the 25 minutes of work over again. Once you've successfully focused on work for 25 minutes, take a 5 minute break. When your break is over, repeat the 25 minutes of work and 5 minute break. After you've completed four 25 minute blocks of work, take a longer 15-30 minute break.
+**Giải pháp:** [Kỹ thuật Pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) là một cách quản lý thời gian để duy trì sự tập trung. Ý tưởng là đặt hẹn giờ 25 phút và làm việc cho đến khi chuông reo. Nếu bị xao nhãng hoặc gián đoạn trong 25 phút đó, hãy bắt đầu lại 25 phút làm việc. Khi đã tập trung làm việc thành công trong 25 phút, hãy nghỉ 5 phút. Hết giờ nghỉ, lặp lại 25 phút làm việc và 5 phút nghỉ. Sau khi hoàn thành bốn phiên làm việc 25 phút, hãy nghỉ dài hơn từ 15-30 phút.
 
-The Pomodoro technique is great for avoiding procrastination as it forces you to work without distractions. Since the work time only lasts 25 minutes before taking a break, it's not overwhelming, making it harder to rationalize procrastination.
+Kỹ thuật Pomodoro rất hữu ích để tránh trì hoãn vì buộc bạn làm việc không bị xao nhãng. Vì thời gian làm việc chỉ kéo dài 25 phút trước khi nghỉ, nó không gây quá tải, khiến bạn khó biện minh cho việc trì hoãn hơn.
 
-If you want to try it out, [Pomofocus](https://pomofocus.io/) is a customizable pomodoro timer that works on desktop & mobile browser.
+Nếu muốn thử, [Pomofocus](https://pomofocus.io/) là một đồng hồ Pomodoro tùy chỉnh được, hoạt động trên trình duyệt máy tính và di động.
 
-#### Focusing on the end result
+#### Chỉ tập trung vào kết quả cuối cùng
 
-Are you spending the majority of your time thinking about all of the things you want to do after getting through The Odin Project? Are you worried about how long it's going to take you? Is it filling you with so much dread to the point where it's painful and causing you to not make any progress at all? Surprise! This is another form of procrastination!
+Bạn có dành phần lớn thời gian nghĩ về tất cả những điều muốn làm sau khi hoàn thành The Odin Project không? Bạn có lo sẽ mất bao lâu không? Điều đó có khiến bạn sợ hãi đến mức đau đớn và hoàn toàn không thể tiến bộ không? Bất ngờ chưa! Đây cũng là một dạng trì hoãn!
 
-**Solution:** Knowing that you can utilize the Pomodoro Technique for getting through your studies, the next step is to give yourself a goal of how many Pomodoros to do in a week, and focus on hitting that goal. Start small, work your way up to a manageable amount. If life changes, bring that number down, but never to zero if you can help it. One Pomodoro a week is better than none a week. As you go on you'll gain confidence and a cadence with studying, and then you can increase your weekly Pomodoro goal.
+**Giải pháp:** Biết rằng mình có thể dùng Kỹ thuật Pomodoro để vượt qua việc học, bước tiếp theo là đặt mục tiêu số phiên Pomodoro mỗi tuần và tập trung đạt mục tiêu đó. Hãy bắt đầu nhỏ rồi tăng dần đến mức vừa sức. Nếu cuộc sống thay đổi, hãy giảm con số đó xuống, nhưng nếu có thể thì đừng bao giờ giảm về không. Một Pomodoro mỗi tuần vẫn tốt hơn không có phiên nào. Khi tiếp tục, bạn sẽ tự tin hơn và hình thành nhịp học tập, rồi có thể tăng mục tiêu Pomodoro hằng tuần.
 
-Focusing on the process instead of the product of your studies provides a healthy, productive distraction that also doubles as making progress, because it is real progress!!!
+Tập trung vào quá trình thay vì sản phẩm của việc học tạo ra một sự phân tâm lành mạnh, hiệu quả, đồng thời cũng là tiến bộ vì đó là tiến bộ thực sự!!!
 
-#### Not taking breaks
+#### Không nghỉ giải lao
 
-As you get into the material, you may feel compelled to continuously study for long periods of time. It might seem like you are getting more work done at first, but this often leads to burnout, which consequently results in lower productivity.
+Khi bắt đầu đi sâu vào tài liệu, bạn có thể cảm thấy muốn học liên tục trong thời gian dài. Ban đầu có vẻ như bạn đang làm được nhiều việc hơn, nhưng điều này thường dẫn đến kiệt sức và kéo theo năng suất thấp hơn.
 
-It may seem counterintuitive, but you will actually get more done if you regularly step back to recharge your brain and body. Studies show that performance increases after breaks of all durations: from extended vacations down to microbreaks of 30 seconds. John Trougakos, Associate Professor of Management at the University of Toronto, says that mental concentration is similar to a muscle. Our focus becomes fatigued after sustained use and needs a rest period to recover, just like a bodybuilder resting between sets at the gym.
+Nghe có vẻ ngược đời, nhưng bạn sẽ thực sự làm được nhiều hơn nếu thường xuyên lùi lại để nạp năng lượng cho não và cơ thể. Các nghiên cứu cho thấy hiệu suất tăng lên sau những khoảng nghỉ với mọi độ dài: từ kỳ nghỉ dài đến những lần nghỉ siêu ngắn 30 giây. John Trougakos, Phó giáo sư Quản trị tại Đại học Toronto, nói rằng sự tập trung tinh thần giống như một cơ bắp. Sự tập trung mệt mỏi sau khi được sử dụng liên tục và cần thời gian nghỉ để phục hồi, giống như vận động viên thể hình nghỉ giữa các hiệp tập.
 
-**Solution:** Use the previously mentioned Pomodoro Technique to time how often and how long to take your well-deserved breaks. Feel free to play around and experiment with different frequencies and durations of breaks.
+**Giải pháp:** Dùng Kỹ thuật Pomodoro đã đề cập để tính thời điểm và thời lượng của những lần nghỉ xứng đáng. Hãy thoải mái thử nghiệm các tần suất và thời lượng nghỉ khác nhau.
 
-What to do during your break:
+Bạn có thể làm gì trong giờ nghỉ:
 
-- Listen to music.
-- Journal
-- Doodle
-- Meditate
-- Play a quick game.
-- Go for a short walk outside.
+- Nghe nhạc.
+- Viết nhật ký
+- Vẽ nguệch ngoạc
+- Thiền
+- Chơi một trò chơi nhanh.
+- Đi bộ một đoạn ngắn bên ngoài.
 
-Check out this article for [more information on breaks & productivity](https://simpleprogrammer.com/taking-breaks-will-boost-productivity/).
+Hãy xem bài viết này để biết [thêm thông tin về nghỉ giải lao và năng suất](https://simpleprogrammer.com/taking-breaks-will-boost-productivity/).
 
-#### Digital distractions
+#### Xao nhãng kỹ thuật số
 
-Digital distractions are email, Facebook notifications, and time-wasting websites, such as social media. These distractions break your focus and make procrastination tempting. Therefore, they should be avoided during study time.
+Xao nhãng kỹ thuật số là email, thông báo Facebook và những website gây lãng phí thời gian như mạng xã hội. Các yếu tố này phá vỡ sự tập trung và khiến việc trì hoãn trở nên hấp dẫn. Vì vậy, nên tránh chúng trong giờ học.
 
-**Solution:** Turn off notifications and add a blocker to your internet to limit your time on distracting sites.
+**Giải pháp:** Tắt thông báo và cài một trình chặn internet để giới hạn thời gian trên các website gây xao nhãng.
 
-#### Physical distractions
+#### Xao nhãng từ môi trường xung quanh
 
-Physical distractions are distractions from your environment, like a TV in the background or other people talking. These distractions can be just as damaging to your focus as digital distractions.
+Xao nhãng từ môi trường là những yếu tố gây mất tập trung xung quanh bạn, chẳng hạn TV đang bật hoặc người khác nói chuyện. Chúng có thể làm hỏng sự tập trung nghiêm trọng không kém xao nhãng kỹ thuật số.
 
-**Solution:** Find a quiet place in your home where you can focus on your studies. If that's not an option, you can use noise cancelling headphones to block out noisy distractions in your environment. There are also complimentary public and university libraries that are serene and comfortable. Some libraries even operate 24/7, uninterrupted. Beyond just providing a pleasant study space, the presence of others studying around you instills a sense of productivity.
+**Giải pháp:** Tìm một nơi yên tĩnh trong nhà để tập trung học. Nếu không thể, bạn có thể dùng tai nghe chống ồn để chặn tiếng ồn gây xao nhãng xung quanh. Ngoài ra còn có các thư viện công cộng và thư viện đại học miễn phí, yên tĩnh và thoải mái. Một số thư viện thậm chí mở cửa 24/7 liên tục. Không chỉ cung cấp không gian học dễ chịu, sự hiện diện của những người khác đang học xung quanh còn tạo cho bạn cảm giác làm việc hiệu quả.
 
-#### Rabbit holes
+#### Hố thỏ
 
-Because we cover so much material on The Odin Project and link to so many high quality courses and tools, it is easy for students to get pulled into rabbit holes by spending time trying to learn all there is to know about a subject that they aren't ready for or won't benefit them much. **We have put a lot of effort into structuring the curriculum** so that all of the important things that you need to know about web development are covered exactly when you need to know them.
+Vì The Odin Project bao quát rất nhiều tài liệu và liên kết đến nhiều khóa học, công cụ chất lượng cao, học viên rất dễ bị cuốn vào những hố thỏ khi dành thời gian cố học mọi thứ về một chủ đề mà mình chưa sẵn sàng hoặc không mang lại nhiều lợi ích. **Chúng tôi đã dành rất nhiều công sức để cấu trúc chương trình** sao cho mọi điều quan trọng bạn cần biết về phát triển web được đề cập đúng lúc bạn cần biết.
 
-**Solution:** Stick to the path laid out as much as possible. Try to limit time spent going down rabbit holes, as these sidetracks can really ruin your momentum.
+**Giải pháp:** Cố gắng bám theo lộ trình đã vạch ra nhiều nhất có thể. Hạn chế thời gian sa vào hố thỏ, vì những đường vòng này có thể làm mất đà của bạn.
 
-#### Comparing yourself to others
+#### So sánh bản thân với người khác
 
-Students often compare themselves to others who are farther along in their coding journey or have more experience. This is a recipe for depression and frustration.
+Học viên thường so sánh mình với những người tiến xa hơn trong hành trình lập trình hoặc có nhiều kinh nghiệm hơn. Đây là công thức dẫn đến chán nản và thất vọng.
 
-**Solution:** Only compare yourself to your past self. Have your abilities and knowledge improved from where you were last week, last month, or last year? Be proud of the progress that you've made!
+**Giải pháp:** Chỉ so sánh bản thân với chính mình trong quá khứ. Kỹ năng và kiến thức của bạn có tiến bộ so với tuần trước, tháng trước hoặc năm trước không? Hãy tự hào về những tiến bộ mình đã đạt được!
 
-#### Counterproductive note-taking
+#### Ghi chép phản tác dụng
 
-The Odin Project does not recommend taking a lot of notes throughout your web development educational journey because it can be time-consuming and often leads to wasted effort.
+The Odin Project không khuyến nghị ghi chép quá nhiều trong suốt hành trình học phát triển web vì việc đó tốn thời gian và thường dẫn đến nỗ lực bị lãng phí.
 
-**Solution:** Instead of taking notes to use as direct references, make notes that can serve as prompts for further research. It is important to get comfortable with reading documentation, which essentially acts as pre-existing notes made by someone else.
+**Giải pháp:** Thay vì ghi chú để dùng làm tài liệu tham khảo trực tiếp, hãy ghi những gợi ý có thể thúc đẩy việc nghiên cứu thêm. Điều quan trọng là làm quen với việc đọc tài liệu, vốn về cơ bản chính là những ghi chú có sẵn do người khác tạo ra.
 
-### Conclusion
+### Kết luận
 
-Learning any new skill is a journey full of speed bumps and obstacles to overcome. We hope that the principles laid out here will put you in a much better position to succeed and get the most out of The Odin Project.
+Học bất kỳ kỹ năng mới nào cũng là một hành trình đầy những đoạn gập ghềnh và chướng ngại cần vượt qua. Chúng tôi hy vọng những nguyên tắc trình bày ở đây sẽ giúp bạn có vị thế tốt hơn nhiều để thành công và tận dụng The Odin Project tối đa.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Have a look at how to [become a TOP Success Story](https://dev.to/theodinproject/becoming-a-top-success-story-mindset-3dp2)!
-1. Once you join the TOP Discord server, give your motivation a bit of a boost! Read about the success of others in the [TOP Discord server's Success Stories forum](https://discord.com/channels/505093832157691914/1089990025162260570).
+1. Xem cách [trở thành một TOP Success Story](https://dev.to/theodinproject/becoming-a-top-success-story-mindset-3dp2)!
+1. Sau khi tham gia máy chủ Discord của TOP, hãy tiếp thêm một chút động lực cho mình! Đọc về thành công của những người khác trong [diễn đàn Success Stories của máy chủ Discord TOP](https://discord.com/channels/505093832157691914/1089990025162260570).
 
 </div>

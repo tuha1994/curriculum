@@ -209,6 +209,17 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `getting_hired/applying_and_interviewing/project_resume.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
 | `getting_hired/applying_and_interviewing/qualify_leads.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
 
+## Foundations đã dịch — batch 1
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `foundations/introduction/asking_for_help.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/introduction/how_this_course_will_work.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/introduction/introduction_to_web_development.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/introduction/join_the_odin_community.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/introduction/motivation_and_mindset.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `foundations/tying_it_all_together/conclusion.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

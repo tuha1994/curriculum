@@ -1,76 +1,76 @@
-### Introduction
+### Giới thiệu
 
-The Odin Project is an open-source community dedicated to providing the best information sources to take you from zero to a full-stack developer.
+The Odin Project là một cộng đồng mã nguồn mở chuyên cung cấp những nguồn thông tin tốt nhất để đưa bạn từ con số không đến trở thành một nhà phát triển full-stack.
 
-In this unit, we'll learn about how the web works and start thinking about the basics of computer and web programming.
+Trong phần này, chúng ta sẽ tìm hiểu web hoạt động như thế nào và bắt đầu suy nghĩ về những kiến thức cơ bản của máy tính và lập trình web.
 
-Each of the following sections and lessons covers essential baseline knowledge.  Even if you have no intention of becoming a web developer, this material should help you gain a useful understanding of the moving parts involved in creating and serving content on the web.
+Mỗi phần và bài học sau đây đều bao quát những kiến thức nền tảng thiết yếu.  Ngay cả khi bạn không có ý định trở thành nhà phát triển web, tài liệu này vẫn giúp bạn hiểu hữu ích về những thành phần vận hành đằng sau việc tạo và cung cấp nội dung trên web.
 
-We will start by getting familiar with the internet and your own computer.  Next, we'll set up a development environment and learn about Git and GitHub. Then, we'll go over the basics of front-end technologies like HTML, CSS, and JavaScript before stepping into the back end with a brief foray that covers the basic concepts of back-end technologies.
+Trước hết, chúng ta sẽ làm quen với internet và chính chiếc máy tính của bạn.  Tiếp theo, chúng ta sẽ thiết lập môi trường phát triển và tìm hiểu về Git và GitHub. Sau đó, chúng ta sẽ đi qua những kiến thức cơ bản về các công nghệ front-end như HTML, CSS và JavaScript, trước khi bước sang back end với phần giới thiệu ngắn về các khái niệm cơ bản của công nghệ back-end.
 
-By the end of this unit, you should not only understand how the web works but also be able to identify and differentiate between all the technologies that you will use to build your own web applications. You will be able to build a basic webpage, style it, and add minor elements of interactivity while working comfortably from the command line.
+Đến cuối phần này, bạn không chỉ hiểu web hoạt động như thế nào mà còn có thể nhận diện và phân biệt tất cả công nghệ mình sẽ sử dụng để xây dựng các ứng dụng web riêng. Bạn sẽ có thể tạo một webpage cơ bản, định kiểu cho nó và thêm một vài tương tác nhỏ, đồng thời làm việc thoải mái từ dòng lệnh.
 
-This section intentionally covers a very broad range of topics. It's silly to go diving straight into server-side programming without having a context for what it is and why it's useful (and why you should learn it!).
+Phần này cố ý bao quát một phạm vi chủ đề rất rộng. Sẽ thật vô lý nếu lao ngay vào lập trình phía máy chủ mà chưa có bối cảnh về nó, về lý do nó hữu ích và vì sao bạn nên học nó!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Understand how The Odin Project's curriculum works.
-- Understand how the Foundations course works.
+- Hiểu chương trình học của The Odin Project hoạt động như thế nào.
+- Hiểu khóa học Foundations hoạt động như thế nào.
 
-### How it works
+### Cách chương trình hoạt động
 
-This curriculum works by aggregating the best content from across the internet to teach a specific topic. In each lesson, we'll introduce the topic and try to provide some useful context before pointing you to external resources made by others.
+Chương trình này tập hợp những nội dung tốt nhất trên internet để dạy một chủ đề cụ thể. Trong mỗi bài học, chúng tôi sẽ giới thiệu chủ đề và cố gắng cung cấp một số ngữ cảnh hữu ích trước khi dẫn bạn đến các tài nguyên bên ngoài do người khác tạo ra.
 
-Some lessons will include exercises for you to complete. In addition, we provide several projects throughout the curriculum to help you grow your understanding by actually building things.
+Một số bài học sẽ có bài tập để bạn hoàn thành. Ngoài ra, chúng tôi cung cấp nhiều dự án trong suốt chương trình để giúp bạn hiểu sâu hơn bằng cách thực sự xây dựng mọi thứ.
 
-Try not to think of The Odin Project, or programming, as a class in school. It's not material you learn all at once to take a test, and then pass or fail. You can think of it as a snowball. You, yourself, are a snowball. You're rolling down a hill full of snow; the further you roll, the more snow will stick to you. Sure, snow will also fall off you, and you'll forget things often, but that's just part of the process. Don't worry if you reach a project and feel like you haven't retained or memorized anything. That's natural and happens to everyone. **The projects are not tests of what you have memorized so far.** They are practice points where the information will come back to you as you start solving your problems one at a time, relying on Google and the Odin Community for help.
+Đừng nghĩ về The Odin Project, hay việc lập trình, như một lớp học ở trường. Đây không phải là tài liệu bạn học một lượt để làm bài kiểm tra rồi đỗ hoặc trượt. Bạn có thể hình dung nó như một quả cầu tuyết. Chính bạn là quả cầu tuyết đó. Bạn lăn xuống một ngọn đồi phủ đầy tuyết; càng lăn xa, càng có nhiều tuyết bám vào bạn. Tất nhiên tuyết cũng sẽ rơi khỏi bạn và bạn sẽ thường xuyên quên mọi thứ, nhưng đó chỉ là một phần của quá trình. Đừng lo nếu đến một dự án mà bạn cảm thấy mình chẳng nhớ hay ghi nhớ được gì. Điều đó hoàn toàn tự nhiên và xảy ra với tất cả mọi người. **Các dự án không phải là bài kiểm tra những gì bạn đã ghi nhớ cho đến lúc này.** Chúng là những điểm thực hành, nơi kiến thức sẽ quay trở lại khi bạn bắt đầu giải quyết từng vấn đề một, dựa vào Google và Cộng đồng Odin để được hỗ trợ.
 
-### A note about tools
+### Lưu ý về công cụ
 
-We often get questions about why this course does not cover a language or a tool.
+Chúng tôi thường nhận được câu hỏi vì sao khóa học này không bao quát một ngôn ngữ hoặc công cụ nào đó.
 
-The truth is that once you complete this curriculum, you will **not need** a course like this or any sort of "tutorial". The Odin Project's goal is not to teach you any standalone skills and it is not a tutorial. The main idea is to teach you the *why* and change the way you think.
+Sự thật là sau khi hoàn thành chương trình này, bạn sẽ **không cần** một khóa học như thế này hay bất kỳ dạng "tutorial" nào nữa. Mục tiêu của The Odin Project không phải là dạy bạn những kỹ năng độc lập và đây cũng không phải tutorial. Ý tưởng chính là dạy bạn *lý do* và thay đổi cách bạn suy nghĩ.
 
-One of the most difficult parts about this course is adopting the right mindset. An even bigger challenge is learning the core ideas of programming. It isn't just about coding, it is about problem-solving, asking the right questions, and doing enough research. Getting into a position where you are comfortable with the skills will mean that you will also be comfortable at expanding your skill-set. Once you have a solid *base*, it will be simpler to expand upon it. This is exactly what The Odin Project is about: developing these *skills*.
+Một trong những phần khó nhất của khóa học là hình thành tư duy đúng. Một thách thức còn lớn hơn là học những ý tưởng cốt lõi của lập trình. Lập trình không chỉ là viết mã; đó còn là giải quyết vấn đề, đặt đúng câu hỏi và nghiên cứu đủ nhiều. Khi đạt đến trạng thái thoải mái với các kỹ năng này, bạn cũng sẽ thấy tự tin hơn khi mở rộng bộ kỹ năng của mình. Khi đã có một *nền tảng* vững chắc, việc phát triển thêm sẽ đơn giản hơn. Đây chính xác là điều The Odin Project hướng tới: phát triển những *kỹ năng* này.
 
-After completing the course you will be in a position where you can simply jump straight into the documentation for anything you are trying to learn.
-Reading the documentation is the best way to learn any tooling. But it takes skill to master. Many people feel intimidated by the technical jargon, which is understandable. People who write documentation usually assume a background in programming. This is exactly why we give you plenty of material to read on your own.
+Sau khi hoàn thành khóa học, bạn sẽ có thể đi thẳng vào tài liệu của bất cứ thứ gì mình đang cố học.
+Đọc tài liệu là cách tốt nhất để học bất kỳ công cụ nào. Nhưng để làm chủ việc đó cũng cần kỹ năng. Nhiều người cảm thấy e ngại trước các thuật ngữ kỹ thuật, điều này hoàn toàn dễ hiểu. Những người viết tài liệu thường giả định người đọc đã có nền tảng lập trình. Đó chính là lý do chúng tôi cung cấp cho bạn nhiều tài liệu để tự đọc.
 
-The skills you will gain from completing The Odin Project will be the foundation that you will be building upon for years and decades to come. If you come out of the course thinking that you need another course like this one to learn something like Python, then you either don't believe in yourself or you haven't taken away the important ideas that are covered in this course.
+Những kỹ năng bạn có được khi hoàn thành The Odin Project sẽ là nền tảng để bạn tiếp tục xây dựng trong nhiều năm và nhiều thập kỷ tới. Nếu học xong mà bạn vẫn nghĩ mình cần một khóa học tương tự để học một thứ như Python, thì hoặc là bạn chưa tin vào bản thân, hoặc là bạn chưa tiếp thu những ý tưởng quan trọng được trình bày trong khóa học này.
 
-The skills you learn here are transferable to various contexts. Once you know the *idea* and that it is *possible* to do something, actually finding out how to do that thing becomes significantly easier and is simply a Google search away most of the times.
+Những kỹ năng học được ở đây có thể chuyển giao sang nhiều bối cảnh khác nhau. Một khi hiểu được *ý tưởng* và biết rằng việc nào đó là *có thể thực hiện*, việc tìm ra cách thực hiện nó sẽ dễ dàng hơn đáng kể và thường chỉ cách một lần tìm kiếm trên Google.
 
-### A note about human language
+### Lưu ý về ngôn ngữ tự nhiên
 
-The Odin Project attracts people from all over the world who aspire to learn how to become developers. Please be aware that this curriculum is written in English and maintained by English speakers who are not able or expected to translate it for you. As you develop into a programmer, you will find that the world you are entering into is firmly rooted in the English language. This means that the syntax of your programming language, the documentation that teaches you how to use it, and the majority of the people in the community are all expecting to communicate with you in English.
+The Odin Project thu hút mọi người từ khắp nơi trên thế giới, những người mong muốn học cách trở thành nhà phát triển. Xin lưu ý rằng chương trình này được viết bằng tiếng Anh và do những người nói tiếng Anh duy trì; họ không thể và cũng không được kỳ vọng sẽ dịch chương trình cho bạn. Khi phát triển thành một lập trình viên, bạn sẽ thấy thế giới mình bước vào có nền tảng vững chắc là tiếng Anh. Điều đó có nghĩa là cú pháp của ngôn ngữ lập trình, tài liệu hướng dẫn cách sử dụng nó và phần lớn những người trong cộng đồng đều mong đợi giao tiếp với bạn bằng tiếng Anh.
 
-If you are a non-English speaker, or English is not a primary language for you, this fact is not meant to discourage you, but to prepare you.
+Nếu bạn không nói tiếng Anh, hoặc tiếng Anh không phải ngôn ngữ chính của bạn, sự thật này không nhằm làm bạn nản chí mà để chuẩn bị cho bạn.
 
-As another part of this preparation, we *highly* recommend spending extra time on topics and terms that you do not understand right away. We also encourage you to seek out additional resources that teach about these topics in your own native language so you can understand them more fully.
+Là một phần của sự chuẩn bị đó, chúng tôi *rất* khuyến nghị bạn dành thêm thời gian cho những chủ đề và thuật ngữ chưa hiểu ngay. Chúng tôi cũng khuyến khích bạn tìm thêm các tài nguyên giải thích những chủ đề này bằng ngôn ngữ mẹ đẻ để hiểu chúng đầy đủ hơn.
 
-In addition to this, you might also consider using a translation dictionary in your own language alongside our curriculum so you can readily reference it as you go. We do not have any recommendations on these since there are such a wide variety of languages spoken throughout the world, finding one may perhaps be a good first step in learning how to find useful tools online by searching. This is a skill you will utilize and improve as you progress in your learning to be a developer.
+Ngoài ra, bạn có thể cân nhắc sử dụng từ điển dịch bằng ngôn ngữ của mình song song với chương trình để dễ tra cứu khi học. Chúng tôi không có đề xuất cụ thể vì trên thế giới có rất nhiều ngôn ngữ; việc tìm một công cụ phù hợp có thể là bước đầu tốt để học cách tìm những công cụ hữu ích trên mạng bằng việc tìm kiếm. Đây là kỹ năng bạn sẽ sử dụng và cải thiện trong quá trình học để trở thành nhà phát triển.
 
-### What comes next
+### Điều gì sẽ đến tiếp theo
 
-Once you've completed this course, you should feel comfortable with the building blocks of web programming but itching to dig deeper.  Though we spend a fair bit of time digging into each of the major topics in this course, it's really just a taste of what comes next (and all the cool stuff you can do with it).
+Sau khi hoàn thành khóa học này, bạn sẽ thấy thoải mái với những viên gạch nền tảng của lập trình web nhưng cũng nóng lòng đào sâu hơn.  Dù khóa học dành khá nhiều thời gian cho từng chủ đề lớn, đây thực sự mới chỉ là nếm thử những gì sắp tới (và tất cả những điều thú vị bạn có thể làm với chúng).
 
-The last lesson of this course will give you an opportunity to choose between a Full Stack JavaScript and Full Stack Rails path, both designed to further develop the foundation established in this course. Each path will focus on taking these raw building blocks and honing them into a highly functional skillset.
+Bài học cuối cùng của khóa học sẽ cho bạn cơ hội lựa chọn giữa lộ trình Full Stack JavaScript và Full Stack Rails; cả hai đều được thiết kế để phát triển thêm nền tảng đã hình thành trong khóa học này. Mỗi lộ trình sẽ tập trung biến những viên gạch thô ban đầu thành một bộ kỹ năng có tính ứng dụng cao.
 
-The Odin Project is maintained by professionals. We have chosen some of the best resources available and curated a guide on how to go through them. If there are no good resources, we write our own. With that said, know that **everything** in the curriculum is intentionally included and vital for you to become a successful programmer.
+The Odin Project được duy trì bởi các chuyên gia. Chúng tôi đã chọn một số tài nguyên tốt nhất hiện có và biên soạn hướng dẫn về cách học chúng. Nếu không có tài nguyên tốt, chúng tôi tự viết. Vì vậy, hãy nhớ rằng **mọi thứ** trong chương trình đều được đưa vào có chủ đích và đều thiết yếu để bạn trở thành một lập trình viên thành công.
 
-As you move forward in the curriculum, each portion is built on everything that came before it, so skipping things will create pockets of non-understanding in your knowledge that start to affect your ability to solve problems and understand the task at hand.
+Khi tiến lên trong chương trình, mỗi phần đều được xây dựng trên mọi thứ đã học trước đó, nên bỏ qua nội dung sẽ tạo ra những khoảng trống kiến thức bắt đầu ảnh hưởng đến khả năng giải quyết vấn đề và hiểu nhiệm vụ trước mắt của bạn.
 
-Additional resources are the only thing that is considered optional unless explicitly stated. These are here in case you feel like you need or want to dive deeper into a topic to get a better understanding.
+Tài nguyên bổ sung là thứ duy nhất được xem là tùy chọn, trừ khi có nói rõ khác đi. Những tài nguyên này dành cho lúc bạn cảm thấy cần hoặc muốn đào sâu hơn vào một chủ đề để hiểu rõ hơn.
 
-**DO NOT SKIP ANYTHING!**
+**ĐỪNG BỎ QUA BẤT CỨ ĐIỀU GÌ!**
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Learn more about The Odin Project by reading its [about page](https://www.theodinproject.com/about).
-1. Check out the [frequently asked questions](https://www.theodinproject.com/faq) section.
+1. Tìm hiểu thêm về The Odin Project bằng cách đọc [trang giới thiệu](https://www.theodinproject.com/about).
+1. Xem phần [các câu hỏi thường gặp](https://www.theodinproject.com/faq).
 
 </div>

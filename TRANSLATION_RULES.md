@@ -55,7 +55,7 @@ Sổ `TRANSLATION_LOG.md` ghi đường dẫn bài, Git commit SHA của bản g
 
 ## Quy trình cập nhật từ upstream
 
-Thực hiện bằng tay, chỉ trong phạm vi `intermediate_html_css`:
+Thực hiện bằng tay, chỉ trong các thư mục đã ghi trong `TRANSLATION_LOG.md`.
 
 1. Kiểm tra trạng thái làm việc và bảo đảm bản dịch hiện tại đã được lưu ở một mốc có thể quay lui.
 2. Ghi lại commit SHA đang được dùng trong `TRANSLATION_LOG.md`.
@@ -76,7 +76,7 @@ Không tự động hóa bằng hook, CI, dịch nền hoặc job định kỳ. 
 
 Dùng checklist này cho từng bài, theo đúng thứ tự:
 
-1. Xác định đường dẫn bài và kiểm tra bài thuộc `intermediate_html_css`.
+1. Xác định đường dẫn bài và kiểm tra bài thuộc một thư mục đã được ghi trong `TRANSLATION_LOG.md`.
 2. Đọc commit SHA gốc trong `TRANSLATION_LOG.md`.
 3. Đọc bài gốc, `GLOSSARY.md` và các bài liên quan được bài liên kết.
 4. Dịch chỉ văn xuôi, tiêu đề, heading và text hiển thị.

@@ -1,40 +1,40 @@
-### Introduction
+### Giới thiệu
 
-We've been throwing around the term **ES6** since our very first lessons, but we haven't taken the time to properly explain what it means or to investigate the implications of it in our code.
+Chúng ta đã nhắc đến thuật ngữ **ES6** từ những bài học đầu tiên, nhưng chưa dành thời gian giải thích đúng nghĩa của nó hoặc tìm hiểu những ảnh hưởng của nó trong code của mình.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- The ECMAScript release system.
-- Some potential issues with browser support for newer JavaScript features.
+- Hệ thống phát hành của ECMAScript.
+- Một số vấn đề tiềm ẩn với việc hỗ trợ các tính năng JavaScript mới hơn trên trình duyệt.
 - Babel.
 
-### What is ECMAScript?
+### ECMAScript là gì?
 
-JavaScript is just a programming language that conforms to the ECMAScript standard, made by Ecma International, and ES6 is a version of JavaScript that was officially released in the summer of 2015. It included *many* new features that make writing JavaScript much easier and cleaner. In this curriculum, you have already been learning many of these new features because, well, ES6 is *just JavaScript*.
+JavaScript chỉ là một ngôn ngữ lập trình tuân theo tiêu chuẩn ECMAScript, được tạo ra bởi Ecma International, và ES6 là một phiên bản JavaScript được phát hành chính thức vào mùa hè năm 2015. Nó bao gồm *nhiều* tính năng mới giúp việc viết JavaScript dễ dàng và rõ ràng hơn. Trong curriculum này, bạn đã học nhiều tính năng mới đó vì, nói cho cùng, ES6 *chính là JavaScript*.
 
-#### Release schedule
+#### Lịch phát hành
 
-You have probably also come across articles talking about features in ES7 or ES8 or ES2015 or ES2017 etc. Part of the confusion here is that right after the release of ES6, the committee that makes these decisions (known as TC39) changed the naming scheme from version numbers (ES5, ES6, ES7 etc.) to release years. ES6 is also known as ES2015, and what some articles refer to as ES7 is also known as ES2016 etc. Instead of a single new version containing a huge number of new features (as was the case with ES6 and before), versions are now released annually with a smaller set of additions per version.
+Có lẽ bạn cũng đã gặp những bài viết nói về các tính năng trong ES7, ES8, ES2015 hoặc ES2017, v.v. Một phần nguyên nhân gây nhầm lẫn là ngay sau khi ES6 được phát hành, ủy ban đưa ra các quyết định này (được gọi là TC39) đã đổi cách đặt tên từ số phiên bản (ES5, ES6, ES7, v.v.) sang năm phát hành. ES6 còn được gọi là ES2015, và thứ mà một số bài viết gọi là ES7 còn được gọi là ES2016, v.v. Thay vì một phiên bản mới duy nhất chứa rất nhiều tính năng mới (như trường hợp ES6 và các phiên bản trước đó), hiện nay các phiên bản được phát hành hằng năm với một tập hợp bổ sung nhỏ hơn trong mỗi phiên bản.
 
-### Browser support
+### Hỗ trợ trình duyệt
 
-The *problem* with JavaScript constantly updating and adding features is that it sometimes takes web browsers a while to catch up and implement new features once they've been released. It often takes a couple of years for a new feature to become "widely available" (supported across the majority of modern browsers and browser versions in use). This means, unfortunately, that if you write code using brand new features, it **will not run** in browsers that do not support it.
+*Vấn đề* với việc JavaScript liên tục cập nhật và bổ sung tính năng là đôi khi các trình duyệt cần thời gian để bắt kịp và triển khai những tính năng mới sau khi chúng được phát hành. Một tính năng mới thường cần vài năm để trở nên "được hỗ trợ rộng rãi" (được hỗ trợ trên phần lớn các trình duyệt hiện đại và phiên bản trình duyệt đang được sử dụng). Điều này không may có nghĩa là nếu bạn viết code sử dụng các tính năng hoàn toàn mới, nó **sẽ không chạy** trên những trình duyệt không hỗ trợ tính năng đó.
 
-For most of us, this has not been an issue because you are almost definitely using a new browser that automatically updates itself when a new version is released. But in the real world, if you're selling products to customers, you can't control which browsers people will use to connect to your site.
+Với phần lớn chúng ta, đây không phải vấn đề vì gần như chắc chắn bạn đang dùng một trình duyệt mới tự động cập nhật khi có phiên bản mới. Nhưng trong thế giới thực, nếu bạn bán sản phẩm cho khách hàng, bạn không thể kiểm soát người dùng sẽ dùng trình duyệt nào để kết nối với site của mình.
 
 #### Babel
 
-Fortunately there *is* a solution to this problem. [Babel](http://babeljs.io/) is a tool that takes your modern JavaScript code and **transpiles** it to code that older browsers can understand. It can be set to transpile to meet any number of targets (e.g. minimum browser versions across various browsers), where the necessary targets depend on things like the product's purpose, its target audience etc. Some products may be fine with more recent browser support only whereas others may need to be much stricter and ensure support for much older browsers.
+May mắn là *có* một giải pháp cho vấn đề này. [Babel](http://babeljs.io/) là một công cụ nhận code JavaScript hiện đại của bạn và **transpiles** nó thành code mà các trình duyệt cũ hơn có thể hiểu. Nó có thể được thiết lập để transpile nhằm đáp ứng bất kỳ số lượng target nào (ví dụ: phiên bản trình duyệt tối thiểu trên nhiều trình duyệt), trong đó các target cần thiết phụ thuộc vào những yếu tố như mục đích của product, đối tượng mục tiêu, v.v. Một số product có thể chỉ cần hỗ trợ các trình duyệt mới hơn, trong khi những product khác có thể cần nghiêm ngặt hơn nhiều và bảo đảm hỗ trợ các trình duyệt cũ hơn.
 
-In all honesty, this is *not* something that you are going to need to worry about on every project you're starting, since the point of curriculum projects is to get practical experience with things and not delivering production-level products to customers. Still, it helps to be aware of the situation and what things may be necessary in the real world.
+Thành thật mà nói, đây *không phải* điều bạn sẽ cần lo lắng trong mọi project bắt đầu thực hiện, vì mục đích của các project trong curriculum là có trải nghiệm thực tế chứ không phải giao sản phẩm ở cấp độ production cho khách hàng. Tuy vậy, hiểu được tình huống này và những điều có thể cần thiết trong thế giới thực vẫn rất hữu ích.
 
 ### Assignment
 
 <div class="lesson-content__panel" markdown="1">
 
-1. To satisfy your curiosity, have a look at all the new [features that showed up in ES6 (a.k.a. ES2015)](https://github.com/lukehoban/es6features). Though you'll already have been using many of these, there are a few we haven't specifically covered yet (you do not need to explore these yet).
-1. Have a brief look at the [timeline of the various ECMAScript releases](https://en.wikipedia.org/wiki/ECMAScript_version_history#14th_Edition_%E2%80%93_ECMAScript_2023) which includes small summaries of the annual versions since ES6. Again, some things you may have already used and others you will not recognize nor need to explore yet.
+1. Để thỏa mãn trí tò mò, hãy xem tất cả [tính năng mới xuất hiện trong ES6 (hay còn gọi là ES2015)](https://github.com/lukehoban/es6features). Dù bạn đã sử dụng nhiều tính năng trong số đó, vẫn có một vài tính năng chúng ta chưa đề cập cụ thể (bạn chưa cần tìm hiểu những tính năng này ngay).
+1. Hãy xem nhanh [timeline của các phiên bản ECMAScript khác nhau](https://en.wikipedia.org/wiki/ECMAScript_version_history#14th_Edition_%E2%80%93_ECMAScript_2023), trong đó có các tóm tắt ngắn về những phiên bản hằng năm kể từ ES6. Một lần nữa, có những thứ bạn có thể đã sử dụng và những thứ khác bạn sẽ chưa nhận ra hoặc chưa cần tìm hiểu.
 
 </div>

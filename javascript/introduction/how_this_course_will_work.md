@@ -1,21 +1,21 @@
-### Introduction
+### Giới thiệu
 
-JavaScript! Love it or hate it, working in web means you'll have to deal with it at some point. In this course, we will dive deeper into the JavaScript language itself and explore many ways JavaScript gets used on the front end, including topics such as prototypal inheritance, modularization, bundling, asynchronous code, and JavaScript testing.
+JavaScript! Dù yêu hay ghét nó, khi làm việc trên web, đến một lúc nào đó bạn sẽ phải xử lý nó. Trong khóa học này, chúng ta sẽ tìm hiểu sâu hơn về chính ngôn ngữ JavaScript và khám phá nhiều cách JavaScript được sử dụng ở frontend, bao gồm các chủ đề như prototypal inheritance, modularization, bundling, asynchronous code và JavaScript testing.
 
-It's important that we get practical experience with these fundamentals in more vanilla contexts before we dive into making more complex front ends with tools like React. Those kinds of tools often have very specific ways of doing things that may seem like magic or even counter-intuitive, but if you approach them with a good foundation of JavaScript and frontend development, you will have a much better time understanding what they're really doing under the hood.
+Điều quan trọng là chúng ta có trải nghiệm thực tế với những nền tảng này trong các ngữ cảnh vanilla hơn trước khi bắt đầu xây dựng các frontend phức tạp bằng những công cụ như React. Những công cụ đó thường có các cách làm rất cụ thể, có thể trông như ma thuật hoặc thậm chí phản trực giác, nhưng nếu bạn có nền tảng tốt về JavaScript và frontend development, bạn sẽ dễ hiểu hơn nhiều về những gì chúng thực sự làm bên dưới.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### For the Ruby folk
+#### Dành cho những người học Ruby
 
-This course comes a little later in the Ruby path than in the JavaScript path; you will have the benefit of some prior exposure to some of these concepts **but** be wary that just because something looks the same or even has the same name as something in Ruby, doesn't mean it works in exactly the same way. As long as you stay aware of that, you'll be sure to do great!
+Khóa học này xuất hiện muộn hơn một chút trong lộ trình Ruby so với lộ trình JavaScript; bạn sẽ có lợi thế là đã làm quen trước với một số khái niệm này **nhưng** hãy cẩn thận: chỉ vì một thứ trông giống hoặc thậm chí có cùng tên với một thứ trong Ruby không có nghĩa là nó hoạt động hoàn toàn giống nhau. Chỉ cần luôn ý thức về điều đó, bạn chắc chắn sẽ học tốt!
 
 </div>
 
-### The journey
+### Hành trình
 
-The way these lessons will work will be very similar to what you've done so far, so keep at it. You're going to have forgotten things from previous courses. You're going to forget things you learn in this course as you go along, and again in later courses. Remind yourself that [you do not need to memorize everything you learn](https://dev.to/theodinproject/memorization-and-learning-to-code-1b6h).
+Cách các bài học này diễn ra sẽ rất giống với những gì bạn đã làm cho đến nay, vì vậy hãy tiếp tục cố gắng. Bạn sẽ quên những điều đã học trong các khóa học trước. Bạn sẽ quên những điều học trong khóa học này khi tiếp tục tiến lên, và lại quên chúng trong các khóa học sau. Hãy tự nhắc mình rằng [bạn không cần ghi nhớ mọi thứ đã học](https://dev.to/theodinproject/memorization-and-learning-to-code-1b6h).
 
-We will cover a lot of ground and your brain may melt down a few times, but don't worry, it's just a flesh wound! The learning journey *is* hard, so rest well, patch 'er up and keep going!
+Chúng ta sẽ đi qua rất nhiều nội dung và bộ não của bạn có thể sẽ quá tải vài lần, nhưng đừng lo, đó chỉ là một vết thương ngoài da! Hành trình học tập *thực sự* khó, vì vậy hãy nghỉ ngơi đầy đủ, vá víu lại và tiếp tục tiến lên!
 
-**Enough talk - get learning!**
+**Nói đủ rồi - bắt đầu học thôi!**

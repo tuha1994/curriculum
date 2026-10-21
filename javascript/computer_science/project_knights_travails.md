@@ -1,57 +1,57 @@
-### Introduction
+### Giới thiệu
 
-Now you're a pro with DFS and BFS. Let's try using our search algorithms on a real problem.
+Bây giờ bạn đã rất thành thạo DFS và BFS. Hãy thử dùng các algorithm tìm kiếm của mình cho một vấn đề thực tế.
 
-For this project, you'll need to use a graph, a data structure that's similar (but not identical) to a binary tree. For a good introduction on what graphs are, reference [Khan Academy's "Describing Graphs"](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/describing-graphs). Don't forget to look at the [section on representing graphs](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs), as it should give you some good ideas on how to actually implement graphs in your code.
+Trong project này, bạn sẽ cần dùng graph, một cấu trúc dữ liệu tương tự (nhưng không giống hệt) binary tree. Để có phần giới thiệu hay về graph, tham khảo [Khan Academy's "Describing Graphs"](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/describing-graphs). Đừng quên xem [section on representing graphs](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs), vì nó có thể cho bạn ý tưởng tốt về cách triển khai graph trong code.
 
-Given enough turns, a knight on a standard 8x8 chess board can move from any square to any other square. Its basic move is two steps forward and one step to the side or one step forward and two steps to the side. It can face any direction.
+Với đủ số lượt đi, một knight trên bàn cờ chuẩn 8x8 có thể di chuyển từ bất kỳ ô nào đến bất kỳ ô nào khác. Nước đi cơ bản của nó là tiến hai bước và sang một bên một bước, hoặc tiến một bước và sang một bên hai bước. Nó có thể quay về mọi hướng.
 
-All the possible places you can end up after one move look like this:
+Tất cả vị trí có thể đến sau một nước đi trông như sau:
 
 ![Knights Travails board](https://cdn.statically.io/gh/TheOdinProject/curriculum/d30038e0aaca1f35e58e205e37a21b2c9d31053d/javascript/computer_science/project_knights_travails/imgs/01.png)
-Note: The picture is only to explain the problem, There is no need to create a GUI.
+Lưu ý: Hình ảnh chỉ nhằm giải thích vấn đề, bạn không cần tạo GUI.
 
-In this problem, the chessboard can be represented as a graph:
+Trong bài toán này, bàn cờ có thể được biểu diễn như một graph:
 
-Each square on the board is a node (or vertex).
-A knight’s valid moves from any square represent the edges (or connections) between the vertices.
-Thus, the problem of finding the shortest path for the knight’s movement becomes a graph traversal problem. The goal is to traverse the graph (the chessboard) to find the shortest route between two nodes (the start and end positions).
+Mỗi ô trên bàn cờ là một node (hoặc vertex).
+Các nước đi hợp lệ của knight từ mỗi ô biểu diễn các edge (hoặc connection) giữa các vertex.
+Vì vậy, bài toán tìm đường đi ngắn nhất cho chuyển động của knight trở thành bài toán duyệt graph. Mục tiêu là duyệt graph (bàn cờ) để tìm tuyến đường ngắn nhất giữa hai node (vị trí bắt đầu và kết thúc).
 
-#### Vertices and edges
+#### Vertex và edge
 
-The vertices in this graph are each of the possible positions on the chessboard, represented by a pair of coordinates like `[x, y]`, where x and y are between 0 and 7.
-The edges are the valid knight moves between vertices. For example, from `[0,0]`, a knight can move to `[2,1]`, `[1,2]`, and so on. Each of these moves represents a connection between the vertex `[0,0]` and the other reachable vertices.
+Các vertex trong graph này là từng vị trí có thể có trên bàn cờ, được biểu diễn bằng một cặp tọa độ như `[x, y]`, trong đó x và y nằm giữa 0 và 7.
+Các edge là những nước đi hợp lệ của knight giữa các vertex. Ví dụ, từ `[0,0]`, knight có thể đi tới `[2,1]`, `[1,2]` và các vị trí khác. Mỗi nước đi như vậy biểu diễn một connection giữa vertex `[0,0]` và các vertex có thể tới khác.
 
-#### Graph representation
+#### Biểu diễn graph
 
-While solving this problem, you don’t need to explicitly create a graph object with vertices and edges. Instead, you can think of the graph as implicit. The knight starts on a specific vertex, and the algorithm will dynamically explore all possible moves (edges) to other vertices (positions on the board) as it traverses the board.
+Khi giải bài toán này, bạn không cần tạo rõ ràng một graph object có vertex và edge. Thay vào đó, hãy nghĩ graph là implicit. Knight bắt đầu tại một vertex cụ thể, và algorithm sẽ tự động khám phá mọi nước đi khả dĩ (edge) tới các vertex khác (vị trí trên bàn cờ) khi duyệt bàn cờ.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Your task is to build a function `knightMoves` that shows the shortest possible way to get from one square to another by outputting all squares the knight will stop on along the way.
+Nhiệm vụ của bạn là xây dựng một function `knightMoves` cho biết cách ngắn nhất có thể để đi từ một ô này đến ô khác, bằng cách xuất ra tất cả ô mà knight dừng lại trên đường đi.
 
-You can think of the board as having 2-dimensional coordinates. Calling your function would therefore look like:
+Bạn có thể xem bàn cờ như có tọa độ hai chiều. Vì vậy, việc gọi function sẽ như sau:
 
 `knightMoves([0,0],[1,2]) // returns [[0,0],[1,2]]`
 
 <div class="lesson-note" markdown="1">
 
-#### Multiple shortest paths
+#### Nhiều đường đi ngắn nhất
 
-Sometimes *there is more than one fastest path*. Examples of this are shown below. Any answer is correct as long as it follows the rules and gives the shortest possible path.
+Đôi khi *có nhiều hơn một đường nhanh nhất*. Các ví dụ dưới đây minh họa điều đó. Bất kỳ câu trả lời nào cũng đúng miễn tuân thủ luật và đưa ra đường đi ngắn nhất có thể.
 
-- `knightMoves([0,0],[3,3])` may return `[[0,0],[2,1],[3,3]]` or `[[0,0],[1,2],[3,3]]`.
-- `knightMoves([3,3],[0,0])` may return `[[3,3],[2,1],[0,0]]` or `[[3,3],[1,2],[0,0]]`.
-- `knightMoves([0,0],[7,7])` may return `[[0,0],[2,1],[4,2],[6,3],[4,4],[6,5],[7,7]]` or `[[0,0],[2,1],[4,2],[6,3],[7,5],[5,6],[7,7]]` or other possible shortest paths.
+- `knightMoves([0,0],[3,3])` có thể trả về `[[0,0],[2,1],[3,3]]` hoặc `[[0,0],[1,2],[3,3]]`.
+- `knightMoves([3,3],[0,0])` có thể trả về `[[3,3],[2,1],[0,0]]` hoặc `[[3,3],[1,2],[0,0]]`.
+- `knightMoves([0,0],[7,7])` có thể trả về `[[0,0],[2,1],[4,2],[6,3],[4,4],[6,5],[7,7]]` hoặc `[[0,0],[2,1],[4,2],[6,3],[7,5],[5,6],[7,7]]`, hoặc các đường đi ngắn nhất khả dĩ khác.
 
 </div>
 
-1. Think about the rules of the board and knight, and make sure to follow them.
-1. From every square, multiple moves are possible. Choose a data structure that will allow you to work with them. Don't allow any moves to go off the board.
-1. Both DFS and BFS are viable here, though think carefully about how each of them work. One of them will require you to handle the possibility of getting stuck in an endless cycle.
-1. Use the chosen search algorithm to find the shortest path between the starting square (or node) and the ending square.  Output what that full path looks like, e.g.:
+1. Nghĩ về luật của bàn cờ và knight, đồng thời bảo đảm tuân thủ chúng.
+1. Từ mỗi ô có nhiều nước đi khả dĩ. Chọn một cấu trúc dữ liệu cho phép bạn làm việc với chúng. Không để bất kỳ nước đi nào ra ngoài bàn cờ.
+1. Cả DFS và BFS đều có thể dùng ở đây, nhưng hãy suy nghĩ cẩn thận về cách mỗi algorithm hoạt động. Một trong hai sẽ yêu cầu bạn xử lý khả năng bị mắc trong một cycle vô hạn.
+1. Dùng algorithm tìm kiếm đã chọn để tìm đường ngắn nhất giữa ô bắt đầu (hoặc node) và ô kết thúc. Xuất toàn bộ đường đi, ví dụ:
 
    ```bash
    > knightMoves([3,3],[4,3])

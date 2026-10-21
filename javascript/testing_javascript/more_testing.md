@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-An important basic concept in testing is isolation. You should only test one method at a time, and your tests for one function ideally would not depend upon an external function behaving correctly - especially if that function is being tested elsewhere (though as with any ideal, this is not always possible or practical). The main reason for this is that when your tests fail, you want to be able to narrow down the cause of this failure as quickly as possible.  If you have a test that depends on several functions, it can be hard to tell exactly what is going wrong.
+Một khái niệm cơ bản quan trọng trong testing là tính cô lập. Bạn chỉ nên test từng method một, và lý tưởng nhất là các test cho một function không phụ thuộc vào việc một function bên ngoài hoạt động đúng - đặc biệt khi function đó đang được test ở nơi khác (mặc dù như mọi điều lý tưởng khác, điều này không phải lúc nào cũng khả thi hoặc thực tế). Lý do chính là khi test thất bại, bạn muốn có thể thu hẹp nguyên nhân của lỗi này nhanh nhất có thể. Nếu một test phụ thuộc vào nhiều function, có thể rất khó biết chính xác điều gì đang sai.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Explain what tightly coupled code is.
-- Describe a pure function and how it relates to TDD.
-- Explain what mocking is.
+- Giải thích tightly coupled code là gì.
+- Mô tả pure function và mối liên hệ của nó với TDD.
+- Giải thích mocking là gì.
 
 ### Pure functions
 
-There are *many* benefits to using TDD when you write your code. One of the biggest benefits is less obvious at first - it helps you to write better code.  If you look back at some of your early projects you will probably notice how *tightly coupled* everything is.  All of your functions include references to functions in other parts of your code, and the whole thing is *filled* with DOM methods or `console.log()`.
+Có *rất nhiều* lợi ích khi sử dụng TDD lúc viết code. Một trong những lợi ích lớn nhất ban đầu không dễ nhận thấy - TDD giúp bạn viết code tốt hơn. Nếu nhìn lại một số project đầu tiên, có lẽ bạn sẽ nhận thấy mọi thứ *tightly coupled* đến mức nào. Tất cả function đều chứa tham chiếu đến các function ở những phần khác của code, và toàn bộ chương trình thì *đầy* các method DOM hoặc `console.log()`.
 
-Tightly coupled code is hard to test! Imagine trying to write tests for a function like this:
+Tightly coupled code rất khó test! Hãy thử tưởng tượng việc viết test cho một function như sau:
 
 ```javascript
 function guessingGame() {
@@ -32,7 +32,7 @@ function guessingGame() {
 }
 ```
 
-Making this testable requires us to split up all the different things that are happening.  First, we do not need to test the functions `prompt` and `alert` because they are built in to the browser.  They are external to our program and whoever wrote them has already tested them.  What we *do* need to test is the number logic, which is much easier if we untangle it from the other functions:
+Để test được đoạn này, chúng ta cần tách riêng tất cả những việc khác nhau đang diễn ra. Trước hết, chúng ta không cần test các function `prompt` và `alert` vì chúng được tích hợp sẵn trong browser. Chúng nằm bên ngoài chương trình của chúng ta và người viết chúng đã test chúng rồi. Điều *cần* test là logic về số, việc này sẽ dễ hơn nhiều nếu tháo nó khỏi các function khác:
 
 ```javascript
 function evaluateGuess(magicNumber, guess) {
@@ -57,22 +57,22 @@ function guessingGame() {
 guessingGame();
 ```
 
-In this example, the only thing we really need to test is the `evaluateGuess` function, which is much easier to test because it has a clear input and output and doesn't call any external functions. This implementation is *much* nicer as well because it's much easier to extend.  If we wanted to switch out the `prompt` and `alert`s for methods that manipulate the DOM we can do that easier now and if we want to make our game more advanced by letting the user make multiple guesses, that is also easier.
+Trong ví dụ này, điều duy nhất chúng ta thực sự cần test là function `evaluateGuess`, function này dễ test hơn nhiều vì có input và output rõ ràng, đồng thời không gọi function bên ngoài nào. Cách triển khai này cũng *tốt* hơn nhiều vì dễ mở rộng hơn. Nếu muốn thay `prompt` và `alert` bằng các method thao tác DOM, giờ đây chúng ta có thể làm việc đó dễ hơn; và nếu muốn làm game nâng cao hơn bằng cách cho phép người dùng đoán nhiều lần, việc đó cũng dễ hơn.
 
-If we had written this program with TDD it is very likely that it would have looked more like the second example to begin with.  Test driven development encourages better program architecture because it encourages you to write *Pure Functions*.
+Nếu viết chương trình này theo TDD, rất có thể ngay từ đầu nó đã trông giống ví dụ thứ hai hơn. Test driven development khuyến khích kiến trúc chương trình tốt hơn vì khuyến khích bạn viết *Pure Functions*.
 
 ### Mocking
 
-There are two solutions to the 'tightly coupled code' problem.  The first, and best option is to remove those dependencies from your code as we did above, but that is not always possible.  The second option is **mocking** - writing "fake" versions of a function that always behaves *exactly* how you want.  For example, if you're testing a function that gets information from a DOM input, you really don't want to have to set up a webpage and dynamically insert something into the input just to run your tests.  With a mock function, you could just create a fake version of the input-grabbing function that always returns a specific value and use THAT in your test.
+Có hai giải pháp cho vấn đề 'tightly coupled code'. Giải pháp đầu tiên và tốt nhất là loại bỏ các dependency khỏi code như chúng ta đã làm ở trên, nhưng điều đó không phải lúc nào cũng khả thi. Giải pháp thứ hai là **mocking** - viết các phiên bản "giả" của một function, luôn hoạt động *chính xác* theo cách bạn muốn. Ví dụ, nếu đang test một function lấy thông tin từ input DOM, bạn thực sự không muốn phải thiết lập một webpage rồi chèn động một thứ gì đó vào input chỉ để chạy test. Với một mock function, bạn chỉ cần tạo một phiên bản giả của function lấy input, phiên bản này luôn trả về một giá trị cụ thể, rồi dùng CHÍNH phiên bản đó trong test.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this quick article about [the value of "pure functions"](https://medium.com/@jamesjefferyuk/javascript-what-are-pure-functions-4d4d5392d49c).
-1. Watch this [video about mocks in testing](https://www.youtube.com/watch?v=ajiAl5UNzBU&t=3024s).
-1. Now that you have some practice and context for TDD, the [Jest docs section on "Setup and Teardown"](https://jestjs.io/docs/setup-teardown) will probably make good sense to you.
-1. Read about [Jest's really handy mocking functions](https://jestjs.io/docs/mock-functions).
-1. Watch this amazing video that covers [what to test in your codebase](https://www.youtube.com/watch?v=URSWYvyc42M). The video is specifically about testing the Ruby language, but that doesn't matter *at all*.  The concepts here ring true in any language, and luckily Ruby is a clear enough language that you will be able to follow along just fine.
+1. Đọc bài viết ngắn này về [giá trị của "pure functions"](https://medium.com/@jamesjefferyuk/javascript-what-are-pure-functions-4d4d5392d49c).
+1. Xem [video về mock trong testing](https://www.youtube.com/watch?v=ajiAl5UNzBU&t=3024s).
+1. Bây giờ bạn đã có một chút thực hành và bối cảnh về TDD, phần [Setup and Teardown trong tài liệu Jest](https://jestjs.io/docs/setup-teardown) có lẽ sẽ trở nên dễ hiểu với bạn.
+1. Đọc về [các function mocking rất tiện dụng của Jest](https://jestjs.io/docs/mock-functions).
+1. Xem video tuyệt vời này trình bày [nên test gì trong codebase](https://www.youtube.com/watch?v=URSWYvyc42M). Video nói cụ thể về việc test ngôn ngữ Ruby, nhưng điều đó *hoàn toàn* không quan trọng. Các khái niệm trong video đúng với mọi ngôn ngữ, và may mắn là Ruby đủ rõ ràng để bạn có thể dễ dàng theo dõi.
 
 </div>

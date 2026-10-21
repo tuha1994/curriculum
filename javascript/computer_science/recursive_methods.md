@@ -1,42 +1,42 @@
-### Introduction
+### Giới thiệu
 
-Recursion is the idea that a function calls itself. That is all there is to it. It's used to take a big problem and start breaking it down into smaller and smaller pieces ("Divide and Conquer") and continuing to feed their solutions back into the original function until some sort of answer is achieved and the whole chain unwinds.
+Recursion là ý tưởng một function gọi chính nó. Chỉ có vậy. Nó được dùng để lấy một bài toán lớn và bắt đầu chia nó thành những phần ngày càng nhỏ ("Divide and Conquer"), rồi tiếp tục đưa lời giải của chúng trở lại function ban đầu cho đến khi đạt được một dạng câu trả lời và toàn bộ chuỗi được tháo ngược.
 
-From the [Wikipedia entry on Divide and Conquer Algorithms](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm):
+Từ [Wikipedia entry on Divide and Conquer Algorithms](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm):
 
-> In computer science, divide and conquer (D&C) is an important algorithm design paradigm based on multi-branched recursion. A divide and conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same (or related) type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.
+> Trong computer science, divide and conquer (D&C) là một paradigm thiết kế algorithm quan trọng dựa trên recursion nhiều nhánh. Algorithm divide and conquer hoạt động bằng cách đệ quy chia một bài toán thành hai hoặc nhiều bài toán con cùng loại (hoặc có liên quan), cho đến khi chúng đủ đơn giản để giải trực tiếp. Sau đó các lời giải của bài toán con được kết hợp để tạo ra lời giải cho bài toán ban đầu.
 
-There's also a right and wrong way to use recursion. The fact is, any problem you can solve recursively, you can also solve using the iterators that you know and love. If you find yourself saying "why didn't I just use a `while` loop here?" then you probably should have. You won't often end up using a recursive solution to a problem, but you should get a feel for when it might be a good idea. Some problems also break down into far too many pieces and totally overwhelm your computer's memory. There's a balance.
+Ngoài ra còn có cách dùng recursion đúng và sai. Thực tế là bất kỳ bài toán nào bạn giải được bằng recursion cũng có thể giải bằng các iterator bạn đã quen thuộc và yêu thích. Nếu bạn thấy mình nói "sao lúc đó mình không dùng vòng `while`?" thì có lẽ bạn nên dùng nó. Bạn không thường xuyên dùng lời giải đệ quy cho một bài toán, nhưng nên có cảm nhận về khi nào nó là ý tưởng tốt. Một số bài toán cũng bị chia thành quá nhiều phần và hoàn toàn làm bộ nhớ máy tính quá tải. Cần có sự cân bằng.
 
-In this brief lesson, you'll get a chance to learn more about when and how to use recursion and then in the next project you will get the chance to apply some of that (since it probably won't really stick until you've had a chance to try it).
+Trong bài học ngắn này, bạn sẽ có cơ hội tìm hiểu thêm về khi nào và cách dùng recursion, rồi trong project tiếp theo bạn sẽ áp dụng một phần kiến thức đó (vì có lẽ nó sẽ chưa thực sự ghi nhớ cho đến khi bạn thử).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Understand why recursion is a useful technique for solving large problems.
-- Recognize the limitations of using recursive solutions.
-- Identify which types of problems are better solved using loops instead of recursion.
-- Learn what is meant by the concept of "recursive depth".
-- Understand what a "stack overflow" is (the concept, not the website).
-- Learn why stack overflow is relevant to recursive problems.
+- Hiểu tại sao recursion là kỹ thuật hữu ích để giải quyết các bài toán lớn.
+- Nhận biết các giới hạn của lời giải đệ quy.
+- Xác định loại bài toán nào nên giải bằng loop thay vì recursion.
+- Tìm hiểu khái niệm "recursive depth" nghĩa là gì.
+- Hiểu "stack overflow" là gì (khái niệm, không phải website).
+- Tìm hiểu tại sao stack overflow liên quan đến các bài toán đệ quy.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this [intro to recursion](https://javascript.info/recursion). You do *not* need to complete the exercises at the end of the article.
-1. Watch this [explanation of recursion by Web Dev Simplified](https://www.youtube.com/watch?v=6oDQaB2one8).
-1. Watch [5 Simple Steps for Solving Any Recursive Problem](https://www.youtube.com/watch?v=ngCos392W4w).
-1. Watch this [Video on Recursion](https://www.youtube.com/watch?v=mz6tAJMVmfM) from CS50.
-1. Read the ["Implementation Issues" section of the wiki article](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm#Implementation_issues) to get an overview of some of the limitations of recursion.
-1. Go to [the `computer_science/recursion/` directory of The Odin Project's JavaScript exercises repo](https://github.com/TheOdinProject/javascript-exercises/tree/main/computer_science/recursion) and complete each of the exercises in order. Be sure to review the README for each exercise prior to completing it. If you need to, revisit the repo's README for general instructions on forking, cloning, and using the exercises.
+1. Đọc [intro to recursion](https://javascript.info/recursion) này. Bạn *không* cần hoàn thành các bài tập ở cuối bài viết.
+1. Xem [explanation of recursion by Web Dev Simplified](https://www.youtube.com/watch?v=6oDQaB2one8).
+1. Xem [5 Simple Steps for Solving Any Recursive Problem](https://www.youtube.com/watch?v=ngCos392W4w).
+1. Xem [Video on Recursion](https://www.youtube.com/watch?v=mz6tAJMVmfM) từ CS50.
+1. Đọc ["Implementation Issues" section of the wiki article](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm#Implementation_issues) để có cái nhìn tổng quan về một số giới hạn của recursion.
+1. Đi tới [the `computer_science/recursion/` directory of The Odin Project's JavaScript exercises repo](https://github.com/TheOdinProject/javascript-exercises/tree/main/computer_science/recursion) và hoàn thành từng bài tập theo thứ tự. Hãy xem README của mỗi bài trước khi hoàn thành. Nếu cần, xem lại README của repo để biết hướng dẫn chung về fork, clone và sử dụng exercise.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Use a debugger!
+   #### Hãy dùng debugger!
 
-   It can be rather difficult trying to track what's going on in a recursive function layer by layer, don't put yourself through that! If you haven't already been making use of a debugger when solving some problems (you'll have been missing out on a lot if not!), now is as good a time as any to get familiar with it as it can help make navigating the code flow so much easier.
+   Việc theo dõi điều gì đang diễn ra trong một function đệ quy theo từng layer có thể khá khó, đừng tự làm khổ mình! Nếu bạn chưa dùng debugger khi giải một số bài toán (nếu chưa thì bạn đã bỏ lỡ rất nhiều!), đây là lúc thích hợp để làm quen với nó, vì debugger giúp việc điều hướng luồng code dễ dàng hơn nhiều.
 
    </div>
 

@@ -1,43 +1,43 @@
-### Introduction
+### Giới thiệu
 
-In the last lesson, we focused on measuring complexity from the perspective of time. We learned about the various ways in which algorithm complexity can be measured and why Big O was the preferred way. We also showed some examples of how this applied to measuring the time complexity of an algorithm.
+Trong bài học trước, chúng ta tập trung đo complexity từ góc nhìn thời gian. Ta đã tìm hiểu nhiều cách đo complexity của algorithm và tại sao Big O được ưu tiên. Ta cũng xem một số ví dụ về việc áp dụng điều này để đo time complexity của algorithm.
 
-In this lesson, we'll focus on space complexity and see how the same notations we've already learned can be used to measure how a change in input for our algorithms can affect the amount of memory it uses.
+Trong bài học này, chúng ta tập trung vào space complexity và xem cách dùng những notation đã học để đo việc thay đổi input ảnh hưởng thế nào đến lượng bộ nhớ algorithm sử dụng.
 
-When we talk about memory, we mean primary memory, which is the working memory available to your system to execute algorithms. You can read more about the topic in this [GeeksforGeeks Primary Memory article](https://www.geeksforgeeks.org/primary-memory/).
+Khi nói về bộ nhớ, ta nói đến primary memory, tức working memory hệ thống có để thực thi algorithm. Bạn có thể đọc thêm trong [GeeksforGeeks Primary Memory article](https://www.geeksforgeeks.org/primary-memory/).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- What space complexity is.
-- The importance of space complexity.
-- How to measure space complexity.
-- Auxiliary space analysis.
+- Space complexity là gì.
+- Tầm quan trọng của space complexity.
+- Cách đo space complexity.
+- Phân tích auxiliary space.
 
-### What do we mean by space complexity?
+### Space complexity nghĩa là gì?
 
-Space complexity can be considered to be the total space used by an algorithm relative to the size of the input. Thinking back to the previous lesson, you'll recall that we don't consider the efficiency of an algorithm in how it performs in one specific instance of that algorithm running. Instead, we want to know how the efficiency changes when the size of the input changes.
+Space complexity có thể được xem là tổng không gian một algorithm sử dụng tương đối với kích thước input. Nhớ lại bài trước, bạn sẽ thấy ta không xem efficiency của algorithm dựa trên cách nó chạy trong một instance cụ thể. Thay vào đó, ta muốn biết efficiency thay đổi thế nào khi kích thước input thay đổi.
 
-Measuring space complexity considers the space used by your algorithm input and auxiliary space. Auxiliary space is the extra space used by the algorithm. These can be things like temporary variables created during the execution of the algorithm. They won't have a lasting impact on memory space but during the execution of the algorithm will need to be considered. Therefore, you can consider the space complexity to be the total amount of working memory our algorithm needs.
+Đo space complexity xét không gian do input của algorithm và auxiliary space sử dụng. Auxiliary space là không gian bổ sung do algorithm dùng, chẳng hạn các variable tạm được tạo trong quá trình thực thi. Chúng không ảnh hưởng lâu dài đến bộ nhớ, nhưng trong lúc algorithm chạy thì cần được tính đến. Vì vậy, có thể xem space complexity là tổng working memory algorithm cần.
 
-### The importance of considering space complexity
+### Tầm quan trọng của space complexity
 
-If you do any of your own research into algorithm efficiency, you'd be forgiven for assuming that space complexity isn't all that important. Most articles you'll read on the subject spend all or the majority of the time covering time complexity and if they do mention space complexity at all, it's pretty much a footnote.
+Nếu tự nghiên cứu về efficiency của algorithm, bạn có thể nghĩ space complexity không quan trọng lắm. Hầu hết bài viết về chủ đề này dành toàn bộ hoặc phần lớn thời gian nói về time complexity, và nếu có nhắc space complexity thì gần như chỉ là chú thích.
 
-It's also fair to say that most algorithms you write will probably deal with very manageable input sizes, and therefore space doesn't really become a problem. You'll invariably run into an issue with your program being slow before you have any issues with memory being used up.
+Cũng đúng khi nói hầu hết algorithm bạn viết có thể xử lý input khá vừa phải, vì vậy space thường không trở thành vấn đề. Bạn gần như chắc chắn gặp vấn đề chương trình chạy chậm trước khi gặp vấn đề hết bộ nhớ.
 
-On the flip side, your hardware will usually have a fixed amount of memory. You can't expand it easily on the fly in most scenarios. When the problem is one of time, you can just allow the program to run for longer and it will eventually come back with a result. You can't do this with space.
+Mặt khác, hardware thường có lượng memory cố định. Trong hầu hết tình huống, bạn không thể dễ dàng mở rộng nó ngay khi chương trình chạy. Khi vấn đề là thời gian, bạn chỉ cần cho chương trình chạy lâu hơn và cuối cùng nó sẽ trả kết quả. Với space thì không thể làm vậy.
 
-On balance, you'll probably come across problems in which the time it takes to execute is more important than the space it uses, but knowing about measuring space complexity will mean when you do run into a situation where there are space constraints, you'll be prepared to handle it.
+Nhìn chung, có lẽ bạn sẽ gặp nhiều vấn đề mà thời gian thực thi quan trọng hơn lượng space sử dụng, nhưng biết cách đo space complexity sẽ giúp bạn sẵn sàng khi gặp tình huống có giới hạn về space.
 
-### Measuring space complexity
+### Đo space complexity
 
-The good news is that we measure space complexity in exactly the same way as time complexity. You already learned about Big O in the last lesson, so you already know how to measure the efficiency of your code. The difference is that you'll need to think about how your algorithm is utilizing memory rather than time.
+Tin tốt là ta đo space complexity theo đúng cách đo time complexity. Bạn đã học Big O ở bài trước, nên đã biết cách đo efficiency của code. Khác biệt là bạn cần nghĩ về cách algorithm sử dụng memory thay vì time.
 
-The first thing to know is that, like time complexity, we measure space complexity by considering all steps including any constants, and then we drop the constants when applying a Big O Notation to the algorithm. So we may have an algorithm that uses memory in Linear Complexity as the input changes, and in doing so creates 3 temporary variables. So we can think of the complexity of our algorithm as O(N) + 3 auxiliary variables using memory. Because those 3 variables are the same no matter our input size, we don't concern ourselves with them when considering the space complexity of our algorithm. So we'd say the space complexity is O(N). This should be familiar to you from the time complexity lesson.
+Điều đầu tiên cần biết là, giống time complexity, ta đo space complexity bằng cách xét mọi bước, bao gồm cả constant, rồi bỏ constant khi áp dụng Big O Notation cho algorithm. Vì vậy, ta có thể có algorithm dùng memory theo Linear Complexity khi input thay đổi, đồng thời tạo 3 variable tạm. Ta có thể nghĩ complexity của algorithm là O(N) + 3 auxiliary variable dùng memory. Vì 3 variable đó không đổi dù input size thế nào, ta không xét chúng khi tính space complexity. Vậy space complexity là O(N). Điều này hẳn quen thuộc từ bài time complexity.
 
-As a reminder the most common Big O Notations are:
+Nhắc lại, các Big O Notation phổ biến nhất là:
 
 - O(1) - Constant Complexity
 - O(log N) - Logarithmic Complexity
@@ -48,11 +48,11 @@ As a reminder the most common Big O Notations are:
 - O(2&#8319;) - Exponential Complexity
 - O(N!) - Factorial Complexity
 
-Let's work through some examples. We won't go through every possible complexity because most don't apply for the data structures you'll be familiar with and use the most. We'll cover the most common ones.
+Hãy cùng xem một số ví dụ. Ta không đi qua mọi complexity có thể có vì đa số không áp dụng cho các data structure bạn quen thuộc và dùng nhiều nhất. Ta sẽ đề cập những loại phổ biến nhất.
 
 #### O(1) - Constant complexity
 
-Consider this example
+Xem ví dụ này:
 
 ```javascript
 function multiply(num1, num2) {
@@ -60,11 +60,11 @@ function multiply(num1, num2) {
 }
 ```
 
-Here it should hopefully be clear that no matter the arguments we pass to the function call, only a single value is created (the product of the numbers). It doesn't change. Therefore, we can consider the space this takes is always O(1).
+Hy vọng rõ ràng rằng bất kể truyền argument nào vào function call, chỉ một value được tạo (tích của hai number). Nó không thay đổi. Vì vậy, space nó chiếm luôn là O(1).
 
 #### O(N) - Linear complexity
 
-Most data structures you come across will have a space complexity of O(N). That makes sense - when you increase the number of items in your data structure, it increases the space that data structure occupies in a linear way.
+Hầu hết data structure bạn gặp có space complexity O(N). Điều đó hợp lý: khi tăng số item trong data structure, space data structure chiếm cũng tăng tuyến tính.
 
 ```javascript
 function sumArr(arr) {
@@ -77,11 +77,11 @@ function sumArr(arr) {
 }
 ```
 
-We wrote this in a slightly more verbose way than you'd normally write it in JavaScript to make it a little clearer. Here we have a method which accepts an array. Within, we have two variables. One called `sum` and the other `copyArr` which holds a copy of the array passed in. We then have a `forEach` loop that iterates over the array. The amount of space that this algorithm takes depends on the array that is passed to it. It could be 3 elements in the array or 300. When we don't know the length of the array, we refer to it as N, so we have N + 1 variable called `sum`. We know that we drop constants with Big O, so we are left with N, or O(N) for its Big O notation.
+Ta viết hơi dài hơn cách thường viết trong JavaScript để làm rõ hơn. Ở đây có một method nhận array. Bên trong có hai variable: một gọi là `sum`, variable còn lại là `copyArr` chứa bản sao của array truyền vào. Sau đó có loop `forEach` iterate qua array. Lượng space algorithm cần phụ thuộc vào array truyền vào. Array có thể có 3 element hoặc 300. Khi không biết độ dài array, ta gọi nó là N, nên ta có N + 1 variable gọi là `sum`. Ta biết Big O bỏ constant, nên còn N, hay notation Big O là O(N).
 
-Why did we make a copy of the array? That will be discussed in a later section.
+Tại sao phải sao chép array? Phần sau sẽ giải thích.
 
-The complexity is replicated no matter the data structure:
+Complexity được lặp lại bất kể data structure:
 
 ```javascript
 function sumObjectValues(obj) {
@@ -94,11 +94,11 @@ function sumObjectValues(obj) {
 }
 ```
 
-Here as the object size increases, the space it uses grows in a linear way.
+Ở đây, khi object tăng kích thước, space nó dùng cũng tăng theo cách tuyến tính.
 
-#### Auxiliary space analysis
+#### Phân tích auxiliary space
 
-One of the common areas that causes confusion when considering space complexity is what constitutes using space in the context of an algorithm. In an earlier example we wrote methods that duplicated an array and object argument. We did that to be explicit. But what if we'd written the method as:
+Một lĩnh vực thường gây nhầm lẫn khi xét space complexity là điều gì được xem là dùng space trong ngữ cảnh algorithm. Ở ví dụ trước, ta viết method nhân bản argument là array và object. Ta làm vậy để rõ ràng. Nhưng nếu viết method như sau:
 
 ```javascript
 function sumArr(arr) {
@@ -110,9 +110,9 @@ function sumArr(arr) {
 }
 ```
 
-When a data structure is passed in as the argument, especially for languages that pass arrays by reference rather than value, it can be a bit unclear if that method considers the space used by that data structure when calculating its space complexity. We could still say this algorithm requires O(N) space, factoring in the size of the input. Or we could say that the creation of the input array belongs to whatever external routine allocated it before calling this function. This would mean that this algorithm takes up O(1) space, as all other variables are constant. This latter approach is known an "auxiliary space analysis."
+Khi một data structure được truyền làm argument, đặc biệt với ngôn ngữ truyền array bằng reference thay vì value, có thể không rõ method đó có tính space của data structure khi tính space complexity hay không. Ta vẫn có thể nói algorithm này cần O(N) space, tính cả kích thước input. Hoặc nói việc tạo input array thuộc về routine bên ngoài đã cấp phát nó trước khi gọi function. Khi đó algorithm này dùng O(1) space, vì mọi variable khác đều là constant. Cách thứ hai gọi là "auxiliary space analysis."
 
-Using this approach, we only regard the *extra* space that an algorithm takes up, meaning the input isn't factored in. This can be situationally useful for describing algorithms that use extra space differently. Let's look at a quick example:
+Với cách này, ta chỉ xem xét space *bổ sung* algorithm chiếm, không tính input. Điều này hữu ích tùy tình huống khi mô tả các algorithm dùng extra space khác nhau. Hãy xem ví dụ nhanh:
 
 ```javascript
 function squareNumsInPlace(arr) {
@@ -129,31 +129,31 @@ function squareNumsNewArr(arr) {
 }
 ```
 
-Here we have two functions that take in an array of numbers and return an array where each number has been squared. The first function directly changes the input array, while the second function builds a new array where each number is squared. Using traditional space analysis, both functions would take up O(N) space. But for this situation, that doesn't tell us much about the (very clear) differences between how these two algorithms use memory. It'd be better to use auxiliary space analysis and say that the top function uses O(1) extra space while the bottom one uses O(N).
+Ở đây có hai function nhận array number và trả về array trong đó mỗi number được bình phương. Function đầu thay đổi trực tiếp input array, function thứ hai tạo array mới trong đó mỗi number được bình phương. Với phân tích space truyền thống, cả hai đều dùng O(N) space. Nhưng trong tình huống này, điều đó không cho biết nhiều về khác biệt (rất rõ) trong cách hai algorithm sử dụng memory. Tốt hơn là dùng auxiliary space analysis và nói function trên dùng O(1) extra space, còn function dưới dùng O(N).
 
-#### Other complexities
+#### Complexity khác
 
-As we've stated, many data structures share O(N) space complexity, and therefore you won't write many algorithms with a space complexity that differs.
+Như đã nói, nhiều data structure có space complexity O(N), nên bạn sẽ không viết nhiều algorithm có space complexity khác.
 
-You do find some recursive functions and sorting algorithms with a different space complexity, though you normally won't have much reason to consider anything else.
+Tuy nhiên, một số recursive function và sorting algorithm có space complexity khác, dù thông thường bạn không có nhiều lý do để xét các loại khác.
 
-In the last lesson, one of the assignments was a link to the [Big-O cheat sheet](https://www.bigocheatsheet.com/). If you take another look at it now, you may have a better appreciation for just how amazing it is as a reference for space and time complexity. If you scroll down to the data structures and then the sorting algorithms section, you'll see it gives you the time and space complexities. Notice just how many are O(N), especially for data structures. Many sorting algorithms have just O(1) space complexity, something to keep in mind as you come across different sorting algorithms during your learning.
+Ở bài trước, một bài tập có liên kết tới [Big-O cheat sheet](https://www.bigocheatsheet.com/). Nếu xem lại, có thể bạn sẽ đánh giá cao hơn mức độ tuyệt vời của nó như một tài liệu tham khảo về space và time complexity. Nếu kéo xuống phần data structure rồi đến sorting algorithm, bạn sẽ thấy time và space complexity. Hãy chú ý có bao nhiêu cái là O(N), đặc biệt với data structure. Nhiều sorting algorithm chỉ có O(1) space complexity, điều cần ghi nhớ khi bạn gặp các sorting algorithm khác trong quá trình học.
 
-This is why we won't be diving into examples for other Big O notations with space complexity. We'd have to come up with convoluted examples that wouldn't represent most code you'll write. If you do come across a good real world example in your own code, then do let us know and we may consider adding it here for others to consider.
+Đó là lý do ta không đi sâu vào ví dụ cho các Big O notation khác với space complexity. Ta sẽ phải tạo những ví dụ rắc rối không đại diện cho phần lớn code bạn sẽ viết. Nếu tự gặp một ví dụ thực tế hay trong code của mình, hãy cho chúng tôi biết và có thể chúng tôi sẽ thêm vào đây để người khác tham khảo.
 
-### Wrapping up
+### Tổng kết
 
-Measuring the complexity of your algorithms, whether time or space, can be difficult. It takes practice and consideration. For most practice code you write, it's not something that will cross your mind, especially as you wrestle with getting your code to work.
+Đo complexity của algorithm, dù là time hay space, có thể khó. Việc này cần thực hành và suy xét. Với phần lớn code luyện tập, đây không phải điều bạn nghĩ đến, đặc biệt khi còn đang vật lộn để code chạy được.
 
-Once your code is working though, and you might be looking to refactor it, it's definitely worth taking a moment to consider if the code is as efficient as it could be. Are you creating unnecessary variables? Or does your algorithm use a data structure with a worse time complexity for what it's mostly used for than another data structure would have been?
+Tuy nhiên, khi code đã hoạt động và bạn muốn refactor, chắc chắn nên dành chút thời gian xem code có hiệu quả nhất có thể không. Bạn có tạo variable không cần thiết không? Hay algorithm dùng data structure có time complexity kém hơn cho mục đích sử dụng chính so với một data structure khác?
 
-On top of these considerations, you also need to balance the readability of your code. If you start introducing [memoization](https://en.wikipedia.org/wiki/Memoization) in order to make your code more efficient, does it mean it's much harder to understand? Is that trade-off worth it? Ultimately, you need to make a call on it. Our advice would be to consider the readability first, and look to refactor for better efficiency if there is a clear impact on performance.
+Ngoài các cân nhắc đó, bạn cũng cần cân bằng khả năng đọc của code. Nếu đưa [memoization](https://en.wikipedia.org/wiki/Memoization) vào để code hiệu quả hơn, liệu code có khó hiểu hơn nhiều không? Đánh đổi đó có đáng không? Cuối cùng bạn phải tự quyết định. Lời khuyên của chúng tôi là ưu tiên readability trước, rồi refactor để hiệu quả hơn nếu performance bị ảnh hưởng rõ ràng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the first answer to [analyzing space complexity on stack exchange](https://cs.stackexchange.com/questions/127933/analyzing-space-complexity-of-passing-data-to-function-by-reference) for some ideas about the different ways that space can be counted.
-1. This [article on recursion and space complexity](https://dev.to/elmarshall/recursion-and-space-complexity-13gc) offers a little more context to recursive functions and their space complexity.
+1. Đọc câu trả lời đầu tiên cho [analyzing space complexity on stack exchange](https://cs.stackexchange.com/questions/127933/analyzing-space-complexity-of-passing-data-to-function-by-reference) để hiểu một số cách đếm space khác nhau.
+1. [Article on recursion and space complexity](https://dev.to/elmarshall/recursion-and-space-complexity-13gc) cung cấp thêm một chút bối cảnh về recursive function và space complexity của chúng.
 
 </div>

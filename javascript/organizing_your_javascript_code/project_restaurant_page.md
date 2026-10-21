@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-Let's use what we've learned and take a chance to continue practicing DOM manipulation by dynamically rendering a restaurant homepage! By the end, we are going to be using JavaScript alone to generate the entire contents of the website!
+Hãy sử dụng những gì chúng tôi đã học và tận dụng cơ hội tiếp theo để tiếp tục thực hiện thao tác DOM bằng cách hiển thị động trang chủ nhà hàng! Cuối cùng, chúng tôi sẽ chỉ sử dụng JavaScript để tạo toàn bộ nội dung của trang web!
 
-**Note: DOM elements should be created using JavaScript but styling can be done in a separate CSS file.**
+** Lưu ý: Phần tử DOM phải được tạo bằng JavaScript nhưng có thể tạo kiểu trong một tệp CSS riêng biệt.**
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
 #### .gitignore
 
-When working with packages that are installed with npm, you don't need to track the contents of `node_modules` with git, nor push those files to GitHub. As we learned in the [npm lesson](https://www.theodinproject.com/lessons/node-path-javascript-npm), the `package.json` file contains all the dependency information, so that anyone can clone your project and install them on their machine with `npm install`.
+Khi làm việc với các gói được cài đặt bằng npm, bạn không cần theo dõi nội dung của `node_modules` bằng git cũng như không cần cung cấp tệp đó lên GitHub. Vì chúng tôi đã học trong [bài học npm](https://www.theodinproject.com/lessons/node-path-javascript-npm), tệp `package.json` chứa tất cả thông tin phụ thuộc vào bất kỳ ai cũng có thể sao chép dự án của bạn và cài đặt chúng trên máy của họ bằng `npm install`.
 
-You can make a `.gitignore` file in the root of the project, and by writing file or directory names in it, you can tell git what things you don't want to track. It's customary to add `node_modules` to `.gitignore`, since it can get really big. Similarly, `dist` is often ignored as it can be generated when someone runs the command to bundle/build the application.
+Bạn có thể tạo tệp `.gitignore` trong thư mục gốc của dự án và bằng cách viết tên tệp hoặc thư mục trong đó, bạn có thể muốn biết những thứ bạn không theo dõi. Theo thông lệ, người ta thường thêm `node_modules` vào `.gitignore` vì nó có thể trở nên rất lớn. Tương tự, `dist` thường bị bỏ qua vì nó có thể được tạo khi ai đó thực hiện lệnh đóng gói/xây dựng ứng dụng.
 
-When creating a new repo on GitHub, there is an option to specify a `.gitignore` template.  There are many templates out there that include common files and directories that are not typically tracked based on the type of project or language used.  For JavaScript projects, there is a `node` template that includes `node_modules` and `dist`.
+Khi tạo mới repo trên GitHub, có một tùy chọn để định nghĩa chỉ `.gitignore` mẫu.  Rất nhiều mẫu bao gồm các tệp và phổ biến thư mục thường không được theo dõi dựa trên loại dự án hoặc ngôn ngữ được sử dụng.  Đối với các dự án JavaScript, có bao mẫu `node` bao gồm `node_modules` và `dist`.
 
 </div>
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Start the project the same way you began the webpack tutorial project, by creating the `package.json` file and setting up Webpack.
-    - Remember, you only need to install and configure the things you need for your project. For example, if you do not plan to have local image files linked in your HTML template, you will not need to install and configure `html-loader`.
-1. Create a `.gitignore` file in the root of your project. It should contain the text `node_modules` and `dist` on separate lines.
+1. Bắt đầu dự án giống như cách bạn bắt đầu gói webpack hướng dẫn dự án, bằng cách tạo tệp `package.json` và thiết lập Webpack.
+    - Hãy nhớ rằng bạn chỉ cần cài đặt và cấu hình những thứ bạn cần cho dự án của mình. Ví dụ: nếu bạn không định nghĩa các tập tin hình ảnh cục bộ trong mẫu HTML của mình, bạn sẽ không cần phải cài đặt và định cấu hình `html-loader`.
+1. Tạo tệp `.gitignore` trong thư mục gốc của dự án của bạn. Nó phải chứa bản văn `node_modules` và `dist` trên các dòng riêng biệt.
 
    ```text
    node_modules
    dist
    ```
 
-1. Set up an HTML skeleton inside of `src/template.html`. Inside the body, add a `<header>` element that contains a `<nav>` with buttons (not links!) for different "tabs" (for example buttons for "Home", "Menu" or "About" etc). Below the `<header>`, add a single `<div id="content">`.
-1. Inside of `src/index.js` write a `console.log` or `alert` statement and then run `npx webpack serve`. Open [http://localhost:8080](http://localhost:8080) in your browser and check your JavaScript is running.
-1. Inside `div#content`, create a homepage for your restaurant. You might want to include an image, headline, and some text about how wonderful the restaurant is; you do not have to make this look too fancy. It’s okay to hard-code these into the HTML for now just to see how they look on the page.
-1. Now remove everything inside `div#content` from the HTML (so you still have the `<header>` and `<nav>` with an empty `<div id="content">` below it) and instead create them by using JavaScript only, e.g. by appending each new element to `div#content` once the page is first loaded. Since we're all set up to write our code in multiple files, let's write this initial page-load function inside of its own module and then import and call it inside of `index.js`.
-1. Next, set up your restaurant site to use tabbed browsing to access the Menu and Contact pages. Look at the behavior of this [student's live preview site](https://web.archive.org/web/20221024060550/https://eckben.github.io/bearysBreakfastBar/) for visual inspiration.
-    1. Put the contents of each "tab" inside of its own module. Each module will export a function that creates a div element, adds the appropriate content and styles to that element and then appends it to the DOM.
-    1. Write the tab-switching logic inside of `index.js`. You should have event listeners for each button in the header navbar that wipes out the current contents of `div#content` and then runs the correct 'tab module' to populate it with the new contents again.
+1. Thiết lập bộ xương HTML bên trong `src/template.html`. Bên trong phần thân, thêm phần tử `<header>` chứa `<nav>` với các nút (không phải liên kết!) cho các "tab" khác (ví dụ: các cho "Trang chủ", "Menu" hoặc "Giới thiệu", v.v.). Bên dưới `<header>`, thêm một `<div id="content">`.
+1. Bên trong `src/index.js` viết lệnh `console.log` hoặc `alert` rồi chạy `npx webpack serve`. Mở [http://localhost:8080](http://localhost:8080) trong trình duyệt của bạn và kiểm tra xem JavaScript có chạy không.
+1. Bên trong `div#content`, tạo trang chủ cho nhà hàng của bạn. Bạn có thể muốn bao gồm một hình ảnh, dòng tiêu đề và một số văn bản về mức độ tuyệt vời của nhà hàng; bạn không cần phải làm việc đó ở bất kỳ thời điểm nào. Bạn có thể mã hóa phần cứng thứ này vào HTML ngay bây giờ chỉ để xem chúng như thế nào trên trang.
+1. Bây giờ hãy xóa mọi thứ trong `div#content` khỏi HTML (để bạn vẫn còn `<header>` và `<nav>` với `<div id="content">` trống bên dưới) và thay vào đó hãy tạo chúng bằng cách chỉ sử dụng JavaScript, ví dụ: bằng cách thêm từng phần tử mới vào `div#content` sau trang khi được tải lần đầu tiên. Vì tất cả chúng ta đều đã thiết lập để viết mã của thành nhiều tệp của mình, hãy viết hàm tải trang ban đầu này bên trong mô-đun của chính nó, sau đó nhập và gọi nó bên trong `index.js`.
+1. Tiếp theo, bạn hãy thiết lập trang web nhà hàng của mình để sử dụng tính năng duyệt theo thẻ để truy cập Menu và Liên hệ trang web. Hãy xem hoạt động của [trang web xem trước trực tiếp của học sinh](https://web.archive.org/web/20221024060550/https://eckben.github.io/bearysBreakfastBar/) này để tìm nguồn cảm hứng trực quan.
+    1. Đặt nội dung của mỗi "tab" bên trong mô-đun riêng của nó. Mỗi mô-đun sẽ xuất ra một div phần tử tạo chức năng, bổ sung nội dung và kiểu thích hợp cho phần tử sau đó thêm nó vào DOM.
+    1. Viết tab chuyển logic bên trong `index.js`. Bạn nên xử lý sự kiện cho từng nút trong thanh điều hướng tiêu đề để xóa nội dung hiện tại của `div#content`, sau đó chạy 'tab mô-đun' chính xác để điền lại nội dung mới vào đó.
 
-#### Deployment
+#### Triển khai
 
-Let's deploy your project to GitHub pages! This is a little more work than it has been for previous projects, because GitHub Pages tries to look for an `index.html` *in the root of your project*, but yours is inside `dist`! We will need to do a few steps to push *the contents* of your `dist` directory to its own branch on GitHub, which will then have a root-level `index.html` for GitHub pages to serve.
+Hãy phát triển dự án của bạn lên các trang GitHub! Công việc này phức tạp hơn một chút so với các dự án trước đó, vì GitHub Pages cố gắng tìm kiếm `index.html` * trong thư mục gốc của dự án của bạn*, nhưng dự án của bạn lại nằm trong `dist`! Chúng tôi sẽ thực hiện một số bước để cung cấp nội dung *the* trong thư mục `dist` của bạn đã chia sẻ riêng trên GitHub, sau đó nhánh này sẽ có `index.html` cấp gốc để phân phát các trang GitHub.
 
-You don't need to know exactly what all the commands do - as long as you follow the instructions below carefully you should be fine. You can use these instructions to deploy your project initially, and also redeploy it again if you make more changes to your project later.
+Bạn không cần phải biết chính xác tất cả các lệnh làm gì - miễn là bạn làm theo hướng dẫn bên dưới một cách cẩn thận thì bạn sẽ ổn thôi. Bạn có thể sử dụng hướng dẫn này để phát triển dự án của mình và cũng có thể phát triển lại dự án nếu sau này bạn thực hiện nhiều thay đổi hơn cho dự án của mình.
 
-1. Make a new branch to deploy from by running `git branch gh-pages`. You only need to do this the first time you deploy. The rest of the steps should be done every time you deploy or redeploy your project.
-1. Make sure you have all your work committed. You can use `git status` to see if there's anything that needs committing.
-1. Run `git checkout gh-pages && git merge main --no-edit` to change branch and sync your changes from `main` so that you're ready to deploy.
-1. Now let's bundle our application into `dist` with your build command. For now, that's `npx webpack`.
-1. Now there are a few more commands. Run each of these in order:
+1. Tạo một nhánh mới để phát triển khai báo bằng cách chạy `git branch gh-pages`. Bạn chỉ cần thực hiện công việc này trong lần phát triển đầu tiên. Các bước còn lại sẽ được thực hiện mỗi khi bạn phát triển hoặc phát triển lại dự án của mình.
+1. Hãy chắc chắn rằng bạn đã cam kết tất cả công việc của mình. Bạn có thể sử dụng `git status` để xem những gì cần cam kết.
+1. Chạy `git checkout gh-pages && git merge main --no-edit` để thay đổi nhánh và đồng bộ hóa các thay đổi của bạn từ `main` để bạn sẵn sàng phát triển khai báo.
+1. Bây giờ, hãy sử dụng gói ứng dụng của chúng tôi vào `dist` bằng cách xây dựng lệnh của bạn. Hiện tại, đó là `npx webpack`.
+1. Bây giờ có thêm một số lệnh. Chạy từng cái này theo thứ tự:
 
    ```bash
    git add dist -f && git commit -m "Deployment commit"
@@ -55,6 +55,6 @@ You don't need to know exactly what all the commands do - as long as you follow 
    git checkout main
    ```
 
-1. Recall that the **source branch** for GitHub Pages is set in your repository's settings. Get this changed to the `gh-pages` branch. That should be everything!
+1. Hãy nhớ lại rằng nhánh **source** cho GitHub Pages được cài đặt trong kho lưu trữ cài đặt của bạn. Hãy thay đổi cái này thành nhánh `gh-pages`. Đó phải là tất cả!
 
 </div>

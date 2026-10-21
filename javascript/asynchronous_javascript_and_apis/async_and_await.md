@@ -1,8 +1,8 @@
-### Introduction
+### Giới thiệu
 
-Asynchronous code can become difficult to follow when it has a lot of things going on. `async` and `await` are two keywords that can help make asynchronous code read more like synchronous code. This can help code look cleaner while keeping the benefits of asynchronous code.
+Mã bất đồng bộ có thể trở nên khó theo dõi khi có quá nhiều việc diễn ra. `async` và `await` là hai từ khóa có thể giúp mã bất đồng bộ đọc giống mã đồng bộ hơn. Nhờ đó, mã có thể trông gọn gàng hơn mà vẫn giữ được lợi ích của mã bất đồng bộ.
 
-For example, the two code blocks below do the exact same thing. They both get information from a server, process it, and return a promise.
+Ví dụ, hai khối mã dưới đây thực hiện chính xác cùng một việc. Cả hai đều lấy thông tin từ máy chủ, xử lý thông tin rồi trả về một promise.
 
 ```javascript
 function getPersonsInfo(name) {
@@ -20,9 +20,9 @@ async function getPersonsInfo(name) {
 }
 ```
 
-The second example looks much more like the kind of functions you are used to writing. However, did you notice the `async` keyword before the function declaration? How about the `await` keyword before `server.getPeople()`?
+Ví dụ thứ hai trông giống hơn với kiểu hàm bạn thường viết. Tuy nhiên, bạn có để ý từ khóa `async` trước khai báo hàm không? Còn từ khóa `await` trước `server.getPeople()` thì sao?
 
-If you'd like to try running these functions on your own, paste the following code block representing a server before the function definitions. How this "server" works is not important and is just an abstraction. The goal here is so that you can see that both functions behave exactly the same and return a promise.
+Nếu muốn tự chạy thử các hàm này, hãy dán khối mã sau, đại diện cho một máy chủ, trước các định nghĩa hàm. Cách “máy chủ” này hoạt động không quan trọng và chỉ là một abstraction. Mục tiêu là để bạn thấy cả hai hàm hoạt động hoàn toàn giống nhau và đều trả về một promise.
 
 ```javascript
 const server = {
@@ -52,24 +52,24 @@ const server = {
 };
 ```
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Explain how you declare an `async` function.
-- Explain what the `async` keyword does.
-- Explain what the `await` keyword does.
-- Explain what an `async` function returns.
-- Explain what happens when an error is thrown inside an `async` function.
-- Explain how you can handle errors inside an `async` function.
+- Giải thích cách khai báo một hàm `async`.
+- Giải thích từ khóa `async` làm gì.
+- Giải thích từ khóa `await` làm gì.
+- Giải thích một hàm `async` trả về gì.
+- Giải thích điều gì xảy ra khi một lỗi được throw bên trong một hàm `async`.
+- Giải thích cách xử lý lỗi bên trong một hàm `async`.
 
-### The async keyword
+### Từ khóa async
 
-The `async` keyword is what lets the JavaScript engine know that you are declaring an asynchronous function. This is required to use `await` inside any function. When a function is declared with `async`, it automatically returns a promise; returning in an `async` function is the same as resolving a promise. Likewise, throwing an error will reject the promise.
+Từ khóa `async` cho engine JavaScript biết rằng bạn đang khai báo một hàm bất đồng bộ. Đây là điều bắt buộc nếu muốn dùng `await` bên trong bất kỳ hàm nào. Khi một hàm được khai báo với `async`, hàm đó tự động trả về một promise; câu lệnh return trong một hàm `async` tương đương với việc resolve một promise. Tương tự, việc throw một lỗi sẽ reject promise.
 
-An important thing to understand is `async` functions are just syntactical sugar for `promises`.
+Điều quan trọng cần hiểu là các hàm `async` chỉ là syntactical sugar cho `promises`.
 
-The `async` keyword can also be used with any of the ways a function can be created. Said differently: it is valid to use an `async` function anywhere you can use a normal function. Below you will see some examples that may not be intuitive. If you don't understand them, come back and take a look when you are done with the assignments.
+Từ khóa `async` cũng có thể dùng với mọi cách tạo hàm. Nói cách khác: bạn có thể dùng một hàm `async` ở bất cứ nơi nào có thể dùng một hàm thông thường. Dưới đây là một vài ví dụ có thể không trực quan. Nếu chưa hiểu, hãy quay lại xem chúng sau khi hoàn thành các bài tập.
 
 ```javascript
 const yourAsyncFunction = async () => {
@@ -93,13 +93,13 @@ server.getPeople().then(async people => {
 });
 ```
 
-### The await keyword
+### Từ khóa await
 
-`await` does the following: it tells JavaScript to wait for an asynchronous action to finish before continuing the function. It's like a 'pause until done' keyword. The `await` keyword is used to get a value from a function where you would normally use `.then()`. Instead of calling `.then()` after the asynchronous function, you would assign a variable to the result using `await`. Then you can use the result in your code as you would in your synchronous code.
+`await` thực hiện việc sau: nó bảo JavaScript chờ một thao tác bất đồng bộ hoàn tất trước khi tiếp tục thực thi hàm. Nó giống như một từ khóa “tạm dừng cho đến khi xong”. Từ khóa `await` được dùng để lấy một giá trị từ hàm, tại nơi mà thông thường bạn sẽ dùng `.then()`. Thay vì gọi `.then()` sau hàm bất đồng bộ, bạn gán một biến cho kết quả bằng `await`. Sau đó, bạn có thể dùng kết quả trong mã giống như với mã đồng bộ.
 
-### Error handling
+### Xử lý lỗi
 
-Handling errors in `async` functions is very easy. Promises have the `.catch()` method for handling rejected promises, and since async functions just return a promise, you can call the function, and append a `.catch()` method to the end.
+Việc xử lý lỗi trong các hàm `async` rất dễ. Promise có method `.catch()` để xử lý promise bị reject, và vì các hàm async chỉ trả về một promise, bạn có thể gọi hàm rồi nối thêm method `.catch()` ở cuối.
 
 ```javascript
 asyncFunctionCall().catch(err => {
@@ -107,7 +107,7 @@ asyncFunctionCall().catch(err => {
 });
 ```
 
-But there is another way: the mighty [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) statement! If you want to handle the error directly inside the async function, you can use `try...catch` with `async/await` syntax. If JavaScript throws an error in the `try` block, the `catch` block code will run instead (this can also be used for synchronous code).
+Nhưng còn một cách khác: câu lệnh [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) mạnh mẽ! Nếu muốn xử lý lỗi trực tiếp bên trong hàm async, bạn có thể dùng `try...catch` với cú pháp `async/await`. Nếu JavaScript throw một lỗi trong khối `try`, mã trong khối `catch` sẽ chạy thay thế (cách này cũng có thể dùng cho mã đồng bộ).
 
 ```javascript
 async function getPersonsInfo(name) {
@@ -121,11 +121,11 @@ async function getPersonsInfo(name) {
 }
 ```
 
-Doing this can look messy, but it is a very easy way to handle errors without appending `.catch()` after your function calls. How you handle the errors is up to you, and which method you use should be determined by how your code was written. You will get a feel for what needs to be done over time. The assignments will also help you understand how to handle your errors.
+Cách này có thể trông hơi lộn xộn, nhưng là một cách rất dễ để xử lý lỗi mà không cần nối `.catch()` sau các lần gọi hàm. Cách bạn xử lý lỗi là tùy bạn, và phương pháp nên dùng phụ thuộc vào cách mã được viết. Theo thời gian, bạn sẽ dần cảm nhận được cần làm gì. Các bài tập cũng sẽ giúp bạn hiểu cách xử lý lỗi.
 
-### Practice
+### Thực hành
 
-Remember the Giphy API practice project? (If not, you should go back and complete the API lesson). We are going to convert the promise based code into `async/await` compatible code. Here's a refresher of the code we are starting with:
+Bạn còn nhớ project thực hành với Giphy API không? (Nếu không, bạn nên quay lại hoàn thành bài học về API). Chúng ta sẽ chuyển mã dựa trên promise sang mã tương thích với `async/await`. Đây là phần ôn lại mã ban đầu:
 
 ```javascript
 <script>
@@ -143,7 +143,7 @@ Remember the Giphy API practice project? (If not, you should go back and complet
 </script>
 ```
 
-Since `await` does not work in the top level of a non-module script, we will have to create an `async` function that wraps our API call to Giphy.
+Vì `await` không hoạt động ở cấp cao nhất của một script không phải module, chúng ta sẽ phải tạo một hàm `async` bao quanh lần gọi API đến Giphy.
 
 ```javascript
 <script>
@@ -164,7 +164,7 @@ Since `await` does not work in the top level of a non-module script, we will hav
 </script>
 ```
 
-Now that we have a function that is asynchronous, we can then start refactoring from using promises to using `await`:
+Bây giờ chúng ta đã có một hàm bất đồng bộ, có thể bắt đầu refactor từ việc dùng promise sang dùng `await`:
 
 ```javascript
 <script>
@@ -181,7 +181,7 @@ Now that we have a function that is asynchronous, we can then start refactoring 
 </script>
 ```
 
-Since `response` is still the same object we have passed to the `.then()` block at the start, we still need to use the `.json()` method, which in turn returns a promise. Because `.json()` returns a promise, we can use `await` to assign the response to a variable.
+Vì `response` vẫn là cùng đối tượng mà chúng ta đã truyền vào khối `.then()` lúc đầu, chúng ta vẫn cần dùng method `.json()`, method này lại trả về một promise. Vì `.json()` trả về một promise, chúng ta có thể dùng `await` để gán response cho một biến.
 
 ```javascript
 <script>
@@ -195,7 +195,7 @@ Since `response` is still the same object we have passed to the `.then()` block 
 </script>
 ```
 
-For error handling, instead of chaining a `.catch()` method, we would need a `try...catch` statement. We wrap the normal code in a `try` block then use a `catch` block for the error handling part.
+Để xử lý lỗi, thay vì nối method `.catch()`, chúng ta cần một câu lệnh `try...catch`. Chúng ta bọc mã thông thường trong khối `try`, rồi dùng khối `catch` cho phần xử lý lỗi.
 
 ```javascript
 <script>
@@ -213,7 +213,7 @@ For error handling, instead of chaining a `.catch()` method, we would need a `tr
 </script>
 ```
 
-To use this function, we just need to call it with `getCats()` in our code.
+Để dùng hàm này, chúng ta chỉ cần gọi nó bằng `getCats()` trong mã.
 
 ```javascript
 <script>
@@ -232,13 +232,13 @@ To use this function, we just need to call it with `getCats()` in our code.
 </script>
 ```
 
-This code will behave exactly like the code from the last lesson; it just looks a bit different after refactoring. `async/await` are very useful tools when it comes to cleaning up asynchronous JavaScript code. It is important to remember `async/await` are just promises written in a different way. Do the assignments below, and dive deeper into the understanding of `async/await`.
+Mã này sẽ hoạt động chính xác như mã của bài học trước; sau khi refactor, nó chỉ trông hơi khác. `async/await` là những công cụ rất hữu ích để làm gọn mã JavaScript bất đồng bộ. Điều quan trọng cần nhớ là `async/await` chỉ là promise được viết theo một cách khác. Hãy làm các bài tập bên dưới và tìm hiểu sâu hơn về `async/await`.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this [Async and Await article](https://javascript.info/async-await) for a solid introduction to async/await. This [Async and Await examples article](https://codeburst.io/javascript-es-2017-learn-async-await-by-example-48acc58bad65) also has some good examples of its use.
-1. Watch this [Async and Await video by Wes Bos](https://www.youtube.com/watch?v=9YkUCxvaLEk) for a good overview on async/await and its purpose, along with a special trick.
+1. Đọc [bài viết về Async and Await](https://javascript.info/async-await) để có phần giới thiệu vững chắc về async/await. [Bài viết ví dụ về Async and Await](https://codeburst.io/javascript-es-2017-learn-async-await-by-example-48acc58bad65) cũng có một số ví dụ hay về cách sử dụng.
+1. Xem [video về Async and Await của Wes Bos](https://www.youtube.com/watch?v=9YkUCxvaLEk) để có cái nhìn tổng quan về async/await, mục đích của nó và một mẹo đặc biệt.
 
 </div>

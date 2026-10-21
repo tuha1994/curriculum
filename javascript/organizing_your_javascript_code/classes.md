@@ -1,35 +1,35 @@
-### Introduction
+### Giới thiệu
 
-JavaScript does *not* have classes in the same sense as other object-oriented languages like Java or Ruby. ES6, however, *did* introduce a syntax for object creation that uses the `class` keyword. It is basically a new syntax that *mostly* resembles object constructors and prototypes we learned about in the constructor lesson.
+JavaScript *không* có class theo cùng nghĩa với các ngôn ngữ hướng đối tượng khác như Java hay Ruby. Tuy nhiên, ES6 *đã* giới thiệu cú pháp tạo đối tượng sử dụng từ khóa `class`. Về cơ bản, đây là một cú pháp mới *phần lớn* giống với object constructor và prototype mà chúng ta đã học trong bài về constructor.
 
-Historically, especially when ES6 was released, there was some controversy with class syntax precisely because it looks like classes from languages like Java. While JavaScript's class syntax appears to be a syntactic sugar, it has some unique properties that differentiate itself from object constructors and prototypes. Still, the underlying mechanisms have not changed despite the different syntax (no classical inheritance going on) but often trips people up since the syntax isn't as explicit about what's *really* going on with these objects.
+Trong lịch sử, đặc biệt là khi ES6 mới được phát hành, cú pháp class từng gây tranh cãi vì nó trông giống class của những ngôn ngữ như Java. Mặc dù cú pháp class của JavaScript có vẻ chỉ là syntactic sugar, nó có một số đặc điểm riêng giúp phân biệt với object constructor và prototype. Dù vậy, các cơ chế nền tảng không thay đổi dù cú pháp khác đi (không có kế thừa cổ điển), nhưng điều này thường khiến mọi người bối rối vì cú pháp không nói rõ ràng *thực sự* đang diễn ra với các đối tượng này.
 
-Plenty of time has passed though and class syntax now exists in many code bases. There aren't many new mechanisms to learn here, mainly just new syntax for mostly familiar concepts.
+Tuy nhiên, đã khá lâu trôi qua và cú pháp class hiện đã xuất hiện trong nhiều codebase. Ở đây không có nhiều cơ chế mới cần học, chủ yếu chỉ là cú pháp mới cho những khái niệm phần lớn đã quen thuộc.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Explain the differences between an object constructor and a class.
-- Explain what getters and setters are.
-- Describe basic class syntax.
-- Use inheritance with classes.
-- Explain how to implement private class fields and methods.
-- Explain what static properties and methods are.
+- Giải thích sự khác nhau giữa object constructor và class.
+- Giải thích getter và setter là gì.
+- Mô tả cú pháp class cơ bản.
+- Sử dụng kế thừa với class.
+- Giải thích cách triển khai field và method private của class.
+- Giải thích thuộc tính và method static là gì.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read about [getters and setters](https://javascript.info/property-accessors) (don't worry about the "accessor descriptors" section as we have not covered them before). While the article doesn't show classes yet, classes can use getters and setters via the same syntax (without `Object.defineProperty`).
-1. Read JavaScript.info's [primer on class syntax](https://javascript.info/class) for an overview of class syntax.
-1. [MDN's docs on classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) are, as usual, a great resource for going a little deeper. There are lots of individual syntax features but these can be explored over time. As usual, you're not required to memorize anything just from reading docs here and now. Some good features to have a little look at include:
-   - [Extending classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) (like having a Player class that extends a Person class, adding `Person.prototype` to the prototype chain).
-   - [Static properties and methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static) which are properties and methods that are accessed on the class itself and not on the instance of a class. This is similar to how some string methods are accessed on the instance of a string itself e.g. `someString.slice(0, 5)` whereas some methods are called on the String constructor directly e.g. `String.fromCharCode(79, 100, 105, 110)`.
-   - [Private properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields), allowing you to have properties or methods that are not accessible outside of the class, like with private variables in factory functions.
+1. Đọc về [getter và setter](https://javascript.info/property-accessors) (không cần lo về phần "accessor descriptors" vì chúng ta chưa học chúng). Mặc dù bài viết chưa trình bày class, class vẫn có thể sử dụng getter và setter qua cùng cú pháp (không cần `Object.defineProperty`).
+1. Đọc [phần nhập môn về cú pháp class](https://javascript.info/class) của JavaScript.info để có cái nhìn tổng quan về cú pháp class.
+1. [Tài liệu về class của MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), như thường lệ, là một nguồn rất tốt để tìm hiểu sâu hơn. Có rất nhiều tính năng cú pháp riêng lẻ, nhưng bạn có thể khám phá chúng dần theo thời gian. Như thường lệ, bạn không cần ghi nhớ mọi thứ chỉ bằng việc đọc tài liệu ngay bây giờ. Một số tính năng đáng xem qua gồm:
+   - [Mở rộng class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) (chẳng hạn có một class Player mở rộng class Person, thêm `Person.prototype` vào chuỗi prototype).
+   - [Thuộc tính và method static](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static), là các thuộc tính và method được truy cập trên chính class chứ không phải trên một instance của class. Điều này tương tự cách một số method chuỗi được truy cập trên instance của chính chuỗi, ví dụ `someString.slice(0, 5)`, trong khi một số method được gọi trực tiếp trên constructor String, ví dụ `String.fromCharCode(79, 100, 105, 110)`.
+   - [Thuộc tính private](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields), cho phép bạn có các thuộc tính hoặc method không thể truy cập từ bên ngoài class, tương tự biến private trong factory function.
 
-#### Practice
+#### Thực hành
 
-Go back to your [Library project](https://www.theodinproject.com/lessons/node-path-javascript-library) and refactor it to use `class` instead of plain constructors.  Don't forget to use the git branch workflow you learned in [Revisiting Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors) to work on a new feature. You should get used to working like this!
+Quay lại [dự án Library](https://www.theodinproject.com/lessons/node-path-javascript-library) và refactor nó để sử dụng `class` thay cho constructor thông thường. Đừng quên sử dụng quy trình làm việc với nhánh Git mà bạn đã học trong [Revisiting Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors) để làm việc trên một tính năng mới. Bạn nên tập quen với cách làm việc này!
 
 </div>

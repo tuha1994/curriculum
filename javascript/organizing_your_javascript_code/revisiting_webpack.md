@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-Great job working through the Restaurant Page! Setting up and using Webpack with all of its loaders and plugins may have seemed tedious, and you may even still wonder what the point of it all is. As you keep going, a lot of this will become more natural to you, and hopefully these fundamental concepts can help you with problems that are yet to come!
+Làm tốt lắm khi đã hoàn thành Restaurant Page! Việc thiết lập và sử dụng Webpack cùng tất cả loader và plugin của nó có thể đã khiến bạn thấy hơi rườm rà, và có thể bạn vẫn tự hỏi tất cả những việc đó để làm gì. Khi tiếp tục học, nhiều phần trong số này sẽ trở nên tự nhiên hơn với bạn, và hy vọng những khái niệm nền tảng này sẽ giúp bạn xử lý các vấn đề có thể xuất hiện sau này!
 
-Now that you've played around with Webpack a little, let's have a look at a few things that can help to improve the setup experience and your development workflow. Some of these things aren't just limited to Webpack, but are things you can continue to use with other tools as you progress.
+Bây giờ bạn đã thử dùng Webpack một chút, hãy cùng xem một vài điều có thể giúp cải thiện trải nghiệm thiết lập và quy trình phát triển của bạn. Một số điều không chỉ giới hạn ở Webpack mà còn có thể tiếp tục được sử dụng với những công cụ khác khi bạn tiến bộ.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- How to write and run npm scripts.
-- What Webpack modes are and how to automate switching between modes as required.
-- How to create and use template repositories.
+- Cách viết và chạy npm scripts.
+- Webpack mode là gì và cách tự động chuyển đổi giữa các mode khi cần.
+- Cách tạo và sử dụng template repository.
 
 ### npm scripts
 
-While `npx webpack` and `npx webpack serve` aren't particularly long commands to type, you will have encountered `git subtree push --prefix dist origin gh-pages` in the Restaurant Page project's deployment instructions. You surely won't want to be typing that out every time you need to use it.
+Mặc dù `npx webpack` và `npx webpack serve` không phải là những lệnh đặc biệt dài để gõ, bạn đã gặp `git subtree push --prefix dist origin gh-pages` trong hướng dẫn triển khai của dự án Restaurant Page. Chắc chắn bạn sẽ không muốn phải gõ lại lệnh đó mỗi khi cần sử dụng.
 
-Fortunately, we can write npm scripts in our `package.json` file by adding a `"scripts"` property containing an object of scripts. Scripts can be written in the form `"name": "command"`, and are executed by running `npm run <name>` in the terminal. For example:
+May mắn là chúng ta có thể viết npm scripts trong file `package.json` bằng cách thêm một thuộc tính `"scripts"` chứa một object các script. Script có thể được viết dưới dạng `"name": "command"` và được thực thi bằng cách chạy `npm run <name>` trong terminal. Ví dụ:
 
 ```json
 {
@@ -30,38 +30,38 @@ Fortunately, we can write npm scripts in our `package.json` file by adding a `"s
 }
 ```
 
-We have three npm scripts here. In this case, running `npm run build` would be the same as running `npx webpack` (which you may have seen in the Webpack guides from the previous Webpack lesson), `npm run dev` would be the same as `npx webpack serve`, and `npm run deploy` would run `git subtree push --prefix dist origin gh-pages` for us. Not only can we often save time, it's also nice to have sensible and somewhat standardized names for our commands. `npm run build` often contains a tool's command for building/bundling/compiling. `npm run dev` is often used to start a dev server, etc. Names might not always be the same, but they can explain their purposes better than `npx webpack`.
+Ở đây chúng ta có ba npm script. Trong trường hợp này, chạy `npm run build` sẽ tương đương với chạy `npx webpack` (bạn có thể đã thấy lệnh này trong các hướng dẫn Webpack của bài học Webpack trước), `npm run dev` sẽ tương đương với `npx webpack serve`, còn `npm run deploy` sẽ chạy `git subtree push --prefix dist origin gh-pages` giúp chúng ta. Cách này không chỉ thường giúp tiết kiệm thời gian mà còn thuận tiện vì chúng ta có những tên hợp lý và phần nào được chuẩn hóa cho các lệnh. `npm run build` thường chứa lệnh của một công cụ để build/bundle/compile. `npm run dev` thường được dùng để khởi động dev server, v.v. Tên có thể không phải lúc nào cũng giống nhau, nhưng chúng có thể giải thích mục đích tốt hơn `npx webpack`.
 
-Note that we drop the `npx` from the start of the `webpack` and `webpack serve` commands when setting them as scripts, as we only needed `npx` to run them directly in the terminal without npm scripts.
+Lưu ý rằng khi đặt các lệnh thành script, chúng ta bỏ `npx` ở đầu các lệnh `webpack` và `webpack serve`, vì chỉ cần `npx` khi chạy trực tiếp chúng trong terminal mà không thông qua npm scripts.
 
 ### Webpack modes
 
-So far, we've stuck with using Webpack in development mode, which is naturally most suitable for when we're working on development. However, when we come to build our projects for deployment, the dedicated production mode does some different optimizations for us. Try it! You can go to your Restaurant Page project, change the mode to `"production"` in `webpack.config.js`, then run your build command again. Have a look at the JavaScript bundle in `dist` to see an even more glorious jumble of characters!
+Cho đến giờ, chúng ta vẫn dùng Webpack ở development mode, vốn đương nhiên phù hợp nhất khi đang phát triển. Tuy nhiên, khi build dự án để triển khai, production mode chuyên dụng sẽ thực hiện một số tối ưu hóa khác cho chúng ta. Hãy thử xem! Bạn có thể mở dự án Restaurant Page, đổi mode thành `"production"` trong `webpack.config.js`, rồi chạy lại lệnh build. Hãy xem JavaScript bundle trong `dist` để thấy một mớ ký tự còn "lộng lẫy" hơn nữa!
 
-We *really* do not need to know exactly what optimizations have been applied, nor do we need to know about any other specifics of production mode, but it's nice to be aware that the two modes exist and are designed for specific things.
+Chúng ta *thực sự* không cần biết chính xác những tối ưu hóa nào đã được áp dụng, cũng không cần biết các chi tiết khác của production mode, nhưng hiểu rằng có hai mode tồn tại và được thiết kế cho những mục đích cụ thể là điều hữu ích.
 
-To save you from having to manually edit your configuration file every time you wish to switch modes, such as before bundling into `dist` or before going back to use your dev server, you can have two different configuration files (e.g. `webpack.dev.js` and `webpack.prod.js`), and then have your build and dev npm scripts specify which configuration files to use (omitting the `--config` option makes Webpack search for `webpack.config.js` by default):
+Để bạn không phải chỉnh sửa thủ công file cấu hình mỗi khi muốn chuyển mode, chẳng hạn trước khi bundle vào `dist` hoặc trước khi quay lại dùng dev server, bạn có thể có hai file cấu hình khác nhau (ví dụ `webpack.dev.js` và `webpack.prod.js`), sau đó để các npm script build và dev chỉ rõ file cấu hình nào cần dùng (nếu bỏ tùy chọn `--config`, Webpack sẽ mặc định tìm `webpack.config.js`):
 
 ```json
 "build": "webpack --config webpack.prod.js",
 "dev": "webpack serve --config webpack.dev.js"
 ```
 
-In the assignment, we will introduce a tool called `webpack-merge` that can make using multiple Webpack configuration files easier to deal with and with minimal duplication. Doing it this way is nice. We set it up once, then we can forget about it since each script will use the appropriate configuration file and mode!
+Trong bài tập, chúng ta sẽ giới thiệu một công cụ tên là `webpack-merge`, có thể giúp việc sử dụng nhiều file cấu hình Webpack trở nên dễ xử lý hơn và giảm tối đa việc lặp lại. Làm theo cách này rất thuận tiện. Chúng ta thiết lập một lần, rồi có thể quên việc đó vì mỗi script sẽ sử dụng đúng file cấu hình và mode phù hợp!
 
 ### Template repositories
 
-One thing you might have noticed already is that setting up Webpack involves multiple files and directories, and a fair bit of configuration. Each time you set up a new project with Webpack, you may have to look at what you configured before to copy and paste the configuration you want to reuse. You may have also noticed that whenever you create a new repository on Github, there is an option called `Start with a template` in the `Configuration` section.
+Có thể bạn đã nhận thấy việc thiết lập Webpack bao gồm nhiều file, thư mục và khá nhiều cấu hình. Mỗi lần thiết lập một dự án mới với Webpack, bạn có thể phải xem lại những gì đã cấu hình trước đây để sao chép và dán phần cấu hình muốn dùng lại. Có thể bạn cũng đã nhận thấy mỗi khi tạo repository mới trên Github, có một tùy chọn tên là `Start with a template` trong phần `Configuration`.
 
-This is where template repositories can really come in handy. Any of your existing repositories can be converted to a template in its settings (right under where you can rename the repository, there is a checkbox for whether the repository is a template or not). If you check this box, congratulations! That's all you need to do. Now, when you go to create a new repository, the `Start with a template` dropdown will list any templates for you to select. Selecting one will mean your new repository will be a copy of the chosen template, not an empty one!
+Đây là lúc template repository thực sự hữu ích. Bất kỳ repository hiện có nào của bạn cũng có thể được chuyển thành template trong phần cài đặt (ngay bên dưới nơi bạn có thể đổi tên repository là một checkbox cho biết repository có phải template hay không). Nếu bạn chọn checkbox này, xin chúc mừng! Bạn đã làm xong mọi việc cần thiết. Bây giờ, khi tạo repository mới, menu thả xuống `Start with a template` sẽ liệt kê các template để bạn chọn. Chọn một template nghĩa là repository mới của bạn sẽ là bản sao của template đã chọn, chứ không phải một repository trống!
 
-You may not know for sure what you might want or need in a template, but when you find yourself reusing a lot of setup code for multiple projects, you can make a new repository with all of the setup code you need and mark it as a template, then update it as necessary. Now you can select that template when creating a new project repository to save time, letting you dive into working on the project itself sooner!
+Có thể bạn chưa biết chắc mình sẽ muốn hoặc cần gì trong một template, nhưng khi nhận thấy mình đang dùng lại nhiều đoạn mã thiết lập cho nhiều dự án, bạn có thể tạo một repository mới với toàn bộ đoạn mã thiết lập cần thiết, đánh dấu nó là template, rồi cập nhật khi cần. Sau đó, khi tạo repository cho dự án mới, bạn có thể chọn template đó để tiết kiệm thời gian và sớm bắt tay vào làm chính dự án hơn!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through [Webpack's "Production" guide](https://webpack.js.org/guides/production/) where they walk you through how to use `webpack-merge` and split your configuration file. The exact code examples they've used in that guide follow on from a previous part of a longer tutorial they have, but the main parts about `webpack-merge` and splitting the configuration file should still be followable with a new project, or you can even try converting your Restaurant Page project to do things this way!
-   - You can ignore the "Specify the Mode" section and its examples.
+1. Đọc [hướng dẫn "Production" của Webpack](https://webpack.js.org/guides/production/) để xem cách sử dụng `webpack-merge` và tách file cấu hình. Các ví dụ mã chính xác được dùng trong hướng dẫn đó tiếp nối một phần trước của một tutorial dài hơn, nhưng những phần chính về `webpack-merge` và tách file cấu hình vẫn có thể làm theo với một dự án mới; hoặc bạn thậm chí có thể thử chuyển dự án Restaurant Page của mình sang cách làm này!
+   - Bạn có thể bỏ qua phần "Specify the Mode" và các ví dụ của phần đó.
 
 </div>

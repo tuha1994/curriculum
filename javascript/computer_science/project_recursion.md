@@ -1,54 +1,54 @@
-### Introduction
+### Giới thiệu
 
-Use what you have learnt about recursion so far to tackle two classic problems that can leverage recursion: Fibonacci and Merge Sort.
+Hãy dùng những gì bạn đã học về recursion để giải quyết hai bài toán kinh điển có thể tận dụng recursion: Fibonacci và Merge Sort.
 
 #### Fibonacci
 
-The [Fibonacci Sequence](http://en.wikipedia.org/wiki/Fibonacci_number), is a numerical sequence where each number is the sum of the two numbers before it. Eg. 0, 1, 1, 2, 3, 5, 8, 13 are the first eight digits in the sequence.
+[Fibonacci Sequence](http://en.wikipedia.org/wiki/Fibonacci_number) là một dãy số trong đó mỗi số là tổng của hai số đứng trước nó. Ví dụ, 0, 1, 1, 2, 3, 5, 8, 13 là tám số đầu tiên trong dãy.
 
-You should already be thinking that perhaps this can be solved iteratively rather than recursively, and you would be correct. Nevertheless generating the sequence recursively is an excellent way to better understand recursion.
+Có lẽ bạn đã nghĩ rằng bài này có thể giải bằng iteration thay vì recursion, và bạn đúng. Tuy vậy, tạo dãy bằng recursion là một cách tuyệt vời để hiểu rõ hơn về recursion.
 
-You can watch this [video from Khan Academy on recursive Fibonacci](https://www.youtube.com/watch?v=zg-ddPbzcKM) to understand it further.
+Bạn có thể xem [video from Khan Academy on recursive Fibonacci](https://www.youtube.com/watch?v=zg-ddPbzcKM) để hiểu thêm.
 
 #### Merge sort
 
-A significant part of computer science is dedicated to sorting data. An algorithm which uses the 'divide and conquer' approach of recursion is able to reduce a sorting problem to smaller and smaller sub-problems.
+Một phần quan trọng của computer science dành cho việc sắp xếp dữ liệu. Một algorithm dùng cách tiếp cận 'divide and conquer' của recursion có thể thu nhỏ bài toán sắp xếp thành các bài toán con ngày càng nhỏ.
 
-Merge sort is one such sorting algorithm, and can be much faster than other algorithms such as bubble sort on the right data sets. Essentially merge sort recurses through an array of unsorted data until it reaches its smallest sub-set, a single item. Of course an array with a single item is considered sorted. Merge sort then merges the single items back together in sorted order. Pretty clever!
+Merge sort là một algorithm sắp xếp như vậy và có thể nhanh hơn nhiều algorithm khác, chẳng hạn bubble sort, trên những tập dữ liệu phù hợp. Về cơ bản, merge sort đệ quy đi qua một array dữ liệu chưa sắp xếp cho đến khi đạt tập con nhỏ nhất, chỉ còn một phần tử. Dĩ nhiên, array một phần tử được xem là đã sắp xếp. Sau đó merge sort gộp các phần tử đơn lẻ trở lại theo thứ tự. Khá thông minh!
 
-To understand what the merge sort algorithm is doing check out these resources:
+Để hiểu algorithm merge sort đang làm gì, hãy xem các tài nguyên sau:
 
-1. Watch this introductory video on [merge sort from Harvard's CS50x course](https://youtu.be/Ns7tGNbtvV4).
-1. Watch another explanation of [how merge sort works](https://www.youtube.com/live/iCx3zwK8Ms8?si=t7z6bEv_ZXIJDoHU&t=6550) (watch only until 2:04:05), this time from a part of a Harvard CS50x lecture.
-1. [The concept of merging](https://youtu.be/6pV2IF0fgKY) and [Merge Sort -- How it Works part](https://youtu.be/mB5HXBb_HY8) on YouTube give you a more formal look at this problem if you're still unclear.
+1. Xem video giới thiệu về [merge sort from Harvard's CS50x course](https://youtu.be/Ns7tGNbtvV4).
+1. Xem một giải thích khác về [how merge sort works](https://www.youtube.com/live/iCx3zwK8Ms8?si=t7z6bEv_ZXIJDoHU&t=6550) (chỉ xem đến 2:04:05), lần này từ một phần bài giảng Harvard CS50x.
+1. [The concept of merging](https://youtu.be/6pV2IF0fgKY) và [Merge Sort -- How it Works part](https://youtu.be/mB5HXBb_HY8) trên YouTube sẽ cung cấp cách nhìn hình thức hơn về vấn đề này nếu bạn vẫn chưa rõ.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Running your project code
+#### Chạy code của project
 
-You will need a way to run the scripts you create for this project. Because there is no GUI component to this project it should be run in the command line rather than the browser.
+Bạn sẽ cần cách chạy các script tạo cho project này. Vì project không có thành phần GUI, nó nên được chạy trên command line thay vì browser.
 
-JavaScript files can be run directly from the command line using the node command installed with nodejs. You can learn about the common ways to do this by reading the [documentation for the Node CLI](https://github.com/nodejs/nodejs.dev/blob/aa4239e87a5adc992fdb709c20aebb5f6da77f86/content/learn/command-line/node-run-cli.en.md).
+Các file JavaScript có thể chạy trực tiếp từ command line bằng command node được cài cùng nodejs. Bạn có thể tìm hiểu những cách phổ biến để làm việc này bằng cách đọc [documentation for the Node CLI](https://github.com/nodejs/nodejs.dev/blob/aa4239e87a5adc992fdb709c20aebb5f6da77f86/content/learn/command-line/node-run-cli.en.md).
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-First up create a file and tackle the fibonacci sequence:
+Trước hết hãy tạo một file và xử lý dãy fibonacci:
 
-1. Using iteration, write a function `fibs` which takes a number and returns an array containing that many numbers from the Fibonacci sequence. Using an example input of `8`, this function should return the array `[0, 1, 1, 2, 3, 5, 8, 13]`.
-1. Now write another function `fibsRec` which solves the same problem recursively.
-1. Test both versions of your functions by passing in various lengths as arguments.
+1. Dùng iteration, viết function `fibs` nhận một number và trả về một array chứa từng ấy number từ dãy Fibonacci. Với input mẫu là `8`, function phải trả về array `[0, 1, 1, 2, 3, 5, 8, 13]`.
+1. Bây giờ viết function `fibsRec` giải quyết cùng bài toán bằng recursion.
+1. Kiểm thử cả hai phiên bản function bằng cách truyền vào nhiều độ dài khác nhau.
 
-Hopefully you were able to solve the problem with recursion! If you need some help understanding what's going on with this function, the "Test it out" section below will help.
+Hy vọng bạn đã giải được bài toán bằng recursion! Nếu cần hiểu rõ hơn function đang hoạt động thế nào, phần "Thử nghiệm" bên dưới sẽ giúp ích.
 
-Once you have a firm grasp on solving Fibonacci with recursion, create a new file and work on a merge sort:
+Sau khi nắm chắc cách giải Fibonacci bằng recursion, hãy tạo file mới và làm merge sort:
 
-1. Build a function `mergeSort` that takes in an array and returns a sorted array, using a recursive merge sort methodology.
+1. Xây dựng function `mergeSort` nhận một array và trả về array đã sắp xếp, dùng phương pháp merge sort đệ quy.
 
-Test Examples:
+Ví dụ kiểm thử:
 
 - `mergeSort([])` → `[]`
 - `mergeSort([73])` → `[73]`
@@ -56,22 +56,22 @@ Test Examples:
 - `mergeSort([3, 2, 1, 13, 8, 5, 0, 1])` → `[0, 1, 1, 2, 3, 5, 8, 13]`
 - `mergeSort([105, 79, 100, 110])` → `[79, 100, 105, 110]`
 
-Tips:
+Mẹo:
 
-- Think about what the base case is and what behavior is happening again and again and can actually be delegated to someone else (e.g. that same function!).
-- It may be helpful to check out the background videos again if you don't quite understand what should be going on.
+- Hãy nghĩ về base case và hành vi lặp đi lặp lại có thể được ủy thác cho một đối tượng khác (ví dụ chính function đó!).
+- Nếu chưa hiểu rõ, xem lại các video nền tảng có thể hữu ích.
 
-#### Test it out
+#### Thử nghiệm
 
-To showcase the recursive effect implemented in your Fibonacci function, do the following:
+Để minh họa hiệu ứng đệ quy được triển khai trong function Fibonacci, làm như sau:
 
-1. Add the following to the start of the function:
+1. Thêm đoạn sau vào đầu function:
 
    ```javascript
    console.log("This was printed recursively");
    ```
 
-1. Call the function with `8` as the argument.
-1. If the function is implemented correctly, you should see that sentence printed around 8 times (keep in mind that, depending on the way you implemented the function, you may see 7 instead of 8. This isn't a bug! It simply depends on how many times the function is *actually* repeated).
+1. Gọi function với `8` làm đối số.
+1. Nếu function được triển khai đúng, bạn sẽ thấy câu đó được in khoảng 8 lần (hãy nhớ rằng tùy cách triển khai, bạn có thể thấy 7 thay vì 8. Đây không phải bug! Điều đó chỉ phụ thuộc vào số lần function *thực sự* được lặp lại).
 
 </div>

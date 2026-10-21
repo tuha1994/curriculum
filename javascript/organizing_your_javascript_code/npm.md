@@ -1,29 +1,29 @@
-### Introduction
+### Giới thiệu
 
-In the previous lesson, we learned about ES6 modules and the syntax used for importing and exporting things between modules. As we build bigger, more complex applications, we may not want to write *everything* ourselves. We may want to import third party code to handle some things for us, which can range from helper functions other people wrote, to entire frameworks for us to build our application within. To find and import these third party packages with ease, we need the help of a package manager such as npm!
+Trong bài trước, chúng ta đã học về ES6 module và cú pháp dùng để import và export mọi thứ giữa các module. Khi xây dựng những ứng dụng lớn và phức tạp hơn, có thể chúng ta không muốn tự viết *mọi thứ*. Chúng ta có thể muốn import code của bên thứ ba để xử lý một số việc, từ các helper function do người khác viết cho đến toàn bộ framework để xây dựng ứng dụng. Để dễ dàng tìm và import các package bên thứ ba này, chúng ta cần sự trợ giúp của một package manager như npm!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Understand what npm is.
-- Understand the purpose of the `package.json` file.
+- Hiểu npm là gì.
+- Hiểu mục đích của file `package.json`.
 
 ### npm
 
-**npm** (no capitals!) is a package manager - a gigantic repository of plugins, libraries, and other tools, which provides us with a command-line tool we can use to install these tools (that we call "packages") in our applications. We will then have all our installed packages' code locally, which we can import into our own files. We could even publish our own code to npm!
+**npm** (không viết hoa!) là một package manager - một repository khổng lồ chứa plugin, library và các tool khác, đồng thời cung cấp cho chúng ta một command-line tool để cài đặt những tool này (chúng ta gọi chúng là "package") vào ứng dụng. Sau đó, code của mọi package đã cài sẽ có ở local để chúng ta import vào các file của mình. Chúng ta thậm chí còn có thể publish code của chính mình lên npm!
 
-You may recall installing npm in the Foundations course in order to install the Jest testing framework to do the JavaScript exercises. Funnily enough, [npm does not stand for "Node Package Manager"](https://www.npmjs.com/package/npm#is-npm-an-acronym-for-node-package-manager), though you will often see it referred to as such.
+Bạn có thể nhớ đã cài npm trong khóa Foundations để cài framework kiểm thử Jest cho các bài tập JavaScript. Thật thú vị, [npm không phải viết tắt của "Node Package Manager"](https://www.npmjs.com/package/npm#is-npm-an-acronym-for-node-package-manager), dù bạn sẽ thường thấy nó được gọi như vậy.
 
-If you are in the Full Stack Ruby on Rails pathway, you will have already been introduced to Yarn, another JavaScript package manager. For this course, we will be using npm.
+Nếu bạn đang theo lộ trình Full Stack Ruby on Rails, bạn có thể đã được giới thiệu Yarn, một package manager JavaScript khác. Trong khóa học này, chúng ta sẽ dùng npm.
 
-As our applications get more complex and more and more files are needed (whether they are our own files or files from packages we've installed and imported), managing many of these dependencies can become rather troublesome, especially when packages get updated. This can get even more troublesome when we consider that we may end up sending *many* JavaScript files to the browser to download. In the next lesson, we will introduce bundlers, tools that let us write multiple files that are better for us to work with, then bundle them together into fewer smaller files which will ultimately be sent to the browser instead.
+Khi ứng dụng trở nên phức tạp hơn và cần ngày càng nhiều file (dù là file của chúng ta hay file từ các package đã cài và import), việc quản lý nhiều dependency như vậy có thể trở nên khá rắc rối, đặc biệt khi package được cập nhật. Điều này còn rắc rối hơn khi xét đến việc chúng ta có thể phải gửi *rất nhiều* file JavaScript để trình duyệt tải xuống. Trong bài tiếp theo, chúng ta sẽ giới thiệu bundler, những tool cho phép chúng ta viết nhiều file dễ làm việc hơn, rồi bundle chúng thành ít file nhỏ hơn để cuối cùng gửi cho trình duyệt.
 
 ### package.json
 
-npm revolves around a file called `package.json`. It's a JSON file containing information about our project, such as its name or any dependencies and their version numbers. npm can read this file and do things such as install all of the listed dependencies with the correct versions, and running commands that you've set as an npm script (we will cover npm scripts in a later lesson).
+npm xoay quanh một file có tên `package.json`. Đây là một file JSON chứa thông tin về project, chẳng hạn như tên hoặc các dependency và số version của chúng. npm có thể đọc file này và làm những việc như cài đặt mọi dependency được liệt kê với đúng version, cũng như chạy các command bạn đã thiết lập thành npm script (chúng ta sẽ học về npm script trong một bài sau).
 
-For example, here is the `package.json` file for The Odin Project's curriculum repo that houses all of the lesson files (including this lesson you are doing right now):
+Ví dụ, đây là file `package.json` của repo curriculum của The Odin Project, nơi chứa tất cả file bài học (bao gồm cả bài bạn đang học):
 
 ```json
 {
@@ -41,18 +41,18 @@ For example, here is the `package.json` file for The Odin Project's curriculum r
 }
 ```
 
-There's a lot of stuff here and we don't need to understand it all yet. The point is that if you were to clone the curriculum repo and run `npm install`, npm would read this `package.json` file and see that it needs to install the `markdownlint-cli2` package. Once this package is installed, you'll be able to run either of the scripts that use that package. The curriculum repo itself does not actually contain the code for the `markdownlint-cli2` package, as anyone cloning the repo can just run `npm install` to let npm grab the code for them.
+Có khá nhiều thứ ở đây và hiện tại chúng ta chưa cần hiểu tất cả. Điểm chính là nếu bạn clone repo curriculum rồi chạy `npm install`, npm sẽ đọc file `package.json` này và thấy cần cài package `markdownlint-cli2`. Sau khi package này được cài, bạn có thể chạy một trong các script sử dụng package đó. Bản thân repo curriculum không thực sự chứa code của package `markdownlint-cli2`, vì bất kỳ ai clone repo cũng có thể chạy `npm install` để npm lấy code giúp họ.
 
-In our own projects, as we use npm to install new packages (or uninstall any!), it will automatically update our `package.json` with any new details. We will see this in action in the next lesson when we introduce module bundling using a package called Webpack.
+Trong các project của mình, khi dùng npm để cài (hoặc gỡ cài đặt!) package mới, npm sẽ tự động cập nhật `package.json` với mọi thông tin mới. Chúng ta sẽ thấy điều này hoạt động trong bài tiếp theo khi giới thiệu việc bundle module bằng package có tên Webpack.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read a bit more about npm, packages, and dependencies:
-   1. [Installing packages with npm](https://docs.npmjs.com/downloading-and-installing-packages-locally).
-   1. Read about [the `package.json` file](https://docs.npmjs.com/creating-a-package-json-file), the file that stores much of the information for our application.
-   1. Any packages we install are called "dependencies", but if any packages are only used during the development process and their code is not needed for the user-facing app (such as the Jest testing framework), we call them [development dependencies](https://dev.to/mshertzberg/demystifying-devdependencies-and-dependencies-5ege).
-1. Here is a great little [history lesson about JavaScript and managing packages across multiple files](https://peterxjang.com/blog/modern-javascript-explained-for-dinosaurs.html). Only read up to "Using a JavaScript module bundler (webpack)", as we will cover bundlers and webpack in the next lesson.
+1. Đọc thêm một chút về npm, package và dependency:
+   1. [Cài đặt package bằng npm](https://docs.npmjs.com/downloading-and-installing-packages-locally).
+   1. Đọc về [file `package.json`](https://docs.npmjs.com/creating-a-package-json-file), file lưu trữ phần lớn thông tin cho ứng dụng của chúng ta.
+   1. Mọi package chúng ta cài đều được gọi là "dependency", nhưng nếu package chỉ được dùng trong quá trình phát triển và code của nó không cần cho app mà người dùng nhìn thấy (chẳng hạn framework kiểm thử Jest), chúng ta gọi chúng là [development dependency](https://dev.to/mshertzberg/demystifying-devdependencies-and-dependencies-5ege).
+1. Đây là một [bài học lịch sử ngắn về JavaScript và việc quản lý package qua nhiều file](https://peterxjang.com/blog/modern-javascript-explained-for-dinosaurs.html). Chỉ đọc đến phần "Using a JavaScript module bundler (webpack)", vì chúng ta sẽ học về bundler và webpack trong bài tiếp theo.
 
 </div>

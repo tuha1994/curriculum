@@ -1,19 +1,19 @@
-### Introduction
+### Giới thiệu
 
-One of the most used data structures across programming languages is a hash table, aka hash map. A hash map is similar to a conventional array, except it uses "keys" as indices rather than meaningless sequential numbering of the values. With the data organized in this way, we get quick search speeds for keys in the structure. If you've worked with JavaScript Object Literals (`{}`), [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set), or [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), then you have used structures based on hash tables. But how do they work internally? How can we save key value pairs and later retrieve them?
+Một trong những cấu trúc dữ liệu được dùng nhiều nhất trong các ngôn ngữ lập trình là hash table, còn gọi là hash map. Hash map tương tự array thông thường, ngoại trừ việc nó dùng "key" làm index thay vì cách đánh số tuần tự vô nghĩa cho value. Với dữ liệu được tổ chức như vậy, ta có tốc độ tìm kiếm key trong cấu trúc rất nhanh. Nếu từng làm việc với JavaScript Object Literal (`{}`), [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) hoặc [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), bạn đã dùng những cấu trúc dựa trên hash table. Nhưng bên trong chúng hoạt động thế nào? Làm sao lưu các cặp key-value rồi truy xuất chúng sau đó?
 
-In this lesson, you will learn how it all works, and even implement your own hash map in the next project! To start, here is a brief description of a hash map: a hash map takes in a key value pair, produces a hash code, and stores the pair in a bucket. Hash codes? Buckets? What? Don't fret, we'll learn all about these concepts and more. Buckle up and let's dive in!
+Trong bài học này, bạn sẽ tìm hiểu toàn bộ cách hoạt động và thậm chí triển khai hash map của riêng mình trong project tiếp theo! Trước hết, đây là mô tả ngắn về hash map: hash map nhận một cặp key-value, tạo hash code và lưu cặp đó vào một bucket. Hash code? Bucket? Gì cơ? Đừng lo, chúng ta sẽ học tất cả các khái niệm này và hơn thế nữa. Hãy thắt dây an toàn và cùng bắt đầu!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này giới thiệu khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Hash codes and how to generate them.
-- Hash maps and how they work internally.
+- Hash code và cách tạo chúng.
+- Hash map và cách chúng hoạt động bên trong.
 
-### What is a hash code?
+### Hash code là gì?
 
-Let's start by learning what it means to hash a value. Hashing involves taking an input in and generating a corresponding output. A hash function should be a pure function. Hashing the same input should always return the same hash code, and there should be no random generation component. For example, let's look at a hashing function that takes a name and gives us the first letter of that name:
+Hãy bắt đầu bằng việc tìm hiểu hash một value nghĩa là gì. Hashing là nhận một input và tạo output tương ứng. Hash function phải là pure function. Hash cùng một input phải luôn trả về cùng hash code và không được có thành phần tạo ngẫu nhiên. Ví dụ, hãy xem một hash function nhận tên và trả về chữ cái đầu tiên của tên:
 
 ```javascript
 function hash(name) {
@@ -21,22 +21,23 @@ function hash(name) {
 }
 ```
 
-We created our first basic hashing function.
+Chúng ta đã tạo hash function cơ bản đầu tiên.
 
-There is a key difference between hashing and ciphering (encryption): reversibility.
-Hashing is a one-way process. Using the above example, you can make a hash code from a name, but you cannot take a hash code and revert it back to a name. If you have a name `"Carlos"`, we can hash it to `"C"`. But it's impossible to reverse it from `"C"` back to its original form. You cannot know if it's `"Carlos"`, maybe it's `"Carla"` or `"Carrot"`. We don't know.
+Có một khác biệt quan trọng giữa hashing và ciphering (encryption): khả năng đảo ngược.
+
+Hashing là quá trình một chiều. Với ví dụ trên, bạn có thể tạo hash code từ một tên nhưng không thể lấy hash code để khôi phục tên. Nếu có tên `"Carlos"`, ta có thể hash nó thành `"C"`. Nhưng không thể đảo ngược từ `"C"` về dạng ban đầu. Bạn không thể biết đó là `"Carlos"`, có thể là `"Carla"` hoặc `"Carrot"`. Ta không biết.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Benefits of hashing
+#### Lợi ích của hashing
 
-Hashing is very good for security. Given a password, you can save the hash of that password rather than the password's plain text. If someone steals your hashes, they cannot know the original passwords since they are unable to reverse the hash back to the password.
+Hashing rất tốt cho security. Với một password, bạn có thể lưu hash của password thay vì plain text của password. Nếu ai đó lấy được các hash, họ không thể biết password ban đầu vì không thể đảo ngược hash về password.
 
 </div>
 
-#### Use cases
+#### Trường hợp sử dụng
 
-What can we do with those hashes? You have probably seen it in school where a folder is organized into smaller folders, and each folder holds information about people with the same first letter:
+Ta có thể làm gì với những hash đó? Có lẽ bạn từng thấy ở trường cách một thư mục được tổ chức thành các thư mục nhỏ hơn, mỗi thư mục chứa thông tin về những người có cùng chữ cái đầu:
 
 ```text
 C:
@@ -51,9 +52,9 @@ B:
   bianca.txt
 ```
 
-If we get a new student in our school with the name `"Carlos"`, we can run our hash function to find out which folder to place them in. `hash("Carlos") -> "C"` so we put `"Carlos"` in the directory labeled `C`.
+Nếu trường có học sinh mới tên `"Carlos"`, ta có thể chạy hash function để tìm thư mục cần đặt bạn ấy. `hash("Carlos") -> "C"`, nên ta đặt `"Carlos"` vào thư mục có nhãn `C`.
 
-You might have spotted a problem: what if our school is populated with many people whose names share the same first letter `C`? Then we will have a directory labeled `C` that holds too many names while other directories could be empty. To eliminate this duplication and better separate our students, we need to rework our hash function.
+Bạn có thể đã nhận ra một vấn đề: nếu trường có rất nhiều người tên bắt đầu bằng `C` thì sao? Khi đó ta có một thư mục `C` chứa quá nhiều tên trong khi các thư mục khác có thể rỗng. Để loại bỏ sự trùng lặp này và phân tách học sinh tốt hơn, ta cần chỉnh lại hash function.
 
 ```javascript
 function hash(name, surname) {
@@ -61,11 +62,11 @@ function hash(name, surname) {
 }
 ```
 
-Instead of just taking the first name letter, we take the first name and last name letters. `"Carlos Smith"` will have a hash code of `"CS"`. This will spread our students among more directories and will eliminate many duplicate hash codes from being generated.
+Thay vì chỉ lấy chữ cái đầu của tên, ta lấy chữ cái đầu của tên và họ. `"Carlos Smith"` sẽ có hash code là `"CS"`. Điều này phân tán học sinh vào nhiều thư mục hơn và loại bỏ nhiều hash code trùng lặp.
 
 ![Example of hashing a name using first name's first letter, and last name's first letter](https://cdn.statically.io/gh/TheOdinProject/curriculum/7ea463cfb7c05c330d72f5977cc5fe3b0c640b86/javascript/computer_science/hash_map_data_structure/imgs/00.png)
 
-But it still doesn't solve our problem. What if we have a common combination of first letters in students' names? Then we will still have an imbalance in the size of the directories. We need to make it easier to find the person we're looking for, so let's rework our hash code.
+Nhưng vấn đề vẫn chưa được giải quyết. Nếu có một tổ hợp chữ cái đầu phổ biến trong tên học sinh thì sao? Khi đó kích thước các thư mục vẫn mất cân bằng. Ta cần làm cho việc tìm người dễ hơn, nên hãy chỉnh lại hash code.
 
 ```javascript
 function stringToNumber(string) {
@@ -82,48 +83,48 @@ function hash(name, surname) {
 }
 ```
 
-We not only consider the first letters with this technique. Instead, we take the entire name and convert it into numbers.
+Với kỹ thuật này, ta không chỉ xét các chữ cái đầu. Thay vào đó, ta lấy toàn bộ tên và chuyển nó thành number.
 
-You might be thinking, wouldn't it just be better to save the whole name as a hash code? That is true. This would make it unique for each name, but in the context of hash maps, we need the hash code to be a number. This number will serve as the index to the bucket that will store the key value pair. More on buckets in the next section.
+Bạn có thể nghĩ: chẳng phải lưu cả tên làm hash code sẽ tốt hơn sao? Đúng vậy. Cách này làm mỗi tên trở nên duy nhất, nhưng trong ngữ cảnh hash map, ta cần hash code là một number. Number này sẽ làm index cho bucket lưu cặp key-value. Ta sẽ nói thêm về bucket ở phần tiếp theo.
 
-### Buckets
+### Bucket
 
-Buckets are storage that we need to store our elements. We can consider each index of an array to have a bucket. For a specific key, we decide which bucket to use for storage through our hash function. The hash function returns a number that serves as the index of the array at which we store this specific key value pair. Let's say we wanted to store a person's full name as a key "Fred" with a value of "Smith":
+Bucket là nơi lưu trữ các element. Ta có thể xem mỗi index của array là một bucket. Với một key cụ thể, ta quyết định dùng bucket nào để lưu trữ thông qua hash function. Hash function trả về một number đóng vai trò index của array, nơi ta lưu cặp key-value cụ thể này. Giả sử muốn lưu full name của một người với key là "Fred" và value là "Smith":
 
-1. Pass "Fred" into the hash function to get the hash code which is `385`.
-1. Find the bucket at index `385`.
-1. Store the key value pair in that bucket. In this case, the key would be "Fred" and the value would be "Smith".
+1. Truyền "Fred" vào hash function để nhận hash code là `385`.
+1. Tìm bucket tại index `385`.
+1. Lưu cặp key-value vào bucket đó. Trong trường hợp này, key là "Fred" và value là "Smith".
 
-What if the bucket at index `385` already contains an item with the same key "Fred"? We check if it's the same item by comparing the keys, then we overwrite the value with our new value. This is how we can only have unique values inside a `Set`. A `Set` is similar to a hash map but the key difference (pun intended) is that a `Set` will have nodes with only keys and no values.
+Nếu bucket tại index `385` đã chứa một item có cùng key "Fred" thì sao? Ta kiểm tra có phải cùng item không bằng cách so sánh các key, sau đó ghi đè value bằng value mới. Đây là cách ta có thể chỉ có các value duy nhất trong một `Set`. `Set` tương tự hash map, nhưng khác biệt chính (chơi chữ có chủ ý) là `Set` có node chỉ chứa key, không có value.
 
-This is an oversimplified explanation; we'll discuss more internal mechanics later in the lesson.
+Đây là phần giải thích đơn giản hóa; chúng ta sẽ thảo luận thêm về cơ chế bên trong sau trong bài học.
 
-Now if we wanted to get a value using a key:
+Nếu muốn lấy value bằng key:
 
-1. To retrieve the value, we hash the key and calculate the index of its bucket.
-1. If the bucket is not empty, then we go to that bucket.
-1. Now we compare if the node's key is the same key that was used for the retrieval.
-1. If it is, then we can return the node's value. Otherwise, we return `null`.
+1. Để truy xuất value, ta hash key và tính index của bucket.
+1. Nếu bucket không rỗng, ta đi tới bucket đó.
+1. Bây giờ ta so sánh key của node có giống key được dùng để truy xuất hay không.
+1. Nếu giống, ta trả về value của node. Nếu không, trả về `null`.
 
-Maybe you are wondering, why are we comparing the keys if we already found the index of that bucket? Remember, a hash code is just the location. Different keys might generate the same hash code. We need to make sure the key is the same by comparing both keys that are inside the bucket.
+Có thể bạn thắc mắc tại sao phải so sánh các key nếu đã tìm được index của bucket. Hãy nhớ hash code chỉ là vị trí. Các key khác nhau có thể tạo ra cùng hash code. Ta cần bảo đảm key giống nhau bằng cách so sánh cả hai key nằm trong bucket.
 
-This is it, making this will result in a hash map with `has`, `set` and `get`.
+Đó là toàn bộ ý tưởng; tạo như vậy sẽ cho ra hash map có `has`, `set` và `get`.
 
-#### Insertion order is not maintained
+#### Thứ tự chèn không được giữ
 
-A hash map does not guarantee insertion order when you iterate over it. The translation of hash codes to indexes does not follow a linear progression from the first to the last index. Instead, it is more unpredictable, irrespective of the order in which items are inserted. That means if you are to retrieve the array of keys and values to iterate over them, then they will not be in order of when you inserted them.
+Hash map không bảo đảm thứ tự chèn khi bạn iterate qua nó. Việc chuyển hash code thành index không tiến triển tuyến tính từ index đầu đến index cuối. Thay vào đó, nó khó dự đoán hơn, không phụ thuộc thứ tự chèn item. Điều đó có nghĩa nếu lấy array key và value để iterate, chúng sẽ không theo thứ tự bạn đã chèn.
 
-Some libraries implement hash maps with insertion order in mind such as JavaScript's own `Map`. For the coming project however we will be implementing an unordered hash map.
-Example: if we insert the values `Mao`, `Zach`, `Xari` in this order, we may get back `["Zach", "Mao", "Xari"]` when we call an iterator.
+Một số library triển khai hash map có xét thứ tự chèn, chẳng hạn `Map` của JavaScript. Tuy nhiên trong project sắp tới, chúng ta sẽ triển khai hash map không có thứ tự.
+Ví dụ: nếu chèn value `Mao`, `Zach`, `Xari` theo thứ tự này, khi gọi iterator ta có thể nhận lại `["Zach", "Mao", "Xari"]`.
 
-If iterating over a hash map frequently is your goal, then this data structure is not the right choice for the job. A simple array would be better.
+Nếu mục tiêu của bạn là iterate qua hash map thường xuyên, cấu trúc dữ liệu này không phù hợp. Một array đơn giản sẽ tốt hơn.
 
-### Collisions
+### Collision
 
-We have another problem that we need to deal with: collisions. A collision occurs when two different keys generate the exact same hash code. Because they have the same hash code, they will land in the same bucket.
+Chúng ta còn một vấn đề cần xử lý: collision. Collision xảy ra khi hai key khác nhau tạo ra chính xác cùng hash code. Vì có cùng hash code, chúng rơi vào cùng bucket.
 
-Let's take an example: hashing the name `"Sara"` and the name `"raSa"` will generate the same hash code. That is because the letters in both names are the same, just arranged differently.
-We can rework our `stringToNumber` function so that it can give us unique hash codes that depend on where the letters appear in the name using an algorithm.
+Ví dụ, hash tên `"Sara"` và tên `"raSa"` sẽ tạo cùng hash code. Đó là vì hai tên có cùng các chữ cái, chỉ được sắp xếp khác nhau.
+Ta có thể chỉnh function `stringToNumber` để tạo hash code duy nhất phụ thuộc vào vị trí chữ cái trong tên bằng một algorithm.
 
 ```javascript
 function stringToNumber(string) {
@@ -138,78 +139,78 @@ function stringToNumber(string) {
 }
 ```
 
-With our new function we will have different hash codes for the names `"Sara"` and `"raSa"`. This is because even if both names have the same letters, some of the letters appear in different locations. The hash code started to change because we are multiplying the old hash with every new iteration and then adding the letter code.
+Với function mới, tên `"Sara"` và `"raSa"` sẽ có hash code khác nhau. Điều này xảy ra vì dù hai tên có cùng chữ cái, một số chữ cái nằm ở vị trí khác nhau. Hash code bắt đầu thay đổi vì ta nhân hash cũ với mỗi iteration mới rồi cộng letter code.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Minimizing collisions
+#### Giảm collision
 
-Notice the usage of a prime number. We could have chosen any number we wanted, but prime numbers are preferable. Multiplying by a prime number will reduce the likelihood of hash codes being evenly divisible by the bucket length, which helps minimize the occurrence of collisions.
+Hãy chú ý việc dùng số nguyên tố. Ta có thể chọn bất kỳ number nào, nhưng số nguyên tố được ưu tiên. Nhân với số nguyên tố làm giảm khả năng hash code chia hết cho bucket length, giúp giảm sự xuất hiện của collision.
 
 </div>
 
-Even though we reworked our hash function to avoid the `"Sara"/"raSa"` collision, there is always the possibility for collisions. Since we have a finite number of buckets, there is no way to eliminate collisions entirely. Let's try to minimize them.
+Dù đã chỉnh hash function để tránh collision `"Sara"/"raSa"`, collision vẫn luôn có thể xảy ra. Vì số bucket hữu hạn, không có cách nào loại bỏ hoàn toàn collision. Hãy thử giảm thiểu chúng.
 
-#### Dealing with collisions
+#### Xử lý collision
 
-Up until now, our hash map is a one-dimensional data structure. What if each `Node` inside the bucket can store more than one value? Enter `Linked Lists`. Now, each bucket will be a Linked List. When inserting into a bucket, if it's empty, we insert the head of Linked List. If a head exists in a bucket, we follow that Linked List to add to the end of it.
+Đến giờ hash map của ta là cấu trúc dữ liệu một chiều. Nếu mỗi `Node` trong bucket có thể lưu nhiều value thì sao? Hãy dùng `Linked Lists`. Khi đó mỗi bucket sẽ là một Linked List. Khi chèn vào bucket, nếu bucket rỗng, ta chèn head của Linked List. Nếu bucket đã có head, ta đi theo Linked List để thêm vào cuối.
 
-You probably understand by this point why we must write a good hashing function which eliminates as many collisions as possible. Most likely you will not be writing your own hash functions, as most languages have it built in, but understanding how hash functions work is important.
+Có lẽ đến đây bạn đã hiểu tại sao phải viết hash function tốt để loại bỏ nhiều collision nhất có thể. Bạn gần như sẽ không tự viết hash function, vì hầu hết ngôn ngữ đều tích hợp sẵn, nhưng hiểu cách hash function hoạt động vẫn rất quan trọng.
 
-### Growth of a hash map
+### Tăng trưởng của hash map
 
-Let's talk about our number of buckets. We don't have infinite memory, so we can't have an infinite amount of them. We need to start somewhere, but starting too big is also a waste of memory if we're only going to have a hash map with a single value in it. So to deal with this issue, we should start with a small array for our buckets. We'll use an array of size `16`.
+Hãy nói về số bucket. Ta không có bộ nhớ vô hạn, nên không thể có vô hạn bucket. Cần bắt đầu từ đâu đó, nhưng bắt đầu quá lớn cũng lãng phí bộ nhớ nếu chỉ có một value trong hash map. Để giải quyết, ta nên bắt đầu bằng array bucket nhỏ. Ta sẽ dùng array kích thước `16`.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Setting the initial size of the array
+#### Đặt kích thước ban đầu của array
 
-Most programming languages start with the default size of `16` because it's a power of 2, which helps with some techniques for performance that require bit manipulation for indexes.
+Hầu hết ngôn ngữ lập trình bắt đầu với kích thước mặc định `16` vì đây là lũy thừa của 2, giúp một số kỹ thuật tối ưu cần bit manipulation cho index.
 
 </div>
 
-How are we going to insert into those buckets when our hash function generates big numbers like `20353924`? We make use of the modulo `%` operation `given any number modulo by 16 we will get a number between 0 and 15`.
-For example, if we are to find the bucket where the value `"Manon"` will land, then we do the following:
+Làm thế nào chèn vào các bucket khi hash function tạo ra number lớn như `20353924`? Ta dùng phép toán modulo `%` `given any number modulo by 16 we will get a number between 0 and 15`.
+Ví dụ, nếu muốn tìm bucket nơi value `"Manon"` sẽ rơi vào, ta làm như sau:
 ![hashing using hash code and modular operation example](https://cdn.statically.io/gh/TheOdinProject/curriculum/7ea463cfb7c05c330d72f5977cc5fe3b0c640b86/javascript/computer_science/hash_map_data_structure/imgs/01.png)
 
-As we continue to add nodes into our buckets, collisions get more and more likely. Eventually, however, there will be more nodes than there are buckets, which guarantees a collision (check the additional resources section for an explanation of this fact if you're curious).
+Khi tiếp tục thêm node vào bucket, collision ngày càng dễ xảy ra. Tuy nhiên cuối cùng sẽ có nhiều node hơn số bucket, điều này bảo đảm có collision (xem phần tài nguyên bổ sung để biết giải thích nếu bạn tò mò).
 
-Remember we don't want collisions. In a perfect world, each bucket will either have 0 or 1 node only, so we grow our buckets array to have more chance that our nodes will spread and not stack up in the same buckets. To grow our array, we create a new one that is double its size and then copy all existing nodes over to the buckets of this new array, hashing their keys again.
+Hãy nhớ ta không muốn collision. Trong thế giới hoàn hảo, mỗi bucket chỉ có 0 hoặc 1 node, vì vậy ta tăng array bucket để các node có nhiều cơ hội phân tán hơn thay vì chồng lên cùng bucket. Để tăng array, ta tạo array mới có kích thước gấp đôi rồi sao chép tất cả node hiện có sang bucket của array mới, hash lại key của chúng.
 
-#### When do we know that it's time to grow our buckets array?
+#### Khi nào biết đã đến lúc tăng array bucket?
 
-To deal with this, our hash map class needs to keep track of two new fields, the `capacity` and the `load factor`.
+Để xử lý việc này, class hash map cần theo dõi thêm hai field: `capacity` và `load factor`.
 
-- The `capacity` is the total number of buckets we currently have.
+- `capacity` là tổng số bucket hiện có.
 
-- The `load factor` is a number that we assign our hash map to at the start. It's the factor that will determine when it is a good time to grow our buckets array. Hash map implementations across various languages use a load factor between `0.75` and `1`.
+- `load factor` là một number được gán cho hash map lúc bắt đầu. Đây là factor quyết định khi nào nên tăng array bucket. Các implementation hash map ở nhiều ngôn ngữ dùng load factor từ `0.75` đến `1`.
 
-The product of these two numbers gives us a number, and we know it's time to grow when there are more entries in the hash map than that number. For example, if there are `16` buckets, and the load factor is `0.8`, then we need to grow the buckets array when there are more than `16 * 0.8 = 12.8` entries - which happens on the 13th entry. Setting it too low will consume too much memory by having too many empty buckets, while setting it too high will allow our buckets to have many collisions before we resize the array.
+Tích của hai number này cho ta một number, và ta biết đã đến lúc tăng khi số entry trong hash map lớn hơn number đó. Ví dụ, nếu có `16` bucket và load factor là `0.8`, ta cần tăng array bucket khi có hơn `16 * 0.8 = 12.8` entry -- điều xảy ra ở entry thứ 13. Đặt quá thấp sẽ tốn nhiều bộ nhớ vì có quá nhiều bucket rỗng, còn đặt quá cao sẽ cho phép nhiều collision trước khi resize array.
 
-### Computation complexity
+### Độ phức tạp tính toán
 
-A hash map is very efficient in its insertion, retrieval and removal operations. This is because we use array indexes to do these operations. A hash map has an average case complexity of `O(1)` for the following methods:
+Hash map rất hiệu quả trong các thao tác insertion, retrieval và removal. Đó là vì ta dùng array index để thực hiện các thao tác này. Hash map có complexity trung bình `O(1)` cho các method sau:
 
 - Insertion
 - Retrieval
 - Removal
 
-Assuming we have a good hash map written. The worst case of those operations would be `O(n)` and that happens when we have all our data hashes to the same exact bucket. The complexity itself surfaces because of the linked list, and `O(n)` is because we are traversing the linked list to insert yet again another node into the same bucket, which happens specifically because of collisions.
+Giả sử ta viết hash map tốt. Trường hợp xấu nhất của các thao tác đó là `O(n)`, xảy ra khi toàn bộ data hash vào đúng một bucket. Complexity xuất hiện do linked list, và `O(n)` là vì ta phải duyệt linked list để lại chèn một node khác vào cùng bucket, cụ thể do collision.
 
-The growth of our hash map has the complexity of `O(n)` at all times.
+Tăng trưởng của hash map luôn có complexity `O(n)`.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-- Watch this video from CS50 that explains the concept of [hash maps using buckets](https://www.youtube.com/watch?v=btT4bCOvqjs).
+- Xem video từ CS50 giải thích khái niệm [hash maps using buckets](https://www.youtube.com/watch?v=btT4bCOvqjs).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Không bắt buộc, hãy xem như tài liệu bổ sung.
 
-- This discussion goes through the [usages of prime numbers in hash functions](https://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier/299748).
-- The [pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle) mathematically guarantees collisions when there are more nodes than boxes.
-- Check out [Hashing](https://samwho.dev/hashing/) if you want to get a better fundamental understanding of hash functions.
+- Bài thảo luận này trình bày [usages of prime numbers in hash functions](https://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier/299748).
+- [Pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle) chứng minh về mặt toán học rằng collision xảy ra khi số node nhiều hơn số box.
+- Xem [Hashing](https://samwho.dev/hashing/) nếu muốn hiểu nền tảng vững hơn về hash function.

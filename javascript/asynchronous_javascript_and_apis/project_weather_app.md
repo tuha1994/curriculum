@@ -1,27 +1,27 @@
-### Introduction
+### Giới thiệu
 
-Use everything we've been discussing to create a weather forecast site using the Visual Crossing API from previous lessons. You should be able to search for a specific location and toggle displaying the data in Fahrenheit or Celsius.
+Hãy sử dụng mọi thứ chúng ta đã thảo luận để tạo một trang dự báo thời tiết bằng API Visual Crossing từ các bài học trước. Bạn có thể tìm kiếm một địa điểm cụ thể và chuyển đổi cách hiển thị dữ liệu giữa Fahrenheit và Celsius.
 
-You should change the look of the page based on the data, maybe by changing the color of the background or by adding images that describe the weather. (You could even use the Giphy API to find appropriate weather-related gifs and display them). Feel free to use promises or async/await in your code, though you should try to become comfortable with both.
+Bạn nên thay đổi giao diện trang dựa trên dữ liệu, chẳng hạn đổi màu nền hoặc thêm hình ảnh mô tả thời tiết. (Bạn thậm chí có thể dùng API Giphy để tìm các GIF phù hợp với thời tiết và hiển thị chúng). Bạn có thể tự do dùng promise hoặc async/await trong mã, nhưng nên cố gắng làm quen với cả hai.
 
-### API keys, secrets, and security
+### API key, secret và bảo mật
 
-Not all APIs are free, and depending on how they're set up, they can cost money per use. This makes them a prime target for people looking to use the API without paying by using **your** API key. They can also be rate-limited, and if someone has access to your API key they can use up all of your uses. One way to prevent this issue is to store your API keys on the server and never send them to the frontend in the first place, this is often done using environment variables and it makes the key available only on the server the code is deployed to.
+Không phải API nào cũng miễn phí, và tùy cách thiết lập, chúng có thể tính phí theo mỗi lần sử dụng. Điều này khiến chúng trở thành mục tiêu hấp dẫn của những người muốn sử dụng API mà không trả tiền bằng cách dùng **API key của bạn**. API cũng có thể bị giới hạn tốc độ, và nếu ai đó có API key của bạn, họ có thể dùng hết số lượt sử dụng của bạn. Một cách để ngăn vấn đề này là lưu API key trên máy chủ và không bao giờ gửi chúng đến frontend ngay từ đầu; việc này thường được thực hiện bằng biến môi trường và khiến key chỉ có thể được sử dụng trên máy chủ nơi mã được triển khai.
 
-When talking about API keys and security you'll often hear "Never trust the client" (client meaning the frontend). Often this means not to trust that data coming *from* the client is valid, but it also means that you cannot trust anything we send *to* the client. Because of this, when you leak an API key, GitHub will alert you that you have committed an API key publicly. After following this project, and indeed exposing the API key, you may notice that GitHub will send you this alert. This is totally OK for this project as this API key is publicly available and there is no consequence for exposing it. This is not to say ALL keys are this way. Later during the backend courses you will learn ways to securely deal with these topics.
+Khi nói về API key và bảo mật, bạn thường nghe câu “Never trust the client” (client nghĩa là frontend). Thường thì câu này có nghĩa là không tin dữ liệu *đến từ* client là hợp lệ, nhưng nó cũng có nghĩa là bạn không thể tin bất cứ thứ gì chúng ta gửi *đến* client. Vì vậy, khi để lộ API key, GitHub sẽ cảnh báo rằng bạn đã commit công khai một API key. Điều này hoàn toàn ổn trong project này vì API key đó có sẵn công khai và việc để lộ nó không gây hậu quả. Điều này không có nghĩa là TẤT CẢ key đều như vậy. Trong các khóa học backend sau này, bạn sẽ học cách xử lý an toàn những chủ đề này.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Set up a blank HTML document with the appropriate links to your JavaScript and CSS files.
-1. Write the functions that hit the API. You're going to want functions that can take a location and return the weather data for that location. For now, just `console.log()` the information.
-1. Write the functions that *process* the JSON data you're getting from the API and return an object with only the data you require for your app.
-1. Set up a form that will let users input their location and will fetch the weather info (still just `console.log()` it).
-1. Display the information on your webpage with a toggle to show the temperature data in Fahrenheit or Celsius.
-   - While you don't have to, if you wish to display weather icons then there can be a lot of them to import, so have a look at [dynamic imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import). Unlike plain template strings without an import, [Webpack can read dynamic imports](https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import) and still bundle all the relevant assets.
-1. Add any styling you like!
-1. Optional: add a 'loading' component that displays from the time the form is submitted until the information comes back from the API. Use DevTools to simulate network speeds.
-1. Push that baby to GitHub and share your solution below!
+1. Thiết lập một tài liệu HTML trống với các liên kết phù hợp đến các file JavaScript và CSS của bạn.
+1. Viết các hàm gọi API. Bạn sẽ cần các hàm nhận một địa điểm và trả về dữ liệu thời tiết cho địa điểm đó. Trước mắt, chỉ cần `console.log()` thông tin.
+1. Viết các hàm *xử lý* dữ liệu JSON nhận được từ API và trả về một đối tượng chỉ chứa dữ liệu ứng dụng cần.
+1. Thiết lập một form cho phép người dùng nhập địa điểm và lấy thông tin thời tiết (vẫn chỉ `console.log()` thông tin đó).
+1. Hiển thị thông tin trên trang web với một nút chuyển đổi để hiển thị dữ liệu nhiệt độ theo Fahrenheit hoặc Celsius.
+   - Dù không bắt buộc, nếu muốn hiển thị biểu tượng thời tiết thì có thể có rất nhiều biểu tượng cần import, vì vậy hãy xem [dynamic imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import). Không giống template string thông thường không có import, [Webpack có thể đọc dynamic imports](https://webpack.js.org/api/module-methods/#dynamic-expressions-in-import) và vẫn bundle tất cả asset liên quan.
+1. Thêm bất kỳ kiểu dáng nào bạn thích!
+1. Tùy chọn: thêm một component “loading” hiển thị từ lúc form được gửi cho đến khi thông tin trở về từ API. Dùng DevTools để mô phỏng tốc độ mạng.
+1. Đẩy project lên GitHub và chia sẻ solution của bạn bên dưới!
 
 </div>

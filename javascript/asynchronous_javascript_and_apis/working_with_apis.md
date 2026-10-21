@@ -1,73 +1,73 @@
-### Introduction
+### Giới thiệu
 
-One of the most powerful things a web developer can do is fetching data from a server and displaying it creatively on their site. In many cases, the server solely exists for that specific site. The server could contain blog posts, user data, high scores for a game or anything else. In other cases, the server is an open service that serves data to anyone that wants to use it (i.e. weather data or stock prices). In either case, the methods of accessing and then using that data are essentially the same.
+Một trong những việc mạnh mẽ nhất mà web developer có thể làm là lấy dữ liệu từ máy chủ và hiển thị dữ liệu đó một cách sáng tạo trên trang của mình. Trong nhiều trường hợp, máy chủ chỉ tồn tại cho riêng trang đó. Máy chủ có thể chứa bài blog, dữ liệu người dùng, điểm cao của một trò chơi hoặc bất kỳ thứ gì khác. Trong những trường hợp khác, máy chủ là một dịch vụ mở, cung cấp dữ liệu cho bất kỳ ai muốn sử dụng (ví dụ: dữ liệu thời tiết hoặc giá cổ phiếu). Dù thuộc trường hợp nào, cách truy cập rồi sử dụng dữ liệu về cơ bản vẫn giống nhau.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Explain what an API is.
-- Explain broadly how access to an API works.
-- Explain how to fetch and extract data from an API.
-- Explain why your API request might be blocked by the browser, and how to fix this.
+- Giải thích API là gì.
+- Giải thích khái quát cách truy cập API.
+- Giải thích cách fetch và trích xuất dữ liệu từ API.
+- Giải thích vì sao request API có thể bị trình duyệt chặn và cách khắc phục.
 
-### APIs
+### API
 
-Servers created to provide functionality and serve data for external use (in websites or apps) often do so using APIs, or ['Application Programming Interfaces'](https://www.youtube.com/watch?v=s7wmiS2mSXY).
+Các máy chủ được tạo ra để cung cấp chức năng và dữ liệu cho mục đích sử dụng bên ngoài (trong website hoặc app) thường thực hiện việc đó thông qua API, hay ['Application Programming Interfaces'](https://www.youtube.com/watch?v=s7wmiS2mSXY).
 
-There are multiple ways of requesting data from an API, but all of them basically do the same thing. For the most part, APIs are accessed through URLs, and the specifics of how to query these URLs change based on the specific service you are using. For example, [Visual Crossing](https://www.visualcrossing.com/weather-api) has a weather API that has several types of data you can request. To get the current weather in a specific location, you can pass in the name of a city into the path of the URL, like so:
+Có nhiều cách yêu cầu dữ liệu từ API, nhưng về cơ bản tất cả đều làm cùng một việc. Phần lớn API được truy cập thông qua URL, còn chi tiết về cách query các URL này thay đổi tùy theo dịch vụ cụ thể. Ví dụ, [Visual Crossing](https://www.visualcrossing.com/weather-api) có một weather API với nhiều loại dữ liệu bạn có thể yêu cầu. Để lấy thời tiết hiện tại tại một địa điểm cụ thể, bạn có thể truyền tên thành phố vào path của URL như sau:
 
 ```text
 https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/london
 ```
 
-The specifics for using any API are usually documented on the service's website. Check out the [Visual Crossing API Documentation](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/). If you haven't already, go ahead and paste the weather URL above, with the city of your choice, into your browser... (we'll wait).
+Thông tin cụ thể về cách sử dụng mỗi API thường được ghi lại trên website của dịch vụ đó. Hãy xem [Visual Crossing API Documentation](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/). Nếu chưa làm, hãy dán URL thời tiết ở trên, cùng với thành phố bạn chọn, vào trình duyệt... (chúng ta sẽ chờ).
 
-You'll probably get an error like this:
+Bạn có thể sẽ nhận được lỗi như sau:
 
 ```text
 No API key or session found. Please verify that your API key parameter is correct.
 ```
 
-This brings us to another point about APIs. In most cases, you will have to create an account and request an "API key" from the API service before attempting to fetch data from their endpoints (specific URLs that you use to access a particular function or data within the API). Once obtained, an API key will usually have to be included with every data request. With Visual Crossing, that's as a query string parameter:
+Điều này dẫn chúng ta đến một điểm khác về API. Trong hầu hết trường hợp, bạn sẽ phải tạo tài khoản và yêu cầu một “API key” từ dịch vụ API trước khi thử fetch dữ liệu từ các endpoint của nó (các URL cụ thể được dùng để truy cập một chức năng hoặc dữ liệu cụ thể trong API). Sau khi có API key, thông thường bạn phải đưa nó vào mọi request dữ liệu. Với Visual Crossing, đó là một query string parameter:
 
 ```text
 https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/london?key=11111111111111111
 ```
 
-As you can imagine, an API key is random and unique to you. As such, services like Visual Crossing can correlate your API key to your requests of their data, including how much and how often you are requesting it.
+Như bạn có thể hình dung, API key là ngẫu nhiên và duy nhất đối với bạn. Vì vậy, các dịch vụ như Visual Crossing có thể liên kết API key của bạn với các request dữ liệu, bao gồm số lượng và tần suất bạn yêu cầu dữ liệu.
 
-Issuing API keys allows an API service to better track abuse of their systems and data. Additionally, it can also be a way for those services to mitigate and recuperate operating costs. Visual Crossing, for example, provides not only a free tier but a variety of paid tiers that can cost up to 150 USD/month! After all, running servers costs money, and APIs are no exception. While a single request to an API might cost a fraction of a penny, imagine using that API to create an amazing weather app that gets used all over the world... you could easily have thousands of people accessing that data every minute! The cost to handle that traffic could quickly balloon up to significant sums for the API service.
+Việc cấp API key giúp dịch vụ API theo dõi tốt hơn hành vi lạm dụng hệ thống và dữ liệu của họ. Ngoài ra, đây cũng có thể là một cách để các dịch vụ đó giảm thiểu và thu hồi chi phí vận hành. Ví dụ, Visual Crossing không chỉ cung cấp tier miễn phí mà còn có nhiều tier trả phí, có thể lên đến 150 USD/tháng! Dù sao thì việc vận hành máy chủ cũng tốn tiền, và API cũng không ngoại lệ. Một request API có thể chỉ tốn một phần nhỏ của một cent, nhưng hãy tưởng tượng bạn dùng API đó để tạo một weather app tuyệt vời được sử dụng trên toàn thế giới... rất dễ có hàng nghìn người truy cập dữ liệu mỗi phút! Chi phí xử lý lượng traffic đó có thể nhanh chóng tăng thành một khoản đáng kể đối với dịch vụ API.
 
-As such, you'll find that most API services, if not all, provide paid tiers that come with the ability to make more frequent requests, or provide access to more information unavailable in lower tiers. For example, Visual Crossing's free version allows 1000 calls/requests per day with a limited amount of information (albeit sufficient for a pet project). On the other hand, the Enterprise version provides unlimited API calls per month, has Energy data, Maritime data... all those bells and whistles ([details about Visual Crossing's pricing](https://www.visualcrossing.com/weather-data-editions) if you're curious). So, if your app becomes successful and needs additional features, you'll probably need to pay for a better account.
+Vì vậy, bạn sẽ thấy hầu hết, nếu không muốn nói là tất cả, dịch vụ API đều cung cấp các tier trả phí, cho phép tạo request thường xuyên hơn hoặc truy cập nhiều thông tin hơn, vốn không có trong các tier thấp hơn. Ví dụ, phiên bản miễn phí của Visual Crossing cho phép 1000 cuộc gọi/request mỗi ngày với lượng thông tin giới hạn (dù đủ cho một pet project). Mặt khác, phiên bản Enterprise cung cấp số lần gọi API không giới hạn mỗi tháng, có dữ liệu Energy, dữ liệu Maritime... đủ loại tính năng ([chi tiết về mức giá của Visual Crossing](https://www.visualcrossing.com/weather-data-editions) nếu bạn tò mò). Nếu app của bạn thành công và cần thêm tính năng, có lẽ bạn sẽ phải trả tiền cho một tài khoản tốt hơn.
 
-Because your API key is **your** key to these services and data, securing them is an important habit, especially if you are using a paid tier. There are plenty of bots that crawl GitHub repositories solely for hardcoded/unsecured API keys, allowing bad agents to then access and [utilize the services and data you've paid for](https://web.archive.org/web/20150102022540/http://www.devfactor.net/2014/12/30/2375-amazon-mistake/). In fact, the more eagle-eyed readers may have noticed a problem with the demonstration above: The API key is right there in the URL request. It would not take much for an internet traffic sniffer to pick up on the API key, least of all someone looking over your shoulder!
+Vì API key là **chìa khóa của bạn** để truy cập các dịch vụ và dữ liệu này, bảo vệ chúng là một thói quen quan trọng, đặc biệt khi bạn dùng tier trả phí. Có rất nhiều bot chuyên crawl repository GitHub chỉ để tìm API key bị hardcode hoặc không được bảo vệ, từ đó cho phép những tác nhân xấu truy cập và [sử dụng các dịch vụ cùng dữ liệu mà bạn đã trả tiền](https://web.archive.org/web/20150102022540/http://www.devfactor.net/2014/12/30/2375-amazon-mistake/). Thực tế, những độc giả tinh mắt hơn có thể đã nhận ra một vấn đề trong phần minh họa ở trên: API key nằm ngay trong request URL. Một kẻ nghe lén traffic internet, thậm chí là người đứng nhìn qua vai bạn, cũng không cần nhiều công sức để lấy được API key!
 
-At this point in the curriculum, though, this point is largely moot. After all, we're leveraging free access to APIs, and the majority of our apps are only going to be used by us and the people that view our portfolios. Just make a note of the severe limitations of using API keys as demonstrated above for now. Securing API keys requires handling things server-side, and we are only focusing on the frontend concepts here. If you are in the Full Stack JavaScript pathway, the backend will be covered later in the curriculum.
+Tuy nhiên, ở thời điểm này trong curriculum, điểm này phần lớn không còn đáng kể. Dù sao chúng ta cũng đang tận dụng quyền truy cập API miễn phí, và phần lớn app của chúng ta chỉ được chính chúng ta cùng những người xem portfolio sử dụng. Hiện tại, hãy ghi nhớ những hạn chế nghiêm trọng của việc dùng API key như minh họa ở trên. Để bảo vệ API key, cần xử lý chúng ở phía server, còn chúng ta hiện chỉ tập trung vào các khái niệm frontend. Nếu bạn theo lộ trình Full Stack JavaScript, backend sẽ được học sau trong curriculum.
 
-Back to Visual Crossing. Go ahead and [create a free Visual Crossing account](https://www.visualcrossing.com/sign-up) to obtain an API key. You can find your API key in your account profile page. Once you have your key, try making a new request with the city of your choice, and the API key passed in as query string parameters, like the example above. You'll hopefully see a proper response, something like:
+Quay lại với Visual Crossing. Hãy [tạo một tài khoản Visual Crossing miễn phí](https://www.visualcrossing.com/sign-up) để lấy API key. Bạn có thể tìm API key trong trang profile tài khoản. Sau khi có key, hãy thử tạo request mới với thành phố bạn chọn và truyền API key vào dưới dạng query string parameters, như ví dụ ở trên. Hy vọng bạn sẽ thấy một response hợp lệ, tương tự như sau:
 
 ```JSON
 {"queryCost":1,"latitude":51.5064,"longitude":-0.12721,"resolvedAddress":"London, England, United Kingdom","address":"london","timezone":"Europe/London","tzoffset":1.0,"description":"Similar temperatures continuing with a chance of rain tomorrow, Tuesday & Thursday.","days":[{"datetime":"2024-07-06","datetimeEpoch":1720220400,"tempmax":61.4,"tempmin":53.1,"temp":57.8,"feelslikemax":61.4,"feelslikemin":53.1,"feelslike":57.8,"dew":51.3,"humidity":79.7,"precip":0.457,"precipprob":100.0,"precipcover":75.0,"preciptype":["rain"],"snow":0.0,"snowdepth":0.0,"windgust":35.3,"windspeed":21.9,"winddir":262.6,"pressure":1001.8,"cloudcover":70.5,"visibility":8.3,"solarradiation":147.5,"solarenergy":12.9,"uvindex":6.0,"severerisk":10.0,"sunrise":"04:52:02","sunriseEpoch":1720237922,"sunset":"21:18:20","sunsetEpoch":1720297100,"moonphase":0.02,"conditions":"Rain, Partially cloudy","description":"Partly cloudy throughout the day with a chance of rain throughout the day.","icon":"rain","stations":["EGWU","EGLL","D5621","EGLC"]}]}
 ```
 
-(This preview above is just the tip of the iceberg, the actual response is a lot longer!)
+(Phần preview ở trên mới chỉ là phần nổi của tảng băng; response thực tế còn dài hơn rất nhiều!)
 
 <div class="lesson-note" markdown="1">
 
-#### Visual Crossing's query builder
+#### Query builder của Visual Crossing
 
-Curious how to construct queries? Check out [Visual Crossing's query builder](https://www.visualcrossing.com/weather/weather-data-services)! This will help you build a query with the region as the only input. Play around with the location and query options. Neat, isn't it? The output uses the "Grid" tab, but our query is in the "API" tab, and we want to learn *how* the query was structured. Click on the "API" tab and it will show the query that led to the grid format you just saw.
+Tò mò muốn biết cách tạo query? Hãy xem [query builder của Visual Crossing](https://www.visualcrossing.com/weather/weather-data-services)! Công cụ này sẽ giúp bạn xây dựng query với region là input duy nhất. Hãy thử thay đổi location và các tùy chọn query. Thú vị chứ? Output sử dụng tab “Grid”, còn query của chúng ta nằm trong tab “API”, và chúng ta muốn tìm hiểu *cách* query được cấu trúc. Nhấp vào tab “API”, bạn sẽ thấy query đã tạo ra định dạng grid mà bạn vừa xem.
 
 </div>
 
-Congratulations on making your first API request!
+Chúc mừng bạn đã thực hiện request API đầu tiên!
 
-### Fetching data
+### Fetch dữ liệu
 
-So how do we actually get the data from an API into our code?
+Vậy làm thế nào để đưa dữ liệu từ API vào mã của chúng ta?
 
-A couple of years ago the main way to access API data in your code was using an `XMLHttpRequest`. This function still works in all browsers, but unfortunately, it is not particularly nice to use. The syntax looks something like this:
+Một vài năm trước, cách chính để truy cập dữ liệu API trong mã là dùng `XMLHttpRequest`. Hàm này vẫn hoạt động trên mọi trình duyệt, nhưng tiếc là không dễ sử dụng. Cú pháp trông như sau:
 
 ```javascript
 // Just getting XHR is a mess!
@@ -90,11 +90,11 @@ request.open('GET', 'https://url.com/some/url', true);
 request.send(null);
 ```
 
-Ouch. That was painful.
+Ôi. Thật đau đớn.
 
-Developers, feeling the pain of having to write that stuff out, began writing 3rd party libraries to take care of this and make it much easier to use. Some of the more popular libraries are [axios](https://github.com/mzabriskie/axios) and [superagent](https://github.com/visionmedia/superagent), both of which have their strengths and weaknesses.
+Các developer, sau khi chịu đựng việc phải viết những thứ đó, bắt đầu tạo các thư viện bên thứ ba để xử lý và giúp việc sử dụng dễ dàng hơn. Một số thư viện phổ biến là [axios](https://github.com/mzabriskie/axios) và [superagent](https://github.com/visionmedia/superagent), mỗi thư viện đều có điểm mạnh và điểm yếu riêng.
 
-More recently, however, web browsers have begun to implement a new native function for making HTTP requests, and that's the one we're going to use and stick with for now. Meet fetch:
+Tuy nhiên, gần đây hơn, các trình duyệt web bắt đầu triển khai một hàm native mới để thực hiện HTTP request, và đó là hàm chúng ta sẽ dùng trong thời gian này. Hãy làm quen với fetch:
 
 ```javascript
 // URL (required), options (optional)
@@ -107,22 +107,22 @@ fetch('https://url.com/some/url')
   });
 ```
 
-In case you've forgotten, scroll back up and look at how you would use XHR to do the same thing. While you're admiring how nice and clean that code is, notice the `.then()` and `.catch()` functions there. Do you remember what those are? (PROMISES!)
+Nếu bạn quên, hãy cuộn lên và xem lại cách dùng XHR để làm cùng việc đó. Trong khi ngưỡng mộ đoạn mã gọn gàng, sạch sẽ này, hãy để ý các hàm `.then()` và `.catch()`. Bạn còn nhớ đó là gì không? (PROMISE!)
 
-Let's change up our API for this example. We're going to walk through an example using fetch with the [giphy](https://giphy.com/) API to display a random gif on a webpage. The API requires you [sign up to giphy and get a free API key](https://developers.giphy.com/docs/api/#quick-start-guide).
+Hãy đổi API cho ví dụ này. Chúng ta sẽ đi qua một ví dụ dùng fetch với API [giphy](https://giphy.com/) để hiển thị một GIF ngẫu nhiên trên webpage. API yêu cầu bạn [đăng ký Giphy và lấy một API key miễn phí](https://developers.giphy.com/docs/api/#quick-start-guide).
 
-Giphy has several methods for searching and finding GIFs which you can read about in their documentation. Today we're just going to use the 'random' endpoint because it's the simplest one for our purposes. You can find the appropriate URL in the [Giphy `random` endpoint documentation](https://developers.giphy.com/docs/api/endpoint/random). What it tells us is that the correct URL is `api.giphy.com/v1/gifs/random` and that it requires an `api_key` parameter. You can also provide a `tag` parameter to narrow down the GIFs returned. There are other optional parameters that you could include in your query. For example, the `rating` parameter allows you to look for content at different levels of sensitivity. If you put it all together correctly (with YOUR API key) you should get something like this:
+Giphy có một số method để tìm kiếm và tìm GIF, bạn có thể đọc về chúng trong tài liệu. Hôm nay chúng ta chỉ dùng endpoint 'random' vì đây là endpoint đơn giản nhất cho mục đích của mình. Bạn có thể tìm URL phù hợp trong [tài liệu endpoint `random` của Giphy](https://developers.giphy.com/docs/api/endpoint/random). Tài liệu cho biết URL chính xác là `api.giphy.com/v1/gifs/random` và URL này yêu cầu parameter `api_key`. Bạn cũng có thể cung cấp parameter `tag` để thu hẹp các GIF được trả về. Có những parameter tùy chọn khác bạn có thể đưa vào query. Ví dụ, parameter `rating` cho phép tìm nội dung ở các mức độ nhạy cảm khác nhau. Nếu ghép mọi thứ lại đúng cách (với API key CỦA BẠN), bạn sẽ nhận được kết quả tương tự:
 
 ```javascript
 'https://api.giphy.com/v1/gifs/random?api_key=YOUR_KEY_HERE&tag=cats&rating=g'
 // of course we're searching for cats
 ```
 
-Go ahead and try that URL (with YOUR API key) in a browser. If everything goes well you should get a relatively long string of data and no errors.
+Hãy thử URL đó (với API key CỦA BẠN) trong trình duyệt. Nếu mọi việc suôn sẻ, bạn sẽ nhận được một chuỗi dữ liệu tương đối dài và không có lỗi.
 
-### Let's do this
+### Bắt tay vào làm
 
-For now, we're going to keep all of this in a single HTML file. So go ahead and create one with a single blank image tag and an empty script tag in the body.
+Trước mắt, chúng ta sẽ đặt tất cả trong một file HTML duy nhất. Hãy tạo một file với một thẻ image trống và một thẻ script rỗng trong body.
 
 ```html
 <!DOCTYPE html>
@@ -139,7 +139,7 @@ For now, we're going to keep all of this in a single HTML file. So go ahead and 
 </html>
 ```
 
-In the script tag, let's start by selecting the image element and assigning it to a variable so that we can change the URL once we've received it from the Giphy API.
+Trong thẻ script, hãy bắt đầu bằng cách chọn phần tử image và gán nó cho một biến để chúng ta có thể thay đổi URL sau khi nhận được URL đó từ Giphy API.
 
 ```html
 <script>
@@ -147,7 +147,7 @@ In the script tag, let's start by selecting the image element and assigning it t
 </script>
 ```
 
-Adding fetch with our URL from above is also relatively easy:
+Thêm fetch với URL ở trên cũng tương đối dễ:
 
 ```html
 <script>
@@ -159,7 +159,7 @@ Adding fetch with our URL from above is also relatively easy:
 </script>
 ```
 
-You should now be able to open the HTML file in your browser, and while you won't see anything on the page, you *should* have something logged in the console. The trickiest part of this whole process is deciphering how to get to the data you desire from the server's response. In this case, inspecting the browser's console will reveal that what's being returned is *another* Promise... to get the data we need another `.then()` function.
+Bây giờ bạn có thể mở file HTML trong trình duyệt. Dù không thấy gì trên trang, bạn *sẽ* thấy một nội dung được log trong console. Phần khó nhất của toàn bộ quy trình này là giải mã cách lấy dữ liệu mong muốn từ response của máy chủ. Trong trường hợp này, kiểm tra console trình duyệt sẽ cho thấy giá trị trả về là *một* Promise khác... để lấy dữ liệu cần thiết, chúng ta cần thêm một hàm `.then()`.
 
 ```html
 <script>
@@ -174,11 +174,11 @@ You should now be able to open the HTML file in your browser, and while you won'
 </script>
 ```
 
-Now we have a JavaScript object and if you inspect it closely enough you'll find that the data we need (an image URL) is nested rather deeply inside the object:
+Bây giờ chúng ta có một đối tượng JavaScript. Nếu kiểm tra đủ kỹ, bạn sẽ thấy dữ liệu cần (URL của một image) được lồng khá sâu bên trong đối tượng:
 
 ![response](https://cdn.statically.io/gh/TheOdinProject/curriculum/284f0cdc998be7e4751e29e8458323ad5d320303/javascript/async-apis/APIs/imgs/00.png)
 
-To get to the data we need to drill down through the layers of the object until we find what we want!
+Để lấy dữ liệu cần thiết, chúng ta phải đi qua từng lớp của đối tượng cho đến khi tìm thấy thứ mình muốn!
 
 ```html
 <script>
@@ -193,7 +193,7 @@ To get to the data we need to drill down through the layers of the object until 
 </script>
 ```
 
-Running the file should now log the URL of the image. All that's left to do is set the source of the image that's on the page to the URL we've just accessed:
+Chạy file bây giờ sẽ log URL của image. Tất cả việc còn lại là đặt source của image trên trang thành URL chúng ta vừa truy cập:
 
 ```html
 <script>
@@ -208,18 +208,18 @@ Running the file should now log the URL of the image. All that's left to do is s
 </script>
 ```
 
-If all goes well, you should see a randomly selected image on the page every time you refresh!
+Nếu mọi việc suôn sẻ, mỗi lần refresh bạn sẽ thấy một image được chọn ngẫu nhiên trên trang!
 
-While we are pushing this API key to the frontend, this isn't something you should do with any key that is not free. Keys used on the client-side are considered public knowledge, so caution must be taken with sensitive and non-free keys. Handling keys without pushing them to the frontend will be taught in later sections if you haven't already learned it in the Ruby course.
+Dù chúng ta đang đưa API key này ra frontend, bạn không nên làm vậy với bất kỳ key nào không miễn phí. Key được dùng ở client-side được xem là thông tin công khai, vì vậy phải cẩn thận với các key nhạy cảm và không miễn phí. Cách xử lý key mà không đưa chúng ra frontend sẽ được dạy ở các phần sau nếu bạn chưa học điều đó trong khóa Ruby.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Check out this [list of Public APIs](https://github.com/n0shake/Public-APIs) and let your imagination go wild.
-1. Expand on our little project here by adding a button that fetches a new image without refreshing the page.
-1. Add a search box so users can search for specific gifs. You should also investigate adding a `.catch()` to manage some errors (e.g. invalid URL). Keep in mind that if the API responds, even with something like a `404 Not Found` or some other non-2XX status response, that is still a valid response and `fetch` will therefore not throw an error, meaning the `.catch()` will not run. It may still end up running if your following JavaScript code throws an error, such as trying to access a property of `undefined`, or even if you manually throw an error yourself.
+1. Xem [danh sách Public APIs](https://github.com/n0shake/Public-APIs) này và thỏa sức tưởng tượng.
+1. Mở rộng project nhỏ ở đây bằng cách thêm một button để fetch image mới mà không refresh trang.
+1. Thêm một search box để người dùng tìm GIF cụ thể. Bạn cũng nên tìm hiểu cách thêm `.catch()` để quản lý một số lỗi (ví dụ: URL không hợp lệ). Hãy nhớ rằng nếu API response, kể cả với nội dung như `404 Not Found` hoặc một response có status không thuộc nhóm 2XX, thì đó vẫn là một response hợp lệ và `fetch` vì thế sẽ không throw lỗi, nghĩa là `.catch()` không chạy. Tuy vậy, nó vẫn có thể chạy nếu đoạn JavaScript tiếp theo của bạn throw lỗi, chẳng hạn cố truy cập một property của `undefined`, hoặc thậm chí nếu bạn tự throw một lỗi.
 
-   If you want to conditionally handle any situations where the API does not give you the desired response (e.g. a `404 Not Found` or similar), you will need to do this manually in your `.then()`. Check out [MDN's docs for the Response object](https://developer.mozilla.org/en-US/docs/Web/API/Response) for some useful properties.
+   Nếu muốn xử lý có điều kiện những tình huống API không trả về response mong muốn (ví dụ: `404 Not Found` hoặc tương tự), bạn sẽ phải tự làm việc đó trong `.then()`. Hãy xem [tài liệu của MDN về đối tượng Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) để biết một số property hữu ích.
 
 </div>

@@ -1,71 +1,64 @@
-### Introduction
+### Giới thiệu
 
-In Computer Science, one of the most basic and fundamental data structures is the
-linked list, which functions similarly to an array. The principal benefit of a linked
-list over a conventional array is that the list elements can easily be inserted or
-removed without reallocation of any other elements.
+Trong Computer Science, một trong những cấu trúc dữ liệu cơ bản và nền tảng nhất là linked list, hoạt động tương tự array. Lợi ích chính của linked list so với array thông thường là các phần tử trong list có thể dễ dàng được chèn hoặc xóa mà không cần cấp phát lại những phần tử khác.
 
-In some programming languages, the size of an array is a concern and one of the ways
-to overcome that problem and allow dynamically allocated data is using linked lists.
+Trong một số ngôn ngữ lập trình, kích thước của array là vấn đề, và một cách để khắc phục vấn đề đó cũng như cho phép dữ liệu được cấp phát động là dùng linked list.
 
-Luckily in **JavaScript**, arrays aren't limited to a certain size, and both insertion and deletion can be done trivially at any index using the appropriate built in array method, so you don't have to think about overcoming those limitations.
+May mắn là trong **JavaScript**, array không bị giới hạn ở một kích thước nhất định, và việc chèn hay xóa có thể thực hiện đơn giản tại bất kỳ index nào bằng method array tích hợp phù hợp, nên bạn không phải suy nghĩ về việc vượt qua các giới hạn đó.
 
-So if array size, array insertion and array deletion are not limitations in JavaScript, are linked lists really necessary?
-The short answer to that is *it depends*; however, it's the simplest of the dynamic data
-structures and it will give you a solid foundation, so you can understand more
-complex data structures like graphs and binary trees with more ease.
+Vậy nếu kích thước array, chèn array và xóa array không phải giới hạn trong JavaScript, linked list có thực sự cần thiết không?
+Câu trả lời ngắn là *tùy trường hợp*; tuy nhiên, đây là cấu trúc dữ liệu động đơn giản nhất và sẽ cho bạn nền tảng vững chắc để hiểu các cấu trúc dữ liệu phức tạp hơn như graph và binary tree dễ dàng hơn.
 
-### Structure of a linked list
+### Cấu trúc của linked list
 
-A *linked list* is a linear collection of data elements called nodes that "point"
-to the next node by means of a pointer.
+Một *linked list* là một tập hợp tuyến tính các phần tử dữ liệu gọi là node, trong đó mỗi node "trỏ" tới node tiếp theo bằng một pointer.
 
-Each node holds a single element of data and a link or pointer to the next node in the list.
+Mỗi node chứa một phần tử dữ liệu duy nhất và một link hoặc pointer tới node tiếp theo trong list.
 
-A head node is the first node in the list, a tail node is the last node in the list. Below is a basic representation of a linked list:
+Node head là node đầu tiên trong list, node tail là node cuối cùng trong list. Dưới đây là biểu diễn cơ bản của linked list:
 
 `[ NODE(head) ] -> [ NODE ] -> [ NODE(tail) ] -> null`
 
-For a more thorough explanation, use these resources:
+Để có giải thích kỹ hơn, dùng các tài nguyên sau:
 
 1. [Linked Lists in Plain English](https://www.youtube.com/watch?v=oiW79L8VYXk)
 1. [What's a Linked List, Anyway?](https://dev.to/vaidehijoshi/whats-a-linked-list-anyway)
 1. [A more verbose explanation with plenty of diagrams](https://web.archive.org/web/20200217010131/http://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html)
 1. [Are Linked Lists necessary?](https://dev.to/karimdevelops/are-linked-lists-necessary-2ckl)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note" markdown="1">
 
-#### Running ES6 modules in Node
+#### Chạy ES6 module trong Node
 
-Node v22 (which became LTS in October 2024) can now automatically detect ES6 modules and run them without any further configuration. If you are using ES6 modules and run into errors due to Node not recognizing the syntax, make sure you [update Node to the latest LTS version](https://www.theodinproject.com/lessons/foundations-installing-node-js#installing-node).
+Node v22 (đã trở thành LTS vào October 2024) hiện có thể tự động phát hiện ES6 module và chạy chúng mà không cần cấu hình thêm. Nếu bạn dùng ES6 module và gặp lỗi vì Node không nhận ra syntax, hãy bảo đảm [update Node to the latest LTS version](https://www.theodinproject.com/lessons/foundations-installing-node-js#installing-node).
 
 </div>
 
-You will need two classes or factories:
+Bạn sẽ cần hai class hoặc factory:
 
-1. `LinkedList` class / factory, which will represent the full list.
-1. `Node` class / factory, containing a `value` property and a `nextNode` property, set both as `null` by default.
+1. Class/factory `LinkedList`, đại diện cho toàn bộ list.
+1. Class/factory `Node`, chứa property `value` và property `nextNode`, mặc định cả hai đều là `null`.
 
-Build the following functions in your linked list class / factory:
+Xây dựng các function sau trong class/factory linked list:
 
-1. `append(value)` adds a new node containing `value` to the end of the list.
-1. `prepend(value)` adds a new node containing `value` to the start of the list.
-1. `size()` returns the total number of nodes in the list.
-1. `head()` should return the value of the first node in the list. If the list is empty, it should return `undefined`.
-1. `tail()` should return the value of the final node in the list. If the list is empty, it should return `undefined`.
-1. `at(index)` should return the value of the node at the given index. If there's no node at the given index, it should return `undefined`.
-1. `pop()` should remove the head node from the list and return its value. If it's used on an empty list, it should just return `undefined`.
-1. `contains(value)` returns true if the passed in value is in the list and otherwise returns false.
-1. `findIndex(value)` returns the index of the node containing the given value. If the value can't be found in the list, it should return `-1`. If more than one node has a value matching the given `value`, it should return the index of the first node with the matching value.
-1. `toString()` represents your LinkedList objects as strings, so you can print them out and preview them in the console. If the list is empty, it should return an empty string. The format should be: `( value ) -> ( value ) -> ( value ) -> null`.
+1. `append(value)` thêm node mới chứa `value` vào cuối list.
+1. `prepend(value)` thêm node mới chứa `value` vào đầu list.
+1. `size()` trả về tổng số node trong list.
+1. `head()` trả về value của node đầu tiên trong list. Nếu list rỗng, trả về `undefined`.
+1. `tail()` trả về value của node cuối cùng trong list. Nếu list rỗng, trả về `undefined`.
+1. `at(index)` trả về value của node tại index đã cho. Nếu không có node ở index đó, trả về `undefined`.
+1. `pop()` xóa node head khỏi list và trả về value của nó. Nếu dùng trên list rỗng, chỉ cần trả về `undefined`.
+1. `contains(value)` trả về true nếu value truyền vào nằm trong list, nếu không trả về false.
+1. `findIndex(value)` trả về index của node chứa value đã cho. Nếu không tìm thấy value trong list, trả về `-1`. Nếu có nhiều node có value khớp với `value`, trả về index của node đầu tiên khớp.
+1. `toString()` biểu diễn object LinkedList dưới dạng string để bạn có thể in và xem trước chúng trong console. Nếu list rỗng, trả về string rỗng. Format phải là: `( value ) -> ( value ) -> ( value ) -> null`.
 
-#### Extra credit
+#### Điểm cộng
 
-1. `insertAt(index, ...values)` should insert new nodes with the given values at the given `index`. For example:
+1. `insertAt(index, ...values)` chèn các node mới với các value đã cho tại `index`. Ví dụ:
 
    ```javascript
    // list that's already set up
@@ -77,18 +70,18 @@ Build the following functions in your linked list class / factory:
    //=> "( 1 ) -> ( 10 ) -> ( 11 ) -> ( 2 ) -> ( 3 ) -> null"
    ```
 
-   If the method is called with an index that is out of bounds (below 0 or above the list's size), throw a `RangeError`.
+   Nếu gọi method với index nằm ngoài phạm vi (nhỏ hơn 0 hoặc lớn hơn size của list), throw một `RangeError`.
 
-1. `removeAt(index)` that removes the node at the given `index`. If the given index is out of bounds (below 0 or greater than or equal to the list's size), throw a `RangeError`
+1. `removeAt(index)` xóa node tại `index` đã cho. Nếu index nằm ngoài phạm vi (nhỏ hơn 0 hoặc lớn hơn hoặc bằng size của list), throw một `RangeError`.
 
-**Extra Credit Tip:** When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their `nextNode` link updated.
+**Mẹo điểm cộng:** Khi chèn hoặc xóa một node, hãy xem xét ảnh hưởng của nó đến các node hiện có. Một số node sẽ cần cập nhật link `nextNode`.
 
-#### Test it out
+#### Thử nghiệm
 
-Let's test out the Linked List you made!
+Hãy kiểm thử Linked List bạn đã tạo!
 
-1. Create a `main.js` file and make sure it imports your `LinkedList` class or factory. This is where we'll test the list.
-1. Create an instance of your `LinkedList` and populate it with nodes:
+1. Tạo file `main.js` và bảo đảm nó import class hoặc factory `LinkedList`. Đây là nơi chúng ta sẽ kiểm thử list.
+1. Tạo một instance của `LinkedList` và nạp node vào đó:
 
    ```javascript
    // example uses class syntax - adjust as necessary
@@ -102,13 +95,13 @@ Let's test out the Linked List you made!
    list.append("turtle");
    ```
 
-1. Add `console.log(list.toString());` to the end of the file and run it.
-1. If everything is working, the output should be:
+1. Thêm `console.log(list.toString());` vào cuối file và chạy nó.
+1. Nếu mọi thứ hoạt động, output phải là:
 
    ```text
    ( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> null
    ```
 
-   Feel free to use different values to test if you like.
+   Bạn có thể dùng các value khác để kiểm thử nếu muốn.
 
 </div>

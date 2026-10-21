@@ -1,40 +1,40 @@
-### Introduction
+### Giới thiệu
 
-Test Driven Development, or TDD for short, is a *big* deal in the modern development landscape. This is a concept that we introduced way back in our Fundamentals section with our JavaScript Exercises. The main idea is that you start working on your code by writing automated tests *before* writing the code that is being tested. There are tons of benefits to working like this, all of which will be discussed in the resources below.
+Test Driven Development, gọi tắt là TDD, là một khái niệm *rất* quan trọng trong bối cảnh phát triển hiện đại. Đây là khái niệm chúng ta đã giới thiệu từ khá sớm trong phần Fundamentals, qua các bài JavaScript Exercises. Ý tưởng chính là bạn bắt đầu làm việc với code bằng cách viết các automated test *trước* khi viết code được test. Cách làm này có rất nhiều lợi ích, tất cả sẽ được thảo luận trong các tài nguyên bên dưới.
 
-There are many test-running systems available in JavaScript: [Mocha](https://mochajs.org/), [Jasmine](https://jasmine.github.io/), [Tape](https://github.com/substack/tape) and [Jest](https://jestjs.io/) to name a few. Fortunately, the syntax for each one is very similar. They all have their own set of special features, but the basic syntax is almost identical, so in the end it doesn't matter which one you use. In fact, picking which library to use for this curriculum has been quite tricky!  
+Có nhiều hệ thống chạy test dành cho JavaScript: [Mocha](https://mochajs.org/), [Jasmine](https://jasmine.github.io/), [Tape](https://github.com/substack/tape) và [Jest](https://jestjs.io/), chỉ kể tên một vài hệ thống. May mắn là cú pháp của mỗi hệ thống khá giống nhau. Tất cả đều có tập hợp tính năng đặc biệt riêng, nhưng cú pháp cơ bản gần như giống hệt, nên cuối cùng việc bạn dùng hệ thống nào không quá quan trọng. Thực tế, việc chọn library nào cho curriculum này đã khá khó khăn!
 
-This lesson is going to center around **Jest**. We have found that it has one of the best resources for explaining JavaScript testing, as well as fantastic documentation. In the end, writing tests is less about the syntax and more about the TDD philosophy.  The most important issues are knowing **why** we write tests and **what** we test rather than how.
+Bài học này sẽ tập trung vào **Jest**. Chúng tôi nhận thấy Jest có một trong những bộ tài nguyên tốt nhất để giải thích JavaScript testing, cùng tài liệu tuyệt vời. Sau cùng, viết test không chỉ là vấn đề cú pháp mà còn là triết lý TDD. Những điều quan trọng nhất là biết **tại sao** chúng ta viết test và **test gì**, chứ không phải bằng cách nào.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Explain the basics of TDD.
-- Get up and running with Jest.
-- Write basic tests.
+- Giải thích những điều cơ bản của TDD.
+- Thiết lập và bắt đầu sử dụng Jest.
+- Viết các test cơ bản.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read about the [basic process and the benefits of TDD](https://web.archive.org/web/20211123190134/http://godswillokwara.com/index.php/2016/09/09/the-importance-of-test-driven-development/).
-1. Watch at least the first 3 videos of [the Unit Testing in JavaScript video series](https://www.youtube.com/playlist?list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr).
-1. Follow along to [Jest's Getting Started tutorial](https://jestjs.io/docs/getting-started) until you reach the "Additional Configuration" section. Jest also provides global variables like `test` and `expect`, but if you're using ESLint, you'll need to explicitly import these in your test files to prevent linting errors (see the "Using ESLint" section in the same tutorial).
+1. Đọc về [quy trình cơ bản và các lợi ích của TDD](https://web.archive.org/web/20211123190134/http://godswillokwara.com/index.php/2016/09/09/the-importance-of-test-driven-development/).
+1. Xem ít nhất 3 video đầu tiên của [series video Unit Testing trong JavaScript](https://www.youtube.com/playlist?list=PL0zVEGEvSaeF_zoW9o66wa_UCNE3a7BEr).
+1. Làm theo [tutorial Getting Started của Jest](https://jestjs.io/docs/getting-started) cho đến khi bạn đến phần "Additional Configuration". Jest cũng cung cấp các biến toàn cục như `test` và `expect`, nhưng nếu dùng ESLint, bạn sẽ cần import tường minh chúng trong các file test để tránh lỗi lint (xem phần "Using ESLint" trong chính tutorial đó).
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Using ES6 import statements with Jest
+   #### Dùng câu lệnh import ES6 với Jest
 
-   By default, the current version of Jest will not recognize ESM, which is why you will see their guides use CJS syntax (e.g. `module.exports`). In order for you to be able to use ESM with Jest, you will need to do following:
+   Theo mặc định, phiên bản Jest hiện tại sẽ không nhận diện ESM, đó là lý do bạn thấy các hướng dẫn của họ dùng cú pháp CJS (ví dụ `module.exports`). Để có thể dùng ESM với Jest, bạn cần làm như sau:
 
-   1. Install `@babel/preset-env` (as of writing, Jest requires Babel v7 and is not yet compatible with the latest v8):
+   1. Cài đặt `@babel/preset-env` (tại thời điểm viết bài, Jest yêu cầu Babel v7 và chưa tương thích với v8 mới nhất):
 
       ```bash
       npm install --save-dev @babel/preset-env@^7
       ```
 
-   1. Create a `babel.config.js` in the project root with the following contents:
+   1. Tạo file `babel.config.js` ở thư mục gốc của project với nội dung sau:
 
       ```javascript
       export default {
@@ -42,11 +42,11 @@ This section contains a general overview of topics that you will learn in this l
       };
       ```
 
-   This will allow you to write ESM's `import`/`export` syntax instead of `require`/`module.exports`; you do not need to change anything else in the guide and Jest can be run as normal. Behind the scenes, Babel will convert your ESM to CJS before running Jest (it won't overwrite your actual files as this all happens in memory).
+   Điều này cho phép bạn viết cú pháp ESM `import`/`export` thay vì `require`/`module.exports`; bạn không cần thay đổi gì khác trong hướng dẫn, và Jest có thể chạy như bình thường. Ở phía sau, Babel sẽ chuyển ESM của bạn thành CJS trước khi chạy Jest (nó sẽ không ghi đè các file thực tế vì toàn bộ việc này diễn ra trong memory).
 
    </div>
 
-1. Read and follow the [Using Matchers](https://jestjs.io/docs/using-matchers) document on the main Jest website.  This one demonstrates some of the other useful functions you can use in your tests.
-1. This article explains more about [the why/how and value behind TDD](https://web.archive.org/web/20260824053151/https://jrsinclair.com/articles/2016/one-weird-trick-that-will-change-the-way-you-code-forever-javascript-tdd/) and also includes some great examples of how to apply it.
+1. Đọc và làm theo tài liệu [Using Matchers](https://jestjs.io/docs/using-matchers) trên website chính của Jest. Tài liệu này trình bày một số function hữu ích khác mà bạn có thể dùng trong test.
+1. Bài viết này giải thích thêm về [lý do/cách thức và giá trị của TDD](https://web.archive.org/web/20260824053151/https://jrsinclair.com/articles/2016/one-weird-trick-that-will-change-the-way-you-code-forever-javascript-tdd/) và cũng bao gồm một số ví dụ tuyệt vời về cách áp dụng TDD.
 
 </div>

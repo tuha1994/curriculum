@@ -2,9 +2,10 @@
 
 ## Phạm vi
 
-Hiện chỉ theo dõi các bài học trong thư mục:
+Hiện theo dõi các bài học trong các thư mục:
 
 - `intermediate_html_css`
+- `javascript`
 
 Không theo dõi các khóa hoặc thư mục khác cho đến khi người học yêu cầu mở rộng phạm vi.
 
@@ -42,6 +43,49 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `intermediate_html_css/intermediate_html_concepts/introduction.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-20 | `đã kiểm tra code, cấu trúc và hiển thị local` | Hai URL bên ngoài được giữ nguyên. Khối `<div class="lesson-content__panel" markdown="1">` được giữ nguyên. Không có điểm chưa chắc cần người học duyệt. Nguồn web local đang dùng fork `tuha1994/curriculum`, branch `vi`. Checklist dịch trước khi học đã được dùng thử với bài này. |
 | `intermediate_html_css/intermediate_html_concepts/svgs.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-20 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
 | `intermediate_html_css/intermediate_html_concepts/tables.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-20 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+
+## Các bài JavaScript đã dịch
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `javascript/asynchronous_javascript_and_apis/async_and_await.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/asynchronous_javascript_and_apis/asynchronous_code.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/asynchronous_javascript_and_apis/project_weather_app.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/asynchronous_javascript_and_apis/working_with_apis.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/a_very_brief_intro_to_cs.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/common_data_structures_algorithms.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/hash_map_data_structure.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/project_binary_search_trees.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/project_hash_map.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/project_knights_travails.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/project_linked_lists.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/project_recursion.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/recursive_methods.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/space_complexity.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/computer_science/time_complexity.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/finishing_up_with_javascript/conclusion.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/finishing_up_with_javascript/project_battleship.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/introduction/how_this_course_will_work.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/javascript_in_the_real_world/ecmascript.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/javascript_in_the_real_world/form_validation_with_javascript.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/javascript_in_the_real_world/linting.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/classes.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/es6_modules.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/factory_functions_and_module_pattern.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/json.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/npm.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/object_constructors.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/oop_principles.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/organizing_code_with_objects.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/project_library.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/project_restaurant_page.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/project_tic_tac_toe.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/project_todo_list.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/revisiting_webpack.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/organizing_your_javascript_code/webpack.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/testing_javascript/more_testing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/testing_javascript/project_testing_practice.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `javascript/testing_javascript/testing_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
 
 ## Quy tắc cập nhật
 

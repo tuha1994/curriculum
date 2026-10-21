@@ -1,29 +1,29 @@
-### Introduction
+### Giới thiệu
 
-By this point, you will have learned and had a chance to practice the most common object-creation and organization patterns in JavaScript. But that is just the *tip* of the iceberg. More important than learning the syntax for factory functions or modules is figuring out how to use them effectively.
+Đến với thời điểm này, bạn sẽ học và có cơ hội thực hiện các tổ chức mẫu và tạo ra phổ biến đối tượng nhất trong JavaScript. Nhưng đó chỉ là *tip* của băng trôi. Điều quan trọng hơn là việc học các cú pháp cho các chức năng hoặc mô-đun của nhà để tìm ra cách sử dụng chúng một cách hiệu quả.
 
-This whole series of lessons has been about the "Object Oriented Programming" paradigm (OOP). The basics of creating objects and classes are relatively straightforward. But it is not straightforward to decide what to put in each object, or when to make a new object, or when to let an object 'inherit' from another one.
+Toàn bộ bộ bài học này là về mô hình "Đối tượng hướng dẫn tập lệnh" (OOP). Các kiến ​​thức cơ bản về tạo đối tượng và lớp tương đối đơn giản. Nhưng thật không dễ dàng để quyết định nên đặt cái gì vào mỗi đối tượng, hay khi nào tạo một đối tượng mới, hoặc khi nào để một đối tượng 'kế thừa' từ một đối tượng khác.
 
-Luckily there are several concepts and principles that can guide us into making good decisions when it comes to our objects. This lesson is an introduction to the most important of those concepts. Keep in mind that there is not usually a very clear answer to your application design questions. Some patterns and ideas are obviously better than others, but there is often some trade-off when deciding where to put a specific function. In other words... these principles are not *rules*- they're helpful guidelines.  
+May mắn thay, có một số khái niệm và nguyên tắc có thể hướng dẫn chúng tôi đưa ra quyết định đúng đắn khi liên quan đến đối tượng của mình. Bài học này là phần giới thiệu về những khái niệm quan trọng nhất. Hãy nhớ rằng thông thường không có câu trả lời rõ ràng nào cho các câu hỏi ứng dụng thiết kế của bạn. Một số mẫu và ý tưởng rõ ràng là tốt hơn những mẫu khác, nhưng thường có một số thay đổi khi quyết định vị trí đặt một công cụ chức năng. Nói cách khác... những nguyên tắc này không phải là *quy tắc*—chúng là những hướng dẫn hữu ích.
 
-As you read these resources, it might help to go back to some projects you've already done and think about how what you've written measures up to the examples you see. And of course, as you move on, keep these things in mind when crafting new projects.
+Khi bạn đọc những tài nguyên này, có thể hữu ích nếu bạn quay lại một số dự án bạn đã thực hiện và suy nghĩ xem những gì bạn đã viết phù hợp với những ví dụ bạn thấy như thế nào. Và tất nhiên, khi bạn tiếp tục, hãy ghi lại những điều này khi tạo dự án mới.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng hợp về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Explain the "Single Responsibility Principle".
-- Briefly explain the additional SOLID principles.
-- Explain what "tightly coupled" objects are and why we want to avoid them.
-- Understand why composition is generally preferred to inheritance.
+- Giải thích "Nguyên tắc trách nhiệm duy nhất".
+- Giải thích rút gọn các nguyên tắc bổ sung SOLID.
+- Giải thích các đồ vật "có thể liên kết chặt chẽ" là gì và tại sao chúng tôi muốn tránh.
+- Hiểu biết về sao bố cục thường được ưu tiên hơn là kế thừa.
 
-### Single responsibility
+### Trách nhiệm duy nhất
 
-As you craft your objects, one of the most important things to remember is the **Single Responsibility Principle** which states that a class (or object or module... you get the point) should only have *one* responsibility. This doesn't mean that an object can only do one thing, but it does mean that everything an object does should be part of one responsibility.
+Khi bạn tạo các đối tượng của mình, một trong những điều quan trọng nhất cần nhớ là **Nguyên tắc Trách nhiệm duy nhất** nêu rõ rằng một lớp (hoặc đối tượng hoặc mô-đun... bạn hiểu) chỉ nên có *một* trách nhiệm. Điều này không có nghĩa là một đối tượng chỉ có thể làm một việc, nhưng mọi thứ đối tượng làm đều phải thuộc về cùng một trách nhiệm.
 
-Here's a really common example. Most of our code has functions to update and write things to the DOM in addition to our application logic. It's a *really* good idea to separate your DOM stuff from the application logic.
+Đây là một ví dụ thực sự phổ biến. Hầu hết mã của chúng tôi đều có các hàm cập nhật và ghi mọi thứ vào DOM bên cạnh logic ứng dụng. Đó thực sự là một ý tưởng *rất hay* khi tách phần DOM khỏi logic ứng dụng.
 
-Here we have a function that should check if a game over condition has been met.  There are two issues with this:
+Ở đây, chúng tôi có một chức năng sẽ kiểm tra xem trò chơi quá điều kiện có được đáp ứng hay không.  Có hai vấn đề với điều này:
 
 ```javascript
 function isGameOver() {
@@ -39,7 +39,7 @@ function isGameOver() {
 }
 ```
 
-The first issue is that the function (and the module it's in) should not directly be the one to manipulate the DOM. You should extract all the DOM manipulation into its own module and use it like so:
+Vấn đề đầu tiên là hàm (và mô-đun chứa nó) không thể thao tác trực tiếp với DOM. Bạn nên trích xuất tất cả các thao tác DOM vào mô-đun riêng của nó và sử dụng nó như sau:
 
 ```javascript
 function isGameOver() {
@@ -52,26 +52,26 @@ function isGameOver() {
 }
 ```
 
-The second issue remaining is that the `isGameOver` function should only be responsible for checking if the `gameOver` condition is met. Based on `isGameOver` return value, the function that handles the game loop should be responsible for deciding whether to call `DOMStuff.gameOver(this.winner)` or not.
+Vấn đề thứ hai còn lại là hàm `isGameOver` chỉ chịu trách nhiệm kiểm tra xem điều kiện `gameOver` có đáp ứng hay không. Dựa trên giá trị trả về của `isGameOver`, hàm xử lý vòng lặp trò chơi sẽ đảm bảo trách nhiệm quyết định nên gọi `DOMStuff.gameOver(this.winner)` hay không.
 
-Another way to think about the Single Responsibility Principle is that a given method/class/component should have a single reason to change. Otherwise, if an object is trying to have multiple responsibilities, changing one aspect might affect another.
+Một cách khác để suy nghĩ về Nguyên tắc nhiệm duy nhất là một phương thức/lớp/thành phần nhất định phải có một lý do duy nhất để thay đổi. Ngược lại, nếu một đối tượng đang cố gắng đảm nhận nhiều trách nhiệm thì việc thay đổi một cạnh có thể ảnh hưởng đến một cạnh khác.
 
-The Single Responsibility Principle is the first of a commonly found set of 5 design principles called the **SOLID** principles. You will read more about these principles in the assignment articles below.
+Nguyên tắc đảm nhiệm duy nhất là nguyên tắc đầu tiên trong bộ 5 nguyên tắc thiết kế thường được gọi là nguyên tắc **SOLID**. Bạn sẽ đọc thêm về những nguyên tắc này trong các bài viết dưới đây.
 
-### Loosely coupled objects
+### Các đối tượng được ghép mảnh viền
 
-Obviously, all of our objects are intended to work together to form our final application. You should take care, however, to make sure that your individual objects can stand alone as much as possible. **Tightly coupled** objects are objects that rely so heavily on each other that removing or changing one will mean that you have to completely change another one - a real bummer.
+Rõ ràng, tất cả các đối tượng của chúng ta đều hướng tới mục tiêu làm việc cùng nhau để tạo ra ứng dụng cuối cùng của chúng ta. Tuy nhiên, bạn nên cẩn thận để đảm bảo rằng các mảnh đồ riêng của bạn có thể độc lập nhiều nhất. Các đối tượng **Tđược kết hợp chặt chẽ** là các đối tượng phụ thuộc rất nhiều vào nhau đến khả năng loại bỏ hoặc thay đổi một đối tượng có nghĩa là bạn phải thay đổi hoàn toàn một đối tượng khác - một điều thực sự đáng sợ.
 
-This one is related pretty strongly to 'Single Responsibility' but takes a different angle. As an example, if we were writing a game and wanted to completely change how the User Interface worked, we should be able to do that without completely reworking the game logic. So we should be able to start off writing our game using primarily `console.log()`s and then add in a bunch of `DOM` functions later without touching the game logic.
+Điều này có liên quan khá chặt chẽ đến 'Trách nhiệm duy nhất' nhưng ở một góc độ khác. Ví dụ: nếu chúng tôi đang viết một trò chơi mong muốn và thay đổi hoàn toàn cách thức hoạt động của người dùng Giao diện, chúng tôi có thể thực hiện điều đó mà không cần phải thực hiện lại trò chơi hoàn toàn logic. Vì vậy, chúng tôi có thể bắt đầu viết trò chơi của mình bằng cách sử dụng chủ yếu `console.log()` và sau đó thêm vào một loạt chức năng `DOM` mà không cần phải chạm vào trò chơi logic.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. The following article and videos mention the acronym **SOLID** before going on to talk about Single Responsibility. Single Responsibility is definitely the most relevant of the 5, but feel free to dig into the rest of the SOLID principles, if you like.
-    1. Read this article about [SOLID principle #1: Single responsibility (JavaScript)](https://duncan-mcardle.medium.com/solid-principle-1-single-responsibility-javascript-5d9ce2c6f4a5). It simplifies that which is covered in more detail in the SOLID videos below.
-    1. Watch [The SOLID Design Principles by WDS](https://www.youtube.com/playlist?list=PLZlA0Gpn_vH9kocFX7R7BAe_CvvOCO_p9) to see code examples for each principle.
-1. [How to Write Highly Scalable and Maintainable JavaScript: Coupling](https://web.archive.org/web/20170215102316/http://www.innoarchitech.com:80/scalable-maintainable-javascript-coupling) explains loosely coupled objects pretty well.
-1. FunFunFunction has a great video on [favoring composition over inheritance](https://www.youtube.com/watch?v=wfMtDGfHWpA).
+1. Bài viết và video dưới đây đề cập đến từ viết tắt **SOLID** trước khi chuyển sang nói về trách nhiệm duy nhất. nhiệm vụ duy nhất chắc chắn là phù hợp nhất trong số 5 trách nhiệm, nhưng bạn có thể thoải mái tìm hiểu phần còn lại của nguyên tắc SOLID nếu muốn.
+    1. Đọc bài viết này về [nguyên tắc SOLID số 1: bội nhiệm duy nhất (JavaScript)](https://duncan-mcardle.medium.com/solid-principle-1-single-responsibility-javascript-5d9ce2c6f4a5). Nó đơn giản hóa nội dung được đề cập chi tiết hơn trong các video SOLID bên dưới.
+    1. Xem [Nguyên tắc thiết kế SOLID của WDS](https://www.youtube.com/playlist?list=PLZlA0Gpn_vH9kocFX7R7BAe_CvvOCO_p9) để xem ví dụ về mã hóa cho từng nguyên tắc.
+1. [Cách viết JavaScript có khả năng mở rộng và bảo trì cao: Khớp nối](https://web.archive.org/web/20170215102316/http://www.innoarchitech.com:80/scalable-maintainable-javascript-coupling) giải thích rõ ràng hơn về các đối tượng được ghép nối cân bằng.
+1. FunFunction có một video tuyệt vời về [ưu tiên sáng hơn kế thừa](https://www.youtube.com/watch?v=wfMtDGfHWpA).
 
 </div>

@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-You have learned about [binary search trees](http://en.wikipedia.org/wiki/Binary_search_tree), where you take a group of data items and turn them into a tree full of nodes, with each left node being "lower" than each right node. The tree starts with the "root node" and any node with no children is called a "leaf node". You have also learned about tree traversal algorithms like breadth-first and depth-first.
+Bạn đã học về [binary search tree](http://en.wikipedia.org/wiki/Binary_search_tree), trong đó một nhóm phần tử dữ liệu được biến thành một cây gồm các node, với mỗi node bên trái có giá trị "thấp hơn" mỗi node bên phải. Cây bắt đầu bằng "root node" và node không có con được gọi là "leaf node". Bạn cũng đã học các algorithm duyệt cây như breadth-first và depth-first.
 
-Now, let's take a look at balanced binary search trees (BST). A BST allows fast operations for lookup, insertion, and deletion of data items. Read this [article on building balanced BSTs](https://www.geeksforgeeks.org/sorted-array-to-balanced-bst/). Here is a [video on building balanced BSTs](https://youtu.be/VCTP81Ij-EM) as well. Although the last resource does not use JavaScript, you should understand it well enough to develop your own pseudocode.
+Bây giờ hãy xem xét balanced binary search tree (BST). BST cho phép thực hiện nhanh các thao tác tìm kiếm, chèn và xóa phần tử dữ liệu. Đọc [article on building balanced BSTs](https://www.geeksforgeeks.org/sorted-array-to-balanced-bst/). Đây cũng là một [video on building balanced BSTs](https://youtu.be/VCTP81Ij-EM). Dù tài nguyên cuối không dùng JavaScript, bạn vẫn nên hiểu đủ để tự xây dựng pseudocode.
 
-### Assignment
+### Bài tập
 
-You'll build a balanced BST in this assignment. Do not use duplicate values because they make it more complicated and result in trees that are much harder to balance. Therefore, be sure to always remove duplicate values or check for an existing value before inserting.
+Trong bài tập này, bạn sẽ xây dựng một BST cân bằng. Không sử dụng các giá trị trùng lặp vì chúng khiến bài toán phức tạp hơn và tạo ra những cây khó cân bằng hơn nhiều. Vì vậy, hãy luôn xóa giá trị trùng lặp hoặc kiểm tra giá trị đã tồn tại trước khi chèn.
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Build a `Node` class/factory. It should have an attribute for the data it stores as well as its left and right children.
+1. Xây dựng class/factory `Node`. Nó cần có một thuộc tính chứa dữ liệu được lưu trữ, cùng với node con bên trái và bên phải.
 
-1. Build a `Tree` class/factory which accepts an array when initialized. The `Tree` class should have a `root` attribute, which uses the return value of `buildTree()` which you'll write next.
+1. Xây dựng class/factory `Tree`, nhận một array khi khởi tạo. Class `Tree` cần có thuộc tính `root`, sử dụng giá trị trả về của `buildTree()` mà bạn sẽ viết tiếp theo.
 
-1. Write a `buildTree(array)` function that takes an array of numbers (e.g., `[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]`) and turns it into a balanced binary tree full of `Node` objects appropriately placed (don't forget to sort and remove duplicates!). The `buildTree()` function should return the level-0 root node. You can make this function private (either through using class syntax privacy features or by not including it in your factory's return object), and just call it for initializing the value of the `root` node.
+1. Viết function `buildTree(array)` nhận một array các number (ví dụ: `[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]`) và biến nó thành một binary tree cân bằng gồm các object `Node` được đặt đúng vị trí (đừng quên sắp xếp và xóa giá trị trùng lặp!). Function `buildTree()` phải trả về root node ở level 0. Bạn có thể để function này private (bằng tính năng privacy của class syntax hoặc không đưa nó vào object mà factory trả về), rồi chỉ gọi nó để khởi tạo giá trị của node `root`.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Visually representing your tree
+   #### Biểu diễn cây bằng hình ảnh
 
-   If you would like to visualize your binary search tree, here is a `prettyPrint()` function that will `console.log` your tree in a structured format. This function will expect to receive the root of your tree as the value for the node parameter:
+   Nếu muốn hình dung binary search tree, đây là function `prettyPrint()` sẽ `console.log` cây theo một cấu trúc dễ đọc. Function này nhận root của cây làm giá trị cho tham số node:
 
    ```javascript
    const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -36,59 +36,59 @@ You'll build a balanced BST in this assignment. Do not use duplicate values beca
 
    </div>
 
-1. Write an `includes(value)` function that accepts a value and returns `true` if the given value is in the tree. If the value isn't in the tree, it should return `false`.
+1. Viết function `includes(value)` nhận một giá trị và trả về `true` nếu giá trị đó nằm trong cây. Nếu không có, nó phải trả về `false`.
 
-1. Write an `insert(value)` function that accepts a value and inserts a new node with that value into the tree. Be sure to insert in a way that preserves the "binary search" property: for each node, every node to its left must have a lower value, and every node to its right must have a greater value. If the function is called with a value that already exists in the tree, the function should do nothing. If you need additional resources, check out the [Geeks for Geeks article on binary search tree insertion](https://www.geeksforgeeks.org/insertion-in-binary-search-tree/?ref=lbp).
+1. Viết function `insert(value)` nhận một giá trị và chèn node mới chứa giá trị đó vào cây. Hãy chèn sao cho vẫn giữ thuộc tính "binary search": với mỗi node, mọi node bên trái phải có giá trị thấp hơn, còn mọi node bên phải phải có giá trị cao hơn. Nếu gọi function với giá trị đã tồn tại trong cây, function không làm gì. Nếu cần tài nguyên bổ sung, xem [Geeks for Geeks article on binary search tree insertion](https://www.geeksforgeeks.org/insertion-in-binary-search-tree/?ref=lbp).
 
    <div class="lesson-note" markdown="1">
 
-   #### Avoid using the original input array
+   #### Tránh dùng array đầu vào ban đầu
 
-   You may be tempted to implement these methods using the original input array used to build the tree, but it's important for the efficiency of these operations that you don't do this. If we refer back to the [Big O Cheatsheet](https://www.bigocheatsheet.com/), we'll see that binary search trees can insert/delete in `O(log n)` time, which is a significant performance boost over arrays for the same operations. To get this added efficiency, your implementation of these methods should traverse the tree and manipulate the nodes and their connections.
+   Bạn có thể muốn triển khai các method này bằng array đầu vào ban đầu dùng để xây dựng cây, nhưng để các thao tác hiệu quả, điều quan trọng là không làm vậy. Nếu xem lại [Big O Cheatsheet](https://www.bigocheatsheet.com/), ta sẽ thấy binary search tree có thể chèn/xóa trong thời gian `O(log n)`, nhanh hơn đáng kể so với array cho cùng thao tác. Để có hiệu quả này, implementation của các method nên duyệt cây và thao tác trên các node cùng liên kết của chúng.
 
    </div>
 
-1. Write a `deleteItem(value)` function that accepts a value and removes it from the tree. You'll have to deal with multiple cases for this based on how many children the targeted node has. If the given value doesn't exist in the tree, the function should do nothing. If you need additional resources, check out the [Geeks for Geeks article on deleting in a binary search tree](https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/?ref=lbp).
+1. Viết function `deleteItem(value)` nhận một giá trị và xóa nó khỏi cây. Bạn sẽ phải xử lý nhiều trường hợp tùy vào số node con của node mục tiêu. Nếu giá trị không tồn tại, function không làm gì. Nếu cần tài nguyên bổ sung, xem [Geeks for Geeks article on deleting in a binary search tree](https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/?ref=lbp).
 
-1. Write a `levelOrderForEach(callback)` function that accepts a callback function as its parameter. `levelOrderForEach()` should traverse the tree in breadth-first level order and call the callback on each value as it traverses, passing each value (*not* the nodes) as an argument, similarly to how `Array.prototype.forEach()` might work for arrays. `levelOrderForEach()` may be implemented using either iteration or recursion (try implementing both!). If no callback function is provided, [throw an Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) reporting that a callback is required.
+1. Viết function `levelOrderForEach(callback)` nhận một callback function làm tham số. `levelOrderForEach()` phải duyệt cây theo thứ tự level breadth-first và gọi callback trên từng giá trị khi duyệt, truyền từng giá trị (*không phải* node) làm đối số, tương tự cách `Array.prototype.forEach()` hoạt động với array. `levelOrderForEach()` có thể dùng iteration hoặc recursion (hãy thử cả hai!). Nếu không có callback function, [throw an Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) thông báo rằng callback là bắt buộc.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Using a queue
+   #### Dùng queue
 
-   You will want to use an array acting as a queue to keep track of all the child nodes that you have yet to traverse and to add new ones to the list. If you need a visualization, watch [mycodeschool's video on level order traversal](https://www.youtube.com/watch?v=86g8jAQug04).
+   Bạn nên dùng một array đóng vai trò queue để theo dõi các node con chưa duyệt và thêm node mới vào danh sách. Nếu cần hình dung, xem [mycodeschool's video on level order traversal](https://www.youtube.com/watch?v=86g8jAQug04).
 
    </div>
 
-1. Write `inOrderForEach(callback)`, `preOrderForEach(callback)`, and `postOrderForEach(callback)` functions that also accept a callback as a parameter. Each of these functions should traverse the tree in their respective depth-first order and pass each value to the provided callback. The functions should throw an Error if no callback is given as an argument, like with `levelOrderForEach()`. If you need a resource for how the different traversals work, watch [mycodeschool's video on Binary Tree Traversal: Preorder, Inorder, Postorder](https://www.youtube.com/watch?v=gm8DUJJhmY4).
+1. Viết các function `inOrderForEach(callback)`, `preOrderForEach(callback)` và `postOrderForEach(callback)`, cũng nhận callback làm tham số. Mỗi function phải duyệt cây theo thứ tự depth-first tương ứng và truyền từng giá trị cho callback được cung cấp. Các function phải throw Error nếu không có callback, giống `levelOrderForEach()`. Nếu cần tài nguyên về cách các kiểu duyệt hoạt động, xem [mycodeschool's video on Binary Tree Traversal: Preorder, Inorder, Postorder](https://www.youtube.com/watch?v=gm8DUJJhmY4).
 
-1. Write a `height(value)` function that returns the height of the node containing the given value. Height is defined as the number of edges in the longest path from that node to a leaf node. If the value is not found in the tree, the function should return `undefined`.
+1. Viết function `height(value)` trả về height của node chứa giá trị đã cho. Height được định nghĩa là số edge trong đường đi dài nhất từ node đó đến leaf node. Nếu không tìm thấy giá trị trong cây, function trả về `undefined`.
 
-1. Write a `depth(value)` function that returns the depth of the node containing the given value. Depth is defined as the number of edges in the path from that node to the root node. If the value is not found in the tree, the function should return `undefined`.
+1. Viết function `depth(value)` trả về depth của node chứa giá trị đã cho. Depth được định nghĩa là số edge trong đường đi từ node đó đến root node. Nếu không tìm thấy giá trị trong cây, function trả về `undefined`.
 
-1. Write an `isBalanced()` function that checks if the tree is balanced. A binary tree is considered balanced if, for every node in the tree, the height difference between its left and right subtrees is no more than 1, and both the left and right subtrees are also balanced.
+1. Viết function `isBalanced()` kiểm tra cây có cân bằng hay không. Binary tree được xem là cân bằng nếu với mọi node trong cây, chênh lệch height giữa subtree trái và phải không quá 1, đồng thời cả hai subtree trái và phải cũng cân bằng.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Pitfall with checking balance
+   #### Cạm bẫy khi kiểm tra độ cân bằng
 
-   A common mistake is only checking the height difference between the root's left and right children. That is not enough — you must check the balance condition for every node.
+   Một lỗi thường gặp là chỉ kiểm tra chênh lệch height giữa các node con trái và phải của root. Như vậy chưa đủ — bạn phải kiểm tra điều kiện cân bằng với mọi node.
 
    </div>
 
-1. Write a `rebalance()` function that rebalances an unbalanced tree. You'll want to use a traversal method to provide a new array to the `buildTree()` function.
+1. Viết function `rebalance()` để cân bằng lại một cây mất cân bằng. Bạn sẽ muốn dùng một method duyệt để cung cấp array mới cho function `buildTree()`.
 
-#### Tie it all together
+#### Kết hợp tất cả
 
-Write a driver script that does the following:
+Viết một driver script thực hiện các việc sau:
 
-1. Create a binary search tree from an array of random numbers with each element having a value less than 100. You can create a function that returns an array of random numbers every time you call it if you wish.
-1. Confirm that the tree is balanced by calling `isBalanced()`.
-1. Print out all elements in level, pre, post, and in order.
-1. Unbalance the tree by adding several numbers whose value is more than 100.
-1. Confirm that the tree is unbalanced by calling `isBalanced()`.
-1. Balance the tree by calling `rebalance()`.
-1. Confirm that the tree is balanced by calling `isBalanced()`.
-1. Print out all elements in level, pre, post, and in order.
+1. Tạo binary search tree từ một array các number ngẫu nhiên, trong đó mỗi phần tử có giá trị nhỏ hơn 100. Nếu muốn, bạn có thể tạo function trả về một array number ngẫu nhiên mỗi lần được gọi.
+1. Xác nhận cây cân bằng bằng cách gọi `isBalanced()`.
+1. In tất cả phần tử theo thứ tự level, pre, post và in.
+1. Làm mất cân bằng cây bằng cách thêm một số number có giá trị lớn hơn 100.
+1. Xác nhận cây mất cân bằng bằng cách gọi `isBalanced()`.
+1. Cân bằng cây bằng cách gọi `rebalance()`.
+1. Xác nhận cây cân bằng bằng cách gọi `isBalanced()`.
+1. In tất cả phần tử theo thứ tự level, pre, post và in.
 
 </div>

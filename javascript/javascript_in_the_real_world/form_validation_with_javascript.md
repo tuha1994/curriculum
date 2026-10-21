@@ -1,38 +1,38 @@
-### Introduction
+### Giới thiệu
 
-Forms are a crucial part of most websites. Almost every major site has sign-up forms, contact forms, search forms and more!  Luckily HTML5 and JavaScript have some handy built-in methods. You've already learned about validation with HTML and styling validations with CSS in our [Form Validations](https://www.theodinproject.com/paths/full-stack-javascript/courses/intermediate-html-and-css/lessons/form-validation) lesson in the Intermediate HTML and CSS course.
+Forms là một phần quan trọng của hầu hết website. Gần như mọi site lớn đều có form đăng ký, form liên hệ, form tìm kiếm và nhiều loại khác! May mắn là HTML5 và JavaScript có một số method tích hợp sẵn hữu ích. Bạn đã học về validation bằng HTML và tạo kiểu cho validation bằng CSS trong bài học [Form Validations](https://www.theodinproject.com/paths/full-stack-javascript/courses/intermediate-html-and-css/lessons/form-validation) thuộc khóa Intermediate HTML and CSS.
 
-In this lesson, we'll cover the Constraint Validation API: a way to validate forms on the frontend with JavaScript.
+Trong bài học này, chúng ta sẽ tìm hiểu Constraint Validation API: một cách để validate forms ở frontend bằng JavaScript.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- The importance of validation in HTML forms.
-- The Constraint Validation API.
-- JavaScript-only validation.
+- Tầm quan trọng của validation trong HTML forms.
+- Constraint Validation API.
+- Validation chỉ bằng JavaScript.
 
 ### Assignment
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Follow this [tutorial on Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript) which covers how we can use JavaScript to validate forms, including the Constraint Validation API.
+1. Làm theo [tutorial về Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation#validating_forms_using_javascript), trong đó trình bày cách dùng JavaScript để validate forms, bao gồm Constraint Validation API.
 
-1. It'll also prove beneficial to go through the [Constraint Validation docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
+1. Bạn cũng sẽ có lợi khi đọc qua [tài liệu Constraint Validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
 
-#### A little more practice
+#### Luyện tập thêm một chút
 
-1. Build a browser form which collects Email, Country, Postal Code, Password and Password Confirmation fields. It should use live inline validation to inform the user whether a field is properly filled in or not. That means validating as you type, not only upon form submission. When a field is invalid, it should be highlighted in red and show an error message to guide the user.
+1. Xây dựng một browser form thu thập các trường Email, Country, Postal Code, Password và Password Confirmation. Form này nên dùng live inline validation để cho user biết một field đã được điền đúng hay chưa. Nghĩa là phải validate khi bạn nhập, không chỉ khi submit form. Khi một field không hợp lệ, field đó nên được highlight màu đỏ và hiển thị thông báo lỗi để hướng dẫn user.
 
-   The form doesn't need to actually submit anywhere, but you should give a custom error message if the user tries to submit the form with any active errors or unfilled required fields. For the sake of this lesson, make sure the `<form>` element has the [`novalidate` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#novalidate) which will allow you to do **all** of your validation in your JavaScript files. You can still use different `<input>` types, but you will need to use JavaScript to check and report their validity. If all is well and the form is "submitted", give the user a high five.
+   Form không cần thực sự submit đi đâu, nhưng bạn nên hiển thị thông báo lỗi tùy chỉnh nếu user cố submit form khi còn lỗi đang hoạt động hoặc các required field chưa được điền. Trong phạm vi bài học này, hãy bảo đảm element `<form>` có [thuộc tính `novalidate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#novalidate), thuộc tính này cho phép bạn thực hiện **toàn bộ** validation trong các file JavaScript. Bạn vẫn có thể dùng các loại `<input>` khác nhau, nhưng sẽ cần dùng JavaScript để kiểm tra và báo cáo tính hợp lệ của chúng. Nếu mọi thứ đều ổn và form được "submit", hãy tặng user một high five.
 
-   1. Set up a blank HTML document.
-   1. Think about how you would set up the different form elements and their accompanying validators.  What objects and functions will you need? A few minutes of thought can save you from wasting an hour of coding.  The best thing you can do is whiteboard the entire solution before even touching the computer.
-   1. Write the form elements.
-   1. Add the JavaScript code that checks validation as the user progresses through the form.  When a user leaves a form field, it should automatically validate that field.
-   1. Test out all possible cases.
-   1. Don't forget to style validations with CSS by using the `:user-valid` and `:user-invalid` pseudo-classes!
+   1. Thiết lập một tài liệu HTML trống.
+   1. Hãy suy nghĩ xem bạn sẽ thiết lập các form element khác nhau và các validator đi kèm như thế nào. Bạn sẽ cần những object và function nào? Suy nghĩ vài phút có thể giúp bạn tránh lãng phí cả giờ code. Điều tốt nhất bạn có thể làm là phác thảo toàn bộ solution trên bảng trước khi chạm vào máy tính.
+   1. Viết các form element.
+   1. Thêm code JavaScript kiểm tra validation khi user đi qua form. Khi user rời khỏi một form field, field đó phải tự động được validate.
+   1. Test mọi trường hợp có thể xảy ra.
+   1. Đừng quên tạo kiểu cho validation bằng CSS thông qua các pseudo-class `:user-valid` và `:user-invalid`!
 
-1. Go back to your Library project and add custom validation to that form! Display a custom error message when the user tries to submit an empty form field (e.g. "The author name must be filled!"). Don’t forget to use the git branch workflow you learned in [Revisiting Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors) from Foundations to work on a new feature.
+1. Quay lại project Library và thêm validation tùy chỉnh cho form đó! Hiển thị thông báo lỗi tùy chỉnh khi user cố submit một form field trống (ví dụ: "The author name must be filled!"). Đừng quên sử dụng workflow git branch mà bạn đã học trong [Revisiting Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors) từ Foundations để làm việc trên một feature mới.
 
 </div>

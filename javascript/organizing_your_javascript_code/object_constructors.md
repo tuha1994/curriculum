@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-Now that you've got a basic understanding of *why* and *how* you might use objects to organize data and functionality, it's important to learn some basic strategies for creating duplicates (often called **instances**) of objects, and using existing types of objects as a base for creating new ones through **inheritance**.
+Bây giờ bạn đã hiểu cơ bản về *why* và *how* bạn có thể sử dụng các đối tượng để sắp xếp dữ liệu và chức năng, điều quan trọng là phải tìm hiểu một số cơ sở chiến lược để tạo bản sao (thường được gọi là **instances**) của đối tượng và sử dụng các loại đối tượng hiện có để tạo mới đối tượng thông qua **inheritance**.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng hợp về các chủ đề mà bạn sẽ học trong bài học này.
 
-- Instantiating objects using constructors.
-- What a prototype is and how it can be used.
-- Prototypal inheritance.
-- Basic do's and don'ts of prototypal inheritance.
-- How the `this` keyword behaves in different situations.
+- Khởi tạo các object bằng cách sử dụng các hàm tạo.
+- Nguyên mẫu là gì và nó có thể được sử dụng như thế nào.
+- Mẫu nguyên nguyên.
+- Những điều nên và không nên làm cơ sở cho mẫu kế thừa.
+- Cách từ khóa `this` hoạt động trong các vấn đề khác nhau.
 
-### Object constructors
+### Hàm tạo đối tượng
 
-Manually typing out the contents of all of our objects with object literals is not always feasible. When you have a specific type of object that you need to make multiple of, a better way to create them is using an object constructor, which is really just a function:
+Việc nhập nội dung thủ công của tất cả các đối tượng của chúng tôi bằng các đối tượng ký tự cũng không khả thi. Khi bạn có một loại công cụ mà bạn cần tạo thành nhiều đối tượng, cách tốt hơn để tạo chúng là sử dụng hàm tạo đối tượng, đây thực sự chỉ là một hàm:
 
 ```javascript
 function Player(name, marker) {
@@ -23,16 +23,16 @@ function Player(name, marker) {
 }
 ```
 
-The only difference is that you use it by calling the function with the keyword `new`:
+Điểm khác biệt duy nhất là bạn sử dụng nó bằng cách gọi hàm với từ khóa `new`:
 
 ```javascript
 const player = new Player("steve", "X");
 console.log(player.name); // "steve"
 ```
 
-This is not the same as calling `Player("steve", "X")` (without the `new` keyword). When we call a function with `new`, it creates a new object, makes `this` inside the function refer to that object, and makes that object inherit from the function's `.prototype` property (more on that later). The new object is then returned (even though we don't specify a `return` value in the constructor function).
+Điều này không giống như gọi `Player("steve", "X")` (không có từ khóa `new`). Khi chúng ta gọi một hàm bằng `new`, nó sẽ tạo một đối tượng mới, làm cho `this` bên trong hàm tham chiếu đến đối tượng đó và làm cho đối tượng đó kế thừa thuộc tính `.prototype` của hàm (sẽ nói thêm về điều đó sau). Sau đó, mới đối tượng sẽ được trả về (mặc dù chúng tôi không định giá trị `return` trong hàm xây dựng).
 
-Just like with objects created using the object literal method, you can add functions to the object:
+Giống như các đối tượng được tạo bằng hằng đối tượng phương thức, bạn có thể thêm các hàm vào đối tượng:
 
 ```javascript
 function Player(name, marker) {
@@ -51,9 +51,9 @@ player2.sayName(); // logs "also steve"
 
 <div class="lesson-note lesson-note--warning" markdown="1" >
 
-#### Safeguarding constructors
+#### Bảo vệ hàm tạo
 
-Since constructors can be called without using `new` by mistake, which would cause hard-to-track errors as it won't do all the new object and `this` binding stuff, we should safeguard them. You can use the `new.target` meta-property like this, which will throw an error if `Player` is called without `new`:
+Vì các hàm có thể được gọi mà không sử dụng `new` nhầm lẫn, điều này sẽ gây ra các lỗi khó theo dõi vì nó sẽ không thực thi tất cả các đối tượng mới và liên kết nội dung `this`, chúng tôi nên bảo vệ chúng. Bạn có thể sử dụng meta thuộc tính `new.target` như thế này, điều này sẽ gây ra lỗi nếu `Player` được gọi mà không có `new`:
 
 ```javascript
 function Player(name, marker) {
@@ -70,11 +70,11 @@ function Player(name, marker) {
 
 </div>
 
-### Exercise
+### Bài tập
 
-Write a constructor for making "Book" objects. We will revisit this in the next project. Your book objects should have the book's `title`, `author`, the number of `pages`, and whether or not you have `read` the book.
+Viết hàm để tạo đối tượng "Sách". Chúng tôi sẽ xem xét lại điều này trong dự án tiếp theo. Đối tượng của bạn phải có `title`, `author` của cuốn sách, `pages` số và bạn có cuốn sách `read` hay không.
 
-Put a function `info()` into the constructor that can report the book info like so:
+Đặt hàm `info()` vào hàm tạo để có thể báo cáo thông tin như sau:
 
 ```javascript
 console.log(theHobbit.info()); // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
@@ -84,50 +84,50 @@ console.log(theHobbit.info()); // "The Hobbit by J.R.R. Tolkien, 295 pages, not 
 
 #### console.log vs return
 
-We use examples of functions that call `console.log()` for demonstration, but instead of making functions directly log things, it's generally more sensible to make them `return` values. That way, you can pass the values wherever you wish without being tied to whatever that function does; you may not always want to log the value.
+Chúng tôi sử dụng các ví dụ về các hàm gọi `console.log()` để trình diễn, nhưng thay vào đó, chúng tôi tạo ra các hàm trực tiếp ghi lại mọi thứ, nói chung sẽ hợp lý hơn khi đặt chúng thành các `return` có giá trị. Bằng cách đó, bạn có thể chuyển các giá trị đến bất cứ nơi nào bạn muốn mà không bị ràng buộc với bất kỳ chức năng nào của chức năng đó; Không phải lúc nào bạn cũng có thể muốn ghi lại giá trị.
 
 </div>
 
-### The prototype
+### Mẫu nguyên
 
-In JavaScript, all objects can be linked to another object, which is called their **prototype** (also known as its `[[Prototype]]`). If a property or method is not found on the object itself, JavaScript looks for it in the `[[Prototype]]`.
+Trong JavaScript, tất cả các đối tượng có thể liên kết với một đối tượng khác, được gọi là **prototype** của chúng (còn được gọi là `[[Prototype]]` của nó). Nếu thuộc tính hoặc phương thức không được tìm thấy trên đối tượng chính, JavaScript sẽ tìm kiếm nó trong `[[Prototype]]`.
 
-Let's break it down.
+Hãy phá vỡ nó.
 
-#### 1. All objects in JavaScript have a [[Prototype]]
+#### 1. Tất cả các đối tượng trong JavaScript đều có [[Prototype]]
 
-Pretty straightforward sentence here! Every object in JavaScript has a `[[Prototype]]`. So for example, the `player1` and `player2` objects from before, (created with the `Player(name, marker)` object constructor) also have a `[[Prototype]]`. Now, what does having a `[[Prototype]]` mean? What even is a `[[Prototype]]` of an object?
+Câu nói khá đơn giản ở đây! Mọi đối tượng trong JavaScript đều có `[[Prototype]]`. Vì vậy, ví dụ, các đối tượng `player1` và `player2` từ trước, (được tạo bằng hàm tạo đối tượng `Player(name, marker)`) cũng có `[[Prototype]]`. Bây giờ, việc làm `[[Prototype]]` có nghĩa là gì? `[[Prototype]]` của một đối tượng là gì?
 
-#### 2. The [[Prototype]] is another object
+#### 2. [[Prototype]] là một đối tượng khác
 
-This sentence also seems pretty straightforward! The `[[Prototype]]` *is just another object* - again, like the `player1` and the `player2` objects. The `[[Prototype]]` object can have properties and functions, just as these `Player` objects have properties like `.name`, `.marker`, and functions like `.sayName()` attached to them.
+Câu này cũng có vẻ khá đơn giản! `[[Prototype]]` * chỉ là một đối tượng khác* - một lần nữa, giống như các đối tượng `player1` và `player2`. Đối tượng `[[Prototype]]` có thể có các thuộc tính và chức năng, giống như các đối tượng `Player` này có các thuộc tính như `.name`, `.marker` và các chức năng như `.sayName()` được gắn vào chúng.
 
-#### 3. ...that the original object inherits from, and has access to all of its [[Prototype]]'s methods and properties
+#### 3. ...object ban kế thừa và có quyền truy cập vào tất cả các phương thức và thuộc tính của [[Prototype]] của nó
 
-Here, the "original object" refers to an object like `player1` or `player2`. These objects are said to "inherit", or in other words, these objects have access to the `[[Prototype]]`'s properties or functions, if they have been defined. For example, if there was a `.sayHello()` function defined on the `[[Prototype]]`, `player1` can access the function just as if it was its own function - `player1.sayHello()`. But it's not just `player1` who can call the `.sayHello()` function, even `player2` can call it, since it's defined on its `[[Prototype]]`! Read on to know the details of how it works and how you could do this yourself!
+Ở đây, "object ban start" đề cập đến một đối tượng như `player1` hoặc `player2`. Các đối tượng này được cho là "kế thừa", hay nói cách khác, các đối tượng này có quyền truy cập vào các thuộc tính hoặc chức năng của `[[Prototype]]`, nếu chúng đã được xác định rõ. Ví dụ: nếu có một hàm `.sayHello()` được xác định trên `[[Prototype]]`, thì `player1` có thể truy cập các hàm đó giống như đó là hàm của chính nó - `player1.sayHello()`. Nhưng không chỉ `player1` mới có thể gọi hàm `.sayHello()`, ngay cả `player2` cũng có thể gọi hàm này, vì nó được xác định trên `[[Prototype]]` của nó! Vui lòng đọc tiếp để biết chi tiết về cách thức hoạt động và cách bạn có thể tự thực hiện công việc này!
 
-#### Accessing an object's [[Prototype]]
+#### Truy cập [[Prototype]] của đối tượng
 
-Conceptually, you now might feel like you know, or at least have an idea of what a `[[Prototype]]` of an object is. But how do you *know* or actually *see* what the prototype of an object is? Let's find out. You can try running the following code in the developer console of your browser. (Make sure you've created the `player1` and `player2` objects from before!)
+Về khái niệm, bây giờ bạn có thể cảm thấy như mình biết hoặc ít nhất có ý tưởng về `[[Prototype]]` của một đối tượng là gì. Nhưng làm thế nào để bạn *biết* hoặc thực sự *thấy* prototype của một đối tượng là gì? Hãy cùng tìm hiểu. Bạn có thể thử chạy đoạn mã sau trong bảng điều khiển dành cho nhà phát triển trình duyệt. (Đảm bảo rằng bạn đã tạo các đối tượng `player1` và `player2` từ trước!)
 
 ```javascript
 Object.getPrototypeOf(player1) === Player.prototype; // returns true
 Object.getPrototypeOf(player2) === Player.prototype; // returns true
 ```
 
-Now, to understand this code, let's use the three points from earlier:
+Bây giờ, để hiểu mã này, hãy sử dụng ba điểm ở trên:
 
-1. **All objects in JavaScript have a `[[Prototype]]`**:
-   - You can check the object's `[[Prototype]]` by using the [`Object.getPrototypeOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) function on the object, like `Object.getPrototypeOf(player1)`.
-   - `Object.getPrototypeOf(player1)` will return the object at the `.prototype` property of the `Player` constructor (i.e. `Player.prototype`).
-1. **The `[[Prototype]]` is another object...**
-   - The *value* of the `Player.prototype` contains an object.
-   - A *reference* to `Player.prototype` is stored in every instance of a `Player` object as its `[[Prototype]]`.
-   - Hence, `true` is returned when you get `player1`'s `[[Prototype]]` and check for referential equality against the object at `Player.prototype`.
-1. **...that the original object *inherits* from, and has access to all of its `[[Prototype]]`'s methods and properties**:
-   - So, any properties or methods defined on `Player.prototype` will be available to the created `Player` objects!
+1. **Tất cả các đối tượng trong JavaScript đều có `[[Prototype]]`**:
+   - Bạn có thể kiểm tra `[[Prototype]]` của đối tượng bằng cách sử dụng chức năng [`Object.getPrototypeOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) trên đối tượng, như `Object.getPrototypeOf(player1)`.
+   - `Object.getPrototypeOf(player1)` sẽ trả về object thuộc tính `.prototype` của hàm tạo `Player` (tức là `Player.prototype`).
+1. **`[[Prototype]]` là một đối tượng khác...**
+   - *Giá trị* của `Player.prototype` chứa một đối tượng.
+   - *tham chiếu* đến `Player.prototype` được lưu trữ trong mọi phiên bản của đối tượng `Player` dưới dạng `[[Prototype]]` của nó.
+   - Do đó, `true` sẽ được thanh toán khi bạn nhận được `[[Prototype]]` của `player1` và kiểm tra sự tham chiếu đối tượng tại `Player.prototype`.
+1. **...mà đối tượng ban đầu *inherit* từ đó và có quyền truy cập vào tất cả các phương thức và thuộc tính của `[[Prototype]]` của nó**:
+   - Vì vậy, mọi thuộc tính hoặc phương thức được xác định trên `Player.prototype` sẽ có sẵn cho các đối tượng `Player` đã được tạo!
 
-The last sub-item needs a little more explanation. What does defining 'on the prototype' mean? Consider the following code:
+Mục phụ cuối cùng cần giải quyết thêm một chút. Việc xác định 'trên mẫu nguyên' có nghĩa là gì? Vui lòng xem đoạn mã sau:
 
 ```javascript
 Player.prototype.sayHello = function() {
@@ -138,38 +138,38 @@ player1.sayHello(); // logs "Hello, I'm a player!"
 player2.sayHello(); // logs "Hello, I'm a player!"
 ```
 
-Here, we defined the `.sayHello` function 'on' the `Player.prototype` object. It then became available for the `player1` and the `player2` objects to use! Similarly, you can attach other properties or functions you want to use on all `Player` objects by defining them on the objects' `[[Prototype]]` (which is `Player.prototype`).
+Ở đây, chúng tôi đã định nghĩa hàm `.sayHello` “trên” đối tượng `Player.prototype`. Sau đó, nó đã có sẵn các đối tượng `player1` và `player2` để sử dụng! Tương tự, bạn có thể đính kèm các thuộc tính hoặc chức năng khác mà bạn muốn sử dụng trên tất cả các đối tượng `Player` bằng cách xác định chúng trên `[[Prototype]]` của đối tượng (là `Player.prototype`).
 
 <div class="lesson-note" markdown="1">
 
 #### .\_\_proto__
 
-In some docs or codebases, you may see `.__proto__` being used on an object to get or set its `[[Prototype]]` instead of using `Object.getPrototypeOf()` or `Object.setPrototypeOf()`. This is due to historical reasons; [`.__proto__` is a non-standard and deprecated approach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto), so it is not recommended to use it to access an object's `[[Prototype]]`.
+Trong một số tài liệu hoặc cơ sở dữ liệu, bạn có thể thấy `.__proto__` đang được sử dụng trên một đối tượng để lấy hoặc đặt `[[Prototype]]` của nó thay vì sử dụng `Object.getPrototypeOf()` hoặc `Object.setPrototypeOf()`. Điều này là do lý do lịch sử; [`.__proto__` là một cách tiếp cận không chuẩn và không được sử dụng nữa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto), vì vậy, không nên sử dụng nó để truy cập `[[Prototype]]` của đối tượng.
 
 </div>
 
 <div class="lesson-note" markdown="1">
 
-#### Object.getPrototypeOf() vs .prototype
+#### Object.getPrototypeOf() so với .prototype
 
-A common cause of confusion comes from dealing with the `.prototype` property of constructor functions.
+Nguyên nhân phổ biến gây nhầm lẫn từ việc xử lý thuộc tính `.prototype` của các hàm xây dựng.
 
-`.prototype` is a property of functions that determines what a new object instance's `[[Prototype]]` will be set to when the function is called with `new`. `.prototype` is *not* for accessing an object's `[[Prototype]]` - that's what `Object.getPrototypeOf()` is for.
+`.prototype` là thuộc tính của các chức năng xác định `[[Prototype]]` của mới phiên bản đối tượng sẽ được cài đặt thành công khi hàm được gọi bằng `new`. `.prototype` là *not* để truy cập `[[Prototype]]` của một đối tượng - đó là mục tiêu của `Object.getPrototypeOf()`.
 
-![prototypal inheritance diagram](https://cdn.statically.io/gh/TheOdinProject/curriculum/cffc199a8cfbfcd61160b00c4cf61e1d6bb6ff2e/javascript/organizing_your_javascript_code/object_constructors/imgs/00.png)
+![Sơ đồ kế thừa mẫu](https://cdn.statically.io/gh/TheOdinProject/curriculum/cffc199a8cfbfcd61160b00c4cf61e1d6bb6ff2e/javascript/organizing_your_javascript_code/object_constructors/imgs/00.png)
 
 </div>
 
-#### Prototypal inheritance
+#### Mẫu nguyên nguyên kế hoạch
 
-Now, you may also have a question - what use is an object's `[[Prototype]]`? What is the purpose of defining properties and functions on a prototype?
+Bây giờ, bạn cũng có thể có câu hỏi - `[[Prototype]]` của một đối tượng có tác dụng gì? Mục đích của việc xác định các thuộc tính và chức năng theo mẫu nguyên là gì?
 
-We can narrow it down to two reasons:
+Chúng ta có thể thu nhỏ nó xuống còn hai lý do:
 
-1. We can define properties and functions common among all objects on a prototype to save memory. Defining every property and function takes up a lot of memory, especially if you have a lot of common properties and functions, and a lot of created objects! Defining them on a centralized, shared object which the objects have access to, thus saves memory.
-1. The second reason is to allow multiple objects to share and reuse behavior through JavaScript's prototypal inheritance mechanism, such as allowing `player1` and `player2` to access functions like `.sayHello` defined on `Player.prototype`.
+1. Chúng tôi có thể định nghĩa các thuộc tính và chức năng chung giữa tất cả các đối tượng trên mẫu nguyên để tiết kiệm bộ nhớ. Việc xác định mọi thuộc tính và hàm sử dụng rất nhiều bộ nhớ, đặc biệt nếu bạn có nhiều thuộc tính và hàm chung cũng có nhiều đối tượng được tạo! Xác định chúng trên một đối tượng được chia sẻ, tập trung mà các đối tượng có quyền truy cập sẽ tiết kiệm bộ nhớ.
+1. Lý do thứ hai cho phép nhiều đối tượng chia sẻ và sử dụng lại hành vi thông qua cơ chế kế thừa mẫu của JavaScript, mặc dù cho phép `player1` và `player2` truy cập các chức năng như `.sayHello` được xác định trên `Player.prototype`.
 
-Let's now try to do the following:
+Bây giờ chúng ta hãy thử làm như sau:
 
 ```javascript
 // Player.prototype.__proto__
@@ -179,37 +179,37 @@ Object.getPrototypeOf(Player.prototype) === Object.prototype; // true
 player1.valueOf(); // Output: Object { name: "steve", marker: "X", sayName: sayName() }
 ```
 
-What's this `.valueOf` function, and where did it come from if we did not define it? It comes as a result of `Object.getPrototypeOf(Player.prototype)` having the value of `Object.prototype`! This means that `Player.prototype` is inheriting from `Object.prototype`. This `.valueOf` function is defined on `Object.prototype` just like `.sayHello` is defined on `Player.prototype`.
+Hàm `.valueOf` này là gì và nó đến từ đâu nếu chúng ta không định nghĩa nó? Nó xuất hiện `Object.getPrototypeOf(Player.prototype)` có giá trị `Object.prototype`! Điều này có nghĩa là `Player.prototype` được kế thừa từ `Object.prototype`. Hàm `.valueOf` này được xác định trên `Object.prototype` tương tự như `.sayHello` được xác định trên `Player.prototype`.
 
-How do we know that this `.valueOf` function is defined on `Object.prototype`? We make use of another function called `.hasOwnProperty`:
+Làm sao chúng tôi biết rằng hàm `.valueOf` này được xác định trên `Object.prototype`? Chúng tôi sử dụng một chức năng khác được gọi là `.hasOwnProperty`:
 
 ```javascript
 player1.hasOwnProperty("valueOf"); // false
 Object.prototype.hasOwnProperty("valueOf"); // true
 ```
 
-Now where did this [`.hasOwnProperty` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) come from? A quick check helps:
+Bây giờ [Chức năng `.hasOwnProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) này đến từ đâu? Việc kiểm tra nhanh sẽ giúp:
 
 ```javascript
 Object.prototype.hasOwnProperty("hasOwnProperty"); // true
 ```
 
-Essentially, this is how JavaScript makes use of prototypes. An object inherits from its `[[Prototype]]` object which in turn inherits from its own `[[Prototype]]` etc., thus forming a chain. This kind of inheritance using prototypes is hence named as Prototypal inheritance. JavaScript figures out which properties exist (or do not exist) on the object and starts traversing the chain to find the property or function, like so:
+Về cơ bản, đây là cách JavaScript sử dụng mẫu nguyên. Một đối tượng kế thừa từ đối tượng `[[Prototype]]` của nó, đối tượng này lại kế thừa từ `[[Prototype]]` của chính nó, v.v., do đó tạo thành một chuỗi. Do đó, thừa kế kiểu sử dụng mẫu nguyên này được đặt tên là mẫu kế thừa nguyên. JavaScript tìm các thuộc tính tồn tại (hoặc không tồn tại) trên đối tượng và bắt đầu trình duyệt qua chuỗi để tìm thuộc tính hoặc hàm, chẳng hạn như sau:
 
-1. Is the `.valueOf` function part of the `player1` object? No, it is not. (Remember, only the `name`, `marker` and `sayName` properties are part of the `Player` objects.)
-1. Is the function part of the `player1`'s `[[Prototype]]` (the `Object.getPrototypeOf(player1)` value, i.e., `Player.prototype`)? No, only the `.sayHello` function is a part of it.
-1. Well, then, is it part of `Object.getPrototypeOf(Player.prototype)` (=== `Object.prototype`)? Yes, `.valueOf` is defined on `Object.prototype`!
+1. Hàm `.valueOf` có phải là một phần của đối tượng `player1` không? Không, không phải vậy. (Xin nhớ rằng, các thuộc tính duy nhất `name`, `marker` và `sayName` là một thành phần của `Player` object.)
+1. Chức năng này có phải là một thành phần của `[[Prototype]]` của `player1` (giá trị `Object.getPrototypeOf(player1)`, tức là `Player.prototype`) không? Không, `.sayHello` chức năng chỉ là một thành phần của nó.
+1. Vậy thì no có phải là một phần của `Object.getPrototypeOf(Player.prototype)` (=== `Object.prototype`) không? Có, `.valueOf` được xác định trên `Object.prototype`!
 
-However, this chain does not go on forever, and if you have already tried logging the value of `Object.getPrototypeOf(Object.prototype)`, you would find that it is `null`, which indicates the end of the chain. And it is at the end of this chain that if the specific property or function is not found, `undefined` is returned.
+Tuy nhiên, chuỗi này không tồn tại mãi mãi và nếu bạn đã thử ghi lại giá trị của `Object.getPrototypeOf(Object.prototype)`, bạn sẽ thấy rằng đó là `null`, hãy biết điểm cuối của chuỗi. Và ở chuỗi cuối cùng này, nếu thuộc tính hoặc hàm cụ thể không được tìm thấy, `undefined` sẽ được trả về.
 
-Note:
+Ghi chú:
 
-1. Every prototype object inherits from `Object.prototype` by default, whether directly or indirectly.
-1. An object's `Object.getPrototypeOf()` value can only be *one* value (an object cannot have multiple `[[Prototype]]`s).
+1. Mọi đối tượng nguyên mẫu đều được kế thừa từ `Object.prototype` theo mặc định, dù trực tiếp hay gián đoạn.
+1. Giá trị `Object.getPrototypeOf()` của một đối tượng chỉ có thể là *one* có giá trị (một đối tượng không thể có nhiều `[[Prototype]]`).
 
-#### Recommended method for prototypal inheritance
+#### Phương pháp được xuất ra để kế thừa mẫu nguyên
 
-Now, how do you utilize Prototypal Inheritance? What do you need to do to use it? Just as we use `Object.getPrototypeOf()` to 'get' or view the `[[Prototype]]` of an object, we can use `Object.setPrototypeOf()` to 'set' or mutate it. Let's see how it works by adding a `Person` Object Constructor to the `Player` example, and making `Player` inherit from `Person`!
+Bây giờ, bạn làm cách nào để sử dụng mẫu Kế hoạch nguyên nguyên? Bạn cần làm gì để sử dụng nó? Giống như chúng ta sử dụng `Object.getPrototypeOf()` để 'tìm' hoặc xem `[[Prototype]]` của một đối tượng, chúng ta có thể sử dụng `Object.setPrototypeOf()` để 'đặt' hoặc thay đổi nó. Vui lòng xem nó hoạt động như thế nào bằng cách thêm Trình xây dựng đối tượng `Person` vào ví dụ `Player` và làm cho `Player` kế thừa từ `Person`!
 
 ```javascript
 function Person(name) {
@@ -245,19 +245,19 @@ player1.getMarker(); // My marker is "X"
 player2.getMarker(); // My marker is "O"
 ```
 
-From the code, we can see that we've defined a `Person` from whom a `Player` inherits properties and functions, and that the created `Player` objects are able to access both the `.sayName` and the `.getMarker` functions, in spite of them being defined on two separate `.prototype` objects! This is enabled by the use of the `Object.setPrototypeOf()` function. It takes two arguments - the first is the one which inherits and the second argument is the one which you want the first argument to inherit from. This ensures that the created `Player` objects are able to access the `.sayName` and `.getMarker` functions through their prototype chain.
+Từ mã, chúng tôi có thể thấy rằng chúng tôi đã xác định một `Person` mà `Player` kế thừa các thuộc tính và chức năng, đồng thời các đối tượng `Player` đã tạo có thể truy cập cả hai chức năng `.sayName` và `.getMarker`, mặc dù chúng được xác định rõ ràng trên hai đối tượng `.prototype` riêng biệt! Điều này được kích hoạt bằng cách sử dụng chức năng `Object.setPrototypeOf()`. Phải mất hai đối số - đối số đầu tiên là đối số kế thừa và đối số thứ hai là đối số mà bạn muốn đối số thứ nhất tiếp theo. Điều này đảm bảo rằng các đối tượng `Player` được tạo có thể truy cập các hàm `.sayName` và `.getMarker` thông tin qua mẫu nguyên chuỗi của chúng.
 
-Note:
+Ghi chú:
 
-Though it seems to be an easy way to set up Prototypal Inheritance using `Object.setPrototypeOf()`, the prototype chain has to be set up using this function *before* creating any objects. Using `setPrototypeOf()` after objects have already been created can result in performance issues.
+Mặc dù đây có vẻ là một cách dễ dàng để thiết lập Kế thừa nguyên mẫu bằng `Object.setPrototypeOf()`, nhưng mẫu nguyên chuỗi phải được thiết lập bằng chức năng này * trước khi* tạo bất kỳ đối tượng nào. Sử dụng `setPrototypeOf()` sau khi các đối tượng đã được tạo có thể dẫn đến các vấn đề về hiệu suất.
 
-A warning... this doesn't work:
+Một cảnh báo...điều này không có hiệu quả:
 
 ```javascript
 Player.prototype = Person.prototype;
 ```
 
-Both `Player.prototype` and `Person.prototype` become the exact same object in memory. This means any changes made to `Player.prototype` will also affect `Person.prototype`, which is not the intended behavior. Instead, we should make `Player.prototype` inherit from `Person.prototype`, rather than making them the same object. Consider one more example:
+Cả `Player.prototype` và `Person.prototype` đều trở thành cùng một đối tượng trong bộ nhớ. Điều này có nghĩa là bất kỳ thay đổi nào được thực hiện đối với `Player.prototype` cũng sẽ ảnh hưởng đến `Person.prototype`, đây không phải là hành vi dự kiến. Thay vào đó, chúng tôi nên làm cho `Player.prototype` kế thừa từ `Person.prototype`, thay vì các biến chúng thành cùng một đối tượng. Hãy xem xét một ví dụ nữa:
 
 ```javascript
 function Person(name) {
@@ -294,15 +294,15 @@ const carl = new Player("carl", "X");
 carl.sayName(); // Uh oh! this logs "HAHAHAHAHAHA" because we edited the sayName function!
 ```
 
-If we had used `Object.setPrototypeOf()` in this example, then we could safely edit the `Enemy.prototype.sayName` function without changing the function for `Player` as well.
+Nếu chúng tôi đã sử dụng `Object.setPrototypeOf()` trong ví dụ này, chúng tôi có thể chỉnh sửa hàm `Enemy.prototype.sayName` một cách an toàn mà không cần thay đổi hàm cho `Player`.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read up on the concept of the prototype from the articles below.
-   1. Read the article [Understanding Prototypes and Inheritance in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-prototypes-and-inheritance-in-javascript) from Digital Ocean. This is a good review of prototype inheritance and constructor functions, featuring some examples.
-   1. To go a bit deeper into both the chain and inheritance, spend some time with [JavaScript.Info's article on Prototypal Inheritance](http://javascript.info/prototype-inheritance). As usual, doing the exercises at the end will help cement this knowledge in your mind. Don't skip them! Important note: This article makes heavy use of `__proto__` which is not generally recommended. The concepts here are what we're looking for at the moment. We will soon learn another method or two for setting the prototype.
-1. You might have noticed us using the `this` keyword in object constructors and prototype methods in the examples above. [JavaScript Tutorial's article on the `this` keyword](https://www.javascripttutorial.net/javascript-this/) covers how `this` changes in various situations. Pay special attention to the pitfalls mentioned in each section.
+1. Đọc về mẫu khái niệm nguyên từ các bài viết dưới đây.
+   1. Đọc bài viết [Tìm hiểu về nguyên mẫu và tính kế thừa trong JavaScript](https://www.digitalocean.com/community/tutorials/understanding-prototypes-and-inheritance-in-javascript) từ Digital Ocean. Đây là một bài đánh giá hay về các mẫu xây dựng và kế hoạch nguyên tử, bao gồm một số ví dụ.
+   1. Để tìm hiểu sâu hơn một chút về cả chuỗi và kế hoạch chi tiết, hãy dành thời gian xem [bài viết của JavaScript.Info về Kế thừa mẫu](http://javascript.info/prototype-inheritance). Theo quy định thông thường, việc làm bài tập cuối cùng sẽ giúp bạn cố định kiến ​​thức này ngay từ đầu. Đừng bỏ qua chúng! Lưu ý quan trọng: Bài viết này sử dụng nhiều `__proto__`, điều này thường không được khuyến khích. Các khái niệm ở đây là những gì chúng tôi đang tìm kiếm vào lúc này. Chúng ta sẽ sớm tìm hiểu một hoặc hai phương pháp khác để thiết lập mẫu nguyên.
+1. Bạn có thể đã nhận thấy chúng tôi sử dụng từ khóa `this` trong hàm tạo đối tượng và mẫu nguyên thức phương pháp trong các ví dụ trên. [Bài viết của Hướng dẫn JavaScript về từ khóa `this`](https://www.javascripttutorial.net/javascript-this/) trình bày cách `this` thay đổi trong các vấn đề khác nhau. Đặc biệt chú ý đến những bẫy được đề cập trong mỗi phần.
 
 </div>

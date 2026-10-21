@@ -1,57 +1,57 @@
-### Introduction
+### Giới thiệu
 
-Before we dive further into code, we are going to take a moment to improve your editor setup and overall productivity. Doing this now will make things much easier for you going forward. This lesson will give you some information about code style, and then give you some tools to help you maintain consistent code-style throughout your projects. In some cases it can even help adjust things like indentation for you!
+Trước khi tìm hiểu sâu hơn về code, chúng ta sẽ dành một chút thời gian để cải thiện thiết lập editor và năng suất tổng thể của bạn. Làm việc này ngay bây giờ sẽ giúp mọi thứ về sau dễ dàng hơn nhiều. Bài học này sẽ cung cấp một số thông tin về code style, sau đó giới thiệu cho bạn các công cụ giúp duy trì code-style nhất quán trong suốt các project. Trong một số trường hợp, các công cụ này thậm chí có thể giúp điều chỉnh những việc như thụt lề cho bạn!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Learn about style guides and why they are important.
-- Set up a linter and prettier to make your code better.
+- Tìm hiểu về style guide và lý do chúng quan trọng.
+- Thiết lập một linter và prettier để cải thiện code.
 
-### Style guides
+### Style guide
 
-Code style is important! Having a consistent set of style rules for things such as indentation, preferred quote style or general code structure practices, makes your code more maintainable and easier to read. There are several popular JavaScript style guides on the net that set standards for these types of things and you'll find they often differ in what they enforce. None are "right" or "wrong", only that they enforce *something* to promote consistency across a codebase.
+Code style rất quan trọng! Có một tập hợp quy tắc nhất quán về những việc như thụt lề, kiểu dấu nháy ưu tiên hoặc các cách thực hành về cấu trúc code chung sẽ giúp code dễ bảo trì và dễ đọc hơn. Có một số style guide JavaScript phổ biến trên mạng đặt ra tiêu chuẩn cho những việc này, và bạn sẽ thấy chúng thường khác nhau về những gì chúng bắt buộc. Không có style guide nào "đúng" hay "sai"; điều quan trọng là chúng áp dụng *một điều gì đó* để thúc đẩy tính nhất quán trong toàn bộ codebase.
 
-Here are a few examples of style guides, including ones used by specific companies:
+Dưới đây là một vài ví dụ về style guide, trong đó có những style guide được các công ty cụ thể sử dụng:
 
-1. The [Airbnb Style Guide](https://github.com/airbnb/javascript) is one of the most popular.
-1. There is also a [JavaScript style guide used at Google](https://google.github.io/styleguide/jsguide.html).
-1. The [JavaScript Standard Style](https://standardjs.com/rules.html).
+1. [Airbnb Style Guide](https://github.com/airbnb/javascript) là một trong những style guide phổ biến nhất.
+1. Ngoài ra còn có [JavaScript style guide được sử dụng tại Google](https://google.github.io/styleguide/jsguide.html).
+1. [JavaScript Standard Style](https://standardjs.com/rules.html).
 
 ### Linting
 
-The style guides we mentioned above are full of really helpful advice for formatting, organizing and composing your code. But there are a *lot* of rules - it can be difficult to internalize them all. **Linters** are tools that will scan your code with a set of style rules and will report any errors to you that they find. In some cases, they can even auto-fix the errors! There are many linters that exist for JavaScript but by far the most common one is [ESLint](https://eslint.org/).
+Các style guide chúng ta vừa nhắc đến có rất nhiều lời khuyên hữu ích về cách định dạng, tổ chức và cấu thành code. Nhưng có *rất nhiều* quy tắc - việc ghi nhớ tất cả có thể khó khăn. **Linters** là các công cụ quét code bằng một tập hợp quy tắc style và báo cáo mọi lỗi mà chúng tìm thấy. Trong một số trường hợp, chúng thậm chí có thể tự động sửa lỗi! Có nhiều linter tồn tại cho JavaScript, nhưng phổ biến nhất là [ESLint](https://eslint.org/).
 
-ESLint is installed as a dev dependency in your project which will allow you to run checks on any of your files via the command line. [ESLint's official "Getting Started" page](https://eslint.org/docs/user-guide/getting-started) is a good place to start which covers installation and basic configuration. The default rule set covers many of the most common scenarios with sensible default settings.
+ESLint được cài đặt dưới dạng dev dependency trong project, cho phép bạn chạy các phép kiểm tra trên bất kỳ file nào bằng command line. [Trang "Getting Started" chính thức của ESLint](https://eslint.org/docs/user-guide/getting-started) là một nơi tốt để bắt đầu, trong đó có hướng dẫn cài đặt và cấu hình cơ bản. Bộ quy tắc mặc định bao quát nhiều tình huống phổ biến nhất với các thiết lập mặc định hợp lý.
 
-You will also want to look at the [docs on configuring ESLint](https://eslint.org/docs/latest/use/configure/) for a list of options that you can change, such as including or excluding certain folders or files, and details about specific rules.
+Bạn cũng nên xem [tài liệu về cấu hình ESLint](https://eslint.org/docs/latest/use/configure/) để biết danh sách các tùy chọn có thể thay đổi, chẳng hạn như bao gồm hoặc loại trừ một số folder hoặc file, cùng thông tin chi tiết về từng rule.
 
-### Formatters
+### Formatter
 
-Formatters are *awesome*. They are similar to linters, but serve a slightly different function. Formatters take your JavaScript code and then automatically format it according to a set of rules. Unlike linters, they do not look for style errors, but specifically target the layout of your code, making intelligent decisions about things like spaces, indentation levels and line-breaks.
+Formatter thật *tuyệt vời*. Chúng tương tự linter nhưng có chức năng hơi khác. Formatter nhận code JavaScript của bạn rồi tự động định dạng theo một tập hợp quy tắc. Không giống linter, formatter không tìm lỗi style mà tập trung vào layout của code, đưa ra các quyết định thông minh về những việc như khoảng trắng, mức thụt lề và ngắt dòng.
 
-As usual, there are multiple formatters out there. [Prettier](https://prettier.io/) is a very popular choice that is highly opinionated. Besides a few options, most of its formatting decisions are not customizable. Since many of these decisions have been made for you, this reduces the time spent deciding on things like indentation size or spacing, and more time on the problems that actually matter.
+Như thường lệ, có nhiều formatter khác nhau. [Prettier](https://prettier.io/) là một lựa chọn rất phổ biến và có quan điểm khá cứng rắn. Ngoài một vài tùy chọn, phần lớn quyết định định dạng của nó không thể tùy chỉnh. Vì nhiều quyết định đã được đưa ra thay bạn, bạn sẽ dành ít thời gian hơn để quyết định những việc như kích thước thụt lề hoặc khoảng cách, và có thêm thời gian cho những vấn đề thực sự quan trọng.
 
-Like with ESLint, Prettier is installed as a dev dependency in your project, so read [Prettier's installation guide](https://prettier.io/docs/en/install.html) for instructions on how to do this. While it normally runs with its default rules, you can also change any of its settings in a [Prettier configuration file](https://prettier.io/docs/configuration). If you are using the default ESLint recommended rule set, there will not be any clashing lint/format rules, meaning you can just install Prettier as is without configuring `eslint-config-prettier`.
+Tương tự ESLint, Prettier được cài đặt dưới dạng dev dependency trong project, vì vậy hãy đọc [hướng dẫn cài đặt Prettier](https://prettier.io/docs/en/install.html) để biết cách thực hiện. Mặc dù nó thường chạy với các rule mặc định, bạn cũng có thể thay đổi mọi thiết lập trong [file cấu hình Prettier](https://prettier.io/docs/configuration). Nếu bạn đang dùng bộ rule mặc định được ESLint khuyến nghị, sẽ không có rule lint/format nào xung đột, nghĩa là bạn có thể cài đặt Prettier nguyên trạng mà không cần cấu hình `eslint-config-prettier`.
 
-Using Prettier makes coding faster and easier! You don't have to worry about nailing things like indentation, or remembering every semi-colon because it will take care of those details for you.
+Sử dụng Prettier giúp việc code nhanh và dễ hơn! Bạn không cần lo lắng về việc thụt lề thật chuẩn hoặc nhớ từng dấu chấm phẩy, vì nó sẽ xử lý những chi tiết đó cho bạn.
 
-### IDE extensions for linting and formatting
+### Extension IDE cho linting và formatting
 
-Linters and formatters are typically packages you install in a project and use via the command line. However, many popular tools also have IDE extensions, and ESLint and Prettier both have extensions for Visual Studio Code that can make linting and formatting much more convenient on your machine.
+Linters và formatter thường là các package bạn cài đặt trong project và sử dụng qua command line. Tuy nhiên, nhiều công cụ phổ biến cũng có extension IDE, và cả ESLint lẫn Prettier đều có extension cho Visual Studio Code, giúp việc linting và formatting trên máy của bạn thuận tiện hơn nhiều.
 
-For example, when installed, the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) can provide linter warnings and errors as color-coded squiggly lines directly in the open file and even give you details about the specific rule(s) broken, all without you having to run ESLint in the command line. The [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) allows you to format a file with an IDE command or custom keyboard shortcut, again without having to run a command in the terminal.
+Ví dụ, sau khi cài đặt, [extension ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) có thể cung cấp cảnh báo và lỗi linter dưới dạng các đường gợn sóng được mã hóa bằng màu ngay trong file đang mở, thậm chí còn cho bạn biết chi tiết về rule cụ thể nào bị vi phạm, tất cả mà không cần chạy ESLint trong command line. [Extension Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) cho phép bạn format file bằng một command trong IDE hoặc shortcut bàn phím tùy chỉnh, cũng không cần chạy command trong terminal.
 
-It is important that you still have the packages installed as dependencies in your project along any configuration files. The extensions can have fallback rules set, but if they detect the respective package and configuration file in your project, they will use those rules and the package version installed. That way, projects always hold the source of truth for what linting and formatting rules should be applied, and should you ever work on other projects, you're less likely to introduce unwanted style changes from your local settings.
+Điều quan trọng là bạn vẫn phải cài đặt các package dưới dạng dependency trong project cùng với mọi file cấu hình. Các extension có thể đặt sẵn rule dự phòng, nhưng nếu phát hiện package và file cấu hình tương ứng trong project, chúng sẽ sử dụng các rule đó và phiên bản package đã cài. Nhờ vậy, project luôn chứa nguồn sự thật cho các rule linting và formatting cần áp dụng, và nếu làm việc trên các project khác, bạn sẽ ít có khả năng vô tình đưa vào những thay đổi style không mong muốn từ thiết lập cục bộ.
 
-In summary, the extensions are great tools for convenience but they should not be used as the source of truth for a project's linting or formatting setup.
+Tóm lại, các extension là công cụ tiện lợi tuyệt vời, nhưng không nên được dùng làm nguồn sự thật cho thiết lập linting hoặc formatting của project.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Adding setup to template repositories
+#### Thêm thiết lập vào template repository
 
-Recall [template repositories](https://www.theodinproject.com/lessons/node-path-javascript-revisiting-webpack#template-repositories)? You can include linter and formatter setup in any of your templates to make things quicker and easier in the future!
+Hãy nhớ [template repository](https://www.theodinproject.com/lessons/node-path-javascript-revisiting-webpack#template-repositories) chứ? Bạn có thể đưa thiết lập linter và formatter vào bất kỳ template nào để mọi việc nhanh và dễ hơn trong tương lai!
 
 </div>
 
@@ -59,8 +59,8 @@ Recall [template repositories](https://www.theodinproject.com/lessons/node-path-
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this article that goes more into [the value of linters and how they work](https://blog.codacy.com/what-is-a-linter).
-1. Watch this [short intro to Prettier](https://www.youtube.com/watch?v=hkfBvpEfWdA) by its creator.
-1. Go to [Prettier's online playground](https://prettier.io/playground) and give it a test drive. Go ahead and copy/paste some of your old JavaScript code into that editor and see what happens.
+1. Đọc bài viết này, trong đó trình bày sâu hơn về [giá trị của linter và cách chúng hoạt động](https://blog.codacy.com/what-is-a-linter).
+1. Xem [video giới thiệu ngắn về Prettier](https://www.youtube.com/watch?v=hkfBvpEfWdA) của chính tác giả công cụ.
+1. Truy cập [online playground của Prettier](https://prettier.io/playground) và dùng thử. Hãy copy/paste một phần code JavaScript cũ của bạn vào editor đó để xem điều gì xảy ra.
 
 </div>

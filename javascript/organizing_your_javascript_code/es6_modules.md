@@ -1,28 +1,28 @@
-### Introduction
+### Giới thiệu
 
-We've learned about the **module pattern** in a previous lesson and played around with using them to help organize our variables and functions. At some point in the last few projects, you may have even wondered, "How would we manage more complex projects? Files would get too long! It would be great if we could split our code up into multiple files for organization!". Using multiple files would be extremely handy for this exact reason.
+Chúng ta đã học về **module pattern** trong một bài trước và thử dùng nó để giúp tổ chức các biến và function. Có lúc trong một vài project gần đây, bạn thậm chí có thể đã tự hỏi: "Chúng ta sẽ quản lý những project phức tạp hơn như thế nào? File sẽ dài quá! Sẽ thật tuyệt nếu có thể chia code thành nhiều file để tổ chức tốt hơn!" Việc sử dụng nhiều file sẽ cực kỳ hữu ích chính vì lý do này.
 
-While the module pattern used to play a big part in helping us manage this, the release of ES6 (sometimes referred to as ES2015) gave us actual "modules" and thus they are often referred to as "ES6 modules" or "ESM".
+Trước đây, module pattern đóng vai trò lớn trong việc giúp chúng ta quản lý điều này, nhưng sự ra mắt của ES6 (đôi khi được gọi là ES2015) đã mang đến các "module" thực sự, vì vậy chúng thường được gọi là "ES6 module" hoặc "ESM".
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Explain what ES6 modules are and how to import and export from them.
-- Describe the difference between default and named exports.
-- Explain the main differences between CommonJS modules and ES6 modules.
+- Giải thích ES6 module là gì và cách import, export từ chúng.
+- Mô tả sự khác nhau giữa default export và named export.
+- Giải thích những khác biệt chính giữa CommonJS module và ES6 module.
 
-### Before ES6 modules: The global scope problem
+### Trước ES6 module: Vấn đề global scope
 
 <div class="lesson-note" markdown="1">
 
-#### Using modern syntax in pre-ES6 examples
+#### Dùng cú pháp hiện đại trong ví dụ pre-ES6
 
-Even though `let`/`const` and arrow functions were not around before ES6, we will still use them in our pre-ES6 examples. They won't change how things work regarding the global scope and the module pattern, which is the main focus of this section.
+Mặc dù `let`/`const` và arrow function chưa tồn tại trước ES6, chúng ta vẫn sẽ dùng chúng trong các ví dụ pre-ES6. Chúng không thay đổi cách hoạt động liên quan đến global scope và module pattern, vốn là trọng tâm chính của phần này.
 
 </div>
 
-Let's say we have two scripts, `one.js` and `two.js`, and we link them in our HTML as separate scripts.
+Giả sử chúng ta có hai script, `one.js` và `two.js`, và link chúng trong HTML dưới dạng các script riêng biệt.
 
 ```html
 <script src="one.js" defer></script>
@@ -39,11 +39,11 @@ const greeting = "Hello, Odinite!";
 console.log(greeting);
 ```
 
-When we open the HTML, we see `"Hello, Odinite!"` getting logged to the console, even though `greeting` was never defined in `two.js`! That's because the two scripts were loaded one after the other into the same global scope, as if we wrote only one file with the two lines in that order. If we put the `two.js` script tag first, we would instead get an error that `greeting is not defined`, as it would try to do the console log before we define the variable.
+Khi mở HTML, chúng ta thấy `"Hello, Odinite!"` được log vào console, dù `greeting` chưa từng được định nghĩa trong `two.js`! Đó là vì hai script được load lần lượt vào cùng một global scope, như thể chúng ta chỉ viết một file chứa hai dòng theo đúng thứ tự đó. Nếu đặt thẻ script của `two.js` lên trước, thay vào đó chúng ta sẽ nhận lỗi `greeting is not defined`, vì nó sẽ cố log vào console trước khi chúng ta định nghĩa biến.
 
-This means that even if we use multiple JavaScript files, they will still end up sharing the same global scope. Our top-level variables are not safe!
+Điều này có nghĩa là dù sử dụng nhiều file JavaScript, cuối cùng chúng vẫn chia sẻ cùng một global scope. Các biến ở top-level của chúng ta không an toàn!
 
-Before ESM, we could wrap some things in an IIFE, which would cause it to run just the same, but now any variables inside them are scoped to that function and not globally.
+Trước ESM, chúng ta có thể bọc một số thứ trong IIFE, khiến nó vẫn chạy theo cách tương tự, nhưng giờ mọi biến bên trong sẽ thuộc scope của function đó thay vì ở global.
 
 ```javascript
 // one.js
@@ -52,7 +52,7 @@ Before ESM, we could wrap some things in an IIFE, which would cause it to run ju
 })();
 ```
 
-Now, we get an error in the console that `greeting is not defined`, because there is no global variable called `greeting` for us to log! But what if we wanted only *some* things to be exposed to other files? We can return those things from our IIFE into the global scope and keep the other things private!
+Bây giờ, console báo lỗi `greeting is not defined`, vì không có biến global nào tên `greeting` để chúng ta log! Nhưng nếu chỉ muốn *một số* thứ được expose cho các file khác thì sao? Chúng ta có thể return những thứ đó từ IIFE vào global scope và giữ những thứ khác ở private!
 
 ```javascript
 // one.js
@@ -63,33 +63,33 @@ const greeting = (() => {
 })();
 ```
 
-Now, the global variable `greeting` will contain `"Hello, Odinite!"` and so our code from `two.js` successfully logs this to the console. However, both `greetingString` and `farewellString` are local to the IIFE and not global. The difference is that `greetingString` is explicitly returned from the IIFE and assigned to `greeting`, making it accessible outside the function, while `farewellString` is not returned, so it remains completely inaccessible in `two.js`. Through this, we are able to choose what to expose from one file to be made available to all files that follow it! This is why IIFEs were often called the "module pattern", because they allowed us to write modular code across multiple files before we were given "real modules".
+Bây giờ, biến global `greeting` sẽ chứa `"Hello, Odinite!"`, nên code từ `two.js` log thành công giá trị này vào console. Tuy nhiên, cả `greetingString` và `farewellString` đều là local với IIFE chứ không phải global. Điểm khác biệt là `greetingString` được return rõ ràng từ IIFE và gán cho `greeting`, khiến nó có thể được truy cập bên ngoài function, còn `farewellString` không được return nên hoàn toàn không thể truy cập trong `two.js`. Nhờ vậy, chúng ta có thể chọn những gì cần expose từ một file để cung cấp cho tất cả file đứng sau nó! Đây là lý do IIFE thường được gọi là "module pattern": chúng cho phép viết code dạng module qua nhiều file trước khi có "module thực sự".
 
-But now, with ESM, we no longer need to use IIFEs for this specific purpose.
+Nhưng giờ đây, với ESM, chúng ta không còn cần dùng IIFE cho mục đích cụ thể này nữa.
 
-### ES6 modules
+### ES6 module
 
-With ESM, we have a little more control over things. Each file has its own private scope by default, and not only can we choose what things we export from that file, we can also choose what things we import into other files. So just because we export something, it doesn't mean it's automatically available elsewhere; it will only be available in another file if we explicitly import it there. Lots of control!
+Với ESM, chúng ta có thêm một chút quyền kiểm soát. Mỗi file mặc định có scope riêng và private, đồng thời chúng ta không chỉ chọn được thứ gì export từ file đó mà còn chọn được thứ gì import vào các file khác. Vì vậy, chỉ vì đã export một thứ không có nghĩa là nó tự động khả dụng ở nơi khác; nó chỉ khả dụng trong một file khác nếu chúng ta import nó ở đó một cách rõ ràng. Rất nhiều quyền kiểm soát!
 
 <div class="lesson-note" markdown="1">
 
-#### Module scope is not the global scope
+#### Module scope không phải global scope
 
-When using ESM, each module has its own private scope, where we use import/export to communicate between files. A top-level variable in a module will not be accessible in the global scope.
+Khi dùng ESM, mỗi module có scope riêng và private, nơi chúng ta dùng import/export để giao tiếp giữa các file. Một biến top-level trong module sẽ không thể truy cập trong global scope.
 
 </div>
 
-### Import and export
+### Import và export
 
-How do we actually import and export? In true JavaScript fashion, we don't have just one but two types of importing and exporting: `default` and `named`, and they essentially do the same kind of thing but very slightly differently. They can even be mixed and matched in the same file.
+Vậy thực sự import và export như thế nào? Đúng phong cách JavaScript, chúng ta không chỉ có một mà có hai loại import và export: `default` và `named`. Về cơ bản, chúng làm cùng một việc nhưng khác nhau một chút. Chúng thậm chí còn có thể được kết hợp trong cùng một file.
 
-Firstly, we'll just show you the different import/export syntaxes but the code won't work yet, as you'll also need to link the scripts as ES6 modules. We will cover that after this section.
+Trước tiên, chúng ta sẽ chỉ trình bày các cú pháp import/export khác nhau, nhưng code chưa chạy được vì bạn cũng cần link các script dưới dạng ES6 module. Chúng ta sẽ trình bày việc đó sau phần này.
 
-#### Named exports
+#### Named export
 
-Let's use our `one.js` and `two.js` examples from before. First, we'll need to export our greeting and farewell strings from `one.js`.
+Hãy dùng lại các ví dụ `one.js` và `two.js` ở trên. Trước tiên, chúng ta cần export các chuỗi greeting và farewell từ `one.js`.
 
-To export something as a **named export**, we can either stick the `export` keyword in front of its declaration, or add an `export { }` somewhere in the file (typically the end), where the curly braces contain a list of the names of the things to export. Either method is fine to use, and we can export as many things as we like as named exports.
+Để export một thứ dưới dạng **named export**, chúng ta có thể đặt từ khóa `export` trước phần khai báo, hoặc thêm `export { }` ở đâu đó trong file (thường là cuối file), trong đó dấu ngoặc nhọn chứa danh sách tên của những thứ cần export. Cách nào cũng được, và chúng ta có thể export bao nhiêu thứ tùy ý dưới dạng named export.
 
 ```javascript
 // one.js
@@ -97,7 +97,7 @@ export const greeting = "Hello, Odinite!";
 export const farewell = "Bye bye, Odinite!";
 ```
 
-Or on a separate line:
+Hoặc ở một dòng riêng:
 
 ```javascript
 // one.js
@@ -106,9 +106,9 @@ const farewell = "Bye bye, Odinite!";
 export { greeting, farewell };
 ```
 
-Now to import these variables in `two.js`! Remember that we can control what we import, so if we only need the `greeting` variable, we could just import that on its own. If another file needed the `farewell` variable (or both), then that file could import what it needs. Don't import it? Can't use it. To do named imports, we must specify the names of the things we want to import inside `{ }` and provide the path to the file we're importing from (when we deal with importing third-party libraries later, you can just use the name of the library instead of a full file path).
+Bây giờ hãy import các biến này trong `two.js`! Hãy nhớ rằng chúng ta có thể kiểm soát thứ mình import, nên nếu chỉ cần biến `greeting`, chúng ta có thể chỉ import riêng nó. Nếu một file khác cần biến `farewell` (hoặc cả hai), file đó có thể import những gì nó cần. Không import thì không dùng được. Để thực hiện named import, chúng ta phải chỉ rõ tên những thứ muốn import bên trong `{ }` và cung cấp path tới file được import (khi xử lý library bên thứ ba sau này, bạn có thể chỉ dùng tên library thay vì full file path).
 
-Note that [you cannot use template strings for the file path](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#module-name), only single or double-quoted strings.
+Lưu ý rằng [bạn không thể dùng template string cho file path](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#module-name), chỉ có thể dùng string đặt trong dấu nháy đơn hoặc nháy kép.
 
 ```javascript
 // two.js
@@ -120,9 +120,9 @@ console.log(farewell); // "Bye bye, Odinite!"
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Named imports/exports aren't the same as object literals!
+#### Named import/export không giống object literal!
 
-Using `{ }` with named imports/exports is special syntax and is not related in any way to declaring object literals or [destructuring objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring).
+Dùng `{ }` với named import/export là cú pháp đặc biệt và hoàn toàn không liên quan đến việc khai báo object literal hay [destructuring object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring).
 
 ```javascript
 export { greeting, farewell };
@@ -130,24 +130,24 @@ export { greeting, farewell };
 import { greeting, farewell } from "./one.js";
 ```
 
-In the above, we are not exporting an object containing `greeting` and `farewell` keys, nor are we destructuring an object with those keys when importing. We are just using named import/export syntax.
+Trong ví dụ trên, chúng ta không export một object chứa các key `greeting` và `farewell`, cũng không destructure một object có các key đó khi import. Chúng ta chỉ đang dùng cú pháp named import/export.
 
 </div>
 
-#### Default exports
+#### Default export
 
-In contrast to named exports, a file can only default export a single thing. Something exported this way does not have a name attached to it, so when you import it somewhere, you can decide what name to give it.
+Trái với named export, một file chỉ có thể default export một thứ duy nhất. Thứ được export theo cách này không có tên gắn kèm, nên khi import ở đâu đó, bạn có thể quyết định tên cho nó.
 
-To export something from a file as a default export, we can also do it inline by prepending `export default` to the appropriate declaration, or we can export it at the end of the file, this time *without* any curly braces. Again, either way is perfectly fine. Note that if you want to inline default export a variable, the `default` keyword *replaces* the variable declaration so you export the expression directly.
+Để export một thứ từ file dưới dạng default export, chúng ta cũng có thể làm inline bằng cách thêm `export default` trước phần khai báo phù hợp, hoặc export ở cuối file, lần này *không có* dấu ngoặc nhọn. Một lần nữa, cách nào cũng hoàn toàn được. Lưu ý rằng nếu muốn inline default export một biến, từ khóa `default` sẽ *thay thế* phần khai báo biến, nên bạn export trực tiếp expression.
 
-Let's default export our greeting string from `one.js`.
+Hãy default export chuỗi greeting từ `one.js`.
 
 ```javascript
 // one.js
 export default "Hello, Odinite!";
 ```
 
-Or on a separate line:
+Hoặc ở một dòng riêng:
 
 ```javascript
 // one.js
@@ -155,7 +155,7 @@ const greeting = "Hello, Odinite!";
 export default greeting;
 ```
 
-Now in our `two.js`, we can default import that string. Remember, since we're importing something that was default exported, we can name it whatever we want. Even though the variable was called `greeting` in `one.js`, we don't have to call it that in `two.js` if we don't want to. When default importing, we don't use curly braces, which are for named importing.
+Bây giờ trong `two.js`, chúng ta có thể default import chuỗi đó. Hãy nhớ rằng vì đang import thứ được default export, chúng ta có thể đặt tên tùy ý. Mặc dù biến trong `one.js` được gọi là `greeting`, chúng ta không nhất thiết phải gọi nó như vậy trong `two.js`. Khi default import, chúng ta không dùng dấu ngoặc nhọn vì chúng dành cho named import.
 
 ```javascript
 // two.js
@@ -164,9 +164,9 @@ import helloOdinite from "./one.js";
 console.log(helloOdinite); // "Hello, Odinite!"
 ```
 
-You can use both default and named exports in the same file. Confusingly enough, there isn't really a universally agreed-upon rule for when to use either, outside of the fact that a file can have multiple named exports but only one default export. When it comes to only needing to export a single thing from a module, some people prefer using a default export whereas some prefer using a single named export. Both work so use whatever you prefer, or if working in a team, whatever the team prefers.
+Bạn có thể dùng cả default export và named export trong cùng một file. Khá khó hiểu là không có quy tắc được thống nhất rộng rãi về lúc nào nên dùng loại nào, ngoài việc một file có thể có nhiều named export nhưng chỉ có một default export. Khi chỉ cần export một thứ duy nhất từ module, có người thích default export, trong khi người khác thích một named export duy nhất. Cả hai đều hoạt động, nên hãy dùng cách bạn thích, hoặc nếu làm việc trong team thì dùng cách team ưa chuộng.
 
-Let's default export the greeting string from `one.js`, and export the farewell string as a named export.
+Hãy default export chuỗi greeting từ `one.js` và export chuỗi farewell dưới dạng named export.
 
 ```javascript
 // one.js
@@ -174,7 +174,7 @@ export default "Hello, Odinite!";
 export const farewell = "Bye bye, Odinite!";
 ```
 
-We can then import them both in `two.js`. We need to default import the greeting string (which also means we can name it whatever we want) and named import the farewell string.
+Sau đó chúng ta có thể import cả hai trong `two.js`. Chúng ta cần default import chuỗi greeting (điều này cũng có nghĩa là có thể đặt tên tùy ý) và named import chuỗi farewell.
 
 ```javascript
 // two.js
@@ -184,50 +184,50 @@ console.log(greeting); // "Hello, Odinite!"
 console.log(farewell); // "Bye bye, Odinite!"
 ```
 
-### Entry points
+### Entry point
 
-When we use ESM, instead of adding every JavaScript file to our HTML in order, we only need to link a single file - the **entry point**.
+Khi dùng ESM, thay vì thêm lần lượt mọi file JavaScript vào HTML, chúng ta chỉ cần link một file duy nhất - **entry point**.
 
 ```html
 <script src="two.js" type="module"></script>
 ```
 
-Why is `two.js` our entry point? Well, in our above examples, `two.js` imports variables from `one.js`, meaning `two.js` depends on `one.js`, so we have the following **dependency graph**:
+Vì sao `two.js` là entry point? Trong các ví dụ trên, `two.js` import biến từ `one.js`, nghĩa là `two.js` phụ thuộc vào `one.js`, nên chúng ta có **dependency graph** sau:
 
 ```text
 importer  depends on  exporter
 two.js <-------------- one.js
 ```
 
-When we load `two.js` as a module, the browser will see that it depends on `one.js` and load the code from that file as well. If we instead used `one.js` as our entry point, the browser would see that it does not depend on any other files, and so would do nothing else. Our code from `two.js` would not be used, and nothing would get logged!
+Khi load `two.js` dưới dạng module, trình duyệt sẽ thấy nó phụ thuộc vào `one.js` và cũng load code từ file đó. Nếu dùng `one.js` làm entry point, trình duyệt sẽ thấy nó không phụ thuộc file nào khác nên sẽ không làm gì thêm. Code từ `two.js` sẽ không được dùng và không có gì được log!
 
-If we had another file, `three.js`, that exported something and `two.js` imported from it, then `two.js` would still be our entry point, now depending on both `one.js` and `three.js`.
+Nếu có thêm file `three.js` export một thứ và `two.js` import từ đó, `two.js` vẫn là entry point, lúc này phụ thuộc vào cả `one.js` và `three.js`.
 
 ```text
 two.js <-------------- one.js
               └------- three.js
 ```
 
-Or perhaps instead of `two.js`, `one.js` imports from `three.js`. In which case, `two.js` would still be our entry point and depend on `three.js` indirectly through `one.js`.
+Hoặc có thể thay vì `two.js`, `one.js` import từ `three.js`. Khi đó `two.js` vẫn là entry point và phụ thuộc gián tiếp vào `three.js` thông qua `one.js`.
 
 ```text
 two.js <-------------- one.js <-------------- three.js
 ```
 
-Note that we only needed the one script tag, as the browser will handle the additional file dependencies for us. We also did not need to add the `defer` attribute, as `type="module"` will automatically defer script execution for us.
+Lưu ý rằng chúng ta chỉ cần một thẻ script, vì trình duyệt sẽ tự xử lý các dependency bổ sung của file. Chúng ta cũng không cần thêm thuộc tính `defer`, vì `type="module"` sẽ tự động defer việc thực thi script.
 
-If you had coded along with the IIFE example at the start of the lesson, try rewriting the JavaScript to use `import` and `export`, and link only the entry point as a module script. Due to browser security reasons, ES6 modules cannot be loaded if you open the HTML file directly in the browser, so make sure you use Visual Studio Code's [Live Preview extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) if you aren't already.
+Nếu bạn đã làm theo ví dụ IIFE ở đầu bài, hãy thử viết lại JavaScript để dùng `import` và `export`, rồi chỉ link entry point dưới dạng module script. Vì lý do bảo mật của trình duyệt, ES6 module không thể được load nếu bạn mở trực tiếp file HTML trong trình duyệt, nên hãy đảm bảo dùng extension [Live Preview của Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) nếu bạn chưa dùng.
 
 ### CommonJS
 
-Along the way, you may have bumped into something called CommonJS (CJS), which uses syntax like `require` and `module.exports` instead of `import` and `export`. You may remember seeing this in our JavaScript exercises in the Foundations course (you've come a long way)! This is a module system that was designed for use with Node.js that works a little differently than ESM, and is not something that browsers will be able to understand.
+Trong quá trình học, có thể bạn đã gặp CommonJS (CJS), hệ thống dùng cú pháp như `require` và `module.exports` thay cho `import` và `export`. Bạn có thể nhớ đã thấy nó trong các bài tập JavaScript ở khóa Foundations (bạn đã đi được một chặng đường dài)! Đây là một module system được thiết kế để dùng với Node.js, hoạt động hơi khác ESM và không phải thứ mà trình duyệt có thể hiểu.
 
-CJS is still used quite a lot in Node.js code, though in recent years, ESM in Node.js has been gaining popularity. For the time being, we are focused on writing code to run in the browser, so we will be spending time with ESM. If you are taking the Full Stack JavaScript pathway, then we will cover CJS in more detail later in the Node.js course.
+CJS vẫn được sử dụng khá nhiều trong code Node.js, dù những năm gần đây ESM trong Node.js đang ngày càng phổ biến. Hiện tại, chúng ta tập trung viết code chạy trong trình duyệt nên sẽ dành thời gian cho ESM. Nếu đang theo lộ trình Full Stack JavaScript, sau này chúng ta sẽ học CJS chi tiết hơn trong khóa Node.js.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. As per usual, you can learn most about JavaScript keywords and concepts from the MDN docs, so check out the [docs on export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) and [docs on import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). There are little extras about them we have not covered in this lesson, such as aliases and namespace imports.
+1. Như thường lệ, bạn có thể tìm hiểu hầu hết keyword và khái niệm JavaScript qua tài liệu MDN, nên hãy xem [tài liệu về export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) và [tài liệu về import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). Có một số phần mở rộng nhỏ về chúng mà chúng ta chưa đề cập trong bài này, chẳng hạn alias và namespace import.
 
 </div>

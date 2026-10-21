@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-Let's practice!  This testing thing really is not that difficult, but it *is* quite new.  The only way to get comfortable with it is to spend some time doing it.
+Hãy thực hành! Việc testing này thực sự không khó đến vậy, nhưng *vẫn* còn khá mới. Cách duy nhất để cảm thấy quen thuộc là dành thời gian thực hiện nó.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Write tests for the following, and then make the tests pass! Remember that Jest does not have built-in stable support for ESM, so you will need to [set up Babel for Jest ESM/CJS conversion](https://www.theodinproject.com/lessons/node-path-javascript-testing-basics#using-es6-import-statements-with-jest).
+Hãy viết test cho những yêu cầu sau, rồi làm cho các test pass! Hãy nhớ rằng Jest không có hỗ trợ ổn định được tích hợp sẵn cho ESM, vì vậy bạn sẽ cần [thiết lập Babel để chuyển đổi Jest ESM/CJS](https://www.theodinproject.com/lessons/node-path-javascript-testing-basics#using-es6-import-statements-with-jest).
 
-1. A `capitalize` function that takes a string and returns it with the first character capitalized.
-1. A `reverseString` function that takes a string and returns it reversed.
-1. A `calculator` object that contains functions for the basic operations: `add`, `subtract`, `divide`, and `multiply`. Each of these functions should take two numbers and return the correct calculation.
-1. A `caesarCipher` function that takes a string and a shift factor and returns it with each character "shifted". Read more about [how a Caesar cipher works](https://crypto.interactive-maths.com/caesar-shift-cipher.html).
-   1. Don’t forget to test wrapping from `z` to `a`. For example, `caesarCipher('xyz', 3)` should return `'abc'`.
-   1. Don’t forget to test case preservation. The shifted lettercase should follow the original lettercase. For example, `caesarCipher('HeLLo', 3)` should return `'KhOOr'`.
-   1. Don't forget to test punctuation. Punctuation, spaces, and other non-alphabetical characters should remain unchanged. For example, `caesarCipher('Hello, World!', 3)` should return `'Khoor, Zruog!'`.
-   1. For this one, you may want to split the final function into a few smaller functions.  One concept of Testing is that you don't need to explicitly test *every* function you write... Just the public ones.  So in this case you only need tests for the final `caesarCipher` function.  If it works as expected you can rest assured that your smaller helper functions are doing what they're supposed to.
-1. An `analyzeArray` function that takes an array of numbers and returns an object with the following properties: `average`, `min`, `max`, and `length`.
+1. Một function `capitalize` nhận một string và trả về string đó với ký tự đầu tiên được viết hoa.
+1. Một function `reverseString` nhận một string và trả về string đó sau khi đảo ngược.
+1. Một object `calculator` chứa các function cho những phép toán cơ bản: `add`, `subtract`, `divide` và `multiply`. Mỗi function cần nhận hai số và trả về phép tính chính xác.
+1. Một function `caesarCipher` nhận một string và một shift factor rồi trả về string với mỗi ký tự được "dịch chuyển". Đọc thêm về [cách Caesar cipher hoạt động](https://crypto.interactive-maths.com/caesar-shift-cipher.html).
+   1. Đừng quên test việc chuyển vòng từ `z` sang `a`. Ví dụ, `caesarCipher('xyz', 3)` phải trả về `'abc'`.
+   1. Đừng quên test việc giữ nguyên chữ hoa chữ thường. Lettercase sau khi dịch chuyển phải theo lettercase ban đầu. Ví dụ, `caesarCipher('HeLLo', 3)` phải trả về `'KhOOr'`.
+   1. Đừng quên test dấu câu. Dấu câu, khoảng trắng và các ký tự không phải chữ cái khác phải được giữ nguyên. Ví dụ, `caesarCipher('Hello, World!', 3)` phải trả về `'Khoor, Zruog!'`.
+   1. Với bài này, bạn có thể muốn tách function cuối thành một vài function nhỏ hơn. Một khái niệm của Testing là bạn không cần test tường minh *mọi* function mình viết... Chỉ cần test các function public. Vì vậy, trong trường hợp này, bạn chỉ cần test function `caesarCipher` cuối cùng. Nếu nó hoạt động như mong đợi, bạn có thể yên tâm rằng các helper function nhỏ hơn đang làm đúng nhiệm vụ.
+1. Một function `analyzeArray` nhận một array các số và trả về một object có các thuộc tính sau: `average`, `min`, `max` và `length`.
 
    ```javascript
    const object = analyzeArray([1,8,3,4,2,6]);

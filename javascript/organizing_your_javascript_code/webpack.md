@@ -1,33 +1,33 @@
-### Introduction
+### Giới thiệu
 
-In the previous lesson, we introduced ES6 modules (ESM) and npm. The introduction of ESM greatly mitigated some of the issues with managing individual script files and dependencies. However, downloading a large number of module files individually can reduce performance, especially as more third party files are imported.
+Trong bài học trước, chúng ta đã giới thiệu các module ES6 (ESM) và npm. Sự ra đời của ESM đã giảm đáng kể một số vấn đề liên quan đến việc quản lý từng file script và các dependency. Tuy nhiên, việc tải riêng lẻ một số lượng lớn file module có thể làm giảm hiệu năng, đặc biệt khi ngày càng có nhiều file của bên thứ ba được import.
 
-Fortunately, more recent web technologies have greatly improved these aspects, but bundlers still provide us with a lot of power to process and optimize our code in various ways. This power, however, does come with the small cost of needing to configure a bundler. For now, our needs are few and simple, and we can look at the basic things one at a time.
+May mắn là các công nghệ web mới hơn đã cải thiện đáng kể những khía cạnh này, nhưng bundler vẫn cung cấp cho chúng ta rất nhiều khả năng để xử lý và tối ưu hóa code theo nhiều cách. Tuy nhiên, khả năng đó đi kèm một chi phí nhỏ: chúng ta cần cấu hình bundler. Hiện tại, nhu cầu của chúng ta còn ít và đơn giản, nên có thể xem từng phần cơ bản một.
 
-Awareness of bundlers and basic experience with them is valuable. While in recent years, new build tools have come out that handle a lot of basic configuration for us, in the real world, you may not always get a chance to use these shiny new tools. It's very reasonable to end up working with codebases that use tools that require more manual configuration. Even when you work with tools that handle more things for you, it's useful to understand what those tools are actually doing for you.
+Hiểu biết về bundler và có trải nghiệm cơ bản với chúng là điều hữu ích. Mặc dù trong những năm gần đây đã xuất hiện các build tool mới có thể tự xử lý nhiều cấu hình cơ bản, trong thực tế bạn không phải lúc nào cũng có cơ hội sử dụng những công cụ mới mẻ đó. Việc cuối cùng làm việc với các codebase sử dụng công cụ đòi hỏi cấu hình thủ công là hoàn toàn có thể xảy ra. Ngay cả khi làm việc với các công cụ tự xử lý nhiều phần hơn, hiểu chúng thực sự đang làm gì cho bạn vẫn hữu ích.
 
-Ensure you are running the latest LTS version of Node.js before proceeding. If necessary, you can use NVM to install the latest LTS version as per the [Installing Node.js](https://www.theodinproject.com/lessons/foundations-installing-node-js#installing-node) lesson.
+Hãy đảm bảo bạn đang chạy phiên bản LTS mới nhất của Node.js trước khi tiếp tục. Nếu cần, bạn có thể dùng NVM để cài phiên bản LTS mới nhất theo bài học [Cài đặt Node.js](https://www.theodinproject.com/lessons/foundations-installing-node-js#installing-node).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Explain the purpose of bundlers and how they work.
-- Configure Webpack to bundle JavaScript modules.
-- Configure Webpack to handle non-JavaScript files during bundling, including using HtmlWebpackPlugin.
-- Set up Webpack's development server.
+- Giải thích mục đích của bundler và cách chúng hoạt động.
+- Cấu hình Webpack để bundle các JavaScript module.
+- Cấu hình Webpack để xử lý các file không phải JavaScript trong quá trình bundling, bao gồm sử dụng HtmlWebpackPlugin.
+- Thiết lập development server của Webpack.
 
 ### Bundling
 
-In the ES6 modules lesson, we learned what an **entry point** is, what a **dependency graph** is, and how to add an entry point file to HTML as a module script. With bundling, the same concepts of entry points and dependency graphs apply: we provide the bundler with an entry point. It then builds a dependency graph from that file, combines all relevant files together, and then outputs a single file with all the necessary code included.
+Trong bài học về ES6 module, chúng ta đã học **entry point** là gì, **dependency graph** là gì và cách thêm một file entry point vào HTML dưới dạng module script. Với bundling, các khái niệm về entry point và dependency graph vẫn được áp dụng: chúng ta cung cấp cho bundler một entry point. Sau đó, bundler xây dựng dependency graph từ file đó, kết hợp tất cả các file liên quan lại với nhau rồi xuất ra một file duy nhất chứa toàn bộ code cần thiết.
 
-While it does this, we could also get it to do a whole bunch of other things, such as [minifying our code](https://en.wikipedia.org/wiki/Minification_(programming)), image optimizations, or even ["tree shaking"](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking). Most of these extra optimizations are out of the scope of this course; we will instead be focusing on basic bundling of JavaScript, and handling HTML, CSS, and images.
+Trong quá trình này, chúng ta cũng có thể yêu cầu nó làm nhiều việc khác, chẳng hạn như [minify code](https://en.wikipedia.org/wiki/Minification_(programming)), tối ưu hóa hình ảnh, hoặc thậm chí ["tree shaking"](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking). Phần lớn các tối ưu hóa bổ sung này nằm ngoài phạm vi của khóa học; thay vào đó, chúng ta sẽ tập trung vào bundling JavaScript cơ bản và xử lý HTML, CSS cùng hình ảnh.
 
 ### Webpack
 
-Webpack is one of the most popular JavaScript bundlers, if not the most popular one, and has been for a long time. Let's get started with bundling!
+Webpack là một trong những JavaScript bundler phổ biến nhất, nếu không muốn nói là phổ biến nhất, và đã như vậy trong một thời gian dài. Hãy bắt đầu bundling!
 
-We'll first need to make a new directory for our practice app, then create a `package.json` file in it for npm to record information about packages we use (like Webpack). Run the following in your terminal:
+Trước hết, chúng ta cần tạo một thư mục mới cho practice app, rồi tạo một file `package.json` trong đó để npm ghi lại thông tin về các package chúng ta sử dụng (chẳng hạn Webpack). Chạy lệnh sau trong terminal:
 
 ```bash
 mkdir webpack-practice &&
@@ -35,7 +35,7 @@ cd webpack-practice &&
 npm init -y --init-type=module
 ```
 
-This should create a `package.json` file inside the `webpack-practice` directory you just made and entered. Now we can install Webpack:
+Lệnh này sẽ tạo file `package.json` bên trong thư mục `webpack-practice` mà bạn vừa tạo và chuyển vào. Bây giờ chúng ta có thể cài đặt Webpack:
 
 ```bash
 npm install --save-dev webpack webpack-cli
@@ -43,45 +43,45 @@ npm install --save-dev webpack webpack-cli
 
 <div class="lesson-note" markdown="1">
 
-#### npm audit vulnerabilities
+#### Lỗ hổng npm audit
 
-After installing a package with npm, the output may mention something about some vulnerabilities and running `npm audit fix`. Even though these are technically vulnerabilities, they are very likely to be extremely specific niche things and as far as TOP is concerned, highly unlikely to be of any actual danger to anything you do in the curriculum, so you can ignore these if you see them.
+Sau khi cài đặt một package bằng npm, output có thể nhắc đến một số lỗ hổng và việc chạy `npm audit fix`. Mặc dù về mặt kỹ thuật đây là các lỗ hổng, rất có khả năng chúng là những vấn đề cực kỳ đặc thù và trong phạm vi TOP thì hầu như không gây nguy hiểm thực tế nào cho những việc bạn làm trong curriculum, nên bạn có thể bỏ qua nếu gặp chúng.
 
-These are more relevant if you're making production apps with higher stakes, where you'd need to examine the vulnerabilities themselves to see if they can tangibly hurt you.
+Những vấn đề này phù hợp hơn với các ứng dụng production có mức độ rủi ro cao hơn, nơi bạn cần kiểm tra chính các lỗ hổng để xem liệu chúng có thể gây hại thực tế hay không.
 
 </div>
 
-Note that we included the `--save-dev` flag (you can also use `-D` as a shortcut), which tells npm to record our two packages as development dependencies. We will only be using Webpack during development. The actual code that makes Webpack run will not be part of the code that the browser will run.
+Lưu ý rằng chúng ta đã thêm cờ `--save-dev` (bạn cũng có thể dùng `-D` làm dạng viết tắt), cờ này yêu cầu npm ghi hai package của chúng ta dưới dạng development dependencies. Chúng ta chỉ sử dụng Webpack trong quá trình phát triển. Code thực sự giúp Webpack chạy sẽ không phải là một phần của code mà browser chạy.
 
-Also notice that when these finished installing, npm created a `node_modules` directory and a `package-lock.json` file for us. `node_modules` is where Webpack's actual code (and a whole bunch of other stuff) lives, and `package-lock.json` is just another file npm uses to track more specific package information.
+Ngoài ra, hãy chú ý rằng sau khi cài đặt xong, npm đã tạo thư mục `node_modules` và file `package-lock.json` cho chúng ta. `node_modules` là nơi chứa code thực tế của Webpack (cùng rất nhiều thứ khác), còn `package-lock.json` chỉ là một file khác mà npm sử dụng để theo dõi thông tin package cụ thể hơn.
 
-### src and dist
+### src và dist
 
-When dealing with Webpack (and often with any other bundler or build tool), we have two very important directories: `src` (short for "source") and `dist` (short for "distribution"). We could technically call these directories whatever we want, but these names are conventions.
+Khi làm việc với Webpack (và thường là với bất kỳ bundler hoặc build tool nào khác), chúng ta có hai thư mục rất quan trọng: `src` (viết tắt của "source") và `dist` (viết tắt của "distribution"). Về mặt kỹ thuật, chúng ta có thể gọi các thư mục này bằng bất kỳ tên nào, nhưng đây là những tên theo quy ước.
 
-`src` is where we keep all of our website's source code, essentially where all of our work will be done (with an exception being altering any configuration files in the root of the project). When we run Webpack to bundle our code, it will output the bundled files into the `dist` directory. The idea is that if someone were to fork or clone the project, they would not need the `dist` directory, as they'd just be able to run Webpack to build from `src` into their own `dist`. Similarly, to deploy our website, we would only need the `dist` code and nothing else. Keep that in mind! Work inside `src`, build into `dist`, then deploy from there!
+`src` là nơi chúng ta lưu toàn bộ source code của website, về cơ bản là nơi thực hiện mọi công việc (ngoại lệ là việc chỉnh sửa các file cấu hình ở thư mục gốc của project). Khi chạy Webpack để bundle code, nó sẽ xuất các file đã bundle vào thư mục `dist`. Ý tưởng là nếu ai đó fork hoặc clone project, họ không cần thư mục `dist`, vì họ có thể tự chạy Webpack để build từ `src` vào `dist` của mình. Tương tự, để deploy website, chúng ta chỉ cần code trong `dist` và không cần gì khác. Hãy ghi nhớ điều này! Làm việc trong `src`, build vào `dist`, rồi deploy từ đó!
 
 ### Bundling JavaScript
 
 <div class="lesson-note" markdown="1">
 
-#### Import file extensions
+#### Phần mở rộng file khi import
 
-Normally, with ESM, we need to specify file extensions when we import from other files (e.g. `"./greeting.js"`). With Webpack and many other bundlers, some file extensions like `.js` are optional, as Webpack will automatically check extensionless file paths for `.js` files by default (e.g. `"./greeting"`).
+Thông thường, với ESM, chúng ta cần chỉ rõ phần mở rộng file khi import từ các file khác (ví dụ `"./greeting.js"`). Với Webpack và nhiều bundler khác, một số phần mở rộng file như `.js` là tùy chọn, vì theo mặc định Webpack sẽ tự động kiểm tra các đường dẫn file không có phần mở rộng để tìm file `.js` (ví dụ `"./greeting"`).
 
-This is a feature of Webpack, not ESM.
+Đây là một tính năng của Webpack, không phải ESM.
 
-In this lesson, examples with imports will always include the file extension where appropriate to be explicit.
+Trong bài học này, các ví dụ có import sẽ luôn bao gồm phần mở rộng file khi phù hợp để rõ ràng hơn.
 
 </div>
 
-Now that we've installed Webpack in our project directory, let's create a `src` directory with two JavaScript files inside it: `index.js` and `greeting.js`.
+Bây giờ chúng ta đã cài Webpack trong thư mục project, hãy tạo một thư mục `src` với hai file JavaScript bên trong: `index.js` và `greeting.js`.
 
 ```bash
 mkdir src && touch src/index.js src/greeting.js
 ```
 
-Inside our two JavaScript files, we'll have the following:
+Bên trong hai file JavaScript, chúng ta sẽ có nội dung sau:
 
 ```javascript
 // index.js
@@ -95,9 +95,9 @@ console.log(greeting);
 export const greeting = "Hello, Odinite!";
 ```
 
-Great, now we have an `index.js` that imports from, and so depends on, `greeting.js`. In order to bundle this, we'll also want a Webpack configuration file, which will contain all the details we need for bundling, such as the entry point, the output destination, and anything like plugins and loaders (which we will cover shortly).
+Tốt lắm, bây giờ chúng ta có `index.js` import từ và do đó phụ thuộc vào `greeting.js`. Để bundle phần này, chúng ta cũng cần một file cấu hình Webpack, trong đó chứa mọi chi tiết cần thiết cho việc bundling, chẳng hạn entry point, nơi output, cùng các plugin và loader (chúng ta sẽ tìm hiểu ngay sau đây).
 
-Back in your project root (so outside of `src`), create a `webpack.config.js` file that contains the following:
+Quay lại thư mục gốc của project (tức là bên ngoài `src`), tạo file `webpack.config.js` chứa nội dung sau:
 
 ```javascript
 // webpack.config.js
@@ -114,36 +114,36 @@ export default {
 };
 ```
 
-You'll notice the exported object contains a few key sections:
+Bạn sẽ thấy object được export có một vài phần chính:
 
-- `mode`: For now, we will just leave this in development mode, as it will be more useful to us. We will revisit this and production mode in a later lesson.
-- `entry`: A file path from the config file to whichever file is our entry point, which in this case is `src/index.js`.
-- `output`: An object containing information about the output bundle.
-  - `filename`: The name of the output bundle - it can be anything you want.
-  - `path`: The path to the output directory, in this case, `dist`. If this directory doesn't already exist when we run Webpack, it will automatically create it for us as well. Don't worry too much about why we have the `path.resolve` part - this is just the way Webpack recommends we specify the output directory.
-  - `clean`: If we include this option and set it to `true`, then each time we run Webpack to bundle, it will empty the output directory first before bundling the files into it. This helps us keep `dist` clean, so it only contains the files produced by the most recent bundling.
+- `mode`: Hiện tại, chúng ta chỉ để ở development mode vì mode này sẽ hữu ích hơn cho chúng ta. Chúng ta sẽ quay lại với mode này và production mode trong một bài học sau.
+- `entry`: Đường dẫn file từ file config đến file được chọn làm entry point, trong trường hợp này là `src/index.js`.
+- `output`: Một object chứa thông tin về bundle output.
+  - `filename`: Tên của bundle output - bạn có thể đặt tùy ý.
+  - `path`: Đường dẫn đến thư mục output, trong trường hợp này là `dist`. Nếu thư mục này chưa tồn tại khi chúng ta chạy Webpack, Webpack cũng sẽ tự động tạo nó. Đừng quá lo lắng về lý do có phần `path.resolve` - đây chỉ là cách Webpack khuyến nghị để chỉ rõ thư mục output.
+  - `clean`: Nếu thêm tùy chọn này và đặt thành `true`, mỗi lần chạy Webpack để bundle, nó sẽ xóa thư mục output trước rồi mới bundle các file vào đó. Điều này giúp giữ `dist` sạch, để thư mục chỉ chứa các file được tạo bởi lần bundling gần nhất.
   
-With these files all in place, let's run Webpack and see what happens!
+Khi đã có đủ các file này, hãy chạy Webpack và xem điều gì xảy ra!
 
 ```bash
 npx webpack
 ```
 
-You should see that Webpack has created a `dist` directory for us containing a `main.js` file! Inside this file is...a lot of stuff... Don't worry, most of this stuff is just for development tools we will use later. If you go ahead and run this file with `node dist/main.js`, you should see `Hello, Odinite!` logged in the terminal.
+Bạn sẽ thấy Webpack đã tạo thư mục `dist` cho chúng ta, bên trong có file `main.js`! Bên trong file này là... rất nhiều thứ... Đừng lo, phần lớn chỉ dành cho các công cụ phát triển mà chúng ta sẽ sử dụng sau. Nếu chạy file này bằng `node dist/main.js`, bạn sẽ thấy `Hello, Odinite!` được log trong terminal.
 
-Congratulations! You've just made your first bundle with Webpack!
+Chúc mừng! Bạn vừa tạo bundle đầu tiên bằng Webpack!
 
-### Handling HTML
+### Xử lý HTML
 
-Let's actually include some HTML. After all, we're interested in making websites! Since HTML isn't JavaScript, Webpack can't just bundle it straight away, but there's a nifty tool we can use called `HtmlWebpackPlugin` that's just perfect for us.
+Hãy thực sự thêm HTML vào. Suy cho cùng, chúng ta quan tâm đến việc tạo website! Vì HTML không phải JavaScript, Webpack không thể bundle trực tiếp ngay lập tức, nhưng chúng ta có một công cụ tiện lợi tên là `HtmlWebpackPlugin` rất phù hợp cho việc này.
 
-Run the following command to install HtmlWebpackPlugin (also as a dev dependency):
+Chạy lệnh sau để cài đặt HtmlWebpackPlugin (cũng dưới dạng dev dependency):
 
 ```bash
 npm install --save-dev html-webpack-plugin
 ```
 
-We should also create a `template.html` inside `src` (you can name this file whatever you want) and fill that with the usual HTML boilerplate. **We do not need to put a script tag in this file!** HtmlWebpackPlugin will automatically add our output bundle as a script tag. We wouldn't want to double up by including our own one as well! Inside our `webpack.config.js`, we can add a few little bits.
+Chúng ta cũng nên tạo một file `template.html` bên trong `src` (bạn có thể đặt tên file tùy ý) và điền vào đó boilerplate HTML thông thường. **Chúng ta không cần đặt thẻ script trong file này!** HtmlWebpackPlugin sẽ tự động thêm bundle output của chúng ta dưới dạng thẻ script. Chúng ta không muốn vô tình thêm trùng một thẻ nữa! Trong `webpack.config.js`, chúng ta có thể thêm một vài phần nhỏ.
 
 ```javascript
 // webpack.config.js
@@ -166,25 +166,25 @@ export default {
 };
 ```
 
-All we're doing here is making sure our Webpack configuration has access to HtmlWebpackPlugin, then adding it as a plugin to the configuration object. Inside the HtmlWebpackPlugin constructor call, we pass in any options. For now, we're only interested in the `template` option.
+Tất cả những gì chúng ta làm ở đây là đảm bảo cấu hình Webpack có quyền truy cập vào HtmlWebpackPlugin, rồi thêm nó làm plugin cho config object. Trong lời gọi constructor của HtmlWebpackPlugin, chúng ta truyền vào các option. Hiện tại, chúng ta chỉ quan tâm đến option `template`.
 
-If we provide the path to our `src/template.html` file as a template, when we run `npx webpack` again, you'll notice our `dist` directory not only contains a `main.js` file but an `index.html` file as well (it can't combine them into one file). You'll also notice that HtmlWebpackPlugin has automatically added a deferred script tag to our `index.html` file - what a darling! If you open this file in the browser and check the browser console, you should see our lovely `"Hello, Odinite!"` string logged.
+Nếu cung cấp đường dẫn đến file `src/template.html` làm template, khi chạy lại `npx webpack`, bạn sẽ thấy thư mục `dist` không chỉ chứa file `main.js` mà còn có file `index.html` (Webpack không thể gộp chúng thành một file). Bạn cũng sẽ thấy HtmlWebpackPlugin tự động thêm một thẻ script có thuộc tính defer vào file `index.html` - thật đáng yêu! Nếu mở file này trong browser và kiểm tra browser console, bạn sẽ thấy chuỗi `"Hello, Odinite!"` đáng yêu của chúng ta được log.
 
-We've now successfully configured Webpack to handle our HTML file and inject the appropriate script tag. Any changes to HTML we make, we can just rerun Webpack to generate fresh `dist` code.
+Chúng ta đã cấu hình thành công Webpack để xử lý file HTML và chèn thẻ script phù hợp. Với mọi thay đổi đối với HTML, chúng ta chỉ cần chạy lại Webpack để tạo code `dist` mới.
 
-Let's see how we'd handle CSS.
+Hãy xem chúng ta sẽ xử lý CSS như thế nào.
 
-### Loading CSS
+### Load CSS
 
-We don't just need one new package for CSS, we need *two*. Gosh, what a greedy little thing... Let's install them.
+Chúng ta không chỉ cần một package mới cho CSS mà cần *hai* package. Ôi, đúng là một thứ tham lam... Hãy cài đặt chúng.
 
 ```bash
 npm install --save-dev style-loader css-loader
 ```
 
-`css-loader` will read any CSS files we import in a JavaScript file and store the result in a string. `style-loader` then takes that string and actually adds the JavaScript code that will apply those styles to the page. Therefore, we need both.
+`css-loader` sẽ đọc mọi file CSS mà chúng ta import trong một file JavaScript và lưu kết quả vào một string. Sau đó, `style-loader` lấy string đó và thực sự thêm code JavaScript để áp dụng các style đó vào page. Vì vậy, chúng ta cần cả hai.
 
-Back in our `webpack.config.js`, we need to add these loaders so Webpack knows what to do. Since these aren't plugins, they go in a separate section:
+Quay lại `webpack.config.js`, chúng ta cần thêm các loader này để Webpack biết phải làm gì. Vì đây không phải plugin nên chúng được đặt trong một phần riêng:
 
 ```javascript
 // webpack.config.js
@@ -215,19 +215,19 @@ export default {
 };
 ```
 
-All this does is tell Webpack that if it encounters an imported file ending with `.css`, it should use the listed loaders to process that CSS file.
+Tất cả những gì đoạn này làm là báo cho Webpack rằng nếu gặp một file được import có phần mở rộng `.css`, nó cần dùng các loader được liệt kê để xử lý file CSS đó.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Loader order matters for CSS!
+#### Thứ tự loader quan trọng với CSS!
 
-Notice how we put `css-loader` **at the end** of the array. We **must** set this order and not the reverse.
+Hãy chú ý chúng ta đặt `css-loader` **ở cuối** array. Chúng ta **phải** đặt theo thứ tự này, không được đảo ngược.
 
-Webpack will run the loaders starting at the end, so we want it to read the CSS file into a string with `css-loader` first, then use `style-loader` to inject the JavaScript that applies the CSS in that string to the page. It wouldn't work the same the other way round.
+Webpack sẽ chạy loader bắt đầu từ cuối, vì vậy trước tiên chúng ta muốn nó đọc file CSS thành một string bằng `css-loader`, sau đó dùng `style-loader` để inject JavaScript áp dụng CSS trong string đó vào page. Làm theo thứ tự ngược lại sẽ không hoạt động giống như vậy.
 
 </div>
 
-Now that Webpack knows what to do with imported CSS files, let's add some CSS! Create a `src/styles.css` with the following:
+Bây giờ Webpack đã biết phải làm gì với các file CSS được import, hãy thêm CSS! Tạo `src/styles.css` với nội dung sau:
 
 ```css
 /* styles.css */
@@ -236,7 +236,7 @@ body {
 }
 ```
 
-You can now import your CSS file into one of your JavaScript files. `src/index.js` makes sense. We don't need anything from the imported CSS file itself. Since our CSS and style loaders will handle all of that for us, we can just use a [side effect import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only).
+Bây giờ bạn có thể import file CSS vào một trong các file JavaScript. `src/index.js` là lựa chọn hợp lý. Chúng ta không cần gì từ chính file CSS được import. Vì CSS và style loader sẽ xử lý tất cả việc đó, chúng ta chỉ cần dùng một [side effect import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#import_a_module_for_its_side_effects_only).
 
 ```javascript
 // src/index.js
@@ -246,33 +246,33 @@ import { greeting } from "./greeting.js";
 console.log(greeting);
 ```
 
-Once again, bundle with Webpack using `npx webpack`, then open `dist/index.html` and enjoy the beautiful purple screen!
+Một lần nữa, hãy bundle bằng Webpack với `npx webpack`, rồi mở `dist/index.html` và tận hưởng màn hình tím tuyệt đẹp!
 
-#### What about link tags?
+#### Còn thẻ link thì sao?
 
-Notice how we don't link our CSS file in our HTML template like we would've done before. While you could do this with one of the loaders from the next section, in the real world, projects often contain many moving parts and many modules. Eventually, it becomes easier to work with multiple smaller CSS files that you import in the modules where they're needed. There are even ways those files can be scoped only to those modules and not globally!
+Hãy chú ý rằng chúng ta không link file CSS trong HTML template như cách trước đây. Mặc dù bạn có thể làm vậy bằng một trong các loader ở phần tiếp theo, trong thực tế các project thường có nhiều thành phần chuyển động và nhiều module. Cuối cùng, việc làm việc với nhiều file CSS nhỏ hơn, được import trong các module nơi chúng cần thiết, sẽ trở nên dễ dàng hơn. Thậm chí có những cách để các file đó chỉ được áp dụng trong những module tương ứng thay vì áp dụng toàn cục!
 
-We're only introducing the minimum to allow you to import your CSS into your JavaScript, but many build tools and more sophisticated bundler configurations will do a lot more to imported CSS than what we're showing here.
+Chúng ta chỉ giới thiệu phần tối thiểu để bạn có thể import CSS vào JavaScript, nhưng nhiều build tool và cấu hình bundler phức tạp hơn sẽ làm được nhiều việc hơn với CSS được import so với những gì chúng ta trình bày ở đây.
 
-### Loading images
+### Load hình ảnh
 
-We're nearly done with the main Webpack configuration! If we have any local image files we want to include within our website, they will also require a little extra configuration since they're not JavaScript files.
+Chúng ta gần hoàn tất cấu hình Webpack chính! Nếu muốn đưa các file hình ảnh cục bộ vào website, chúng cũng cần thêm một chút cấu hình vì chúng không phải file JavaScript.
 
-There are three different ways you could be dealing with local image files:
+Có ba cách khác nhau để xử lý các file hình ảnh cục bộ:
 
-1. **Image files used in our CSS inside `url()`**
+1. **File hình ảnh được dùng trong CSS bên trong `url()`**
 
-   Lucky us! `css-loader` already handles this for us, so there's nothing extra to do for image paths in CSS!
+   May mắn cho chúng ta! `css-loader` đã tự xử lý việc này, nên không cần làm gì thêm với đường dẫn hình ảnh trong CSS!
 
-1. **Image files we reference in our HTML template, e.g. as the `src` of an `<img>`**
+1. **File hình ảnh được tham chiếu trong HTML template, ví dụ như `src` của một `<img>`**
 
-   We need to install and tell Webpack to use something called `html-loader`, which will detect image file paths in our HTML template and load the right image files for us. Without this, a `src` like `./odin.png` would just be a bit of text that will no longer reference the correct file once we run Webpack to build into `dist`. Let's install it:
+   Chúng ta cần cài đặt và yêu cầu Webpack sử dụng một thứ gọi là `html-loader`, loader này sẽ phát hiện đường dẫn file hình ảnh trong HTML template và load đúng file hình ảnh cho chúng ta. Nếu không có nó, một `src` như `./odin.png` chỉ là một đoạn text và sẽ không còn tham chiếu đúng file sau khi Webpack build vào `dist`. Hãy cài đặt nó:
 
    ```bash
    npm install --save-dev html-loader
    ```
 
-   Then, add the following object to the `module.rules` array within `webpack.config.js`:
+   Sau đó, thêm object sau vào array `module.rules` trong `webpack.config.js`:
 
    ```javascript
    // webpack.config.js
@@ -282,9 +282,9 @@ There are three different ways you could be dealing with local image files:
    }
    ```
 
-1. **Images we use in our JavaScript, where we will need to import the files**
+1. **Hình ảnh được dùng trong JavaScript, khi chúng ta cần import file**
 
-   If we need to use a local image file in our JavaScript (such as when manipulating the DOM to create or edit `img` elements and set their `src` attribute), we need to import the images into our JavaScript module. Since images aren't JavaScript, we need to tell Webpack that these files will be assets by adding an `asset/resource` rule. No need to install anything here. Just add the following object to the `module.rules` array within `webpack.config.js`:
+   Nếu cần dùng một file hình ảnh cục bộ trong JavaScript (chẳng hạn khi thao tác DOM để tạo hoặc chỉnh sửa các phần tử `img` và đặt thuộc tính `src`), chúng ta cần import hình ảnh vào JavaScript module. Vì hình ảnh không phải JavaScript, chúng ta cần báo cho Webpack biết các file này là asset bằng cách thêm rule `asset/resource`. Không cần cài thêm gì ở đây. Chỉ cần thêm object sau vào array `module.rules` trong `webpack.config.js`:
 
    ```javascript
    // webpack.config.js
@@ -294,9 +294,9 @@ There are three different ways you could be dealing with local image files:
    }
    ```
 
-   You can always edit the regex in the `test` property to remove any file extensions you don't need or add any extensions you do need. What's shown above is straight from [Webpack's Asset Management guide](https://webpack.js.org/guides/asset-management/#loading-images) and will recognize most of the common image file extensions.
+   Bạn luôn có thể chỉnh sửa regex trong thuộc tính `test` để bỏ những phần mở rộng file không cần hoặc thêm những phần mở rộng cần dùng. Nội dung ở trên được lấy nguyên từ [hướng dẫn Asset Management của Webpack](https://webpack.js.org/guides/asset-management/#loading-images) và sẽ nhận diện hầu hết các phần mở rộng file hình ảnh phổ biến.
 
-   Then, in whatever JavaScript module we want to use that image in, we just have to default import it.
+   Sau đó, trong bất kỳ JavaScript module nào muốn sử dụng hình ảnh, chúng ta chỉ cần default import nó.
 
    ```javascript
    // src/index.js
@@ -308,9 +308,9 @@ There are three different ways you could be dealing with local image files:
    document.body.appendChild(image);
    ```
 
-   We have to import it so that the `odinImage` variable contains the correct file path, even when we bundle into `dist`. If we just wrote `image.src = "./odin.png";`, then the "file path" would just be a plain string. When we bundle into `dist`, Webpack will not magically recognize that this string in our JavaScript references a file and so will not include it in the bundle. When we import it and set the correct `asset/resource` rule, Webpack will recognize the import, include the image file when we bundle, and also make sure the imported variable contains the correct file path at the end.
+   Chúng ta phải import nó để biến `odinImage` chứa đúng đường dẫn file, ngay cả khi bundle vào `dist`. Nếu chỉ viết `image.src = "./odin.png";`, thì "đường dẫn file" chỉ là một string thông thường. Khi bundle vào `dist`, Webpack sẽ không tự động nhận ra string này trong JavaScript đang tham chiếu đến một file và do đó sẽ không đưa file đó vào bundle. Khi import hình ảnh và đặt rule `asset/resource` phù hợp, Webpack sẽ nhận ra import, đưa file hình ảnh vào khi bundle, đồng thời đảm bảo biến được import chứa đúng đường dẫn file cuối cùng.
 
-After all that, if we added both `html-loader` and the image `asset/resource` rule, our `webpack.config.js` would look something like this:
+Sau tất cả những việc đó, nếu thêm cả `html-loader` và rule hình ảnh `asset/resource`, `webpack.config.js` sẽ trông gần như sau:
 
 ```javascript
 // webpack.config.js
@@ -349,31 +349,31 @@ export default {
 };
 ```
 
-You might notice that when images are included when bundling, the output image file in `dist` has a different file name (it will likely be some jumble of numbers and letters). By default, Webpack gives your bundled image files a new name by hashing their contents. You do not need to know how this works, nor do you need to dig into the details of why, nor how to change it. You just need to be aware that this is expected behavior (it's to do with preventing issues with the browser cache and matching file names).
+Có thể bạn sẽ nhận thấy khi hình ảnh được đưa vào trong quá trình bundling, file hình ảnh output trong `dist` có tên file khác (rất có thể là một mớ số và chữ). Theo mặc định, Webpack đặt tên mới cho các file hình ảnh đã bundle bằng cách hash nội dung của chúng. Bạn không cần biết cách này hoạt động, cũng không cần đào sâu vào chi tiết vì sao hay cách thay đổi nó. Bạn chỉ cần biết đây là hành vi được mong đợi (mục đích là ngăn các vấn đề với browser cache và việc khớp tên file).
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### You only need to configure what you need
+#### Chỉ cấu hình những gì bạn cần
 
-You may not need everything we've mentioned. If your project does not have images with local file path sources in your HTML template, you do not need `html-loader` set up. If you aren't using any local images in your JavaScript, you won't need the image `asset/resource` rule set up.
+Có thể bạn không cần mọi thứ chúng ta đã đề cập. Nếu project không có hình ảnh cục bộ được tham chiếu trong thuộc tính file path của HTML template, bạn không cần thiết lập `html-loader`. Nếu không sử dụng hình ảnh cục bộ nào trong JavaScript, bạn không cần thiết lập rule hình ảnh `asset/resource`.
 
-Similarly, in the future, you may end up working with things that need a special loader or plugin, such as custom fonts or preprocessors. You can always use Google or reference Webpack's documentation for instructions on what you'd need when that time comes.
+Tương tự, trong tương lai, bạn có thể làm việc với những thứ cần loader hoặc plugin đặc biệt, chẳng hạn custom font hoặc preprocessor. Khi đến lúc đó, bạn luôn có thể dùng Google hoặc tham khảo tài liệu Webpack để biết mình cần làm gì.
 
 </div>
 
 ### Webpack dev server
 
-During this lesson, did you get a bit annoyed with having to run `npx webpack` to rebundle with every change? Fortunately, there are multiple solutions for this, and we will focus on what we think is the most useful option: `webpack-dev-server`. Install it as follows:
+Trong bài học này, bạn có thấy hơi khó chịu vì phải chạy `npx webpack` để bundle lại sau mỗi thay đổi không? May mắn là có nhiều giải pháp cho việc này, và chúng ta sẽ tập trung vào lựa chọn mà chúng tôi cho là hữu ích nhất: `webpack-dev-server`. Cài đặt nó như sau:
 
 ```bash
 npm install --save-dev webpack-dev-server
 ```
 
-You may have used something like the Live Preview VSCode extension before, where it automatically refreshes your web page whenever you save a change. `webpack-dev-server` is very similar, meaning we won't have to keep running `npx webpack` after each change we make.
+Có thể trước đây bạn đã dùng một thứ như extension Live Preview của VSCode, extension này tự động refresh trang web mỗi khi bạn lưu thay đổi. `webpack-dev-server` rất tương tự, nghĩa là chúng ta không phải tiếp tục chạy `npx webpack` sau mỗi thay đổi.
 
-It works by bundling your code behind the scenes (as if we ran `npx webpack`, but without saving the files to `dist`), and it does this every time you save a file that's used in the bundle. We can also use something called a **source map** so that any error messages reference files and lines from our development code and not the jumbled mess inside our single bundled `.js` file!
+Nó hoạt động bằng cách bundle code ở phía sau (như thể chúng ta chạy `npx webpack`, nhưng không lưu file vào `dist`) và thực hiện việc này mỗi khi bạn lưu một file được sử dụng trong bundle. Chúng ta cũng có thể dùng một thứ gọi là **source map** để mọi thông báo lỗi tham chiếu đến file và dòng trong code phát triển, thay vì mớ hỗn độn bên trong file `.js` bundle duy nhất!
 
-Once installed, in our `webpack.config.js`, we only need to add a couple more properties somewhere in the configuration object (the order of these properties does not matter):
+Sau khi cài đặt, trong `webpack.config.js`, chúng ta chỉ cần thêm một vài thuộc tính nữa ở đâu đó trong config object (thứ tự các thuộc tính này không quan trọng):
 
 ```javascript
 // webpack.config.js
@@ -416,37 +416,37 @@ export default {
 };
 ```
 
-Firstly, we add a [source map](https://webpack.js.org/configuration/devtool/) by setting `eval-source-map` as a `devtool` option. If we don't do this, any error messages we get won't necessarily match up to the correct files and line numbers from our development code. In the devtools "Sources" tab, we also won't be able to find our original untouched code, making the Chrome debugger harder to use. Adding this source map will solve both of these problems for us.
+Trước hết, chúng ta thêm một [source map](https://webpack.js.org/configuration/devtool/) bằng cách đặt `eval-source-map` làm option `devtool`. Nếu không làm vậy, mọi thông báo lỗi nhận được không nhất thiết khớp với đúng file và số dòng trong code phát triển. Trong tab "Sources" của devtools, chúng ta cũng sẽ không tìm thấy code gốc chưa bị thay đổi, khiến Chrome debugger khó sử dụng hơn. Thêm source map sẽ giải quyết cả hai vấn đề này cho chúng ta.
 
-Secondly, by default, `webpack-dev-server` will only auto-restart when it detects any changes to files we import into our JavaScript bundle, so our HTML template will be ignored! All we need to do is add it to the dev server's array of watched files - nice and simple!
+Thứ hai, theo mặc định, `webpack-dev-server` chỉ tự động khởi động lại khi phát hiện thay đổi trong các file được import vào JavaScript bundle, nên HTML template sẽ bị bỏ qua! Tất cả những gì cần làm là thêm nó vào array các file được dev server theo dõi - thật đơn giản!
 
-Once set up, we can start up the dev server using the following command:
+Sau khi thiết lập, chúng ta có thể khởi động dev server bằng lệnh sau:
 
 ```bash
 npx webpack serve
 ```
 
-Our site will then be available via [http://localhost:8080/](http://localhost:8080/) by default.
+Website của chúng ta sau đó sẽ mặc định có tại [http://localhost:8080/](http://localhost:8080/).
 
 <div class="lesson-note" markdown="1">
 
-#### Restart the dev server upon config changes
+#### Khởi động lại dev server khi thay đổi config
 
-Note that the webpack-dev-server only reads your webpack configuration when you start it. If you change the webpack config file while the dev server is running, it will not reflect those config changes. Use <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal to kill it then rerun `npx webpack serve` to apply the new config.  
+Lưu ý rằng webpack-dev-server chỉ đọc cấu hình webpack khi bạn khởi động nó. Nếu thay đổi file webpack config trong lúc dev server đang chạy, nó sẽ không phản ánh những thay đổi cấu hình đó. Dùng <kbd>Ctrl</kbd> + <kbd>C</kbd> trong terminal để dừng nó, rồi chạy lại `npx webpack serve` để áp dụng config mới.
 
 </div>
 
-### Rounding up
+### Tổng kết
 
-Yes, yes, this all might seem like a lot. You've gone from just having some basic HTML, CSS and JS files, and not needing much else to suddenly needing this loader, that plugin, this configuration file, etc. In the real world, as apps get more complex, we need tools that can improve our development experience while optimizing things in production. Even though we're not using all of the features available to us right now, a general understanding of what these sorts of tools are doing for us is valuable. Later in the curriculum, you will use different tools that abstract a lot of these underlying mechanisms away from us. Using them and having no clue what they're actually doing for you can make things harder for you when you eventually encounter a situation that actually needs some kind of manual configuration.
+Đúng vậy, tất cả những điều này có thể trông khá nhiều. Bạn đã đi từ việc chỉ có các file HTML, CSS và JS cơ bản, không cần nhiều thứ khác, đến việc đột nhiên cần loader này, plugin kia, file config nọ, v.v. Trong thực tế, khi ứng dụng trở nên phức tạp hơn, chúng ta cần các công cụ có thể cải thiện trải nghiệm phát triển đồng thời tối ưu hóa mọi thứ trong production. Mặc dù hiện tại chúng ta chưa dùng hết các tính năng có sẵn, hiểu khái quát những công cụ dạng này đang làm gì cho chúng ta vẫn rất hữu ích. Ở các phần sau của curriculum, bạn sẽ sử dụng những công cụ khác giúp trừu tượng hóa nhiều cơ chế nền tảng này. Sử dụng chúng mà không biết chúng thực sự đang làm gì có thể khiến mọi việc khó hơn khi sau này bạn gặp một tình huống thực sự cần một dạng cấu hình thủ công nào đó.
 
-In a later lesson, we will introduce some extra things that can make setting up and working with Webpack much quicker and more straightforward. For now, however, it's good to get a little manual practice in.
+Trong một bài học sau, chúng ta sẽ giới thiệu thêm một số thứ có thể giúp việc thiết lập và làm việc với Webpack nhanh hơn, đơn giản hơn nhiều. Tuy nhiên, hiện tại, thực hành thủ công một chút vẫn là điều tốt.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Start by reading the [Webpack concepts](https://webpack.js.org/concepts/) page to get a general understanding of some of the main terms.
-1. [Webpack's Asset Management guide](https://webpack.js.org/guides/asset-management/) goes through some examples of how to handle various kinds of assets, like CSS, images, and fonts. You'll see that its examples use `npm run build` to bundle the files; in these examples, that's the equivalent of `npx webpack`. We will go through npm scripts in a later lesson.
+1. Bắt đầu bằng cách đọc trang [Webpack concepts](https://webpack.js.org/concepts/) để có hiểu biết khái quát về một số thuật ngữ chính.
+1. [Hướng dẫn Asset Management của Webpack](https://webpack.js.org/guides/asset-management/) trình bày một số ví dụ về cách xử lý nhiều loại asset khác nhau, như CSS, hình ảnh và font. Bạn sẽ thấy các ví dụ sử dụng `npm run build` để bundle file; trong các ví dụ đó, lệnh này tương đương với `npx webpack`. Chúng ta sẽ tìm hiểu npm scripts trong một bài học sau.
 
 </div>

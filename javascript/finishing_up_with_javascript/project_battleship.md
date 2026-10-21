@@ -1,10 +1,10 @@
-### Introduction
+### Giới thiệu
 
-It's time to really flex your muscles. Test Driven Development (TDD) can certainly feel uncomfortable at first, but becomes more natural with practice. We're going to implement the classic game 'Battleship'. If you've never played it, or need a refresher, you can read about [Battleship's rules](https://en.wikipedia.org/wiki/Battleship_(game)) and you can [play an online version of Battleship](http://en.battleship-game.org/).
+Đã đến lúc thực sự phát huy năng lực của bạn. Test Driven Development (TDD) chắc chắn có thể khiến bạn thấy không thoải mái lúc đầu, nhưng sẽ trở nên tự nhiên hơn khi luyện tập. Chúng ta sẽ triển khai trò chơi kinh điển 'Battleship'. Nếu bạn chưa từng chơi hoặc cần ôn lại, bạn có thể đọc về [luật chơi Battleship](https://en.wikipedia.org/wiki/Battleship_(game)) và [chơi phiên bản Battleship trực tuyến](http://en.battleship-game.org/).
 
-Since we're doing TDD, it's important that you don't get overwhelmed. Take it one step at a time. Write a test, then make it pass. Since this project has more moving parts across different modules compared to previous projects that utilized testing, if you are unsure what to test or how to approach the testing, consider revisiting the ideas and assignments from the [More Testing lesson](https://www.theodinproject.com/lessons/node-path-javascript-more-testing).
+Vì chúng ta đang thực hiện TDD, điều quan trọng là bạn không bị quá tải. Hãy làm từng bước một. Viết một test, sau đó làm cho nó pass. Vì project này có nhiều phần chuyển động hơn trong các module khác nhau so với những project trước đây có sử dụng testing, nếu bạn không chắc nên test gì hoặc tiếp cận việc testing như thế nào, hãy cân nhắc xem lại các ý tưởng và bài tập trong [bài học More Testing](https://www.theodinproject.com/lessons/node-path-javascript-more-testing).
 
-We have not yet discussed testing the appearance of a webpage, which requires a separate set of tools and is outside the scope of this unit, but this is something we will cover later in the curriculum. Therefore, you should not test the DOM for this assignment. Instead, do your best to isolate every bit of application functionality from the actual DOM manipulation bits.
+Chúng ta chưa thảo luận về việc test giao diện của một webpage, việc này cần một bộ công cụ riêng và nằm ngoài phạm vi của unit này, nhưng đây là nội dung chúng ta sẽ học sau trong curriculum. Vì vậy, bạn không nên test DOM cho assignment này. Thay vào đó, hãy cố gắng tách mọi phần chức năng của application khỏi các phần thực sự thao tác với DOM.
 
 ### Assignment
 
@@ -12,44 +12,44 @@ We have not yet discussed testing the appearance of a webpage, which requires a 
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Jest and ESM
+#### Jest và ESM
 
-Remember that Jest does not have built-in stable support for ESM, so you will need to [set up Babel for Jest ESM/CJS conversion](https://www.theodinproject.com/lessons/node-path-javascript-testing-basics#using-es6-import-statements-with-jest).
+Hãy nhớ rằng Jest chưa có hỗ trợ ổn định được tích hợp sẵn cho ESM, vì vậy bạn sẽ cần [thiết lập Babel để chuyển đổi Jest ESM/CJS](https://www.theodinproject.com/lessons/node-path-javascript-testing-basics#using-es6-import-statements-with-jest).
 
 </div>
 
-1. Begin your app by creating the `Ship` class/factory (your choice).
-   1. Your 'ships' will be objects that include their length, the number of times they've been hit and whether or not they've been sunk.
-   1. **REMEMBER** you only have to test your object's public interface. Only methods or properties that are used outside of your 'ship' object need unit tests.
-   1. Ships should have a `hit()` function that increases the number of 'hits' in your ship.
-   1. `isSunk()` should be a function that calculates whether a ship is considered sunk based on its length and the number of hits it has received.
-1. Create a `Gameboard` class/factory.
-   1. Note that we have not yet created any User Interface. We should know our code is coming together by running the tests. You shouldn't be relying on `console.log` or DOM methods to make sure your code is doing what you expect it to.
-   1. Gameboards should be able to place ships at specific coordinates by calling the ship factory or class.
-   1. Gameboards should have a `receiveAttack` function that takes a pair of coordinates, determines whether or not the attack hit a ship and then sends the 'hit' function to the correct ship, or records the coordinates of the missed shot.
-   1. Gameboards should keep track of missed attacks so they can display them properly.
-   1. Gameboards should be able to report whether or not all of their ships have been sunk.
-1. Create a `Player` class/factory.
-   1. There will be two types of players in the game, 'real' players and 'computer' players.
-   1. Each player object should contain its own gameboard.
-1. Import your classes/factories into another file, and drive the game using event listeners to interact with your objects. Create a module that helps you manage actions that should happen in the DOM.
-   1. At this point it is appropriate to begin crafting your User Interface.
-   1. Set up a new game by creating Players. For now just populate each player's Gameboard with predetermined coordinates. You are going to implement a system for allowing players to place their ships later.
-   1. We’ll leave the HTML implementation up to you for now, but you should display both the player’s boards and render them using information from the Gameboard class/factory.
-      - You'll need methods to render each player's Gameboard, so put them in an appropriate module.
-   1. Your event listeners should step through the game turn by turn using only methods from other objects. If at any point you are tempted to write a new function, step back and figure out which class or module that function should belong to.
-   1. For attacks, let the user click on a coordinate in the enemy Gameboard. Send the user input to methods on your objects, and re-render the boards to display the new information.
-      - Players should take turns playing the game by attacking the enemy Gameboard. If you feel the need to keep track of the current player's turn, it's appropriate to manage that in this module, instead of another mentioned object.
-      - The game is played against the computer, so make the ‘computer’ players capable of making random plays. The computer does not have to be smart, but it should know whether or not a given move is legal (i.e. it shouldn’t shoot the same coordinate twice).
-   1. Create conditions so that the game ends once one player’s ships have all been sunk. This function is also appropriate for this module.
-1. Finish it up by implementing a system that allows players to place their ships. For example, you can let them type coordinates for each ship or have a button to cycle through random placements.
+1. Bắt đầu app bằng cách tạo class/factory `Ship` (bạn tự chọn).
+   1. 'Ships' của bạn sẽ là các object chứa length, số lần chúng bị hit và việc chúng đã bị sunk hay chưa.
+   1. **HÃY NHỚ** rằng bạn chỉ cần test public interface của object. Chỉ những method hoặc property được dùng bên ngoài object 'ship' mới cần unit test.
+   1. Ships nên có một function `hit()` làm tăng số 'hits' trong ship.
+   1. `isSunk()` nên là một function tính toán xem một ship có được xem là sunk hay không dựa trên length và số hits mà nó đã nhận.
+1. Tạo một class/factory `Gameboard`.
+   1. Lưu ý rằng chúng ta vẫn chưa tạo User Interface. Chúng ta nên biết code của mình đang dần hoàn thiện bằng cách chạy các test. Bạn không nên dựa vào `console.log` hoặc các method của DOM để bảo đảm code hoạt động như mong đợi.
+   1. Gameboards phải có khả năng đặt ships tại các tọa độ cụ thể bằng cách gọi ship factory hoặc class.
+   1. Gameboards nên có một function `receiveAttack` nhận một cặp tọa độ, xác định cuộc tấn công có đánh trúng ship hay không, rồi gọi function 'hit' cho ship thích hợp, hoặc ghi lại tọa độ của cú bắn trượt.
+   1. Gameboards phải theo dõi các cuộc tấn công trượt để có thể hiển thị chúng đúng cách.
+   1. Gameboards phải có khả năng báo cáo tất cả ships của chúng đã bị sunk hay chưa.
+1. Tạo một class/factory `Player`.
+   1. Trong game sẽ có hai loại player, player 'real' và player 'computer'.
+   1. Mỗi player object nên chứa gameboard riêng của nó.
+1. Import các class/factory của bạn vào một file khác và điều khiển game bằng event listeners để tương tác với các object. Tạo một module giúp bạn quản lý những action cần diễn ra trong DOM.
+   1. Đến lúc này, bạn có thể bắt đầu xây dựng User Interface.
+   1. Thiết lập game mới bằng cách tạo Players. Hiện tại, chỉ cần điền các tọa độ được định trước vào Gameboard của mỗi player. Sau này bạn sẽ triển khai hệ thống cho phép players đặt ships.
+   1. Hiện tại, chúng tôi để việc triển khai HTML cho bạn tự quyết định, nhưng bạn nên hiển thị cả hai board của players và render chúng bằng thông tin từ class/factory Gameboard.
+      - Bạn sẽ cần các method để render Gameboard của từng player, vì vậy hãy đặt chúng trong một module phù hợp.
+   1. Event listeners của bạn nên đi qua từng lượt của game, lần lượt từng lượt, chỉ sử dụng các method từ những object khác. Nếu tại bất kỳ thời điểm nào bạn muốn viết một function mới, hãy dừng lại và xác định class hoặc module nào nên chứa function đó.
+   1. Đối với các cuộc tấn công, hãy để user click vào một tọa độ trên Gameboard của enemy. Gửi input của user đến các method trên object của bạn, rồi render lại các board để hiển thị thông tin mới.
+      - Players nên lần lượt chơi bằng cách tấn công Gameboard của enemy. Nếu bạn cần theo dõi lượt của player hiện tại, việc quản lý điều đó trong module này là phù hợp, thay vì trong một object đã nêu ở trên.
+      - Game được chơi với computer, vì vậy hãy làm cho player 'computer' có khả năng thực hiện các nước đi ngẫu nhiên. Computer không cần thông minh, nhưng phải biết một nước đi có hợp lệ hay không (tức là không bắn cùng một tọa độ hai lần).
+   1. Tạo các điều kiện để game kết thúc khi tất cả ships của một player đã bị sunk. Function này cũng phù hợp với module này.
+1. Hoàn thiện bằng cách triển khai một hệ thống cho phép players đặt ships. Ví dụ, bạn có thể cho họ nhập tọa độ cho từng ship hoặc có một button để xoay vòng qua các vị trí ngẫu nhiên.
 
-#### Extra credit
+#### Điểm cộng
 
-Make your battleship project more impressive by introducing any of these modifications.
+Làm cho project battleship của bạn ấn tượng hơn bằng cách thêm bất kỳ thay đổi nào dưới đây.
 
-- Implement drag and drop to allow players to place their ships.
-- Create a 2-player option that lets users take turns by passing the laptop back and forth, or by spinning the monitor around on a desktop. Implement a 'pass device' screen so that players don't see each other's boards!
-- Polish the intelligence of the computer player by having it try adjacent slots after getting a 'hit'.
+- Triển khai drag and drop để cho phép players đặt ships.
+- Tạo tùy chọn 2-player, cho phép users lần lượt chơi bằng cách chuyền laptop qua lại hoặc xoay màn hình trên desktop. Triển khai một màn hình 'pass device' để players không nhìn thấy board của nhau!
+- Cải thiện intelligence của computer player bằng cách cho nó thử các ô liền kề sau khi 'hit'.
 
 </div>

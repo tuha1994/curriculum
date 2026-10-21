@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-We have discussed object constructors in the previous lesson. However, they are one of the many ways to organize your code. While they are fairly common and a fundamental building block of the JavaScript language, they have their flaws.
+Chúng ta đã thảo luận về object constructor trong bài trước. Tuy nhiên, chúng chỉ là một trong nhiều cách để tổ chức code. Dù khá phổ biến và là một khối xây dựng nền tảng của ngôn ngữ JavaScript, chúng vẫn có những hạn chế.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
 - Variable scope.
-- Closures.
-- Factory functions.
-- Private variables.
+- Closure.
+- Factory function.
+- Biến private.
 - Composition.
-- IIFEs and the module pattern.
+- IIFE và module pattern.
 - Encapsulation.
 
-### Scoopfuls of scopes
+### Những phần nhỏ của scope
 
-The word "scoping" essentially asks, "Where is a certain variable available to me?" - it indicates the current context of a variable. When a variable is not declared within **any** functions, existing outside any `{ curly braces }`, they are said to be in the **global scope**, meaning that they are available everywhere. If they are within a function or `{ curly braces }`, they are known to be **locally scoped**.
+Từ "scoping" về cơ bản đặt ra câu hỏi: "Một biến nào đó khả dụng ở đâu?" - nó cho biết context hiện tại của một biến. Khi một biến không được khai báo bên trong **bất kỳ** function nào, tồn tại bên ngoài mọi `{ curly braces }`, người ta nói nó nằm trong **global scope**, nghĩa là nó khả dụng ở mọi nơi. Nếu nằm bên trong một function hoặc `{ curly braces }`, nó được xem là có **local scope**.
 
-Before ECMAScript 6, JavaScript had a single keyword to declare a variable, `var`. These variables can be redefined and updated, and are said to be defined within the **function scope**, meaning, they are only available within the function they are declared in.
+Trước ECMAScript 6, JavaScript chỉ có một keyword để khai báo biến là `var`. Các biến này có thể được định nghĩa lại và cập nhật, và được xem là thuộc **function scope**, nghĩa là chúng chỉ khả dụng bên trong function nơi được khai báo.
 
-In ECMAScript 6, the keywords `let` and `const` were introduced. While `var` variables were function scoped, these allow you to define variables that are **block scoped** - basically, scoping the variable to only be available within the closest set of `{ curly braces }` in which it was defined. These braces can be those of a `for` loop, `if-else` condition, or any other similar construct, and are called, a block. Let's see an example to sum this all up.
+Trong ECMAScript 6, các keyword `let` và `const` được giới thiệu. Trong khi biến `var` có function scope, các keyword này cho phép bạn định nghĩa biến có **block scope** - về cơ bản là giới hạn biến chỉ khả dụng trong tập `{ curly braces }` gần nhất nơi nó được định nghĩa. Những dấu ngoặc này có thể là của vòng lặp `for`, điều kiện `if-else`, hoặc cấu trúc tương tự khác, và được gọi là block. Hãy xem một ví dụ để tổng hợp tất cả điều này.
 
 ```javascript
 // This is a global variable
@@ -51,13 +51,13 @@ printAge(globalAge);
 console.log(varAge);
 ```
 
-Take a while to brew on that example. In the end, it's not some mind-blowing concept but there's a whole bunch of terms in there - it'll all help us understand the next mammoth - closures.
+Hãy dành một chút thời gian ngẫm về ví dụ đó. Cuối cùng, đây không phải một khái niệm quá bất ngờ, nhưng có khá nhiều thuật ngữ trong đó - tất cả sẽ giúp chúng ta hiểu được chủ đề khổng lồ tiếp theo - closure.
 
-### Closures aren't scary
+### Closure không đáng sợ
 
-You know how if you needed to repeatedly get or create some value based on some kind of input, you'd use a function with parameters? For example, you could write a function that takes arguments and returns an array or string or number as a result of using those arguments. Functions are no different. You can use a function to create another function.
+Bạn biết rằng nếu cần lặp lại việc lấy hoặc tạo một giá trị dựa trên một loại input nào đó, bạn sẽ dùng function với parameter? Chẳng hạn, bạn có thể viết một function nhận argument và return array, string hoặc number do việc sử dụng các argument đó tạo ra. Function cũng không khác gì. Bạn có thể dùng một function để tạo ra một function khác.
 
-The best way to approach this would be to start with an example - take a look at this piece of code below.
+Cách tốt nhất để tiếp cận điều này là bắt đầu bằng một ví dụ - hãy xem đoạn code dưới đây.
 
 ```javascript
 function makeAddingFunction(firstNumber) {
@@ -74,7 +74,7 @@ function makeAddingFunction(firstNumber) {
 }
 ```
 
-We can then create our function by calling `makeAddingFunction`:
+Sau đó chúng ta có thể tạo function bằng cách gọi `makeAddingFunction`:
 
 ```javascript
 const add5 = makeAddingFunction(5);
@@ -87,31 +87,31 @@ const add79100105110 = makeAddingFunction(79100105110);
 console.log(add79100105110(111687378)); // 79211792488
 ```
 
-Instead of writing a new function every time, we just use a function to create a function for us - the same way we might write a `toFormattedDateString(date)` function and call it several times with different dates, rather than hardcoding the logic and resulting string every single time.
+Thay vì viết function mới mỗi lần, chúng ta chỉ cần dùng một function để tạo function khác - giống như cách ta có thể viết function `toFormattedDateString(date)` và gọi nó nhiều lần với các date khác nhau, thay vì hardcode logic và string kết quả cho từng lần.
 
-`returnedFunction` forms a closure around the `firstNumber` parameter. A closure refers to the combination of a function and the **surrounding state** in which the function was declared. This surrounding state, also called its **lexical environment**, consists of any local variables that were in scope at the time the closure was made. Here, `add5` is a reference to the function returned by the `makeAddingFunction(5)` call. After `makeAddingFunction(5)` finishes executing, the 5 is not cleaned up in memory because the returned function still needs it: the returned function has access to its lexical environment (which in this case, contains the `firstNumber` parameter).
+`returnedFunction` tạo một closure quanh parameter `firstNumber`. Closure là sự kết hợp giữa một function và **state xung quanh** nơi function được khai báo. State xung quanh này, còn được gọi là **lexical environment**, bao gồm mọi biến local nằm trong scope tại thời điểm closure được tạo. Ở đây, `add5` là một reference tới function được return từ lời gọi `makeAddingFunction(5)`. Sau khi `makeAddingFunction(5)` thực thi xong, số 5 không bị xóa khỏi memory vì function được return vẫn cần nó: function được return có quyền truy cập lexical environment của nó (trong trường hợp này chứa parameter `firstNumber`).
 
-This is a **crucial** behavior of functions; it allows us to associate data with functions and manipulate that data anywhere outside of the enclosing function. We can make use of this in factory functions, coming up shortly.
+Đây là một hành vi **cốt lõi** của function; nó cho phép chúng ta gắn data với function và thao tác trên data đó ở bất kỳ đâu bên ngoài function bao quanh. Chúng ta sẽ tận dụng điều này trong factory function ở phần sắp tới.
 
-### So, what's the matter with constructors?
+### Vậy constructor có vấn đề gì?
 
-There are a couple of things about constructors that historically some people have not been keen on. Doesn't mean they're bad or should be avoided, just that sometimes when creating objects, some people had gripes about the way constructors worked compared to alternatives.
+Có một vài điểm về constructor mà trong lịch sử một số người không thích. Điều đó không có nghĩa chúng tệ hoặc nên tránh dùng, chỉ là đôi khi khi tạo object, một số người không hài lòng về cách constructor hoạt động so với các lựa chọn khác.
 
-One such example is that they don't provide automatic safeguards that prevent us from using them wrong, such as calling them without the `new` keyword (you have to apply a safeguard yourself). Since they are syntactically the same as regular functions, they still "work" if you call them without `new`. In some cases, this is intentionally used, such as with the [`Date()` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) which returns a different thing depending on whether it was called with `new` or not. However, this is not always desirable. Forgetting to add a safeguard could mean you try to construct an object without `new` and instead of an error at that point, it "works" but with the wrong behavior (which might give you a very confusing error coming from elsewhere in the program).
+Một ví dụ là chúng không cung cấp cơ chế bảo vệ tự động ngăn chúng ta dùng sai, chẳng hạn gọi chúng mà không có keyword `new` (bạn phải tự thêm cơ chế bảo vệ). Vì có cú pháp giống hệt function thông thường, chúng vẫn "hoạt động" nếu được gọi mà không có `new`. Trong một số trường hợp, điều này được chủ động tận dụng, chẳng hạn constructor [`Date()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date), vốn return một thứ khác nhau tùy việc được gọi với `new` hay không. Tuy nhiên, điều này không phải lúc nào cũng mong muốn. Quên thêm cơ chế bảo vệ có thể khiến bạn cố construct một object mà không có `new` và thay vì báo lỗi ngay lúc đó, nó vẫn "hoạt động" nhưng với hành vi sai (có thể tạo ra một lỗi rất khó hiểu ở nơi khác trong program).
 
-Another historic gripe came from how `instanceof` *actually* works. In some other programming languages, the keyword is a reliable way to know the code with which an object was made. In JavaScript, it checks the presence of a constructor's prototype in an object's *entire* prototype chain, which does nothing to confirm if an object was actually made with that constructor; prototypes can even be reassigned after the creation of an object.
+Một điểm không hài lòng khác trong lịch sử đến từ cách `instanceof` *thực sự* hoạt động. Trong một số ngôn ngữ khác, keyword này là cách đáng tin cậy để biết code nào đã tạo ra một object. Trong JavaScript, nó kiểm tra sự hiện diện của prototype của một constructor trong *toàn bộ* prototype chain của object, việc này không xác nhận rằng object thực sự được tạo bởi constructor đó; prototype thậm chí có thể được gán lại sau khi object được tạo.
 
-Because of that, some people (not all) disliked using constructors in some situations, instead favoring a similar pattern that addresses some of these problems. Even though we now have even more ways to do object/prototype stuff without as many of the downsides of constructors (you'll learn about class syntax later), this is still something you will see often in the wild and has its own pros/cons.
+Vì vậy, một số người (không phải tất cả) không thích dùng constructor trong một số tình huống, thay vào đó ưa chuộng một pattern tương tự giải quyết được một số vấn đề này. Dù hiện nay chúng ta còn có nhiều cách hơn để làm việc với object/prototype mà không gặp nhiều hạn chế của constructor (sau này bạn sẽ học cú pháp class), đây vẫn là thứ thường xuyên xuất hiện trong thực tế và có ưu/nhược điểm riêng.
 
-Enter "factory functions".
+Hãy đến với "factory function".
 
-### Factory functions 🏭
+### Factory function 🏭
 
-These fancy-sounding functions work very similar to how constructors did, but with one key difference - they levy the power of closures. Instead of using the `new` keyword to create an object, factory functions set up and return the new object when you call the function. Really, they are just normal functions that return objects, nothing too fancy going on. They only get a fancy name like "factory function" because they're used in a certain way for a more specific context (like a factory producing objects).
+Những function có cái tên nghe khá cầu kỳ này hoạt động rất giống constructor, nhưng có một khác biệt quan trọng - chúng tận dụng sức mạnh của closure. Thay vì dùng keyword `new` để tạo object, factory function thiết lập và return object mới khi bạn gọi function. Thực ra, chúng chỉ là function bình thường return object, không có gì quá kỳ diệu. Chúng chỉ có cái tên cầu kỳ là "factory function" vì được dùng theo một cách nhất định trong một context cụ thể (giống như một nhà máy sản xuất object).
 
-They do not make direct use of the prototype, which does incur a performance penalty, but as a general rule, this penalty isn’t significant unless you’re creating thousands of objects (imagine if every single array you made came with its own copies of every single array and object method every time... given how fundamental they are and how many you'd likely use in a single program, that would be insane).
+Chúng không trực tiếp sử dụng prototype, điều này gây ra một hình phạt về hiệu năng, nhưng theo quy tắc chung, hình phạt này không đáng kể trừ khi bạn tạo hàng nghìn object (hãy tưởng tượng mỗi array bạn tạo đều đi kèm các bản sao riêng của mọi method array và object mỗi lần... vì chúng cơ bản đến mức nào và bạn có thể dùng bao nhiêu trong một program, điều đó sẽ thật điên rồ).
 
-Let's take a basic example to compare them to constructor functions.
+Hãy xem một ví dụ cơ bản để so sánh chúng với constructor function.
 
 ```javascript
 function User(name) {
@@ -120,7 +120,7 @@ function User(name) {
 }
 ```
 
-Hey, this is a constructor... then this can be refactored into a factory!
+Đây là constructor... giờ có thể refactor nó thành factory!
 
 ```javascript
 function createUser(name) {
@@ -129,13 +129,13 @@ function createUser(name) {
 }
 ```
 
-This is all very similar to the constructor, except this is just a normal function, meaning we do not need to call it with the `new` keyword.
+Tất cả khá giống constructor, ngoại trừ đây chỉ là một function bình thường, nghĩa là chúng ta không cần gọi nó với keyword `new`.
 
 <div class="lesson-note" markdown="1">
 
-#### The object shorthand notation
+#### Cú pháp viết tắt của object
 
-Some may get confused by the way the returned object is written in the factory function example. In 2015, a shortcut to creating objects was added to JavaScript. Say we wanted to create an object with a name, age, and color, we would write it as follows:
+Một số người có thể bối rối bởi cách object được return trong ví dụ factory function. Năm 2015, JavaScript được bổ sung một shortcut để tạo object. Giả sử muốn tạo một object với name, age và color, chúng ta sẽ viết như sau:
 
 ```javascript
 const name = "Bob";
@@ -145,30 +145,30 @@ const color = "red";
 const thatObject = { name: name, age: age, color: color };
 ```
 
-However, now, if we have a variable with the same name as that of the property to which we are assigning it, then we can write it once!
+Tuy nhiên, nếu có một biến trùng tên với property mà chúng ta đang gán, giờ có thể chỉ viết tên đó một lần!
 
 ```javascript
 const nowFancyObject = { name, age, color };
 ```
 
-An added advantage to this is that it's now possible to console.log values neatly! If you wanted to log the name, age and color variables together earlier, you would have done something like:
+Một lợi ích khác là giờ có thể console.log các value một cách gọn gàng! Nếu trước đây muốn log chung các biến name, age và color, bạn sẽ làm như sau:
 
 ```javascript
 console.log(name, age, color);
 ```
 
-This would log something like `Bob 28 red`. Not *bad*, just not the clearest as to what's what. Instead, try wrapping it in some curly braces now, which makes it an object:
+Điều này sẽ log ra thứ gì đó như `Bob 28 red`. Không *tệ*, chỉ là không rõ ràng nhất về việc đâu là gì. Thay vào đó, hãy thử bọc chúng trong dấu ngoặc nhọn để tạo thành object:
 
 ```javascript
 // shorthand for console.log({ name: name, age: age, color: color })
 console.log({ name, age, color });
 ```
 
-Now it'll log as `{ name: "Bob", age: 28, color: "red" }` which is much clearer, and we didn't need to manually add labels!
+Bây giờ nó sẽ log thành `{ name: "Bob", age: 28, color: "red" }`, rõ ràng hơn nhiều mà không cần tự thêm label!
 
 #### Destructuring
 
-Yet another expression allows you to "unpack" or "extract" values from an object (or array). This is known as **destructuring**. When you have an object, you can extract a property of an object into a variable of the same name, or any named variable for an array. Take a look at the example below:
+Một expression khác cho phép bạn "unpack" hoặc "extract" value từ object (hoặc array). Đây được gọi là **destructuring**. Với object, bạn có thể extract một property của object vào một biến cùng tên, hoặc dùng bất kỳ tên biến nào cho array. Hãy xem ví dụ dưới đây:
 
 ```javascript
 const obj = { a: 1, b: 2 };
@@ -179,7 +179,7 @@ const obj = { a: 1, b: 2 };
 const { a, b } = obj;
 ```
 
-And with arrays:
+Với array:
 
 ```javascript
 const array = [1, 2, 3, 4, 5];
@@ -190,13 +190,13 @@ const array = [1, 2, 3, 4, 5];
 const [zerothEle, firstEle] = array;
 ```
 
-The [MDN documentation on destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) has some great examples and should be a good read for this concept.
+[Tài liệu MDN về destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) có một số ví dụ rất hay và sẽ là tài liệu tốt để đọc về khái niệm này.
 
 </div>
 
-### Private variables and functions
+### Biến và function private
 
-Now you may be thinking - where does closure come into all of this? Factories seem to be returning an object. This is where we can extend our `User` factory to add a few more variables and introduce "private" ones. Take a look at this, now:
+Có thể bạn đang nghĩ - closure liên quan đến tất cả chuyện này ở đâu? Factory dường như chỉ return một object. Đây là lúc chúng ta có thể mở rộng factory `User` để thêm một vài biến và giới thiệu những biến "private". Hãy xem ví dụ này:
 
 ```javascript
 function createUser(name) {
@@ -220,25 +220,25 @@ console.log({
 });
 ```
 
-We’ve introduced a new metric for a new user - a reputation. Notice that the object we return in the factory function does not contain the `reputation` variable itself, nor any copy of its value. Instead, the returned object contains two functions - one that reads the value of the `reputation` variable, and another that increases its value by one. The `reputation` variable is what we call a "private" variable, since we cannot access the variable directly in the object instance - it can only be accessed via the closures we defined.
+Chúng ta đã giới thiệu một metric mới cho user mới - reputation. Hãy chú ý rằng object được return trong factory function không chứa chính biến `reputation`, cũng không chứa bản sao value của nó. Thay vào đó, object được return chứa hai function - một function đọc value của biến `reputation`, và một function tăng value lên một. Biến `reputation` được gọi là biến "private", vì chúng ta không thể truy cập trực tiếp biến này trong object instance - nó chỉ có thể được truy cập thông qua các closure mà chúng ta định nghĩa.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Pitfall: "Returning the variable in the object"
+#### Pitfall: "Return biến trong object"
 
-The following won't behave as many initially expect:
+Đoạn sau sẽ không hoạt động như nhiều người ban đầu mong đợi:
 
 ```javascript
 return { name, discordName, reputation };
 ```
 
-This does not "return the `reputation` variable". In long form syntax, this is the same as:
+Với cú pháp đầy đủ, điều này tương đương:
 
 ```javascript
 return { name: name, discordName: discordName, reputation: reputation };
 ```
 
-We are just creating a separate object property (that happens to be called `reputation` automatically because of object shorthand notation) and assigning it the value of the `reputation` variable. This is just the same as plain ol' assigning another variable with a variable's value. The other variable doesn't "track" the original. This is the same behavior as:
+Chúng ta chỉ đang tạo một property riêng của object (tình cờ tự động được gọi là `reputation` nhờ cú pháp viết tắt của object) và gán cho nó value của biến `reputation`. Điều này cũng giống như việc gán một biến khác bằng value của một biến. Biến kia không "theo dõi" biến ban đầu. Đây là cùng hành vi với:
 
 ```javascript
 let a = 1;
@@ -252,25 +252,25 @@ b = 23; // only reassigns b
 console.log(a, b); // 5 23
 ```
 
-The *only* way to access private variables is via closure.
+Cách *duy nhất* để truy cập biến private là thông qua closure.
 
 </div>
 
-Concerning factory functions, a private variable or function uses closures to create smaller, dedicated variables and functions within a factory function itself - things that we do not *need* to return in the object itself. This way we can create neater code without polluting the returned object with unnecessary variables. Often, you do not need every single function within a factory to be returned with the object, or expose an internal variable. You can use them privately since the property of closures allows you to do so.
+Với factory function, một biến hoặc function private dùng closure để tạo ra các biến và function nhỏ hơn, chuyên biệt bên trong chính factory function - những thứ chúng ta *không cần* return trong object. Nhờ vậy, chúng ta có thể tạo code gọn gàng hơn mà không làm object được return bị đầy lên bởi các biến không cần thiết. Thông thường, bạn không cần return mọi function bên trong factory cùng object, hoặc expose một biến nội bộ. Bạn có thể dùng chúng ở chế độ private nhờ đặc tính của closure.
 
-In this case, we did not need control of the `reputation` variable itself. To avoid foot guns, like accidentally setting the reputation to `-18000`, we expose the necessary details in the form of `getReputation` and `giveReputation`.
+Trong trường hợp này, chúng ta không cần kiểm soát trực tiếp biến `reputation`. Để tránh các lỗi bất cẩn như vô tình đặt `reputation` thành `-18000`, chúng ta expose những chi tiết cần thiết dưới dạng `getReputation` và `giveReputation`.
 
 <div class="lesson-note" markdown="1" >
 
-#### Constructors and closure
+#### Constructor và closure
 
-Note that you could technically also use closure in constructors, by defining the methods to access a "private property" inside the constructor, instead of on the prototype. But that would make them non-inheritable, which defeats the purpose of constructors.
+Lưu ý rằng về mặt kỹ thuật bạn cũng có thể dùng closure trong constructor bằng cách định nghĩa các method truy cập một "property private" bên trong constructor thay vì trên prototype. Nhưng như vậy chúng sẽ không thể kế thừa, làm mất mục đích của constructor.
 
 </div>
 
-### Composition with factories
+### Composition với factory
 
-In the lesson with constructors, we looked deeply into the concept of prototype and inheritance, and how to give our objects access to the properties of another. With factory functions, we can mimic similar inheritance-like behavior, though not via the same prototype mechanism. Take another hypothetical scenario into consideration. We need a `Player` factory that, on top of its own properties, has access to some (or all) of the properties from a `User` - there are some ways to do that:
+Trong bài về constructor, chúng ta đã tìm hiểu sâu về prototype và inheritance, cũng như cách cho object truy cập các property của object khác. Với factory function, chúng ta có thể mô phỏng hành vi tương tự inheritance, dù không thông qua cùng cơ chế prototype. Hãy xem xét một tình huống giả định khác. Chúng ta cần một factory `Player` có quyền truy cập một số (hoặc tất cả) property của `User`, bên cạnh property riêng của nó - có vài cách để làm điều đó:
 
 ```javascript
 function createPlayer(name, level) {
@@ -288,7 +288,7 @@ function createPlayer(name, level) {
 }
 ```
 
-And there you go! You can create your User, extract what you need from it, and re-return whatever you want to - hiding the rest as some private variables or functions! You can also use the [`Object.assign` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) if you have multiple objects you want to take things from:
+Vậy là xong! Bạn có thể tạo User, extract những gì cần dùng từ nó, rồi return lại bất kỳ thứ gì muốn - ẩn phần còn lại dưới dạng một số biến hoặc function private! Bạn cũng có thể dùng [`Object.assign` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) nếu có nhiều object muốn lấy dữ liệu:
 
 ```javascript
 function createPlayer(name, level) {
@@ -300,15 +300,15 @@ function createPlayer(name, level) {
 }
 ```
 
-This still creates brand new instances of the "inherited" methods for every object we create with `createPlayer` (unlike sharing the same method in memory when using prototypal inheritance), but as said earlier, unless you're creating an absolute bucketload of objects, this is unlikely to be a significant issue in practice.
+Cách này vẫn tạo các instance hoàn toàn mới của những method "được kế thừa" cho mỗi object tạo bởi `createPlayer` (khác với việc dùng chung một method trong memory khi sử dụng prototypal inheritance), nhưng như đã nói trước đó, trừ khi tạo một số lượng object cực kỳ lớn, đây khó có thể là vấn đề đáng kể trong thực tế.
 
-This is called **composition**. While it allows us to do similar things to inheritance, it gives us a bit more flexibility, as we may not necessarily want everything from another object (though we can take everything if we did want that). We "compose" a new object from multiple sources. Sometimes a given problem lends itself well to inheritance but sometimes that can be brittle, and the flexibility of composition is highly suitable. While you can technically compose with constructors, they lend themselves much better to inheritance approaches; composition often comes much more naturally with the factory functions.
+Đây được gọi là **composition**. Mặc dù cho phép làm những việc tương tự inheritance, nó đem lại cho chúng ta nhiều linh hoạt hơn, vì không nhất thiết phải lấy mọi thứ từ object khác (dù vẫn có thể lấy tất cả nếu muốn). Chúng ta "compose" một object mới từ nhiều nguồn. Đôi khi một bài toán phù hợp với inheritance, nhưng đôi khi cách đó có thể mong manh, và sự linh hoạt của composition rất phù hợp. Về kỹ thuật, bạn có thể compose bằng constructor, nhưng constructor phù hợp với hướng inheritance hơn nhiều; composition thường đến tự nhiên hơn với factory function.
 
-### The module pattern
+### Module pattern
 
-#### IIFEs
+#### IIFE
 
-Oftentimes, you do not need a factory to produce multiple objects - instead, you are using it to wrap sections of code together, hiding the variables and functions that you do not need elsewhere as private. This is easily achievable by wrapping your factory function in parentheses and immediately calling (invoking) it. This immediate function call is commonly referred to as an Immediately Invoked Function Expression (duh) or IIFE in short. IIFEs are quite literally just function expressions that are called immediately:
+Nhiều khi bạn không cần factory để tạo nhiều object - thay vào đó, bạn dùng nó để bọc các phần code lại với nhau, ẩn những biến và function không cần dùng ở nơi khác dưới dạng private. Có thể dễ dàng làm vậy bằng cách bọc factory function trong dấu ngoặc đơn rồi gọi (invoke) nó ngay lập tức. Lời gọi function ngay lập tức này thường được gọi là Immediately Invoked Function Expression (đúng như tên gọi) hoặc viết tắt là IIFE. IIFE đúng nghĩa chỉ là những function expression được gọi ngay lập tức:
 
 ```javascript
 // This is a function expression
@@ -319,17 +319,17 @@ Oftentimes, you do not need a factory to produce multiple objects - instead, you
 (() => console.log("foo"))();
 ```
 
-#### Using IIFEs to implement the module pattern
+#### Dùng IIFE để triển khai module pattern
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### ES6 modules
+#### ES6 module
 
-ECMAScript 6 (released in 2015) introduced a new JavaScript feature called "modules", which are a set of syntax for importing and exporting code between different JavaScript files. For now, we will be talking more generally about the module pattern using IIFEs, which you will still see out in the wild. In a later lesson, we will cover using ES6 modules for similar purposes.
+ECMAScript 6 (phát hành năm 2015) đã giới thiệu một tính năng JavaScript mới gọi là "module", đây là một tập cú pháp để import và export code giữa các file JavaScript khác nhau. Hiện tại, chúng ta sẽ nói tổng quát hơn về module pattern dùng IIFE, thứ mà bạn vẫn sẽ thấy trong thực tế. Trong một bài sau, chúng ta sẽ trình bày cách dùng ES6 module cho những mục đích tương tự.
 
 </div>
 
-A more helpful use of IIFEs is the pattern of wrapping "private" code inside an IIFE: the module pattern. This is often done with factory functions:
+Một cách hữu ích hơn để dùng IIFE là pattern bọc code "private" bên trong IIFE: module pattern. Việc này thường được thực hiện với factory function:
 
 ```javascript
 const calculator = (() => {
@@ -362,22 +362,22 @@ console.log(calculator.getLastResult()); // 4
 console.log(calculator.multiply(14, 5534)); // 77476
 ```
 
-Here, we have a calculator with four basic arithmetic methods and a method to read the most recent calculation's result. We only want the one calculator object but we still use a factory function! Why not just use an object literal directly?
+Ở đây, chúng ta có một calculator với bốn method số học cơ bản và một method để đọc kết quả của phép tính gần nhất. Chúng ta chỉ muốn một object calculator nhưng vẫn dùng factory function! Tại sao không dùng object literal trực tiếp?
 
-All object properties are public whether we like it or not. If we just made a calculator object literal, we'd have a `.lastResult` property that's public, meaning it allows the possibility of reassigning it directly (e.g. `calculator.lastResult = 111100105110`). We want to keep `lastResult` private and expose the value publicly for reading only. Reassignment should only happen internally on our terms. The only way we can truly hide the `lastResult` variable from anything that doesn't actually need it would be to put it inside a function, away from the outside scope, then create the object within the same scope and return it. A factory function... that we only need to call once!
+Mọi property của object đều public dù chúng ta có muốn hay không. Nếu chỉ tạo một object literal calculator, chúng ta sẽ có property `.lastResult` là public, nghĩa là có khả năng gán lại trực tiếp (ví dụ `calculator.lastResult = 111100105110`). Chúng ta muốn giữ `lastResult` ở private và chỉ expose value để đọc công khai. Việc gán lại chỉ nên xảy ra nội bộ theo điều kiện của chúng ta. Cách duy nhất để thực sự ẩn biến `lastResult` khỏi mọi thứ không cần đến nó là đặt nó bên trong một function, tách khỏi scope bên ngoài, rồi tạo object trong cùng scope đó và return object. Một factory function... mà chúng ta chỉ cần gọi một lần!
 
-This is where we encounter the word **encapsulation**: bundling data, code, or something into a single unit, with selective access to the things inside that unit itself. While it sounds general, this is what happens when we wrap (or encapsulate) our code into modules. We don't expose everything to the body of our program itself, only what is needed for other things to interact with whatever's inside the "module".
+Đây là lúc chúng ta gặp từ **encapsulation**: gói data, code hoặc một thứ gì đó vào một unit duy nhất, với quyền truy cập có chọn lọc tới những thứ bên trong chính unit đó. Dù nghe khá khái quát, đây chính là điều xảy ra khi chúng ta bọc (hay encapsulate) code vào module. Chúng ta không expose mọi thứ ra phần thân của program, chỉ expose những gì cần để các thành phần khác tương tác với những thứ bên trong "module".
 
-#### Why the IIFE?
+#### Tại sao dùng IIFE?
 
-But then why not just write the factory function then call it once? Why bother with the IIFE? Well without the IIFE, we'd have to give the function a name so we can call it afterwards. Now it has a name, it's both taken a name up in that scope and also means it's reusable in that scope. That may not be desirable - we may purposely want to invoke it only once. By wrapping the factory in an IIFE, we achieve the same code flow, except we no longer need to name the function, which also means it can't be referenced later. We are packing the code that creates a calculator into what's effectively a module, then exposing only what needs to be used later in the code: the `calculator` object.
+Nhưng tại sao không chỉ viết factory function rồi gọi nó một lần? Tại sao phải dùng IIFE? Nếu không có IIFE, chúng ta phải đặt tên cho function để có thể gọi nó sau đó. Khi đã có tên, function vừa chiếm một tên trong scope đó vừa có thể được tái sử dụng trong scope ấy. Điều này có thể không mong muốn - có thể chúng ta cố tình chỉ muốn invoke nó một lần. Bằng cách bọc factory trong IIFE, chúng ta đạt được cùng flow của code nhưng không còn cần đặt tên cho function, đồng nghĩa với việc không thể reference nó về sau. Chúng ta đóng gói code tạo calculator vào thứ về bản chất là một module, rồi chỉ expose những gì cần dùng về sau trong code: object `calculator`.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read [Wes Bos' article on scope](https://wesbos.com/javascript/03-the-tricky-bits/scope).
-1. Read [Wes Bos' article on closures](https://wesbos.com/javascript/03-the-tricky-bits/closures).
-1. Read [MDN's guide on closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures) (ignore ES6 modules for now; we’ll talk about them in a future lesson).
+1. Đọc [bài viết về scope của Wes Bos](https://wesbos.com/javascript/03-the-tricky-bits/scope).
+1. Đọc [bài viết về closure của Wes Bos](https://wesbos.com/javascript/03-the-tricky-bits/closures).
+1. Đọc [hướng dẫn về closure của MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures) (tạm bỏ qua ES6 module; chúng ta sẽ nói về chúng trong một bài sau).
 
 </div>

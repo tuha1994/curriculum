@@ -64,7 +64,7 @@ function handleClick() {
 }
 ```
 
-Tương tự như cách React cập nhật trạng thái bằng hàm `set` trong `useState`, React*chỉ cập nhật trạng thái trong lần kết xuất tiếp theo*sau khi gọi hàm `dispatch`.
+Tương tự như cách React cập nhật trạng thái bằng hàm `set` trong `useState`, React *chỉ cập nhật trạng thái trong lần kết xuất tiếp theo* sau khi gọi hàm `dispatch`.
 Hãy nhớ rằng các chức năng này sử dụng [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) để xác định xem trạng thái có thay đổi hay không, nếu không thì component đó sẽ không render lại.
 
 Việc bạn sử dụng `useState` hay `useReducer` là tùy thuộc vào bạn, cả hai đều tương đương nhau và bạn có thể sử dụng cả hai trong cùng một component.

@@ -1,12 +1,12 @@
 ### Giới thiệu
 
-Bất kỳ ứng dụng thú vị nào bạn xây dựng đều có khả năng thay đổi theo thời gian người dùng khám phá nó. Những thay đổi có thể cơ bản như chuyển đổi menu thả xuống hoặc phức tạp như tìm nạp dữ liệu từ API. React cung cấp các nguyên hàm để thao tác trạng thái ứng dụng của bạn, cụ thể hơn là các thành phần, để làm cho chúng trở nên linh hoạt. Trong bài học này, chúng ta sẽ học cách sử dụng trạng thái trong React.
+Các ứng dụng thú vị thường thay đổi trong quá trình người dùng tương tác. Thay đổi có thể đơn giản như mở một menu thả xuống, hoặc phức tạp như lấy dữ liệu từ API. React cung cấp các nguyên thủy để quản lý state của ứng dụng, cụ thể là state của component, nhờ đó giao diện có thể phản hồi linh hoạt. Trong bài này, chúng ta sẽ học cách dùng state trong React.
 
-Đọc [Nhà nước là gì? bởi Học viện](https://academind.com/tutorials/what-is-state) trước khi chúng ta bắt đầu.
+Trước khi bắt đầu, hãy đọc [State là gì? của Academind](https://academind.com/tutorials/what-is-state).
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Trạng thái của React là gì.
 - Cách sử dụng trạng thái trong React.
@@ -14,7 +14,7 @@ Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn 
 
 ### Trạng thái trong React là gì?
 
-Chúng tôi viết các thành phần bằng React, RẤT NHIỀU thành phần và nhiều khi chúng tôi muốn chúng trải qua những thay đổi trực quan do tương tác của người dùng hoặc máy tính. Với mục đích này, một thành phần cần phải "ghi nhớ" mọi thứ về chính nó. Đây là nơi nhà nước xuất hiện.**Trạng thái là bộ nhớ của một thành phần.**
+Trong React, ta viết rất nhiều component và thường muốn chúng thay đổi giao diện theo tương tác của người dùng hoặc theo dữ liệu. Vì vậy, component cần “ghi nhớ” thông tin về chính nó. Đó là lúc state phát huy tác dụng. **State là bộ nhớ của một component.**
 
 Chúng ta hãy xem cách chúng ta có thể sử dụng trạng thái trong mã của mình. Đi đến của chúng tôi [repo ví dụ phản ứng](https://github.com/TheOdinProject/react-examples) sau đó rẽ nhánh và sao chép nó. Khi bạn đã sao chép nó, `cd` vào thư mục `state/`, nơi bạn có thể chạy `npm install` để thiết lập mọi thứ, sau đó `npm run dev` để khởi động máy chủ nhà phát triển.
 
@@ -36,7 +36,7 @@ const [stateValue, setStateValue] = useState(initialValue);
 const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
 ```
 
-Ngay cả khi không có nhiều kiến ​​thức về React, ở một mức độ nào đó, bạn vẫn có thể hiểu được chuyện gì đang xảy ra. Trạng thái `backgroundColor` được xác định bằng hook. Sau đó trên mỗi nút, chúng tôi thiết lập một*bấm vào*trình xử lý sự kiện gọi hàm `setBackgroundColor` với giá trị tương ứng. Sau đó, màu mới được áp dụng cho nền một cách kỳ diệu.
+Ngay cả khi chưa biết nhiều về React, bạn vẫn có thể hình dung chuyện gì đang xảy ra. Hook xác định state `backgroundColor`. Mỗi nút được gắn một *trình xử lý sự kiện nhấp* để gọi `setBackgroundColor` với màu tương ứng. Sau đó, màu mới được áp dụng cho nền.
 
 Việc thêm nhiều biến trạng thái cũng dễ dàng như việc thêm nhiều lệnh gọi `useState` hơn.
 
@@ -46,8 +46,7 @@ Tuyệt vời, bây giờ bạn có thể sử dụng trạng thái! Nhưng, nh�
 
 Hãy đánh bạn với một số lý thuyết.
 
-Trong React, khi trạng thái hoặc đạo cụ của một thành phần thay đổi, React sẽ chạy lại chức năng thành phần của bạn ngay từ đầu để tìm ra nội dung nào sẽ được hiển thị dựa trên trạng thái và đạo cụ mới được thiết lập. Sau đó, tất cả các thay đổi được tính toán sẽ được áp dụng cho DOM (đã cam kết).
-Nghĩa là, theo một nghĩa nào đó, toàn bộ thành phần được tạo lại, nhưng lần này giá trị trạng thái mới nhất sẽ được trả về từ `useState`. Quá trình này được gọi là kết xuất lại. Hiển thị lại là tính năng chính của React cho phép nó cập nhật giao diện người dùng một cách hiệu quả để đáp ứng với những thay đổi trong dữ liệu cơ bản.
+Trong React, khi state hoặc props của component thay đổi, React sẽ chạy lại hàm component từ đầu để xác định nội dung cần render dựa trên state và props mới. Sau đó, React áp dụng các thay đổi đã tính toán vào DOM (commit). Nói cách khác, component được tạo lại, nhưng lần này `useState` trả về giá trị state mới nhất. Quá trình này gọi là render lại; đó là cơ chế giúp React cập nhật giao diện hiệu quả khi dữ liệu thay đổi.
 
 <div class="lesson-note" markdown="1">
 
@@ -59,7 +58,7 @@ Quá trình kết xuất lại tạo ra một cây ảo DOM (Mô hình đối t�
 
 #### Giải thích việc hiển thị lại bằng ví dụ trên
 
-Bất cứ khi nào `setBackgroundColor` được gọi, thành phần `App` của chúng tôi sẽ được hiển thị lại. Về cơ bản, thành phần này được tạo lại, có nghĩa là hàm `onButtonClick` và các `div` và `button` của chúng tôi cũng được tạo lại. Bạn có thể thắc mắc, có nên tạo lại trạng thái `backgroundColor` không? Chà, React chịu trách nhiệm theo dõi trạng thái mới nhất và cung cấp nó cho thành phần. Giá trị trạng thái ban đầu chỉ được sử dụng cho lần hiển thị đầu tiên của thành phần và bị bỏ qua trong các lần hiển thị tiếp theo.
+Mỗi khi gọi `setBackgroundColor`, component `App` sẽ render lại. Về cơ bản, component được chạy lại, nên hàm `onButtonClick` cùng các `div` và `button` cũng được tạo lại. Vậy state `backgroundColor` có bị tạo lại không? Không. React theo dõi giá trị state mới nhất và cung cấp nó cho component. Giá trị khởi tạo chỉ được dùng ở lần render đầu tiên, sau đó bị bỏ qua.
 
 ![mã minh họa của kết xuất lại](https://cdn.statically.io/gh/TheOdinProject/curriculum/abf5962ab36c951bab907a9952d09400651eab10/react/states_and_effects/introduction_to_state/imgs/00.png)
 

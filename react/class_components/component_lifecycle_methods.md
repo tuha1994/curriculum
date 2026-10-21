@@ -1,18 +1,18 @@
 ### Giới thiệu
 
-Trong phần trước, bạn đã tìm hiểu về vòng đời của một thành phần. Trong các thành phần chức năng, chúng tôi chủ yếu sử dụng hook `useEffect` để thực hiện các tác vụ trong suốt vòng đời, nhưng trong các thành phần lớp, chúng tôi phải sử dụng các phương thức vòng đời cụ thể để thay thế.
+Ở bài trước, bạn đã tìm hiểu về vòng đời của thành phần. Với thành phần hàm, chúng ta chủ yếu dùng hook `useEffect` để thực hiện công việc ở từng giai đoạn; còn với thành phần lớp, ta dùng các phương thức vòng đời tương ứng.
 
-Chúng ta sẽ bắt đầu với phần tóm tắt ngắn gọn về vòng đời của một thành phần. Có ba giai đoạn trong vòng đời của một thành phần: gắn kết, cập nhật và ngắt kết nối. Mỗi trong số chúng có một phương thức được gán cho chúng trong các thành phần lớp, đó là những gì chúng ta sẽ đề cập trong bài học này.
+Vòng đời của component có ba giai đoạn: mount, update và unmount. Trong thành phần lớp, mỗi giai đoạn có các phương thức tương ứng; đó là nội dung chúng ta sẽ học trong bài này.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Tìm hiểu cách sử dụng các phương thức vòng đời trong một thành phần lớp.
 
 ### render()
 
-Hàm kết xuất là phương thức vòng đời được sử dụng nhiều nhất và là phương thức mà bạn đã gặp trong bài học về thành phần lớp trước. Đây là phương thức vòng đời bắt buộc duy nhất trong một thành phần lớp. Nó chạy trên mount và cập nhật một thành phần. Kết xuất phải thuần túy, nghĩa là nó không sửa đổi trạng thái thành phần, trả về cùng một thứ mỗi khi nó được gọi (với cùng một đầu vào) và không tương tác trực tiếp với trình duyệt.
+Phương thức render là phương thức vòng đời được dùng nhiều nhất; bạn đã gặp nó ở bài về thành phần lớp. Đây là phương thức vòng đời bắt buộc duy nhất của thành phần lớp. Nó chạy khi component mount và update. Render phải thuần túy: không được thay đổi state, phải trả về cùng kết quả với cùng đầu vào, và không được tương tác trực tiếp với trình duyệt.
 
 ### componentDidMount()
 

@@ -1,10 +1,10 @@
 ### Giới thiệu
 
-Tất cả các thành phần cho đến nay đều có chức năng về kiểu dáng và cú pháp. Điều này hiện phổ biến nhưng bạn cũng sẽ thấy cú pháp dựa trên `class` khác. Trong bài học này, chúng ta khám phá cách viết một thành phần dựa trên lớp và cách sử dụng các khái niệm như đạo cụ và trạng thái trong một thành phần.
+Từ đầu đến giờ, chúng ta chủ yếu làm việc với các thành phần hàm, xét cả cách viết lẫn cú pháp. Đây là cách viết phổ biến hiện nay, nhưng bạn cũng sẽ gặp cú pháp dựa trên `class`. Trong bài học này, chúng ta sẽ tìm hiểu cách viết một thành phần lớp và cách dùng các khái niệm như props và state trong đó.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Các thành phần lớp được viết như thế nào
 - Cách sử dụng props và state trong các thành phần của lớp.
@@ -12,21 +12,21 @@ Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn 
 
 ### Các mẫu thành phần lịch sử React
 
-Trong các bài học trước, bạn đã được giới thiệu về các thành phần chức năng và các mẫu cơ bản mà ngày nay các thành phần được viết. Tuy nhiên, các thành phần React không giống như vậy khi React được giới thiệu.
+Ở các bài trước, bạn đã làm quen với thành phần hàm và cách viết component hiện nay. Tuy nhiên, khi React mới ra mắt, component không được viết như vậy.
 
-Nếu bạn nhìn vào bất kỳ cơ sở mã React nào cũ hơn, bạn sẽ nhận thấy rất nhiều lớp. Chúng được gọi là các thành phần dựa trên lớp. Trước tháng 2 năm 2019, các thành phần chức năng còn được gọi là không có trạng thái vì không có cách nào để quản lý trạng thái trong đó. Điều này đã được thay đổi khi các hook được giới thiệu, dẫn đến các thành phần ít dài dòng hơn và 'gọn gàng hơn'.
+Nếu xem một codebase React cũ, bạn sẽ thấy rất nhiều class. Đó là các thành phần lớp. Trước tháng 2 năm 2019, thành phần hàm còn được gọi là “stateless” vì chưa có cách quản lý state bên trong chúng. Điều này thay đổi khi hook xuất hiện, giúp component ngắn gọn và dễ đọc hơn.
 
-Trong sự nghiệp của mình, rất có thể bạn sẽ phải xử lý mã kế thừa, vì vậy sẽ có những ngày bạn phải xử lý các thành phần của lớp. Chúng ta hãy xem xét sự phức tạp của một thành phần dựa trên lớp và cách chúng hoạt động.
+Trong công việc, rất có thể bạn sẽ phải bảo trì mã kế thừa, nên việc gặp thành phần lớp là điều khó tránh. Hãy cùng tìm hiểu cách chúng hoạt động.
 
 ### Xây dựng thành phần lớp
 
-Như chúng ta đã biết về các thành phần chức năng, chúng ta hãy xây dựng một thành phần dựa trên lớp từ một thành phần chức năng. Thông thường, bạn sẽ muốn chia nội dung của một thành phần, giống như thành phần chúng ta sử dụng, thành các thành phần nhỏ hơn, có thể tái sử dụng, nhưng với mục đích của bài tập này, chúng ta sẽ tập trung vào mọi thứ trong một thành phần.
+Sau khi đã biết thành phần hàm, hãy thử xây dựng một thành phần lớp từ đó. Thông thường, bạn sẽ tách một component lớn thành những component nhỏ, có thể tái sử dụng; nhưng trong bài tập này, chúng ta sẽ giữ mọi thứ trong một component.
 
-Đầu tiên, đi và phân nhánh rồi sao chép [repo ví dụ phản ứng](https://github.com/TheOdinProject/react-examples) nếu bạn chưa làm như vậy. `cd` vào thư mục `class-components/`, cài đặt các phụ thuộc với `npm install` sau đó mở máy chủ dev với `npm run dev`. Bạn sẽ thấy chúng ta có hai phiên bản của cùng một tính năng - một phiên bản được tạo bằng thành phần chức năng, phiên bản còn lại có thành phần lớp. Hãy bắt đầu bằng cách xem thành phần chức năng bên trong `src/components/FunctionalInput.jsx`. Đó là một đoạn mã chắc chắn, vì vậy hãy dành chút thời gian, nhấp một ít nước và đọc nó vài lần.
+Trước hết, hãy fork rồi clone [repo ví dụ về React](https://github.com/TheOdinProject/react-examples) nếu bạn chưa làm. `cd` vào thư mục `class-components/`, cài dependency bằng `npm install`, rồi chạy máy chủ dev bằng `npm run dev`. Bạn sẽ thấy hai phiên bản của cùng một tính năng: một dùng component hàm, một dùng component lớp. Hãy bắt đầu bằng cách đọc component hàm trong `src/components/FunctionalInput.jsx`. Đây là đoạn mã khá dài, nên hãy đọc kỹ vài lượt.
 
 #### Sự khởi đầu của một thành phần dựa trên lớp
 
-Bạn sẽ thấy trong `src/components/ClassInput.jsx` rằng chúng tôi có phiên bản hoàn chỉnh dựa trên lớp học của nó. Hãy lùi lại vài bước và xem từng bước cách nó được tạo lại từ phiên bản chức năng. Điều đầu tiên nó phải có là,*đánh trống*, một lớp học! Nhưng nó không thể chỉ là một lớp khác, nó sẽ cần phải có một số thuộc tính nhất định đủ tiêu chuẩn để trở thành thành phần React. React cung cấp cho chúng ta tất cả các thuộc tính đó trên một lớp có tên là `Component` và chúng ta có thể viết các thành phần của mình bằng cách mở rộng lớp đã cho, như được hiển thị bên dưới:
+Trong `src/components/ClassInput.jsx`, bạn sẽ thấy phiên bản component lớp hoàn chỉnh. Hãy lùi lại một chút và xem từng bước cách nó được xây dựng từ phiên bản hàm. Điều đầu tiên cần có là, *drumroll*, một class! Nhưng đây không thể là class bất kỳ: nó phải có những thuộc tính cần thiết để trở thành component React. React cung cấp các thuộc tính đó qua class `Component`, và ta tạo component bằng cách kế thừa class này như dưới đây:
 
 ```jsx
 import { Component } from "react";
@@ -61,9 +61,9 @@ export default ClassInput;
 
 #### Cách bạn có thể kết xuất JSX
 
-Bây giờ các đạo cụ có thể được truy cập bên trong thành phần lớp, vấn đề tiếp theo là tìm cách hiển thị JSX.
+Bây giờ props có thể được truy cập bên trong thành phần lớp, bước tiếp theo là tìm cách render JSX.
 
-Chà, bạn có thể làm điều đó bằng cách trả về JSX của bạn từ phương thức `render`! Bạn cũng có thể sử dụng các đạo cụ mà bạn đã khai báo trong hàm tạo!
+Bạn chỉ cần trả về JSX từ phương thức `render`. Các props đã khai báo trong constructor cũng có thể dùng ở đây.
 
 ```jsx
 import { Component } from "react";
@@ -97,9 +97,9 @@ export default ClassInput;
 
 Hãy lưu ý cách các đạo cụ được cung cấp bởi `this`, không giống như thành phần chức năng mà chúng ta đã thấy ban đầu?
 
-#### Cách sử dụng trạng thái và quản lý bối cảnh
+#### Dùng state và quản lý ngữ cảnh
 
-Tiếp theo là nhà nước. Trong thành phần dựa trên lớp, trạng thái được khởi tạo như một phần của hàm tạo.
+Tiếp theo là state. Trong thành phần lớp, state được khởi tạo trong constructor.
 
 ```jsx
 import { Component } from "react";
@@ -134,9 +134,9 @@ class ClassInput extends Component {
 export default ClassInput;
 ```
 
-Phương thức `setState` được xác định trước có thể được sử dụng để thiết lập lại! Hãy nhớ rằng, trạng thái không được thay đổi, do đó, trạng thái mới phải được thiết lập mọi lúc.
+Phương thức `setState` có sẵn dùng để cập nhật state. Hãy nhớ rằng không được thay đổi trực tiếp state; mỗi lần cập nhật, bạn phải tạo state mới.
 
-Bây giờ, đã đến lúc hoàn thiện nó bằng cách thêm tất cả các chức năng! Nó gần như giống nhau, ngoại trừ một điểm khác biệt duy nhất. Bất cứ khi nào một phương thức được khai báo, bạn phải `bind` của phương thức đó so với phương thức của lớp để làm việc với nó, vì theo mặc định, các phương thức trong một lớp không bị ràng buộc với nó. Thông thường, bạn thực hiện việc này bên trong hàm tạo chứ không phải trong thời gian chạy [trong phương thức kết xuất]. Ngoài ra, nếu bạn xác định các phương thức của mình bằng cú pháp hàm mũi tên, `this` sẽ tự động được liên kết với thể hiện của lớp và bạn có thể bỏ qua việc liên kết nó trong hàm tạo.
+Bây giờ hãy hoàn thiện component bằng cách bổ sung toàn bộ chức năng. Mọi thứ gần như giống nhau, chỉ có một điểm cần lưu ý: mỗi phương thức phải `bind` `this` của nó với instance của class để có thể sử dụng đúng ngữ cảnh. Theo mặc định, phương thức trong class không được bind với instance. Thông thường, ta làm việc này trong constructor thay vì lúc chạy [trong phương thức render]. Nếu định nghĩa phương thức bằng cú pháp hàm mũi tên, `this` sẽ tự động bind với instance của class và không cần bind trong constructor.
 
 ```jsx
 import { Component } from "react";

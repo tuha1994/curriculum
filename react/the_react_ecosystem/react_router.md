@@ -1,10 +1,10 @@
 ### Giới thiệu
 
-Cho đến thời điểm này trong chương trình giảng dạy, chúng tôi đã xây dựng các ứng dụng một trang. Tuy nhiên, đối với bất kỳ ứng dụng quy mô lớn hơn nào, chúng ta sẽ có nhiều trang. Rất may, trình duyệt cho phép phía máy khách JavaScript quản lý cách người dùng có thể điều hướng, với [Lịch sử API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API). Chúng ta có thể tận dụng sức mạnh của điều này để quản lý việc định tuyến trong React với sự trợ giúp của gói như Bộ định tuyến React.
+Đến đây, chương trình đã giúp chúng ta xây dựng các ứng dụng một trang. Nhưng những ứng dụng lớn hơn thường có nhiều trang. May mắn là trình duyệt cho phép JavaScript phía máy khách quản lý cách người dùng điều hướng thông qua [History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API). Ta có thể tận dụng cơ chế này để định tuyến trong React với sự trợ giúp của các thư viện như React Router.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Hiểu định tuyến phía máy khách là gì.
 - Tìm hiểu cách sử dụng Bộ định tuyến React để định tuyến phía máy khách.
@@ -16,7 +16,7 @@ Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn 
 
 ### Định tuyến phía máy khách
 
-Định tuyến phía máy khách là loại định tuyến trong đó JavaScript đảm nhận nhiệm vụ xử lý các tuyến đường trong một ứng dụng. Định tuyến phía máy khách giúp xây dựng các ứng dụng một trang (SPA) mà không cần làm mới khi người dùng điều hướng. Ví dụ: khi người dùng nhấp vào một thành phần thanh điều hướng, URL sẽ thay đổi và chế độ xem của trang cũng được sửa đổi tương ứng trong ứng dụng khách.
+Định tuyến phía máy khách là kiểu định tuyến trong đó JavaScript xử lý các route của ứng dụng. Nhờ đó, ta có thể xây dựng ứng dụng một trang (SPA) mà không cần tải lại toàn bộ trang khi người dùng điều hướng. Ví dụ, khi người dùng nhấp vào một liên kết trên thanh điều hướng, URL thay đổi và ứng dụng cập nhật phần giao diện tương ứng.
 
 Giả sử bạn đang nấu một ít thịt gà. Muốn nấu ngon và ngon thì bạn phải:
 
@@ -32,7 +32,7 @@ Giả sử bạn đang nấu một ít thịt gà. Muốn nấu ngon và ngon th
 1. Đợi nó đẹp và ấm áp
 1. Bây giờ bạn có thể ăn nó!
 
-Đây là nơi chúng tôi nhắc lại,**bạn cần phải đứng dậy khỏi chỗ ngồi của mình**. Trong ứng dụng nhiều trang chung (MPA), trình duyệt sẽ tải lại mỗi khi bạn nhấp vào liên kết để điều hướng. Với định tuyến phía máy khách,**bạn không bao giờ rời khỏi trang bạn đang truy cập**- bạn mang theo lò vi sóng đến bàn để đảm bảo bạn không phải đứng dậy khỏi chỗ ngồi nếu gặp phải vấn đề "thiếu gia vị". Các yêu cầu liên kết bị chặn bởi JavaScript mà bạn viết, thay vì cho phép chúng truy cập trực tiếp vào máy chủ.
+Đây là điểm khác biệt quan trọng: **bạn phải đứng dậy khỏi chỗ ngồi** trong một ứng dụng nhiều trang (MPA), vì trình duyệt tải lại mỗi lần bạn nhấp vào liên kết để điều hướng. Với định tuyến phía máy khách, **bạn không rời khỏi trang hiện tại**—JavaScript chặn các yêu cầu điều hướng và tự cập nhật giao diện thay vì gửi yêu cầu trực tiếp lên máy chủ.
 
 ### Một giải pháp phản ứng
 
@@ -442,9 +442,9 @@ createRoot(document.getElementById("root")).render(
 
 Như chúng ta đã tìm hiểu trước đó, bạn có thể lồng các tuyến đường dưới dạng tuyến đường con của tuyến đường gốc, cho phép bạn sử dụng `<Outlet />` trong tuyến đường gốc để hiển thị phần tử thích hợp dựa trên phần còn lại của đường dẫn.
 
-Nếu chúng tôi có dữ liệu trong phần tử gốc, chẳng hạn như trạng thái, mà chúng tôi muốn chuyển đến bất kỳ thành phần nào được kết xuất bởi ổ cắm đó, thì chúng tôi sẽ phải sử dụng thứ gọi là `context`. Hiện tại, chúng ta sẽ tập trung vào ngữ cảnh có đầu ra, nhưng trong bài học sau, chúng ta sẽ tìm hiểu thêm về cách sử dụng ngữ cảnh không có đầu ra.
+Nếu component gốc có dữ liệu, chẳng hạn state, và muốn truyền dữ liệu đó cho component được render bên trong outlet, ta sẽ dùng `context`. Ở đây chúng ta tập trung vào context của outlet; bài sau sẽ nói về context độc lập với outlet.
 
-Các ổ cắm có một prop `context` được tích hợp sẵn. Chúng ta có thể chuyển bất kỳ giá trị nào chúng ta muốn vào prop này, thậm chí là một mảng hoặc đối tượng. Bên trong*bất kì*thành phần sẽ được hiển thị trong ổ cắm đó (thậm chí cả các thành phần "cháu"), chúng ta có thể gọi `useOutletContext()` hook sẽ trả về bất cứ thứ gì chúng ta đã chuyển vào bối cảnh đó. Nếu chúng ta truyền vào một mảng hoặc đối tượng, chúng ta thậm chí có thể phá hủy nó!
+Outlet có sẵn một prop `context`. Ta có thể truyền vào đó bất kỳ giá trị nào, kể cả mảng hoặc object. Bên trong *bất kỳ* component nào được render trong outlet, kể cả component “cháu”, ta có thể gọi hook `useOutletContext()` để lấy giá trị đã truyền. Nếu truyền mảng hoặc object, ta còn có thể destructure giá trị đó.
 
 Hãy xem React Bộ định tuyến [tài liệu về `useOutletContext`](https://reactrouter.com/api/hooks/useOutletContext) để tìm hiểu thêm về cách chuyển ngữ cảnh qua một lối thoát và truy cập ngữ cảnh đó trong các thành phần con.
 

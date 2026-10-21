@@ -1,17 +1,17 @@
 ### Giới thiệu
 
-Đến bây giờ, bạn nên bắt đầu hiểu React và các component có thể tái sử dụng mạnh mẽ như thế nào, nhưng bạn có thể vẫn thắc mắc 'Làm cách nào tôi có thể chia sẻ thông tin giữa các component?' hoặc 'Tôi có thể tùy chỉnh hành vi của các component mỗi lần tôi sử dụng chúng không?'. Trong bài học này, chúng ta sẽ tìm hiểu về React props (viết tắt của thuộc tính) và cách sử dụng props để truyền dữ liệu giữa các component.
+Đến đây, bạn hẳn đã thấy React và các component tái sử dụng hữu ích đến mức nào. Nhưng có lẽ bạn vẫn thắc mắc: “Làm thế nào để chia sẻ dữ liệu giữa các component?” hoặc “Làm sao tùy chỉnh hành vi của component mỗi lần sử dụng?”. Trong bài học này, chúng ta sẽ tìm hiểu về props của React (viết tắt của properties) và cách dùng chúng để truyền dữ liệu giữa các component.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Truyền dữ liệu giữa các component.
 - Sử dụng dữ liệu để tạo các component có thể tùy chỉnh và tái sử dụng.
 
 ### Truyền dữ liệu trong React
 
-Trong React, dữ liệu được truyền từ các component cha mẹ sang các component con thông qua các props. Việc truyền dữ liệu này là một chiều, nghĩa là nó chỉ chảy theo một hướng. Mọi thay đổi được thực hiện đối với dữ liệu này sẽ chỉ ảnh hưởng đến các component con đang sử dụng dữ liệu chứ không ảnh hưởng đến các component cha mẹ hoặc anh chị em. Hạn chế đối với luồng dữ liệu này giúp chúng tôi kiểm soát dữ liệu rõ ràng hơn, dẫn đến ít lỗi hơn trong ứng dụng của chúng tôi.
+Trong React, dữ liệu đi từ component cha xuống component con thông qua props. Đây là luồng dữ liệu một chiều: dữ liệu chỉ đi theo một hướng. Mọi thay đổi đối với dữ liệu chỉ ảnh hưởng đến các component con đang sử dụng dữ liệu đó, không ảnh hưởng ngược lên component cha hay các component anh em. Luồng dữ liệu một chiều giúp ta dễ theo dõi và kiểm soát dữ liệu hơn, nhờ đó ứng dụng ít lỗi hơn.
 
 ### Sử dụng props trong React
 
@@ -96,9 +96,9 @@ Có một vài điều đang diễn ra ở đây.
 - Khi render các component `Button` trong `App`, các giá trị `prop` được xác định trên mỗi component.
 - Kiểu nội tuyến được tạo động và sau đó được áp dụng cho phần tử `button`.
 
-### Phá hủy chống đỡ
+### Destructuring props
 
-Một mẫu rất phổ biến mà bạn sẽ gặp trong React là prop [phá hủy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring). Việc giải nén các props của bạn trong các tham số component sẽ cho phép mã ngắn gọn và dễ đọc hơn. Hãy xem hoạt động phá hủy prop trong ví dụ dưới đây.
+Một mẫu rất phổ biến trong React là destructuring props [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring). Destructuring props ngay trong tham số của component giúp mã ngắn gọn và dễ đọc hơn. Hãy xem ví dụ dưới đây:
 
 ```jsx
 function Button({ text, color, fontSize }) {

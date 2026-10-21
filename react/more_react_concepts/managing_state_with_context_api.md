@@ -1,10 +1,10 @@
 ### Giới thiệu
 
-Trong suốt các bài học, chúng ta đã học cách quản lý trạng thái cũng như truyền dữ liệu và đạo cụ giữa các thành phần. Tuy nhiên, khi ứng dụng của chúng tôi tăng kích thước, quá trình quản lý trạng thái và truyền dữ liệu xung quanh này không chỉ trở nên lặp đi lặp lại và bất tiện mà còn khó quản lý. trong [React Bài học về bộ định tuyến](https://www.theodinproject.com/lessons/node-path-react-new-react-router#outlets-and-state), chúng tôi đã đề cập đến cách chúng tôi có thể sử dụng ngữ cảnh đầu ra để truyền dữ liệu từ thành phần gốc thông qua `<Outlet />` đến thành phần con. Bài học này sẽ đề cập đến cách chúng ta có thể sử dụng Context API để thực hiện những việc tương tự bên ngoài các tình huống đầu ra.
+Trong suốt các bài học, chúng ta đã học cách quản lý state và truyền dữ liệu, props giữa các component. Tuy nhiên, khi ứng dụng lớn dần, việc quản lý và truyền dữ liệu này trở nên lặp lại, bất tiện và khó theo dõi. Trong [bài học về React Router](https://www.theodinproject.com/lessons/node-path-react-new-react-router#outlets-and-state), chúng ta đã dùng context của outlet để truyền dữ liệu từ component gốc qua `<Outlet />` đến component con. Bài học này trình bày cách dùng Context API cho những trường hợp không liên quan đến outlet.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Sử dụng Context API để truyền trạng thái và dữ liệu sâu vào các thành phần React.
 - Ứng dụng trong thế giới thực của Context API.
@@ -20,9 +20,9 @@ Context API trong React là một tính năng cho phép bạn quản lý trạng
 
 Bạn có một bộ đếm trong tiêu đề hiển thị số lượng mặt hàng hiện có trong giỏ hàng. Bạn có thể thêm sản phẩm vào giỏ hàng thông qua nút "Thêm vào giỏ hàng".
 
-Đối với các ví dụ bên dưới, chúng tôi sẽ bỏ qua việc định tuyến mà chúng tôi đã thực hiện trong dự án và các thành phần khác không cần thiết cho các ví dụ của chúng tôi. Chúng ta sẽ chỉ xem xét đoạn mã có liên quan đến bài học này.
+Trong ví dụ dưới đây, chúng ta sẽ bỏ qua phần định tuyến và các component không cần thiết cho mục đích minh họa. Chỉ tập trung vào phần mã liên quan đến bài học này.
 
-Như chúng ta đã biết, nếu chúng ta muốn trạng thái tồn tại và được chia sẻ giữa các thành phần, điều chúng ta muốn làm là [Nâng trạng thái lên](https://react.dev/learn/sharing-state-between-components) tới một ancestor/parent. chung
+Nếu muốn state tồn tại và được chia sẻ giữa nhiều component, ta thường [nâng state lên](https://react.dev/learn/sharing-state-between-components) một component ancestor/parent chung.
 
 Mã ứng dụng của chúng tôi có thể trông như thế này:
 
@@ -102,7 +102,7 @@ export default function ProductDetail({ products, addToCart }) {
 }
 ```
 
-Tuyệt vời. Đây là một mẫu rất phổ biến, chúng ta chuyển data/functions giữa các thành phần, không có gì quá phức tạp. Nhưng có rất nhiều thứ cần quản lý vi mô, rất nhiều thành phần mà bạn cần chuyển đạo cụ tới và thậm chí còn có một chút thao tác khoan chống đỡ đang diễn ra, trong đó `cartItemsCount` được truyền từ `App` -> `Header` -> `Links`.
+Đây là một mẫu rất phổ biến: truyền data và function giữa các component. Nhưng khi ứng dụng lớn dần, ta phải truyền props qua nhiều lớp component—đó là prop drilling. Trong ví dụ này, `cartItemsCount` đi từ `App` qua `Header` rồi tới `Links`.
 
 Cho đến nay, những gì chúng ta đã làm trong thành phần `App` là:
 
@@ -115,9 +115,9 @@ Cho đến nay, những gì chúng ta đã làm trong thành phần `App` là:
 
 Để đơn giản hóa ứng dụng và giảm độ phức tạp, chúng ta có thể triển khai Context API. Có ba yếu tố chính trong API này mà chúng ta cần hiểu:
 
-1. `createContext` - ​​Điều này "tạo ra bối cảnh" Duh... Nhưng đúng vậy, đó là cách chúng ta có thể tạo ra bối cảnh. Nó nhận bất kỳ giá trị nào, có thể là số, chuỗi hoặc đối tượng, có thể được gọi là*giá trị mặc định*của ngữ cảnh và trả về một đối tượng ngữ cảnh có thể được sử dụng để truyền dữ liệu tới các thành phần
-1. `useContext` - ​​Hook này được sử dụng để tiêu thụ dữ liệu từ một đối tượng bối cảnh được tạo bởi `createContext`. Chúng ta có thể sử dụng hook này bên trong thành phần của mình để lấy dữ liệu mà chúng ta cần. Móc này chấp nhận đối tượng bối cảnh làm đối số
-1. `ContextObject` - ​​Đối tượng bối cảnh là một thành phần chấp nhận một prop có tên `value`, là giá trị bối cảnh sẽ được truyền xuống các thành phần cho dù chúng được lồng sâu đến đâu. Nói cách khác, một cách để "cung cấp" giá trị ngữ cảnh cho các thành phần này. Trước React 19, `ContextObject.Provider` được sử dụng thay vì `ContextObject`, vì vậy bất cứ khi nào bạn thấy `Provider`, ý chúng tôi là `ContextObject`
+1. `createContext` — hàm này tạo một context. Nó nhận một giá trị bất kỳ (số, chuỗi hoặc object), gọi là *giá trị mặc định* của context, rồi trả về một context object dùng để truyền dữ liệu cho các component.
+1. `useContext` — hook này đọc dữ liệu từ context object do `createContext` tạo ra. Hook nhận context object làm đối số.
+1. `ContextObject` — đây là component nhận prop `value`, rồi truyền giá trị đó xuống mọi component con bên trong, dù chúng lồng sâu đến đâu. Trước React 19, người ta dùng `ContextObject.Provider` thay cho `ContextObject`; vì vậy khi gặp `Provider`, hãy hiểu đó là `ContextObject`.
 
 Chúng ta có thể bắt đầu bằng cách sử dụng hàm `createContext` có thể được nhập từ mô-đun `react`.
 

@@ -1,10 +1,10 @@
 ### Giới thiệu
 
-Bài học này sẽ dựa trên bài học trước về trạng thái và giới thiệu thêm các khái niệm và kỹ thuật quản lý trạng thái. Hãy đi sâu vào.
+Bài học này tiếp nối bài trước về state và giới thiệu thêm một số khái niệm, kỹ thuật quản lý state. Hãy cùng tìm hiểu sâu hơn.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Cách cấu trúc trạng thái.
 - Trạng thái cập nhật như thế nào.
@@ -12,13 +12,13 @@ Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn 
 
 ### Cách cấu trúc trạng thái
 
-Cho đến nay, quản lý và cấu trúc trạng thái một cách hiệu quả là một trong những phần quan trọng nhất trong việc xây dựng ứng dụng của bạn. Nếu không được thực hiện chính xác, nó có thể trở thành nguồn gây ra lỗi và đau đầu.
+Tổ chức và quản lý state hiệu quả là một trong những phần quan trọng nhất khi xây dựng ứng dụng. Nếu làm không tốt, state dễ trở thành nguồn gốc của lỗi và những vấn đề khó chịu.
 
-Các mục bài tập đều xuyên suốt chủ đề, nhưng theo nguyên tắc chung: không đặt các giá trị ở trạng thái có thể được tính toán bằng cách sử dụng các giá trị, trạng thái, đạo cụ and/or hiện có.
+Các bài tập sẽ đề cập đến chủ đề này ở nhiều nơi, nhưng nguyên tắc chung là: đừng lưu trong state những giá trị có thể tính được từ props, state hoặc các giá trị hiện có.
 
-#### Nhà nước không nên bị đột biến
+#### Không được đột biến state
 
-Trạng thái đột biến là khu vực cấm đi trong React vì nó dẫn đến kết quả không thể đoán trước. Các giá trị nguyên thủy vốn đã bất biến nhưng nếu bạn đang sử dụng các giá trị kiểu tham chiếu, tức là, mảng và đối tượng, thì đừng bao giờ thay đổi chúng. Theo tài liệu React, chúng ta nên xử lý trạng thái như thể nó là*bất biến*. Để thay đổi trạng thái, chúng ta phải luôn sử dụng hàm `setState`, trong trường hợp ví dụ bên dưới là hàm `setPerson`.
+Đột biến state là điều cần tránh trong React vì có thể tạo ra kết quả khó đoán. Giá trị nguyên thủy vốn bất biến; còn với các giá trị tham chiếu như mảng và object, bạn không được thay đổi trực tiếp chúng. Theo tài liệu React, hãy coi state là *bất biến*. Muốn cập nhật state, luôn dùng hàm `setState`—trong ví dụ dưới đây là `setPerson`.
 
 ```jsx
 function Person() {

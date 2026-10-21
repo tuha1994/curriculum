@@ -1,10 +1,10 @@
 ### Giới thiệu
 
-Làm cách nào chúng ta có thể thực hiện các thao tác DOM mà chúng ta thường làm trong vanilla JavaScript? Thậm chí có thể thực hiện được React vì tính chất khai báo của nó không? Làm thế nào về tối ưu hóa hiệu suất? Như chúng ta đã biết, khi một trạng thái bị thay đổi, React sẽ cố gắng kết xuất lại thành phần, điều đó có nghĩa là nó sẽ hủy tất cả các biến cục bộ không được kiểm soát bởi React và thực thi lại chúng. Mô hình tinh thần này cũng hoạt động cho một hàm thông thường mà bạn tạo, vì một thành phần chỉ là một hàm. Vì trường hợp này xảy ra, liệu nó có làm chậm ứng dụng không nếu chúng ta thực hiện lại một phép tính rất tốn kém sau mỗi lần kết xuất lại?
+Làm thế nào để thực hiện các thao tác DOM vốn thường làm bằng JavaScript thuần? Với tính khai báo của React, ta có thể làm việc đó không? Còn việc tối ưu hiệu năng thì sao? Như đã biết, khi state thay đổi, React sẽ render lại component; các biến cục bộ không được React quản lý sẽ bị tạo lại và mã được chạy lại. Vì component thực chất là một hàm, điều này cũng đúng với mọi hàm ta định nghĩa. Vậy nếu mỗi lần render lại đều phải thực hiện một phép tính rất tốn kém thì ứng dụng có bị chậm không?
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - `useRef` hook và các trường hợp sử dụng của nó.
 - Ghi nhớ và cách sử dụng `useCallback` và `useMemo`.
@@ -12,9 +12,9 @@ Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn 
 
 ### Cái móc useRef
 
-Hook `useRef` cho phép bạn quản lý một giá trị không cần thiết để hiển thị. Chúng là một giải pháp thay thế cho trạng thái, vì khi bạn muốn một thành phần “ghi nhớ” một số thông tin nhưng bạn không muốn thông tin đó kích hoạt các kết xuất mới, bạn có thể sử dụng hook này.
+Hook `useRef` cho phép bạn quản lý một giá trị không cần dùng để render. Đây là lựa chọn thay thế cho state khi bạn muốn component “ghi nhớ” thông tin nhưng không muốn thông tin đó kích hoạt lần render mới.
 
-Chúng thường được sử dụng khi thực hiện các hành động bắt buộc hoặc truy cập các phần tử cụ thể được hiển thị trong DOM. Người giới thiệu cũng có thể*kiên trì*giá trị trong suốt vòng đời của thành phần, nghĩa là giá trị của tham chiếu sẽ không bị hủy mỗi khi thành phần hiển thị lại. Điều này rất hữu ích khi bạn muốn lưu trữ một giá trị mà bạn muốn duy trì trong suốt vòng đời của thành phần mà không cần lưu trữ nó ở trạng thái.
+Hook này thường dùng cho các thao tác bắt buộc hoặc để truy cập một phần tử cụ thể trong DOM. Ref cũng có thể *duy trì* giá trị trong suốt vòng đời của component; giá trị đó không bị tạo lại sau mỗi lần component render. Đây là cách hữu ích để lưu một giá trị lâu dài mà không đưa nó vào state.
 
 #### DOM thao túng
 
@@ -43,7 +43,7 @@ Việc thực hiện rất đơn giản:
 1. Đã tạo một `useEffect` để được thực thi một lần trên mount của thành phần sẽ cố gắng gọi phương thức `focus` của thành phần nút.
 1. Chúng tôi đã đính kèm `buttonRef` vào thuộc tính `ref` của thành phần nút. Điều này thiết lập kết nối giữa `buttonRef` và nút trong DOM.
 
-Bất cứ khi nào trang web của bạn tải, nó sẽ tự động tập trung vào thành phần nút. Bạn có thể hỏi, làm sao nó có phương thức `focus` khi giá trị ban đầu là `null`? Bây giờ bạn nên biết rằng `rendering` và `painting of the screen` xuất hiện trước khi React chạy `useEffect`. Nó đã thiết lập kết nối giữa ref và nút trước khi hiệu ứng được thực thi.
+Bất cứ khi nào trang tải, component nút sẽ tự động nhận focus. Có thể bạn thắc mắc: tại sao nó có phương thức `focus` khi giá trị ban đầu là `null`? React thực hiện `rendering` và `painting of the screen` trước khi chạy `useEffect`, đồng thời đã gắn ref với nút trước khi effect được thực thi.
 
 Ngoài ra, hãy nhớ rằng hook `useRef` không chỉ giới hạn ở việc lấy nét phần tử. Nó có thể được dùng cho nhiều tình huống thao tác DOM khác, chẳng hạn như cuộn đến một vị trí cụ thể, đo kích thước phần tử, kích hoạt hiệu ứng chuyển động và về cơ bản là *bất kỳ* thao tác DOM nào bạn từng thực hiện với JavaScript thuần. Khả năng là vô tận! Ví dụ: chúng ta có thể thay đổi `useEffect` trong đoạn mã trên để thực hiện như sau. Thay đổi văn bản của nút, rồi sau 2 giây đổi văn bản trở lại. Bạn **không nên** làm điều này; hãy chỉ dùng `useRef` cho các thao tác DOM không phá hủy, nhưng đây vẫn là một ví dụ:
 
@@ -63,7 +63,7 @@ useEffect(() => {
 
 Điều thú vị ở đây là nó sẽ **không bao giờ** kích hoạt kết xuất lại thành phần!
 
-Một câu hỏi khác có thể xuất hiện trong đầu bạn là "Tại sao không sử dụng `querySelector` hoặc các phương pháp thao tác DOM khác mà chúng tôi đã thực hiện trước đây trong vanilla JavaScript?" Việc tự mình xử lý DOM sẽ làm mất đi mục đích của việc sử dụng React và bất cứ khi nào có thể, chúng ta nên để React*làm*đến chính DOM.
+Việc gọi `querySelector` hay tự thao tác DOM sẽ đi ngược mục đích của React. Khi có thể, hãy để React *commit* thay đổi vào DOM thay vì trực tiếp thay đổi nó.
 
 Chúng ta cũng có thể thấy rằng nó tương tự như hook `useState` ở chỗ nó có thể lưu trữ một số giá trị. Sự khác biệt chính là `useRef` tạo ra một tham chiếu có thể thay đổi, cho phép bạn cập nhật giá trị của nó mà không cần kích hoạt kết xuất lại. Tuy nhiên, `useState` quản lý trạng thái bất biến, kích hoạt kết xuất lại khi được cập nhật.
 
@@ -105,7 +105,7 @@ Trong thành phần `Cart`, chúng ta có tổng giá của sản phẩm đượ
 
 Phương thức `reduce` lặp lại từng sản phẩm và thực hiện phép nhân và phép cộng cho mọi mặt hàng trong giỏ hàng. Hoạt động này trở thành*ngày càng*tốn thời gian khi số lượng sản phẩm tăng lên.
 
-Bây giờ hãy tưởng tượng một người dùng thường xuyên opens/closes giỏ hàng. Mỗi khi ngăn kéo được mở, thành phần `Cart` sẽ được hiển thị, thực thi mọi thứ bên trong thành phần đó. Điều này dẫn đến việc tính toán lại cùng một giá trị không cần thiết ngay cả khi nội dung của giỏ hàng không thay đổi.
+Bây giờ hãy tưởng tượng người dùng thường xuyên mở và đóng giỏ hàng. Mỗi lần mở, component `Cart` lại render và chạy toàn bộ mã bên trong. Vì vậy, cùng một giá trị bị tính lại dù nội dung giỏ hàng không thay đổi.
 
 Hãy xem cách chúng ta có thể sử dụng `useMemo` để giải quyết vấn đề này:
 
@@ -135,11 +135,11 @@ function Cart({ products }) {
 
 Trong ví dụ trên, chúng ta có thể dễ dàng ghi nhớ giá trị được tính bằng cách gói nó trong `useMemo`, vì cú pháp khá giống với `useEffect` và gần như hoạt động giống nhau. `useMemo` sẽ chạy lệnh gọi lại trên mount. Trong những lần kết xuất lại tiếp theo, nó sẽ chỉ chạy lại lệnh gọi lại nếu phần phụ thuộc thay đổi, nếu không, nó sẽ trả về giá trị được lưu trong bộ nhớ đệm bất cứ khi nào nó được chạy lần cuối. Trong trường hợp của chúng tôi, bất cứ khi nào `products` prop thay đổi.
 
-Bằng cách này, bất cứ khi nào người dùng opens/closes giỏ hàng nhiều lần, nó sẽ không tính toán lại `totalPrice` và sử dụng giá trị được lưu trong bộ nhớ đệm miễn là `products` không thay đổi.
+Mỗi khi người dùng mở hoặc đóng giỏ hàng nhiều lần, `totalPrice` sẽ không bị tính lại; giá trị đã ghi nhớ được dùng lại miễn là `products` không thay đổi.
 
 #### Kiểm tra đẳng thức tham chiếu
 
-Trong ví dụ này, chúng tôi sẽ sử dụng thành phần `Profiler` trong mô-đun `react` để đo hiệu suất của thành phần. Chúng tôi cũng sẽ giới thiệu `memo`.
+Trong các bài tập này, chúng ta sẽ dùng component `Profiler` từ module `react` để đo hiệu năng. Đồng thời, ta cũng sẽ tìm hiểu `memo`.
 
 Bạn không cần phải bắt đầu đăng ký React cho việc này vì chúng tôi đã hỗ trợ bạn. Một lát sau, chúng ta sẽ chia sẻ một ví dụ tương tác, nhưng bây giờ, hãy suy nghĩ kỹ về mã mà bạn nghĩ sẽ xảy ra, điều gì có thể xảy ra, v.v. Đây cũng có thể là một bài tập tuyệt vời trong việc đọc mã và hình dung cách nó hoạt động.
 

@@ -1,10 +1,10 @@
 ### Giới thiệu
 
-Trong bài học này, chúng ta sẽ tìm hiểu các khái niệm cơ bản về các thành phần React - ​​chức năng của chúng và cách viết chúng. Đảm bảo sử dụng dự án bạn đã thiết lập trong bài học trước, nhưng cố gắng không sao chép và dán bất kỳ mã nào trong khi bạn đang viết mã.
+Trong bài học này, chúng ta sẽ tìm hiểu những điều cơ bản về component React: chúng làm gì và được viết như thế nào. Hãy dùng dự án đã tạo ở bài trước, nhưng cố gắng tự gõ mã thay vì sao chép và dán.
 
 ### Tổng quan bài học
 
-Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
+Phần này tóm lược những nội dung bạn sẽ học trong bài.
 
 - Tìm hiểu về các thành phần React.
 - Hiểu cách tạo các thành phần.
@@ -41,7 +41,7 @@ Bạn xong chưa? Kiểm tra cách đặt tên cho chức năng của bạn! Nó
 
 #### HTML đang làm gì trong JavaScript của tôi?
 
-Đó là JSX. Thoạt nhìn có vẻ chói tai nhưng chúng ta sẽ sớm nhận ra nó tuyệt vời như thế nào. Chúng ta sẽ tìm hiểu tất cả về nó trong các bài học sắp tới!
+Đó là JSX. Thoạt nhìn có thể hơi lạ, nhưng bạn sẽ sớm thấy nó tiện lợi đến thế nào. Chúng ta sẽ tìm hiểu kỹ hơn trong các bài tiếp theo!
 
 ### Các thành phần sống ở đâu?
 

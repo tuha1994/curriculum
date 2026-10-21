@@ -11,7 +11,7 @@ Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn 
 - Cách tạo dự án React.
 - Cách sử dụng Vite để tạo dự án React mới.
 - Cách định dạng mã trong dự án React.
-- React Công cụ dành cho nhà phát triển là gì.
+- React Developer Tools là gì.
 
 ### Nhiều con đường
 
@@ -21,7 +21,7 @@ Một số ví dụ về các chuỗi công cụ này bao gồm:
 
 - [Cấu hình Vite của React](https://vitejs.dev/)
 - [Gatsby](https://www.gatsbyjs.com/)
-- [Tiếp theoJS](https://nextjs.org/)
+- [Next.js](https://nextjs.org/)
 - [Tạo ứng dụng React](https://create-react-app.dev/)(Không dùng nữa)
 
 Tại sao chúng ta cần những chuỗi công cụ này? Chúng ta không thể tự làm theo cách chúng ta thấy phù hợp sao?

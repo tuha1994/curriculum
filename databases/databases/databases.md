@@ -1,32 +1,32 @@
-### Introduction
+### Giới thiệu
 
-You might have wondered how you keep track of all your users' data.  Who remembers that your login password is `CatLover1985` so you can sign into the website?  The bottom layer of any web application is the database and it handles all the remembering for you (we'll cover caching much later). It can be relatively simple, like an Excel spreadsheet, or incredibly complex and split into many giant pieces, like Facebook's.
+Có lẽ bạn từng tự hỏi làm thế nào để theo dõi dữ liệu của tất cả người dùng. Ai mà nhớ nổi mật khẩu đăng nhập của bạn là `CatLover1985` để bạn có thể đăng nhập vào trang web? Tầng nền tảng của mọi ứng dụng web là cơ sở dữ liệu, và nó thay bạn ghi nhớ mọi thứ (chúng ta sẽ tìm hiểu về bộ nhớ đệm vào phần sau). Cơ sở dữ liệu có thể tương đối đơn giản, giống như một bảng tính Excel, hoặc cực kỳ phức tạp và được chia thành nhiều phần khổng lồ, như cơ sở dữ liệu của Facebook.
 
-Databases are kind of hidden in the back of the web application, so people approach them with a sense of suspicion and awe.  However, do not fret or feel intimidated.  As you dive deeper into the subject, your databases and you are going to become very good friends (or at least frenemies).  Rest assured, by the end of this curriculum, you're going to understand what's going on with your databases and be able to interact with them like a pro (and probably better than some people you'll work with).  This lesson is a teaser for that.
+Cơ sở dữ liệu thường nằm khuất phía sau ứng dụng web, nên mọi người thường tiếp cận chúng với cảm giác vừa dè chừng vừa kinh ngạc. Tuy nhiên, đừng lo lắng hay cảm thấy bị choáng ngợp. Khi tìm hiểu sâu hơn về chủ đề này, bạn và cơ sở dữ liệu của mình sẽ trở thành những người bạn rất thân (hoặc ít nhất là bạn bè nhưng vẫn có chút đối đầu). Hãy yên tâm rằng đến cuối chương trình học này, bạn sẽ hiểu cơ sở dữ liệu của mình đang hoạt động như thế nào và có thể tương tác với chúng như một chuyên gia (và có lẽ còn giỏi hơn một số người bạn sẽ làm việc cùng). Bài học này chỉ là phần giới thiệu sơ lược về những điều đó.
 
-Compared to a normal programming language like you've already learned, SQL (Structured Query Language), which is used to query databases, has a very short syntax... with only a small handful of verbs to learn.  What trips people up is that you need to be able to visualize in your head what it's going to be doing.  We'll spend a fair bit of time on SQL and databases because they're so fundamental, but for now we'll just cover enough to get you familiar with what's going on in there.
+So với một ngôn ngữ lập trình thông thường mà bạn đã học, SQL (Structured Query Language, ngôn ngữ truy vấn có cấu trúc), được dùng để truy vấn cơ sở dữ liệu, có cú pháp rất ngắn gọn... và chỉ cần học một số ít động từ. Điều khiến mọi người gặp khó khăn là bạn phải hình dung được trong đầu câu lệnh sẽ thực hiện những gì. Chúng ta sẽ dành khá nhiều thời gian cho SQL và cơ sở dữ liệu vì chúng là nền tảng, nhưng trước mắt, chúng ta chỉ tìm hiểu đủ để bạn làm quen với những gì đang diễn ra bên trong đó.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- What a database is.
-- What relational databases are.
-- In what way relational databases are different from XML.
-- What SQL is.
-- What SQL is used for.
-- How to get all the records from a table in SQL.
-- How to insert a record in SQL.
+- Cơ sở dữ liệu là gì.
+- Cơ sở dữ liệu quan hệ là gì.
+- Cơ sở dữ liệu quan hệ khác XML ở điểm nào.
+- SQL là gì.
+- SQL được dùng để làm gì.
+- Cách lấy tất cả bản ghi từ một bảng bằng SQL.
+- Cách chèn một bản ghi bằng SQL.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Check out this introduction of [how SQL can be used to organise and manage an overwhelming amount of data](https://launchschool.com/books/sql/read/introduction).
-      - You do not need to go any further than the first page on introductions.
+  1. Xem phần giới thiệu về [cách sử dụng SQL để sắp xếp và quản lý một lượng dữ liệu khổng lồ](https://launchschool.com/books/sql/read/introduction).
+      - Bạn không cần đọc quá trang đầu tiên của phần giới thiệu.
 
-  1. Watch this [short video introduction to relational databases](http://www.youtube.com/watch?v=z2kbsG8zsLM) to get a feel for why this stuff is useful and some more exposure to the terminology we'll use.
-  1. Go through this [Khan Academy SQL tutorial](https://www.khanacademy.org/computing/hour-of-code/hour-of-sql/v/welcome-to-sql) to get a feel for actually creating and manipulating databases.
-  1. Relational databases aren't the only way to store data. Non-relational (a.k.a. NoSQL) databases have emerged over the last couple decades. While we'll be using SQL in this curriculum, check out this article to learn the [difference between SQL and NoSQL](https://circleci.com/blog/SQL-vs-NoSQL-databases/).
+  1. Xem [video ngắn giới thiệu về cơ sở dữ liệu quan hệ](http://www.youtube.com/watch?v=z2kbsG8zsLM) để hiểu vì sao chủ đề này hữu ích và làm quen thêm với các thuật ngữ chúng ta sẽ sử dụng.
+  1. Học qua [hướng dẫn SQL của Khan Academy](https://www.khanacademy.org/computing/hour-of-code/hour-of-sql/v/welcome-to-sql) để làm quen với việc thực sự tạo và thao tác trên cơ sở dữ liệu.
+  1. Cơ sở dữ liệu quan hệ không phải là cách duy nhất để lưu trữ dữ liệu. Cơ sở dữ liệu phi quan hệ (còn gọi là NoSQL) đã xuất hiện trong vài thập kỷ qua. Mặc dù chúng ta sẽ sử dụng SQL trong chương trình học này, hãy xem bài viết về [sự khác biệt giữa SQL và NoSQL](https://circleci.com/blog/SQL-vs-NoSQL-databases/) để tìm hiểu thêm.
 
 </div>

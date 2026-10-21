@@ -1,13 +1,13 @@
-### Introduction
+### Giới thiệu
 
-SQL Zoo is one of the few resources online that actually lets you build and run queries against existing tables.  Each tutorial will show you a table and then have you run queries against it to answer specific questions.  Some of the queries, particularly at first, are quite short. They definitely get more challenging towards the end and can be real head scratchers.
+SQL Zoo là một trong số ít tài nguyên trực tuyến thực sự cho phép bạn xây dựng và chạy các truy vấn trên những bảng có sẵn. Mỗi bài hướng dẫn sẽ giới thiệu một bảng, sau đó yêu cầu bạn chạy các truy vấn trên bảng đó để trả lời những câu hỏi cụ thể. Một số truy vấn, đặc biệt là ở phần đầu, khá ngắn. Tuy nhiên, về cuối chúng chắc chắn sẽ khó hơn và có thể khiến bạn phải vò đầu bứt tai.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Go to [SQL Zoo](https://sqlzoo.net/wiki/SQL_Tutorial) and do Tutorials 0-9 (including the ones marked with +/-) listed under the "Tutorial Section" and the quizzes listed at the end of each.  The first tutorial is called "SELECT basics".
-      - Make sure the dropdown on the upper right of the main page for "Engine" says "MySQL" (the default).  Large results will be cut off and not all rows or columns shown, so the "answers" may not look 100% correct.
-  1. Before you move on, we would like your feedback - please fill out this [feedback form for the SQL course](https://docs.google.com/forms/d/e/1FAIpQLSenvMG6WFbOOEap_biQOwqfbH-j-xsf5Eyv4ir2Rx5FsYSecQ/viewform?usp=sf_link). Getting user (you) feedback is important so we can continue to improve the curriculum and get an idea of your experience.
+  1. Truy cập [SQL Zoo](https://sqlzoo.net/wiki/SQL_Tutorial) và thực hiện các Tutorial 0-9 (bao gồm cả những bài được đánh dấu bằng +/-) trong mục "Tutorial Section", cùng với các bài kiểm tra ở cuối mỗi tutorial. Tutorial đầu tiên có tên là "SELECT basics".
+      - Hãy bảo đảm trình đơn thả xuống ở phía trên bên phải của trang chính, tại mục "Engine", hiển thị "MySQL" (mặc định). Các kết quả lớn sẽ bị cắt bớt và không phải tất cả các hàng hoặc cột đều được hiển thị, vì vậy "answers" có thể trông không hoàn toàn chính xác.
+  1. Trước khi tiếp tục, chúng tôi muốn nhận phản hồi của bạn — vui lòng điền vào [biểu mẫu phản hồi cho khóa học SQL](https://docs.google.com/forms/d/e/1FAIpQLSenvMG6WFbOOEap_biQOwqfbH-j-xsf5Eyv4ir2Rx5FsYSecQ/viewform?usp=sf_link). Việc nhận phản hồi từ người dùng (chính là bạn) rất quan trọng để chúng tôi có thể tiếp tục cải thiện chương trình học và hiểu rõ hơn về trải nghiệm của bạn.
 
 </div>

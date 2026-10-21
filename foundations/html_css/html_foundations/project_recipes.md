@@ -1,109 +1,109 @@
-### Introduction
+### Giới thiệu
 
-It's time to practice all of the HTML knowledge you have acquired. In this project, you are going to build a basic recipe website.
+Đã đến lúc thực hành toàn bộ kiến thức HTML mà bạn đã học. Trong dự án này, bạn sẽ xây dựng một trang web công thức nấu ăn cơ bản.
 
-The website will consist of a main index page which will have links to a few recipes. The website won't look very pretty by the time you've finished but it's important to keep in mind that the purpose of this project is to build your HTML chops; we will revisit this project in the future to style it up with CSS.
+Trang web sẽ gồm một trang chỉ mục chính chứa các liên kết đến một vài công thức. Khi hoàn thành, trang web có thể sẽ không trông đẹp mắt lắm, nhưng điều quan trọng cần nhớ là mục đích của dự án này là rèn luyện kỹ năng HTML; sau này chúng ta sẽ quay lại dự án để tạo kiểu bằng CSS.
 
-### Setting up your project's GitHub repository
+### Thiết lập kho GitHub cho dự án
 
-As mentioned in the [Introduction to Git lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/introduction-to-git), you'll want to organize all your projects like a portfolio and link them to GitHub so it can be seen by others.
+Như đã đề cập trong [bài học Giới thiệu về Git](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/introduction-to-git), bạn nên sắp xếp tất cả dự án của mình như một danh mục sản phẩm và liên kết chúng với GitHub để người khác có thể xem.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Be careful about creating files on GitHub
+#### Cẩn thận khi tạo tệp trên GitHub
 
-GitHub allows us to make changes directly on its site. If you do this after you have cloned the repository to your machine, it will cause your local code to be a version behind the remote, creating extra challenges when you push your work. Most of the time, you should be creating files locally.
+GitHub cho phép chúng ta thực hiện thay đổi trực tiếp trên trang web của họ. Nếu làm vậy sau khi đã sao chép kho về máy, mã nguồn trên máy của bạn sẽ cũ hơn bản ở kho từ xa, khiến việc đẩy thay đổi lên gặp thêm khó khăn. Phần lớn thời gian, bạn nên tạo tệp trên máy của mình.
 
- As you progress in the course, you'll learn how to handle these situations, but for now, it's important to follow the instructions carefully to stay on the simple path.
+ Khi tiếp tục học trong khóa học, bạn sẽ biết cách xử lý những tình huống này, nhưng hiện tại, điều quan trọng là hãy làm theo hướng dẫn cẩn thận để đi theo quy trình đơn giản.
 
 </div>
 
-If you do not know how to set up a repository, follow instruction steps 1 and 2 found in [Git Basics](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/git-basics) to learn how, before carrying on with these steps:
+Nếu chưa biết cách thiết lập một kho, hãy làm theo bước 1 và 2 trong [Kiến thức cơ bản về Git](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/git-basics) để học cách thực hiện trước khi tiếp tục với các bước dưới đây:
 
-1. Create a new repo for this project on GitHub.com and call it `odin-recipes`.
+1. Tạo một kho mới cho dự án này trên GitHub.com và đặt tên là `odin-recipes`.
 
-1. Clone that repository onto your local machine, inside the `repos` folder that you previously created in the Git Basics lesson. The command should look like `git clone git@github.com:username/odin-recipes.git` (use SSH).
+1. Sao chép kho đó về máy, vào trong thư mục `repos` mà bạn đã tạo trước đó trong bài học Kiến thức cơ bản về Git. Lệnh cần có dạng `git clone git@github.com:username/odin-recipes.git` (sử dụng SSH).
 
-1. Now `cd` into the `odin-recipes` project directory that is now on your local machine.
+1. Bây giờ, dùng `cd` để chuyển vào thư mục dự án `odin-recipes` vừa được tạo trên máy.
 
-1. Set up your `README.md` file and write a brief introduction describing what the current project is and what skills you will have demonstrated once you have completed it. (You can also do this as a self-reflection at the end of the project, which is a good way to review what you have learned.)
+1. Thiết lập tệp `README.md` và viết một phần giới thiệu ngắn mô tả dự án hiện tại là gì cũng như những kỹ năng bạn sẽ thể hiện sau khi hoàn thành. (Bạn cũng có thể viết phần này như một bài tự nhìn lại ở cuối dự án; đây là một cách hay để ôn lại những gì đã học.)
 
-If you are having trouble:
+Nếu gặp khó khăn:
 
-- All Git commands need to be run from inside your project's folder (did you forget to `cd` into the `odin-recipes` folder?).
+- Mọi lệnh Git cần được chạy từ bên trong thư mục dự án (bạn có quên dùng `cd` để chuyển vào thư mục `odin-recipes` không?).
 
-- Ensure you followed the steps on how to [create an SSH key](https://www.theodinproject.com/lessons/foundations-setting-up-git#step-2-configure-git-and-github:~:text=Step%202.3%3A%20Create%20an%20SSH%20key) to clone from GitHub with SSH.
+- Hãy chắc chắn bạn đã làm theo hướng dẫn [tạo khóa SSH](https://www.theodinproject.com/lessons/foundations-setting-up-git#step-2-configure-git-and-github:~:text=Step%202.3%3A%20Create%20an%20SSH%20key) để sao chép từ GitHub bằng SSH.
 
-- Refer to the workflow in the [Git Basics lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/git-basics).
+- Tham khảo quy trình trong [bài học Kiến thức cơ bản về Git](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/git-basics).
 
-#### Tips on when to commit
+#### Mẹo về thời điểm commit
 
-Don't forget everything we went over in the [Commit Messages lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages)!
+Đừng quên những gì chúng ta đã học trong [bài học Thông điệp commit](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages) nhé!
 
-When you're building your project, you will probably end up doing several `git add` + `git commit` cycles before being ready to push it up to GitHub with `git push origin main`.
+Trong quá trình xây dựng dự án, có lẽ bạn sẽ thực hiện vài chu kỳ `git add` + `git commit` trước khi sẵn sàng đẩy dự án lên GitHub bằng `git push origin main`.
 
-When writing code, it's considered best practice to commit early and often. Commit every time you have a meaningful change in the code. This will create a timeline of your progress and show that your finished code didn't appear out of nowhere.
+Khi viết mã, commit sớm và thường xuyên được xem là một thực hành tốt. Hãy commit mỗi khi mã có một thay đổi có ý nghĩa. Việc này sẽ tạo ra dòng thời gian cho quá trình tiến bộ của bạn và cho thấy mã nguồn hoàn chỉnh không tự nhiên xuất hiện.
 
-After you have entered `git push origin main`, switch over to your browser and open your repository on GitHub. You should now see all the files you just pushed.
+Sau khi nhập `git push origin main`, hãy chuyển sang trình duyệt và mở kho của bạn trên GitHub. Lúc này, bạn sẽ thấy tất cả tệp vừa đẩy lên.
 
-Okay, that's enough Git for the moment -- time to actually build stuff!
+Được rồi, tạm thời học Git như vậy là đủ -- giờ là lúc thật sự xây dựng dự án!
 
-### Warning about looking at other people's finished project code before you have completed your own
+### Cảnh báo về việc xem mã nguồn dự án hoàn chỉnh của người khác trước khi hoàn thành dự án của bạn
 
-But before we move on: all of our projects have a "Student Solutions" section at the bottom for people to post their completed code and live websites for the projects. These are here for you both to compare your completed code with and see what other routes people have chosen to take with their project code and designs.
+Trước khi tiếp tục: tất cả dự án của chúng ta đều có một phần "Bài làm của học viên" ở cuối, nơi mọi người đăng mã nguồn đã hoàn thành và trang web đang hoạt động của dự án. Những bài làm này giúp bạn vừa so sánh mã nguồn của mình, vừa xem những hướng đi khác mà mọi người đã chọn cho mã nguồn và thiết kế dự án.
 
-We know it may be tempting to look at the solutions when you get stuck or don't know where to start, but **don't** do it! Here are some reasons why:
+Chúng tôi biết bạn có thể muốn xem các bài làm khi bị mắc kẹt hoặc không biết bắt đầu từ đâu, nhưng **đừng làm vậy**! Dưới đây là một số lý do:
 
-- All of the submitted projects are *other learners'* solutions. This means they are written by other people who are also still learning and may not necessarily be representative of "best practice" or high quality code.
-- Looking at solutions robs you of the chance to develop your problem solving and researching skills. In the real world, there will not always be "solutions" for you to look at, and you will have to come up with your own.
-- There are many different ways to achieve the same end result - it is not "one size fits all."
-- An analogy: "Learning how to code from looking at completed code is like learning how to make pizza dough from looking at a baked pizza."  There is a lot more that goes into it than you might assume from only seeing the final product and not the process that led to it.
+- Tất cả dự án được gửi lên đều là bài làm của *những học viên khác*. Điều đó có nghĩa chúng do những người cũng đang học viết ra, nên không nhất thiết thể hiện "thực hành tốt nhất" hoặc mã nguồn chất lượng cao.
+- Xem bài làm sẽ lấy đi cơ hội phát triển kỹ năng giải quyết vấn đề và nghiên cứu của bạn. Trong thế giới thực, không phải lúc nào cũng có "lời giải" để bạn xem, và bạn sẽ phải tự tìm ra cách của mình.
+- Có rất nhiều cách khác nhau để đạt được cùng một kết quả cuối cùng - không có cách nào là "một khuôn mẫu dùng cho tất cả."
+- Một phép so sánh: "Học lập trình bằng cách xem mã nguồn hoàn chỉnh cũng giống như học làm bột pizza bằng cách nhìn một chiếc pizza đã nướng."  Có rất nhiều công đoạn hơn những gì bạn có thể hình dung nếu chỉ nhìn sản phẩm cuối cùng mà không thấy quá trình tạo ra nó.
 
-Once you have completed your project, feel free to look at the other solutions to see alternative ways the project was completed.
+Sau khi hoàn thành dự án, bạn có thể thoải mái xem các bài làm khác để tìm hiểu những cách hoàn thành dự án khác nhau.
 
-**DO NOT PEEK. Come ask for help in our [Discord server!](https://discord.com/channels/505093832157691914/516751477306294273) *(You need to [join the Discord server](https://discord.gg/fbFCkYabZB) first in order to see the channel).***
+**ĐỪNG XEM TRƯỚC. Hãy đến hỏi trong [máy chủ Discord của chúng tôi!](https://discord.com/channels/505093832157691914/516751477306294273) *(Bạn cần [tham gia máy chủ Discord](https://discord.gg/fbFCkYabZB) trước thì mới xem được kênh này).***
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Iteration 1: initial structure
+#### Lần lặp 1: cấu trúc ban đầu
 
-1. Within the `odin-recipes` directory, create an `index.html` file.
-1. Fill it out with the usual boilerplate HTML and add an `h1` heading "Odin Recipes" to the body.
+1. Trong thư mục `odin-recipes`, tạo một tệp `index.html`.
+1. Điền nội dung HTML khung thông thường vào tệp và thêm một tiêu đề `h1` có nội dung "Odin Recipes" vào phần thân trang.
 
-#### Iteration 2:  recipe page
+#### Lần lặp 2:  trang công thức
 
-1. Create a new directory within the `odin-recipes` directory and name it `recipes`.
-1. Create a new HTML file within the  `recipes` directory and name it after the recipe it will contain. For example `lasagna.html`. You can use the name of your favorite dish or, if you need some inspiration, you can find a recipe to use at [Allrecipes](https://www.allrecipes.com/). Be sure to include the usual boilerplate HTML. This boilerplate code should be in every `.html` file you create.
-1. For now, just include an `h1` heading with the recipe's name as its content.
-1. Back in the `index.html` file, add a link to the recipe page you just created. Example: Under the `<h1>Odin Recipes</h1>` heading, write out the link like so: `<a href="recipes/recipename.html">Recipe Title</a>`. The text of the link should again be the recipe name.
-1. **Add a link back to the index page** on your recipe page for easier navigation. You can place this link at the top or bottom of your recipe page (e.g., `lasagna.html`). Here's an example:
+1. Tạo một thư mục mới bên trong thư mục `odin-recipes` và đặt tên là `recipes`.
+1. Tạo một tệp HTML mới bên trong thư mục  `recipes` và đặt tên theo công thức mà tệp sẽ chứa. Ví dụ: `lasagna.html`. Bạn có thể dùng tên món ăn yêu thích của mình hoặc, nếu cần gợi ý, tìm một công thức trên [Allrecipes](https://www.allrecipes.com/). Hãy nhớ thêm HTML khung thông thường. Mã khung này cần có trong mọi tệp `.html` mà bạn tạo.
+1. Trước mắt, chỉ cần thêm một tiêu đề `h1` với tên công thức làm nội dung.
+1. Quay lại tệp `index.html`, thêm một liên kết đến trang công thức vừa tạo. Ví dụ: bên dưới tiêu đề `<h1>Odin Recipes</h1>`, viết liên kết như sau: `<a href="recipes/recipename.html">Recipe Title</a>`. Phần văn bản của liên kết cũng nên là tên công thức.
+1. **Thêm một liên kết quay lại trang chỉ mục** trên trang công thức để dễ điều hướng. Bạn có thể đặt liên kết ở đầu hoặc cuối trang công thức (ví dụ: `lasagna.html`). Đây là một ví dụ:
 
    ```html
    <a href="../index.html">Home</a>
    ```
 
-   This allows users to quickly return to the home page after viewing the recipe.
+   Nhờ vậy, người dùng có thể nhanh chóng quay lại trang chủ sau khi xem công thức.
 
-#### Iteration 3:  recipe page content
+#### Lần lặp 3:  nội dung trang công thức
 
-Your new recipe page should have the following content:
+Trang công thức mới cần có các nội dung sau:
 
-1. A free image of the finished dish under the `h1` heading that you added earlier.
+1. Một hình ảnh miễn phí của món ăn đã hoàn thành, đặt bên dưới tiêu đề `h1` mà bạn đã thêm trước đó.
 
-1. Under the image, it should have an appropriately sized "Description" heading followed by a paragraph or two describing the recipe.
+1. Bên dưới hình ảnh, thêm một tiêu đề "Mô tả" có kích thước phù hợp, sau đó là một hoặc hai đoạn văn mô tả công thức.
 
-1. Under the description, add an "Ingredients" heading followed by an **unordered list** of the ingredients needed for the recipe.
+1. Bên dưới phần mô tả, thêm tiêu đề "Nguyên liệu", sau đó là một **danh sách không có thứ tự** gồm các nguyên liệu cần cho công thức.
 
-1. Finally, under the ingredients list, add a "Steps" heading followed by an **ordered list** of the steps needed for making the dish.
+1. Cuối cùng, bên dưới danh sách nguyên liệu, thêm tiêu đề "Các bước", sau đó là một **danh sách có thứ tự** gồm các bước cần thực hiện để làm món ăn.
 
-#### Iteration 4: add more recipes
+#### Lần lặp 4: thêm công thức
 
-1. Create two more recipe pages. Make sure they have the exact same layout as your first recipe page.
-1. Don't forget to link to the new recipes on the index page. Also, consider putting all the links in an unordered list so they aren't all on one line.
+1. Tạo thêm hai trang công thức. Đảm bảo chúng có bố cục hoàn toàn giống trang công thức đầu tiên.
+1. Đừng quên liên kết các công thức mới trên trang chỉ mục. Bạn cũng có thể đặt tất cả liên kết trong một danh sách không có thứ tự để chúng không nằm trên cùng một dòng.
 
-Example:
+Ví dụ:
 
 ```html
  <ul>
@@ -113,51 +113,51 @@ Example:
   </ul>
 ```
   
-Your links won't be flashy, but for now, just focus on building them out.
+Các liên kết của bạn sẽ chưa bắt mắt, nhưng hiện tại hãy chỉ tập trung xây dựng chúng cho đầy đủ.
 
 </div>
 
-### Viewing your project on the web
+### Xem dự án trên web
 
-If you want to show your work (the project) to others, or submit a solution below, you will need to publish your site so that others can access it from the web, rather than just on your local machine. The good news is that if you have your project on GitHub (as described above), doing this is straightforward.
+Nếu muốn cho người khác xem sản phẩm của mình (dự án) hoặc gửi bài làm bên dưới, bạn sẽ cần xuất bản trang web để người khác có thể truy cập qua web thay vì chỉ trên máy của bạn. Tin tốt là nếu dự án đã ở trên GitHub (như mô tả ở trên), việc này khá đơn giản.
 
-GitHub allows you to publish web projects directly from a GitHub repository. Doing this will allow you to access your project from `your-github-username.github.io/your-github-repo-name`.
+GitHub cho phép bạn xuất bản trực tiếp các dự án web từ một kho GitHub. Nhờ vậy, bạn có thể truy cập dự án tại `your-github-username.github.io/your-github-repo-name`.
 
 <div class="lesson-note" markdown="1">
 
-#### Publishing from private repositories
+#### Xuất bản từ kho riêng tư
 
-A GitHub paid account is required to publish web projects from a private repository. Free accounts can only publish from public repositories.
+Cần có tài khoản GitHub trả phí để xuất bản dự án web từ một kho riêng tư. Tài khoản miễn phí chỉ có thể xuất bản từ các kho công khai.
 
 </div>
 
-There are a couple of ways to go about doing this, but the simplest is this:
+Có một vài cách để thực hiện việc này, nhưng cách đơn giản nhất là:
 
-1. Ensure your main HTML file is named `index.html` **and** is located in the root (top-level) directory of your repository.
-1. Go to your GitHub repo on the web and click the **Settings** button as shown in the screenshot below.
-    ![Screenshot pointing to the Settings located in an example repository](https://cdn.statically.io/gh/TheOdinProject/curriculum/90b1a362af0bb8635af9593cd8911c9aefb68569/foundations/html_css/html-foundations/imgs/01.png)
-1. Click on **Pages** on the left side bar.
-1. Change the **Branch** from *none* to *main branch* and click **Save**.
-1. It may take a few minutes (The GitHub website says up to 10, but we've seen it take up to an hour. Do not add a "theme" to your project, or you may have git conflicts, instead, be patient.) but your project should be accessible over the web from `your-github-username.github.io/your-github-repo-name` (obviously substituting your own details in the link).
-1. If your project does not publish after 1 hour, ensure that you have a file called `index.html` in the root of your repository and all the settings have been set correctly.  Go to your repo on GitHub and click on Actions, if there are no entries, then go back to the settings, change the **Branch** from *main branch* to *none* and click **Save**, then change the **Branch** from *none* to *main branch* and click **Save**.
+1. Đảm bảo tệp HTML chính của bạn có tên `index.html` **và** nằm trong thư mục gốc (cấp cao nhất) của kho.
+1. Truy cập kho GitHub trên web và nhấp vào nút **Cài đặt**, như trong ảnh chụp màn hình bên dưới.
+    ![Ảnh chụp màn hình chỉ vào mục Cài đặt trong một kho ví dụ](https://cdn.statically.io/gh/TheOdinProject/curriculum/90b1a362af0bb8635af9593cd8911c9aefb68569/foundations/html_css/html-foundations/imgs/01.png)
+1. Nhấp vào **Pages** ở thanh bên trái.
+1. Đổi **Branch** từ *none* thành *main branch* rồi nhấp **Save**.
+1. Có thể sẽ mất vài phút (trang web GitHub nói tối đa 10 phút, nhưng chúng tôi từng thấy mất đến một giờ. Đừng thêm "theme" vào dự án, nếu không bạn có thể gặp xung đột git; thay vào đó, hãy kiên nhẫn), nhưng dự án sẽ có thể truy cập trên web tại `your-github-username.github.io/your-github-repo-name` (dĩ nhiên bạn cần thay thông tin của mình vào liên kết).
+1. Nếu dự án chưa được xuất bản sau 1 giờ, hãy đảm bảo bạn có tệp tên `index.html` trong thư mục gốc của kho và mọi thiết lập đều chính xác.  Truy cập kho trên GitHub và nhấp vào Actions; nếu không có mục nào, hãy quay lại phần cài đặt, đổi **Branch** từ *main branch* thành *none* rồi nhấp **Save**, sau đó đổi **Branch** từ *none* thành *main branch* và nhấp **Save**.
 
 <!-- Note: this header gets referenced in https://github.com/TheOdinProject/theodinproject/blob/main/app/views/lessons/project_submissions/index.html.erb. If you change it, make sure to make a corresponding change there as well. -->
-### Community submissions
+### Bài làm của cộng đồng
 
 <div class="lesson-note" markdown="1">
 
-#### Many community submissions will have styling
+#### Nhiều bài làm của cộng đồng sẽ có tạo kiểu
 
-In future lessons, you will learn CSS and add styling to this project. When viewing community submissions, you'll notice many have already added this styling.
+Trong các bài học sau, bạn sẽ học CSS và thêm kiểu dáng cho dự án này. Khi xem các bài làm của cộng đồng, bạn sẽ nhận thấy nhiều bài đã được tạo kiểu như vậy.
 
 </div>
 
-When viewing community solutions (after you've completed your project), keep a few things in mind:
+Khi xem các bài làm của cộng đồng (sau khi hoàn thành dự án), hãy ghi nhớ một vài điều:
 
-- Learners often revisit older projects to improve them for their portfolios
-- Some people start the curriculum with previous programming experience
-- Project requirements sometimes change over time
+- Học viên thường quay lại các dự án cũ để cải thiện chúng cho danh mục sản phẩm của mình
+- Một số người bắt đầu khóa học với kinh nghiệm lập trình từ trước
+- Yêu cầu của dự án đôi khi thay đổi theo thời gian
 
-**Focus on meeting the project requirements rather than comparing yourself to others.** Community submissions are helpful for seeing different approaches, but they don't represent what your project "should" look like at this stage.
+**Hãy tập trung đáp ứng yêu cầu của dự án thay vì so sánh mình với người khác.** Bài làm của cộng đồng hữu ích để bạn thấy những cách tiếp cận khác nhau, nhưng chúng không đại diện cho việc dự án của bạn "nên" trông như thế nào ở giai đoạn này.
 
-This applies for future projects too. For more information read ["Learning Code" from "Becoming a TOP Success Story"](https://dev.to/theodinproject/learning-code-f56).
+Điều này cũng áp dụng cho các dự án sau. Để biết thêm thông tin, hãy đọc ["Học lập trình" trong "Câu chuyện thành công của một học viên TOP"](https://dev.to/theodinproject/learning-code-f56).

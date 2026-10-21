@@ -30,7 +30,7 @@ Thiết kế ưu tiên nội dung hay bố cục không buộc chúng ta chỉ d
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Nó hoạt động và trông tuyệt đẹp! Nhưng hãy tưởng tượng sau này chúng ta muốn di chuyển các hộp này. Hoặc chẳng hạn, chúng ta muốn hộp thứ ba kéo dài sang hàng thứ hai để các hộp không phải co quá nhiều nhằm vừa trong một hàng. Cả hai việc này đều *có thể* thực hiện bằng Grid. Nhưng nếu kiểm soát bố cục không phải ưu tiên của chúng ta, Flexbox trực quan hơn và phù hợp hơn với nhiệm vụ.
+Nó hoạt động và trông *tuyệt đẹp*! Nhưng hãy tưởng tượng sau này chúng ta muốn di chuyển các hộp này. Hoặc chẳng hạn, chúng ta muốn hộp thứ ba kéo dài sang hàng thứ hai để các hộp không phải co quá nhiều nhằm vừa trong một hàng. Cả hai việc này đều *có thể* thực hiện bằng Grid. Nhưng nếu kiểm soát bố cục không phải ưu tiên của chúng ta, Flexbox trực quan hơn và phù hợp hơn với nhiệm vụ.
 
 ### Kết hợp flexbox và grid
 

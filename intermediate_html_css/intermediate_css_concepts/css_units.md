@@ -25,7 +25,7 @@ Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài
 
 `1rem` là `font-size` của phần tử gốc (có thể là `:root` hoặc `html`). Phép tính hoạt động giống với `rem` như với `em`, nhưng không có sự phức tạp do phải theo dõi cỡ chữ của phần tử cha. Việc phụ thuộc vào `em` có thể khiến một kích thước thay đổi khi ngữ cảnh thay đổi; rất có thể đó không phải hành vi bạn muốn.
 
-Dùng kích thước tương đối như `rem` để định nghĩa cỡ chữ trên toàn website là điều được khuyến nghị. Nhiều trình duyệt cho phép người dùng thay đổi cỡ chữ cơ sở để tăng khả năng đọc. Nếu có thể, bạn nên tôn trọng mong muốn của người dùng về cỡ chữ. Bạn sẽ tìm hiểu thêm về điều này trong các bài đọc được giao.
+Dùng kích thước tương đối như `rem` để định nghĩa cỡ chữ trên toàn website *là* điều được khuyến nghị. Nhiều trình duyệt cho phép người dùng thay đổi cỡ chữ cơ sở để tăng khả năng đọc. Nếu có thể, bạn nên tôn trọng mong muốn của người dùng về cỡ chữ. Bạn sẽ tìm hiểu thêm về điều này trong các bài đọc được giao.
 
 #### Đơn vị viewport
 

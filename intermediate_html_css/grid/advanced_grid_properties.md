@@ -55,7 +55,7 @@ grid-template-columns: 150px 150px 150px 150px 150px;
 
 Ôi, thật tẻ nhạt!
 
-Được rồi, có lẽ nó không *tẻ nhạt đến thế*. Nhưng trong trường hợp này, chúng ta chỉ tạo grid 2x5, có thể chứa tổng cộng mười item. Hãy tưởng tượng phải dùng cách này để định nghĩa từng cột và hàng cho một grid có thể chứa hàng trăm item!
+Được rồi, có lẽ nó không tẻ nhạt đến thế. Nhưng trong trường hợp này, chúng ta chỉ tạo grid 2x5, có thể chứa tổng cộng mười item. Hãy tưởng tượng phải dùng cách này để định nghĩa từng cột và hàng cho một grid có thể chứa hàng trăm item!
 
 Hãy dùng `repeat()`.
 
@@ -135,7 +135,7 @@ grid-template-columns: repeat(2, 2fr) repeat(3, 1fr);
 
 #### Các cách khác nhau để định nghĩa grid track
 
-Ở đây chúng ta tiếp tục dùng hàm `repeat()`, nhưng cũng có thể viết theo cách cũ!
+Ở đây chúng ta tiếp tục dùng hàm `repeat()`, nhưng cũng *có thể* viết theo cách cũ!
 
 </div>
 
@@ -211,7 +211,7 @@ Ngược lại, kích thước column grid được tính dựa trên giá trị
 1. Kích thước tối thiểu mà grid track có thể có
 1. Kích thước tối đa mà grid track có thể có
 
-Không giống `min()` và `max()`, việc dùng giá trị tĩnh cho cả hai đối số ở đây có thể hợp lý. Đây là ví dụ về grid chúng ta đang dùng, viết bằng `minmax()` và một số giá trị tĩnh:
+Không giống `min()` và `max()`, việc dùng giá trị tĩnh cho cả hai đối số ở đây có thể *hợp lý*. Đây là ví dụ về grid chúng ta đang dùng, viết bằng `minmax()` và một số giá trị tĩnh:
 
 ```css
 .grid-container {
@@ -308,7 +308,7 @@ Phép màu thực sự của `auto-fit` và `auto-fill` xuất hiện khi kết 
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Bạn có thấy khi thay đổi kích thước, các cột tự biết có thể vừa bao nhiêu cột theo chiều ngang không? Nếu bạn không thấy điều đó thú vị, hãy kiểm tra mạch đập của mình!
+Bạn có thấy khi thay đổi kích thước, các cột tự biết có thể vừa bao nhiêu cột theo chiều ngang không? Nếu bạn không thấy *điều đó* thú vị, hãy kiểm tra mạch đập của mình!
 
 Vậy cụ thể điều gì xảy ra với `repeat(auto-fit, minmax(150px, 1fr));`? Hãy nhớ rằng `auto-fit` trả về **số nguyên dương cao nhất** mà không làm grid tràn. Trước tiên, trình duyệt phải biết chiều rộng content box của grid (tức bỏ qua margin, border và padding).
 

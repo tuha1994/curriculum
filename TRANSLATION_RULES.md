@@ -25,6 +25,16 @@ Tạo bản dịch tiếng Việt dễ học, đúng bối cảnh The Odin Proje
 - Lệnh, đường dẫn, URL, tên file, tên biến, tên hàm, tên API, tên package và định danh kỹ thuật.
 - Tag HTML, thuộc tính HTML, `href`, `id`, `class`, `alt`, `title` và anchor.
 - Cấu trúc Markdown/HTML cần cho web render, bao gồm các khối ghi chú của bài học.
+- Dấu định dạng Markdown như `*...*`, `**...**`, `_..._` và `__...__`.
+
+## Định dạng Markdown phải được giữ nguyên
+
+- Giữ nguyên số lượng, loại và vị trí logic của các cặp dấu emphasis (nhấn mạnh) Markdown.
+- Được dịch phần chữ nằm bên trong dấu emphasis, nhưng không được xóa, thêm hoặc đổi cặp dấu.
+- Giữ nguyên các định dạng Markdown khác như heading, danh sách, blockquote, link, ảnh và bảng.
+- Không biến text được nhấn mạnh thành text thường.
+- Ví dụ: `*lot*` có thể dịch thành `*rất nhiều*`, nhưng không được viết thành `rất nhiều`.
+- Nếu dấu `*`, `_` hoặc backtick nằm trong code hoặc định danh kỹ thuật, áp dụng quy tắc giữ nguyên code, không coi đó là văn xuôi.
 
 ## Kiểm tra trước khi chấp nhận bản dịch
 

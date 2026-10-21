@@ -6,7 +6,7 @@ Các bài học Foundations của chúng ta, theo chủ ý, mới chỉ đề c�
 
 Có lẽ đến lúc này bạn đã nhận ra rằng có nhiều phần tử HTML hơn những gì chúng ta đã đề cập trong nội dung Foundations. Trong suốt khóa học này, chúng ta sẽ tìm hiểu những phần tử quan trọng còn lại, chẳng hạn như form và bảng.
 
-CSS cũng còn rất nhiều điều thú vị mà bạn sẽ học trong khóa này, chẳng hạn như biến, hàm, bóng đổ và tất nhiên là cả bố cục grid! Vì vậy, hãy chuẩn bị tinh thần nhé! Khi hoàn thành khóa học, bạn sẽ có thể tái tạo gần như mọi thiết kế web mà bạn tìm thấy trên internet. Đây là một kỹ năng quan trọng để tiếp tục phát triển. Ngay cả khi bạn không định theo một công việc chuyên về front-end, khả năng làm cho các sản phẩm trong portfolio trông đẹp mắt cũng rất quan trọng để giúp bạn nổi bật.
+CSS cũng còn *rất nhiều* điều thú vị mà bạn sẽ học trong khóa này, chẳng hạn như biến, hàm, bóng đổ và tất nhiên là cả bố cục grid! Vì vậy, hãy chuẩn bị tinh thần nhé! Khi hoàn thành khóa học, bạn sẽ có thể tái tạo gần như mọi thiết kế web mà bạn tìm thấy trên internet. Đây là một kỹ năng quan trọng để tiếp tục phát triển. Ngay cả khi bạn không định theo một công việc chuyên về front-end, khả năng làm cho các sản phẩm trong portfolio trông đẹp mắt cũng rất quan trọng để giúp bạn nổi bật.
 
 Sau này trong lộ trình, ở khóa Advanced HTML and CSS, bạn sẽ học về animation, khả năng tiếp cận (accessibility) và thiết kế responsive.
 

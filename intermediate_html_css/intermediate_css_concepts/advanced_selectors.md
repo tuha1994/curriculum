@@ -49,7 +49,7 @@ main div {
 }
 ```
 
-Nhưng nếu muốn cụ thể hơn và chỉ chọn các div `child` hoặc `grand-child` thì sao? Đó là lúc child combinator `>` trở nên hữu ích. Khác với descendant combinator, nó chỉ chọn các phần tử con trực tiếp.
+Nhưng nếu muốn cụ thể hơn và *chỉ* chọn các div `child` hoặc `grand-child` thì sao? Đó là lúc child combinator `>` trở nên hữu ích. Khác với descendant combinator, nó chỉ chọn các phần tử con trực tiếp.
 
 ```css
 /* The divs with the class "child" will get selected by this */

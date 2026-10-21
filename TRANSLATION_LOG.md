@@ -190,6 +190,25 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `shared/the_back_end/introduction_to_the_backend_lesson.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Dùng chung cho NodeJS và Ruby on Rails; cần kiểm tra cả hai route. |
 | `shared/the_back_end/introduction_to_frameworks.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Dùng chung cho NodeJS và Ruby on Rails; cần kiểm tra cả hai route. |
 
+## Các bài Complete Getting Hired đã dịch
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `getting_hired/preparing_for_job_search/how_this_course_will_work.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/preparing_for_job_search/professional_networking.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/preparing_for_job_search/project_portfolio.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `getting_hired/preparing_for_job_search/starts_with_you.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/preparing_for_job_search/strategy.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/preparing_for_job_search/what_companies_want.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/preparing_for_job_search/what_you_can_do_to_prepare.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/applying_and_interviewing/applying.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/applying_and_interviewing/collect_leads.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/applying_and_interviewing/conclusion.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/applying_and_interviewing/handling_an_offer.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/applying_and_interviewing/preparing_to_interview_and_interviewing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+| `getting_hired/applying_and_interviewing/project_resume.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+| `getting_hired/applying_and_interviewing/qualify_leads.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

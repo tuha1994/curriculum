@@ -1,68 +1,68 @@
-### Introduction
+### Giới thiệu
 
-You've moved beyond the preparation and knowledge gathering phase.  Now it's time to hit the pavement and approach the actual jobs.
+Bạn đã vượt qua giai đoạn chuẩn bị và thu thập kiến thức. Bây giờ là lúc bắt tay vào tìm kiếm và tiếp cận những công việc thực tế.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Explain how to organize your job search.
-- Identify the best places to look for job openings.
-- Describe how to work with recruiters effectively.
+- Giải thích cách tổ chức quá trình tìm việc.
+- Xác định những nơi tốt nhất để tìm tin tuyển dụng.
+- Mô tả cách làm việc hiệu quả với nhà tuyển dụng.
 
-### Organizing your job search
+### Tổ chức quá trình tìm việc
 
-Organization is key here and a spreadsheet is highly recommended.  Keep track of not just the jobs themselves, but also their websites, any connections you have to the company, and a log of your activity.  Have a separate column for each "Must Have" criteria you identified in the earlier section (use a binary `true`/`false`) and each of the top 5 "Nice To Have" criteria (use a 3- or 5-point system) so you can quickly check off where the jobs rank.
+Tổ chức là yếu tố then chốt ở đây và bạn rất nên dùng một bảng tính. Không chỉ theo dõi bản thân các công việc, mà còn theo dõi trang web của chúng, mọi mối liên hệ bạn có với công ty và nhật ký hoạt động của mình. Hãy tạo một cột riêng cho từng tiêu chí "Bắt buộc phải có" mà bạn đã xác định ở phần trước (dùng giá trị nhị phân `true`/`false`) và từng tiêu chí "Có thì tốt" trong top 5 (dùng hệ thống 3 hoặc 5 điểm), để bạn có thể nhanh chóng đánh dấu thứ hạng của các công việc.
 
-Put any job opening you find into your spreadsheet.
+Hãy đưa mọi tin tuyển dụng bạn tìm thấy vào bảng tính.
 
-Here's an example of how a spreadsheet to keep track of job openings might look like:
+Dưới đây là ví dụ về diện mạo của một bảng tính dùng để theo dõi tin tuyển dụng:
 
 <!-- overflow div required as table would render wider than content width -->
 <!-- markdownlint-disable MD034 bare URL required for table purposes (angle bracket URLs not rendered on site) -->
 
 <div style="overflow-x: auto;" markdown="block">
 
-| Job Title | Company | Website | Connections | Activity Log | Must Have 1 | Must Have 2 | Must Have 3 | Nice to Have 1 | Nice to Have 2 | Nice to Have 3 | Nice to Have 4 | Nice to Have 5 |
+| Tên vị trí | Công ty | Website | Mối liên hệ | Nhật ký hoạt động | Bắt buộc phải có 1 | Bắt buộc phải có 2 | Bắt buộc phải có 3 | Có thì tốt 1 | Có thì tốt 2 | Có thì tốt 3 | Có thì tốt 4 | Có thì tốt 5 |
 |-----------|---------|---------|-------------|--------------|-------------|-------------|-------------|---------------|---------------|---------------|---------------|---------------|
-| Job 1     | Company A | www.companyA.com | John (LinkedIn) | Sent resume on 04/01/2023 | TRUE | TRUE | FALSE | 5 | 4 | 3 | 2 | 1 |
-| Job 2     | Company B | www.companyB.com | Jane (Referral) | Followed up on 04/02/2023 | TRUE | FALSE | TRUE | 3 | 5 | 2 | 4 | 1 |
-| Job 3     | Company C | www.companyC.com | N/A | Applied online on 04/03/2023 | FALSE | TRUE | TRUE | 4 | 2 | 5 | 1 | 3 |
+| Job 1     | Company A | www.companyA.com | John (LinkedIn) | Đã gửi resume vào 04/01/2023 | TRUE | TRUE | FALSE | 5 | 4 | 3 | 2 | 1 |
+| Job 2     | Company B | www.companyB.com | Jane (Referral) | Đã theo dõi vào 04/02/2023 | TRUE | FALSE | TRUE | 3 | 5 | 2 | 4 | 1 |
+| Job 3     | Company C | www.companyC.com | N/A | Đã ứng tuyển trực tuyến vào 04/03/2023 | FALSE | TRUE | TRUE | 4 | 2 | 5 | 1 | 3 |
 
 </div>
 
 <!-- markdownlint-enable MD034 -->
 
-### The best places to look
+### Những nơi tốt nhất để tìm kiếm
 
-Start with your network, even if it's small.  Reach out to your Facebook friends and friends-of-friends to see if anyone's hiring.  You should start your search with the highest probability / highest quality sources first:
+Hãy bắt đầu với mạng lưới quan hệ của bạn, dù nó còn nhỏ. Liên hệ với bạn bè trên Facebook và bạn của bạn bè để xem có ai đang tuyển người không. Bạn nên bắt đầu tìm kiếm từ những nguồn có xác suất thành công/chất lượng cao nhất:
 
-1. Your network (including people you've met in the community)
-1. Direct postings that go to a human (like when developers [not recruiters] send emails about job opening at their company to the local Ruby list).  It's important to have another human being on the other end of the emails.
-1. Direct postings (like on a company website for a specific position).  These will also usually go to a specific human being.
-1. Job boards (pretty much awful, you're in the herd now)
+1. Mạng lưới quan hệ của bạn (bao gồm những người bạn đã gặp trong cộng đồng)
+1. Tin tuyển dụng trực tiếp đến tay một người (chẳng hạn khi các lập trình viên [không phải nhà tuyển dụng] gửi email về vị trí đang tuyển tại công ty của họ đến danh sách Ruby địa phương). Điều quan trọng là phải có một người thật ở đầu bên kia email.
+1. Tin tuyển dụng trực tiếp (chẳng hạn trên trang web công ty cho một vị trí cụ thể). Những tin này thường cũng đến tay một người cụ thể.
+1. Các trang tuyển dụng (gần như rất tệ, vì giờ bạn đã bị hòa vào đám đông)
 
-### On recruiters
+### Về các nhà tuyển dụng
 
-There are a lot of recruiters out there whose job it is to get you hired, but you'll need to be careful about how you work with them.  For starters, they get paid based on a percentage of the salary you earn, so their incentive is to get you paid as much as possible (which is good).  Unfortunately as a junior developer your salary is much lower than a senior engineer so you will not be their priority and they won't spend much time on you (which is bad).  
+Có rất nhiều nhà tuyển dụng làm công việc giúp bạn được nhận vào làm, nhưng bạn cần cẩn thận khi làm việc với họ. Trước hết, họ được trả công dựa trên một phần trăm mức lương bạn nhận được, nên động lực của họ là giúp bạn được trả càng nhiều càng tốt (đó là điều tích cực). Tuy nhiên, với tư cách một lập trình viên cấp thấp, mức lương của bạn thấp hơn nhiều so với kỹ sư cấp cao, nên bạn sẽ không phải ưu tiên của họ và họ sẽ không dành nhiều thời gian cho bạn (đó là điều tiêu cực).
 
-If you're approached out of the cold as a junior developer by a recruiter, chances are that they won't be going out of their way to learn your story and find you the right fit -- you're more likely to get put in the pile of resumes they send out to everyone. You probably don't yet have work experience that is salable enough for them to go out of their way to find you the right position.  In that case, you may find them sending out your resume to everyone just in hopes that they get their 20-30%.  Remember -- if they approached you in a spammy way (e.g. through LinkedIn), they probably do the same to companies, so it's doubtful they'll add value to you.  
+Nếu một nhà tuyển dụng bất ngờ chủ động liên hệ với bạn khi bạn là lập trình viên cấp thấp, rất có thể họ sẽ không cố gắng tìm hiểu câu chuyện của bạn và tìm vị trí phù hợp; nhiều khả năng bạn sẽ bị xếp vào chồng resume mà họ gửi cho tất cả mọi người. Có lẽ bạn chưa có đủ kinh nghiệm làm việc có giá trị thương mại để họ phải cố gắng tìm cho bạn vị trí phù hợp. Khi đó, bạn có thể thấy họ gửi resume của bạn đến khắp nơi chỉ với hy vọng nhận được 20-30% của họ. Hãy nhớ rằng nếu họ tiếp cận bạn theo kiểu spam (ví dụ qua LinkedIn), có lẽ họ cũng làm như vậy với các công ty, nên khó có khả năng họ mang lại giá trị cho bạn.
 
-As you become more senior and your work is more unique, recruiters can add a lot of value to your career by understanding the potential market for you and opening doors you may not otherwise have found (so don't get down on them yet!).  As a junior, you're unfortunately more of a commodity, so you probably won't find value in working with recruiters yet.  Rely on your own ability to hustle and sell yourself.
+Khi trở nên giàu kinh nghiệm hơn và công việc của bạn độc đáo hơn, các nhà tuyển dụng có thể tạo ra nhiều giá trị cho sự nghiệp bằng cách hiểu thị trường tiềm năng của bạn và mở ra những cánh cửa mà có thể bạn không tự tìm thấy (vì vậy đừng vội mất thiện cảm với họ!). Khi còn ở cấp thấp, đáng tiếc là bạn giống một món hàng đại trà hơn, nên có lẽ bạn chưa nhận được nhiều giá trị từ việc làm việc với nhà tuyển dụng. Hãy dựa vào khả năng tự nỗ lực và tiếp thị bản thân của mình.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Try checking out some of these links for job boards.  The more technically-focused, the better:
-   - [Authentic Jobs](http://www.authenticjobs.com) - a place to find developer jobs from various companies.
-   - [CWJobs](http://cwjobs.co.uk) - check out this site for tech roles, especially if you’re based in the UK.
-   - [White Truffle](http://www.whitetruffle.com) - weighted towards startups right now.
-   - [Dice.com](http://www.dice.com) - one of the biggest tech job boards with tons of software listings.
-   - [Coderwall.com](http://coderwall.com) - lets you display your engineering prowess and they can come to you.
-   - [Join-Startups](https://underdog.io/) - open startup jobs in a dozen cities.
-   - [Work-At-A-Startup](https://www.workatastartup.com/) - Y-Combinator Startups.
-   - [Hubstaff-Talent](https://talent.hubstaff.com/) - for freelancers and remote.
-   - [Wellfound (formerly AngelList Talent)](https://wellfound.com/jobs) - transparent startup hiring.
+1. Hãy thử xem một số liên kết về các trang tuyển dụng dưới đây. Càng tập trung vào kỹ thuật càng tốt:
+   - [Authentic Jobs](http://www.authenticjobs.com) - nơi tìm việc lập trình viên từ nhiều công ty khác nhau.
+   - [CWJobs](http://cwjobs.co.uk) - xem trang này để tìm các vị trí công nghệ, đặc biệt nếu bạn đang ở UK.
+   - [White Truffle](http://www.whitetruffle.com) - hiện thiên về các startup.
+   - [Dice.com](http://www.dice.com) - một trong những trang tuyển dụng công nghệ lớn nhất với rất nhiều tin phần mềm.
+   - [Coderwall.com](http://coderwall.com) - cho phép bạn thể hiện năng lực kỹ thuật để các công ty có thể tìm đến bạn.
+   - [Join-Startups](https://underdog.io/) - các công việc startup đang tuyển ở hàng chục thành phố.
+   - [Work-At-A-Startup](https://www.workatastartup.com/) - các startup của Y-Combinator.
+   - [Hubstaff-Talent](https://talent.hubstaff.com/) - dành cho freelancer và công việc từ xa.
+   - [Wellfound (formerly AngelList Talent)](https://wellfound.com/jobs) - tuyển dụng startup minh bạch.
 
 </div>

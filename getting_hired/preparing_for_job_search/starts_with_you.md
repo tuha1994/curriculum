@@ -1,68 +1,68 @@
-### Introduction
+### Giới thiệu
 
-This lesson is all about self-assessment and goal-setting. If you don't understand yourself, you won't be happy with where you end up.  Taking some time to introspect can make the process of getting hired a more manageable and strategic process.
+Bài học này tập trung vào việc tự đánh giá và đặt mục tiêu. Nếu không hiểu bản thân, bạn sẽ không hài lòng với nơi mình đi đến. Dành thời gian nhìn lại chính mình có thể khiến quá trình tìm việc trở nên dễ quản lý và có chiến lược hơn.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain how to assess your current situation and needs.
-- Describe how to define your career goals and priorities.
-- Learn how to identify your strengths and weaknesses as a job candidate.
+- Giải thích cách đánh giá tình hình và nhu cầu hiện tại của bạn.
+- Mô tả cách xác định mục tiêu và ưu tiên nghề nghiệp.
+- Học cách nhận diện điểm mạnh và điểm yếu của bản thân với tư cách một ứng viên.
 
-### Where you are now
+### Bạn đang ở đâu
 
-Without defining what your own needs are, you will have no way of determining the right path forward so hunker down until you've got an idea of what your key needs are right now (from a job).  The questions below should help you think about what is actually essential for you versus nice-to-have.  Ask yourself:
+Nếu không xác định nhu cầu của chính mình, bạn sẽ không thể biết con đường phù hợp phía trước, vì vậy hãy tạm dừng cho đến khi hiểu được những nhu cầu then chốt của mình hiện tại đối với một công việc. Các câu hỏi dưới đây sẽ giúp bạn suy nghĩ xem điều gì thực sự thiết yếu và điều gì chỉ là mong muốn có thì tốt. Hãy tự hỏi:
 
-- Why do I *need* a job?
-- What kind of salary level do I need to sustain myself and my family?
-- What kind of job security level do I need to sustain myself and my family?
-- How desperate am I to get a job *right now*?
+- Tại sao tôi *cần* một công việc?
+- Tôi cần mức lương nào để chu cấp cho bản thân và gia đình?
+- Tôi cần mức độ ổn định công việc như thế nào để chu cấp cho bản thân và gia đình?
+- Tôi tuyệt vọng đến mức nào trong việc tìm được một công việc *ngay bây giờ*?
 
-### Where you want to be
+### Bạn muốn ở đâu
 
-Once you've been honest with yourself about your needs, it's time to figure out what you *want*.  What will your future needs be?  What kinds of companies do you want to work at?  
+Sau khi thành thật với bản thân về những nhu cầu của mình, đã đến lúc tìm hiểu điều bạn *muốn*. Nhu cầu tương lai của bạn sẽ là gì? Bạn muốn làm việc cho những loại công ty nào?
 
-- Why do I *want* a job in web development?
-- What kind of career path do I want to have?
-- Do I want to work in a developer-led organization (vs sales- or business-led)?
-- Do I prefer working in a team environment or remotely?
-- Do I like working long hours / weekends or 9-6?
-- Is the work more important than the people?
-- Do I have to care about the product I'm building?
-- Do I have to care about the technologies I'm using?
-- Do I prefer an "easy" work environment or one where I'm constantly pushed?
-- Do I want "creature comfort" incentives like free food and beer at the office?
-- Do I have to enjoy my work or can I power through a crappy job?
+- Tại sao tôi *muốn* một công việc trong lĩnh vực phát triển web?
+- Tôi muốn có con đường sự nghiệp như thế nào?
+- Tôi muốn làm việc trong một tổ chức do đội ngũ phát triển dẫn dắt (thay vì do bộ phận bán hàng hoặc kinh doanh dẫn dắt) không?
+- Tôi thích làm việc theo nhóm hay làm việc từ xa hơn?
+- Tôi thích làm việc nhiều giờ / cuối tuần hay theo giờ 9-6?
+- Công việc có quan trọng hơn con người không?
+- Tôi có nhất thiết phải quan tâm đến sản phẩm mình xây dựng không?
+- Tôi có nhất thiết phải quan tâm đến công nghệ mình sử dụng không?
+- Tôi thích môi trường làm việc “dễ chịu” hay nơi liên tục thúc đẩy tôi hơn?
+- Tôi có muốn những phúc lợi kiểu “tiện nghi” như đồ ăn và bia miễn phí tại văn phòng không?
+- Tôi có nhất thiết phải yêu thích công việc, hay có thể cố chịu đựng một công việc tệ?
 
-### Prioritizing needs and wants
+### Ưu tiên nhu cầu và mong muốn
 
-You should have at least an informal list of the things that matter to you.  Now ruthlessly rank them.  What are your non-negotiables and what are your nice-to-haves?  Every company and opportunity will fall somewhere on the spectrum defined by those questions and they are the criteria you will later use to evaluate them.  This will help you stay focused when considering opportunities and not spread yourself too thin chasing things that you wouldn't really choose anyway.
+Bạn nên có ít nhất một danh sách sơ bộ về những điều quan trọng với mình. Bây giờ hãy xếp hạng chúng một cách dứt khoát. Điều gì là điều kiện không thể thương lượng, và điều gì chỉ là mong muốn có thì tốt? Mỗi công ty và cơ hội sẽ nằm ở đâu đó trên phổ được xác định bởi những câu hỏi này; đó sẽ là các tiêu chí bạn dùng để đánh giá chúng sau này. Nhờ vậy, bạn sẽ tập trung khi cân nhắc cơ hội và không dàn trải quá mỏng khi theo đuổi những thứ mà dù sao bạn cũng không thực sự chọn.
 
-Make sure you know every one of your "must-haves" and your top 5 priorities for "nice-to-haves" in a job.  
+Hãy chắc chắn rằng bạn biết rõ tất cả những điều “bắt buộc phải có” và 5 ưu tiên hàng đầu trong nhóm “có thì tốt” đối với một công việc.
 
-### What are your assets and liabilities?
+### Tài sản và điểm bất lợi của bạn là gì?
 
-It's time to be honest with yourself... what do you bring to the table?  If you're early in your career (which you probably are), you'll have to work hard to distinguish yourself from the flood of unqualified candidates out there.  You need to strike the line between being honest with yourself and not selling yourself short.  Everyone, especially those just starting out, feels unqualified.  That's natural, so don't worry about it.  This is about figuring out your strengths and weaknesses so you can tailor your story to play to your strengths and honestly address your weaknesses.
+Đã đến lúc thành thật với bản thân... bạn mang lại điều gì? Nếu đang ở giai đoạn đầu sự nghiệp (và có lẽ đúng là như vậy), bạn sẽ phải nỗ lực để tạo khác biệt giữa mình và vô số ứng viên chưa đủ năng lực ngoài kia. Bạn cần cân bằng giữa việc thành thật với bản thân và việc không tự đánh giá thấp mình. Ai cũng cảm thấy mình chưa đủ năng lực, đặc biệt là những người mới bắt đầu. Đó là điều tự nhiên, nên đừng lo lắng. Mục tiêu ở đây là nhận diện điểm mạnh và điểm yếu để bạn có thể xây dựng câu chuyện theo hướng phát huy điểm mạnh và thẳng thắn giải quyết điểm yếu.
 
-Some questions to ask (which you'll probably hear again in your early interviews):
+Một số câu hỏi nên tự hỏi (có thể bạn sẽ lại nghe thấy chúng trong những buổi phỏng vấn đầu tiên):
 
-- How hungry am I?
-- How good am I at building back end code?
-- How good am I at putting together front ends?
-- Can I solve really technical problems like brain teasers and algorithms?
-- Have I built projects that display a good range of skills?
-- Do I know people who can recommend me?
-- Am I a good people person who builds relationships easily?
-- Do I portray an aura of confidence or act shy?
-- Do I tend to undersell myself and my capabilities?
-- Do I have a broad level of general tech knowledge?
-- Am I very familiar with a particular technical or industry vertical? (Usually career switchers have one)
-- Do I tend to procrastinate or do I just get shit done?
-- Do I wait to ask for help or do I go out and find the answer on my own?
-- Do I lean in to challenges or avoid them?
-- What are some really difficult problems I've solved before?
+- Tôi khao khát đến mức nào?
+- Tôi giỏi xây dựng mã back end đến đâu?
+- Tôi giỏi xây dựng phần front end đến đâu?
+- Tôi có thể giải những bài toán kỹ thuật thực sự khó như câu đố hóc búa và thuật toán không?
+- Tôi đã xây dựng những dự án thể hiện được nhiều kỹ năng chưa?
+- Tôi có quen ai có thể giới thiệu mình không?
+- Tôi có dễ dàng xây dựng mối quan hệ với mọi người không?
+- Tôi toát lên vẻ tự tin hay thường tỏ ra nhút nhát?
+- Tôi có hay đánh giá thấp bản thân và năng lực của mình không?
+- Tôi có nền tảng kiến thức công nghệ tổng quát rộng không?
+- Tôi có đặc biệt am hiểu một lĩnh vực kỹ thuật hoặc ngành nghề cụ thể không? (Những người chuyển nghề thường có một lĩnh vực như vậy.)
+- Tôi có hay trì hoãn hay chỉ tập trung hoàn thành việc cần làm?
+- Tôi chờ người khác giúp hay tự mình tìm câu trả lời?
+- Tôi đón nhận thử thách hay né tránh chúng?
+- Tôi từng giải quyết những vấn đề thực sự khó nào?
 
-Applying without much experience means you need to fill in your weak spots and emphasize your strengths.  For almost everyone, your biggest strength will be hunger and ability to learn.  But companies have heard that story before, so you'll have to tie in other strengths that you can use to make your story compelling.
+Ứng tuyển khi chưa có nhiều kinh nghiệm nghĩa là bạn cần bù đắp những điểm yếu và nhấn mạnh điểm mạnh. Với hầu hết mọi người, điểm mạnh lớn nhất sẽ là sự khao khát và khả năng học hỏi. Nhưng các công ty đã nghe câu chuyện đó nhiều lần, nên bạn sẽ phải kết hợp thêm những điểm mạnh khác để câu chuyện của mình trở nên thuyết phục.
 
-A quick note -- there is a difference between hunger for opportunity and desperation.  Hunger is about seeking reward (which you can do when you're in a comfortable situation and optimizing opportunities) and desperation is about avoiding failure (which occurs when you absolutely MUST have that job).  Do whatever it takes to not sound desperate, even if you are.
+Một lưu ý nhanh — khao khát cơ hội khác với tuyệt vọng. Khao khát là tìm kiếm phần thưởng (điều bạn có thể làm khi đang ở trong một tình huống ổn định và tối ưu hóa các cơ hội), còn tuyệt vọng là tìm cách tránh thất bại (xảy ra khi bạn tuyệt đối PHẢI có công việc đó). Hãy làm mọi điều có thể để không nghe như một người tuyệt vọng, ngay cả khi bạn thực sự như vậy.

@@ -1,124 +1,124 @@
-### Introduction
+### Giới thiệu
 
-Interviewing is right up there with public speaking in the hierarchy of fears for most people.  Not only are you performing for someone else but they're actively judging you the whole time... yikes!
+Đối với hầu hết mọi người, phỏng vấn nằm ngang hàng với nói trước đám đông trong danh sách những nỗi sợ lớn nhất. Không chỉ phải thể hiện trước người khác, bạn còn bị họ chủ động đánh giá trong suốt thời gian đó... đáng sợ thật!
 
-Far be it from us to try and get you over that psychological hurdle but it's definitely best if you can actually treat the interviews as a chance to show off the cool stuff you've built and the interesting new skills you've learned.  The best interviews are enthusiastic conversations with technical depth.
+Chúng tôi không dám chắc có thể giúp bạn vượt qua rào cản tâm lý ấy, nhưng tốt nhất là bạn nên xem các buổi phỏng vấn như cơ hội để thể hiện những thứ hay ho mình đã xây dựng và những kỹ năng mới thú vị mình đã học được. Những buổi phỏng vấn tốt nhất là các cuộc trò chuyện đầy nhiệt huyết và có chiều sâu kỹ thuật.
 
-The first step before everything is to prepare.  You'll want to figure out the questions you might expect to be asked (and the general responses you'll have for each which demonstrate your brilliance) and you'll want to research the company too.  Your knowledge of the company will help you tailor your pitch to their needs and also allow you to ask intelligent questions about their product and technology when the time comes.  Again, refer to the [Happy Bear article for some great general job hunting tips](https://web.archive.org/web/20160925155912/http://www.happybearsoftware.com/how-to-get-a-programmer-job.html).
+Bước đầu tiên trước mọi việc là chuẩn bị. Bạn sẽ muốn xác định những câu hỏi có thể được hỏi (cùng các câu trả lời khái quát cho từng câu để thể hiện năng lực của mình), đồng thời nghiên cứu về công ty. Hiểu biết về công ty sẽ giúp bạn điều chỉnh phần giới thiệu cho phù hợp với nhu cầu của họ, và cũng cho phép bạn đặt những câu hỏi thông minh về sản phẩm và công nghệ của họ khi đến lúc. Một lần nữa, hãy xem [bài viết của Happy Bear về một số mẹo săn việc tổng quát](https://web.archive.org/web/20160925155912/http://www.happybearsoftware.com/how-to-get-a-programmer-job.html).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Describe the overall interview process.
-- Describe the purpose of the phone screen.
-- Explain what to expect during the technical interview.
-- Explain how to approach the take-home tech challenge.
-- Describe what happens during the final "fit" interviews.
+- Mô tả quy trình phỏng vấn tổng thể.
+- Mô tả mục đích của vòng sàng lọc qua điện thoại.
+- Giải thích điều cần mong đợi trong buổi phỏng vấn kỹ thuật.
+- Giải thích cách tiếp cận thử thách kỹ thuật làm tại nhà.
+- Mô tả những gì diễn ra trong các buổi phỏng vấn cuối cùng về “sự phù hợp”.
 
-### How the process works once you're in the funnel
+### Quy trình diễn ra thế nào sau khi bạn đã vào phễu tuyển dụng
 
-Just a quick overview of the process a typical tech company will go through when hiring developers:
+Dưới đây là tổng quan nhanh về quy trình mà một công ty công nghệ điển hình thường trải qua khi tuyển lập trình viên:
 
-1. Phone Screen
-1. Technical Interview
-1. Technical Challenge
-1. Fit Interviews
-1. Job Offer
-1. Offer Negotiation
-1. Offer Acceptance
+1. Sàng lọc qua điện thoại
+1. Phỏng vấn kỹ thuật
+1. Thử thách kỹ thuật
+1. Phỏng vấn về sự phù hợp
+1. Lời mời làm việc
+1. Thương lượng lời mời
+1. Chấp nhận lời mời
 
-### The phone screen
+### Vòng sàng lọc qua điện thoại
 
-Congratulations! Your resume wasn't a total train-wreck and they've invited you for a phone screen (note -- sometimes you actually do the tech challenge first).  The real purpose of this screen, which is often roughly a half hour with someone from Human Resources (not the actual hiring manager), is to make sure you've got a good chance of passing their technical interview and fit interviews.  So consider it a light version of each of these.
+Chúc mừng! CV của bạn không hoàn toàn là một thảm họa và họ đã mời bạn tham gia vòng sàng lọc qua điện thoại (lưu ý — đôi khi bạn sẽ làm thử thách kỹ thuật trước). Mục đích thực sự của vòng này, thường kéo dài khoảng nửa giờ với một người thuộc bộ phận Nhân sự (không phải quản lý tuyển dụng trực tiếp), là bảo đảm bạn có khả năng vượt qua vòng phỏng vấn kỹ thuật và các vòng phỏng vấn về sự phù hợp. Vì vậy, hãy xem đây là phiên bản nhẹ của cả hai vòng đó.
 
-You'll probably be asked about some of the technical things you've listed on your resume but not actually dive into the depths (though some places do a brain teaser too) and you'll probably be asked some more "softer" questions about why you chose the job and what you've done before.  Companies vary widely in how they use the phone screen.  The basic tactic here isn't a tactic -- be honest and enthusiastic and open.  And don't be afraid to practice talking about yourself in front of the mirror.
+Có thể bạn sẽ được hỏi về một số công nghệ đã liệt kê trong CV nhưng không đi quá sâu (dù một số nơi cũng đưa ra câu đố hóc búa), và có thể được hỏi thêm những câu hỏi “mềm” về lý do bạn chọn công việc này cũng như những gì bạn từng làm. Cách các công ty sử dụng vòng sàng lọc qua điện thoại rất khác nhau. Chiến thuật cơ bản ở đây thực ra không phải là một chiến thuật — hãy thành thật, nhiệt tình và cởi mở. Đừng ngại luyện nói về bản thân trước gương.
 
-FINAL NOTE -- this is not one-size-fits-all and many companies skip the light stuff and dive right into a technical screen so you've got to be prepared just in case!  The Coding Horror link below is more descriptive about that case.
+LƯU Ý CUỐI CÙNG — đây không phải quy trình áp dụng cho mọi nơi, và nhiều công ty bỏ qua phần nhẹ nhàng để đi thẳng vào vòng sàng lọc kỹ thuật, vì vậy bạn phải chuẩn bị cho cả trường hợp đó! Liên kết Coding Horror bên dưới mô tả chi tiết hơn về trường hợp này.
 
-- [Mastering the phone screen by Monster](http://career-advice.monster.com/job-interview/interview-preparation/mastering-the-phone-interview/article.aspx)
-- [7 Steps for Mastering the Telephone Interview](http://dorigan.com/how-to-interview/mastering-telephone-interview/)
-- [A much more technical phone screen from Coding Horror](https://blog.codinghorror.com/getting-the-interview-phone-screen-right/)
+- [Làm chủ vòng sàng lọc qua điện thoại của Monster](http://career-advice.monster.com/job-interview/interview-preparation/mastering-the-phone-interview/article.aspx)
+- [7 bước làm chủ phỏng vấn qua điện thoại](http://dorigan.com/how-to-interview/mastering-telephone-interview/)
+- [Một vòng sàng lọc qua điện thoại kỹ thuật hơn nhiều từ Coding Horror](https://blog.codinghorror.com/getting-the-interview-phone-screen-right/)
 
-### The tech interview
+### Phỏng vấn kỹ thuật
 
-The technical interview is usually the most terrifying part of the interview process. It's where they will assess whether you've got the technical chops to make it.  That means you'll not only be asked very specifically about the work you've done, but also to solve logic problems or code live or whiteboard some new features.
+Phỏng vấn kỹ thuật thường là phần đáng sợ nhất của quy trình phỏng vấn. Đây là lúc họ đánh giá xem năng lực kỹ thuật của bạn có đủ hay không. Điều đó có nghĩa là bạn không chỉ được hỏi rất cụ thể về những công việc mình từng làm, mà còn phải giải các bài toán logic, viết mã trực tiếp hoặc thiết kế tính năng mới trên bảng trắng.
 
-In fact, one point of the interview is often to push you to your limit just to see how you react to not knowing something.  If you do an exercise too easily, they'll go to a much harder one.  Especially as a beginner, you will hit a lot of stumbling points.  The biggest asset you have is honesty and intellectual curiosity.
+Thực tế, một mục đích thường thấy của buổi phỏng vấn là đẩy bạn đến giới hạn để xem bạn phản ứng thế nào khi không biết một điều gì đó. Nếu bạn giải một bài tập quá dễ dàng, họ sẽ chuyển sang bài khó hơn nhiều. Đặc biệt khi mới bắt đầu, bạn sẽ gặp rất nhiều điểm vấp. Tài sản lớn nhất bạn có là sự trung thực và óc tò mò trí tuệ.
 
-When solving a problem, make sure to do so in a clear and logical way, explaining out loud why you're doing each step.  Talk through your roadblocks and give examples of how you'd find the solution in the "real world".  Often, that answer would be to Google for some particular function.  Say so!  They know you're not a Ruby/JavaScript expert, but they need to know that you'll be able to seek out solutions to the problems you'll inevitably encounter on the job.
+Khi giải quyết một vấn đề, hãy làm rõ ràng và có logic, đồng thời nói thành lời lý do bạn thực hiện từng bước. Hãy trình bày những điểm bị vướng và đưa ra ví dụ về cách bạn sẽ tìm lời giải trong “thế giới thực”. Thường thì câu trả lời sẽ là tra Google một hàm cụ thể nào đó. Hãy nói như vậy! Họ biết bạn không phải chuyên gia Ruby/JavaScript, nhưng họ cần biết rằng bạn có thể tự tìm giải pháp cho những vấn đề chắc chắn sẽ gặp trong công việc.
 
-It's also totally okay to use a brute force (inefficient) solution to a coding problem. That's often the best place to start, just so you can be sure you've got the right feel for the problem.  You'll usually be asked how you can make the solution better, but that's much better than trying for a brilliant solution and running out of time with no work to show for it.  Again, your job isn't to be brilliant as much as to be adaptable and thoughtful in the face of challenges.
+Bạn hoàn toàn có thể dùng một lời giải vét cạn (không hiệu quả) cho bài toán lập trình. Đó thường là điểm khởi đầu tốt nhất, để bạn chắc chắn mình đã hiểu đúng bản chất vấn đề. Thông thường, bạn sẽ được hỏi làm thế nào để cải thiện lời giải, nhưng như vậy vẫn tốt hơn nhiều so với việc cố nghĩ ra một lời giải xuất chúng rồi hết giờ mà không có gì để trình bày. Một lần nữa, công việc của bạn không phải là tỏ ra xuất chúng bằng mọi giá, mà là có khả năng thích nghi và suy nghĩ thấu đáo trước thử thách.
 
-And if you don't know something, it's better to say so and work with your interviewer to figure it out.  Trust me, they want you to succeed as much as you do because there's nothing tougher as an interviewer than seeing someone silently crashing on a problem and getting more and more frustrated but not asking for help or providing any window into their thoughts.
+Nếu không biết điều gì đó, tốt hơn hết hãy nói rõ và cùng người phỏng vấn tìm ra câu trả lời. Tin tôi đi, họ cũng muốn bạn thành công chẳng kém gì bạn, vì với tư cách người phỏng vấn, không gì khó chịu hơn việc nhìn một ứng viên âm thầm bế tắc trước một bài toán, ngày càng thất vọng nhưng không nhờ giúp đỡ hay cho thấy mình đang suy nghĩ thế nào.
 
-You'll need to read up on a variety of things that weren't focused on in the previous few courses, including data structures and algorithms, just because they're favorite targets of interviewers.  They may not be great indicators of coding skill, but the world is stuck in its ways and you'll be asked those more "Computer Science-y" questions.
+Bạn sẽ cần đọc thêm về nhiều chủ đề chưa được tập trung trong vài khóa học trước, bao gồm cấu trúc dữ liệu và thuật toán, đơn giản vì đây là những mục tiêu yêu thích của người phỏng vấn. Chúng có thể không phải chỉ báo tốt về kỹ năng lập trình, nhưng thế giới vẫn giữ thói quen cũ và bạn sẽ được hỏi những câu mang tính “Khoa học Máy tính” hơn.
 
-### Links
+### Liên kết
 
-- [Peerfect.net](https://peerfect.net/) free online practice for behavioral, technical, and coding mock interviews with peers.
-- [Exponent.com](https://www.tryexponent.com/practice?ref=pramp&utm_source=pramp&utm_campaign=pramp_banner) allows you to prepare for coding interviews and practice your coding skills with peers.
-- [Interviewing.io](http://interviewing.io/) gives you a chance to practice tech screens anonymously online.
-- [Interview Tips](http://www.interviewcake.com/tips-and-tricks)
-- [How to Ace Your Technical Interview](http://insights.dice.com/2014/10/12/ace-technical-interview/)
-- [How You Can Stand Out in Your Next Web Developer Interview](http://blog.udacity.com/2015/01/how-to-stand-out-in-your-web-developer-interview.html)
-- [Post on The Interview](https://martincmartin.com/2010/01/08/finding-a-job-youll-love-the-interview/)
-- Read [40 Key Computer Science Concepts Explained In Layman’s Terms](https://web.archive.org/web/20220901190653/http://carlcheo.com/compsci)
-- [Google's Guide for Technical Development](https://www.google.com/about/careers/students/guide-to-technical-development.html) (advanced)
-- [Ruby on Rails Popular Job Interview Questions](https://www.nopio.com/blog/ruby-rails-popular-job-interview-questions/)
-- [Cracking the Coding Interview](https://www.crackingthecodinginterview.com/) is **OPTIONAL READING** and it has the potential to be your best friend. It comprehensively covers all the kinds of challenges you might face in a coding interview. It goes beyond the scope of what we've covered so far in this curriculum and touches on other subjects that are good to know because they will probably come up.
+- [Peerfect.net](https://peerfect.net/) cung cấp dịch vụ luyện phỏng vấn thử miễn phí trực tuyến với bạn bè, gồm phỏng vấn hành vi, kỹ thuật và lập trình.
+- [Exponent.com](https://www.tryexponent.com/practice?ref=pramp&utm_source=pramp&utm_campaign=pramp_banner) cho phép bạn chuẩn bị cho các buổi phỏng vấn lập trình và luyện kỹ năng lập trình cùng bạn bè.
+- [Interviewing.io](http://interviewing.io/) cho bạn cơ hội luyện vòng sàng lọc kỹ thuật ẩn danh trên mạng.
+- [Mẹo phỏng vấn](http://www.interviewcake.com/tips-and-tricks)
+- [Cách đạt kết quả tốt trong phỏng vấn kỹ thuật](http://insights.dice.com/2014/10/12/ace-technical-interview/)
+- [Cách nổi bật trong buổi phỏng vấn lập trình viên web tiếp theo](http://blog.udacity.com/2015/01/how-to-stand-out-in-your-web-developer-interview.html)
+- [Bài viết về cuộc phỏng vấn](https://martincmartin.com/2010/01/08/finding-a-job-youll-love-the-interview/)
+- Đọc [40 khái niệm Khoa học Máy tính then chốt được giải thích bằng ngôn ngữ dễ hiểu](https://web.archive.org/web/20220901190653/http://carlcheo.com/compsci)
+- [Hướng dẫn phát triển kỹ thuật của Google](https://www.google.com/about/careers/students/guide-to-technical-development.html) (nâng cao)
+- [Các câu hỏi phỏng vấn việc làm phổ biến về Ruby on Rails](https://www.nopio.com/blog/ruby-rails-popular-job-interview-questions/)
+- [Cracking the Coding Interview](https://www.crackingthecodinginterview.com/) là **TÀI LIỆU ĐỌC THÊM TÙY CHỌN** và có thể trở thành người bạn tốt nhất của bạn. Sách trình bày toàn diện mọi dạng thử thách bạn có thể gặp trong một buổi phỏng vấn lập trình. Nội dung vượt ra ngoài phạm vi những gì chúng ta đã học trong giáo trình này và chạm đến các chủ đề khác cũng đáng biết vì rất có thể chúng sẽ xuất hiện.
 
-### Coding test questions
+### Câu hỏi kiểm tra lập trình
 
-- [8 Queens](https://www.interviewbit.com/blog/8-queens-problem/#:~:text=Given%20a%208%20X%208,for%20the%208%20queens%20problem.) is a classic problem.
-- [Coding for Interviews: Know Thy Standard Libraries](http://web.archive.org/web/20210617041720/http://blog.codingforinterviews.com/reading-code-standard-libraries/) may be a bit of overkill for a junior, but never hurts if you've got the time.
-- [Project Euler](http://projecteuler.net/) has more generic and challenging problems that must be solved efficiently (they can be very computationally intensive).
-- [Code Wars](https://www.codewars.com) has programming problems and examples of best practice. Join 'The Odin Project' clan for allies.
-- [HackerRank](https://www.hackerrank.com/) provides challenges, drills, and competitions on algorithms & data structures.
-- [LeetCode](https://leetcode.com/explore/) also has some great resources, with problems, explanations, and challenges. Best of all, you don't have to create an account to view the questions.
-- [NeetCode](https://neetcode.io/) similar to LeetCode, but fewer, more focused questions. Each problem also has video explanations that walk through the problem solution
+- [8 Queens](https://www.interviewbit.com/blog/8-queens-problem/#:~:text=Given%20a%208%20X%208,for%20the%208%20queens%20problem.) là một bài toán kinh điển.
+- [Lập trình cho phỏng vấn: Hãy hiểu các thư viện chuẩn](http://web.archive.org/web/20210617041720/http://blog.codingforinterviews.com/reading-code-standard-libraries/) có thể hơi quá sức với người mới, nhưng nếu có thời gian thì đọc cũng không hại gì.
+- [Project Euler](http://projecteuler.net/) có những bài toán tổng quát và thử thách hơn, cần được giải một cách hiệu quả (chúng có thể đòi hỏi rất nhiều năng lực tính toán).
+- [Code Wars](https://www.codewars.com) có các bài toán lập trình và ví dụ về thực hành tốt nhất. Hãy tham gia clan 'The Odin Project' để có đồng đội.
+- [HackerRank](https://www.hackerrank.com/) cung cấp các thử thách, bài luyện tập và cuộc thi về thuật toán và cấu trúc dữ liệu.
+- [LeetCode](https://leetcode.com/explore/) cũng có nhiều tài nguyên hữu ích, với các bài toán, lời giải thích và thử thách. Tuyệt nhất là bạn không cần tạo tài khoản để xem câu hỏi.
+- [NeetCode](https://neetcode.io/) tương tự LeetCode nhưng có ít câu hỏi hơn và tập trung hơn. Mỗi bài toán cũng có video giải thích hướng dẫn cách giải
 
 <div class="lesson-note" markdown="1">
 
-#### A note on problem solving sites
+#### Lưu ý về các trang luyện giải bài toán
 
-The real value of the sites mentioned above comes from engaging with them productively. A popular recommendation around the internet is to just "go grind Leetcode." As you're aware of by now, common algorithms typically have a "trick" or a specific set of steps in order to get to a solution. When you are preparing to interview, the value and utility of wrestling with a problem for hours/days is little. It is more productive to search for the algorithm/pseudocode, then practice problems that require awareness of that algorithm.
+Giá trị thực sự của những trang được đề cập ở trên đến từ việc sử dụng chúng một cách có ích. Một lời khuyên phổ biến trên mạng là cứ “cày Leetcode”. Như bạn đã biết, các thuật toán phổ biến thường có một “mẹo” hoặc một tập hợp bước cụ thể để đi đến lời giải. Khi chuẩn bị phỏng vấn, việc vật lộn với một bài toán trong nhiều giờ hoặc nhiều ngày mang lại rất ít giá trị và hiệu quả. Sẽ hiệu quả hơn nếu tìm kiếm thuật toán hoặc mã giả trước, sau đó luyện các bài toán đòi hỏi bạn nhận biết và áp dụng thuật toán đó.
 
-This would be like being tasked with getting the length of a Hypotenuse in a triangle but having no awareness of the Pythagorean theorem. Without awareness of that theorem, that calculation can feel impossible. But just knowing the "trick" makes getting the result easy.
+Điều này giống như được giao nhiệm vụ tính độ dài cạnh huyền của một tam giác nhưng lại không biết định lý Pythagore. Nếu không biết định lý đó, phép tính có thể dường như bất khả thi. Nhưng chỉ cần biết “mẹo”, việc tìm ra kết quả sẽ trở nên dễ dàng.
 
-A more practical programming example:
+Một ví dụ lập trình thực tế hơn:
 
-If you arrived at a problem that required awareness of a Depth First Search of a Tree, but you had zero awareness of what a Depth First Search is, sitting there for days trying to arrive at a solution will yield little benefit. In that situation, it is more productive to just search common tree algorithms then return to the problem that was giving you difficulty.
+Nếu gặp một bài toán đòi hỏi hiểu về duyệt theo chiều sâu (Depth First Search) trên cây nhưng hoàn toàn không biết Depth First Search là gì, việc ngồi hàng ngày để tự tìm ra lời giải sẽ đem lại rất ít lợi ích. Trong tình huống đó, sẽ hiệu quả hơn nếu tìm kiếm các thuật toán cây phổ biến rồi quay lại bài toán từng khiến bạn gặp khó khăn.
 
 </div>
 
-### Algorithms training
+### Luyện thuật toán
 
-- [Udacity course on Algorithms](https://www.udacity.com/course/intro-to-algorithms--cs215) (asynchronous)
-- [Coursera course on Algorithms](https://www.coursera.org/course/algo) (semi-synchronous)
-- [Visualgo](https://visualgo.net/) visualizes many common algorithms to help students better understand data structures and algorithms.
+- [Khóa học về Thuật toán của Udacity](https://www.udacity.com/course/intro-to-algorithms--cs215) (không đồng bộ)
+- [Khóa học về Thuật toán của Coursera](https://www.coursera.org/course/algo) (bán đồng bộ)
+- [Visualgo](https://visualgo.net/) trực quan hóa nhiều thuật toán phổ biến để giúp người học hiểu rõ hơn về cấu trúc dữ liệu và thuật toán.
 
-### Architecture
+### Kiến trúc
 
-- [Teaching Software Architecture with GitHub](http://avandeursen.com/2013/12/30/teaching-software-architecture-with-github/)
+- [Dạy kiến trúc phần mềm bằng GitHub](http://avandeursen.com/2013/12/30/teaching-software-architecture-with-github/)
 
-### The tech challenge
+### Thử thách kỹ thuật
 
-The take-home tech challenge may occur before or after the in-person screen, depending on the company.  They will give you an application or problem which will take up to a full day to complete on your own time.  Examples of take-home tech challenges include building out a sample web app with tests or solving a challenging algorithmic problem using code.
+Thử thách kỹ thuật làm tại nhà có thể diễn ra trước hoặc sau vòng sàng lọc trực tiếp, tùy công ty. Họ sẽ giao cho bạn một ứng dụng hoặc bài toán mà bạn sẽ mất đến cả ngày để hoàn thành trong thời gian của mình. Ví dụ về thử thách kỹ thuật làm tại nhà gồm xây dựng một ứng dụng web mẫu có kiểm thử hoặc dùng mã để giải một bài toán thuật toán đầy thách thức.
 
-They'll evaluate you on the completeness of your solution and the quality of your code.  If it occurred before the technical interview, it's a good mechanism for them to test your commitment (up to half of people never even turn in a solution).
+Họ sẽ đánh giá mức độ hoàn chỉnh của lời giải và chất lượng mã của bạn. Nếu thử thách diễn ra trước buổi phỏng vấn kỹ thuật, đó là một cách hữu hiệu để kiểm tra mức độ cam kết của bạn (có đến một nửa số người thậm chí không nộp lời giải).
 
-### The final step: "fit"
+### Bước cuối: “sự phù hợp”
 
-The final step before the final decision is usually to meet the whole team and get put through the paces at their offices over the period of several hours.  They'll probably test you technically but the goal is also to make sure you'd be a good person to work with.  If any one member of the team doesn't think you'd be a good fit, you usually won't be hired.  Advice?  Don't be weird or awkward even if you are at home :)
+Bước cuối trước khi đưa ra quyết định thường là gặp cả nhóm và trải qua một loạt đánh giá tại văn phòng trong vài giờ. Có thể họ sẽ kiểm tra kỹ thuật, nhưng mục tiêu cũng là bảo đảm bạn sẽ là người phù hợp để làm việc cùng. Nếu chỉ một thành viên trong nhóm cho rằng bạn không phù hợp, thường bạn sẽ không được tuyển. Lời khuyên ư? Đừng trở nên kỳ quặc hay vụng về, kể cả khi bạn đang ở nhà :)
 
-It's also a chance for you to test them out.  If you've gotten this far in the process, there's a reasonable likelihood that you've got a good match.  You'll need to figure out if this is the kind of company you want to work for so bring a list of questions and make sure they get answered.
+Đây cũng là cơ hội để bạn đánh giá họ. Nếu đã đi được đến bước này, khả năng hai bên phù hợp với nhau là khá cao. Bạn cần xác định đây có phải kiểu công ty mình muốn làm việc hay không, vì vậy hãy chuẩn bị một danh sách câu hỏi và bảo đảm chúng được trả lời.
 
-### A note on compensation
+### Lưu ý về đãi ngộ
 
-Be mindful when providing your salary expectations. Companies will always ask you "how much do you expect to get paid", often in the initial phone screen. Providing a single concrete number can be the opposite of beneficial, because you may offer a number higher than their range and thus be deemed too expensive, or you may have come in too low and they now know they may be able to cap your offered compensation at a lower number than they might have. It's safest to provide a range (e.g. "I am looking for something between $80,000 - $90,000.") in order to better meet their budget and also allow some wiggle room for negotiations.
+Hãy thận trọng khi đưa ra kỳ vọng về lương. Các công ty luôn hỏi bạn “bạn mong muốn được trả bao nhiêu”, thường ngay trong vòng sàng lọc qua điện thoại ban đầu. Đưa ra một con số cụ thể duy nhất có thể phản tác dụng, vì bạn có thể nêu mức cao hơn khung lương của họ và bị xem là quá đắt, hoặc bạn có thể đưa ra mức quá thấp khiến họ biết rằng có thể chốt mức đãi ngộ của bạn thấp hơn mức họ vốn có thể đưa ra. An toàn nhất là đưa ra một khoảng (ví dụ: “Tôi đang tìm kiếm mức lương từ $80,000 - $90,000.”) để phù hợp hơn với ngân sách của họ, đồng thời vẫn chừa chỗ cho thương lượng.
 
-Once you have an offer, you can check it against fair market rate by asking other people (hopefully you've got some people by now who you might ask) or going to the below resources to compare. While "junior" doesn't equate to being underpaid, do be mindful to adjust for years of experience (0-1) as to get the most accurate picture.
+Khi có lời mời, bạn có thể kiểm tra mức đó so với mặt bằng thị trường bằng cách hỏi những người khác (hy vọng đến lúc này bạn đã có vài người để hỏi) hoặc tham khảo các tài nguyên dưới đây. “Junior” không đồng nghĩa với bị trả lương thấp, nhưng hãy nhớ điều chỉnh theo số năm kinh nghiệm (0-1) để có bức tranh chính xác nhất.
 
 - [Levels.fyi](https://www.levels.fyi/)
 - [Glassdoor](https://www.glassdoor.com/Salaries/index.htm)
@@ -126,4 +126,4 @@ Once you have an offer, you can check it against fair market rate by asking othe
 - [Payscale](https://www.payscale.com/)
 - [Talent](https://www.talent.com/salary)
 
-Finally, if a recruiter has reached out to you, it can also be helpful to ask what the budget for the role is up front. However, this must be done tactfully. If you have not been asked your compensation expectations and have not been told the budget up front in the initial message, it can be a great way to understand if both parties are wasting each other's time, but do keep in mind that asking must be done in a respectful manner. It can be helpful to phrase this ask by saying, "Is there an allocated salary range for the role?". Sometimes they may reply that the salary is based on experience, so do keep in mind your range as you move through the interview process!  
+Cuối cùng, nếu một nhà tuyển dụng chủ động liên hệ, bạn cũng có thể hỏi trước ngân sách cho vị trí đó là bao nhiêu. Tuy nhiên, việc này phải được thực hiện khéo léo. Nếu họ chưa hỏi kỳ vọng về đãi ngộ của bạn và cũng chưa cho biết ngân sách ngay trong tin nhắn đầu tiên, đây có thể là một cách hữu ích để biết liệu hai bên có đang lãng phí thời gian của nhau hay không, nhưng hãy nhớ rằng bạn phải hỏi một cách tôn trọng. Bạn có thể diễn đạt câu hỏi như sau: “Vị trí này có khung lương được phân bổ sẵn không?”. Đôi khi họ sẽ trả lời rằng mức lương phụ thuộc vào kinh nghiệm, vì vậy hãy ghi nhớ khoảng lương của mình trong suốt quá trình phỏng vấn!

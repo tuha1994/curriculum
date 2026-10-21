@@ -1,66 +1,66 @@
-### Introduction
+### Giới thiệu
 
-The next step is to actually apply.  Don't send all your applications out at once! You'll get totally overwhelmed if you start hearing back from people and need to complete tasks all at once.  Treat it like an iterative process where you'll send out several applications each day, learn from any mistakes you can identify based on feedback from the process, and try again the next day.  
+Bước tiếp theo là thực sự nộp đơn. Đừng gửi tất cả đơn ứng tuyển cùng một lúc! Bạn sẽ hoàn toàn quá tải nếu bắt đầu nhận phản hồi từ mọi người và phải hoàn thành nhiều nhiệm vụ cùng lúc. Hãy coi đây là một quá trình lặp: mỗi ngày gửi một số đơn, rút kinh nghiệm từ những sai sót có thể nhận ra qua phản hồi trong quá trình đó, rồi thử lại vào ngày hôm sau.
 
-This is NOT an excuse to procrastinate or only send out one application a day.  You should have a definite goal for number of applications per day.  3? 5? 10?
+Điều này KHÔNG phải cái cớ để trì hoãn hoặc chỉ gửi một đơn mỗi ngày. Bạn nên đặt mục tiêu rõ ràng về số đơn cần gửi mỗi ngày. 3? 5? 10?
 
-Over time, you will work your way through your Excel list.  It's usually good to start at the bottom with the companies that you would barely work at.  Once you feel comfortable with your application-sending and hopefully interviewing abilities, you can start tackling the companies at the top that you *really* want to work for.
+Theo thời gian, bạn sẽ lần lượt xử lý hết danh sách Excel của mình. Thông thường, nên bắt đầu từ cuối danh sách, với những công ty mà bạn ít muốn làm việc nhất. Khi đã cảm thấy quen với việc gửi đơn và hy vọng là cả kỹ năng phỏng vấn, bạn có thể bắt đầu nhắm đến những công ty ở đầu danh sách mà bạn *thực sự* muốn làm việc.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Explain how to apply for jobs effectively without becoming overwhelmed.
-- Describe strategies to get noticed by companies you want to work for.
-- Describe how to maintain perseverance and follow up professionally during the job search.
-- Explain how to tailor your resume and cover letters for different positions.
+- Giải thích cách ứng tuyển hiệu quả mà không bị quá tải.
+- Mô tả các chiến lược để được những công ty bạn muốn làm việc chú ý.
+- Mô tả cách duy trì sự kiên trì và theo dõi một cách chuyên nghiệp trong quá trình tìm việc.
+- Giải thích cách điều chỉnh resume và thư xin việc cho các vị trí khác nhau.
 
-### Go in the side door
+### Đi đường vòng để bước vào
 
-Where do you start?  Do two things at once -- send applications to a few companies towards the bottom of your list to practice but also look at the top companies on your list and build a strategy.  Remember, the best way to get in is to NOT use their online resume drop but to instead identify a real human being at the company and connect with that person somehow.  Even better is to be so publicly brilliant that they come to you but... we can't have it all.
+Bạn nên bắt đầu từ đâu? Hãy làm hai việc cùng lúc: gửi đơn cho một vài công ty ở cuối danh sách để luyện tập, đồng thời xem xét các công ty ở đầu danh sách và xây dựng chiến lược. Hãy nhớ rằng cách tốt nhất để gia nhập một công ty thường KHÔNG phải là nộp resume qua hệ thống trực tuyến của họ, mà là xác định một người thật trong công ty và tìm cách kết nối với người đó. Tốt hơn nữa là bạn giỏi đến mức công khai để họ tự tìm đến bạn, nhưng... không thể có tất cả.
 
-So there are probably a few companies that you'd *really* like to work for.  You'll want to spend a lot more time on them than you would for the ones at the bottom (which are hopefully good for interview practice).  Not only should you try to find a real human being at the company, but you can also potentially get noticed by tailoring your project work to them.  You'll be building projects (I hope) to stay in practice anyway, so make one of those a clone of the top company's website with a new feature you'd like to see, then use that to display your interest.  
+Có lẽ sẽ có một vài công ty mà bạn *thực sự* muốn làm việc. Bạn sẽ muốn dành cho họ nhiều thời gian hơn so với những công ty ở cuối danh sách (hy vọng đó là nơi tốt để luyện phỏng vấn). Không chỉ nên cố tìm một người thật trong công ty, bạn còn có thể thu hút sự chú ý bằng cách điều chỉnh các dự án của mình cho phù hợp với họ. Dù sao bạn cũng sẽ xây dựng dự án để luyện tập (tôi hy vọng vậy), nên hãy biến một dự án thành bản sao trang web của công ty đứng đầu danh sách, kèm một tính năng mới mà bạn muốn thấy; sau đó dùng dự án đó để thể hiện sự quan tâm của mình.
 
-Get to know the company and its needs and see if you can reach out to address them somehow.  Do they have local events you can visit?  What do they sponsor? This stuff takes creativity.  You need to walk the line where you're not a stalker but you do care enough to push hard.  If you're wrong, they may say no.  It happens, you'll live and move on.  But you'd better try!  You'll probably figure things out that will help you with other companies anyway.
+Hãy tìm hiểu công ty và nhu cầu của họ, rồi xem liệu bạn có thể chủ động liên hệ để giải quyết nhu cầu nào đó hay không. Họ có sự kiện địa phương nào bạn có thể tham dự không? Họ tài trợ cho hoạt động gì? Việc này cần sự sáng tạo. Bạn phải giữ ranh giới giữa việc quan tâm và thúc đẩy bản thân đủ mạnh với việc trở thành kẻ bám đuôi. Nếu bạn đoán sai, họ có thể từ chối. Chuyện đó vẫn xảy ra; bạn sẽ vượt qua và tiếp tục tiến lên. Nhưng tốt hơn hết là hãy thử! Dù sao bạn cũng có thể rút ra những điều hữu ích cho việc tiếp cận các công ty khác.
 
-### Perseverance through the process
+### Kiên trì trong suốt quá trình
 
-One of the key parts of the process, though, is keeping your spirits up.  It SUCKS looking for jobs full time.  You can go weeks without hearing a peep from anyone.  Then you'll have a day where you get an interview and your spirits will soar and then you won't pass and you'll feel like crap again.  Then you'll get another three interviews in one day and it'll be crazy for a time before another long waiting period.  The inconsistency of it is maddening, so do what you need to in your own life to make sure you don't let it get you down.
+Một phần quan trọng của quá trình là giữ tinh thần lạc quan. Tìm việc toàn thời gian thật sự RẤT TỆ. Có thể bạn trải qua nhiều tuần mà không nghe được một lời hồi âm nào. Rồi sẽ có một ngày bạn được phỏng vấn, tinh thần bay cao, sau đó trượt và lại cảm thấy tồi tệ. Tiếp đó, bạn có thể có ba cuộc phỏng vấn trong một ngày và mọi thứ trở nên điên cuồng một thời gian, trước khi lại bước vào một giai đoạn chờ đợi dài. Sự thất thường đó thật phát điên, vì vậy hãy làm những gì cần thiết trong cuộc sống của mình để không để nó quật ngã bạn.
 
-It's also really important to not act/sound desperate, even though you probably are.  No one wants to hire someone who is desperate because it violates so much of the social proof that people use to figure out if you're a good candidate -- if no one else will hire you and you're so desperate, it makes them wonder what's wrong with you.  And, frankly, there's nothing wrong... everyone goes through a grueling process when they start looking for jobs.  Just don't let it get to you (or at least don't make it sound like it's gotten to you).  
+Điều cũng rất quan trọng là đừng tỏ ra hoặc nói năng tuyệt vọng, dù có thể bạn thực sự đang như vậy. Không ai muốn tuyển một người tuyệt vọng, vì điều đó đi ngược lại nhiều bằng chứng xã hội mà mọi người dùng để đánh giá bạn có phải ứng viên tốt hay không: nếu không ai khác muốn tuyển bạn và bạn lại tuyệt vọng đến vậy, họ sẽ tự hỏi bạn có vấn đề gì. Và nói thẳng ra thì chẳng có vấn đề gì cả... ai cũng phải trải qua một quá trình khắc nghiệt khi bắt đầu tìm việc. Chỉ cần đừng để nó ảnh hưởng đến bạn (hoặc ít nhất đừng để lộ rằng nó đã ảnh hưởng đến bạn).
 
-The point here is really just to make sure you understand that it's a really annoying/painful/long process for everyone and you're not alone!
+Điểm mấu chốt là bạn cần hiểu đây là một quá trình thật sự khó chịu/đau đớn/dài dòng đối với tất cả mọi người, và bạn không hề đơn độc!
 
-### Resume versions
+### Các phiên bản resume
 
-If you're applying to several different types of positions, tailor your resume for the specific type of opportunity.  Just remember that, if you're submitting it virtually, they can see the title. It's generally a good idea to set the file name of your resume to your name. This has the additional benefit of a recruiter seeing your name and remembering it.
+Nếu bạn ứng tuyển vào nhiều loại vị trí khác nhau, hãy điều chỉnh resume cho phù hợp với từng loại cơ hội cụ thể. Chỉ cần nhớ rằng nếu gửi hồ sơ dưới dạng điện tử, họ có thể nhìn thấy tiêu đề tệp. Nhìn chung, nên đặt tên tệp resume theo tên của bạn. Điều này còn giúp nhà tuyển dụng nhìn thấy tên bạn và ghi nhớ nó.
 
-It's also important to note that if you're not gaining traction getting responses with a certain resume, don't be afraid to switch it up. Keep track of the changes and see which version performs better than the others.
+Cũng cần lưu ý rằng nếu một phiên bản resume nào đó không giúp bạn nhận được phản hồi, đừng ngại thay đổi. Hãy ghi lại các thay đổi và xem phiên bản nào có hiệu quả tốt hơn những phiên bản khác.
 
-### Cover letters
+### Thư xin việc
 
-Some positions require you to also submit cover letters.  In our own experience, we've rarely actually seen the cover letter that an applicant has submitted for a job posting.  They have a magical way of getting lost or ignored.  If someone's spending < 10 seconds looking at your resume at first, why are they going to read a long cover letter?  
+Một số vị trí yêu cầu bạn gửi thêm thư xin việc. Theo kinh nghiệm của chúng tôi, hiếm khi chúng tôi thực sự thấy thư xin việc mà ứng viên đã gửi cho một tin tuyển dụng. Chúng có cách kỳ diệu để bị thất lạc hoặc bị bỏ qua. Nếu ban đầu ai đó chỉ dành < 10 giây để xem resume của bạn, tại sao họ lại đọc một lá thư xin việc dài?
 
-Though they may not look at your cover letter during the first pass, if your resume looks interesting then the cover letter has a way of becoming more important.  The hiring manager wants to make sure the story he crafted in his head is even more awesome in reality when hearing it from the applicant's own words.  So it's important to not use meaningless buzzwords and platitudes in your cover letter but instead focus on providing a concise but descriptive (and specific) letter answering the key questions we've talked about before (are you capable and driven?).
+Dù có thể họ không xem thư xin việc trong lần sàng lọc đầu tiên, nếu resume của bạn trông thú vị thì thư xin việc sẽ trở nên quan trọng hơn. Người quản lý tuyển dụng muốn chắc chắn rằng câu chuyện họ tự hình dung trong đầu còn tuyệt vời hơn khi nghe chính ứng viên kể lại. Vì vậy, đừng dùng những từ ngữ thời thượng và lời sáo rỗng vô nghĩa trong thư xin việc; thay vào đó, hãy tập trung viết một lá thư ngắn gọn nhưng giàu thông tin (và cụ thể), trả lời những câu hỏi then chốt chúng ta đã đề cập trước đây (bạn có năng lực và động lực không?).
 
-It also needs to answer a new question that the resume doesn't really address directly: "Why does this person actually want to work at MY company?".  That's actually very important if it's a startup or other strongly cultural organization -- they're looking for people who have a very strong reason for wanting to work there so they know you'll stick around and grow with the company.
+Thư cũng cần trả lời một câu hỏi mới mà resume không thực sự giải đáp trực tiếp: "Tại sao người này thực sự muốn làm việc tại công ty CỦA TÔI?". Điều đó đặc biệt quan trọng nếu đây là một startup hoặc tổ chức coi trọng văn hóa, vì họ đang tìm những người có lý do rất thuyết phục để muốn làm việc ở đó, để biết rằng bạn sẽ gắn bó và phát triển cùng công ty.
 
-### Email cover letters
+### Thư xin việc qua email
 
-Every piece of communication you have with a company is relevant.  The most important is the one where you first reach out via email.  You probably want to treat that as a condensed version of a cover letter -- express your brilliance and fit in just a few powerful sentences.
+Mọi hình thức giao tiếp của bạn với một công ty đều quan trọng. Quan trọng nhất là lần đầu tiên bạn chủ động liên hệ qua email. Có lẽ bạn nên coi email đó là phiên bản cô đọng của thư xin việc: thể hiện năng lực nổi bật và sự phù hợp của bạn chỉ trong vài câu mạnh mẽ.
 
-### Applying
+### Ứng tuyển
 
-Track every application you send out in your spreadsheet by the date you sent it.  As we said above, you don't need to go crazy on Day 1 but keep a regular flow of applications going out.
+Hãy ghi lại mọi đơn ứng tuyển bạn gửi trong bảng tính, kèm ngày gửi. Như đã nói ở trên, bạn không cần làm quá sức vào Ngày 1, nhưng hãy duy trì nhịp độ gửi đơn đều đặn.
 
-### Following up
+### Theo dõi
 
-This actually applies to the whole process, not just applications.  Follow up your interviews (with a thank you to your interviewer on day 1 too).  Follow up your tech screens.  The goal here isn't to be naggy and annoying/desperate, and it's certainly not to be a robot sending auto-generated emails all the time. Just be human and honest in your language.
+Điều này áp dụng cho toàn bộ quá trình, không chỉ riêng việc ứng tuyển. Hãy theo dõi sau các buổi phỏng vấn (và cũng gửi lời cảm ơn người phỏng vấn ngay ngày 1). Hãy theo dõi sau các vòng sàng lọc kỹ thuật. Mục tiêu không phải là trở nên dai dẳng, phiền phức hay tuyệt vọng, và chắc chắn cũng không phải biến thành robot liên tục gửi email tự động. Hãy dùng ngôn ngữ tự nhiên và chân thành.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read about [how to get noticed by a startup you want to work for](https://www.themuse.com/advice/want-to-work-for-a-startup-heres-how-to-get-noticed).
+1. Đọc bài viết về [cách để một startup mà bạn muốn làm việc chú ý đến bạn](https://www.themuse.com/advice/want-to-work-for-a-startup-heres-how-to-get-noticed).
 
 </div>

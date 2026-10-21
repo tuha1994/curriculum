@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-You've been figuring out this web development stuff and building apps for a long time now and it's finally time to get paid to keep learning by working for someone else.
+Bạn đã tìm hiểu về phát triển web, xây dựng ứng dụng trong một thời gian dài, và cuối cùng cũng đến lúc được trả lương để tiếp tục học hỏi bằng cách làm việc cho người khác.
 
-You're absolutely capable of getting a job but it's rarely easy to find one.  You'll have to be honest with yourself about what you want and what you can offer and tackle the challenge of getting hired with the same rigor and structure that has gotten you this far.
+Bạn hoàn toàn có khả năng tìm được việc, nhưng tìm việc hiếm khi là chuyện dễ dàng. Bạn sẽ phải thành thật với bản thân về điều mình muốn và những gì mình có thể đóng góp, đồng thời đối mặt với thử thách tìm việc bằng chính sự chặt chẽ và có hệ thống đã giúp bạn đi được đến đây.
 
-This is as much an odds game as anything is, especially for first-time employees who haven't been "proven" by past experience.  That means you'll get your fair share of rejection along the way but everyone does.  You just need to keep building your skills and portfolio to make yourself a stronger candidate while continuing to send applications and get yourself out there every day.
+Đây cũng là một cuộc chơi về xác suất, đặc biệt với những người lần đầu đi làm và chưa có kinh nghiệm trước đây để chứng minh năng lực. Điều đó có nghĩa là trên đường đi bạn sẽ nhận không ít lời từ chối, nhưng ai cũng vậy. Bạn chỉ cần tiếp tục nâng cao kỹ năng và xây dựng danh mục dự án để trở thành ứng viên mạnh hơn, đồng thời vẫn gửi hồ sơ và chủ động xuất hiện mỗi ngày.
 
-This course will lay out a structured path to follow which should help you avoid some of the pitfalls of just diving into the process without a plan.  **Read through this course completely once then use it step-by-step along the way as you go through the process**.  Good luck and get after it!
+Khóa học này sẽ đưa ra một lộ trình có cấu trúc để bạn đi theo, giúp bạn tránh một số cạm bẫy khi lao ngay vào quá trình tìm việc mà không có kế hoạch. **Hãy đọc hết khóa học một lần, sau đó sử dụng từng bước khi bạn tiến hành quá trình này**. Chúc bạn may mắn, và bắt tay vào việc thôi!
 
-### Format
+### Hình thức
 
-This course is structured a bit differently than the others because it's much more about you getting out there than it is about learning a specific skill or building a specific project.  There are a couple projects which you'll be asked to do but most of the structure here exists to scaffold your job search process.
+Khóa học này có cấu trúc hơi khác các khóa học khác vì trọng tâm là giúp bạn chủ động bước ra ngoài tìm việc, chứ không phải học một kỹ năng cụ thể hay xây dựng một dự án cụ thể. Bạn sẽ được yêu cầu thực hiện một vài dự án, nhưng phần lớn cấu trúc ở đây nhằm hỗ trợ quá trình tìm việc của bạn.
 
-### In each lesson
+### Trong mỗi bài học
 
-1. We'll introduce the topic and provide you with its context in your overall search.
-1. You'll be asked to do readings, watch videos, do online courses or otherwise consume content to help you out.
-1. You'll often be asked to do specific tasks, for instance keeping track of the applications you've submitted.  This is purely to help you along the way.
-1. Finally, we'll include additional helpful resources and other potentially useful tidbits at the end of each lesson.
+1. Chúng ta sẽ giới thiệu chủ đề và cung cấp bối cảnh của chủ đề đó trong toàn bộ quá trình tìm việc của bạn.
+1. Bạn sẽ được yêu cầu đọc tài liệu, xem video, tham gia khóa học trực tuyến hoặc tiếp nhận nội dung theo những cách khác để hỗ trợ mình.
+1. Bạn thường sẽ được yêu cầu thực hiện các nhiệm vụ cụ thể, chẳng hạn như theo dõi những hồ sơ đã gửi. Mục đích hoàn toàn là để hỗ trợ bạn trong suốt quá trình.
+1. Cuối cùng, chúng ta sẽ bổ sung các tài nguyên hữu ích và những thông tin có thể giúp ích khác ở cuối mỗi bài học.
 
-### Enough talk, go get hired!
+### Nói đủ rồi, hãy đi tìm việc thôi!

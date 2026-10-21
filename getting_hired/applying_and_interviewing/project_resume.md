@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-The goal of a resume is to get them interested enough to start a conversation.  From there, it's on you to speak intelligently about the things you've done. So don't treat the resume as the catch-all repository of your whole life -- it's more of a focused marketing tool designed to make you seem worth taking another look at.
+Mục tiêu của CV là khiến nhà tuyển dụng đủ quan tâm để bắt đầu một cuộc trò chuyện. Từ đó, bạn phải tự trình bày một cách sáng suốt về những việc mình đã làm. Vì vậy, đừng xem CV như kho lưu trữ toàn bộ cuộc đời bạn — nó giống một công cụ tiếp thị có trọng tâm hơn, được thiết kế để khiến người đọc thấy bạn đáng để xem xét thêm.
 
-A developer's resume is an interesting thing because so much of your value is demonstrated from your projects, which live in your GitHub (and are hopefully also deployed somewhere online).  Despite this focus on projects, you can't ignore previous work experience or education.  They are both important for showing the social proof that other people have worked with you before and you've met their standards for applying.  
+CV của một lập trình viên khá đặc biệt vì phần lớn giá trị của bạn được thể hiện qua các dự án, vốn nằm trên GitHub (và hy vọng cũng đã được triển khai ở đâu đó trên mạng). Dù tập trung vào dự án, bạn không thể bỏ qua kinh nghiệm làm việc hoặc học vấn trước đây. Cả hai đều quan trọng để cho thấy bằng chứng xã hội rằng trước đây đã có người làm việc cùng bạn và bạn đã đáp ứng các tiêu chuẩn của họ khi ứng tuyển.
 
-It's difficult to come up with (or find on the internet) a standard resume type for a junior developer.  Most of the ones out there aren't particularly inspiring.  The keys to remember are the perspective of the hiring manager we talked about before -- that person wants to hire a developer who is highly capable and can get shit done (and will add value ASAP).  
+Rất khó tìm hoặc tự xây dựng một mẫu CV tiêu chuẩn cho lập trình viên mới vào nghề. Phần lớn các mẫu trên mạng không thật sự truyền cảm hứng. Điều cần nhớ là góc nhìn của người quản lý tuyển dụng mà chúng ta đã nói đến trước đây — họ muốn tuyển một lập trình viên có năng lực cao, có thể hoàn thành công việc (và nhanh chóng tạo ra giá trị).
 
-The hiring manager will determine these criteria in less than 10 seconds at first glance based on where you've been educated, who's hired you before, and if you've got any really interesting projects that stand out.  The hiring manager rapidly builds a story of who you are based on those headline items of your resume.  If you're lucky, that high level story will seem interesting enough for the hiring manager or HR person to look twice and actually read what you did at each job and then bring you in for an interview.
+Ngay từ cái nhìn đầu tiên, trong chưa đầy 10 giây, người quản lý tuyển dụng sẽ đánh giá các tiêu chí này dựa trên nơi bạn học, những ai từng tuyển bạn và liệu bạn có dự án nào thật sự thú vị, nổi bật hay không. Họ nhanh chóng hình thành câu chuyện về con người bạn dựa trên những thông tin nổi bật trên CV. Nếu may mắn, câu chuyện tổng quan đó sẽ đủ thú vị để người quản lý tuyển dụng hoặc nhân sự đọc kỹ hơn những gì bạn đã làm ở từng công việc, rồi mời bạn đến phỏng vấn.
 
-Knowing that perspective, how can you play to it?  It's difficult if you're breaking into a new industry so you'll need to emphasize relevant education, work experience and projects in a way that crafts a story of drive and capability.  What have you done that shows you're highly capable (e.g. your technical chops, any recognition you've received, leadership of teams)? And can get shit done (e.g. interesting projects, open source contributions)?
+Biết được góc nhìn đó, bạn có thể tận dụng nó như thế nào? Điều này khá khó nếu bạn đang bước vào một ngành mới, vì vậy bạn cần nhấn mạnh học vấn, kinh nghiệm làm việc và các dự án có liên quan theo cách tạo nên câu chuyện về sự nỗ lực và năng lực. Bạn đã làm gì để cho thấy mình có năng lực cao (ví dụ: năng lực kỹ thuật, sự ghi nhận bạn từng nhận được, khả năng lãnh đạo nhóm)? Và bạn đã làm gì để chứng minh mình có thể hoàn thành công việc (ví dụ: các dự án thú vị, đóng góp cho mã nguồn mở)?
 
-Remember: ONE PAGE.
+Hãy nhớ: MỘT TRANG.
 
-- This Career Tool Belt article lists [6 free resume builder websites](https://web.archive.org/web/20230930114027/https://www.careertoolbelt.com/5-best-free-resume-builder-websites/)
-- [Novorésumé also has a free tier with templates available, as an alternate resource](https://novoresume.com/)
-- Formatting could use some work, but here’s an [example resume from CareerCup.com](https://www.gayle.com/resume)
-- [Another great (totally free) resume builder](https://flowcv.io/)
+- Bài viết của Career Tool Belt này liệt kê [6 website tạo CV miễn phí](https://web.archive.org/web/20230930114027/https://www.careertoolbelt.com/5-best-free-resume-builder-websites/)
+- [Novorésumé cũng có gói miễn phí với các mẫu CV](https://novoresume.com/), là một tài nguyên thay thế.
+- Phần định dạng có thể cần cải thiện, nhưng đây là [một CV mẫu từ CareerCup.com](https://www.gayle.com/resume)
+- [Một công cụ tạo CV tuyệt vời khác (hoàn toàn miễn phí)](https://flowcv.io/)
 
-### Optional reading
+### Đọc thêm tùy chọn
 
-- [Getting Your Résumé Read, by Joel Spolsky](http://www.joelonsoftware.com/articles/ResumeRead.html)
+- [Để CV của bạn được đọc, tác giả Joel Spolsky](http://www.joelonsoftware.com/articles/ResumeRead.html)

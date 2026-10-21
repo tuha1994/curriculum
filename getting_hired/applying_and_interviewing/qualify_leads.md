@@ -1,35 +1,35 @@
-### Introduction
+### Giới thiệu
 
-You should have the criteria that you use to evaluate a job already figured out and it should already be in your spreadsheet. Look through each lead on your spreadsheet and cross off the ones that fail your "must-have" criteria, then rank them based on your "nice-to-have" criteria. You should be able to easily come up with a weighting system that lets you sort the jobs in order of preference. Simpler is better, so no need to go overboard.
+Bạn nên xác định sẵn các tiêu chí dùng để đánh giá một công việc và ghi chúng trong bảng tính. Hãy xem từng đầu mối trong bảng tính, gạch bỏ những đầu mối không đáp ứng các tiêu chí “bắt buộc phải có”, rồi xếp hạng những đầu mối còn lại dựa trên các tiêu chí “có thì tốt”. Bạn có thể dễ dàng xây dựng một hệ thống trọng số để sắp xếp các công việc theo thứ tự ưu tiên. Đơn giản sẽ tốt hơn, vì vậy không cần làm quá phức tạp.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Explain how to qualify job leads to avoid wasting time on unworthy opportunities.
-- Describe strategies to rank job leads based on personal criteria.
+- Giải thích cách đánh giá các đầu mối việc làm để tránh lãng phí thời gian vào những cơ hội không xứng đáng.
+- Mô tả các chiến lược xếp hạng đầu mối việc làm dựa trên tiêu chí cá nhân.
 
-### Qualify the leads
+### Đánh giá các đầu mối
 
-To start of, make a column for the percentage likelihood of getting the job with a reasonable effort. Multiply this with the value of the job based on the previous step, sort by this new "expected value", and you should have an indication of which jobs are most worth your time.
+Trước hết, hãy thêm một cột thể hiện xác suất nhận được công việc nếu bỏ ra một mức nỗ lực hợp lý. Nhân tỷ lệ này với giá trị của công việc dựa trên bước trước, sắp xếp theo “giá trị kỳ vọng” mới, và bạn sẽ có chỉ báo về những công việc đáng để dành thời gian nhất.
 
-Part of the reason for qualifying the leads is to make sure you don't get sucked into a process and waste a bunch of time applying to jobs that you wouldn't actually take anyway. That's surprisingly easy. You'll still be able to send out "practice" applications, but at least now you know which companies are worth sending those out to.
+Một phần lý do cần đánh giá các đầu mối là để bảo đảm bạn không bị cuốn vào một quy trình rồi lãng phí rất nhiều thời gian ứng tuyển vào những công việc mà dù sao bạn cũng không thực sự nhận. Điều đó xảy ra dễ hơn bạn tưởng. Bạn vẫn có thể gửi các đơn ứng tuyển “để luyện tập”, nhưng ít nhất lúc này bạn biết công ty nào đáng để gửi.
 
-Some other criteria to think about in the "nice-to-have" column:
+Một số tiêu chí khác cần cân nhắc trong cột “có thì tốt”:
 
-- How easily can I continue to learn at that job?
-- Is there access to mentors and teaching?
-- How good are my peers who I can learn from?
-- How much would I like going into work each day?
-- What are the job-security risks of the job? Corporations aren't lock-tight just because they're big... they go through restructuring phases and lay off people with little good reason.
-- Does it pay well enough to support me?
-- Does its location fit the needs of me and my family?
-- How long do I want this (first) job for?
+- Ở công việc đó, tôi có thể tiếp tục học hỏi dễ dàng đến mức nào?
+- Tôi có được tiếp cận cố vấn và cơ hội học hỏi không?
+- Những đồng nghiệp mà tôi có thể học hỏi giỏi đến mức nào?
+- Mỗi ngày tôi sẽ thích đi làm đến mức nào?
+- Công việc này có những rủi ro gì về độ ổn định? Các tập đoàn không phải lúc nào cũng an toàn tuyệt đối chỉ vì họ lớn... họ vẫn trải qua các đợt tái cấu trúc và sa thải người với rất ít lý do chính đáng.
+- Mức lương có đủ để trang trải cho tôi không?
+- Địa điểm làm việc có phù hợp với nhu cầu của tôi và gia đình không?
+- Tôi muốn làm công việc (đầu tiên) này trong bao lâu?
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this [Hire Beware blog post about some warning signs for less-than-ideal opportunities](https://github.com/TheOdinProject/blog/blob/main/hire-beware.md).
+1. Đọc [bài viết trên blog Hire Beware về một số dấu hiệu cảnh báo của những cơ hội kém lý tưởng](https://github.com/TheOdinProject/blog/blob/main/hire-beware.md).
 
 </div>

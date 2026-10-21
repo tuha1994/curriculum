@@ -1,45 +1,45 @@
-### Introduction
+### Giới thiệu
 
-The first step is to have a strategy. You've come this far with a deliberate and strategic approach to learning, why abandon it at the most important phase? Getting a job can itself be a full-time job so use your time wisely and plan ahead. There are some things you can and should do ahead of time, which we will cover in greater depth below.
+Bước đầu tiên là có một chiến lược. Bạn đã đi đến đây bằng cách tiếp cận việc học có chủ đích và chiến lược, vậy tại sao lại từ bỏ nó ở giai đoạn quan trọng nhất? Tìm việc tự nó có thể là một công việc toàn thời gian, vì vậy hãy sử dụng thời gian khôn ngoan và lập kế hoạch trước. Có một số việc bạn có thể và nên làm trước, chúng ta sẽ tìm hiểu sâu hơn bên dưới.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Read about the strategy for getting yourself hired.
+- Đọc về chiến lược giúp bạn tìm được việc.
 
-### Overall strategy
+### Chiến lược tổng thể
 
-The path to working takes the following form:
+Con đường đi đến việc làm có dạng như sau:
 
-1. Figure out your needs and skills
-1. Figure out what companies need and offer
-1. Increase your odds by laying the groundwork early
-1. Collect job leads
-1. Qualify job leads
-1. Reach out and apply
-1. Interview
-1. Handle the offer(s)
-1. Profit??
+1. Xác định nhu cầu và kỹ năng của bạn
+1. Tìm hiểu công ty cần gì và mang lại điều gì
+1. Tăng cơ hội bằng cách chuẩn bị nền tảng từ sớm
+1. Thu thập đầu mối việc làm
+1. Đánh giá đầu mối việc làm
+1. Liên hệ và ứng tuyển
+1. Phỏng vấn
+1. Xử lý (các) lời mời làm việc
+1. Hưởng lợi nhuận??
 
-You'll notice that it's quite structured. Some things are more optional than others, but you've got to have a plan or you'll find yourself spamming your resume out to every job post on every job board and wondering why you haven't had any success. Or maybe you'll end up going through a long and painful process and realizing you never wanted that job anyway -- a total waste of time.
+Bạn sẽ nhận thấy chiến lược này khá có cấu trúc. Một số việc mang tính tùy chọn hơn những việc khác, nhưng bạn cần có kế hoạch; nếu không, bạn sẽ gửi hồ sơ tràn lan đến mọi tin tuyển dụng trên mọi trang việc làm rồi tự hỏi tại sao mình không thành công. Hoặc bạn có thể trải qua một quy trình dài và đau đầu, rồi nhận ra ngay từ đầu mình chẳng hề muốn công việc đó — hoàn toàn lãng phí thời gian.
 
-We'll also cover some alternate paths you can take like finishing up your education at a coding bootcamp and how you can contribute to open source projects (like this one) to boost your "real world" experience.
+Chúng ta cũng sẽ đề cập đến một số con đường thay thế, chẳng hạn như hoàn tất việc học tại một coding bootcamp và đóng góp cho các dự án nguồn mở (như dự án này) để tăng kinh nghiệm “thực tế”.
 
-Now get your head out of the clouds, stop dreaming about how you'll get hired, and actually do it!
+Bây giờ hãy thôi mơ mộng, ngừng tưởng tượng về cách mình sẽ được tuyển, và thực sự bắt tay làm đi!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. A fantastic place to start your "getting hired" journey is this very thorough article from [Happy Bear Software on How to Get A Programmer Job](https://web.archive.org/web/20160925155912/http://www.happybearsoftware.com/how-to-get-a-programmer-job.html).
+1. Một nơi tuyệt vời để bắt đầu hành trình “tìm việc” là bài viết rất chi tiết này của [Happy Bear Software về Cách tìm việc lập trình viên](https://web.archive.org/web/20160925155912/http://www.happybearsoftware.com/how-to-get-a-programmer-job.html).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên bạn có thể xem như tài liệu bổ sung.
 
-- [Getting your first IT job from InformationWeek](https://www.informationweek.com/team-building-and-staffing/how-to-land-your-first-it-job)
-- [Engineer’s Guide to US Visas](http://blog.sourcing.io/visa-guide)
-- [Lessons from a Silicon Valley Job Search by Robert Heaton](https://robertheaton.com/2014/03/07/lessons-from-a-silicon-valley-job-search/)
+- [Tìm công việc IT đầu tiên từ InformationWeek](https://www.informationweek.com/team-building-and-staffing/how-to-land-your-first-it-job)
+- [Hướng dẫn dành cho kỹ sư về thị thực Hoa Kỳ](http://blog.sourcing.io/visa-guide)
+- [Bài học từ quá trình tìm việc ở Silicon Valley của Robert Heaton](https://robertheaton.com/2014/03/07/lessons-from-a-silicon-valley-job-search/)

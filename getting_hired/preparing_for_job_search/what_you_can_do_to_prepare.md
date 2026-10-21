@@ -1,80 +1,80 @@
-### Introduction
+### Giới thiệu
 
-Taking a structured approach to getting hired means starting early and getting some important things out of the way first.
+Tiếp cận việc tìm việc một cách có hệ thống nghĩa là bắt đầu sớm và giải quyết trước một số việc quan trọng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- You'll learn what you can do to prepare for the job search.
+- Bạn sẽ học những việc có thể làm để chuẩn bị cho quá trình tìm việc.
 
-### Get good!
+### Hãy trở nên giỏi!
 
-Navigating this process can be a beast but don't let it distract you from building your skills, which ultimately will determine if you get the job or not.  This course assumes you've already made it through the other courses and have accomplished enough in their completion to elevate you to competence.  If not, you've got to ruthlessly address your weak points (even if it's the tricky stuff like algorithms and data structures) in order to be qualified for the kinds of positions you're applying to.
+Quá trình này có thể rất gian nan, nhưng đừng để nó khiến bạn xao nhãng việc rèn luyện kỹ năng, vì cuối cùng chính những kỹ năng đó sẽ quyết định bạn có được nhận vào làm hay không. Khóa học này giả định rằng bạn đã hoàn thành các khóa học khác và đạt đủ kết quả để nâng năng lực của mình lên mức thành thạo. Nếu chưa, bạn phải thẳng thắn và quyết liệt khắc phục những điểm yếu của mình (kể cả những phần khó như thuật toán và cấu trúc dữ liệu) để đủ tiêu chuẩn cho những vị trí bạn đang ứng tuyển.
 
-### Craft a narrative
+### Xây dựng câu chuyện về bản thân
 
-You may be uncomfortable "selling yourself" but that's exactly what you'll have to do.  Luckily, that doesn't mean acting like a used car salesman; it's more subtle than you think.  It really means crafting a story about who you are, how you got to where you are, and why you'll keep growing.  Everyone can tell a story.  So put some effort into crafting a compelling narrative that stitches together your background (especially if you come from a non-traditional background) into a compelling and unavoidable wave of capability and drive.
+Có thể bạn không thoải mái với việc "tiếp thị bản thân", nhưng đó chính xác là việc bạn sẽ phải làm. May mắn là điều đó không có nghĩa bạn phải cư xử như một nhân viên bán xe cũ; mọi chuyện tinh tế hơn bạn nghĩ. Thực chất, bạn cần xây dựng câu chuyện về việc bạn là ai, bạn đã đi đến vị trí hiện tại như thế nào và vì sao bạn sẽ tiếp tục phát triển. Ai cũng có thể kể chuyện. Vì vậy, hãy đầu tư công sức xây dựng một câu chuyện thuyết phục, kết nối nền tảng của bạn (đặc biệt nếu bạn xuất thân không theo con đường truyền thống) thành một hình ảnh đầy sức thuyết phục và không thể phủ nhận về năng lực cùng động lực của bạn.
 
-### Build a portfolio
+### Xây dựng portfolio
 
-All along the way, you should keep building things.  The work you've done will be crucial to demonstrating your technical skill and getting hired.  Employers want to see that you can build and ship code and that you make good decisions when confronted with engineering trade-offs.  All of this stems from conversations about your portfolio of work.
+Trong suốt quá trình đó, bạn nên tiếp tục tạo ra sản phẩm. Những gì bạn đã làm sẽ rất quan trọng để thể hiện năng lực kỹ thuật và giúp bạn được tuyển dụng. Nhà tuyển dụng muốn thấy bạn có thể xây dựng và đưa code vào vận hành, đồng thời đưa ra quyết định đúng đắn khi phải cân nhắc các đánh đổi trong kỹ thuật. Tất cả những điều này sẽ được thể hiện qua các cuộc trao đổi về portfolio sản phẩm của bạn.
 
-The portfolio is also important for another thing that isn't mentioned much -- social proof.  If you've been a part of larger or group projects, that's almost like showing that you've worked somewhere before.  It makes the employer comfortable that other people have worked with you before so they can too.
+Portfolio còn quan trọng ở một khía cạnh khác ít được nhắc đến: bằng chứng xã hội. Nếu bạn từng tham gia các dự án quy mô lớn hoặc dự án nhóm, điều đó gần như cho thấy bạn đã từng làm việc ở đâu đó. Nhà tuyển dụng sẽ yên tâm hơn khi biết những người khác đã từng làm việc cùng bạn, và họ cũng có thể làm việc với bạn.
 
-Speaking of group projects, participating in the open source community is a great way to showcase your skills and collaborate with other developers. If you're looking for your first open source project to contribute to, start with TOP! We're always looking for ways to improve our curriculum, main site, and odin-bot v2, so check out our [repositories on GitHub](https://github.com/TheOdinProject) to get started. While you're at it, check out this [Dev.to article](https://dev.to/opensauced/how-i-got-hired-contributing-to-open-source-projects-546i) to learn you can leverage open source contributions in your job search.
+Nhắc đến dự án nhóm, tham gia cộng đồng mã nguồn mở là cách tuyệt vời để thể hiện kỹ năng và cộng tác với các lập trình viên khác. Nếu bạn đang tìm dự án mã nguồn mở đầu tiên để đóng góp, hãy bắt đầu với TOP! Chúng tôi luôn tìm cách cải thiện chương trình học, trang chính và odin-bot v2, vì vậy hãy xem các [repository trên GitHub](https://github.com/TheOdinProject) của chúng tôi để bắt đầu. Nhân tiện, hãy đọc [bài viết trên Dev.to](https://dev.to/opensauced/how-i-got-hired-contributing-to-open-source-projects-546i) này để tìm hiểu cách tận dụng đóng góp mã nguồn mở trong quá trình tìm việc.
 
-Your portfolio as a developer is GitHub.  You may have a personal website but GitHub is still the authoritative repository of your technical ability.  Ignore it at your peril.
+Portfolio của một lập trình viên chính là GitHub. Bạn có thể có một trang web cá nhân, nhưng GitHub vẫn là nơi đáng tin cậy nhất để thể hiện năng lực kỹ thuật của bạn. Bỏ qua điều đó có thể khiến bạn phải trả giá.
 
-### Clean up your web presence (and have one)
+### Chỉnh sửa sự hiện diện trên web (và hãy tạo dựng nó)
 
-Google yourself in an incognito window (to avoid Google's smart algorithm).  What comes up? Do the links fit into your personal narrative?  Whoever is looking to hire you will certainly Google you.  Make sure that what they find matches what you want them to find.  If you've got a ridiculously common name, you may have a harder time building your web presence but it's also harder to have the *wrong* web presence.
+Hãy tìm tên mình trên Google bằng cửa sổ ẩn danh (để tránh thuật toán thông minh của Google). Kết quả hiện ra là gì? Các liên kết đó có phù hợp với câu chuyện bạn muốn kể về bản thân không? Bất kỳ ai đang cân nhắc tuyển bạn chắc chắn sẽ tìm tên bạn trên Google. Hãy đảm bảo những gì họ tìm thấy đúng với điều bạn muốn họ thấy. Nếu bạn có một cái tên quá phổ biến, việc xây dựng sự hiện diện trên web có thể khó hơn, nhưng đồng thời bạn cũng khó vô tình tạo ra một sự hiện diện *sai lệch*.
 
-The most important part of your web presence to fix up is your GitHub profile.  Make sure your projects are organized and their README files contain a description and a link to where it is live so anyone looking at the project can quickly see your brilliance.
+Phần quan trọng nhất trong sự hiện diện trên web cần được chỉnh sửa là hồ sơ GitHub. Hãy sắp xếp các dự án cho gọn gàng, đồng thời đảm bảo các tệp README có phần mô tả và liên kết đến phiên bản đang chạy, để bất kỳ ai xem dự án cũng nhanh chóng nhận ra năng lực của bạn.
 
-Next, try to be discoverable.  If we're trying to get in touch with you or find your work on the web, can I?  Do you have a personal website?  Are you on X (formerly known as Twitter)? You don't need to go crazy with social media, but sometimes just having enough of a profile to be a "real" person and give people the opportunity to get in touch with you can go a long way.  
+Tiếp theo, hãy cố gắng để người khác có thể tìm thấy bạn. Nếu chúng tôi muốn liên hệ với bạn hoặc tìm công việc của bạn trên web, liệu chúng tôi có làm được không? Bạn có trang web cá nhân không? Bạn có dùng X (trước đây được gọi là Twitter) không? Bạn không cần đi quá xa với mạng xã hội, nhưng đôi khi chỉ cần có một hồ sơ đủ để chứng tỏ bạn là một người "thật" và cho người khác cơ hội liên hệ với bạn cũng đã tạo ra khác biệt lớn.
 
-Use LinkedIn if you're not allergic to it.  Again, this is about getting your personal narrative out there in the way YOU choose and not relying on Google to get it right.  LinkedIn is fast replacing the resume anyway.  
+Hãy dùng LinkedIn nếu bạn không dị ứng với nó. Một lần nữa, mục tiêu là đưa câu chuyện của bạn ra ngoài theo cách BẠN lựa chọn, thay vì phó mặc cho Google kể sai về bạn. Dù sao thì LinkedIn cũng đang nhanh chóng thay thế resume.
 
-Other sites, like Brand Yourself, will describe a bit better how to take on your web presence, but just make sure your narrative is being told the way you want it to.
+Những trang khác, chẳng hạn như Brand Yourself, sẽ hướng dẫn cụ thể hơn về cách xây dựng sự hiện diện trên web, nhưng hãy đảm bảo câu chuyện của bạn được kể theo đúng cách bạn mong muốn.
 
-### Get out in the community and collect information
+### Tham gia cộng đồng và thu thập thông tin
 
-Find and meet other developers.  That doesn't mean "power networking" but it does mean genuine human connection.  Your network of people DOES matter in a BIG way.  For now, it's probably just for answering questions and harvesting advice but your next job will probably be found through the people you know and some who you meet while you're gathering this advice.  People like giving advice and like investing themselves emotionally in other people with growth curves.
+Hãy tìm gặp những lập trình viên khác. Điều đó không có nghĩa là "networking quyền lực", mà là tạo ra những kết nối giữa người với người một cách chân thành. Mạng lưới quan hệ của bạn thực sự có ý nghĩa RẤT LỚN. Hiện tại, có thể mạng lưới đó chỉ giúp bạn trả lời câu hỏi và thu thập lời khuyên, nhưng công việc tiếp theo của bạn rất có thể sẽ được tìm thấy nhờ những người bạn quen và những người bạn gặp trong lúc thu thập lời khuyên. Mọi người thích đưa ra lời khuyên và thích đầu tư cảm xúc vào những người đang trên đà phát triển.
 
-That's best to do in person 1-on-1, where you can ask your dumb questions, but there are plenty of communities as well, e.g. Meetups, Stack Overflow, Quora, local user groups...  Be a part of them and don't be afraid to ask questions.  That's a great way to build relationships.
+Tốt nhất là làm việc đó trực tiếp theo hình thức 1-1, nơi bạn có thể hỏi những câu hỏi ngớ ngẩn, nhưng cũng có rất nhiều cộng đồng khác như Meetups, Stack Overflow, Quora, các nhóm người dùng địa phương... Hãy tham gia và đừng ngại đặt câu hỏi. Đó là cách tuyệt vời để xây dựng mối quan hệ.
 
-You'll probably have a million questions but the relevant ones here are about understanding what exactly different jobs *are* and what they're looking for. The easiest way to find out is ask developers what they do.  It's much faster than trolling through blog posts trying to figure out the process.  Buy lunches and coffees if you must.  Set a goal of talking to 5 real human beings about your job search.
+Có lẽ bạn sẽ có cả triệu câu hỏi, nhưng những câu hỏi liên quan ở đây là: chính xác thì các công việc khác nhau *là gì* và họ đang tìm kiếm điều gì. Cách dễ nhất để tìm hiểu là hỏi các lập trình viên xem họ làm gì. Cách này nhanh hơn nhiều so với việc lục lọi các bài blog để cố đoán quy trình. Nếu cần, hãy mời họ ăn trưa hoặc uống cà phê. Hãy đặt mục tiêu trò chuyện với 5 người thật về quá trình tìm việc của bạn.
 
-Another way to get this information is to check out a whole bunch of job postings.  You'll quickly start seeing similarities between them.  Yeah, it's shit work, but it must be done.  
+Một cách khác để thu thập thông tin này là xem thật nhiều tin tuyển dụng. Bạn sẽ nhanh chóng nhận ra những điểm tương đồng giữa chúng. Đúng là việc này khá chán, nhưng vẫn phải làm.
 
-Another facet of this is related to your web presence -- don't be afraid to produce content like blogging or answering questions on Quora.  They don't need to be explicitly technical, but should showcase your ability to think critically and write well.  Both of these play well with future employers.  
+Một khía cạnh khác liên quan đến sự hiện diện trên web là: đừng ngại tạo nội dung, chẳng hạn như viết blog hoặc trả lời câu hỏi trên Quora. Nội dung không nhất thiết phải hoàn toàn mang tính kỹ thuật, nhưng nên thể hiện khả năng tư duy phản biện và viết tốt của bạn. Cả hai điều này đều tạo ấn tượng tốt với các nhà tuyển dụng trong tương lai.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. If you are changing careers, read about [How to Explain Your Career Transition by Dorie Clark](https://web.archive.org/web/20190822194330/https://hbr.org/2013/04/how-to-explain-your-career-tra).
+1. Nếu bạn đang chuyển nghề, hãy đọc bài [Cách giải thích về việc chuyển đổi nghề nghiệp của bạn — Dorie Clark](https://web.archive.org/web/20190822194330/https://hbr.org/2013/04/how-to-explain-your-career-tra).
 
-1. Learn why GitHub is so important:  
+1. Tìm hiểu vì sao GitHub quan trọng đến vậy:
 
-   - Read [**The Power of a Programming Portfolio**](http://grokcode.com/58/the-power-of-a-programming-portfolio/), to understand how showing your actual code is more powerful than relying on a resume to prove your skills, and how a portfolio can help you stand out.
-   - The article [**The Importance of Portfolio Building for Web Developers**](https://www.csinow.edu/blog/the-importance-of-portfolio-building-for-web-developers/) provides another viewpoint on why building a portfolio is important and goes a little more in depth on how you should build it.
-   - According to [**Your GitHub Portfolio**](http://www.forbes.com/sites/anthonykosner/2012/10/20/software-engineers-are-in-demand-and-github-is-how-you-find-them/) from Forbes, GitHub is a central hiring tool that lets employers see your code.  
+   - Đọc [**Sức mạnh của portfolio lập trình**](http://grokcode.com/58/the-power-of-a-programming-portfolio/) để hiểu vì sao việc cho thấy code thực tế của bạn thuyết phục hơn việc chỉ dựa vào resume để chứng minh kỹ năng, và portfolio có thể giúp bạn nổi bật như thế nào.
+   - Bài viết [**Tầm quan trọng của việc xây dựng portfolio đối với lập trình viên web**](https://www.csinow.edu/blog/the-importance-of-portfolio-building-for-web-developers/) đưa ra một góc nhìn khác về lý do việc xây dựng portfolio quan trọng, đồng thời đi sâu hơn một chút vào cách bạn nên xây dựng nó.
+   - Theo [**Portfolio GitHub của bạn**](http://www.forbes.com/sites/anthonykosner/2012/10/20/software-engineers-are-in-demand-and-github-is-how-you-find-them/) trên Forbes, GitHub là một công cụ tuyển dụng trung tâm, cho phép nhà tuyển dụng xem code của bạn.
 
-1. Read articles on how to brand yourself:
+1. Đọc các bài viết về cách xây dựng thương hiệu cá nhân:
 
-    - [Brand Yourself](http://brandyourself.com) helps you... brand... yourself.  Basic services are free.
-    - [Control Your Online Reputation from Monster](https://web.archive.org/web/20201123201302/https://www.monster.com/career-advice/article/control-your-online-reputation) is another good article.
-    - Read about [How Important Is It for a Programmer to Have an Online Presence? on Stack Exchange](http://programmers.stackexchange.com/questions/143673/how-important-is-it-for-a-programmer-to-have-an-online-presence).
-    - Learn [How to Build Your Digital Presence as a Software Developer](https://medium.com/pramp/how-to-build-your-digital-presence-as-a-software-developer-cb61c4c1aab).
+    - [Brand Yourself](http://brandyourself.com) giúp bạn... xây dựng thương hiệu... cho chính mình. Các dịch vụ cơ bản là miễn phí.
+    - [Kiểm soát danh tiếng trực tuyến của bạn từ Monster](https://web.archive.org/web/20201123201302/https://www.monster.com/career-advice/article/control-your-online-reputation) là một bài viết hữu ích khác.
+    - Đọc bài [Sự hiện diện trực tuyến quan trọng đến mức nào đối với một lập trình viên? trên Stack Exchange](http://programmers.stackexchange.com/questions/143673/how-important-is-it-for-a-programmer-to-have-an-online-presence).
+    - Tìm hiểu [Cách xây dựng sự hiện diện số với tư cách một lập trình viên phần mềm](https://medium.com/pramp/how-to-build-your-digital-presence-as-a-software-developer-cb61c4c1aab).
 
-1. "How to Win Friends and Influence People" is a classic that relates to business and networking but is applicable to all facets of the social world around you. If you're interested, here's a [summary of the book](https://fs.blog/how-to-win-friends-and-influence-people/ "summary of How to Win Friends and Influence People") that covers all the points we think are important.
+1. "Đắc nhân tâm" là một tác phẩm kinh điển liên quan đến kinh doanh và networking, nhưng cũng áp dụng cho mọi khía cạnh của đời sống xã hội xung quanh bạn. Nếu quan tâm, bạn có thể đọc [bản tóm tắt cuốn sách](https://fs.blog/how-to-win-friends-and-influence-people/ "summary of How to Win Friends and Influence People"), trong đó bao quát tất cả những điểm mà chúng tôi cho là quan trọng.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này có các liên kết hữu ích đến nội dung liên quan. Đây không phải nội dung bắt buộc, nên bạn có thể xem như tài liệu bổ trợ.
 
-- It looks like this lesson doesn't have any additional resources yet. Help us expand this section by contributing to our curriculum.
+- Có vẻ bài học này hiện chưa có tài nguyên bổ sung nào. Hãy giúp chúng tôi mở rộng phần này bằng cách đóng góp cho chương trình học.

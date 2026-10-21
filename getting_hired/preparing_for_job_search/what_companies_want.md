@@ -1,51 +1,51 @@
-### Introduction
+### Giới thiệu
 
-Now that you've figured your own situation out, the fact is that you can't get hired by just thinking about why *you* need or deserve the job.  You have to think about things from the perspective of the company.  Why are they interested in hiring you?  What, therefore, will they look for?
+Bây giờ bạn đã hiểu tình hình của bản thân, sự thật là bạn không thể được tuyển chỉ bằng cách nghĩ về lý do *bạn* cần hoặc xứng đáng có công việc. Bạn phải nhìn mọi việc từ góc độ của công ty. Tại sao họ quan tâm đến việc tuyển bạn? Vậy họ sẽ tìm kiếm điều gì?
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Find out what hiring managers look for.
-- Learn about the advantages of internships.
+- Tìm hiểu nhà quản lý tuyển dụng tìm kiếm điều gì.
+- Tìm hiểu những lợi ích của kỳ thực tập.
 
-### Life behind the curtain
+### Cuộc sống phía sau bức màn
 
-Hiring managers are busy people.  That's why they need someone new... to remove some of their workload and get their team working better or faster. They also have to deal with potentially hundreds of unqualified applicants every week, which takes up too much of their valuable time.  They just want to get back to building stuff and not have to hire again anytime soon.  So they are looking for someone who can **add value as soon as possible** and who will be able to **grow with the organization.**
+Nhà quản lý tuyển dụng là những người bận rộn. Đó là lý do họ cần một người mới... để giảm bớt khối lượng công việc và giúp đội ngũ làm việc tốt hơn hoặc nhanh hơn. Họ cũng phải xử lý có thể hàng trăm ứng viên không đủ năng lực mỗi tuần, việc này chiếm quá nhiều thời gian quý báu. Họ chỉ muốn quay lại xây dựng sản phẩm và không phải tuyển người lần nữa trong thời gian tới. Vì vậy, họ tìm kiếm người có thể **tạo ra giá trị sớm nhất có thể** và có khả năng **phát triển cùng tổ chức.**
 
-The second characteristic, growth, is something you shouldn't have much trouble selling if you've come this far and learned web development on your own. The key is to present yourself as a growth curve, not just a static line (i.e. you'll continue learning and improving very rapidly and not stop).  You have real career goals and you've learned incredibly fast so far to get to where you are (right?).
+Đặc điểm thứ hai, khả năng phát triển, sẽ không quá khó để bạn thể hiện nếu đã đi được đến đây và tự học phát triển web. Điều quan trọng là trình bày bản thân như một đường cong tăng trưởng, không phải một đường thẳng đứng yên (tức là bạn sẽ tiếp tục học hỏi và tiến bộ rất nhanh, không dừng lại). Bạn có mục tiêu nghề nghiệp thực tế và đã học nhanh đáng kinh ngạc để đi đến vị trí hiện tại (đúng không?).
 
-The first part, adding value immediately, is more difficult -- that's where they want to see that you've had relevant experience before and can meet their technical bar.  There's a bit of a catch-22 with getting hired -- the easiest way to show you are employable is to have been employed before. It's a check mark next to you. So to cater to this; do whatever you can to show that other people have believed in you enough to use your work and skills.
+Phần đầu tiên, tạo ra giá trị ngay lập tức, khó hơn — đó là lúc họ muốn thấy bạn từng có kinh nghiệm liên quan và có thể đáp ứng ngưỡng kỹ thuật của họ. Tìm việc có một nghịch lý kiểu con gà và quả trứng: cách dễ nhất để chứng minh bạn có thể làm việc là đã từng được tuyển. Đó là một dấu tích có lợi cho bạn. Vì vậy, để giải quyết vấn đề này, hãy làm mọi điều có thể để cho thấy những người khác đã đủ tin tưởng bạn để sử dụng sản phẩm và kỹ năng của bạn.
 
-Aside from those two characteristics, there is another major factor -- fit.  The hiring manager wants someone they and their team can work well with.  All the other stuff represents minimum hurdles for being considered. But you often make or break your chances by being someone the team members want to know better and work with all day long. Almost all hiring processes ask the full team to evaluate a late-stage candidate.
+Ngoài hai đặc điểm đó, còn có một yếu tố lớn khác — sự phù hợp. Nhà quản lý tuyển dụng muốn một người mà họ và đội ngũ có thể làm việc cùng một cách hiệu quả. Tất cả những yếu tố khác là các rào cản tối thiểu để được xem xét. Nhưng cơ hội của bạn thường được quyết định bởi việc các thành viên trong đội có muốn hiểu bạn hơn và làm việc cùng bạn cả ngày hay không. Hầu hết quy trình tuyển dụng đều yêu cầu toàn đội đánh giá ứng viên ở giai đoạn cuối.
 
-So to summarize, hiring managers are usually looking for 3 main things:
+Tóm lại, nhà quản lý tuyển dụng thường tìm kiếm 3 điều chính:
 
-1. Capability
-1. Motivation
-1. Fit
+1. Năng lực
+1. Động lực
+1. Sự phù hợp
 
-### Internships
+### Thực tập
 
-A good way to start getting experience and show others that you're employable is to get an internship. Just make sure it's a paid internship because no one values things they get for free. You want the people you work with to value your contributions and feel like they have a stake in helping you succeed. The good part is that internships tend to focus more on your growth potential than what you've done before, so you can start to avoid that chicken-and-egg problem described above.
+Một cách tốt để bắt đầu tích lũy kinh nghiệm và cho người khác thấy bạn có thể làm việc là tìm một kỳ thực tập. Chỉ cần bảo đảm đó là thực tập có lương, vì không ai coi trọng những thứ họ nhận được miễn phí. Bạn muốn những người làm việc cùng mình coi trọng đóng góp của bạn và cảm thấy họ có phần trách nhiệm trong việc giúp bạn thành công. Điểm tốt là các kỳ thực tập thường tập trung vào tiềm năng phát triển của bạn hơn là những gì bạn đã làm trước đây, nhờ đó bạn có thể bắt đầu tránh được vấn đề con gà và quả trứng nói trên.
 
-The hiring process for internships is usually similar to but not quite as rigorous as full-time positions.  Internships are basically just long interviews by that company to see if they want to bring you on full-time.
+Quy trình tuyển thực tập thường tương tự nhưng không nghiêm ngặt bằng vị trí toàn thời gian. Về cơ bản, thực tập là những cuộc phỏng vấn kéo dài để công ty xem họ có muốn tuyển bạn chính thức hay không.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. You can learn a bit about the perspective of hiring managers by reading blog posts about how to hire developers.  No need to go crazy, but try to get a picture of why they're hiring you:
+1. Bạn có thể hiểu thêm một chút về góc nhìn của nhà quản lý tuyển dụng bằng cách đọc các bài viết về cách tuyển nhà phát triển. Không cần đi quá sâu, nhưng hãy cố hình dung lý do họ tuyển bạn:
 
-    - Read about [The Best Way to Hire Software Developers](http://insights.dice.com/2013/05/31/hiring-software-developers/).
-    - Read this blog post about [How to Hire Talent](http://lifeofaprogrammanager.blogspot.com/2006/06/how-to-hire-talent.html).
-    - [Joel Spolsky has a lengthy diatribe on hiring developers](http://www.joelonsoftware.com/articles/FindingGreatDevelopers.html), which should give you an idea of the need and pain of hiring great engineers.
-    - [Joel Spolsky's Guerrilla Guide to Interviewing (version 3.0)](http://www.joelonsoftware.com/articles/GuerrillaInterviewing3.html).  Look for "people who are 1. Smart, and 2. Get things done".
-    - Learn what recruiters look for in [Beyond a Resume: What Tech Recruiters Want](http://blog.udacity.com/2013/09/beyond-resume-what-tech-recruiters-want.html).
+    - Đọc về [Cách tốt nhất để tuyển nhà phát triển phần mềm](http://insights.dice.com/2013/05/31/hiring-software-developers/).
+    - Đọc bài viết về [Cách tuyển nhân tài](http://lifeofaprogrammanager.blogspot.com/2006/06/how-to-hire-talent.html).
+    - [Joel Spolsky có một bài viết dài về việc tuyển nhà phát triển](http://www.joelonsoftware.com/articles/FindingGreatDevelopers.html), giúp bạn hình dung nhu cầu và nỗi đau khi tuyển được những kỹ sư giỏi.
+    - [Hướng dẫn du kích về phỏng vấn của Joel Spolsky (phiên bản 3.0)](http://www.joelonsoftware.com/articles/GuerrillaInterviewing3.html). Hãy tìm câu “những người 1. Thông minh và 2. Làm được việc”.
+    - Tìm hiểu nhà tuyển dụng tìm kiếm điều gì trong [Không chỉ là sơ yếu lý lịch: Nhà tuyển dụng công nghệ muốn gì](http://blog.udacity.com/2013/09/beyond-resume-what-tech-recruiters-want.html).
 
-1. Find out more about internships from these articles:
+1. Tìm hiểu thêm về thực tập qua các bài viết sau:
 
-    - Read through this thread on ["How do I get a Software Internship"](http://ask.metafilter.com/226621/How-do-I-get-a-software-internship) from MetaFilter.
-    - Use [InternMatch](https://www.wayup.com/s/internships/it/) to explore available internships.
+    - Đọc chủ đề [“Làm thế nào để có một kỳ thực tập phần mềm”](http://ask.metafilter.com/226621/How-do-I-get-a-software-internship) trên MetaFilter.
+    - Dùng [InternMatch](https://www.wayup.com/s/internships/it/) để tìm hiểu các kỳ thực tập đang tuyển.
 
 </div>

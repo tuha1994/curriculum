@@ -91,22 +91,22 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 
 | Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
 |---|---|---|---|---|
-| `advanced_html_css/accessibility/accessibility_auditing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/accessible_colors.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/introduction_to_web_accessibility.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/keyboard_navigation.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/meaningful_text.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/semantic_html.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/the_web_content_accessibility_guidelines_wcag.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/accessibility/wai_aria.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/animation/keyframes.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/animation/transforms.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/animation/transitions.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/responsive_design/introduction_to_responsive_design.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/responsive_design/media_queries.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/responsive_design/natural_responsiveness.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/responsive_design/project_homepage.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `advanced_html_css/responsive_design/responsive_images.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/accessibility_auditing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/accessible_colors.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/introduction_to_web_accessibility.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/keyboard_navigation.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/meaningful_text.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/semantic_html.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/the_web_content_accessibility_guidelines_wcag.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/accessibility/wai_aria.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/animation/keyframes.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/animation/transforms.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/animation/transitions.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/responsive_design/introduction_to_responsive_design.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/responsive_design/media_queries.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/responsive_design/natural_responsiveness.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/responsive_design/project_homepage.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `advanced_html_css/responsive_design/responsive_images.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
 
 ## Quy tắc cập nhật
 

@@ -1,134 +1,134 @@
-### Introduction
+### Giới thiệu
 
-The first step in building any website is having the right tools. For us, that means setting up a development environment for writing good code.
+Bước đầu tiên để xây dựng bất kỳ trang web nào là có đúng công cụ. Với chúng ta, điều đó có nghĩa là thiết lập một môi trường phát triển để viết mã tốt.
 
-Many online development courses use in-browser code editors or "sandboxes," which give you the tools and programs needed to accomplish the task at hand and nothing else. You'll use some of these sandboxes throughout the early stages of The Odin Project since they're great for getting started quickly. However, the best way to set yourself up for long-term success is to operate in a real development environment.
+Nhiều khóa học phát triển trực tuyến sử dụng các trình soạn thảo mã chạy trên trình duyệt hoặc “sandbox”, cung cấp cho bạn những công cụ và chương trình cần thiết để hoàn thành công việc trước mắt, chứ không cung cấp thêm gì khác. Bạn sẽ sử dụng một số sandbox trong những giai đoạn đầu của The Odin Project vì chúng rất phù hợp để bắt đầu nhanh chóng. Tuy nhiên, cách tốt nhất để chuẩn bị cho thành công lâu dài là làm việc trong một môi trường phát triển thực thụ.
 
-We won't lie to you: installing packages, editors, and even entire operating systems (OS) can be very frustrating. However, having the experience of setting up a development environment to run the code you'll write is an invaluable, real-world skill you'll carry with you for the rest of your career.
+Chúng tôi không giấu bạn điều này: cài đặt các gói, trình soạn thảo và thậm chí cả hệ điều hành (OS) có thể vô cùng khó chịu. Tuy vậy, trải nghiệm thiết lập một môi trường phát triển để chạy mã bạn sẽ viết là một kỹ năng thực tế vô giá, sẽ theo bạn trong suốt sự nghiệp.
 
-**If you are already using macOS, Ubuntu, or [an official flavor of Ubuntu](https://ubuntu.com/desktop/flavours) as your operating system and have Google Chrome as an installed browser, you can skip this lesson. Otherwise, follow the installation instructions below to set up your development environment.**
+**Nếu bạn đang sử dụng macOS, Ubuntu hoặc [một phiên bản chính thức của Ubuntu](https://ubuntu.com/desktop/flavours) làm hệ điều hành và đã cài Google Chrome làm trình duyệt, bạn có thể bỏ qua bài học này. Nếu không, hãy làm theo hướng dẫn cài đặt bên dưới để thiết lập môi trường phát triển của mình.**
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- How to set up a proper environment to follow The Odin Project curriculum.
-- Installing Google Chrome in your environment.
+- Cách thiết lập một môi trường phù hợp để học theo chương trình của The Odin Project.
+- Cài đặt Google Chrome trong môi trường của bạn.
 
-### Supported operating systems
+### Các hệ điều hành được hỗ trợ
 
 #### macOS
 
-If you're using a Mac, you're in great shape. The Odin Project instructions assume a Unix-based system. By installing just a few programs, you will be up and running with your education in no time!
+Nếu bạn đang sử dụng máy Mac thì bạn đã có một khởi đầu rất thuận lợi. Hướng dẫn của The Odin Project giả định rằng bạn sử dụng một hệ thống dựa trên Unix. Chỉ cần cài đặt một vài chương trình, bạn sẽ có thể bắt đầu việc học ngay!
 
-#### Linux (Ubuntu and official flavors)
+#### Linux (Ubuntu và các phiên bản chính thức)
 
-[Linux](https://en.wikipedia.org/wiki/Linux) is a free and open-source operating system that works well with all programming languages. Most development tools are written to work natively with Linux. Your tools will likely be updated more often, have more information available for troubleshooting, and just plain run better on Linux.
+[Linux](https://en.wikipedia.org/wiki/Linux) là một hệ điều hành tự do và mã nguồn mở, hoạt động tốt với mọi ngôn ngữ lập trình. Phần lớn công cụ phát triển được viết để hoạt động nguyên bản trên Linux. Các công cụ của bạn có khả năng sẽ được cập nhật thường xuyên hơn, có nhiều thông tin xử lý sự cố hơn và đơn giản là chạy tốt hơn trên Linux.
 
-In order to improve the availability of help in our community, we limit our supported Linux distros to Ubuntu and official flavours of Ubuntu only. This means we do not provide support for any other distros, including ones "based on Ubuntu or Debian" (like Mint, Pop!_OS etc.).
+Để tăng khả năng nhận được trợ giúp trong cộng đồng, chúng tôi chỉ giới hạn phạm vi hỗ trợ các bản phân phối Linux ở Ubuntu và các phiên bản chính thức của Ubuntu. Điều này có nghĩa là chúng tôi không hỗ trợ bất kỳ bản phân phối nào khác, kể cả những bản “dựa trên Ubuntu hoặc Debian” (chẳng hạn như Mint, Pop!_OS, v.v.).
 
-We support the following methods of running Linux (instructions for these are in the assignment section below):
+Chúng tôi hỗ trợ các phương thức chạy Linux sau đây (hướng dẫn cho các phương thức này nằm trong phần bài tập bên dưới):
 
-- A VirtualBox virtual machine
-- Dual-booting
-- Windows Subsystem for Linux version 2 (WSL2)
+- Máy ảo VirtualBox
+- Khởi động kép
+- Windows Subsystem for Linux phiên bản 2 (WSL2)
 
 #### Chromebook
 
-For Chromebook users, you may be able to run a Linux terminal on your device. More details will be provided in the ChromeOS Linux guide in the assignment section below.
+Nếu sử dụng Chromebook, bạn có thể chạy một thiết bị đầu cuối Linux trên thiết bị của mình. Hướng dẫn về Linux trên ChromeOS trong phần bài tập bên dưới sẽ cung cấp thêm chi tiết.
 
-### Concerned about installing a new OS?
+### Bạn lo ngại về việc cài đặt một hệ điều hành mới?
 
-"Woah, woah, woah! You don't support Windows? But I like my OS just fine the way it is!"
+“Khoan, khoan, khoan! Các bạn không hỗ trợ Windows sao? Nhưng tôi hoàn toàn hài lòng với hệ điều hành hiện tại của mình mà!”
 
-If you don't have an Apple computer, you are likely using Windows. **Windows, by itself, is not natively supported by The Odin Project, nor in our Discord server.** Because many of the tools you'll be using were written with a Unix-based environment in mind, you'll need to have one even if you plan to use Windows as your development OS in the future.
+Nếu không có máy tính Apple, nhiều khả năng bạn đang sử dụng Windows. **Bản thân Windows không được The Odin Project hỗ trợ nguyên bản, cũng không được hỗ trợ trên máy chủ Discord của chúng tôi.** Vì nhiều công cụ bạn sẽ sử dụng được viết với giả định về một môi trường dựa trên Unix, bạn sẽ cần một môi trường như vậy ngay cả khi dự định sau này dùng Windows làm hệ điều hành phát triển.
 
-Don't worry! The options above don't mean you need to get rid of Windows, nor are we asking you to stop using Windows for anything outside of The Odin Project. Linux will gladly share the hard drive with Windows. We know you've probably learned a lot of tips and tricks for your favorite OS and don't want to lose everything you have on your computer. However, most OSes are developed with non-technical folks in mind, so they hide or make it difficult to use many of the languages and frameworks we'll need to install. Having to work around these difficulties causes many new developers to give up before they've even started their journey to full-stack nirvana.
+Đừng lo! Các lựa chọn trên không có nghĩa là bạn phải loại bỏ Windows, cũng không có nghĩa chúng tôi yêu cầu bạn ngừng sử dụng Windows cho những việc nằm ngoài The Odin Project. Linux sẽ vui vẻ cùng tồn tại trên ổ cứng với Windows. Chúng tôi biết có lẽ bạn đã học được nhiều mẹo và thủ thuật cho hệ điều hành yêu thích của mình và không muốn mất mọi thứ trên máy tính. Tuy nhiên, phần lớn hệ điều hành được phát triển với người dùng không chuyên kỹ thuật làm đối tượng, nên chúng ẩn đi hoặc khiến việc sử dụng nhiều ngôn ngữ và framework chúng ta cần cài đặt trở nên khó khăn. Việc phải xoay xở với những khó khăn đó khiến nhiều nhà phát triển mới bỏ cuộc trước cả khi bắt đầu hành trình đến với thế giới full-stack.
 
-Modifying or dual-booting a computer to work with the tools you'll need will make it much easier to start programming and help create a distraction-free environment. Windows users can use any of our supported Linux options for The Odin Project.
+Việc chỉnh sửa máy tính hoặc thiết lập khởi động kép để làm việc với các công cụ cần thiết sẽ giúp bạn bắt đầu lập trình dễ dàng hơn nhiều và tạo ra một môi trường ít gây xao nhãng. Người dùng Windows có thể sử dụng bất kỳ lựa chọn Linux nào được The Odin Project hỗ trợ.
 
-Still not convinced? Here are a few great reasons to install Linux:
+Vẫn chưa bị thuyết phục? Dưới đây là một số lý do tuyệt vời để cài Linux:
 
-- **Tested** - We've tested our directions with macOS, Ubuntu (and official Ubuntu flavors) and WSL2. We did the research so that you can get tools installed with as few issues as possible, getting you to coding sooner. Time spent wrestling with your operating system is time taken from learning how to code.
-- **Community Support** - Using the tools we recommend makes it easier for us to help when you run into trouble.
-- **Development Tools Are Built for Linux** - Ruby (on Rails) and Node.js, popular backend technologies covered by The Odin Project and widely used in the larger web development community, are open source projects that explicitly *expect* to run on an open-source (UNIX-based) platform like Linux.
-- **Work Like The Pros** - Many developers use a Unix-based operating system.
-- **Performance** - Are you worried about installing Linux because your machine is slow or older and has limited space? When performance is a priority, Linux is a great choice. It uses fewer system resources than Windows and occupies less hard drive space.
+- **Đã được kiểm thử** - Chúng tôi đã kiểm thử hướng dẫn của mình với macOS, Ubuntu (và các phiên bản Ubuntu chính thức) và WSL2. Chúng tôi đã nghiên cứu để bạn có thể cài đặt công cụ với ít vấn đề nhất có thể, từ đó sớm bắt tay vào viết mã hơn. Thời gian vật lộn với hệ điều hành là thời gian bạn không thể dùng để học lập trình.
+- **Hỗ trợ từ cộng đồng** - Sử dụng các công cụ chúng tôi đề xuất sẽ giúp chúng tôi hỗ trợ bạn dễ dàng hơn khi bạn gặp sự cố.
+- **Công cụ phát triển được xây dựng cho Linux** - Ruby (on Rails) và Node.js, những công nghệ backend phổ biến được The Odin Project giảng dạy và được sử dụng rộng rãi trong cộng đồng phát triển web nói chung, là các dự án mã nguồn mở *mong đợi* được chạy trên một nền tảng mã nguồn mở (dựa trên UNIX) như Linux.
+- **Làm việc như các chuyên gia** - Nhiều nhà phát triển sử dụng hệ điều hành dựa trên Unix.
+- **Hiệu năng** - Bạn lo lắng về việc cài Linux vì máy tính chậm hoặc cũ và có dung lượng hạn chế? Khi hiệu năng là ưu tiên, Linux là một lựa chọn tuyệt vời. Linux sử dụng ít tài nguyên hệ thống hơn Windows và chiếm ít dung lượng ổ cứng hơn.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Community support
+#### Hỗ trợ từ cộng đồng
 
-**We can only support what is provided within the scope of our curriculum. We do not support native Windows as a development environment.** Using Windows has been discussed many times and it is not feasible to do so at this time. Please do not ask us to support Windows, and **do not bring it up in the Discord**. We are constantly evaluating our curriculum to keep content as fresh and accessible as possible, and Windows has not proven to be a path of low resistance. For more information on The Odin Project and Windows, we have a [list of reasons why Windows is not a supported OS in The Odin Project](https://github.com/TheOdinProject/blog/wiki/Why-We-Do-Not-Support-Windows).
+**Chúng tôi chỉ có thể hỗ trợ những gì được cung cấp trong phạm vi chương trình học. Chúng tôi không hỗ trợ Windows nguyên bản làm môi trường phát triển.** Việc sử dụng Windows đã được thảo luận nhiều lần và hiện tại điều đó không khả thi. Vui lòng không yêu cầu chúng tôi hỗ trợ Windows và **đừng đề cập đến vấn đề này trên Discord**. Chúng tôi liên tục đánh giá chương trình học để nội dung luôn mới mẻ và dễ tiếp cận nhất có thể, nhưng Windows chưa chứng tỏ là một con đường ít trở ngại. Để biết thêm thông tin về The Odin Project và Windows, hãy xem [danh sách lý do Windows không phải là hệ điều hành được The Odin Project hỗ trợ](https://github.com/TheOdinProject/blog/wiki/Why-We-Do-Not-Support-Windows).
 
-Many learners come to our Discord channel to ask if the directions on this page need to be followed. The team, which also runs our Discord server, wrote everything you just read about the installation plan. Those supporting learners on our Discord server agree with the guidance on this page and will make the same recommendations you have read here.
+Nhiều học viên đến kênh Discord của chúng tôi để hỏi liệu có cần làm theo hướng dẫn trên trang này hay không. Đội ngũ vận hành cả máy chủ Discord đã viết toàn bộ nội dung bạn vừa đọc về kế hoạch cài đặt. Những người hỗ trợ học viên trên máy chủ Discord đồng ý với hướng dẫn trên trang này và sẽ đưa ra các khuyến nghị giống như bạn đã đọc.
 
 </div>
 
-With that out of the way, we need to set up an appropriate development environment!
+Sau khi giải quyết xong vấn đề đó, chúng ta cần thiết lập một môi trường phát triển phù hợp!
 
-### Choosing your setup
+### Lựa chọn cấu hình
 
-If you're not already using macOS, Ubuntu, or an official Ubuntu flavor, you'll need to set up a development environment. Here's what each option offers:
+Nếu bạn chưa sử dụng macOS, Ubuntu hoặc một phiên bản chính thức của Ubuntu, bạn sẽ cần thiết lập một môi trường phát triển. Dưới đây là những gì mỗi lựa chọn mang lại:
 
-#### VirtualBox virtual machine (recommended)
+#### Máy ảo VirtualBox (khuyến nghị)
 
-A [virtual machine](https://youtu.be/yIVXjl4SwVo) (VM) is an emulation of a computer that runs within your existing OS. It allows you to use another operating system inside of a program on your current operating system (e.g. running Linux inside of Windows). Virtual machines are as straightforward to install as any other program and are risk free. If you don't like Linux, you can easily remove the virtual machine. Virtual machines are a great way for new developers to get started quickly.
+Một [máy ảo](https://youtu.be/yIVXjl4SwVo) (VM) là sự mô phỏng một máy tính chạy bên trong hệ điều hành hiện tại của bạn. Nó cho phép bạn sử dụng một hệ điều hành khác bên trong một chương trình trên hệ điều hành hiện tại (ví dụ: chạy Linux bên trong Windows). Máy ảo cũng dễ cài đặt như bất kỳ chương trình nào khác và không gây rủi ro. Nếu không thích Linux, bạn có thể dễ dàng xóa máy ảo. Máy ảo là một cách tuyệt vời để các nhà phát triển mới bắt đầu nhanh chóng.
 
-Because of this, we recommend this option for beginners, especially if you're not sure what option to go for after reading all this. We have very clear step-by-step instructions to help you get this set up.
+Vì lý do đó, chúng tôi khuyến nghị lựa chọn này cho người mới bắt đầu, đặc biệt nếu sau khi đọc toàn bộ nội dung này bạn vẫn chưa chắc nên chọn phương án nào. Chúng tôi có hướng dẫn từng bước rất rõ ràng để giúp bạn thiết lập.
 
-#### Dual-boot
+#### Khởi động kép
 
-Dual-booting means installing two operating systems on your computer, giving you the option to boot either Linux or Windows when your computer starts up. The advantage of dual-booting over a VM is that the OS can use all of your computer's resources, resulting in much faster operation. There can be some risk to installing a dual-boot system because you're changing your hard drive partitions (unless you have a separate hard drive exclusively for Linux), but you'll be absolutely fine as long as you take your time and follow the instructions carefully. Don't try to mix and match instructions from other sources.
+Khởi động kép nghĩa là cài đặt hai hệ điều hành trên máy tính, cho phép bạn chọn khởi động Linux hoặc Windows khi máy tính bật lên. Ưu điểm của khởi động kép so với máy ảo là hệ điều hành có thể sử dụng toàn bộ tài nguyên máy tính, nhờ đó hoạt động nhanh hơn nhiều. Việc cài đặt hệ thống khởi động kép có thể tiềm ẩn một số rủi ro vì bạn phải thay đổi các phân vùng ổ cứng (trừ khi có một ổ cứng riêng chỉ dành cho Linux), nhưng bạn sẽ hoàn toàn ổn nếu dành thời gian và cẩn thận làm theo hướng dẫn. Đừng cố trộn lẫn hướng dẫn từ các nguồn khác nhau.
 
 #### ChromeOS/ChromeOS Flex
 
-This is for users who have a Chromebook or want to install ChromeOS Flex on older hardware. Many Chromebooks have built-in Linux support that works well for development.
+Lựa chọn này dành cho người dùng có Chromebook hoặc muốn cài ChromeOS Flex trên phần cứng cũ. Nhiều Chromebook có sẵn hỗ trợ Linux và hoạt động tốt cho việc phát triển.
 
-#### WSL2 (advanced)
+#### WSL2 (nâng cao)
 
-WSL2 is a special kind of VM that lets you run Linux directly within Windows. While powerful, it can cause confusion for new learners because you're working across two operating systems simultaneously without much visual separation, meaning it's easier to interact with the wrong OS than something more clearly separated like a VM with VirtualBox or dual-booting. This is why we mark it as advanced and do not recommend it for beginners who don't know much about OSes. A more clearly separated Linux experience (like a VirtualBox VM or dual-booting) is much more intuitive and less likely to have you interacting with the wrong things without realising.
+WSL2 là một dạng VM đặc biệt cho phép bạn chạy Linux trực tiếp bên trong Windows. Dù mạnh mẽ, nó có thể khiến người mới học bối rối vì bạn làm việc đồng thời trên hai hệ điều hành mà không có ranh giới trực quan rõ ràng, nên dễ tương tác nhầm với hệ điều hành này thay vì hệ điều hành kia hơn so với một lựa chọn được tách biệt rõ như VM với VirtualBox hoặc khởi động kép. Vì vậy, chúng tôi đánh dấu đây là lựa chọn nâng cao và không khuyến nghị cho người mới chưa hiểu nhiều về hệ điều hành. Một trải nghiệm Linux được tách biệt rõ ràng hơn (chẳng hạn như VM VirtualBox hoặc khởi động kép) trực quan hơn nhiều và ít có khả năng khiến bạn tương tác nhầm với những thứ không mong muốn.
 
-Note that WSL2 is not the same as WSL1. We only support WSL2 for The Odin Project.
+Lưu ý rằng WSL2 không giống WSL1. The Odin Project chỉ hỗ trợ WSL2.
 
-### Browser support
+### Hỗ trợ trình duyệt
 
-We only support the use of Google Chrome for The Odin Project. Our lessons use Google Chrome and it's overwhelmingly used by developers and consumers; the recommendations we make are very intentional. Look at this [usage share of web browsers](https://en.wikipedia.org/wiki/Usage_share_of_web_browsers#Summary_tables) and see what other folks are using the most.
+The Odin Project chỉ hỗ trợ sử dụng Google Chrome. Các bài học của chúng tôi sử dụng Google Chrome và trình duyệt này được các nhà phát triển cũng như người dùng sử dụng rộng rãi; những khuyến nghị chúng tôi đưa ra đều có chủ đích rõ ràng. Hãy xem [thị phần sử dụng của các trình duyệt web](https://en.wikipedia.org/wiki/Usage_share_of_web_browsers#Summary_tables) này để biết những người khác đang sử dụng trình duyệt nào nhiều nhất.
 
-Google Chrome includes powerful developer tools that you'll use throughout this curriculum to inspect, debug, and test your web applications. While other browsers have similar tools, our instructions and screenshots will assume you're using Chrome. Like with our OS support, we cannot provide support for problems or differences with using other browsers.
+Google Chrome có các công cụ dành cho nhà phát triển mạnh mẽ mà bạn sẽ sử dụng trong suốt chương trình học để kiểm tra, gỡ lỗi và thử nghiệm các ứng dụng web. Dù các trình duyệt khác cũng có những công cụ tương tự, hướng dẫn và ảnh chụp màn hình của chúng tôi sẽ giả định bạn đang sử dụng Chrome. Cũng như với việc hỗ trợ hệ điều hành, chúng tôi không thể hỗ trợ các vấn đề hoặc khác biệt phát sinh khi sử dụng trình duyệt khác.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. If you're not already running a supported environment, follow one of the <span id="os-installation">installation guides</span> below:
-   - [Virtual machine (recommended)](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/virtual_machine.md "Linux virtual machine installation instructions (recommended option)") - The easiest and most reliable way to get started. A VM runs inside your current OS like Windows.
-   - [Ubuntu/Windows dual-boot](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/dual_boot.md "Ubuntu dual-boot instructions") - Install Ubuntu as a separate OS alongside Windows on your computer. Great for lower-end systems since no virtualization is required.
-   - [ChromeOS/ChromeOS Flex](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/chromeos.md "Linux installation instructions for ChromeOS") - Instructions for Chromebook users.
-   - [WSL2 (advanced)](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/wsl2.md "WSL2 installation instructions (advanced option)") - Run Linux from within Windows. Can cause confusion for new learners due to less clear separation between operating systems.
+1. Nếu bạn chưa chạy một môi trường được hỗ trợ, hãy làm theo một trong các <span id="os-installation">hướng dẫn cài đặt</span> dưới đây:
+   - [Máy ảo (khuyến nghị)](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/virtual_machine.md "Linux virtual machine installation instructions (recommended option)") - Cách dễ dàng và đáng tin cậy nhất để bắt đầu. VM chạy bên trong hệ điều hành hiện tại của bạn, chẳng hạn như Windows.
+   - [Khởi động kép Ubuntu/Windows](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/dual_boot.md "Ubuntu dual-boot instructions") - Cài Ubuntu như một hệ điều hành riêng song song với Windows trên máy tính. Rất phù hợp với các hệ thống cấu hình thấp vì không cần ảo hóa.
+   - [ChromeOS/ChromeOS Flex](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/chromeos.md "Linux installation instructions for ChromeOS") - Hướng dẫn dành cho người dùng Chromebook.
+   - [WSL2 (nâng cao)](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/linux/wsl2.md "WSL2 installation instructions (advanced option)") - Chạy Linux bên trong Windows. Có thể khiến người mới học bối rối vì ranh giới giữa các hệ điều hành kém rõ ràng hơn.
 
    <div class="lesson-note lesson-note--warning" markdown="1">
 
-   #### Unsupported hardware and software
+   #### Phần cứng và phần mềm không được hỗ trợ
 
-   This curriculum only supports using a laptop, desktop or supported Chromebook. We cannot help you set up a developer environment on a RaspberryPi or any other device. You only need to follow one of these sets of instructions if you are **not** already using **macOS**, **Ubuntu**, or [an official flavor of Ubuntu](https://ubuntu.com/desktop/flavours) as your operating system.
+   Chương trình học này chỉ hỗ trợ sử dụng máy tính xách tay, máy tính để bàn hoặc Chromebook được hỗ trợ. Chúng tôi không thể giúp bạn thiết lập môi trường phát triển trên RaspberryPi hoặc bất kỳ thiết bị nào khác. Bạn chỉ cần làm theo một trong các bộ hướng dẫn này nếu **chưa** sử dụng **macOS**, **Ubuntu** hoặc [một phiên bản chính thức của Ubuntu](https://ubuntu.com/desktop/flavours) làm hệ điều hành.
 
-   If you are already using supported hardware and software, you can skip straight to step 2 below.
+   Nếu bạn đã sử dụng phần cứng và phần mềm được hỗ trợ, bạn có thể chuyển thẳng đến bước 2 bên dưới.
 
    </div>
 
-1. Because our lessons use Google Chrome, and Chrome/Chromium are overwhelmingly used by developers and consumers, the recommendations we make are very intentional. Look at this [usage share of web browsers](https://en.wikipedia.org/wiki/Usage_share_of_web_browsers#Summary_tables) and see what other folks are using the most.
+1. Vì các bài học của chúng tôi sử dụng Google Chrome, và Chrome/Chromium được các nhà phát triển cũng như người dùng sử dụng rộng rãi, những khuyến nghị chúng tôi đưa ra đều có chủ đích rõ ràng. Hãy xem [thị phần sử dụng của các trình duyệt web](https://en.wikipedia.org/wiki/Usage_share_of_web_browsers#Summary_tables) này để biết những người khác đang sử dụng trình duyệt nào nhiều nhất.
 
-   <span id="google-chrome-installation">Install Google Chrome</span> for your operating system:
-   - [Linux](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/chrome/linux.md "Google Chrome installation for Linux") - For VM or dual-booting users, **not** WSL2 users.
+   <span id="google-chrome-installation">Cài đặt Google Chrome</span> cho hệ điều hành của bạn:
+   - [Linux](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/chrome/linux.md "Google Chrome installation for Linux") - Dành cho người dùng VM hoặc khởi động kép, **không dành cho người dùng WSL2**.
    - [macOS](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/chrome/macos.md "Google Chrome installation for macOS")
    - [WSL2](https://github.com/TheOdinProject/curriculum/blob/main/foundations/installations/installation_guides/chrome/wsl2.md "Google Chrome installation for WSL2")
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Chrome shortcuts
+   #### Phím tắt Chrome
 
-   Google Chrome is one of the most important tools that you will be using throughout the curriculum. This reference has many [common shortcuts that you may find useful when using Chrome](https://support.google.com/chrome/answer/157179?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Ctab-window-shortcuts).
+   Google Chrome là một trong những công cụ quan trọng nhất bạn sẽ sử dụng trong suốt chương trình học. Tài liệu tham khảo này có nhiều [phím tắt thông dụng có thể hữu ích khi bạn sử dụng Chrome](https://support.google.com/chrome/answer/157179?hl=en&co=GENIE.Platform%3DDesktop#zippy=%2Ctab-window-shortcuts).
 
    </div>
 

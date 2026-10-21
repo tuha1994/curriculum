@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-In the previous sections you learned how to structure webpages with HTML and style them with CSS. The next step is to make the webpage *interactive*, which is exactly what JavaScript is for.
+Trong các phần trước, bạn đã học cách cấu trúc trang web bằng HTML và tạo kiểu cho chúng bằng CSS. Bước tiếp theo là làm cho trang web *có tính tương tác*, và đó chính là việc JavaScript đảm nhiệm.
 
-In this section, we will focus on the fundamentals of JavaScript and how you can use it to manipulate all the various interactions between the web page and user.
+Trong phần này, chúng ta sẽ tập trung vào những nền tảng của JavaScript và cách bạn có thể dùng nó để xử lý mọi tương tác khác nhau giữa trang web và người dùng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Running JavaScript code using an HTML file.
-- Declaring variables with `let` and `const`.
-- Performing number operations.
-- Performing string operations.
-- Using logical and mathematical operators.
+- Chạy mã JavaScript bằng tệp HTML.
+- Khai báo biến bằng `let` và `const`.
+- Thực hiện các phép toán với số.
+- Thực hiện các phép toán với chuỗi.
+- Sử dụng các toán tử logic và toán học.
 
-### How to run JavaScript code
+### Cách chạy mã JavaScript
 
-All JavaScript we will be writing in the majority of the Foundations course will be run via the browser. Later lessons in Foundations and the NodeJS path will show you how to run JavaScript outside of the browser environment. This means that we will let the browser execute our code, even if it comes from a file we created.
+Phần lớn mã JavaScript chúng ta viết trong khóa Foundations sẽ được chạy thông qua trình duyệt. Các bài học sau trong Foundations và lộ trình NodeJS sẽ chỉ cho bạn cách chạy JavaScript bên ngoài môi trường trình duyệt. Điều này có nghĩa là chúng ta sẽ để trình duyệt thực thi mã, ngay cả khi mã đó đến từ một tệp do chúng ta tạo.
 
-Outside of these lessons, for now you should always default to running your JavaScript in the browser unless otherwise specified, otherwise you may run into unexpected errors.
+Ngoài những bài học này, hiện tại bạn nên luôn mặc định chạy JavaScript trong trình duyệt trừ khi có chỉ dẫn khác; nếu không, bạn có thể gặp những lỗi không mong muốn.
 
-The simplest way to get started is to create an HTML file with the JavaScript code inside of it. Use the VS Code snippet <kbd>!</kbd> + <kbd>TAB</kbd> to create the basic HTML skeleton in a file on your computer somewhere. Be sure to include the `<script>` tag:
+Cách đơn giản nhất để bắt đầu là tạo một tệp HTML có mã JavaScript bên trong. Dùng snippet VS Code <kbd>!</kbd> + <kbd>TAB</kbd> để tạo bộ khung HTML cơ bản trong một tệp ở đâu đó trên máy tính. Hãy nhớ bao gồm thẻ `<script>`:
 
 ```html
 <!DOCTYPE html>
@@ -41,39 +41,39 @@ The simplest way to get started is to create an HTML file with the JavaScript co
 </html>
 ```
 
-Save and open this file up in a web browser and then open up the browser's console:
+Lưu và mở tệp này trong trình duyệt web, sau đó mở console của trình duyệt:
 
-1. Right-click on the blank webpage.
-1. Click on "Inspect" or "Inspect Element" to open the Developer Tools.
-1. Find and select the "Console" tab, where you should see the output of our `console.log` statement.
+1. Nhấp chuột phải vào trang web trống.
+1. Nhấp vào "Inspect" hoặc "Inspect Element" để mở Developer Tools.
+1. Tìm và chọn thẻ "Console", nơi bạn sẽ thấy kết quả của câu lệnh `console.log`.
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Live preview
+#### Xem trước trực tiếp
 
-You can use [Live Preview extension in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) to automatically update the browser when you save your file instead of having to manually refresh the page to see any changes when you edit your code. Try editing the text to say something different!
+Bạn có thể dùng [tiện ích Live Preview trong Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) để tự động cập nhật trình duyệt khi lưu tệp, thay vì phải tự làm mới trang mỗi khi chỉnh sửa mã. Hãy thử sửa văn bản thành một nội dung khác!
 
 </div>
 
-`console.log()` is the command to print something to the developer console in your browser. You can use this to print the results from any of the following articles and exercises to the console. We encourage you to code along with all of the examples in this and future lessons.
+`console.log()` là câu lệnh dùng để in thứ gì đó ra console dành cho nhà phát triển trong trình duyệt. Bạn có thể dùng nó để in kết quả từ bất kỳ bài viết và bài tập nào sau đây vào console. Chúng tôi khuyến khích bạn viết mã theo tất cả ví dụ trong bài này và các bài học sau.
 
-Another way to include JavaScript in a webpage is through an external script. This is very similar to linking external CSS docs to your website.
+Một cách khác để đưa JavaScript vào trang web là thông qua một script bên ngoài. Cách này rất giống với việc liên kết các tài liệu CSS bên ngoài vào trang web.
 
 ```html
 <script src="javascript.js"></script>
 ```
 
-JavaScript files have the extension `.js` similar to `.css` for stylesheets. External JavaScript files are used for more complex scripts.
+Các tệp JavaScript có phần mở rộng `.js`, tương tự như `.css` đối với biểu định kiểu. Tệp JavaScript bên ngoài được dùng cho các script phức tạp hơn.
 
-We named our file `javascript.js` but we could have chosen any name like `my-script.js` or `i-love-the-odin-project.js`.
+Chúng ta đặt tên tệp là `javascript.js`, nhưng có thể chọn bất kỳ tên nào như `my-script.js` hoặc `i-love-the-odin-project.js`.
 
-### Variables
+### Biến
 
-These are the building blocks of any program. You can think of variables as "storage containers" for data in your code.
+Đây là những khối xây dựng của mọi chương trình. Bạn có thể hình dung biến như những "vật chứa lưu trữ" dữ liệu trong mã của mình.
 
-![Variable Box Illustration](https://cdn.statically.io/gh/TheOdinProject/curriculum/d39eaf2ca95e80705f703bb218216c10508f5047/foundations/javascript_basics/fundamentals-1/imgs/00.png)
+![Minh họa hộp biến](https://cdn.statically.io/gh/TheOdinProject/curriculum/d39eaf2ca95e80705f703bb218216c10508f5047/foundations/javascript_basics/fundamentals-1/imgs/00.png)
 
-You can declare variables using the `let` keyword. Let's try it! (No pun intended).
+Bạn có thể khai báo biến bằng từ khóa `let`. Hãy thử nhé! (Không phải chơi chữ đâu).
 
 ```javascript
 let firstName = "John";
@@ -83,9 +83,9 @@ console.log(firstName);
 console.log(lastName);
 ```
 
-What will the `console.log` output? Try it out!
+`console.log` sẽ xuất ra gì? Hãy thử xem!
 
-You can also re-assign variables:
+Bạn cũng có thể gán lại biến:
 
 ```javascript
 let age = 11;
@@ -96,9 +96,9 @@ age = 54;
 console.log(age); // what will be output now?
 ```
 
-Notice the lack of `let` on line 4 - we don't need it since the variable has already been *declared* earlier and we are just re-assigning it here!
+Hãy chú ý dòng 4 không có `let` - chúng ta không cần nó vì biến đã được *khai báo* trước đó và hiện tại chỉ đang được gán lại!
 
-Re-assigning is cool and all, but what if we *don't* want it to happen? For example we might have a *constant* `pi` which will never need to be re-assigned. We can accomplish this using the `const` keyword.
+Gán lại biến thì khá thú vị, nhưng nếu chúng ta *không muốn* việc đó xảy ra thì sao? Ví dụ, ta có thể có một `pi` *hằng số* không bao giờ cần được gán lại. Chúng ta có thể làm điều này bằng từ khóa `const`.
 
 ```javascript
 const pi = 3.14;
@@ -107,57 +107,57 @@ pi = 10;
 console.log(pi); // What will be output?
 ```
 
-Your intuition may tell you that `3.14` will be output. Try it!
+Theo trực giác, bạn có thể nghĩ rằng `3.14` sẽ được xuất ra. Hãy thử xem!
 
-An error is thrown. It doesn't even reach the `console.log`! You may wonder why we would *want* an error in our code. Truth be told, errors are incredibly helpful at telling us what is wrong with our code and exactly where the issue is. Without them, our code would still not do what we may want it to, but it would be a major pain to try and find what's wrong!
+Một lỗi sẽ được ném ra. Mã thậm chí không chạy đến `console.log`! Bạn có thể tự hỏi tại sao chúng ta lại *muốn* có lỗi trong mã. Sự thật là lỗi cực kỳ hữu ích trong việc cho chúng ta biết mã sai ở đâu và vấn đề chính xác nằm ở đâu. Nếu không có lỗi, mã vẫn không làm được điều ta muốn, nhưng việc tìm ra sai ở đâu sẽ vô cùng khó khăn!
 
-So in summary, there are two ways to declare a variable:
+Tóm lại, có hai cách để khai báo một biến:
 
-- `let`, which we can re-assign.
-- `const` which we **can't** re-assign and will throw an error if we try.
+- `let`, có thể được gán lại.
+- `const`, **không thể** được gán lại và sẽ ném ra lỗi nếu chúng ta cố làm vậy.
 
-There is also a third way, `var`, which was the original way variables were declared in JavaScript. `var` is similar to `let` in that variables assigned this way can be reassigned, but it has other quirks that were cleared up when the language introduced `let` and `const`. By and large, it is not used anymore. However, you will likely come across code which uses `var` at some point, so it is useful to know that it exists.
+Ngoài ra còn có cách thứ ba là `var`, cách khai báo biến ban đầu của JavaScript. `var` tương tự `let` ở chỗ các biến được gán theo cách này có thể được gán lại, nhưng nó có những đặc điểm khác đã được giải quyết khi ngôn ngữ đưa vào `let` và `const`. Nhìn chung, hiện nay var không còn được dùng nữa. Tuy nhiên, có thể bạn sẽ gặp mã sử dụng `var` vào một lúc nào đó, vì vậy biết rằng nó tồn tại vẫn hữu ích.
 
-### Numbers
+### Số
 
-Numbers are the building blocks of programming logic! In fact, it's hard to think of any useful programming task that doesn't involve at least a little basic math, so knowing how numbers work is obviously quite important. Luckily, in JavaScript, the way numbers behave is quite familiar.
+Số là những khối xây dựng của logic lập trình! Thực tế, thật khó nghĩ ra một tác vụ lập trình hữu ích nào không liên quan ít nhất đến một chút toán cơ bản, nên rõ ràng biết cách số hoạt động là điều rất quan trọng. May mắn là trong JavaScript, cách số hoạt động khá quen thuộc.
 
-For instance, JavaScript follows the standard mathematical **Order of Operations** (often remembered by acronyms like **PEMDAS** or **BODMAS**). This means:
+Chẳng hạn, JavaScript tuân theo **thứ tự thực hiện phép toán** tiêu chuẩn trong toán học (thường được ghi nhớ bằng các từ viết tắt như **PEMDAS** hoặc **BODMAS**). Điều này có nghĩa là:
 
-1. **Parentheses** (or Brackets) are evaluated first.
-1. **Exponentiation** is done next, from right to left.
-1. **Multiplication** and **Division** are done next, from left to right.
-1. **Addition** and **Subtraction** are done last, from left to right.
+1. **Ngoặc đơn** (hoặc ngoặc vuông) được tính trước.
+1. **Lũy thừa** được tính tiếp theo, từ phải sang trái.
+1. **Phép nhân** và **phép chia** được tính tiếp theo, từ trái sang phải.
+1. **Phép cộng** và **phép trừ** được tính cuối cùng, từ trái sang phải.
 
-For example, the mathematical expression `(3 + 2) - 76 * (1 + 1)` is perfectly valid JavaScript and will evaluate exactly as you'd expect, if you put that expression into a `console.log`.
+Ví dụ, biểu thức toán học `(3 + 2) - 76 * (1 + 1)` hoàn toàn hợp lệ trong JavaScript và sẽ được tính đúng như bạn mong đợi nếu đặt biểu thức đó vào một `console.log`.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Try the following exercises by adding code to a script tag in your HTML file:
+Hãy thử các bài tập sau bằng cách thêm mã vào thẻ script trong tệp HTML:
 
-1. Add 2 numbers together! In your script, type in `console.log(23 + 97)`. Running this should log `120`.
-1. Do the same thing but add 6 different numbers together.
-1. Now log the value of the following expression: `(4 + 6 + 9) / 77`. The console should log approximately `0.24675`.
-1. Let's use some variables!
-   1. Add this statement to the script tag: `let a = 10`.
-   1. Below it, add `console.log(a)`. When you run this, the browser console should log `10`.
-   1. Afterwards, re-assign `a` with a different number value. Log `a` again afterwards and it should show the updated value (the previous log should still show the old value of `10` since that was before `a` was re-assigned).
-   1. Now add to the bottom of the script `let b = 7 * a`.
-   1. Log what `b` is. It should log the result of 7 multiplied by whatever you re-assigned `a` with.
-1. Try this sequence:
-   1. Declare a const variable `max` with the value `57`.
-   1. Declare another const variable `actual` and assign it `max - 13`.
-   1. Declare another const variable `percentage` and assign it `actual / max`.
-   1. Now if you log `percentage`, you should see a value in the console like `0.7719`.
-1. Take a few minutes to keep playing around with various things in your script tag. Eventually, we will learn how to actually make these things show up on the webpage, but all of this logic will remain the same. Make sure you're comfortable with it before moving on.
+1. Cộng 2 số với nhau! Trong script, nhập `console.log(23 + 97)`. Khi chạy, câu lệnh này phải in ra `120`.
+1. Làm tương tự nhưng cộng 6 số khác nhau với nhau.
+1. Bây giờ hãy in giá trị của biểu thức sau: `(4 + 6 + 9) / 77`. Console phải in ra xấp xỉ `0.24675`.
+1. Hãy dùng một vài biến!
+   1. Thêm câu lệnh này vào thẻ script: `let a = 10`.
+   1. Bên dưới, thêm `console.log(a)`. Khi chạy, console của trình duyệt phải in ra `10`.
+   1. Sau đó, gán lại cho `a` một giá trị số khác. In `a` lần nữa; nó phải hiển thị giá trị đã cập nhật (lần in trước vẫn phải hiển thị giá trị cũ là `10` vì nó xảy ra trước khi `a` được gán lại).
+   1. Bây giờ thêm `let b = 7 * a` vào cuối script.
+   1. In giá trị của `b`. Nó phải in ra kết quả của 7 nhân với giá trị bạn đã gán lại cho `a`.
+1. Thử chuỗi thao tác này:
+   1. Khai báo một biến const `max` với giá trị `57`.
+   1. Khai báo một biến const khác là `actual` và gán cho nó `max - 13`.
+   1. Khai báo một biến const khác là `percentage` và gán cho nó `actual / max`.
+   1. Bây giờ nếu in `percentage`, bạn sẽ thấy một giá trị như `0.7719` trong console.
+1. Dành vài phút tiếp tục thử nghiệm nhiều thứ khác nhau trong thẻ script. Cuối cùng, chúng ta sẽ học cách làm cho những thứ này thực sự xuất hiện trên trang web, nhưng toàn bộ logic vẫn sẽ giữ nguyên. Hãy đảm bảo bạn đã thấy thoải mái với chúng trước khi tiếp tục.
 
-Go through the following articles to deepen your knowledge.
+Hãy đọc các bài viết sau để củng cố kiến thức.
 
-1. Have a look at [MDN's "What is JavaScript?"](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript) to understand the role of JavaScript on a webpage.
-1. Read up on [variables in JavaScript](https://javascript.info/variables) from JavaScript.info.
-1. This MDN article on [JavaScript math](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Math) covers the same info from a slightly different point of view, while also teaching you how to apply some basic math in JavaScript. There's much more that you can do with numbers, but this is all you need at the moment.
-1. Read through (and code along with!) this article on [JavaScript operators](http://javascript.info/operators). Don't forget to do the "Tasks" at the bottom of the page! It will give you a pretty good idea of what you can accomplish with numbers (among other things!) in JavaScript.
+1. Xem qua ["JavaScript là gì?" của MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript) để hiểu vai trò của JavaScript trên một trang web.
+1. Đọc về [các biến trong JavaScript](https://javascript.info/variables) trên JavaScript.info.
+1. Bài viết MDN về [toán học trong JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Math) trình bày cùng thông tin từ một góc nhìn hơi khác, đồng thời hướng dẫn bạn áp dụng một số phép toán cơ bản trong JavaScript. Bạn có thể làm nhiều việc hơn với số, nhưng hiện tại chỉ cần đến đây.
+1. Đọc qua (và viết mã theo!) bài viết về [các toán tử JavaScript](http://javascript.info/operators). Đừng quên làm phần "Tasks" ở cuối trang! Nó sẽ giúp bạn hiểu khá rõ những gì có thể làm với số (cùng nhiều thứ khác!) trong JavaScript.
 
 </div>

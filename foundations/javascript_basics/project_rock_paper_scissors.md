@@ -1,89 +1,89 @@
-### Introduction
+### Giới thiệu
 
-For this project, you will create the game [Rock Paper Scissors](https://www.wikihow.com/Play-Rock,-Paper,-Scissors). This game will be played entirely in the console.
+Trong dự án này, bạn sẽ tạo trò chơi [Kéo, Búa, Bao](https://www.wikihow.com/Play-Rock,-Paper,-Scissors). Trò chơi này sẽ được chơi hoàn toàn trong console.
 
 <div class="lesson-note" markdown="1">
 
-#### No GUI yet
+#### Chưa có GUI
 
-Some of the student solutions below contain buttons, text, and other elements. These elements are part of what is called a graphical user interface (GUI). You'll create the GUI in a later lesson. In the meantime, remember to commit your code to GitHub.
+Một số lời giải của học viên bên dưới có nút, văn bản và các phần tử khác. Những phần tử này thuộc về thứ được gọi là giao diện người dùng đồ họa (GUI). Bạn sẽ tạo GUI ở một bài học sau. Trong lúc này, hãy nhớ commit mã của mình lên GitHub.
 
 </div>
 
-### Problem solving approach
+### Cách tiếp cận để giải quyết vấn đề
 
-Since this is the first JavaScript project being built from scratch, it's important to remember the wise words from the [Problem Solving lesson](https://www.theodinproject.com/lessons/foundations-problem-solving). For each step in this project, be sure to do the following
+Vì đây là dự án JavaScript đầu tiên được xây dựng từ đầu, điều quan trọng là nhớ những lời khuyên sáng suốt từ [bài học Giải quyết vấn đề](https://www.theodinproject.com/lessons/foundations-problem-solving). Với mỗi bước trong dự án này, hãy nhớ thực hiện những việc sau:
 
-1. Plan or pseudocode your solution.
-1. Write the code.
-1. Test your code to make sure it works.
+1. Lập kế hoạch hoặc viết mã giả cho lời giải.
+1. Viết mã.
+1. Kiểm thử mã để đảm bảo nó hoạt động.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note" markdown="1">
 
-#### Focus on the task at hand
+#### Tập trung vào nhiệm vụ trước mắt
 
-When making interactive projects, like this one, you might be tempted to add more features, improve interactivity, user experience, design and styling of your website, and so on.
+Khi tạo các dự án tương tác như dự án này, bạn có thể bị cám dỗ thêm nhiều tính năng, cải thiện tính tương tác, trải nghiệm người dùng, thiết kế và kiểu dáng của trang web, vân vân.
 
-We recommend not doing that, and saving this effort for your portfolio projects. For more information, read ["Strategically building your portfolio" from "Becoming a TOP Success Story"](https://dev.to/theodinproject/strategically-building-your-portfolio-1km4).
+Chúng tôi khuyên bạn không nên làm vậy, mà hãy dành công sức này cho các dự án portfolio. Để biết thêm thông tin, hãy đọc bài ["Xây dựng portfolio một cách chiến lược" trong "Trở thành một câu chuyện thành công của TOP"](https://dev.to/theodinproject/strategically-building-your-portfolio-1km4).
 
 </div>
 
-Remember to commit early and often! To refresh your memory, check out the [commit messages lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages).
+Hãy nhớ commit sớm và thường xuyên! Để ôn lại, hãy xem [bài học về thông điệp commit](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/commit-messages).
 
-#### Step 1: Setup the project structure
+#### Bước 1: Thiết lập cấu trúc dự án
 
-1. Create a new Git repository for your project.
-1. Create a blank HTML document with a script tag.
-1. Check if JavaScript is linked correctly:
-   - Write `console.log("Hello World")` in JavaScript.
-   - Check if "Hello World" is logged in the browser console once you open your webpage.
+1. Tạo một kho Git mới cho dự án.
+1. Tạo một tài liệu HTML trống có thẻ script.
+1. Kiểm tra xem JavaScript đã được liên kết đúng chưa:
+   - Viết `console.log("Hello World")` trong JavaScript.
+   - Sau khi mở trang web, kiểm tra xem "Hello World" có được ghi trong console của trình duyệt hay không.
 
-It's best practice to link to an external JavaScript file inside this script tag. Using an external JavaScript file keeps your HTML file clean and organized.
+Cách làm tốt nhất là liên kết đến một tệp JavaScript bên ngoài bên trong thẻ script này. Dùng tệp JavaScript bên ngoài giúp tệp HTML của bạn sạch sẽ và có tổ chức hơn.
 
-You don't have to write additional code in the HTML file. This game is played entirely via the console.
+Bạn không cần viết thêm mã nào trong tệp HTML. Trò chơi này được chơi hoàn toàn thông qua console.
 
-#### Step 2: Write the logic to get the computer choice
+#### Bước 2: Viết logic để lấy lựa chọn của máy tính
 
-Your game will be played against the computer. You will write a function that randomly returns "rock", "paper" or "scissors".
+Bạn sẽ chơi với máy tính. Bạn sẽ viết một hàm trả về ngẫu nhiên "rock", "paper" hoặc "scissors".
 
-1. Create a new function named `getComputerChoice`.
-1. Write the code so that `getComputerChoice` will randomly `return` one of the following string values: "rock", "paper" or "scissors".
-   - **Hint**: The [Math.random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) method returns a random number that's greater than or equal to 0 and less than 1. Think about how you can use this to conditionally return one of the multiple choices.
-   - **Note**: Some learners might think that arrays are necessary for this problem, but they aren't. If you're unfamiliar with arrays, don't worry - they'll be covered later in the curriculum.
-1. Test that your function returns what you expect using `console.log` or [the browser developer tools](https://www.theodinproject.com/lessons/foundations-javascript-developer-tools) before advancing to the next step.
+1. Tạo một hàm mới có tên `getComputerChoice`.
+1. Viết mã để `getComputerChoice` ngẫu nhiên `return` một trong các giá trị chuỗi sau: "rock", "paper" hoặc "scissors".
+   - **Gợi ý**: Phương thức [Math.random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) trả về một số ngẫu nhiên lớn hơn hoặc bằng 0 và nhỏ hơn 1. Hãy suy nghĩ xem bạn có thể dùng điều này thế nào để trả về có điều kiện một trong nhiều lựa chọn.
+   - **Lưu ý**: Một số học viên có thể nghĩ rằng cần dùng mảng cho bài toán này, nhưng không phải vậy. Nếu bạn chưa quen với mảng, đừng lo - chúng sẽ được đề cập ở phần sau của chương trình học.
+1. Trước khi chuyển sang bước tiếp theo, hãy kiểm tra để đảm bảo hàm trả về đúng như mong đợi bằng `console.log` hoặc [công cụ dành cho nhà phát triển của trình duyệt](https://www.theodinproject.com/lessons/foundations-javascript-developer-tools).
 
-#### Step 3: Write the logic to get the human choice
+#### Bước 3: Viết logic để lấy lựa chọn của người chơi
 
-Your game will be played by a human player. You will write a function that takes the user choice and returns it.
+Trò chơi sẽ do một người chơi thực hiện. Bạn sẽ viết một hàm nhận lựa chọn của người dùng và trả về lựa chọn đó.
 
-1. Create a new function named `getHumanChoice`.
-1. Write the code so that `getHumanChoice` will return one of the valid choices depending on what the user inputs.
-   - **Hint**: Use the [prompt](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt) method to get the user's input.
-   - You do not need to handle reprompting if the user enters an invalid input, as that would require things we will teach later. For now, just assume the user will always enter a valid choice.
-1. Test what your function returns by using `console.log`.
+1. Tạo một hàm mới có tên `getHumanChoice`.
+1. Viết mã để `getHumanChoice` trả về một lựa chọn hợp lệ tùy thuộc vào nội dung người dùng nhập.
+   - **Gợi ý**: Dùng phương thức [prompt](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt) để lấy dữ liệu người dùng nhập.
+   - Bạn không cần xử lý việc hỏi lại nếu người dùng nhập dữ liệu không hợp lệ, vì việc đó cần đến những nội dung chúng ta sẽ dạy sau. Hiện tại, cứ giả định rằng người dùng luôn nhập một lựa chọn hợp lệ.
+1. Kiểm tra giá trị hàm trả về bằng cách dùng `console.log`.
 
-#### Step 4: Declare the players score variables
+#### Bước 4: Khai báo các biến điểm số của người chơi
 
-Your game will keep track of the players score. You will write variables to keep track of the players score.
+Trò chơi sẽ theo dõi điểm số của người chơi. Bạn sẽ viết các biến để theo dõi điểm số đó.
 
-1. Create two new variables named `humanScore` and `computerScore` in the global scope.
-1. Initialize those variables with the value of `0`.
+1. Tạo hai biến mới có tên `humanScore` và `computerScore` trong phạm vi global.
+1. Khởi tạo các biến đó với giá trị `0`.
 
-#### Step 5: Write the logic to play a single round
+#### Bước 5: Viết logic để chơi một vòng
 
-Your game will be played round by round. You will write a function that takes the human and computer player choices as arguments, plays a single round, increments the round winner's score and logs a winner announcement.
+Trò chơi sẽ diễn ra theo từng vòng. Bạn sẽ viết một hàm nhận lựa chọn của người chơi và máy tính làm đối số, chơi một vòng, tăng điểm cho người thắng vòng đó và ghi thông báo người thắng.
 
-1. Create a new function named `playRound`.
-1. Define two parameters for `playRound`: `humanChoice` and `computerChoice`. Use these two parameters to take the human and computer choices as arguments.
-1. Make your function's `humanChoice` parameter case-insensitive so that players can input "rock", "ROCK", "RocK", or other variations.
-1. Write the code for your `playRound` function to `console.log` a string value representing the round winner, such as: "You lose! Paper beats Rock".
-1. Increment the `humanScore` or `computerScore` variable based on the round winner.
+1. Tạo một hàm mới có tên `playRound`.
+1. Định nghĩa hai tham số cho `playRound`: `humanChoice` và `computerChoice`. Dùng hai tham số này để nhận lựa chọn của người chơi và máy tính làm đối số.
+1. Làm cho tham số `humanChoice` của hàm không phân biệt chữ hoa chữ thường để người chơi có thể nhập "rock", "ROCK", "RocK" hoặc các biến thể khác.
+1. Viết mã cho hàm `playRound` để `console.log` một giá trị chuỗi thể hiện người thắng vòng, chẳng hạn: "You lose! Paper beats Rock".
+1. Tăng biến `humanScore` hoặc `computerScore` dựa trên người thắng vòng.
 
-Example code:
+Mã ví dụ:
 
 ```javascript
 function playRound(humanChoice, computerChoice) {
@@ -96,15 +96,15 @@ const computerSelection = getComputerChoice();
 playRound(humanSelection, computerSelection);
 ```
 
-#### Step 6: Write the logic to play the entire game
+#### Bước 6: Viết logic để chơi toàn bộ trò chơi
 
-Your game will play 5 rounds. You will write a function named `playGame` that calls `playRound` to play 5 rounds, keeps track of the scores and declares a winner at the end.
+Trò chơi sẽ có 5 vòng. Bạn sẽ viết một hàm có tên `playGame`, hàm này gọi `playRound` để chơi 5 vòng, theo dõi điểm số và công bố người thắng ở cuối.
 
-1. Create a new function named `playGame`.
-1. Move your `playRound` function and score variables so that they're declared inside of the new `playGame` function
-1. Play 5 rounds by calling `playRound` 5 times.
-   - **Hint**: When you assign a function call to a variable, the return value of that function is assigned to the variable. Accessing the variable afterward will only provide the assigned value; it doesn't recall the function. You need to recall the choice functions to get new choices for each round.
-   - Re-work your previous functions or create more helper functions if necessary. Specifically, you may want to change the return values to something more useful.
-   - If you already know about loops, you can use them. If not, don't worry! Loops will be covered in the next lesson.
+1. Tạo một hàm mới có tên `playGame`.
+1. Di chuyển hàm `playRound` và các biến điểm số để chúng được khai báo bên trong hàm `playGame` mới.
+1. Chơi 5 vòng bằng cách gọi `playRound` 5 lần.
+   - **Gợi ý**: Khi bạn gán một lời gọi hàm cho một biến, giá trị trả về của lời gọi hàm đó được gán cho biến. Việc truy cập biến sau đó chỉ cung cấp giá trị đã gán; nó không gọi lại hàm. Bạn cần gọi lại các hàm lựa chọn để lấy lựa chọn mới cho mỗi vòng.
+   - Nếu cần, hãy làm lại các hàm trước đó hoặc tạo thêm các hàm trợ giúp. Cụ thể, bạn có thể muốn thay đổi các giá trị trả về để chúng hữu ích hơn.
+   - Nếu đã biết vòng lặp, bạn có thể dùng chúng. Nếu chưa biết thì cũng đừng lo! Vòng lặp sẽ được đề cập trong bài học tiếp theo.
 
 </div>

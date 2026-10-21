@@ -1,34 +1,34 @@
-### Introduction
+### Giới thiệu
 
-Now that we can manipulate the DOM, it's time to revisit [Rock Paper Scissors](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors) and add a UI to it.
+Giờ đây chúng ta đã có thể thao tác với DOM, đã đến lúc quay lại [Kéo, Búa, Bao](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors) và thêm giao diện người dùng cho trò chơi.
 
-Before you start making changes to your Rock Paper Scissors project, you need to learn about a concept in Git called **branching** so that you can make your changes without having to worry about breaking what you have now.
+Trước khi bắt đầu thay đổi dự án Kéo, Búa, Bao, bạn cần tìm hiểu một khái niệm trong Git gọi là **branching** để có thể thực hiện thay đổi mà không phải lo làm hỏng những gì đang có.
 
-Branches in Git allow your repository to hold multiple *alternate reality* versions of your files at the same time. You’ve actually (sort of) been using branches since you made your first commit, you just might not have known it! Back in [the setting up Git lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/setting-up-git) when you ran `git config --global init.defaultBranch main` you were setting the name of what’s called the *default* branch for your repos. The default branch is just what we call the branch that is created when you make your first commit on a project, and in that command we set the name to be `main` as is the current standard.
+Các nhánh trong Git cho phép kho của bạn chứa đồng thời nhiều phiên bản *thực tại thay thế* của các tệp. Thực ra bạn đã (kiểu như) dùng nhánh từ khi tạo commit đầu tiên, chỉ là có thể bạn chưa biết! Trong [bài học thiết lập Git](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/setting-up-git), khi chạy `git config --global init.defaultBranch main`, bạn đã đặt tên cho thứ được gọi là nhánh *mặc định* của các kho. Nhánh mặc định đơn giản là tên gọi của nhánh được tạo khi bạn tạo commit đầu tiên trong một dự án; trong câu lệnh đó, chúng ta đặt tên là `main`, phù hợp với tiêu chuẩn hiện nay.
 
-Like the branches in a tree (hence the name), all of the branches for a project stem off of a “trunk” (the `main` branch) or off of *other* branches.
+Giống như các nhánh trên cây (vì thế mới có tên này), mọi nhánh của một dự án đều mọc ra từ một “thân cây” (nhánh `main`) hoặc từ *những* nhánh khác.
 
-When you make commits on a specific branch, those changes only exist on **that** branch, leaving all of your other branches exactly as they were when you branched off of them.
+Khi tạo commit trên một nhánh cụ thể, những thay đổi đó chỉ tồn tại trên **nhánh đó**, còn mọi nhánh khác vẫn hoàn toàn giống như lúc bạn tách nhánh từ chúng.
 
-This means that you can keep your `main` branch as a place for only finished features that you know are working properly, and add each feature to your project using dedicated branches which we call *feature branches*.
+Điều này có nghĩa là bạn có thể giữ nhánh `main` làm nơi chỉ chứa các tính năng hoàn thiện mà bạn biết là đang hoạt động đúng, rồi thêm từng tính năng vào dự án thông qua các nhánh riêng, được gọi là *nhánh tính năng*.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- How to create a new branch.
-- How to merge branches.
-- Best practices and use cases of branches.
+- Cách tạo một nhánh mới.
+- Cách hợp nhất các nhánh.
+- Các phương pháp hay nhất và trường hợp sử dụng của nhánh.
 
-### Using branches
+### Sử dụng các nhánh
 
-You can make new branches by using the command `git branch <branch_name>`. You can then change to your new branch using `git checkout <branch_name>`. You can also create a new branch and change to it in a single command by using the `-b` flag with `checkout`, in the form `git checkout -b <branch_name>`.
+Bạn có thể tạo nhánh mới bằng câu lệnh `git branch <branch_name>`. Sau đó, bạn có thể chuyển sang nhánh mới bằng `git checkout <branch_name>`. Bạn cũng có thể tạo một nhánh mới và chuyển sang đó bằng một câu lệnh duy nhất, dùng cờ `-b` với `checkout`, theo dạng `git checkout -b <branch_name>`.
 
-You can see all of your current branches using `git branch` with no other arguments. The branch that you’re currently on will be indicated with an asterisk. If you want to change back to `main` from any other branch, you can do so just like changing to any other branch using `git checkout main`.
+Bạn có thể xem tất cả các nhánh hiện tại bằng `git branch` mà không cần đối số nào khác. Nhánh bạn đang đứng sẽ được đánh dấu bằng dấu sao. Nếu muốn chuyển lại về `main` từ một nhánh khác, bạn có thể làm giống như khi chuyển sang bất kỳ nhánh nào khác bằng `git checkout main`.
 
-Once you are done working on your feature branch and are ready to bring the commits that you’ve made on it to your main branch, you will need to perform what is known as a `merge`.
+Sau khi làm xong trên nhánh tính năng và sẵn sàng đưa các commit đã tạo vào nhánh main, bạn sẽ cần thực hiện thao tác gọi là `merge`.
 
-Merges are done by using the command `git merge <branch_name>` which will take the changes you’ve committed in `branch_name` and add them to the branch that you’re currently on. You can see an example of a `develop` branch being created, committed to, and then merged to `main` in the diagram below.
+Có thể hợp nhất bằng câu lệnh `git merge <branch_name>`. Câu lệnh này lấy các thay đổi bạn đã commit trên `branch_name` và thêm chúng vào nhánh hiện tại. Sơ đồ dưới đây minh họa việc tạo một nhánh `develop`, commit trên đó rồi hợp nhất vào `main`.
 
 <pre class="mermaid">
 
@@ -47,46 +47,46 @@ gitGraph
 
 </pre>
 
-Sometimes, the same lines in a file will have been changed by two different branches. When this happens, you will have a merge conflict when you try and merge those branches together. In order to finish merging the branches you will have to first resolve the conflict, which will be covered in a future lesson.
+Đôi khi, cùng một dòng trong một tệp đã bị hai nhánh khác nhau thay đổi. Khi đó, bạn sẽ gặp xung đột hợp nhất lúc cố gắng hợp nhất các nhánh ấy. Để hoàn tất việc hợp nhất, trước tiên bạn phải giải quyết xung đột; nội dung này sẽ được đề cập trong một bài học sau.
 
-When you don’t need a branch anymore, it can be deleted using `git branch -d <branch_name>` if the branch has already been merged into `main`, or with `git branch -D <branch_name>` if it hasn’t. You will usually want to delete branches when you’re done with them, otherwise they can pile up and make it more difficult to find the branch you’re looking for when you need it.
+Khi không còn cần một nhánh, bạn có thể xóa nó bằng `git branch -d <branch_name>` nếu nhánh đã được hợp nhất vào `main`, hoặc bằng `git branch -D <branch_name>` nếu chưa được hợp nhất. Thông thường, bạn sẽ muốn xóa các nhánh sau khi dùng xong; nếu không, chúng có thể chất đống và khiến bạn khó tìm được nhánh cần dùng.
 
-### Sharing code
+### Chia sẻ mã
 
-Another great use case for branches is to share code with others that you might not want to commit to your main branch (or feature branch) at all.
+Một trường hợp sử dụng tuyệt vời khác của nhánh là chia sẻ mã với người khác mà có thể bạn không muốn commit vào nhánh main (hoặc nhánh tính năng) chút nào.
 
-For example: if you have a bug in a new feature you’re working on that you can’t figure out, and it causes your code to break, you don’t want to commit that broken code and have it in your project’s “permanent record”. You could instead create a new temporary branch, switch to it and commit your code to this new branch. If you then push this new temporary branch to GitHub you can share it with others that may be able to help solve your problem. In the assignment below you will get some hands-on practice on making new branches.
+Ví dụ: nếu một tính năng mới bạn đang làm có lỗi mà bạn không tìm ra được, khiến mã bị hỏng, bạn sẽ không muốn commit mã lỗi đó và để nó nằm trong “lịch sử vĩnh viễn” của dự án. Thay vào đó, bạn có thể tạo một nhánh tạm thời mới, chuyển sang đó rồi commit mã vào nhánh mới này. Sau đó, nếu đẩy nhánh tạm thời lên GitHub, bạn có thể chia sẻ nó với những người có khả năng giúp giải quyết vấn đề. Trong bài tập bên dưới, bạn sẽ được thực hành tạo các nhánh mới.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Warm up
+#### Khởi động
 
-1. Let's practice a little bit of branching first. This [interactive Git branching visualizer](https://learngitbranching.js.org/) by Peter Cottle is brilliant. Complete only levels 1-3 of the "Introduction Sequence".
+1. Trước tiên hãy luyện tập một chút về branching. [Công cụ trực quan tương tác về branching trong Git](https://learngitbranching.js.org/) của Peter Cottle rất tuyệt vời. Chỉ hoàn thành các cấp độ 1-3 của "Introduction Sequence".
 
-#### Adding a UI to Rock Paper Scissors
+#### Thêm giao diện cho Kéo, Búa, Bao
 
-1. Set up a new branch on your previous Rock Paper Scissors repo
-   1. Since we'll be making a UI for our Rock Paper Scissors game, make a new branch and change to it with the command `git checkout -b rps-ui`.
-   1. You are now working in the `rps-ui` branch, locally. However, this branch does not exist in your remote repo yet. If you go to your github repo page, you'll see that you only have 1 branch, which would be `main`. Let's push this new branch to your remote repo with the command `git push origin rps-ui`. Now, you'll see two branches in your GitHub repository! You can select the new branch on GitHub using the dropdown branch selector shown in the screenshot below.
+1. Thiết lập một nhánh mới trên kho Kéo, Búa, Bao trước đó.
+   1. Vì chúng ta sẽ tạo giao diện cho trò chơi Kéo, Búa, Bao, hãy tạo một nhánh mới và chuyển sang đó bằng câu lệnh `git checkout -b rps-ui`.
+   1. Hiện bạn đang làm việc cục bộ trên nhánh `rps-ui`. Tuy nhiên, nhánh này chưa tồn tại trong kho từ xa. Nếu vào trang kho github, bạn sẽ thấy mình chỉ có 1 nhánh, đó là `main`. Hãy đẩy nhánh mới lên kho từ xa bằng câu lệnh `git push origin rps-ui`. Bây giờ bạn sẽ thấy hai nhánh trong kho GitHub! Bạn có thể chọn nhánh mới trên GitHub bằng bộ chọn nhánh dạng danh sách như trong ảnh chụp màn hình dưới đây.
 
-      ![Dropdown menu of branches on GitHub](https://cdn.statically.io/gh/TheOdinProject/curriculum/46c18d8445051e016b1e415fe0227a0fa33cc825/foundations/javascript_basics/revisiting_rock_paper_scissors/imgs/00.png)
+      ![Trình đơn thả xuống các nhánh trên GitHub](https://cdn.statically.io/gh/TheOdinProject/curriculum/46c18d8445051e016b1e415fe0227a0fa33cc825/foundations/javascript_basics/revisiting_rock_paper_scissors/imgs/00.png)
 
-   1. Make sure you are on the `rps-ui` branch. You can check this, with the `git branch` command. The branch you are currently on will have an (\*)asterisk next to it. If you're in another branch for some reason, change to `rps-ui` with the command `git checkout rps-ui`. Now you're all set to work on your new feature! Note: You can add files, commit to this branch, and push changes to your repo, just like you would with the main branch. Everything is the same except when you push the changes, you'd use `git push origin rps-ui` instead of `git push origin main`, since we're pushing to our new branch.
-1. In our UI, the player should be able to play the game by clicking on buttons rather than typing their answer in a prompt.
-   1. For now, remove the logic that plays exactly five rounds.
-   1. Create three buttons, one for each selection. Add an event listener to the buttons that call your `playRound` function with the correct `playerSelection` every time a button is clicked. (you can keep the `console.log`s for this step)
-   1. Add a `div` for displaying results and change all of your `console.log`s into DOM methods.
-   1. Display the running score, and announce a winner of the game once one player reaches 5 points.
-   1. You will likely have to refactor (rework/rewrite) your original code to make it work for this. That's OK! Reworking old code is an important part of a programmer's life.
-1. Once you're all done with your UI and made sure everything's satisfactory, ensure all of your changes are committed to the `rps-ui` branch with `git status` before continuing.
-1. Now let's take a look at how we can merge the changes from our `rps-ui` branch back to our `main` branch.
-   1. Checkout the branch we want to merge INTO i.e. `main` with the command `git checkout main`.
-   1. Now let's merge our `rps-ui` branch into `main`, our current branch, with `git merge rps-ui`.
-   1. If everything goes fine, our `rps-ui` branch is now successfully merged with main! Use `git log` and you'll see all the commits you've made to your feature branch on top of the commits you made to the main branch. Now for our final step!
-   1. Let's push our `main` branch into our remote repo by running `git push origin main` . Go to your GitHub repo and you'll see that our `main` branch will have all the changes and commits you made to the `rps-ui` branch. Congratulations! You've successfully pushed your first feature into your production branch!
-   1. Now that we have all our code in the main branch, we don't really need our `rps-ui` branch anymore. Let's do some cleanup, both locally and in the remote repo. Delete the branch from our local repo with `git branch -d rps-ui` and also delete it from the remote repo on GitHub with `git push origin --delete rps-ui`. Congrats, we're all done with our cleanup!
-1. Make sure to publish the project on GitHub Pages and add a live preview link in the [project lesson](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors).
+   1. Hãy đảm bảo bạn đang ở nhánh `rps-ui`. Bạn có thể kiểm tra bằng câu lệnh `git branch`. Nhánh hiện tại sẽ có dấu (\*)asterisk bên cạnh. Nếu vì lý do nào đó bạn đang ở nhánh khác, hãy chuyển sang `rps-ui` bằng câu lệnh `git checkout rps-ui`. Giờ bạn đã sẵn sàng làm tính năng mới! Lưu ý: Bạn có thể thêm tệp, commit vào nhánh này và đẩy thay đổi lên kho giống như với nhánh main. Mọi thứ đều như nhau, ngoại trừ khi đẩy thay đổi, bạn sẽ dùng `git push origin rps-ui` thay vì `git push origin main`, vì chúng ta đang đẩy lên nhánh mới.
+1. Trong giao diện của chúng ta, người chơi phải có thể chơi bằng cách nhấp vào các nút thay vì nhập câu trả lời vào prompt.
+   1. Trước mắt, hãy xóa logic chơi đúng năm vòng.
+   1. Tạo ba nút, mỗi nút cho một lựa chọn. Thêm trình lắng nghe sự kiện vào các nút để gọi hàm `playRound` với `playerSelection` tương ứng mỗi khi một nút được nhấn. (bạn có thể giữ lại các `console.log`s trong bước này)
+   1. Thêm một `div` để hiển thị kết quả và đổi tất cả các `console.log`s thành các phương thức DOM.
+   1. Hiển thị điểm số đang cập nhật và công bố người thắng trò chơi ngay khi một người chơi đạt 5 điểm.
+   1. Có thể bạn sẽ phải refactor (làm lại/viết lại) mã ban đầu để nó hoạt động theo cách này. Không sao cả! Làm lại mã cũ là một phần quan trọng trong công việc của lập trình viên.
+1. Khi đã hoàn tất giao diện và đảm bảo mọi thứ đều ổn, hãy đảm bảo mọi thay đổi đã được commit vào nhánh `rps-ui` bằng `git status` trước khi tiếp tục.
+1. Bây giờ hãy xem cách hợp nhất các thay đổi từ nhánh `rps-ui` trở lại nhánh `main`.
+   1. Checkout nhánh mà chúng ta muốn hợp nhất VÀO, tức `main`, bằng câu lệnh `git checkout main`.
+   1. Hợp nhất nhánh `rps-ui` vào `main`, là nhánh hiện tại, bằng `git merge rps-ui`.
+   1. Nếu mọi thứ diễn ra suôn sẻ, nhánh `rps-ui` đã được hợp nhất thành công với main! Dùng `git log` và bạn sẽ thấy tất cả commit đã tạo trên nhánh tính năng nằm trên các commit đã tạo trên nhánh main. Giờ là bước cuối cùng!
+   1. Đẩy nhánh `main` lên kho từ xa bằng cách chạy `git push origin main` . Truy cập kho GitHub và bạn sẽ thấy nhánh `main` có tất cả thay đổi và commit đã tạo trên nhánh `rps-ui`. Xin chúc mừng! Bạn đã đẩy thành công tính năng đầu tiên vào nhánh production!
+   1. Giờ khi toàn bộ mã đã nằm trên nhánh main, chúng ta không còn thực sự cần nhánh `rps-ui` nữa. Hãy dọn dẹp cả kho cục bộ lẫn kho từ xa. Xóa nhánh khỏi kho cục bộ bằng `git branch -d rps-ui`, đồng thời xóa nó khỏi kho từ xa trên GitHub bằng `git push origin --delete rps-ui`. Chúc mừng, chúng ta đã dọn dẹp xong!
+1. Hãy đảm bảo xuất bản dự án trên GitHub Pages và thêm liên kết xem trước trực tiếp vào [bài học dự án](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/rock-paper-scissors).
 
 </div>

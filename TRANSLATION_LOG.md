@@ -146,9 +146,9 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 
 | Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
 |---|---|---|---|---|
-| `databases/databases/databases.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `databases/databases/databases_and_sql.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
-| `databases/databases/project_sql_zoo.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code và cấu trúc, chờ kiểm tra hiển thị` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `databases/databases/databases.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `databases/databases/databases_and_sql.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
+| `databases/databases/project_sql_zoo.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và hiển thị local` | Cần người học đọc duyệt ngữ nghĩa và xem bài trên web local. |
 
 ## Quy tắc cập nhật
 

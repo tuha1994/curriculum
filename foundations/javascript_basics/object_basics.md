@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-Congratulations on making it to one of the last lessons in Foundations! By this point, you have learned many of the fundamentals of JavaScript. In this lesson, you will learn about Objects - a collection of key-value pairs - as well as some more powerful and commonly used array methods.
+Chúc mừng bạn đã đi đến một trong những bài học cuối của phần Foundations! Đến đây, bạn đã học được nhiều nền tảng của JavaScript. Trong bài học này, bạn sẽ tìm hiểu về Đối tượng - một tập hợp các cặp khóa-giá trị - cùng với một số phương thức mảng mạnh mẽ và thường được sử dụng hơn.
 
-Before you know it, you'll have a better understanding of how powerful objects and arrays are and how both can be an indispensable part of your JavaScript tool kit!
+Chẳng bao lâu nữa, bạn sẽ hiểu rõ hơn về sức mạnh của đối tượng và mảng, cũng như lý do cả hai có thể trở thành những phần không thể thiếu trong bộ công cụ JavaScript của bạn!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Creating objects.
-- Accessing object properties.
-- Using multiple object operators.
-- Understanding the differences between object and primitive data types.
+- Tạo đối tượng.
+- Truy cập các thuộc tính của đối tượng.
+- Sử dụng nhiều toán tử đối tượng.
+- Hiểu sự khác nhau giữa kiểu dữ liệu đối tượng và kiểu dữ liệu nguyên thủy.
 
-### Objects
+### Đối tượng
 
-Objects are a *very* important part of the JavaScript language, and while for the most part you can accomplish simple and even intermediate tasks without worrying about them, any real project that you're going to attempt is going to feature Objects. The uses of Objects in JavaScript can get deep relatively quickly, so for the moment we're only going to cover the basics. There'll be an in-depth dive later.
+Đối tượng là một phần *rất* quan trọng của ngôn ngữ JavaScript. Phần lớn thời gian, bạn có thể hoàn thành những tác vụ đơn giản, thậm chí trung cấp, mà chưa cần bận tâm nhiều đến chúng; tuy nhiên, bất kỳ dự án thực tế nào bạn thực hiện cũng sẽ sử dụng Đối tượng. Cách sử dụng Đối tượng trong JavaScript có thể nhanh chóng trở nên khá sâu, nên hiện tại chúng ta chỉ tập trung vào những điều cơ bản. Sau này sẽ có một bài tìm hiểu chuyên sâu hơn.
 
-1. This JavaScript.info [article on objects](https://javascript.info/object) is the best place to get started. You do not need to do the exercises at the end of the page.
-1. Follow along to [MDN's "JavaScript object basics"](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics). Skip the "Introducing constructors" section, as that's a more advanced topic we'll come to later in the curriculum.
+1. Bài viết [về đối tượng](https://javascript.info/object) trên JavaScript.info là nơi tốt nhất để bắt đầu. Bạn không cần làm các bài tập ở cuối trang.
+1. Học theo bài ["Kiến thức cơ bản về đối tượng JavaScript" của MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics). Bỏ qua phần "Giới thiệu về constructor", vì đó là chủ đề nâng cao hơn mà chúng ta sẽ học sau trong chương trình.
 
-### Differences between objects and primitives
+### Sự khác nhau giữa đối tượng và kiểu dữ liệu nguyên thủy
 
-Earlier in the curriculum you've learned about [primitive data types](https://www.theodinproject.com/lessons/foundations-data-types-and-conditionals). Now, you've also seen the object data type, which includes but is not limited to, objects ({key: value}), arrays, and functions. The main difference between the two is that primitives can contain only a single thing (string, number, etc). Objects data types are used to store a collection of data and more complex entities.
+Trước đó trong chương trình, bạn đã học về [các kiểu dữ liệu nguyên thủy](https://www.theodinproject.com/lessons/foundations-data-types-and-conditionals). Giờ đây, bạn cũng đã thấy kiểu dữ liệu đối tượng, bao gồm nhưng không chỉ giới hạn ở đối tượng ({key: value}), mảng và hàm. Điểm khác biệt chính giữa hai nhóm là kiểu nguyên thủy chỉ có thể chứa một giá trị duy nhất (chuỗi, số, v.v.). Kiểu dữ liệu đối tượng được dùng để lưu trữ một tập hợp dữ liệu và những thực thể phức tạp hơn.
 
-Besides the formal differences, there are also some technical differences which affect how we use each data type. When you define a primitive variable, it will contain a copy of the information provided to it:
+Bên cạnh những khác biệt về mặt khái niệm, còn có một số khác biệt kỹ thuật ảnh hưởng đến cách chúng ta sử dụng từng kiểu dữ liệu. Khi bạn định nghĩa một biến kiểu nguyên thủy, biến đó sẽ chứa một bản sao của thông tin được gán cho nó:
 
 ```javascript
 let data = 42;
@@ -38,7 +38,7 @@ console.log(data); // 42
 console.log(dataCopy); // 43
 ```
 
-On the other hand, when you define an object variable, it will contain a *reference* to the object provided to it:
+Ngược lại, khi bạn định nghĩa một biến đối tượng, biến đó sẽ chứa một *tham chiếu* đến đối tượng được gán cho nó:
 
 ```javascript
 // obj contains a reference to the object we defined on the right side
@@ -53,16 +53,16 @@ console.log(obj); // { data: 43 }
 console.log(objCopy); // { data: 43 }
 ```
 
-This behavior isn't new to you. In your last project, you made changes to the cells in the Etch-A-Sketch grid by using references. Let's take this code snippet as an example:
+Hành vi này không xa lạ với bạn. Trong dự án gần đây, bạn đã thay đổi các ô trong lưới Etch-A-Sketch bằng cách sử dụng tham chiếu. Hãy lấy đoạn mã sau làm ví dụ:
 
 ```javascript
 const element = document.querySelector("#container");
 element.style.backgroundColor = "red";
 ```
 
-We're mutating the variable we declared (`element`), yet the changes affect the corresponding node in the DOM. Why does it happen? The node we have in our code is a **reference** to the same node that our DOM uses. If `element` wasn't a reference, but instead was a copy of the node itself (like how primitive data types behave), mutating it would have **no** effect because changes would only affect the copy, not the original.
+Chúng ta đang thay đổi biến đã khai báo (`element`), nhưng những thay đổi đó lại tác động đến nút tương ứng trong DOM. Vì sao lại như vậy? Nút mà chúng ta có trong mã là **một tham chiếu** đến chính nút mà DOM đang sử dụng. Nếu `element` không phải là tham chiếu mà là một bản sao của chính nút đó (giống cách kiểu dữ liệu nguyên thủy hoạt động), việc thay đổi nó sẽ **không** có tác dụng, vì các thay đổi chỉ ảnh hưởng đến bản sao chứ không ảnh hưởng đến bản gốc.
 
-This behavior is also something to consider when we pass arguments to a function. Let's take the following functions for example:
+Đây cũng là điều cần cân nhắc khi chúng ta truyền đối số cho một hàm. Hãy lấy các hàm sau làm ví dụ:
 
 ```javascript
 function increaseCounterObject(objectCounter) {
@@ -80,15 +80,15 @@ increaseCounterObject(object);
 increaseCounterPrimitive(primitive);
 ```
 
-Take a moment and guess what will happen to `object` and what will happen to `primitive` after we make the function calls.
+Hãy dừng lại một chút và đoán xem điều gì sẽ xảy ra với `object` và `primitive` sau khi chúng ta gọi các hàm trên.
 
-If you answered that the object counter would increase by 1, and the primitive counter wouldn't change, you're correct. Remember that the parameter `objectCounter` contains a *reference* to the same object as the `object` variable we gave it, while `primitiveCounter` only contains a copy of the primitive value.
+Nếu bạn trả lời rằng bộ đếm của đối tượng sẽ tăng thêm 1, còn bộ đếm nguyên thủy sẽ không thay đổi, thì bạn đã trả lời đúng. Hãy nhớ rằng tham số `objectCounter` chứa một *tham chiếu* đến cùng đối tượng với biến `object` được truyền vào, trong khi `primitiveCounter` chỉ chứa một bản sao của giá trị nguyên thủy.
 
 <div class="lesson-note" markdown="1">
 
-#### Reassigning object data type variables
+#### Gán lại các biến kiểu dữ liệu đối tượng
 
-When we mutate an object that is referenced by multiple variables, the change will be visible through all those variables, since they all reference the same object. However, reassigning one of those variables to a new object will not also reassign the other variables. For example:
+Khi chúng ta thay đổi một đối tượng được nhiều biến tham chiếu đến, thay đổi đó sẽ được nhìn thấy thông qua tất cả các biến ấy, vì chúng đều tham chiếu đến cùng một đối tượng. Tuy nhiên, việc gán một trong các biến đó sang một đối tượng mới sẽ không đồng thời gán lại các biến khác. Ví dụ:
 
 ```javascript
 let animal = { species: "dog" };
@@ -103,28 +103,28 @@ console.log(dog); // { species: "dog" }
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Now that you've been exposed to objects, go back to the [array methods exercises](https://javascript.info/array-methods#tasks) at the end of the JavaScript.info array methods article from a few lessons ago. Do only the following exercises:
+1. Bây giờ bạn đã làm quen với đối tượng, hãy quay lại [các bài tập về phương thức mảng](https://javascript.info/array-methods#tasks) ở cuối bài viết về phương thức mảng trên JavaScript.info mà bạn đã học cách đây vài bài. Chỉ làm các bài sau:
    - `Map to names`
    - `Map to objects`
    - `Sort users by age`
    - `Get average age`
    - `Create keyed object from array`
-1. More practice with objects (inside arrays!). Fork and clone Wes Bos' [JavaScript30 repository](https://github.com/wesbos/JavaScript30). To follow along with these two video exercises, you'll want to open the `index-START.html` file.
-    - [04 - Array Cardio Day 1](https://www.youtube.com/watch?v=HB1ZC7czKRs)
-    - [07 - Array Cardio Day 2](https://www.youtube.com/watch?v=QNmRfyNg1lw)
-1. Go to the [JavaScript exercises repository's `foundations/object_basics` directory](https://github.com/TheOdinProject/javascript-exercises/tree/main/foundations/object_basics). Review each README file prior to completing the following exercises in order (as a reminder, you can always check the [repo's own README](https://github.com/TheOdinProject/javascript-exercises#how-to-use-these-exercises "JavaScript exercises repo README") for general instructions):
+1. Luyện tập thêm với đối tượng (bên trong mảng!). Fork và clone [repository JavaScript30](https://github.com/wesbos/JavaScript30) của Wes Bos. Để làm theo hai bài tập video này, bạn nên mở tệp `index-START.html`.
+    - [04 - Cardio với mảng, ngày 1](https://www.youtube.com/watch?v=HB1ZC7czKRs)
+    - [07 - Cardio với mảng, ngày 2](https://www.youtube.com/watch?v=QNmRfyNg1lw)
+1. Truy cập [thư mục `foundations/object_basics` của repository bài tập JavaScript](https://github.com/TheOdinProject/javascript-exercises/tree/main/foundations/object_basics). Đọc từng tệp README trước khi hoàn thành các bài tập sau theo đúng thứ tự (nhắc lại rằng bạn luôn có thể xem [README của chính repository](https://github.com/TheOdinProject/javascript-exercises#how-to-use-these-exercises "JavaScript exercises repo README") để biết hướng dẫn chung):
    - `01_calculator`
    - `02_palindromes`
    - `03_fibonacci`
    - `04_getTheTitles`
    - `05_findTheOldest`
 
-   Note: Solutions for these exercises can be found in the `solution` folder of each exercise.
+Lưu ý: Bạn có thể tìm thấy lời giải cho các bài tập này trong thư mục `solution` của từng bài.
 
-If you feel yourself getting overwhelmed or stuck, don't be afraid to go back and review or ask for help in the [TOP Discord server](https://discord.gg/fbFCkYabZB)!
+Nếu cảm thấy quá tải hoặc bị mắc kẹt, đừng ngại quay lại ôn tập hoặc nhờ trợ giúp trong [máy chủ Discord của TOP](https://discord.gg/fbFCkYabZB)!
 
 </div>

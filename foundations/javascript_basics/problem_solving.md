@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-Before we start digging into some pretty nifty JavaScript, we need to begin talking about *problem solving*: the most important skill a developer needs.
+Trước khi bắt đầu đào sâu vào một số JavaScript khá thú vị, chúng ta cần bắt đầu nói về *việc giải quyết vấn đề*: kỹ năng quan trọng nhất mà một nhà phát triển cần có.
 
-Problem solving is the core thing software developers do. The programming languages and tools they use are secondary to this fundamental skill.
+Giải quyết vấn đề là công việc cốt lõi của các nhà phát triển phần mềm. Những ngôn ngữ lập trình và công cụ họ sử dụng chỉ đứng sau kỹ năng nền tảng này.
 
-From his book, *"Think Like a Programmer"*, V. Anton Spraul defines problem solving in programming as:
+Trong cuốn sách *"Think Like a Programmer"*, V. Anton Spraul định nghĩa việc giải quyết vấn đề trong lập trình như sau:
 
-> Problem solving is writing an original program that performs a particular set of tasks and meets all stated constraints.
+> Giải quyết vấn đề là viết một chương trình nguyên bản thực hiện một tập hợp tác vụ cụ thể và đáp ứng tất cả các ràng buộc đã nêu.
 
-The set of tasks can range from solving small coding exercises all the way up to building a social network site like Facebook or a search engine like Google. Each problem has its own set of constraints, for example, high performance and scalability may not matter too much in a coding exercise but it will be vital in apps like Google that need to service billions of search queries each day.
+Tập hợp tác vụ có thể trải dài từ việc giải các bài tập lập trình nhỏ cho đến xây dựng một trang mạng xã hội như Facebook hoặc một công cụ tìm kiếm như Google. Mỗi vấn đề có bộ ràng buộc riêng; chẳng hạn, hiệu năng cao và khả năng mở rộng có thể không quá quan trọng trong một bài tập lập trình, nhưng lại sống còn đối với những ứng dụng như Google, vốn phải phục vụ hàng tỷ truy vấn tìm kiếm mỗi ngày.
 
-New programmers often find problem solving the hardest skill to build. It's not uncommon for budding programmers to breeze through learning syntax and programming concepts, yet when trying to code something on their own, they find themselves staring blankly at their text editor not knowing where to start.
+Những lập trình viên mới thường thấy giải quyết vấn đề là kỹ năng khó xây dựng nhất. Không hiếm trường hợp những người mới học lập trình dễ dàng tiếp thu cú pháp và các khái niệm lập trình, nhưng khi tự mình bắt tay viết mã, họ lại ngồi nhìn chằm chằm vào trình soạn thảo văn bản mà không biết bắt đầu từ đâu.
 
-The best way to improve your problem solving ability is by building experience by making lots and lots of programs. The more practice you have the better you'll be prepared to solve real world problems.
+Cách tốt nhất để cải thiện khả năng giải quyết vấn đề là tích lũy kinh nghiệm bằng cách xây dựng thật nhiều chương trình. Bạn càng luyện tập nhiều thì càng sẵn sàng hơn để giải quyết các vấn đề trong thực tế.
 
-In this lesson we will walk through a few techniques that can be used to help with the problem solving process.
+Trong bài học này, chúng ta sẽ lần lượt tìm hiểu một vài kỹ thuật có thể hỗ trợ quá trình giải quyết vấn đề.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain the three steps in the problem solving process.
-- Explain what pseudocode is and be able to use it to solve problems.
-- Be able to break a problem down into subproblems.
+- Giải thích ba bước trong quá trình giải quyết vấn đề.
+- Giải thích pseudocode là gì và có thể sử dụng nó để giải quyết vấn đề.
+- Có thể chia một vấn đề thành các vấn đề con.
 
-### Understand the problem
+### Hiểu vấn đề
 
-The first step to solving a problem is understanding exactly what the problem is. If you don't understand the problem, you won't know when you've successfully solved it and may waste a lot of time on a wrong solution.
+Bước đầu tiên để giải quyết một vấn đề là hiểu chính xác vấn đề đó là gì. Nếu không hiểu vấn đề, bạn sẽ không biết khi nào mình đã giải quyết thành công và có thể lãng phí rất nhiều thời gian cho một lời giải sai.
 
-To gain clarity and understanding of the problem, write it down on paper, reword it in plain English until it makes sense to you, and draw diagrams if that helps. When you can explain the problem to someone else in plain English, you understand it.
+Để làm rõ và hiểu vấn đề, hãy viết nó ra giấy, diễn đạt lại bằng tiếng Anh thông thường cho đến khi bạn thấy nó có ý nghĩa, và vẽ sơ đồ nếu điều đó hữu ích. Khi có thể giải thích vấn đề cho người khác bằng tiếng Anh thông thường, nghĩa là bạn đã hiểu nó.
 
-### Plan
+### Lập kế hoạch
 
-Now that you know what you're aiming to solve, don't jump into coding just yet. It's time to plan out how you're going to solve it first.
+Giờ bạn đã biết mình cần giải quyết điều gì, nhưng đừng vội viết mã. Trước hết, đã đến lúc lên kế hoạch xem bạn sẽ giải quyết vấn đề đó như thế nào.
 
-Some of the questions you should answer at this stage of the process:
+Ở giai đoạn này, bạn nên trả lời một số câu hỏi sau:
 
-- Does your program have a user interface? What will it look like? What functionality will the interface have? Sketch this out on paper.
-- What inputs will your program have? Will the user enter data or will you get input from somewhere else?
-- What's the desired output?
-- Given your inputs, what are the steps necessary to return the desired output?
+- Chương trình của bạn có giao diện người dùng không? Nó sẽ trông như thế nào? Giao diện sẽ có những chức năng gì? Hãy phác thảo trên giấy.
+- Chương trình sẽ nhận những đầu vào nào? Người dùng sẽ nhập dữ liệu hay bạn sẽ lấy đầu vào từ nơi khác?
+- Đầu ra mong muốn là gì?
+- Với những đầu vào đó, cần thực hiện các bước nào để trả về đầu ra mong muốn?
 
-The last question is where you will write out an algorithm to solve the problem. You can think of an algorithm as a recipe for solving a particular problem. It defines the steps that need to be taken by the computer to solve a problem in pseudocode.
+Câu hỏi cuối cùng là nơi bạn sẽ viết ra một thuật toán để giải quyết vấn đề. Bạn có thể hình dung thuật toán như một công thức để giải một vấn đề cụ thể. Nó xác định các bước máy tính cần thực hiện để giải quyết vấn đề bằng pseudocode.
 
 ### Pseudocode
 
-Pseudocode is writing out the logic for your program in natural language instead of code. It helps you slow down and think through the steps your program will have to go through to solve the problem.
+Pseudocode là việc viết logic của chương trình bằng ngôn ngữ tự nhiên thay vì mã nguồn. Nó giúp bạn chậm lại và suy nghĩ kỹ về các bước mà chương trình phải thực hiện để giải quyết vấn đề.
 
-Here's an example of what the pseudocode for a program that prints all numbers up to an inputted number might look like:
+Sau đây là một ví dụ về pseudocode cho một chương trình in ra tất cả các số cho đến số người dùng nhập:
 
 ```text
 When the user inputs a number
@@ -56,45 +56,45 @@ While counter is smaller than user inputted number increment the counter by one
 Print the value of the counter variable
 ```
 
-This is a basic program to demonstrate how pseudocode looks. There will be more examples of pseudocode included in the assignments.
+Đây là một chương trình cơ bản nhằm minh họa hình thức của pseudocode. Trong phần bài tập sẽ có thêm nhiều ví dụ về pseudocode.
 
-### Divide and conquer
+### Chia để trị
 
-From your planning, you should have identified some subproblems of the big problem you’re solving. Each of the steps in the algorithm we wrote out in the last section are subproblems. Pick the smallest or simplest one and start there with coding.
+Từ quá trình lập kế hoạch, bạn hẳn đã xác định được một số vấn đề con của vấn đề lớn đang cần giải quyết. Mỗi bước trong thuật toán đã viết ở phần trước đều là một vấn đề con. Hãy chọn vấn đề nhỏ nhất hoặc đơn giản nhất và bắt đầu viết mã từ đó.
 
-It's important to remember that you might not know all the steps that you might need up front, so your algorithm may be incomplete—this is fine. Getting started with and solving one of the subproblems you have identified in the planning stage often reveals the next subproblem you can work on. Or, if you already know the next subproblem, it’s often simpler with the first subproblem solved.
+Điều quan trọng cần nhớ là có thể bạn chưa biết ngay từ đầu tất cả các bước cần thực hiện, vì vậy thuật toán của bạn có thể chưa hoàn chỉnh — điều đó không sao. Bắt đầu và giải quyết một trong những vấn đề con đã xác định ở giai đoạn lập kế hoạch thường sẽ hé lộ vấn đề con tiếp theo mà bạn có thể xử lý. Hoặc nếu bạn đã biết vấn đề con tiếp theo là gì, việc giải quyết vấn đề con đầu tiên thường sẽ khiến nó trở nên đơn giản hơn.
 
-Many beginners try to solve the big problem in one go. **Don’t do this**. If the problem is sufficiently complex, you’ll get yourself tied in knots and make life a lot harder for yourself. Decomposing problems into smaller and easier to solve subproblems is a much better approach. Decomposition is the main way to deal with complexity, making problems easier and more approachable to solve and understand.
+Nhiều người mới học cố giải quyết vấn đề lớn chỉ trong một lần. **Đừng làm vậy**. Nếu vấn đề đủ phức tạp, bạn sẽ tự làm mình rối tung và khiến mọi việc khó khăn hơn nhiều. Phân rã vấn đề thành những vấn đề con nhỏ hơn, dễ giải quyết hơn là một cách tiếp cận tốt hơn nhiều. Phân rã là cách chủ yếu để xử lý sự phức tạp, giúp vấn đề trở nên dễ tiếp cận và dễ hiểu hơn.
 
-In short, break the big problem down and solve each of the smaller problems until you've solved the big problem.
+Tóm lại, hãy chia vấn đề lớn thành các phần nhỏ rồi giải quyết từng phần cho đến khi giải quyết được toàn bộ vấn đề lớn.
 
-### Solving Fizz Buzz
+### Giải bài Fizz Buzz
 
-To demonstrate this workflow in action, let's solve [Fizz Buzz](https://en.wikipedia.org/wiki/Fizz_buzz)
+Để minh họa quy trình này trong thực tế, hãy cùng giải bài [Fizz Buzz](https://en.wikipedia.org/wiki/Fizz_buzz)
 
-#### Understanding the problem
+#### Hiểu vấn đề
 
-> Write a program that takes a user's input and prints the numbers from one to the number the user entered. However, for multiples of three print `Fizz` instead of the number and for the multiples of five print `Buzz`. For numbers which are multiples of both three and five print `FizzBuzz`.
+> Viết một chương trình nhận đầu vào từ người dùng và in các số từ một đến số người dùng đã nhập. Tuy nhiên, với các bội số của ba, hãy in `Fizz` thay cho số; với các bội số của năm, hãy in `Buzz`. Với các số đồng thời là bội số của cả ba và năm, hãy in `FizzBuzz`.
 
-This is the big picture problem we will be solving. But we can always make it clearer by rewording it.
+Đây là bức tranh tổng thể của vấn đề chúng ta sẽ giải quyết. Tuy nhiên, chúng ta luôn có thể làm cho nó rõ ràng hơn bằng cách diễn đạt lại.
 
-Write a program that allows the user to enter a number, print each number between one and the number the user entered, but for numbers that divide by 3 without a remainder print `Fizz` instead. For numbers that divide by 5 without a remainder print `Buzz` and finally for numbers that divide by both 3 and 5 without a remainder print `FizzBuzz`.
+Viết một chương trình cho phép người dùng nhập một số, in từng số từ một đến số người dùng đã nhập; nhưng với những số chia hết cho 3, hãy in `Fizz` thay thế. Với những số chia hết cho 5, hãy in `Buzz`, và cuối cùng với những số chia hết cho cả 3 và 5, hãy in `FizzBuzz`.
 
-#### Planning
+#### Lập kế hoạch
 
-Does your program have an interface? What will it look like?
-Our FizzBuzz solution will be a browser console program, so we don't need an interface. The only user interaction will be allowing users to enter a number.
+Chương trình của bạn có giao diện không? Nó sẽ trông như thế nào?
+Chương trình FizzBuzz của chúng ta sẽ chạy trong console của trình duyệt, nên không cần giao diện. Tương tác duy nhất với người dùng là cho phép họ nhập một số.
 
-What inputs will your program have? Will the user enter data or will you get input from somewhere else?
-The user will enter a number from a prompt (popup box).
+Chương trình sẽ nhận những đầu vào nào? Người dùng sẽ nhập dữ liệu hay bạn sẽ lấy đầu vào từ nơi khác?
+Người dùng sẽ nhập một số thông qua prompt (hộp thoại bật lên).
 
-What's the desired output?
-The desired output is a list of numbers from 1 to the number the user entered. But each number that is divisible by 3 will output `Fizz`, each number that is divisible by 5 will output `Buzz` and each number that is divisible by both 3 and 5 will output `FizzBuzz`.
+Đầu ra mong muốn là gì?
+Đầu ra mong muốn là danh sách các số từ 1 đến số người dùng đã nhập. Tuy nhiên, mỗi số chia hết cho 3 sẽ cho ra `Fizz`, mỗi số chia hết cho 5 sẽ cho ra `Buzz`, và mỗi số chia hết cho cả 3 và 5 sẽ cho ra `FizzBuzz`.
 
-#### Writing the pseudocode
+#### Viết pseudocode
 
-What are the steps necessary to return the desired output?
-Here is an algorithm in pseudocode for this problem:
+Cần thực hiện những bước nào để trả về đầu ra mong muốn?
+Sau đây là một thuật toán dưới dạng pseudocode cho vấn đề này:
 
 ```text
 When a user inputs a number
@@ -105,27 +105,27 @@ If the current number is divisible by 3 and 5 then print "FizzBuzz"
 Otherwise print the current number
 ```
 
-#### Dividing and conquering
+#### Chia để trị
 
-As we can see from the algorithm we developed, the first subproblem we can solve is getting input from the user. So let's start there and verify it works by printing the entered number.
+Như có thể thấy từ thuật toán đã xây dựng, vấn đề con đầu tiên chúng ta có thể giải quyết là nhận đầu vào từ người dùng. Vì vậy, hãy bắt đầu từ đó và xác minh rằng nó hoạt động bằng cách in ra số đã nhập.
 
-With JavaScript, we'll use the "prompt" method.
+Với JavaScript, chúng ta sẽ sử dụng phương thức "prompt".
 
 ```javascript
 let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
 ```
 
-The above code should create a little popup box that asks the user for a number. The input we get back will be stored in our variable `answer`.
+Đoạn mã trên sẽ tạo một hộp thoại nhỏ yêu cầu người dùng nhập một số. Đầu vào nhận được sẽ được lưu trong biến `answer`.
 
 <div class="lesson-note lesson-note--tip" markdown=1>
 
-#### Using the parseInt function
+#### Sử dụng hàm parseInt
 
-We wrapped the prompt call in a `parseInt` function so that a number is returned from the user's input.
+Chúng ta bọc lời gọi prompt trong hàm `parseInt` để giá trị trả về từ đầu vào của người dùng là một số.
 
 </div>
 
-With that done, let's move on to the next subproblem: "Loop from 1 to the entered number". There are many ways to do this in JavaScript. One of the common ways - that you actually see in many other languages like Java, C++, and Ruby - is with the [for loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for):
+Sau khi hoàn tất, hãy chuyển sang vấn đề con tiếp theo: "Lặp từ 1 đến số đã nhập". Có nhiều cách thực hiện điều này trong JavaScript. Một cách phổ biến - cũng xuất hiện trong nhiều ngôn ngữ khác như Java, C++ và Ruby - là dùng [vòng lặp for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for):
 
 ```javascript
 let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
@@ -135,17 +135,17 @@ for (let i = 1; i <= answer; i++) {
 }
 ```
 
-If you haven't seen this before and it looks strange, it's actually straightforward. We declare a variable `i` and assign it 1: the initial value of the variable `i` in our loop. The second clause, `i <= answer` is our condition. We want to loop until `i` is greater than `answer`. The third clause, `i++`, tells our loop to increment `i` by 1 every iteration. As a result, if the user inputs 10, this loop would print numbers 1 - 10 to the console.
+Nếu bạn chưa từng thấy cách viết này và thấy nó kỳ lạ, thực ra nó khá đơn giản. Chúng ta khai báo một biến `i` và gán cho nó giá trị 1: giá trị ban đầu của biến `i` trong vòng lặp. Mệnh đề thứ hai, `i <= answer`, là điều kiện của chúng ta. Ta muốn lặp cho đến khi `i` lớn hơn `answer`. Mệnh đề thứ ba, `i++`, yêu cầu vòng lặp tăng `i` thêm 1 sau mỗi lần lặp. Vì vậy, nếu người dùng nhập 10, vòng lặp này sẽ in các số từ 1 đến 10 ra console.
 
 <div class="lesson-note lesson-note--tip" markdown=1>
 
-#### Starting the loop from 1
+#### Bắt đầu vòng lặp từ 1
 
-Most of the time, programmers find themselves looping from 0. Due to the needs of our program, we're starting from 1.
+Phần lớn thời gian, lập trình viên sẽ lặp từ 0. Do nhu cầu của chương trình này, chúng ta bắt đầu từ 1.
 
 </div>
 
-With that working, let's move on to the next problem: If the current number is divisible by 3, then print `Fizz`.
+Khi phần này đã hoạt động, hãy chuyển sang vấn đề tiếp theo: Nếu số hiện tại chia hết cho 3 thì in `Fizz`.
 
 ```javascript
 let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
@@ -159,9 +159,9 @@ for (let i = 1; i <= answer; i++) {
 }
 ```
 
-We are using the modulus operator (`%`) here to divide the current number by three. If you recall from a previous lesson, the modulus operator returns the remainder of a division. So if a remainder of 0 is returned from the division, it means the `current` number is divisible by 3.
+Ở đây, chúng ta dùng toán tử modulo (`%`) để chia số hiện tại cho ba. Nếu bạn còn nhớ bài học trước, toán tử modulo trả về phần dư của phép chia. Vì vậy, nếu phép chia trả về phần dư bằng 0, điều đó có nghĩa là số `current` chia hết cho 3.
 
-After this change the program will now output this when you run it and the user inputs 10:
+Sau thay đổi này, khi chạy chương trình với đầu vào của người dùng là 10, đầu ra sẽ là:
 
 ```bash
 1
@@ -176,7 +176,7 @@ Fizz
 10
 ```
 
-The program is starting to take shape. The final few subproblems should be easy to solve as the basic structure is in place and they are just different variations of the condition we've already got in place. Let's tackle the next one: If the current number is divisible by 5 then print `Buzz`.
+Chương trình đã bắt đầu thành hình. Một vài vấn đề con cuối cùng sẽ dễ giải quyết, vì cấu trúc cơ bản đã có sẵn và chúng chỉ là những biến thể khác của điều kiện hiện tại. Hãy xử lý vấn đề tiếp theo: Nếu số hiện tại chia hết cho 5 thì in `Buzz`.
 
 ```javascript
 let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
@@ -192,7 +192,7 @@ for (let i = 1; i <= answer; i++) {
 }
 ```
 
-When you run the program now, you should see this output if the user inputs 10:
+Khi chạy chương trình lúc này, nếu người dùng nhập 10, bạn sẽ thấy đầu ra sau:
 
 ```bash
 1
@@ -207,7 +207,7 @@ Fizz
 Buzz
 ```
 
-We have one more subproblem to solve to complete the program: If the current number is divisible by 3 and 5 then print `FizzBuzz`.
+Chúng ta còn một vấn đề con nữa cần giải quyết để hoàn thiện chương trình: Nếu số hiện tại chia hết cho cả 3 và 5 thì in `FizzBuzz`.
 
 ```javascript
 let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
@@ -225,11 +225,11 @@ for (let i = 1; i <= answer; i++) {
 }
 ```
 
-We've had to move the conditionals around a little to get it to work. The first condition now checks if `i` is divisible by 3 and 5 instead of checking if `i` is just divisible by 3. We've had to do this because if we kept it the way it was, it would run the first condition `if (i % 3 === 0)`, so that if `i` was divisible by 3, it would print `Fizz` and then move on to the next number in the iteration, even if `i` was divisible by 5 as well.
+Chúng ta phải sắp xếp lại các điều kiện một chút để chương trình hoạt động. Điều kiện đầu tiên giờ kiểm tra xem `i` có chia hết cho 3 và 5 hay không, thay vì chỉ kiểm tra `i` có chia hết cho 3 hay không. Sở dĩ phải làm vậy là vì nếu giữ nguyên cách cũ, chương trình sẽ chạy điều kiện đầu tiên `if (i % 3 === 0)`: khi `i` chia hết cho 3, nó sẽ in `Fizz` rồi chuyển sang số tiếp theo trong vòng lặp, ngay cả khi `i` cũng chia hết cho 5.
 
-With the condition `if (i % 3 === 0 && i % 5 === 0)` coming first, we check that `i` is divisible by both 3 and 5 before moving on to check if it is divisible by 3 or 5 individually in the `else if` conditions.
+Khi điều kiện `if (i % 3 === 0 && i % 5 === 0)` được đặt trước, chúng ta kiểm tra xem `i` có chia hết cho cả 3 và 5 hay không trước khi chuyển sang kiểm tra riêng xem nó có chia hết cho 3 hoặc 5 trong các điều kiện `else if` hay không.
 
-The program is now complete! If you run it now you should get this output when the user inputs 20:
+Chương trình đã hoàn tất! Nếu chạy ngay bây giờ với đầu vào của người dùng là 20, bạn sẽ nhận được đầu ra sau:
 
 ```bash
 1
@@ -254,12 +254,12 @@ Fizz
 Buzz
 ```
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read [How to Think Like a Programmer - Lessons in Problem Solving](https://www.freecodecamp.org/news/how-to-think-like-a-programmer-lessons-in-problem-solving-d1d8bf1de7d2/) by Richard Reis.
-  1. Watch [How to Begin Thinking Like a Programmer](https://www.youtube.com/watch?v=azcrPFhaY9k) by Coding Tech. It's an hour long but packed full of information and definitely worth your time watching.
-  1. Read this [Pseudocode: What It Is and How to Write It](https://www.builtin.com/data-science/pseudocode) article from Built In.
+  1. Đọc bài [Cách suy nghĩ như một lập trình viên - Bài học về giải quyết vấn đề](https://www.freecodecamp.org/news/how-to-think-like-a-programmer-lessons-in-problem-solving-d1d8bf1de7d2/) của Richard Reis.
+  1. Xem bài [Bắt đầu suy nghĩ như một lập trình viên như thế nào](https://www.youtube.com/watch?v=azcrPFhaY9k) của Coding Tech. Video dài một giờ nhưng chứa rất nhiều thông tin và chắc chắn đáng để bạn dành thời gian xem.
+  1. Đọc bài viết [Pseudocode: Nó là gì và cách viết](https://www.builtin.com/data-science/pseudocode) từ Built In.
 
 </div>

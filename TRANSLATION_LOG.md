@@ -270,6 +270,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `foundations/javascript_basics/clean_code.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên code và tên identifier. |
 | `foundations/javascript_basics/loops_and_arrays.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên JavaScript và tên method. |
 
+## Foundations đã dịch — batch 7
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `foundations/javascript_basics/object_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên JavaScript và tên identifier. |
+| `foundations/javascript_basics/problem_solving.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-21 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải bài tập. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

@@ -1,23 +1,23 @@
-### Introduction
+### Giới thiệu
 
-So here it is: it's time to actually start *making things*. This section will teach you the basics of HTML and CSS, the two foundational building blocks of pretty much everything on the web.
+Đây rồi: đã đến lúc thực sự *bắt tay vào làm sản phẩm*. Phần này sẽ dạy bạn những kiến thức cơ bản về HTML và CSS, hai khối nền tảng của hầu như mọi thứ trên web.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Get a basic overview of HTML, CSS and how they work together.
+- Có cái nhìn tổng quan cơ bản về HTML, CSS và cách chúng phối hợp với nhau.
 
-### HTML and CSS
+### HTML và CSS
 
-HTML and CSS are two languages that work together to create everything that you see when you look at something on the web. HTML is the raw data that a webpage is built out of. All the text, links, cards, lists, and buttons are created in HTML. CSS is what adds *style* to those plain elements. HTML puts information on a webpage, and CSS positions that information, gives it color, changes the font, and makes it look great!
+HTML và CSS là hai ngôn ngữ phối hợp với nhau để tạo ra mọi thứ bạn nhìn thấy khi xem nội dung trên web. HTML là dữ liệu thô tạo nên một trang web. Mọi văn bản, liên kết, thẻ nội dung, danh sách và nút đều được tạo bằng HTML. CSS là thứ thêm *kiểu dáng* cho những phần tử vốn đơn giản đó. HTML đưa thông tin lên trang web, còn CSS định vị thông tin, thêm màu sắc, thay đổi phông chữ và khiến trang trông đẹp mắt!
 
-Many great resources out there keep referring to HTML and CSS as *programming languages*, but if you want to get technical, labeling them as such is not quite accurate, because they are only concerned with presenting information. They are not used to program any logic. JavaScript, which you will be learning in the next section, is a programming language because it's used to make webpages do things. Yet, there is quite a lot you can do with just HTML and CSS, and you will definitely need them both. The following lessons focus on giving you the tools you need to be successful once you get to the JavaScript content as you continue through our curriculum!
+Nhiều tài liệu hay gọi HTML và CSS là *ngôn ngữ lập trình*, nhưng nếu xét thật kỹ thì cách gọi đó chưa hoàn toàn chính xác, vì chúng chỉ tập trung vào việc trình bày thông tin. Chúng không được dùng để lập trình bất kỳ logic nào. JavaScript, ngôn ngữ bạn sẽ học ở phần tiếp theo, là một ngôn ngữ lập trình vì nó được dùng để khiến các trang web thực hiện hành động. Tuy vậy, chỉ với HTML và CSS bạn vẫn có thể làm được rất nhiều việc, và chắc chắn bạn sẽ cần cả hai. Các bài học tiếp theo tập trung cung cấp cho bạn những công cụ cần thiết để thành công khi bước vào phần JavaScript trong suốt chương trình học!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Watch [HTML, CSS, JavaScript Explained (in 4 minutes for beginners)](https://www.youtube.com/watch?v=gT0Lh1eYk78). It will give you a quick overview of how these three technologies work together before you dive deeper into each one.
+1. Xem video [Giải thích HTML, CSS, JavaScript (trong 4 phút cho người mới bắt đầu)](https://www.youtube.com/watch?v=gT0Lh1eYk78). Video sẽ giúp bạn nhanh chóng hình dung cách ba công nghệ này phối hợp với nhau trước khi đi sâu vào từng công nghệ.
 
 </div>

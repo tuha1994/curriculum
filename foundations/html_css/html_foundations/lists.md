@@ -1,59 +1,59 @@
-### Introduction
+### Giới thiệu
 
-Whether it be IMDB's top 250 movies or the FBI's most wanted, lists are everywhere on the web and you are going to need one eventually in your webpages.
+Dù là 250 bộ phim đứng đầu trên IMDB hay danh sách những người bị FBI truy nã gắt gao nhất, danh sách xuất hiện ở khắp nơi trên web và sớm muộn gì bạn cũng sẽ cần đến một danh sách trong các trang web của mình.
 
-Luckily, with HTML there are a couple of different types of lists at your disposal.
+May mắn là HTML cung cấp cho bạn một vài loại danh sách khác nhau.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- How to create an unordered list.
-- How to create an ordered list.
+- Cách tạo danh sách không có thứ tự.
+- Cách tạo danh sách có thứ tự.
 
-### Unordered lists
+### Danh sách không có thứ tự
 
-If you want to have a list of items where the order doesn't matter, like a shopping list of items that can be bought in any order, then you can use an unordered list.
+Nếu muốn tạo một danh sách các mục mà thứ tự không quan trọng, chẳng hạn danh sách đồ cần mua có thể mua theo bất kỳ thứ tự nào, bạn có thể dùng danh sách không có thứ tự.
 
-Unordered lists are created using [the `<ul>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ul), and each item within the list is created using the list item element `<li>`.
+Danh sách không có thứ tự được tạo bằng [phần tử `<ul>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ul), còn mỗi mục trong danh sách được tạo bằng phần tử mục danh sách `<li>`.
 
-Each list item in an unordered list begins with a bullet point:
+Mỗi mục trong danh sách không có thứ tự bắt đầu bằng một dấu đầu dòng:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="powjajd" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/powjajd">
-  HTML-unordered-list</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/powjajd">
+  HTML-unordered-list</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Ordered lists
+### Danh sách có thứ tự
 
-If you instead want to create a list of items where the order *does* matter, like step-by-step instructions for a recipe, or your top 10 favorite TV shows, then you can use an ordered list.
+Nếu muốn tạo một danh sách các mục mà thứ tự *có* ý nghĩa, chẳng hạn hướng dẫn công thức theo từng bước hoặc 10 chương trình truyền hình yêu thích nhất của bạn, bạn có thể dùng danh sách có thứ tự.
 
-Ordered lists are created using [the `<ol>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol). Each individual item in them is again created using the list item element `<li>`. However, each list item in an ordered list begins with a number instead:
+Danh sách có thứ tự được tạo bằng [phần tử `<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol). Mỗi mục riêng lẻ trong danh sách cũng được tạo bằng phần tử mục danh sách `<li>`. Tuy nhiên, mỗi mục trong danh sách có thứ tự sẽ bắt đầu bằng một con số:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="yLXYvYp" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/yLXYvYp">
-  HTML-ordered-list</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/yLXYvYp">
+  HTML-ordered-list</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-To get some practice using lists, create a new HTML document and create the following lists:
+Để luyện tập sử dụng danh sách, hãy tạo một tài liệu HTML mới và tạo các danh sách sau:
 
-1. An unordered shopping list of your favorite foods
-1. An ordered list of todo's you need to get done today
-1. An unordered list of places you'd like to visit someday
-1. An ordered list of your all time top 5 favorite video games or movies
+1. Một danh sách không có thứ tự gồm những món ăn yêu thích của bạn
+1. Một danh sách có thứ tự gồm những việc bạn cần hoàn thành hôm nay
+1. Một danh sách không có thứ tự gồm những nơi bạn muốn đến thăm vào một ngày nào đó
+1. Một danh sách có thứ tự gồm 5 trò chơi điện tử hoặc bộ phim yêu thích nhất mọi thời đại của bạn
 
 </div>

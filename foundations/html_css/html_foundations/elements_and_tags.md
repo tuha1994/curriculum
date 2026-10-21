@@ -1,52 +1,52 @@
-### Introduction
+### Giới thiệu
 
-HTML (HyperText Markup Language) defines the structure and content of webpages. We use HTML elements to create all of the paragraphs, headings, lists, images, and links that make up a typical webpage. In this lesson, we will explore how HTML elements work.
+HTML (HyperText Markup Language - Ngôn ngữ đánh dấu siêu văn bản) xác định cấu trúc và nội dung của các trang web. Chúng ta sử dụng các phần tử HTML để tạo ra mọi đoạn văn, tiêu đề, danh sách, hình ảnh và liên kết cấu thành một trang web thông thường. Trong bài học này, chúng ta sẽ tìm hiểu cách các phần tử HTML hoạt động.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Explain what HTML tags are.
-- Explain what HTML elements are.
+- Giải thích thẻ HTML là gì.
+- Giải thích phần tử HTML là gì.
 
-### Elements and tags
+### Phần tử và thẻ
 
-Almost all elements on an HTML page are just pieces of content wrapped in opening and closing HTML tags.
+Hầu hết các phần tử trên một trang HTML chỉ là những mẩu nội dung được bao quanh bởi thẻ HTML mở và đóng.
 
-HTML tags are essential building blocks that define the structure and content of a webpage.
+Thẻ HTML là những khối xây dựng thiết yếu, dùng để xác định cấu trúc và nội dung của một trang web.
 
-Opening tags tell the browser that this is the start of an HTML element. They are comprised of a keyword enclosed in angle brackets `<>`. For example, an opening paragraph tag looks like this: `<p>`.
+Thẻ mở cho trình duyệt biết đây là phần bắt đầu của một phần tử HTML. Thẻ mở gồm một từ khóa được đặt trong dấu ngoặc nhọn `<>`. Ví dụ, thẻ mở của một đoạn văn có dạng: `<p>`.
 
-Closing tags tell the browser where an element ends. They are almost the same as opening tags; the only difference is that they have a forward slash before the keyword. For example, a closing paragraph tag looks like this: `</p>`.
+Thẻ đóng cho trình duyệt biết một phần tử kết thúc ở đâu. Thẻ đóng gần giống thẻ mở; điểm khác biệt duy nhất là nó có dấu gạch chéo trước từ khóa. Ví dụ, thẻ đóng của một đoạn văn có dạng: `</p>`.
 
-A full paragraph element looks like this:
+Một phần tử đoạn văn hoàn chỉnh có dạng:
 
 ```html
 <p>some text content</p>
 ```
 
-Let's break this down:
+Hãy phân tích ví dụ này:
 
-- `<p>` is the opening tag.
-- `some text content` represents content wrapped within the opening and closing tags.
-- `</p>` is the closing tag.
+- `<p>` là thẻ mở.
+- `some text content` đại diện cho nội dung được bao quanh bởi thẻ mở và thẻ đóng.
+- `</p>` là thẻ đóng.
 
-You can think of elements as containers for content. The opening and closing tags tell the browser what content the element contains. The browser can then use that information to determine how it should interpret and format the content.
+Bạn có thể hình dung các phần tử như những chiếc hộp chứa nội dung. Thẻ mở và thẻ đóng cho trình duyệt biết phần tử chứa nội dung nào. Sau đó, trình duyệt có thể dùng thông tin đó để xác định cách diễn giải và định dạng nội dung.
 
-HTML has a [vast list of predefined tags](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) that you can use to create all kinds of different elements. It is important to use the correct tags for content. Using the correct tags can have a big impact on two aspects of your sites: how they are ranked in search engines; and how accessible they are to users who rely on assistive technologies, like screen readers, to use the internet.
+HTML có một [danh sách rất lớn các thẻ được định nghĩa sẵn](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) mà bạn có thể dùng để tạo đủ loại phần tử khác nhau. Việc sử dụng đúng thẻ cho nội dung là rất quan trọng. Dùng đúng thẻ có thể ảnh hưởng lớn đến hai khía cạnh của trang web: thứ hạng của trang trên các công cụ tìm kiếm và khả năng tiếp cận đối với những người dùng dựa vào công nghệ hỗ trợ, chẳng hạn như trình đọc màn hình, để sử dụng internet.
 
-Using the correct elements for content is called semantic HTML. We will explore this in much more depth later on in the curriculum.
+Việc sử dụng đúng phần tử cho nội dung được gọi là HTML ngữ nghĩa. Chúng ta sẽ tìm hiểu chủ đề này sâu hơn nhiều ở phần sau của chương trình học.
 
-### Void Elements
+### Phần tử rỗng
 
-Some HTML elements do not have a closing tag. These elements just have a single tag, like: `<br>` or `<img>`. They are known as void elements because they are void of any content, there is nothing inside of them. No closing tag means they can't wrap content like other tags do.
+Một số phần tử HTML không có thẻ đóng. Những phần tử này chỉ có một thẻ duy nhất, chẳng hạn `<br>` hoặc `<img>`. Chúng được gọi là phần tử rỗng vì chúng không chứa nội dung nào bên trong. Không có thẻ đóng nghĩa là chúng không thể bao quanh nội dung như các thẻ khác.
 
-You might also see these referred to as self-closing tags. But those are just void elements with a forward slash(/) at the end like: `<br />` or `<img />`. You're likely to see self-closing tags used often for historical reasons. Browsers will be able to render them just fine, but the latest version of the HTML specification discourages their use and considers them invalid.
+Bạn cũng có thể thấy chúng được gọi là thẻ tự đóng. Tuy nhiên, đó chỉ là các phần tử rỗng có thêm dấu gạch chéo(/) ở cuối, chẳng hạn `<br />` hoặc `<img />`. Vì lý do lịch sử, bạn có thể sẽ thường xuyên bắt gặp thẻ tự đóng. Trình duyệt vẫn hiển thị chúng bình thường, nhưng phiên bản mới nhất của đặc tả HTML không khuyến khích sử dụng và xem chúng là không hợp lệ.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Watch Kevin Powell's [HTML & CSS for Absolute Beginners: What is HTML?](https://www.youtube.com/watch?v=X4sClFRMJ00).
+1. Xem video [HTML & CSS cho người mới bắt đầu: HTML là gì?](https://www.youtube.com/watch?v=X4sClFRMJ00) của Kevin Powell.
 
 </div>

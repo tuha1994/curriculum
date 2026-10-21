@@ -1,92 +1,92 @@
-### Introduction
+### Giới thiệu
 
-Links are one of the key features of HTML. They allow us to link to other HTML pages on the web. In fact, this is why it's called the web.
+Liên kết là một trong những tính năng then chốt của HTML. Chúng cho phép chúng ta liên kết đến các trang HTML khác trên web. Thực ra, đó chính là lý do nó được gọi là web.
 
-In this lesson, we will learn how to create links and add some visual flair to our websites by embedding images.
+Trong bài học này, chúng ta sẽ học cách tạo liên kết và thêm điểm nhấn trực quan cho website bằng cách nhúng hình ảnh.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- How to create links to pages on other websites on the internet.
-- How to create links to other pages on your own websites.
-- The difference between absolute and relative links.
-- How to display an image on a webpage using HTML.
+- Cách tạo liên kết đến các trang trên những website khác trên internet.
+- Cách tạo liên kết đến các trang khác trên website của chính bạn.
+- Sự khác nhau giữa liên kết tuyệt đối và liên kết tương đối.
+- Cách hiển thị hình ảnh trên trang web bằng HTML.
 
-### Preparation
+### Chuẩn bị
 
-To get some practice using links and images throughout this lesson we need an HTML project to work with.
+Để luyện tập sử dụng liên kết và hình ảnh trong suốt bài học này, chúng ta cần một dự án HTML để làm việc.
 
-1. Create a new directory named `odin-links-and-images`.
-1. Within that directory, create a new file named `index.html`.
-1. Open the file in VS Code and fill in the usual HTML boilerplate.
-1. Finally, add the following h1 to the body:
+1. Tạo một thư mục mới có tên `odin-links-and-images`.
+1. Trong thư mục đó, tạo một tệp mới có tên `index.html`.
+1. Mở tệp trong VS Code và điền boilerplate HTML thông thường.
+1. Cuối cùng, thêm h1 sau vào body:
 
 ```html
 <h1>Homepage</h1>
 ```
 
-### Anchor elements
+### Phần tử anchor
 
-To create a link in HTML, we use the anchor element. An anchor element is defined by wrapping the text or another HTML element we want to be a link with an `<a>` tag.
+Để tạo liên kết trong HTML, chúng ta dùng phần tử anchor. Phần tử anchor được định nghĩa bằng cách bao quanh văn bản hoặc một phần tử HTML khác mà chúng ta muốn biến thành liên kết bằng thẻ `<a>`.
 
-Add the following to the body of the `index.html` page we created and open it in the browser:
+Thêm đoạn sau vào body của trang `index.html` đã tạo rồi mở trang trong trình duyệt:
 
 ```html
 <a>About The Odin Project</a>
 ```
 
-You may have noticed that clicking this link doesn't do anything. This is because an anchor tag on its own won't know where we want to link to. We have to tell it a destination to go to. We do this by using an HTML attribute.
+Có thể bạn nhận thấy việc nhấp vào liên kết này không làm gì cả. Đó là vì chỉ riêng thẻ anchor không biết chúng ta muốn liên kết đến đâu. Chúng ta phải chỉ cho nó một đích đến. Việc này được thực hiện bằng một thuộc tính HTML.
 
-An HTML attribute gives additional information to an HTML element and always goes in the element's opening tag. An attribute is usually made up of two parts: a name, and a value; however, not all attributes require a value. In our case, we need to add an `href` (hypertext reference) attribute to the opening anchor tag. The value of the href attribute is the destination we want our link to go to.
+Thuộc tính HTML cung cấp thêm thông tin cho một phần tử HTML và luôn nằm trong thẻ mở của phần tử đó. Một thuộc tính thường gồm hai phần: tên và giá trị; tuy nhiên, không phải thuộc tính nào cũng cần giá trị. Trong trường hợp này, chúng ta cần thêm thuộc tính `href` (hypertext reference) vào thẻ mở anchor. Giá trị của thuộc tính href là đích đến mà chúng ta muốn liên kết hướng tới.
 
-Add the following `href` attribute to the anchor element we created previously and try clicking it again, don't forget to refresh the browser so the new changes can be applied.
+Thêm thuộc tính `href` sau vào phần tử anchor đã tạo trước đó rồi thử nhấp lại; đừng quên làm mới trình duyệt để các thay đổi mới có hiệu lực.
 
 ```html
 <a href="https://www.theodinproject.com/about">About The Odin Project</a>
 ```
 
-By default, any text wrapped with an anchor tag without an `href` attribute will look like plain text. If the `href` attribute is present, the browser will give the text a blue color and underline it to signify it is a link.
+Theo mặc định, mọi văn bản được bao quanh bởi thẻ anchor nhưng không có thuộc tính `href` sẽ trông như văn bản thông thường. Nếu có thuộc tính `href`, trình duyệt sẽ hiển thị văn bản màu xanh và gạch chân để cho biết đó là một liên kết.
 
-It's worth noting you can use anchor tags to link to any kind of resource on the internet, not just other HTML documents. You can link to videos, pdf files, images, and so on, but for the most part, you will be linking to other HTML documents.
+Cần lưu ý rằng bạn có thể dùng thẻ anchor để liên kết đến bất kỳ loại tài nguyên nào trên internet, không chỉ các tài liệu HTML khác. Bạn có thể liên kết đến video, tệp pdf, hình ảnh, v.v., nhưng phần lớn thời gian bạn sẽ liên kết đến các tài liệu HTML khác.
 
-### Opening links in a new tab
+### Mở liên kết trong tab mới
 
-The method shown above opens links in the same tab as the webpage containing them. This is the default behavior of most browsers and it can be changed relatively easily. All we need is another attribute: the `target` attribute.
+Phương pháp trên mở liên kết trong cùng tab với trang web chứa liên kết. Đây là hành vi mặc định của hầu hết trình duyệt và có thể dễ dàng thay đổi. Tất cả những gì chúng ta cần là một thuộc tính khác: thuộc tính `target`.
 
-While `href` specifies the destination link, `target` specifies where the linked resource will be opened. If it is not present, then, by default, it will take on the `_self` value which opens the link in the current tab. To open the link in a new tab or window (depends on browser settings) you can set it to `_blank` as follows:
+Trong khi `href` chỉ định đích đến của liên kết, `target` chỉ định nơi tài nguyên được liên kết sẽ mở. Nếu không có thuộc tính này, theo mặc định nó nhận giá trị `_self`, mở liên kết trong tab hiện tại. Để mở liên kết trong tab hoặc cửa sổ mới (tùy cài đặt trình duyệt), bạn có thể đặt giá trị là `_blank` như sau:
 
 ```html
 <a href="https://www.theodinproject.com/about" target="_blank" rel="noreferrer">About The Odin Project</a>
 ```
 
-You may have noticed that we snuck in the `rel` attribute above. This attribute is used to describe the relation between the current page and the linked document and can take multiple values. The most relevant ones to discuss right now are:
+Có thể bạn đã nhận thấy chúng ta thêm thuộc tính `rel` ở trên. Thuộc tính này dùng để mô tả mối quan hệ giữa trang hiện tại và tài liệu được liên kết, đồng thời có thể nhận nhiều giá trị. Những giá trị liên quan nhất lúc này là:
 
-- `noopener`: Prevents the new tab from accessing the original page, which would have opened the possibility of phishing attacks like [tabnabbing](https://owasp.org/www-community/attacks/Reverse_Tabnabbing). Modern browsers all set this automatically for any links that have `target="_blank"`, but you will often still see this manually set for historic browser compatibility.
-- `noreferrer`: The same as `noopener` but also prevents certain details about the original page from being passed to the new page; [referrer information is not always desirable to share](https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Referer_header:_privacy_and_security_concerns#the_referrer_problem).
+- `noopener`: Ngăn tab mới truy cập trang gốc, nhờ đó loại bỏ khả năng xảy ra các cuộc tấn công lừa đảo như [tabnabbing](https://owasp.org/www-community/attacks/Reverse_Tabnabbing). Các trình duyệt hiện đại đều tự động đặt thuộc tính này cho mọi liên kết có `target="_blank"`, nhưng bạn vẫn thường thấy nó được đặt thủ công để tương thích với các trình duyệt cũ.
+- `noreferrer`: Tương tự `noopener` nhưng còn ngăn một số thông tin nhất định về trang gốc được truyền sang trang mới; [thông tin referrer không phải lúc nào cũng nên được chia sẻ](https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Referer_header:_privacy_and_security_concerns#the_referrer_problem).
 
-### Absolute and relative links
+### Liên kết tuyệt đối và tương đối
 
-Generally, there are two kinds of links we will create:
+Nhìn chung, chúng ta sẽ tạo hai loại liên kết:
 
-- Links to pages on other websites on the internet.
-- Links to pages located on our own websites.
+- Liên kết đến các trang trên những website khác trên internet.
+- Liên kết đến các trang nằm trên website của chính chúng ta.
 
-#### Absolute links
+#### Liên kết tuyệt đối
 
-Links to pages on other websites on the internet are called absolute links. A typical absolute link will be made up of the following parts: `scheme://domain/path`. An absolute link will always contain the [scheme and domain](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#basics_anatomy_of_a_url) of the destination.
+Liên kết đến các trang trên những website khác trên internet được gọi là liên kết tuyệt đối. Một liên kết tuyệt đối điển hình gồm các phần sau: `scheme://domain/path`. Liên kết tuyệt đối luôn chứa [scheme và domain](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#basics_anatomy_of_a_url) của đích đến.
 
-We've already seen an absolute link in action. The link we created to The Odin Project's About page earlier was an absolute link as it contains the scheme and domain.
+Chúng ta đã thấy một liên kết tuyệt đối hoạt động. Liên kết tạo đến trang About của The Odin Project trước đó là liên kết tuyệt đối vì nó chứa scheme và domain.
 
 `https://www.theodinproject.com/about`
 
-#### Relative links
+#### Liên kết tương đối
 
-Links to other pages within our own website are called relative links. Relative links do not include the domain name, since it is another page on the same site, it assumes the domain name will be the same as the page we created the link on.
+Liên kết đến các trang khác trong website của chính chúng ta được gọi là liên kết tương đối. Liên kết tương đối không bao gồm tên domain vì đó là một trang khác trên cùng website; nó giả định tên domain sẽ giống với trang nơi chúng ta tạo liên kết.
 
-Relative links only include the file path to the other page, *relative* to the page you are creating the link on. This is quite abstract, let's see this in action using an example.
+Liên kết tương đối chỉ bao gồm đường dẫn tệp đến trang khác, *tương đối* với trang nơi bạn tạo liên kết. Khái niệm này khá trừu tượng, hãy xem một ví dụ thực tế.
 
-Within the `odin-links-and-images` directory, create another HTML file named `about.html` and paste the following code into it:
+Trong thư mục `odin-links-and-images`, hãy tạo một tệp HTML khác có tên `about.html` và dán đoạn mã sau vào đó:
 
 ```html
 <!DOCTYPE html>
@@ -102,7 +102,7 @@ Within the `odin-links-and-images` directory, create another HTML file named `ab
 </html>
 ```
 
-Back in the index page, add the following anchor element to create a link to the about page:
+Quay lại trang index, thêm phần tử anchor sau để tạo liên kết đến trang about:
 
 ```html
 <body>
@@ -113,17 +113,17 @@ Back in the index page, add the following anchor element to create a link to the
 </body>
 ```
 
-Open the index file in a browser and click on the about link to make sure it is all wired together correctly. Clicking the link should go to the about page we just created.
+Mở tệp index trong trình duyệt rồi nhấp vào liên kết about để bảo đảm mọi thứ đã được nối đúng. Khi nhấp vào liên kết, bạn sẽ được đưa đến trang about vừa tạo.
 
-This works because the index and about page are in the same directory. That means we can use its name (`about.html`) as the link's `href` value.
+Điều này hoạt động vì trang index và trang about nằm trong cùng một thư mục. Vì vậy, chúng ta có thể dùng tên của nó (`about.html`) làm giá trị `href` của liên kết.
 
-But we will usually want to organize our website directories a little better. Normally we would only have the `index.html` at the root directory and all other HTML files in their own directory.
+Tuy nhiên, thông thường chúng ta sẽ muốn tổ chức các thư mục của website gọn gàng hơn. Thông thường chỉ có `index.html` nằm ở thư mục gốc, còn mọi tệp HTML khác nằm trong thư mục riêng.
 
-Create a directory named `pages` within the `odin-links-and-images` directory and move the `about.html` file into this new directory.
+Tạo một thư mục có tên `pages` bên trong thư mục `odin-links-and-images` rồi chuyển tệp `about.html` vào thư mục mới này.
 
-Refresh the index page in the browser and then click on the about link. It will now be broken. This is because the location of the about page file has changed.
+Làm mới trang index trong trình duyệt rồi nhấp vào liên kết about. Bây giờ liên kết sẽ bị hỏng vì vị trí của tệp about đã thay đổi.
 
-To fix this, we just need to update the about link `href` value to include the `pages/` directory since that is the new location of the about file *relative* to the index file.
+Để sửa lỗi, chỉ cần cập nhật giá trị `href` của liên kết about để thêm thư mục `pages/`, vì đó là vị trí mới của tệp about *tương đối* với tệp index.
 
 ```html
 <body>
@@ -132,9 +132,9 @@ To fix this, we just need to update the about link `href` value to include the `
 </body>
 ```
 
-Refresh the index page in the browser and try clicking the about link again, it should now be back in working order.
+Làm mới trang index trong trình duyệt rồi thử nhấp lại vào liên kết about; bây giờ liên kết sẽ hoạt động bình thường.
 
-In many cases, this will work just fine; however, you can still run into unexpected issues with this approach. Prepending `./` before the link will in most cases prevent such issues. By adding  `./` you are specifying to your code that it should start looking for the file/directory *relative* to the `current` directory.
+Trong nhiều trường hợp, cách này sẽ hoạt động tốt; tuy nhiên, bạn vẫn có thể gặp các vấn đề bất ngờ. Thêm `./` vào trước liên kết thường sẽ ngăn được các vấn đề đó. Khi thêm `./`, bạn đang chỉ cho mã biết rằng nó phải bắt đầu tìm tệp/thư mục *tương đối* với thư mục `current`.
 
 ```html
 <body>
@@ -143,75 +143,75 @@ In many cases, this will work just fine; however, you can still run into unexpec
 </body>
 ```
 
-#### A metaphor
+#### Một phép ẩn dụ
 
-Absolute and relative links are a tricky concept to build a good mental model of, a metaphor may help:
+Liên kết tuyệt đối và tương đối là một khái niệm khó xây dựng mô hình tư duy chính xác; một phép ẩn dụ có thể giúp ích:
 
-Think of your domain name (`town.com`) as a town, the directory in which your website is located (`/museum`) as a museum, and each page on your website as a room in the museum (`/museum/movie_room.html` and `/museum/shops/coffee_shop.html`). Relative links like `./shops/coffee_shop.html` are directions from the current room (the museum movie room `/museum/movie_room.html`) to another room (the museum shop). Absolute links, on the other hand, are full directions including the protocol (`https`), domain name (`town.com`) and the path from that domain name (`/museum/shops/coffee_shop.html`): `https://town.com/museum/shops/coffee_shop.html`.
+Hãy hình dung tên domain (`town.com`) là một thị trấn, thư mục chứa website (`/museum`) là một viện bảo tàng, và mỗi trang trên website là một căn phòng trong bảo tàng (`/museum/movie_room.html` và `/museum/shops/coffee_shop.html`). Các liên kết tương đối như `./shops/coffee_shop.html` là chỉ dẫn từ căn phòng hiện tại (phòng chiếu phim của bảo tàng `/museum/movie_room.html`) đến một căn phòng khác (cửa hàng trong bảo tàng). Ngược lại, liên kết tuyệt đối là chỉ dẫn đầy đủ, bao gồm giao thức (`https`), tên domain (`town.com`) và đường dẫn từ domain đó (`/museum/shops/coffee_shop.html`): `https://town.com/museum/shops/coffee_shop.html`.
 
-### Images
+### Hình ảnh
 
-Websites would be fairly boring if they could only display text. Luckily HTML provides a wide variety of elements for displaying all sorts of different media. The most widely used of these is the image element.
+Website sẽ khá nhàm chán nếu chỉ hiển thị được văn bản. May mắn là HTML cung cấp nhiều phần tử để hiển thị đủ loại phương tiện khác nhau. Phần tử được dùng phổ biến nhất trong số đó là phần tử hình ảnh.
 
-To display an image in HTML we use the `<img>` element. Unlike the other elements we have encountered, the `<img>` element is a void element. As we have seen earlier in the course, void elements do not need a closing tag because they are naturally empty and do not contain any content.
+Để hiển thị hình ảnh trong HTML, chúng ta dùng phần tử `<img>`. Không giống các phần tử đã gặp, phần tử `<img>` là một phần tử rỗng. Như đã học trước đó, phần tử rỗng không cần thẻ đóng vì vốn dĩ chúng trống và không chứa nội dung.
 
-Instead of wrapping content with an opening and closing tag, it embeds an image into the page using a `src` attribute which tells the browser where the image file is located. The `src` attribute works much like the `href` attribute for anchor tags. It can embed an image using both absolute and relative paths.
+Thay vì bao quanh nội dung bằng thẻ mở và thẻ đóng, phần tử này nhúng hình ảnh vào trang bằng thuộc tính `src`, cho trình duyệt biết tệp hình ảnh nằm ở đâu. Thuộc tính `src` hoạt động gần giống thuộc tính `href` của thẻ anchor. Nó có thể nhúng hình ảnh bằng cả đường dẫn tuyệt đối và tương đối.
 
-For example, using an absolute path we can display an image located on The Odin Project site:
+Ví dụ, bằng đường dẫn tuyệt đối, chúng ta có thể hiển thị một hình ảnh nằm trên website The Odin Project:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="gORbExZ" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/gORbExZ">
-  absolute-path-image</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/gORbExZ">
+  absolute-path-image</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-To display images on your website that are hosted on your own web server, you can use a relative path.
+Để hiển thị hình ảnh trên website được lưu trữ trên máy chủ web của chính bạn, có thể dùng đường dẫn tương đối.
 
 #### Linux, macOS, ChromeOS
 
-1. Create a new directory named `images` within the `odin-links-and-images` project.
-1. Next, [download our practice image](https://unsplash.com/photos/Mv9hjnEUHR4/download?force=true&w=640) and move it into the images directory we just created.
-1. Rename the image to `dog.jpg`.
+1. Tạo một thư mục mới có tên `images` trong dự án `odin-links-and-images`.
+1. Tiếp theo, [tải xuống hình ảnh thực hành](https://unsplash.com/photos/Mv9hjnEUHR4/download?force=true&w=640) rồi chuyển nó vào thư mục images vừa tạo.
+1. Đổi tên hình ảnh thành `dog.jpg`.
 
 #### WSL2
 
-When you download a file from the internet, Windows has a security feature that creates a hidden `Zone.Identifier` file with the same name as your downloaded file and it looks like `mypicture.jpg:Zone.Identifier` This file is harmless, but we'd like to avoid copying it over and cluttering up our directories.
+Khi tải tệp từ internet, Windows có một tính năng bảo mật tạo một tệp `Zone.Identifier` ẩn cùng tên với tệp đã tải xuống; tệp đó có dạng `mypicture.jpg:Zone.Identifier`. Tệp này không gây hại, nhưng chúng ta muốn tránh sao chép nó sang WSL2 và làm lộn xộn các thư mục.
 
-1. Create a new directory named `images` within the `odin-links-and-images` project.
+1. Tạo một thư mục mới có tên `images` trong dự án `odin-links-and-images`.
 
-1. Next, [download the stock dog image](https://unsplash.com/photos/Mv9hjnEUHR4/download?force=true&w=640).
+1. Tiếp theo, [tải xuống hình ảnh chú chó](https://unsplash.com/photos/Mv9hjnEUHR4/download?force=true&w=640).
 
-1. Right click on the new download at the bottom of the chrome window and select "Show in folder".
+1. Nhấp chuột phải vào tệp vừa tải ở cuối cửa sổ chrome rồi chọn "Hiển thị trong thư mục".
 
-   1. Alternatively, if you do not see anything at the bottom of the chrome window, open the "Customize and control Google Chrome kebab menu and select the "Downloads" item. This will show all of your downloads, each with its own "Show in folder" button.
+   1. Ngoài ra, nếu không thấy gì ở cuối cửa sổ chrome, hãy mở "Tùy chỉnh và điều khiển Google Chrome" rồi chọn mục "Tệp tải xuống". Thao tác này sẽ hiển thị tất cả tệp đã tải xuống, mỗi tệp có nút "Hiển thị trong thư mục" riêng.
 
-1. Rename the image to `dog.jpg`.
+1. Đổi tên hình ảnh thành `dog.jpg`.
 
-1. Drag the file from your downloads folder to VSCode's file browser into your new `images` directory.
+1. Kéo tệp từ thư mục tải xuống vào trình duyệt tệp của VSCode, thả vào thư mục `images` mới tạo.
 
-   1. Alternatively, using your Ubuntu terminal, navigate to the folder you want to copy the image to (`cd ~/odin-links-and-images` for example)
+   1. Ngoài ra, bằng terminal Ubuntu, hãy điều hướng đến thư mục bạn muốn sao chép hình ảnh vào (`cd ~/odin-links-and-images` chẳng hạn)
 
-   1. Type `cp <space>`
+   1. Nhập `cp <space>`
 
-   1. Drag the `dog.jpg` image from a Windows Explorer window and drop it onto the terminal window, it should appear as `"/mnt/c/users/username/Downloads/dog.jpg"`
+   1. Kéo hình ảnh `dog.jpg` từ cửa sổ Windows Explorer rồi thả vào cửa sổ terminal; lúc đó nó sẽ xuất hiện dưới dạng `"/mnt/c/users/username/Downloads/dog.jpg"`
 
-   1. Type `<space> .` to tell cp that you want to copy the file to your current working directory. The full command will look something like:
+   1. Nhập `<space> .` để cho cp biết bạn muốn sao chép tệp vào thư mục làm việc hiện tại. Lệnh đầy đủ sẽ có dạng:
 
    ```bash
    cp "/mnt/c/users/username/Downloads/dog.jpg" .
    ```
 
-   1. Hit <kbd>Enter</kbd> to complete the command, and use `ls` to confirm the file now exists.
+   1. Nhấn <kbd>Enter</kbd> để hoàn tất lệnh, rồi dùng `ls` để xác nhận tệp đã tồn tại.
 
-Dragging files from Windows into the VSCode file browser prevents the `Zone.Identifier` files from being copied over. From now on, any time you need to copy pictures or other downloaded files like this into WSL2, you can do it in this way. If you ever accidentally copy these `Zone.Identifier` files into WSL2, you can safely delete them without any issue.
+Kéo tệp từ Windows vào trình duyệt tệp của VSCode sẽ ngăn các tệp `Zone.Identifier` bị sao chép theo. Từ giờ, mỗi khi cần sao chép hình ảnh hoặc các tệp đã tải xuống khác vào WSL2, bạn có thể làm theo cách này. Nếu vô tình sao chép các tệp `Zone.Identifier` vào WSL2, bạn có thể xóa chúng an toàn mà không gặp vấn đề gì.
 
-#### Adding an image to an HTML file
+#### Thêm hình ảnh vào tệp HTML
 
-Finally add the image to the `index.html` file:
+Cuối cùng, thêm hình ảnh vào tệp `index.html`:
 
 ```html
 <body>
@@ -224,90 +224,90 @@ Finally add the image to the `index.html` file:
 </body>
 ```
 
-Save the `index.html` file and open it in a browser to view Charles in all his glory.
+Lưu tệp `index.html` rồi mở trong trình duyệt để ngắm Charles trong tất cả vẻ đáng yêu của nó.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Images you use should be free for your intended purpose
+#### Hình ảnh bạn dùng phải miễn phí cho mục đích dự định
 
-There are many free images available but make sure to give credit to the creator of the image in your project.
+Có rất nhiều hình ảnh miễn phí, nhưng hãy nhớ ghi công người tạo ra hình ảnh trong dự án của bạn.
 
-An easy way to provide credit is to include the creator's name and contact info in a README file in your repository, or give [attribution](https://support.freepik.com/s/article/Attribution-How-when-and-where?language=en_US).
+Một cách dễ dàng để ghi công là đưa tên và thông tin liên hệ của tác giả vào tệp README trong repository của bạn, hoặc cung cấp [thông tin ghi công](https://support.freepik.com/s/article/Attribution-How-when-and-where?language=en_US).
 
-To find them - Google images and in image results -> Tools -> Usage rights -> "Creative Commons". Choose & click on an image and click license details.
+Để tìm hình ảnh, hãy tìm trên Google Images, rồi trong kết quả hình ảnh chọn Tools -> Usage rights -> "Creative Commons". Chọn và nhấp vào một hình ảnh, sau đó nhấp vào thông tin giấy phép.
 
-We recommend that you always review the license requirements of any images you want to use.
+Chúng tôi khuyên bạn luôn xem lại các yêu cầu giấy phép của bất kỳ hình ảnh nào muốn sử dụng.
 
 </div>
 
-### Parent directories
+### Thư mục cha
 
-What if we want to use the dog image in the about page? We would first have to go up one level out of the pages directory into its parent directory so we could then access the images directory.
+Nếu muốn dùng hình ảnh chú chó trong trang about thì sao? Trước hết, chúng ta phải đi lên một cấp, ra khỏi thư mục pages vào thư mục cha của nó để có thể truy cập thư mục images.
 
-To go to the parent directory we need to use two dots in the relative filepath like this: `../`. Let's see this in action, within the body of the `about.html` file, add the following image below the heading we added earlier:
+Để đi đến thư mục cha, chúng ta dùng hai dấu chấm trong đường dẫn tương đối như sau: `../`. Hãy xem cách này hoạt động: trong phần body của tệp `about.html`, thêm hình ảnh sau bên dưới tiêu đề đã tạo trước đó:
 
 ```html
 <img src="../images/dog.jpg">
 ```
 
-To break this down:
+Phân tích đoạn mã:
 
-1. First, we are going to the parent directory of the `pages` directory which is `odin-links-and-images`.
-1. Then, from the parent directory, we can go into the `images` directory.
-1. Finally, we can access the `dog.jpg` file.
+1. Trước hết, chúng ta đi đến thư mục cha của thư mục `pages`, tức `odin-links-and-images`.
+1. Sau đó, từ thư mục cha, chúng ta đi vào thư mục `images`.
+1. Cuối cùng, chúng ta có thể truy cập tệp `dog.jpg`.
 
-Using the metaphor we used earlier, using `../` in a filepath is kind of like stepping out from the room you are currently in to the main hallway so you can go to another room.
+Dùng phép ẩn dụ ở trên, sử dụng `../` trong đường dẫn tệp cũng giống như bước ra khỏi căn phòng hiện tại vào hành lang chính để đi đến một căn phòng khác.
 
-### Alt attribute
+### Thuộc tính alt
 
-Besides the `src` attribute, every image element should also have an `alt` (alternative text) attribute.
+Ngoài thuộc tính `src`, mọi phần tử hình ảnh cũng nên có thuộc tính `alt` (văn bản thay thế).
 
-The `alt` attribute is used to describe an image. It will be used in place of the image if it cannot be loaded. It is also used with screen readers to describe what the image is to visually impaired users.
+Thuộc tính `alt` dùng để mô tả một hình ảnh. Nó sẽ được dùng thay cho hình ảnh nếu hình ảnh không thể tải. Trình đọc màn hình cũng dùng thuộc tính này để mô tả hình ảnh cho người dùng khiếm thị.
 
-This is how the The Odin Project logo example we used earlier looks with an `alt` attribute included:
+Ví dụ logo The Odin Project đã dùng trước đó sẽ có dạng sau khi thêm thuộc tính `alt`:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="ExXjoEp" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/ExXjoEp">
-  image-alt-attribute</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/ExXjoEp">
+  image-alt-attribute</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-As a bit of practice, add an `alt` attribute to the dog image we added to the `odin-links-and-images` project.
+Để luyện tập, hãy thêm thuộc tính `alt` vào hình ảnh chú chó đã thêm trong dự án `odin-links-and-images`.
 
-### Image size attributes
+### Thuộc tính kích thước hình ảnh
 
-While not strictly required, specifying height and width
-attributes in image tags helps the browser layout the page without causing the page to jump and flash.
+Dù không bắt buộc tuyệt đối, việc chỉ định thuộc tính chiều cao và chiều rộng
+trong thẻ hình ảnh giúp trình duyệt bố cục trang mà không khiến trang nhảy hoặc chớp.
 
-It is a good habit to always specify these attributes on every image, even when the image is the correct size or you are using CSS to modify it. This is to
-prevent content jumping as images load. Use the image's actual dimensions when specifying size.
+Bạn nên tạo thói quen luôn chỉ định các thuộc tính này trên mọi hình ảnh, ngay cả khi hình ảnh đã đúng kích thước hoặc bạn đang dùng CSS để điều chỉnh. Mục đích là
+ngăn nội dung bị nhảy khi hình ảnh tải. Hãy dùng kích thước thực tế của hình ảnh khi chỉ định kích thước.
 
-Here is our Odin Project logo example with height and width attributes included:
+Đây là ví dụ logo The Odin Project khi đã có thuộc tính chiều cao và chiều rộng:
 
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="PogmYGp" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PogmYGp">
-  Image Height and Width Attributes</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/PogmYGp">
+  Chiều cao và chiều rộng hình ảnh</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Go ahead and update the `odin-links-and-images` project with width and height attributes on the dog image.
+Hãy cập nhật dự án `odin-links-and-images` bằng các thuộc tính width và height cho hình ảnh chú chó.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Watch Kevin Powell's videos:
-   - [HTML Links](https://www.youtube.com/watch?v=tsEQgGjSmkM).
-   - [HTML Images](https://www.youtube.com/watch?v=0xoztJCHpbQ).
-   - [File Structure](https://www.youtube.com/watch?v=ta3Oxx7Yqbo).
-1. Read and code along with Interneting is Hard's article on [Links and Images](https://internetingishard.netlify.app/html-and-css/links-and-images). Pay close attention to the section that covers the four main image formats. This article suggests that it is better to set image dimensions with CSS. We still recommend setting width and height attributes on all images as mentioned earlier in this lesson.
+1. Xem các video của Kevin Powell:
+   - [Liên kết HTML](https://www.youtube.com/watch?v=tsEQgGjSmkM).
+   - [Hình ảnh HTML](https://www.youtube.com/watch?v=0xoztJCHpbQ).
+   - [Cấu trúc tệp](https://www.youtube.com/watch?v=ta3Oxx7Yqbo).
+1. Đọc và lập trình theo bài viết của Interneting is Hard về [Liên kết và hình ảnh](https://internetingishard.netlify.app/html-and-css/links-and-images). Hãy chú ý phần trình bày bốn định dạng hình ảnh chính. Bài viết này cho rằng nên đặt kích thước hình ảnh bằng CSS. Tuy nhiên, chúng tôi vẫn khuyên bạn đặt thuộc tính width và height cho mọi hình ảnh như đã đề cập ở phần trước của bài học.
 
 </div>

@@ -1,47 +1,47 @@
-### Introduction
+### Giới thiệu
 
-All HTML documents have the same basic structure or boilerplate that needs to be in place before anything useful can be done. In this lesson, we will explore the different parts of this boilerplate and see how it all fits together.
+Mọi tài liệu HTML đều có cùng một cấu trúc cơ bản, hay còn gọi là boilerplate, cần được chuẩn bị trước khi có thể làm bất cứ điều gì hữu ích. Trong bài học này, chúng ta sẽ tìm hiểu các phần khác nhau của boilerplate và xem chúng kết hợp với nhau như thế nào.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- How to write the basic boilerplate for an HTML document.
-- How to open HTML documents in your browser.
+- Cách viết boilerplate cơ bản cho một tài liệu HTML.
+- Cách mở tài liệu HTML trong trình duyệt.
 
-### Creating an HTML file
+### Tạo tệp HTML
 
-To demonstrate an HTML boilerplate, we first need an HTML file to work with.
+Để minh họa một boilerplate HTML, trước hết chúng ta cần một tệp HTML để làm việc.
 
-Create a new folder on your computer and name it `html-boilerplate`. Within that folder create a new file and name it `index.html`.
+Tạo một thư mục mới trên máy tính và đặt tên là `html-boilerplate`. Trong thư mục đó, tạo một tệp mới có tên `index.html`.
 
-You're probably already familiar with a lot of different types of files, for example doc, pdf, and image files.
+Có lẽ bạn đã quen với nhiều loại tệp khác nhau, chẳng hạn tệp doc, pdf và hình ảnh.
 
-To let the computer know we want to create an HTML file, we need to append the filename with the `.html` extension, as we have done when creating the `index.html` file.
+Để cho máy tính biết rằng chúng ta muốn tạo một tệp HTML, cần thêm phần mở rộng `.html` vào tên tệp, giống như khi tạo tệp `index.html`.
 
-It is worth noting that we named our HTML file `index`. We should always name the HTML file that will contain the homepage of our website `index.html`. This is because web servers will by default look for an `index.html` page when users land on our websites -- and not having one will cause big problems.
+Cần lưu ý rằng chúng ta đã đặt tên tệp HTML là `index`. Tệp HTML chứa trang chủ của website luôn nên được đặt tên là `index.html`. Lý do là máy chủ web mặc định sẽ tìm trang `index.html` khi người dùng truy cập website -- nếu không có tệp này, nhiều vấn đề nghiêm trọng có thể xảy ra.
 
-### The DOCTYPE
+### DOCTYPE
 
-Every HTML page starts with a doctype declaration. The doctype's purpose is to tell the browser what version of HTML it should use to render the document. The latest version of HTML is HTML5, and the doctype for that version is `<!DOCTYPE html>`.
+Mọi trang HTML đều bắt đầu bằng một khai báo doctype. Doctype cho trình duyệt biết nên dùng phiên bản HTML nào để hiển thị tài liệu. Phiên bản HTML mới nhất là HTML5, và doctype cho phiên bản đó là `<!DOCTYPE html>`.
 
-The doctypes for older versions of HTML were a bit more complicated. For example, this is the doctype declaration for HTML4:
+Doctype của các phiên bản HTML cũ phức tạp hơn một chút. Ví dụ, đây là khai báo doctype của HTML4:
 
 ```html
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 ```
 
-However, we probably won't ever want to be using an older version of HTML, so we'll always use `<!DOCTYPE html>`.
+Tuy nhiên, có lẽ chúng ta sẽ không bao giờ muốn sử dụng phiên bản HTML cũ, vì vậy luôn dùng `<!DOCTYPE html>`.
 
-Open the `index.html` file created earlier in your text editor and add `<!DOCTYPE html>` to the very first line.
+Mở tệp `index.html` đã tạo trước đó trong trình soạn thảo văn bản và thêm `<!DOCTYPE html>` vào dòng đầu tiên.
 
-### HTML element
+### Phần tử HTML
 
-After we declare the doctype, we need to provide an `<html>` element. This is what's known as the root element of the document, meaning that every other element in the document will be a descendant of it.
+Sau khi khai báo doctype, chúng ta cần cung cấp một phần tử `<html>`. Đây được gọi là phần tử gốc của tài liệu, nghĩa là mọi phần tử khác trong tài liệu đều là hậu duệ của nó.
 
-This becomes more important later on when we learn about manipulating HTML with JavaScript. For now, just know that the `<html>` element should be included on every HTML document.
+Điều này sẽ trở nên quan trọng hơn khi chúng ta học cách thao tác HTML bằng JavaScript. Hiện tại, bạn chỉ cần biết rằng phần tử `<html>` nên xuất hiện trong mọi tài liệu HTML.
 
-Back in the `index.html` file, let's add the `<html>` element by typing out its opening and closing tags, like so:
+Quay lại tệp `index.html`, hãy thêm phần tử `<html>` bằng cách viết thẻ mở và thẻ đóng của nó như sau:
 
 ```html
 <!DOCTYPE html>
@@ -49,18 +49,18 @@ Back in the `index.html` file, let's add the `<html>` element by typing out its 
 </html>
 ```
 
-Noticed the word `lang` here? It represents an HTML attribute which is associated with the given HTML tag i.e. `<html>` in this case. These attributes provide additional information about HTML elements. (More about `HTML attributes` in the following lesson.)
+Bạn có để ý từ `lang` ở đây không? Nó là một thuộc tính HTML gắn với thẻ HTML tương ứng, trong trường hợp này là `<html>`. Các thuộc tính này cung cấp thêm thông tin về các phần tử HTML. (Bạn sẽ tìm hiểu thêm về `HTML attributes` trong bài học tiếp theo.)
 
-#### What is the lang attribute?
+#### Thuộc tính lang là gì?
 
-`lang` specifies the language of the text content in that element. This attribute is primarily used for improving accessibility of the webpage. It allows assistive technologies, for example screen readers, to adapt according to the language and invoke correct pronunciation.
+`lang` chỉ định ngôn ngữ của nội dung văn bản trong phần tử đó. Thuộc tính này chủ yếu được dùng để cải thiện khả năng tiếp cận của trang web. Nó cho phép công nghệ hỗ trợ, chẳng hạn trình đọc màn hình, điều chỉnh theo ngôn ngữ và phát âm chính xác.
 
-### Head element
+### Phần tử head
 
-The `<head>` element is where we put important meta-information **about** our webpages, and stuff required for our webpages to render correctly in the browser.
-Inside the `<head>`, we **should not** use any element that displays content on the webpage.
+Phần tử `<head>` là nơi đặt những thông tin meta quan trọng **về** các trang web và những thứ cần thiết để trang web hiển thị chính xác trong trình duyệt.
+Bên trong `<head>`, **không nên** dùng phần tử nào hiển thị nội dung trên trang web.
 
-Back in our `index.html` file, let's add a `<head>` element with a `<meta>` element and a title within it. The `<head>` element goes within the `<html>` element and should always be the first element under the opening `<html>` tag:
+Quay lại tệp `index.html`, hãy thêm một phần tử `<head>` cùng với một phần tử `<meta>` và một tiêu đề bên trong. Phần tử `<head>` nằm trong phần tử `<html>` và luôn phải là phần tử đầu tiên ngay sau thẻ mở `<html>`:
 
 ```html
 <!DOCTYPE html>
@@ -73,29 +73,29 @@ Back in our `index.html` file, let's add a `<head>` element with a `<meta>` elem
 </html>
 ```
 
-#### Meta element
+#### Phần tử meta
 
-We should always have the `<meta>` tag with the charset encoding of the webpage in the `<head>` element: `<meta charset="UTF-8">`.
+Chúng ta luôn nên có thẻ `<meta>` chỉ định mã hóa ký tự của trang web trong phần tử `<head>`: `<meta charset="UTF-8">`.
 
-Setting the encoding is very important because it ensures that the webpage will display special symbols and characters from different languages correctly in the browser.
+Việc thiết lập mã hóa rất quan trọng vì nó bảo đảm trình duyệt hiển thị chính xác các ký hiệu và ký tự đặc biệt từ nhiều ngôn ngữ khác nhau.
 
-#### Title element
+#### Phần tử title
 
-Another element we should always include in the head of an HTML document is the `<title>` element:
+Một phần tử khác luôn nên có trong head của tài liệu HTML là phần tử `<title>`:
 
  `<title>My First Webpage</title>`
 
-The `<title>` element is used to give webpages a human-readable title, which is displayed in our webpage's browser tab. For example, if you look at the current tab's name of your browser, it will read "HTML Boilerplate &#124; The Odin Project"; this is the `<title>` of the current `.html` file.
+Phần tử `<title>` dùng để đặt một tiêu đề dễ đọc cho con người, được hiển thị trên thẻ trình duyệt của trang web. Ví dụ, nếu nhìn vào tên thẻ hiện tại của trình duyệt, bạn sẽ thấy "HTML Boilerplate &#124; The Odin Project"; đây là `<title>` của tệp `.html` hiện tại.
 
-If we didn't include a `<title>` element, the webpage's title would default to its file name. In our case that would be `index.html`, which isn't very meaningful for users; this would make it very difficult to find our webpage if the user has many browser tabs open.
+Nếu không có phần tử `<title>`, tiêu đề trang web sẽ mặc định là tên tệp. Trong trường hợp này là `index.html`, vốn không có nhiều ý nghĩa với người dùng; điều đó khiến việc tìm trang web trở nên rất khó nếu người dùng mở nhiều thẻ trình duyệt.
 
-There are many more elements that can go within the head of an HTML document. However, for now it's only crucial to know about the two elements we have covered here. We will introduce more elements that go into the head throughout the rest of the curriculum.
+Có nhiều phần tử khác có thể đặt trong head của tài liệu HTML. Tuy nhiên, hiện tại điều quan trọng là chỉ cần biết hai phần tử đã học ở đây. Chúng ta sẽ giới thiệu thêm các phần tử đặt trong head ở những phần còn lại của chương trình học.
 
-### Body element
+### Phần tử body
 
-The final element needed to complete the HTML boilerplate is the `<body>` element. This is where all the content that will be displayed to users will go - the text, images, lists, links, and so on.
+Phần tử cuối cùng cần có để hoàn thiện boilerplate HTML là phần tử `<body>`. Đây là nơi đặt toàn bộ nội dung sẽ hiển thị cho người dùng - văn bản, hình ảnh, danh sách, liên kết và nhiều thứ khác.
 
-To complete the boilerplate, add a `<body>` element to the `index.html` file. The `<body>` element also goes within the `<html>` element and is always below the `<head>` element, like so:
+Để hoàn thiện boilerplate, hãy thêm phần tử `<body>` vào tệp `index.html`. Phần tử `<body>` cũng nằm trong phần tử `<html>` và luôn ở bên dưới phần tử `<head>`, như sau:
 
 ```html
 <!DOCTYPE html>
@@ -110,29 +110,29 @@ To complete the boilerplate, add a `<body>` element to the `index.html` file. Th
 </html>
 ```
 
-### Viewing HTML files in the browser
+### Xem tệp HTML trong trình duyệt
 
-The HTML boilerplate in the `index.html` file is complete at this point, but how do you view it in the browser? There are a couple of different options:
+Đến đây, boilerplate HTML trong tệp `index.html` đã hoàn chỉnh, nhưng làm thế nào để xem nó trong trình duyệt? Có một vài lựa chọn:
 
-- You can drag and drop an HTML file from your text editor into the address bar of your browser.
-- You can open the file directly through the browser by pressing <kbd>Ctrl + O</kbd> (<kbd>Cmd + O</kbd> on macOS) and then navigating to your HTML file.
-- You can find the HTML file in your file system and then double click it. This will open up the file in the default browser your system uses.
-- You can use the terminal to open the file in your browser:
-  - Ubuntu: Navigate to the directory containing the file and type `google-chrome index.html`
-  - macOS: Navigate to the directory containing the file and type `open ./index.html`
-  - WSL: Navigate to the directory containing the file and type `explorer.exe index.html`. This will open the file in your system's default browser. Note, You must use the filename only. Using a path (e.g., `./index.html` or an absolute path) will open the Windows File Explorer instead.
+- Bạn có thể kéo thả tệp HTML từ trình soạn thảo văn bản vào thanh địa chỉ của trình duyệt.
+- Bạn có thể mở tệp trực tiếp qua trình duyệt bằng cách nhấn <kbd>Ctrl + O</kbd> (<kbd>Cmd + O</kbd> trên macOS), sau đó điều hướng đến tệp HTML.
+- Bạn có thể tìm tệp HTML trong hệ thống tệp rồi nhấp đúp vào tệp. Tệp sẽ mở trong trình duyệt mặc định của hệ thống.
+- Bạn có thể dùng terminal để mở tệp trong trình duyệt:
+  - Ubuntu: Điều hướng đến thư mục chứa tệp rồi nhập `google-chrome index.html`
+  - macOS: Điều hướng đến thư mục chứa tệp rồi nhập `open ./index.html`
+  - WSL: Điều hướng đến thư mục chứa tệp rồi nhập `explorer.exe index.html`. Tệp sẽ mở trong trình duyệt mặc định của hệ thống. Lưu ý, bạn chỉ được dùng tên tệp. Dùng đường dẫn (ví dụ `./index.html` hoặc đường dẫn tuyệt đối) sẽ mở Windows File Explorer thay vì tệp.
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Use Google Chrome
+#### Sử dụng Google Chrome
 
-In order to avoid branching our lesson's instructions to accommodate for all of the differences between browsers, we are going to be using Google Chrome as our primary browser for the remainder of this course. All references to the browser will pertain specifically to Google Chrome. We **strongly** suggest that you use Google Chrome for all of your testing going forward.
+Để tránh phải chia nhỏ hướng dẫn của bài học nhằm đáp ứng mọi khác biệt giữa các trình duyệt, từ giờ chúng ta sẽ dùng Google Chrome làm trình duyệt chính. Mọi tham chiếu đến trình duyệt đều chỉ Google Chrome. Chúng tôi **thực sự** khuyên bạn dùng Google Chrome cho mọi hoạt động kiểm thử sau này.
 
 </div>
 
-Using one of the methods above, open up the `index.html` file we have been working on. You'll notice the screen is blank. This is because we don't have anything in our body to display.
+Hãy dùng một trong các phương pháp trên để mở tệp `index.html` đang làm việc. Bạn sẽ thấy màn hình trống. Đó là vì phần body chưa có nội dung nào để hiển thị.
 
-Back in the `index.html` file, let's add a heading (more on these later) to the body, and save the file:
+Quay lại tệp `index.html`, hãy thêm một tiêu đề (sẽ tìm hiểu thêm sau) vào body rồi lưu tệp:
 
 ```html
 <!DOCTYPE html>
@@ -148,26 +148,26 @@ Back in the `index.html` file, let's add a heading (more on these later) to the 
 </html>
 ```
 
-Now, if you refresh the page in the browser, you should see the changes take effect, and the heading "Hello World!" will be displayed.
+Bây giờ, nếu làm mới trang trong trình duyệt, bạn sẽ thấy thay đổi có hiệu lực và tiêu đề "Hello World!" được hiển thị.
 
-### VSCode shortcut
+### Phím tắt VSCode
 
-VSCode has a built-in shortcut you can use for generating all the boilerplate in one go. Please note that this shortcut only works while editing a file with the `.html` extension or a text file with the HTML language already selected. To trigger the shortcut, delete everything in the `index.html` file and just enter `!` on the first line. This will bring up a couple of options. Press the <kbd>Enter</kbd> key to choose the first one, and voila, you should have all the boilerplate populated for you.
+VSCode có một phím tắt tích hợp giúp bạn tạo toàn bộ boilerplate chỉ trong một lần. Lưu ý rằng phím tắt này chỉ hoạt động khi đang chỉnh sửa tệp có phần mở rộng `.html` hoặc tệp văn bản đã chọn ngôn ngữ HTML. Để kích hoạt phím tắt, hãy xóa mọi thứ trong tệp `index.html` rồi chỉ nhập `!` ở dòng đầu tiên. Một vài lựa chọn sẽ xuất hiện. Nhấn phím <kbd>Enter</kbd> để chọn lựa chọn đầu tiên, và thế là bạn đã có toàn bộ boilerplate được điền sẵn.
 
-You may notice that the boilerplate produced by this shortcut includes a line we have not yet mentioned:
+Bạn có thể nhận thấy boilerplate do phím tắt này tạo ra có một dòng mà chúng ta chưa đề cập:
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
-This is not something we need to know about until we discuss responsive design, an advanced topic involving different screen sizes which we will cover much later in the curriculum. For now, you can leave that line as it is.
+Đây chưa phải là điều chúng ta cần biết cho đến khi thảo luận về thiết kế đáp ứng, một chủ đề nâng cao liên quan đến các kích thước màn hình khác nhau mà chúng ta sẽ học mãi về sau trong chương trình học. Hiện tại, bạn có thể giữ nguyên dòng đó.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Watch and follow along to Kevin Powell's brilliant [Building Your First Web Page video](https://www.youtube.com/watch?v=V8UAEoOvqFg&t=93s).
+1. Xem và làm theo video tuyệt vời [Xây dựng trang web đầu tiên của bạn](https://www.youtube.com/watch?v=V8UAEoOvqFg&t=93s) của Kevin Powell.
 
-1. Run your boilerplate through the W3 [HTML validator](https://validator.w3.org/#validate_by_input). Validators ensure your markup is correct and are an excellent learning tool, as they provide feedback on syntax errors you may be making often and aren't aware of, such as missing closing tags and extra spaces in your HTML.
+1. Chạy boilerplate của bạn qua [trình xác thực HTML](https://validator.w3.org/#validate_by_input) của W3. Trình xác thực bảo đảm markup của bạn chính xác và là công cụ học tập tuyệt vời, vì chúng cung cấp phản hồi về những lỗi cú pháp bạn có thể thường xuyên mắc phải mà không nhận ra, chẳng hạn thẻ đóng bị thiếu và khoảng trắng thừa trong HTML.
 
 </div>

@@ -1,23 +1,23 @@
-### Introduction
+### Giới thiệu
 
-Most content on the web is text-based, so you will find yourself needing to work with HTML text elements quite a bit.
+Phần lớn nội dung trên web dựa trên văn bản, vì vậy bạn sẽ thường xuyên cần làm việc với các phần tử văn bản HTML.
 
-In this lesson, we will learn about the text-based elements you are likely to use the most.
+Trong bài học này, chúng ta sẽ tìm hiểu những phần tử dựa trên văn bản mà bạn có khả năng sử dụng nhiều nhất.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- How to create paragraphs.
-- How to create headings.
-- How to create bold text.
-- How to create italicized text.
-- The relationships between nested elements.
-- How to create HTML comments.
+- Cách tạo đoạn văn.
+- Cách tạo tiêu đề.
+- Cách tạo văn bản in đậm.
+- Cách tạo văn bản in nghiêng.
+- Mối quan hệ giữa các phần tử lồng nhau.
+- Cách tạo chú thích HTML.
 
-### Paragraphs
+### Đoạn văn
 
-What would you expect the following text to output on an HTML page?
+Bạn dự đoán đoạn văn bản sau sẽ hiển thị thế nào trên một trang HTML?
 
 ```html
 <body>
@@ -29,159 +29,159 @@ What would you expect the following text to output on an HTML page?
 </body>
 ```
 
-It looks like two paragraphs of text, so you might expect it to display in that way. However, that is not the case, as you can see in the output below:
+Nó trông giống như hai đoạn văn, vì vậy bạn có thể mong đợi nó hiển thị theo cách đó. Tuy nhiên, thực tế không phải vậy, như bạn có thể thấy trong kết quả bên dưới:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="xxrKqeV" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/xxrKqeV">
-  no-paragraphs-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/xxrKqeV">
+  no-paragraphs-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-When the browser encounters new lines like this in your HTML, it will compress them down into one single space. The result of this compression is that all of the text is clumped together into one long line.
+Khi trình duyệt gặp những dòng mới như vậy trong HTML, nó sẽ nén chúng thành một khoảng trắng duy nhất. Kết quả là toàn bộ văn bản bị dồn lại thành một dòng dài.
 
-If we want to create paragraphs in HTML, we need to use the paragraph element, which will add a new line after each of our paragraphs. A paragraph element is defined by wrapping text content with a `<p>` tag.
+Nếu muốn tạo các đoạn văn trong HTML, chúng ta cần dùng phần tử paragraph, phần tử này sẽ thêm một dòng mới sau mỗi đoạn văn. Phần tử paragraph được định nghĩa bằng cách bao quanh nội dung văn bản với thẻ `<p>`.
 
-Changing our example from before to use paragraph elements fixes the issue:
+Thay đổi ví dụ trước để dùng các phần tử paragraph sẽ khắc phục vấn đề:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="mdwbmdp" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/mdwbmdp">
-  pargraph-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/mdwbmdp">
+  pargraph-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Headings
+### Tiêu đề
 
-Headings are different from other HTML text elements: they are displayed larger and bolder than other text to signify that they are headings.
+Tiêu đề khác với các phần tử văn bản HTML khác: chúng được hiển thị lớn hơn và đậm hơn để cho biết đó là tiêu đề.
 
-There are 6 different levels of headings starting from `<h1>` to `<h6>`. The number within a heading tag represents that heading's level. The largest and most important heading is h1, while h6 is the tiniest heading at the lowest level.
+Có 6 cấp độ tiêu đề, bắt đầu từ `<h1>` đến `<h6>`. Con số trong thẻ tiêu đề biểu thị cấp độ của tiêu đề đó. Tiêu đề lớn nhất và quan trọng nhất là h1, còn h6 là tiêu đề nhỏ nhất ở cấp thấp nhất.
 
-Headings are defined much like paragraphs. For example, to create an h1 heading, we wrap our heading text in an `<h1>` tag.
+Tiêu đề được định nghĩa tương tự đoạn văn. Ví dụ, để tạo tiêu đề h1, chúng ta bao quanh văn bản tiêu đề bằng thẻ `<h1>`.
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="LYLPLbg" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/LYLPLbg">
-  HTML-headings-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/LYLPLbg">
+  HTML-headings-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Using the correct level of heading is important as levels provide a hierarchy to the content. An h1 heading should always be used for the heading of the overall page, and the lower level headings should be used as the headings for content in smaller sections of the page.
+Sử dụng đúng cấp độ tiêu đề rất quan trọng vì các cấp tạo ra thứ bậc cho nội dung. Tiêu đề h1 luôn nên được dùng cho tiêu đề của toàn bộ trang, còn các tiêu đề cấp thấp hơn nên được dùng cho những phần nội dung nhỏ hơn trong trang.
 
-### Strong element
+### Phần tử strong
 
-The `<strong>` element makes text bold. It also semantically marks text as important; this affects tools, like screen readers, that users with visual impairments will rely on to use your website. The tone of voice on some screen readers will change to communicate the importance of the text within a strong element. To define a strong element, we wrap text content in a `<strong>` tag.
+Phần tử `<strong>` làm văn bản in đậm. Nó cũng đánh dấu về mặt ngữ nghĩa rằng văn bản là quan trọng; điều này ảnh hưởng đến các công cụ như trình đọc màn hình mà người dùng khiếm thị dựa vào để sử dụng website. Giọng đọc của một số trình đọc màn hình sẽ thay đổi nhằm truyền đạt tầm quan trọng của văn bản nằm trong phần tử strong. Để định nghĩa một phần tử strong, chúng ta bao quanh nội dung văn bản bằng thẻ `<strong>`.
 
-You can use strong on its own:
+Bạn có thể dùng strong riêng:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="qBjWXrB" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/qBjWXrB">
-  HTML-single-strong-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/qBjWXrB">
+  HTML-single-strong-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-But you will probably find yourself using the strong element much more in combination with other text elements, like this:
+Tuy nhiên, có lẽ bạn sẽ thấy mình dùng phần tử strong thường xuyên hơn khi kết hợp với các phần tử văn bản khác, như sau:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="wvewqJr" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvewqJr">
-  HTML-strong-with-paragraph-exmample</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvewqJr">
+  HTML-strong-with-paragraph-exmample</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Sometimes you will want to make text bold without giving it an important meaning. You'll learn how to do that in the CSS lessons later in the curriculum.
+Đôi khi bạn muốn làm văn bản in đậm mà không gán cho nó ý nghĩa quan trọng. Bạn sẽ học cách làm điều đó bằng CSS trong các bài học CSS sau này của chương trình học.
 
-### Em element
+### Phần tử em
 
-The `<em>` element makes text italic. It also semantically places emphasis on the text, which again may affect things like screen readers. To define an emphasized element, wrap the text content in an `<em>` tag.
+Phần tử `<em>` làm văn bản in nghiêng. Nó cũng đánh dấu về mặt ngữ nghĩa rằng văn bản được nhấn mạnh, điều này một lần nữa có thể ảnh hưởng đến trình đọc màn hình. Để định nghĩa một phần tử được nhấn mạnh, hãy bao quanh nội dung văn bản bằng thẻ `<em>`.
 
-To use `<em>` on its own:
+Để dùng `<em>` riêng:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="wvewqpp" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvewqpp">
-  HTML-single-em-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/wvewqpp">
+  HTML-single-em-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Again, like the strong element, you will find yourself mostly using the `<em>` element with other text elements:
+Cũng như phần tử strong, bạn sẽ thường dùng phần tử `<em>` với các phần tử văn bản khác:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="VwWZzyj" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/VwWZzyj">
-  HTML-em-with-paragraph-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/VwWZzyj">
+  HTML-em-with-paragraph-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### Nesting and indentation
+### Lồng nhau và thụt lề
 
-You may have noticed that in all the examples in this lesson we indent any elements that are within other elements. This is known as nesting elements.
+Có thể bạn đã nhận thấy trong mọi ví dụ của bài học này, chúng ta thụt lề các phần tử nằm bên trong những phần tử khác. Đây được gọi là lồng phần tử.
 
-When we nest elements within other elements, we create a parent and child relationship between them. The nested elements are the children and the element they are nested within is the parent.
+Khi lồng các phần tử bên trong những phần tử khác, chúng ta tạo ra mối quan hệ cha-con giữa chúng. Các phần tử được lồng là phần tử con, còn phần tử chứa chúng là phần tử cha.
 
-In the following example, the body element is the parent and the paragraph is the child:
+Trong ví dụ sau, phần tử body là phần tử cha và paragraph là phần tử con:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="oNwjEvO" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/oNwjEvO">
-  HTML-nesting-parent-child</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/oNwjEvO">
+  HTML-nesting-parent-child</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-Just as in human relationships, HTML parent elements can have many children.  Elements at the same level of nesting are considered to be siblings.
+Cũng như trong các mối quan hệ giữa con người, phần tử HTML cha có thể có nhiều phần tử con. Các phần tử ở cùng một cấp độ lồng nhau được xem là các phần tử anh em.
 
-For example, the two paragraphs in the following code are siblings, since they are both children of the body element and are at the same level of nesting as each other:
+Ví dụ, hai đoạn văn trong đoạn mã sau là các phần tử anh em vì cả hai đều là con của phần tử body và nằm ở cùng một cấp độ lồng nhau:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="ZEybrYx" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/ZEybrYx">
-  HTML-nesting-siblings</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/ZEybrYx">
+  HTML-nesting-siblings</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-We use indentation to make the level of nesting clear and readable for ourselves and other developers who will work with our HTML in the future. In our examples, we have indented any child elements by two spaces per nesting level.
+Chúng ta dùng thụt lề để làm cho cấp độ lồng nhau trở nên rõ ràng và dễ đọc đối với bản thân cũng như những nhà phát triển khác sẽ làm việc với HTML của chúng ta trong tương lai. Trong các ví dụ, chúng ta thụt lề mỗi phần tử con thêm hai khoảng trắng cho mỗi cấp độ lồng nhau.
 
-The parent, child, and sibling relationships between elements will become much more important later when we start styling our HTML with CSS and adding behavior with JavaScript. For now, however, it is just important to know the distinction between how elements are related and the terminology used to describe their relationships.
+Mối quan hệ cha, con và anh em giữa các phần tử sẽ trở nên quan trọng hơn nhiều khi chúng ta bắt đầu tạo kiểu cho HTML bằng CSS và thêm hành vi bằng JavaScript. Tuy nhiên, hiện tại điều quan trọng chỉ là biết sự khác nhau giữa các mối quan hệ của phần tử và thuật ngữ dùng để mô tả chúng.
 
-### HTML comments
+### Chú thích HTML
 
-HTML comments are not visible to the browser; they allow us to *comment* on our code so that other developers or our future selves can read them and get some context about something that might not be clear in the code.
+Chú thích HTML không hiển thị trong trình duyệt; chúng cho phép chúng ta *chú thích* mã để các nhà phát triển khác hoặc chính chúng ta trong tương lai có thể đọc và hiểu thêm ngữ cảnh về những điều có thể chưa rõ trong mã.
 
-In order to write an HTML comment, we just enclose the comment with `<!--` and `-->` tags. For example:
+Để viết một chú thích HTML, chỉ cần bao quanh chú thích bằng các thẻ `<!--` và `-->`. Ví dụ:
 
 <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="html,result" data-slug-hash="abwoyBg" data-user="TheOdinProjectExamples" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
 
-  <span>See the Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/abwoyBg">
-  HTML-comments-example</a> by TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
+  <span>Xem Pen <a href="https://codepen.io/TheOdinProjectExamples/pen/abwoyBg">
+  HTML-comments-example</a> của TheOdinProject (<a href="https://codepen.io/TheOdinProjectExamples">@TheOdinProjectExamples</a>)
+  trên <a href="https://codepen.io">CodePen</a>.</span>
 
 </p>
 
@@ -189,23 +189,23 @@ In order to write an HTML comment, we just enclose the comment with `<!--` and `
 
 <div class="lesson-note" markdown="1">
 
-#### VSCode keyboard shortcut
+#### Phím tắt bàn phím VSCode
 
-If you find typing out the comments syntax tiring, the following shortcut will help you quickly create a new comment, convert any line to a comment, or uncomment any line:
+Nếu thấy việc gõ cú pháp chú thích quá mệt, phím tắt sau sẽ giúp bạn nhanh chóng tạo chú thích mới, chuyển bất kỳ dòng nào thành chú thích hoặc bỏ chú thích cho một dòng:
 
-- Mac Users: <kbd>Cmd</kbd> + <kbd>/</kbd>
-- Windows and Linux Users: <kbd>Ctrl</kbd> + <kbd>/</kbd>
+- Người dùng Mac: <kbd>Cmd</kbd> + <kbd>/</kbd>
+- Người dùng Windows và Linux: <kbd>Ctrl</kbd> + <kbd>/</kbd>
 
-It’s important to know that these shortcuts are for English keyboard layout and will not necessarily work with other non-English layouts. We’re confident you will be able to find the equivalents of these shortcuts to your keyboard layout.
+Điều quan trọng cần biết là các phím tắt này dành cho bố cục bàn phím tiếng Anh và có thể không hoạt động với các bố cục không phải tiếng Anh khác. Chúng tôi tin rằng bạn sẽ tìm được tổ hợp tương đương với bố cục bàn phím của mình.
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Watch Kevin Powell's [HTML Paragraph and Headings Video](https://www.youtube.com/watch?v=yqcd-XkxZNM&t=35s).
-1. Watch Kevin Powell's [HTML Bold and Italic Text Video](https://www.youtube.com/watch?v=gW6cBZLUk6M&t=5s).
-1. To get some practice working with text in HTML, create a plain blog article page which uses different headings, uses paragraphs, and has some text in the paragraphs bolded and italicized. You can use [Lorem Ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) to generate dummy text, in place of real text as you build your sites. VS Code includes a shortcut to generate lorem ipsum for you. To trigger the shortcut, type `lorem` on the line where you want the dummy text, then press the <kbd>Enter</kbd> key, and voila, you have generated dummy text without a hitch.
+1. Xem video [Đoạn văn và tiêu đề HTML](https://www.youtube.com/watch?v=yqcd-XkxZNM&t=35s) của Kevin Powell.
+1. Xem video [Văn bản in đậm và in nghiêng trong HTML](https://www.youtube.com/watch?v=gW6cBZLUk6M&t=5s) của Kevin Powell.
+1. Để luyện tập làm việc với văn bản trong HTML, hãy tạo một trang bài viết blog đơn giản sử dụng các tiêu đề khác nhau, các đoạn văn, cùng một số văn bản in đậm và in nghiêng trong đoạn văn. Bạn có thể dùng [Lorem Ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) để tạo văn bản mẫu thay cho văn bản thật khi xây dựng website. VS Code có một phím tắt để tạo Lorem Ipsum. Để kích hoạt phím tắt, nhập `lorem` vào dòng muốn đặt văn bản mẫu, sau đó nhấn phím <kbd>Enter</kbd>, và thế là bạn đã tạo được văn bản mẫu dễ dàng.
 
 </div>

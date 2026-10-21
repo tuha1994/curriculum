@@ -1,76 +1,76 @@
-### Introduction
+### Giới thiệu
 
-[Git](https://git-scm.com/) is a very popular version control system. You'll become very familiar with this piece of software throughout TOP, so don't worry too much about understanding it at this point. There are many lessons focused on Git later in the curriculum.
+[Git](https://git-scm.com/) là một hệ thống kiểm soát phiên bản rất phổ biến. Bạn sẽ làm quen với phần mềm này rất nhiều trong suốt quá trình học TOP, vì vậy hiện tại đừng quá lo lắng nếu chưa hiểu hết về nó. Về sau, chương trình có nhiều bài học tập trung vào Git.
 
-[GitHub](https://github.com/) is a service that allows you to upload, host, and manage your code using Git with a nice web interface.
+[GitHub](https://github.com/) là một dịch vụ cho phép bạn tải lên, lưu trữ và quản lý mã nguồn bằng Git thông qua một giao diện web thân thiện.
 
-Even though GitHub and Git sound similar, they are not the same or even created by the same company.
+Mặc dù GitHub và Git có tên nghe khá giống nhau, chúng không phải là cùng một thứ, cũng không được tạo ra bởi cùng một công ty.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- What Git is.
-- What GitHub is.
-- Installing and configuring Git.
-- Creating a GitHub account.
-- Connecting Git to your GitHub account.
+- Git là gì.
+- GitHub là gì.
+- Cài đặt và cấu hình Git.
+- Tạo tài khoản GitHub.
+- Kết nối Git với tài khoản GitHub.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Install Git
+#### Cài đặt Git
 
-1. Depending on the OS you are running, following the appropriate Git installation guide below:
+1. Tùy thuộc vào hệ điều hành bạn đang sử dụng, hãy làm theo hướng dẫn cài đặt Git tương ứng dưới đây:
    - [Linux](https://github.com/TheOdinProject/curriculum/tree/main/foundations/installations/installation_guides/git/linux.md "Linux Git installation")
    - [macOS](https://github.com/TheOdinProject/curriculum/tree/main/foundations/installations/installation_guides/git/macos.md "macOS Git installation")
    - [ChromeOS](https://github.com/TheOdinProject/curriculum/tree/main/foundations/installations/installation_guides/git/chromeos.md "ChromeOS Git installation")
 
-#### Configure Git and GitHub
+#### Cấu hình Git và GitHub
 
-1. Go to [GitHub.com](https://github.com/) and create an account! During the account setup, it will ask you for an email address. This needs to be a real email, and will be used by default to identify your contributions. If you are privacy conscious, or just don't want your email address to be publicly available, make sure you tick the following two boxes on the [Email Settings](https://github.com/settings/emails) page after you have signed in:
+1. Truy cập [GitHub.com](https://github.com/) và tạo một tài khoản! Trong quá trình thiết lập tài khoản, bạn sẽ được yêu cầu cung cấp địa chỉ email. Đây phải là email có thật và theo mặc định sẽ được dùng để xác định các đóng góp của bạn. Nếu bạn quan tâm đến quyền riêng tư hoặc đơn giản là không muốn địa chỉ email của mình được công khai, hãy nhớ chọn hai ô sau trên trang [Cài đặt email](https://github.com/settings/emails) sau khi đăng nhập:
 
-   ![GitHub private email settings](https://cdn.statically.io/gh/TheOdinProject/curriculum/725b80d126105d2f717697f97e7eaefb5f886c7b/foundations/installations/setting_up_git/imgs/01.png)
+   ![Cài đặt email riêng tư trên GitHub](https://cdn.statically.io/gh/TheOdinProject/curriculum/725b80d126105d2f717697f97e7eaefb5f886c7b/foundations/installations/setting_up_git/imgs/01.png)
 
-   Having these two options enabled will prevent accidentally exposing your personal email address when working with Git and GitHub.
+   Bật hai tùy chọn này sẽ giúp ngăn việc vô tình để lộ địa chỉ email cá nhân của bạn khi làm việc với Git và GitHub.
 
-   You may also notice an email address under the **Keep my email addresses private** option. This is your private GitHub email address. **If you plan to use this, make note of it now as you will need it when setting up Git in the next step.**
+   Bạn cũng có thể thấy một địa chỉ email bên dưới tùy chọn **Giữ địa chỉ email của tôi ở chế độ riêng tư**. Đây là địa chỉ email GitHub riêng tư của bạn. **Nếu định sử dụng địa chỉ này, hãy ghi lại ngay vì bạn sẽ cần nó khi thiết lập Git ở bước tiếp theo.**
 
-   1. (Optional) Enable GitHub two-factor authentication (2FA), which is an extra layer of security used when logging into websites or apps. With 2FA, you have to log in with your username and password and provide another form of authentication that only you know or have access to.
+   1. (Tùy chọn) Bật xác thực hai yếu tố (2FA) của GitHub. Đây là một lớp bảo mật bổ sung được sử dụng khi đăng nhập vào các trang web hoặc ứng dụng. Với 2FA, bạn phải đăng nhập bằng tên người dùng và mật khẩu, đồng thời cung cấp thêm một hình thức xác thực mà chỉ bạn biết hoặc có quyền truy cập.
 
-      Go to [GitHub 2FA Docs](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-totp-app), then follow the configuration instructions. For step 1, we recommend Google Authenticator, which is a time-based one-time password (TOTP) app. Go to [Google Account Help](https://support.google.com/accounts/answer/1066447), click `Android` or `iPhone & iPad`, then follow the download and set up instructions.
+      Truy cập [Tài liệu GitHub về 2FA](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-totp-app), sau đó làm theo hướng dẫn cấu hình. Ở bước 1, chúng tôi khuyên bạn dùng Google Authenticator, một ứng dụng mật khẩu dùng một lần theo thời gian (TOTP). Truy cập [Trợ giúp Tài khoản Google](https://support.google.com/accounts/answer/1066447), nhấp vào `Android` hoặc `iPhone & iPad`, rồi làm theo hướng dẫn tải xuống và thiết lập.
 
       <div class="lesson-note lesson-note--warning" markdown=1>
 
-      #### Losing 2FA credentials or access to account recovery codes
+      #### Làm mất thông tin xác thực 2FA hoặc quyền truy cập vào mã khôi phục tài khoản
 
-      For security reasons, GitHub Support will not be able to restore access to accounts with two-factor authentication enabled if you lose your two-factor authentication credentials or lose access to your account recovery methods.
+      Vì lý do bảo mật, bộ phận Hỗ trợ GitHub sẽ không thể khôi phục quyền truy cập vào các tài khoản đã bật xác thực hai yếu tố nếu bạn làm mất thông tin xác thực hai yếu tố hoặc mất quyền truy cập vào các phương thức khôi phục tài khoản.
 
       </div>
 
-1. For Git to work properly, we need to let it know who we are so that it can link a local Git user (you) to GitHub. When working on a team, this allows people to see what you have committed and who committed each line of code.
+1. Để Git hoạt động đúng cách, chúng ta cần cho Git biết bạn là ai để Git có thể liên kết người dùng Git cục bộ (chính là bạn) với GitHub. Khi làm việc trong một nhóm, điều này cho phép mọi người biết bạn đã commit những gì và ai là người commit từng dòng mã.
 
-   The commands below will configure Git. Be sure to enter your own information inside the quotes (but include the quotation marks!) - if you chose to keep your email private on GitHub, use your special private GitHub email from step 1.
+   Các lệnh dưới đây sẽ cấu hình Git. Hãy nhớ nhập thông tin của chính bạn bên trong dấu ngoặc kép (nhưng vẫn phải giữ các dấu ngoặc kép!) — nếu bạn chọn giữ email riêng tư trên GitHub, hãy dùng địa chỉ email GitHub riêng tư đặc biệt của bạn từ bước 1.
 
    ```bash
    git config --global user.name "Your Name"
    git config --global user.email yourname@example.com
    ```
 
-   For example, if you set your email as private on GitHub, the second command will look something like this:
+   Ví dụ, nếu bạn đặt email ở chế độ riêng tư trên GitHub, lệnh thứ hai sẽ trông tương tự như sau:
 
    ```bash
    git config --global user.email 123456789+odin@users.noreply.github.com # Remember to use your own private GitHub email here.
    ```
 
-   GitHub recently changed the default branch on new repositories from `master` to `main`. Change the default branch for Git using this command:
+   Gần đây GitHub đã thay đổi nhánh mặc định trên các kho lưu trữ mới từ `master` thành `main`. Hãy dùng lệnh sau để thay đổi nhánh mặc định của Git:
 
    ```bash
    git config --global init.defaultBranch main
    ```
 
-   To verify that things are working properly, enter these commands and verify whether the output matches your name and email address.
+   Để xác minh mọi thứ đang hoạt động đúng cách, hãy nhập các lệnh sau và kiểm tra xem kết quả có khớp với tên và địa chỉ email của bạn hay không.
 
    ```bash
    git config --get user.name
@@ -79,9 +79,9 @@ This section contains a general overview of topics that you will learn in this l
 
    <div class="lesson-note" markdown="1">
 
-   #### For macOS Users
+   #### Dành cho người dùng macOS
 
-   Run these two commands to tell Git to ignore .DS_Store files, which are automatically created when you use Finder to look into a folder. .DS_Store files are invisible to the user and hold custom attributes or metadata (like thumbnails) for the folder, and if you don't configure Git to ignore them, pesky .DS_Store files will show up in your commits. Remember to copy and paste each of these commands into your terminal.
+   Chạy hai lệnh sau để yêu cầu Git bỏ qua các tệp .DS_Store, vốn được tự động tạo khi bạn dùng Finder để mở một thư mục. Tệp .DS_Store bị ẩn với người dùng và chứa các thuộc tính hoặc siêu dữ liệu tùy chỉnh (chẳng hạn như hình thu nhỏ) của thư mục. Nếu không cấu hình Git để bỏ qua chúng, những tệp .DS_Store phiền phức sẽ xuất hiện trong các commit của bạn. Hãy nhớ sao chép và dán từng lệnh này vào terminal.
 
    ```bash
    echo .DS_Store >> ~/.gitignore_global
@@ -90,58 +90,58 @@ This section contains a general overview of topics that you will learn in this l
 
    </div>
 
-1. Create an SSH key, which is a cryptographically secure identifier. It's like a really long password used to identify your machine. GitHub uses SSH keys to allow you to upload to your repository without having to type in your username and password every time.
+1. Tạo một khóa SSH, đây là một mã định danh được bảo mật bằng mật mã. Nó giống như một mật khẩu rất dài dùng để xác định máy tính của bạn. GitHub sử dụng khóa SSH để cho phép bạn tải mã lên kho lưu trữ mà không phải nhập tên người dùng và mật khẩu mỗi lần.
 
    <div class="lesson-note" markdown="1">
 
-   #### Multiple SSH keys
+   #### Nhiều khóa SSH
 
-   If you have already setup an SSH key pair with GitHub on a different machine prior to starting The Odin Project, GitHub allows you to have multiple key pairs associated with your account. You can just follow these instructions again to set up another key pair and register it with GitHub.
+   Nếu trước khi bắt đầu The Odin Project, bạn đã thiết lập một cặp khóa SSH với GitHub trên một máy tính khác, GitHub cho phép bạn liên kết nhiều cặp khóa với tài khoản của mình. Bạn chỉ cần làm lại các hướng dẫn này để thiết lập thêm một cặp khóa và đăng ký cặp khóa đó với GitHub.
 
    </div>
 
-   First, we need to see if you have an Ed25519 algorithm SSH key already installed. Type this into the terminal and check the output with the information below:
+   Trước hết, chúng ta cần kiểm tra xem bạn đã cài đặt khóa SSH theo thuật toán Ed25519 hay chưa. Nhập lệnh sau vào terminal và đối chiếu kết quả với thông tin bên dưới:
 
    ```bash
    ls ~/.ssh/id_ed25519.pub
    ```
 
-   If a message appears in the console containing the text "No such file or directory", then you do not yet have an Ed25519 SSH key, and you will need to create one. If no such message has appeared in the console output, you can proceed straight to the next step.
+   Nếu trong bảng điều khiển xuất hiện thông báo chứa dòng chữ "No such file or directory", nghĩa là bạn chưa có khóa SSH Ed25519 và cần tạo một khóa. Nếu không xuất hiện thông báo như vậy trong kết quả của bảng điều khiển, bạn có thể chuyển thẳng sang bước tiếp theo.
 
-   To create a new SSH key, run the following command inside your terminal.
+   Để tạo khóa SSH mới, hãy chạy lệnh sau trong terminal.
 
    ```bash
    ssh-keygen -t ed25519
    ```
 
-   When it prompts you for a location to save the generated key, just push <kbd>Enter</kbd>.
+   Khi chương trình hỏi vị trí lưu khóa được tạo, chỉ cần nhấn <kbd>Enter</kbd>.
 
-   Next, it will ask you for a passphrase. This passphrase is used to encrypt the private SSH key that is stored on your computer and you will be required to enter this passphrase every time you use SSH with these keys. If you don't use a passphrase, the private key will be readable by anyone who has access to your computer and will be able to modify all your GitHub repositories. Enter one if you wish, but it’s not required. If you choose not to use a passphrase, just hit <kbd>Enter</kbd> without typing anything.
+   Tiếp theo, chương trình sẽ hỏi bạn một cụm mật khẩu. Cụm mật khẩu này được dùng để mã hóa khóa SSH riêng tư được lưu trên máy tính của bạn, và bạn sẽ phải nhập cụm mật khẩu đó mỗi lần sử dụng SSH với các khóa này. Nếu không dùng cụm mật khẩu, khóa riêng tư sẽ có thể được đọc bởi bất kỳ ai có quyền truy cập vào máy tính của bạn, và người đó sẽ có thể chỉnh sửa toàn bộ kho lưu trữ GitHub của bạn. Bạn có thể nhập cụm mật khẩu nếu muốn, nhưng không bắt buộc. Nếu chọn không dùng cụm mật khẩu, chỉ cần nhấn <kbd>Enter</kbd> mà không nhập gì.
 
-1. Now, you need to tell GitHub what your SSH key is so that you can push your code without typing in a password every time.
+1. Bây giờ, bạn cần cho GitHub biết khóa SSH của mình là gì để có thể đẩy mã lên mà không phải nhập mật khẩu mỗi lần.
 
-   First, you'll navigate to where GitHub receives our SSH key. Log into GitHub and click on your profile picture in the top right corner. Then, click on `Settings` in the drop-down menu.
+   Trước hết, bạn sẽ đi đến nơi GitHub tiếp nhận khóa SSH của chúng ta. Đăng nhập GitHub và nhấp vào ảnh hồ sơ ở góc trên bên phải. Sau đó, nhấp vào `Settings` trong trình đơn thả xuống.
 
-   Next, on the left-hand side, click `SSH and GPG keys`. Then, click the green button in the top right corner that says `New SSH Key`. Name your key something that is descriptive enough for you to remember what device this SSH key came from, for example `linux-ubuntu`. Leave this window open while you do the next steps.
+   Tiếp theo, ở phía bên trái, nhấp vào `SSH and GPG keys`. Sau đó, nhấp vào nút màu xanh lá ở góc trên bên phải có chữ `New SSH Key`. Đặt tên khóa đủ mô tả để bạn nhớ khóa SSH này đến từ thiết bị nào, chẳng hạn như `linux-ubuntu`. Để nguyên cửa sổ này trong khi thực hiện các bước tiếp theo.
 
-   Now you need to copy your public SSH key. To do this, we're going to use a command called [`cat`](http://www.linfo.org/cat.html) to read the file to the console. (Note that the `.pub` file extension is important in this case.)
+   Bây giờ bạn cần sao chép khóa SSH công khai của mình. Để làm việc này, chúng ta sẽ dùng một lệnh có tên là [`cat`](http://www.linfo.org/cat.html) để đọc tệp ra bảng điều khiển. (Lưu ý rằng phần mở rộng tệp `.pub` rất quan trọng trong trường hợp này.)
 
    ```bash
    cat ~/.ssh/id_ed25519.pub
    ```
 
-   Highlight and copy the entire output from the command. If you followed the instructions above, the output will likely begin with `ssh-ed25519` and end with your `username@hostname`.
+   Bôi đen và sao chép toàn bộ kết quả của lệnh. Nếu bạn đã làm theo các hướng dẫn trên, kết quả có thể sẽ bắt đầu bằng `ssh-ed25519` và kết thúc bằng `username@hostname`.
 
-   Now, go back to GitHub in your browser window and paste the key you copied into the key field. Keep the key type as `Authentication Key` and then, click `Add SSH key`. You're done! You've successfully added your SSH key!
+   Bây giờ, quay lại GitHub trong cửa sổ trình duyệt và dán khóa đã sao chép vào trường khóa. Giữ nguyên loại khóa là `Authentication Key`, rồi nhấp vào `Add SSH key`. Xong rồi! Bạn đã thêm khóa SSH thành công!
 
-1. Test your key by following [GitHub's directions for testing your SSH connection](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection?platform=linux). Make sure the fingerprint output in the terminal matches [one of GitHub's four public fingerprints](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints).
+1. Kiểm tra khóa bằng cách làm theo [hướng dẫn của GitHub để kiểm tra kết nối SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection?platform=linux). Hãy đảm bảo kết quả dấu vân tay trong terminal khớp với [một trong bốn dấu vân tay công khai của GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints).
 
-   You should see this response in your terminal: `Hi username! You've successfully authenticated, but GitHub does not provide shell access.` Don't let GitHub's lack of providing shell access trouble you. If you see this message, you've successfully added your SSH key and you can move on. If the output doesn't correctly match up, then try going through these steps again or come to [our Discord server](https://discord.gg/fbFCkYabZB) to ask for help.
+   Bạn sẽ thấy phản hồi sau trong terminal: `Hi username! You've successfully authenticated, but GitHub does not provide shell access.` Đừng lo lắng vì GitHub không cung cấp quyền truy cập shell. Nếu thấy thông báo này, nghĩa là bạn đã thêm khóa SSH thành công và có thể tiếp tục. Nếu kết quả không khớp chính xác, hãy thử thực hiện lại các bước này hoặc vào [máy chủ Discord của chúng tôi](https://discord.gg/fbFCkYabZB) để xin trợ giúp.
 
-#### All done!
+#### Hoàn tất!
 
-Let us know how it went! You've completed the basic installations section, good job! As you progress through the curriculum, there will be other tools to install, so keep an eye out!
+Hãy cho chúng tôi biết mọi việc diễn ra thế nào! Bạn đã hoàn thành phần cài đặt cơ bản, làm tốt lắm! Khi tiếp tục chương trình, sẽ còn có những công cụ khác cần cài đặt, vì vậy hãy chú ý theo dõi!
 
-You probably felt like you were way in over your head, and you probably didn't understand much of what you were doing. That's 100% normal. Hang in there. You can do this! And we've got your back.
+Có lẽ bạn cảm thấy mình đang phải tiếp nhận quá nhiều thứ và chưa hiểu rõ phần lớn những gì đã làm. Điều đó hoàn toàn bình thường. Hãy kiên trì. Bạn có thể làm được! Và chúng tôi luôn ủng hộ bạn.
 
 </div>

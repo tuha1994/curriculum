@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-In this project, you'll get the opportunity to actually build a real Rails application.  It's not a trivially simple one either -- it's got a lot of wrinkles and things that you're not going to understand.
+Trong dự án này, bạn sẽ có cơ hội thực sự xây dựng một ứng dụng Rails hoàn chỉnh. Ứng dụng này cũng không hề đơn giản một cách tầm thường — nó có khá nhiều điểm phức tạp và những điều mà bạn chưa thể hiểu ngay.
 
-To be honest, you're kind of going into the deep end so don't worry if you don't understand what exactly you're doing in all the steps.  The point here is to get familiar with the process of creating a Rails app, what things generally look like, and what you don't know.  When you get to the end of this project, you can consider yourself remarkably persistent and resilient.
+Nói thật thì bạn đang bước vào phần khá sâu, vì vậy đừng lo nếu bạn chưa hiểu chính xác mình đang làm gì trong tất cả các bước. Mục tiêu ở đây là giúp bạn làm quen với quy trình tạo một ứng dụng Rails, hình dung khái quát các thành phần thường có, đồng thời nhận ra những điều mình chưa biết. Khi hoàn thành dự án này, bạn có thể tự xem mình là người có sự kiên trì và khả năng vượt khó đáng nể.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Do the [The Ruby on Rails Guides: Getting Started](https://guides.rubyonrails.org/v8.0/getting_started.html) project up to section 10.7. It ties together the Model-View-Controller and gives a pretty good overview of the common commands you'll use when using Rails. The remainder of the tutorial covers topics that have not been introduced, like concerns and authentication, so it is hard to understand the big picture. In addition, these sections can be confusing because the instructions do not follow the same copy/paste pattern.
-  1. You should have Rails installed already so section 3.1 might not be relevant. It might still be prudent to run the `--version` commands to check you have everything you need though.
-  1. Make sure you commit to Git regularly so if you run into any issues you can revert to an earlier commit without having to start over from scratch. As a rough guide look to commit at the end of each section.
-  1. Pay attention to any error messages you get as you build the app, even though they'll be unplanned.  You'll see all these messages again and again when you're building Rails apps, so it's helpful to start getting familiar with which portions of the message you should pay attention to (and maybe put into Google if you can't figure out what caused it).
-  1. Try to make a mental note of the commands and generators you can use. Rails provides a lot of very helpful generators taking a lot of the pain out of creating different parts of a web application.
-  1. When you're finished, push your code up to [GitHub](https://github.com/).
+  1. Hoàn thành dự án [Hướng dẫn Ruby on Rails: Bắt đầu](https://guides.rubyonrails.org/v8.0/getting_started.html) đến hết mục 10.7. Dự án này kết nối mô hình Model–View–Controller và cung cấp một cái nhìn khá đầy đủ về những lệnh thông dụng bạn sẽ sử dụng khi làm việc với Rails. Phần còn lại của hướng dẫn đề cập đến những chủ đề chưa được giới thiệu, chẳng hạn như concerns và authentication, nên sẽ khó nắm được bức tranh tổng thể. Ngoài ra, các mục này có thể gây khó hiểu vì hướng dẫn không tuân theo cùng một quy trình sao chép/dán.
+  1. Có lẽ bạn đã cài Rails, nên mục 3.1 có thể không còn phù hợp. Tuy vậy, bạn vẫn nên chạy các lệnh `--version` để kiểm tra rằng mình đã có đủ mọi thứ cần thiết.
+  1. Hãy nhớ commit vào Git thường xuyên để nếu gặp vấn đề, bạn có thể quay lại một commit trước đó mà không phải bắt đầu lại từ đầu. Theo nguyên tắc tương đối, hãy commit sau khi kết thúc mỗi mục.
+  1. Hãy chú ý đến mọi thông báo lỗi xuất hiện trong quá trình xây dựng ứng dụng, dù chúng không nằm trong kế hoạch. Bạn sẽ gặp lại những thông báo này hết lần này đến lần khác khi xây dựng các ứng dụng Rails, vì vậy việc bắt đầu làm quen với những phần nào của thông báo cần được chú ý (và có thể đưa lên Google nếu không tìm ra nguyên nhân) sẽ rất hữu ích.
+  1. Cố gắng ghi nhớ các lệnh và generator mà bạn có thể sử dụng. Rails cung cấp rất nhiều generator hữu ích, giúp giảm đáng kể công sức khi tạo các thành phần khác nhau của một ứng dụng web.
+  1. Khi hoàn thành, hãy đẩy mã nguồn của bạn lên [GitHub](https://github.com/).
 
 </div>
 
-#### Additional resources
+#### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy bạn có thể xem nó như tài liệu bổ sung.
 
-- The [official Ruby on Rails guides](http://guides.rubyonrails.org/) are an excellent resource if you want to build on your knowledge.
-- You can read the [Introduction to Core Ruby Tools](https://launchschool.com/books/core_ruby_tools/read/introduction) from LaunchSchool to get a better understanding of Ruby and Rails concepts such as gems, version managers, bundler, and rake.
-- The first 30 minutes of this video will teach you [how to see through of the magical syntax of Ruby on Rails and how to use pry to debug](https://youtu.be/rssgWqJq-14).
+- [Các hướng dẫn chính thức về Ruby on Rails](http://guides.rubyonrails.org/) là một tài nguyên tuyệt vời nếu bạn muốn củng cố thêm kiến thức.
+- Bạn có thể đọc [Nhập môn các công cụ Ruby cốt lõi](https://launchschool.com/books/core_ruby_tools/read/introduction) của LaunchSchool để hiểu rõ hơn về các khái niệm Ruby và Rails như gems, trình quản lý phiên bản, bundler và rake.
+- 30 phút đầu tiên của video này sẽ hướng dẫn bạn [cách nhìn xuyên qua cú pháp kỳ diệu của Ruby on Rails và cách sử dụng pry để debug](https://youtu.be/rssgWqJq-14).

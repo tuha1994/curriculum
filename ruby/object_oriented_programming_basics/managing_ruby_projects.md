@@ -1,34 +1,34 @@
-### Introduction
+### Giới thiệu
 
-You may have been wondering how programmers structure their projects. Do they just put their entire code in a single file? If they don't, how can they use code across multiple files? Are there agreed-upon rules? Common patterns? What is the Ruby way of doing things?
+Có thể bạn đang thắc mắc các lập trình viên cấu trúc dự án của họ như thế nào. Họ chỉ đặt toàn bộ mã của mình vào một tệp duy nhất phải không? Nếu không, làm sao họ có thể sử dụng mã trên nhiều tệp? Có những quy tắc được thống nhất không? Các mẫu phổ biến? Cách làm việc của Ruby là gì?
 
-In this lesson, we will show you how to structure your Ruby projects to keep them manageable and to help you and others easily navigate the code you've written.
+Trong bài học này, chúng tôi sẽ chỉ cho bạn cách cấu trúc các dự án Ruby của bạn để giúp chúng có thể quản lý được và giúp bạn và những người khác dễ dàng điều hướng mã bạn đã viết.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- The benefits of splitting your code into separate files.
-- How to make use of code from a separate file.
-- Namespace and scope of `require`d files.
-- What development dependencies are.
-- What gems are.
-- What Bundler is and why it is useful.
-- What `bundle init` does and what a `Gemfile` is.
-- How to get the most out of `Ruby LSP` VSCode extension.
+- Lợi ích của việc chia mã của bạn thành các tệp riêng biệt.
+- Cách sử dụng mã từ một tập tin riêng biệt.
+- Không gian tên và phạm vi của tệp `require`d.
+- Phụ thuộc phát triển là gì.
+- Đá quý là gì.
+- Bundler là gì và tại sao nó hữu ích.
+- `bundle init` làm gì và `Gemfile` là gì.
+- Cách tận dụng tối đa tiện ích mở rộng VSCode của `Ruby LSP`.
 
-### Confusion, convention, convenience
+### Nhầm lẫn, quy ước, tiện lợi
 
-Recall how the projects you worked on in Foundations were structured. The HTML, CSS and JS all lived in separate files and appeared to be "one" in the browser thanks to linking CSS and JS in the HTML file(s).
+Hãy nhớ lại cách cấu trúc các dự án bạn đã thực hiện trong Foundations. Tất cả HTML, CSS và JS đều tồn tại trong các tệp riêng biệt và dường như là "một" trong trình duyệt nhờ liên kết CSS và JS trong (các) tệp HTML.
 
-Organizing your projects into different files has many practical benefits. Chief among them is making your code more modular, making it easier to adjust and understand the code as it gets more complex.
+Việc sắp xếp các dự án của bạn thành các tệp khác nhau có nhiều lợi ích thiết thực. Điều quan trọng nhất trong số đó là làm cho mã của bạn trở nên mô-đun hơn, giúp điều chỉnh và hiểu mã dễ dàng hơn khi nó trở nên phức tạp hơn.
 
-Remember that old saying about how to keep your physical environment organized—"A place for everything and everything in its place". The same principle applies to software projects.
+Hãy nhớ câu nói cổ về cách giữ cho môi trường vật chất của bạn được ngăn nắp—“Một nơi cho mọi thứ và mọi thứ ở đúng vị trí của nó”. Nguyên tắc tương tự cũng áp dụng cho các dự án phần mềm.
 
-For Ruby projects, the rules of thumb are:
+Đối với các dự án Ruby, nguyên tắc chung là:
 
-- One class per file. Every time you create a new class, you should create a new file for it to live in.
-- It is convention to put all your Ruby files into a lib directory. For example:
+- Một lớp cho mỗi tập tin. Mỗi khi bạn tạo một lớp mới, bạn nên tạo một tệp mới để chứa nó.
+- Đó là quy ước để đặt tất cả các tệp Ruby của bạn vào một thư mục lib. Ví dụ:
 
   ```text
   project_name
@@ -37,9 +37,9 @@ For Ruby projects, the rules of thumb are:
   └── main.rb
   ```
 
-### Making use of multiple files
+### Sử dụng nhiều tập tin
 
-If you are to split your code across multiple files, you first will need to know how to make sure code from one file can be used in another file. Let's consider this file structure:
+Nếu bạn muốn chia mã của mình thành nhiều tệp, trước tiên bạn cần biết cách đảm bảo mã từ một tệp có thể được sử dụng trong một tệp khác. Hãy xem xét cấu trúc tập tin này:
 
 ```text
 ├── lib
@@ -51,11 +51,11 @@ If you are to split your code across multiple files, you first will need to know
 └── main.rb
 ```
 
-There are two main ways to do that: `require_relative` and `require`.
+Có hai cách chính để làm điều đó: `require_relative` và `require`.
 
 #### require_relative
 
-Let's say in your terminal, you're currently in the root of the project (the directory that holds `main.rb`). `main.rb` and `lib/sort.rb` have the following contents:
+Giả sử trong thiết bị đầu cuối của bạn, bạn hiện đang ở thư mục gốc của dự án (thư mục chứa `main.rb`). `main.rb` và `lib/sort.rb` có nội dung sau:
 
 ```ruby
 # main.rb
@@ -69,21 +69,21 @@ require_relative 'sort/bogo_sort'
 require_relative 'sort/merge_sort'
 ```
 
-Let's start with how the docs define its functionality:
+Hãy bắt đầu với cách các tài liệu xác định chức năng của nó:
 
 > `require_relative(string) → true or false`
 >
-> Ruby tries to load the library named `string` relative to the directory containing the requiring file. If the file does not exist a `LoadError` is raised. Returns `true` if the file was loaded and `false` if the file was already loaded before.
+> Ruby cố tải thư viện có tên `string` tương ứng với thư mục chứa tệp yêu cầu. Nếu tệp không tồn tại, `LoadError` sẽ được nâng lên. Trả về `true` nếu tệp đã được tải và `false` nếu tệp đã được tải trước đó.
 
-The important part here is *relative to the directory containing the requiring file*. This means that no matter where you execute the code from, `require_relative` looks for the file specified from the point of view of the file it has been written in. So `main.rb` is simply going to `lib` to find `sort` (the `.rb` is implicit), and `sort.rb` is going to `sort` to find those three different sorts. Simple enough, isn't it?
+Phần quan trọng ở đây là *liên quan đến thư mục chứa tệp yêu cầu*. Điều này có nghĩa là bất kể bạn thực thi mã từ đâu, `require_relative` sẽ tìm kiếm tệp được chỉ định từ quan điểm của tệp mà nó đã được ghi vào. Vì vậy, `main.rb` chỉ cần truy cập `lib` để tìm `sort` (`.rb` là ẩn) và `sort.rb` sẽ truy cập `sort` để tìm ba loại khác nhau đó. Đủ đơn giản phải không?
 
 #### require
 
-`require` is trickier. Let's grab *some* of the docs here:
+`require` phức tạp hơn. Hãy lấy *một số* tài liệu ở đây:
 
-> If the feature is an absolute path (e.g.starts with `'/'`), the feature will be loaded directly using the absolute path. If the feature is an explicit relative path (e.g. starts with `'./'` or `'../'`), the feature will be loaded using the relative path from the current directory. Otherwise, the feature will be searched for in the library directories listed in the `$LOAD_PATH`.
+> Nếu đối tượng địa lý là đường dẫn tuyệt đối (ví dụ: bắt đầu bằng `'/'`), đối tượng địa lý sẽ được tải trực tiếp bằng đường dẫn tuyệt đối. Nếu đối tượng địa lý là đường dẫn tương đối rõ ràng (ví dụ: bắt đầu bằng `'./'` hoặc `'../'`), đối tượng địa lý sẽ được tải bằng đường dẫn tương đối từ thư mục hiện tại. Nếu không, tính năng này sẽ được tìm kiếm trong thư mục thư viện được liệt kê trong `$LOAD_PATH`.
 
-The absolute path bit seems self-explanatory. When you use a relative path, the difference between using `require` and `require_relative` is that `require` resolves it from the point of view of the directory you are running your code from. Let's change our example, again imagining your terminal is currently in the root of the project where `main.rb` is:
+Bit đường dẫn tuyệt đối có vẻ tự giải thích. Khi bạn sử dụng đường dẫn tương đối, sự khác biệt giữa việc sử dụng `require` và `require_relative` là `require` giải quyết nó theo quan điểm của thư mục nơi bạn đang chạy mã. Hãy thay đổi ví dụ của chúng ta, một lần nữa hãy tưởng tượng thiết bị đầu cuối của bạn hiện nằm trong thư mục gốc của dự án có `main.rb`:
 
 ```ruby
 # main.rb
@@ -97,7 +97,7 @@ require 'sort/bogo_sort'
 require 'sort/merge_sort'
 ```
 
-Ah. Of course—an error—it can't find `lib/sort`! Those are not relative paths... Fancy schmancy `require_relative` and its implicitly assuming the paths are relative!
+À. Tất nhiên—có lỗi—nó không thể tìm thấy `lib/sort`! Đó không phải là những đường dẫn tương đối... `require_relative` ưa thích và nó ngầm cho rằng các đường dẫn là tương đối!
 
 ```ruby
 # main.rb
@@ -111,9 +111,9 @@ require './sort/bogo_sort'
 require './sort/merge_sort'
 ```
 
-Now it says it can't find `./sort/bubble_sort`! This is because it is not looking for it from the point of view of `sort.rb` but from the point of view of `main.rb`.
+Bây giờ nó báo không tìm thấy `./sort/bubble_sort`! Điều này là do nó không tìm kiếm nó từ quan điểm của `sort.rb` mà từ quan điểm của `main.rb`.
 
-What about the `$LOAD_PATH` part?
+Còn phần `$LOAD_PATH` thì sao?
 
 ```ruby
 # main.rb
@@ -122,13 +122,13 @@ require 'csv'
 require_relative 'lib/sort'
 ```
 
-`require 'csv'` is going to look for a `csv.rb` in the Ruby's `$LOAD_PATH` global variable, which by default contains the Ruby standard library. There are other file extensions it might look for, but this is not important at this point—just remember that the `require`s look for some extensions like `.rb` without the need to declare them explicitly. In addition to that, if it doesn't find that file in `$LOAD_PATH`, it is going to look through installed gems (more on those later) to see if the file is there.
+`require 'csv'` sẽ tìm kiếm `csv.rb` trong biến toàn cục `$LOAD_PATH` của Ruby, theo mặc định chứa thư viện chuẩn Ruby. Có những phần mở rộng tệp khác mà nó có thể tìm kiếm, nhưng điều này không quan trọng tại thời điểm này—chỉ cần nhớ rằng `require` tìm kiếm một số phần mở rộng như `.rb` mà không cần phải khai báo chúng một cách rõ ràng. Ngoài ra, nếu nó không tìm thấy tệp đó trong `$LOAD_PATH`, nó sẽ xem qua các gem đã cài đặt (sẽ nói thêm về chúng sau) để xem liệu tệp có ở đó hay không.
 
-Both of those approaches (`require` and `require_relative`) are going to execute the file, allowing you to use their contents. If you try to require something for the second time, nothing will happen and those `require`s will return `false`.
+Cả hai cách tiếp cận đó (`require` và `require_relative`) đều sẽ thực thi tệp, cho phép bạn sử dụng nội dung của chúng. Nếu bạn cố gắng yêu cầu thứ gì đó lần thứ hai, sẽ không có gì xảy ra và những `require` đó sẽ trả về `false`.
 
-The convention is that `require_relative` is used for your own code while `require` is used for things outside of it, like gems that your app depend on.
+Quy ước là `require_relative` được sử dụng cho mã của riêng bạn trong khi `require` được sử dụng cho những thứ bên ngoài mã đó, chẳng hạn như đá quý mà ứng dụng của bạn phụ thuộc vào.
 
-The benefit of this approach is that you don't need to hold all the code for part of your app in one file. Say this is your file structure:
+Lợi ích của phương pháp này là bạn không cần phải giữ tất cả mã cho một phần ứng dụng của mình trong một tệp. Giả sử đây là cấu trúc tệp của bạn:
 
 ```text
 ├── lib
@@ -138,7 +138,7 @@ The benefit of this approach is that you don't need to hold all the code for par
 └── main.rb
 ```
 
-And the contents of your files:
+Và nội dung tập tin của bạn:
 
 ```ruby
 # lib/airport.rb
@@ -183,13 +183,13 @@ Hotel.new.introduce
 #=> I'm at the hotel!
 ```
 
-So instead of defining both the `Flight` and `Hotel` classes inside `airport.rb`, we can do that in separate files. It is customary to require all the files in your topmost file, like `main.rb` here. This allows everyone to just get hold of `main.rb` and they get the entirety of your code where they need it. Depending on their needs, they would use an appropriate way of loading that file.
+Vì vậy, thay vì xác định cả hai lớp `Flight` và `Hotel` bên trong `airport.rb`, chúng ta có thể thực hiện điều đó trong các tệp riêng biệt. Theo thông lệ, bạn sẽ yêu cầu tất cả các tệp trong tệp trên cùng của mình, như `main.rb` ở đây. Điều này cho phép mọi người chỉ cần nắm giữ `main.rb` và họ nhận được toàn bộ mã của bạn khi họ cần. Tùy theo nhu cầu mà họ sẽ sử dụng cách tải file đó phù hợp.
 
-Another thing to keep in mind is that local variables do not get loaded, so if your `airport.rb` had a local variable `coolest_airports`, trying to access it in `main.rb` would raise an error. Constants do get loaded however, so you can access those.
+Một điều khác cần lưu ý là các biến cục bộ không được tải, vì vậy nếu `airport.rb` của bạn có biến cục bộ `coolest_airports`, việc cố truy cập biến cục bộ đó trong `main.rb` sẽ gây ra lỗi. Tuy nhiên, các hằng số sẽ được tải nên bạn có thể truy cập chúng.
 
-#### Namespaces
+#### Không gian tên
 
-Something important to keep in mind is that all required code is put into the same namespace. This means that if you have the same names for methods, modules, classes and so on they will be added together in the order they were required. For example, let's say you and your friend have used the same method name and you're trying to use their code and yours (for simplicity's sake, let's say all files are in the same directory):
+Điều quan trọng cần ghi nhớ là tất cả mã được yêu cầu đều được đặt trong cùng một không gian tên. Điều này có nghĩa là nếu bạn có cùng tên cho các phương thức, mô-đun, lớp, v.v., chúng sẽ được thêm vào cùng nhau theo thứ tự được yêu cầu. Ví dụ: giả sử bạn và bạn của bạn đã sử dụng cùng một tên phương thức và bạn đang cố gắng sử dụng mã của họ và của bạn (để đơn giản, giả sử tất cả các tệp đều nằm trong cùng một thư mục):
 
 ```ruby
 # not_so_green.rb
@@ -214,7 +214,7 @@ puts food_opinion('Cereal')
 #=> Cereal is awful!
 ```
 
-Since `food_opinion` is defined twice, the last definition wins out. To make sure code doesn't get overwritten, Rubyists wrap their code in modules which give them the benefits of a namespace:
+Vì `food_opinion` được xác định hai lần nên định nghĩa cuối cùng sẽ thắng. Để đảm bảo mã không bị ghi đè, Rubyist bọc mã của họ trong các mô-đun mang lại cho họ những lợi ích của không gian tên:
 
 ```ruby
 # not_so_green.rb
@@ -247,19 +247,19 @@ puts food_opinion('Cereal')
 #=> Errors out—there's no longer a free floating food_opinion method to use.
 ```
 
-### Gems and you
+### Đá quý và bạn
 
-Now that you know how to work with your own files, it is time to learn how to work with the files of others.
+Bây giờ bạn đã biết cách làm việc với các tệp của riêng mình, đã đến lúc học cách làm việc với các tệp của người khác.
 
-Gems are packages containing Ruby utility libraries that someone wrote—basically, some code. Some of those gems are part of the Ruby standard library, but most require installing independently.
+Đá quý là các gói chứa các thư viện tiện ích Ruby mà ai đó đã viết—về cơ bản là một số mã. Một số gem đó là một phần của thư viện chuẩn Ruby, nhưng hầu hết đều yêu cầu cài đặt độc lập.
 
-If you use a gem then you call such a gem a dependency—your code depends on that gem to function properly. Some dependencies are only used in particular contexts; for example, you can have a set of gems used only in a development or test environment.
+Nếu bạn sử dụng một viên ngọc thì bạn gọi viên ngọc đó là một phần phụ thuộc—mã của bạn phụ thuộc vào viên ngọc đó để hoạt động bình thường. Một số phần phụ thuộc chỉ được sử dụng trong các ngữ cảnh cụ thể; ví dụ: bạn có thể có một bộ đá quý chỉ được sử dụng trong môi trường phát triển hoặc thử nghiệm.
 
-Many gems depend upon other gems, and sometimes, the versions they depend on differ. You *could* manage gems and their dependencies on your own, going through the process of installing, updating them and resolving whatever conflicts might arise, but Rubyists have tools for that!
+Nhiều loại đá quý phụ thuộc vào các loại đá quý khác và đôi khi, phiên bản mà chúng phụ thuộc vào khác nhau. Bạn *có thể* tự mình quản lý đá quý và các phần phụ thuộc của chúng, trải qua quá trình cài đặt, cập nhật chúng và giải quyết mọi xung đột có thể phát sinh, nhưng những người theo chủ nghĩa Ruby có công cụ cho việc đó!
 
-RubyGems has been part of Ruby standard library since version 1.9 and is used to get those amazing gems onto your computer. Remember that bit about `require` going through installed gems to potentially find a file you're looking for? That's the work of RubyGems. Another cool part about it? It is a gem itself! Let's give it a try.
+RubyGems đã là một phần của thư viện chuẩn Ruby kể từ phiên bản 1.9 và được sử dụng để đưa những viên ngọc tuyệt vời đó vào máy tính của bạn. Bạn có nhớ thông tin về `require` khi xem xét các viên ngọc đã cài đặt để có thể tìm thấy tệp bạn đang tìm kiếm không? Đó là công việc của RubyGems. Một phần thú vị khác về nó? Bản thân nó là một viên ngọc quý! Hãy thử xem.
 
-Create a new Ruby file `main.rb` in a directory called `colorful`:
+Tạo một tệp Ruby mới `main.rb` trong thư mục có tên `colorful`:
 
 ```ruby
 require 'colorize'
@@ -271,24 +271,24 @@ puts "I'm blue da ba dee da ba di!".colorize(:blue)
 puts "It ain't easy bein' green...".colorize(:green)
 ```
 
-You're probably itching to see all those colours, so run your file with `ruby main.rb` to see them... or rather, a `LoadError`. Right—you need to install that gem first! Do that with `gem install colorize` and you'll see RubyGems in action. Your system now has access to the `Colorize` gem!
+Bạn có thể muốn xem tất cả các màu đó, vì vậy hãy chạy tệp của bạn với `ruby main.rb` để xem chúng... hay đúng hơn là `LoadError`. Đúng rồi—bạn cần cài đặt viên ngọc đó trước! Làm điều đó với `gem install colorize` và bạn sẽ thấy RubyGems hoạt động. Hệ thống của bạn hiện có quyền truy cập vào đá quý `Colorize`!
 
-Wait, *your system*—what about others who would like to use your code? Yeah, they would also need to `gem install` it—no big deal.
+Đợi đã, *hệ thống của bạn*—còn những người khác muốn sử dụng mã của bạn thì sao? Vâng, họ cũng sẽ cần `gem install`—không có vấn đề gì lớn.
 
-But what if you have dozens of gems? How do you ensure that the versions you use are the same version others download? This sounds rather tedious. Enter: Bundler. It's another gem, part of RubyGems, but released independently.
+Nhưng nếu bạn có hàng chục viên đá quý thì sao? Làm thế nào để bạn đảm bảo rằng các phiên bản bạn sử dụng là phiên bản giống với phiên bản mà người khác tải xuống? Điều này nghe có vẻ khá tẻ nhạt. Nhập: Bundler. Đó là một viên ngọc khác, một phần của RubyGems, nhưng được phát hành độc lập.
 
-Bundler allows you to declare what gems your project needs—down to their version. As for others, Bundler allows them to take that declaration, a simple file called `Gemfile`, and use it to install those gems in a quick `bundle install`.
+Bundler cho phép bạn khai báo những loại đá quý mà dự án của bạn cần — tùy theo phiên bản của chúng. Đối với những người khác, Bundler cho phép họ lấy tuyên bố đó, một tệp đơn giản có tên `Gemfile` và sử dụng nó để cài đặt những viên ngọc đó trong `bundle install` nhanh chóng.
 
-Since gem installs are global, you need a way to run only those particular gem versions that are declared in the `Gemfile`. You can do that by using `bundle exec` followed by a command you want to execute—most likely `bundle exec ruby foo.rb`.
+Vì các lượt cài đặt đá quý mang tính toàn cầu nên bạn cần một cách để chỉ chạy những phiên bản đá quý cụ thể được khai báo trong `Gemfile`. Bạn có thể làm điều đó bằng cách sử dụng `bundle exec`, sau đó là lệnh bạn muốn thực thi—rất có thể là `bundle exec ruby foo.rb`.
 
-Let's make sure whoever wants to use our script can do so:
+Hãy đảm bảo rằng bất kỳ ai muốn sử dụng tập lệnh của chúng tôi đều có thể làm như vậy:
 
 ```bash
 bundle init # creates a default Gemfile in the current working directory
 bundle add colorize # adds the colorize gem to the Gemfile and runs bundle install
 ```
 
-This has created two files: `Gemfile` and `Gemfile.lock`. Let's take a look into both:
+Điều này đã tạo ra hai tệp: `Gemfile` và `Gemfile.lock`. Chúng ta hãy nhìn vào cả hai:
 
 ```ruby
 # Gemfile
@@ -320,48 +320,48 @@ BUNDLED WITH
    2.5.4
 ```
 
-There's not much in those, but as you can see, the `Gemfile` has information on where to get the gems from and what gems are required.
+Không có nhiều thứ trong số đó, nhưng như bạn có thể thấy, `Gemfile` có thông tin về nơi lấy đá quý và loại đá quý nào được yêu cầu.
 
-The `"~> 1.1"` is a version constraint, particularly a pessimistic constraint. It relies on semantic versioning.
+`"~> 1.1"` là một ràng buộc về phiên bản, đặc biệt là một ràng buộc bi quan. Nó dựa vào phiên bản ngữ nghĩa.
 
-1. The first number is the **major** version.
-1. The second is the **minor** version.
-1. The third, if it exists, is the **patch** number.
+1. Số đầu tiên là phiên bản **chính**.
+1. Phiên bản thứ hai là phiên bản **nhỏ**.
+1. Số thứ ba, nếu có, là số **bản vá**.
 
-Major versions can break things from previous versions—for example, changing method names. Minor versions can add and change things but can't break anything. Patches happen when you introduce bug fixes that don't break anything.
+Các phiên bản chính có thể làm hỏng nhiều thứ so với các phiên bản trước—ví dụ: thay đổi tên phương thức. Các phiên bản nhỏ có thể thêm và thay đổi mọi thứ nhưng không thể phá vỡ bất cứ điều gì. Các bản vá xảy ra khi bạn giới thiệu các bản sửa lỗi không làm hỏng bất kỳ thứ gì.
 
-So, if people behind a gem maintain it in line with semantic versioning, you can rely on this pessimistic constraint never letting your project have a gem version that could potentially break your app—it is equivalent to `gem "colorize", ">= 1.1", "< 2.0"`.
+Vì vậy, nếu những người đứng sau viên ngọc duy trì nó phù hợp với phiên bản ngữ nghĩa, thì bạn có thể dựa vào ràng buộc bi quan này là không bao giờ để dự án của bạn có phiên bản đá quý có khả năng phá vỡ ứng dụng của bạn—nó tương đương với `gem "colorize", ">= 1.1", "< 2.0"`.
 
-`Gemfile.lock` has information on what was the last environment that should be able to run your app. Bundler will use it to install the same versions of gems even if `Gemfile` could potentially allow for newer versions to be installed.
+`Gemfile.lock` có thông tin về môi trường cuối cùng có thể chạy ứng dụng của bạn. Bundler sẽ sử dụng nó để cài đặt các phiên bản đá quý tương tự ngay cả khi `Gemfile` có khả năng cho phép cài đặt các phiên bản mới hơn.
 
-### .ruby-version
+### .ruby-phiên bản
 
-There's another important thing to give to folks that will run your code: the target Ruby version of your project. You can do it easily by running `rbenv local 3.2.2` as it creates a `.ruby-version` file with the version declared—3.2.2. Test the command out by using one of your rbenv installed Ruby versions. Run `rbenv versions` to see the list of Ruby versions you have installed.
+Có một điều quan trọng khác cần cung cấp cho những người sẽ chạy mã của bạn: phiên bản Ruby mục tiêu của dự án của bạn. Bạn có thể thực hiện việc này một cách dễ dàng bằng cách chạy `rbenv local 3.2.2` vì nó tạo tệp `.ruby-version` với phiên bản được khai báo—3.2.2. Kiểm tra lệnh bằng cách sử dụng một trong các phiên bản Ruby đã cài đặt rbenv của bạn. Chạy `rbenv versions` để xem danh sách các phiên bản Ruby bạn đã cài đặt.
 
-Many other tools recognize this to figure out what Ruby version your project is running—for example, `rbenv` will no longer use the `global` Ruby version and the `Ruby LSP` VSCode extension will also change its behavior.
+Nhiều công cụ khác nhận ra điều này để tìm ra phiên bản Ruby mà dự án của bạn đang chạy—ví dụ: `rbenv` sẽ không còn sử dụng phiên bản `global` Ruby nữa và tiện ích mở rộng `Ruby LSP` VSCode cũng sẽ thay đổi hành vi của nó.
 
-### Ruby LSP in VSCode
+### Ruby LSP trong VSCode
 
-Earlier in the curriculum, you were instructed to choose the `Don't show again` option when `Ruby LSP` told you about not finding a lock file—you might've also seen errors concerning `RuboCop`. In the next lesson, we will review `RuboCop` and how it should land in your project's `Gemfile`.
+Trước đó trong chương trình giảng dạy, bạn đã được hướng dẫn chọn tùy chọn `Don't show again` khi `Ruby LSP` thông báo cho bạn về việc không tìm thấy tệp khóa—bạn cũng có thể đã thấy các lỗi liên quan đến `RuboCop`. Trong bài học tiếp theo, chúng ta sẽ xem xét `RuboCop` và cách nó sẽ xuất hiện trong `Gemfile` của dự án của bạn.
 
-After that, you will enjoy all the benefits of using `Ruby LSP` and its `RuboCop` integration, and your projects will be set up like a real pro.
+Sau đó, bạn sẽ tận hưởng tất cả lợi ích của việc sử dụng `Ruby LSP` và tích hợp `RuboCop` của nó, đồng thời các dự án của bạn sẽ được thiết lập như một chuyên gia thực thụ.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read [Eric Mathison's Understanding require and Friends in Ruby](https://github.com/ericmathison/articles/blob/master/understanding-require-in-ruby.md).
-1. Check out the [RubyGems Basics](https://guides.rubygems.org/rubygems-basics/).
-1. Skim through [Patterns guide from RubyGems](https://guides.rubygems.org/patterns/), paying closer attention to [`Semantic versioning`](https://guides.rubygems.org/versioning/), [`Declaring dependencies`](https://guides.rubygems.org/gemfile-and-gemspec/#:~:text=Declaring%20dependencies) and [`Loading code`](https://guides.rubygems.org/patterns/#:~:text=name%20you%20like.-,Loading%20code,-At%20its%20core).
-1. Skim through [Bundler's Getting Started](https://guides.rubygems.org/getting_started/) and [Frequently Asked Questions](https://guides.rubygems.org/faq/).
-1. Check out [Ruby LSP VSCode extension's README](https://github.com/Shopify/ruby-lsp/tree/main/vscode#readme).
+1. Đọc [Yêu cầu hiểu biết của Eric Mathison và Những người bạn trong Ruby](https://github.com/ericmathison/articles/blob/master/understanding-require-in-ruby.md).
+1. Hãy xem [Thông tin cơ bản về RubyGems](https://guides.rubygems.org/rubygems-basics/).
+1. Đọc lướt qua [Hướng dẫn mẫu từ RubyGems](https://guides.rubygems.org/patterns/), chú ý kỹ hơn đến [`Semantic versioning`](https://guides.rubygems.org/versioning/), [`Declaring dependencies`](https://guides.rubygems.org/gemfile-and-gemspec/#:~:text=Declaring%20dependencies) và [`Loading code`](https://guides.rubygems.org/patterns/#:~:text=name%20you%20like.-,Loading%20code,-At%20its%20core).
+1. Đọc lướt qua [Bundler's Bắt đầu](https://guides.rubygems.org/getting_started/) và [Câu hỏi thường gặp](https://guides.rubygems.org/faq/).
+1. Kiểm tra [README của phần mở rộng Ruby LSP VSCode] (https://github.com/Shopify/ruby-lsp/tree/main/vscode#readme).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- [Listen to one of Bundler's maintainers talk about managing dependencies in Ruby](https://www.youtube.com/watch?v=j2V-A8vvLP0) or alternatively, [read the talk](https://andre.arko.net/2015/04/28/how-does-bundler-work-anyway/).
-- [More on semantic versioning—perhaps conventional commits will make more sense to you now!](https://semver.org)
-- [If you'd like an alternative take on the lesson, Connor Stack's article might be of help](https://medium.com/@connorstack/understanding-ruby-load-require-gems-bundler-and-rails-autoloading-from-the-bottom-up-3b422902ca0).
+- [Nghe một trong những người bảo trì của Bundler nói về việc quản lý các phần phụ thuộc trong Ruby](https://www.youtube.com/watch?v=j2V-A8vvLP0) hoặc cách khác là [đọc bài nói chuyện](https://andre.arko.net/2015/04/28/how-does-bundler-work-anyway/).
+- [Thông tin thêm về phiên bản ngữ nghĩa—có lẽ bây giờ các cam kết thông thường sẽ có ý nghĩa hơn với bạn!](https://semver.org)
+- [Nếu bạn muốn có một cách tiếp cận bài học khác, bài viết của Connor Stack có thể hữu ích](https://medium.com/@connorstack/understanding-ruby-load-require-gems-bundler-and-rails-autoloading-from-the-bottom-up-3b422902ca0).

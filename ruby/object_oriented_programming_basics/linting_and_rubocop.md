@@ -1,63 +1,63 @@
-### Introduction
+### Giới thiệu
 
-Code. Code is written for our machines to execute but more importantly it is written for us, humans, to understand.
+Mã nguồn. Mã được viết để máy của chúng ta thực thi nhưng quan trọng hơn là nó được viết để chúng ta, con người, hiểu được.
 
-You've seen some code by now, especially so if you were diligent and took the time to practice reading code by exploring projects written
-by your peers going through The Odin Project. Some of it was good, some of it was bad but probably a lot of it was just confusing.
-That's absolutely fine, of course - you're all still learning.
+Bây giờ bạn đã thấy một số mã, đặc biệt nếu bạn siêng năng và dành thời gian thực hành đọc mã bằng cách khám phá các dự án được viết
+bởi các đồng nghiệp của bạn đang trải qua Dự án Odin. Một số thì tốt, một số thì tệ nhưng có lẽ phần lớn chỉ là khó hiểu.
+Tất nhiên, điều đó hoàn toàn ổn - tất cả các bạn vẫn đang học.
 
-But what do professionals do to make sure their code is as best as it can be:
-readable, predictable and performant? They try to come up with best practices. How do they enforce them?
+Nhưng các chuyên gia sẽ làm gì để đảm bảo mã của họ tốt nhất có thể:
+có thể đọc được, có thể dự đoán và hoạt động được không? Họ cố gắng đưa ra những phương pháp hay nhất. Làm thế nào để họ thực thi chúng?
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này chứa thông tin tổng quan chung về các chủ đề mà bạn sẽ học trong bài học này.
 
-- What linting and formatting are.
-- Where RuboCop takes its various rules from and how one could group them.
-- How to install and configure RuboCop.
-- How RuboCop interacts with RubyLSP and VSCode.
-- What cyclomatic complexity and ABC metrics are.
+- Linting và định dạng là gì.
+- RuboCop lấy các quy tắc khác nhau từ đâu và cách người ta có thể nhóm chúng lại.
+- Cách cài đặt và cấu hình RuboCop.
+- Cách RuboCop tương tác với RubyLSP và VSCode.
+- Độ phức tạp chu kỳ và số liệu ABC là gì.
 
-### Convention time again
+### Lại đến giờ nói về quy ước
 
-You have already been exposed to some of the conventions in HTML, CSS, JS and Ruby.
-This is why JS has its variables written `likeThis` while Ruby's are `like_this`, why function names are verbs and variable names are nouns. Why some languages prefer loops while others prefer iterative methods. Why some features
-present in languages are strongly discouraged - remember `var`, `eval()` or `$global_variable`s?
+Bạn đã được tiếp xúc với một số quy ước trong HTML, CSS, JS và Ruby.
+Đây là lý do tại sao JS có các biến được viết là `likeThis` trong khi của Ruby là `like_this`, tại sao tên hàm là động từ và tên biến là danh từ. Tại sao một số ngôn ngữ thích vòng lặp trong khi những ngôn ngữ khác thích phương pháp lặp Tại sao một số tính năng
+hiện diện trong các ngôn ngữ không được khuyến khích - hãy nhớ `var`, `eval()` hoặc `$global_variable`s?
 
-There's *a lot* more of these relating to features of Ruby (or a different language!) that you might never even have heard of. The good news is that there exist style guides:
-a set of standards for writing and organizing code. The bad news? Your head would need to store that entire set of standards and be able to recall them whenever working with code.
+Còn *rất nhiều* những điều này liên quan đến các tính năng của Ruby (hoặc một ngôn ngữ khác!) mà có thể bạn chưa từng nghe tới. Tin tốt là có những hướng dẫn về phong cách:
+một bộ tiêu chuẩn để viết và tổ chức mã. Tin xấu? Đầu của bạn sẽ cần lưu trữ toàn bộ bộ tiêu chuẩn đó và có thể nhớ lại chúng bất cứ khi nào làm việc với mã.
 
-### Your code has pockets, too
+### Mã của bạn cũng có những “ngăn” riêng
 
-Enter another set of tools: linters and formatters. Those do the remembering job for you - they shall point out that something's wrong. Perhaps they might automatically fix
-some of the issues or at least provide hints or references to the style guide that might help you in writing cleaner code.
+Hãy dùng thêm một bộ công cụ khác: linter và formatter. Chúng sẽ làm công việc ghi nhớ thay bạn - chúng sẽ chỉ ra rằng có điều gì đó không ổn. Có lẽ chúng có thể tự động sửa
+một số vấn đề hoặc ít nhất là cung cấp gợi ý hoặc tài liệu tham khảo về hướng dẫn văn phong có thể giúp bạn viết mã sạch hơn.
 
-Formatting is all about making your code look neat and tidy without changing code's behavior - think indentation and various spacing, so style. Linting is all about making your code easier to reason about - this might change how your code behaves, for example by enforcing that you use `#each` instead of a `for` loop. For all that, Rubyists have a powerful ally:
+Định dạng là làm cho mã của bạn trông gọn gàng và ngăn nắp mà không thay đổi hành vi của mã - hãy nghĩ đến việc thụt lề và các khoảng cách khác nhau, vì vậy hãy tạo phong cách. Linting nghĩa là làm cho mã của bạn dễ lý giải hơn - điều này có thể thay đổi cách mã của bạn hoạt động, chẳng hạn như bằng cách buộc bạn sử dụng `#each` thay vì vòng lặp `for`. Vì tất cả những điều đó, những người theo chủ nghĩa Ruby có một đồng minh đắc lực:
 
-RuboCop. A really polished Gem that will make your code shine!
+RuboCop. Một gem được hoàn thiện kỹ lưỡng sẽ làm cho mã của bạn tỏa sáng!
 
-Before you and RuboCop do a check-up on your Caesar Cipher project, let's talk some more about the Ruby Style Guide, starting with how it introduces itself:
-> This Ruby style guide recommends best practices so that real-world Ruby programmers can write code that can be maintained by other real-world Ruby programmers. A style guide that reflects real-world usage gets used, while a style guide that holds to an ideal that has been rejected by the people it is supposed to help risks not getting used at all - no matter how good it is. (...)
- The guidelines provided here are intended to improve the readability of code and make it consistent across the wide spectrum of Ruby code.
+Trước khi bạn và RuboCop kiểm tra dự án Mật mã Caesar của bạn, hãy nói thêm một chút về Hướng dẫn về phong cách Ruby, bắt đầu với cách nó tự giới thiệu:
+> Hướng dẫn về phong cách Ruby này đề xuất các phương pháp hay nhất để các lập trình viên Ruby trong thế giới thực có thể viết mã mà các lập trình viên Ruby trong thế giới thực khác có thể duy trì. Một hướng dẫn về phong cách phản ánh việc sử dụng trong thế giới thực sẽ được sử dụng, trong khi một hướng dẫn về phong cách bám sát một lý tưởng đã bị mọi người từ chối, nó được cho là sẽ giúp tránh rủi ro không được sử dụng chút nào - cho dù nó có tốt đến đâu. (...)
+Các nguyên tắc được cung cấp ở đây nhằm mục đích cải thiện khả năng đọc mã và làm cho nó nhất quán trên phạm vi rộng của mã Ruby.
 
-As you can see, those are *recommendations* dictated by real-world usage aimed at improving readability and consistency of Ruby code. In the end, it is like the difference between how you send your messages online versus how you'd write an essay. One is about communicating quickly, the other is about communicating clearly.
+Như bạn có thể thấy, đó là những *đề xuất* được đưa ra theo cách sử dụng trong thế giới thực nhằm cải thiện khả năng đọc và tính nhất quán của mã Ruby. Cuối cùng, nó giống như sự khác biệt giữa cách bạn gửi tin nhắn trực tuyến và cách bạn viết một bài luận. Một là giao tiếp nhanh chóng, hai là giao tiếp rõ ràng.
 
-The various conventions can be grouped based on what aspects of your code they deal with. As a starting point, lets use some of RuboCop's departments - Style, Lint and Metrics. Perhaps you've anticipated that RuboCop doesn't work alone - it indeed has a whole precinct behind itself. The various Cops are interested in making sure that some particular rule is not broken. Let the departments speak for themselves:
+Các quy ước khác nhau có thể được nhóm lại dựa trên những khía cạnh nào trong mã của bạn mà chúng xử lý. Để bắt đầu, hãy sử dụng một số bộ phận của RuboCop - Style, Lint và Metrics. Có lẽ bạn đã đoán trước rằng RuboCop không hoạt động một mình - nó thực sự có cả một “đội ngũ” phía sau. Các Cop khác nhau quan tâm đến việc đảm bảo rằng một số quy tắc cụ thể không bị vi phạm. Hãy để các bộ phận tự lên tiếng:
 
-> Style Cops check for stylistic consistency of your code. Many of the them are based on the Ruby Style Guide.
+> Style Cops kiểm tra tính nhất quán về kiểu dáng trong mã của bạn. Nhiều trong số chúng dựa trên Ruby Style Guide.
 >
-> Lint Cops check for ambiguities and possible errors in your code.
+> Lint Cops kiểm tra những điểm mơ hồ và lỗi có thể xảy ra trong mã của bạn.
 >
-> Metrics Cops deal with properties of the source code that can be measured, such as class length, method length, etc.
+> Metrics Cop xử lý các thuộc tính của mã nguồn có thể đo được, chẳng hạn như độ dài lớp, độ dài phương thức, v.v.
 
-You'll have an opportunity to dig into particulars of the Ruby Style Guide soon and as for the Cops - they'll make sure to make themselves known. On that note, let's begin the investigation, detective!
+Bạn sẽ sớm có cơ hội tìm hiểu chi tiết về Hướng dẫn phong cách Ruby và đối với Cảnh sát - họ sẽ đảm bảo làm cho mình được biết đến. Trên lưu ý đó, hãy bắt đầu cuộc điều tra, thám tử!
 
-### Section where you learn all about code crime
+### Phần nơi bạn tìm hiểu tất cả về tội phạm mã
 
-As mentioned earlier, RuboCop is a Gem and the project we want to investigate is Caesar Cipher. Go back and install RuboCop locally (as in, use Bundler) and then run `bundle exec rubocop` in your terminal. Running it like this makes sure that the local version of RuboCop is used and it will check all the files in the current working directory *and* its subdirectories. In short: everything.
+Như đã đề cập trước đó, RuboCop là một viên Đá quý và dự án mà chúng tôi muốn điều tra là Caesar Cipher. Quay lại và cài đặt RuboCop cục bộ (như trong, sử dụng Bundler) rồi chạy `bundle exec rubocop` trong thiết bị đầu cuối của bạn. Việc chạy nó như thế này sẽ đảm bảo rằng phiên bản cục bộ của RuboCop được sử dụng và nó sẽ kiểm tra tất cả các tệp trong thư mục làm việc hiện tại *và* các thư mục con của nó. Tóm lại: tất cả mọi thứ.
 
-Whoa! Well, at least for me - perhaps you're a savant and a Ruby Style natural, in that case, here's some example output:
+Ối! Chà, ít nhất là đối với tôi - có lẽ bạn là một người hiểu biết và có phong cách Ruby bẩm sinh, trong trường hợp đó, đây là một số ví dụ đầu ra:
 
 ```bash
 Inspecting 2 files
@@ -89,22 +89,22 @@ caesars_cipher.rb:16:8: C: [Correctable] Style/StringLiterals: Prefer single-quo
 # Duplicate offenses in the same file were truncated.
 ```
 
-Let's break this down.
-The output starts with telling how many files are to be inspected:
+Hãy phá vỡ điều này.
+Đầu ra bắt đầu bằng việc cho biết có bao nhiêu tệp cần được kiểm tra:
 
 ```bash
 Inspecting 2 files
 ```
 
-Then, a somewhat mysterious string of capital letters appeared: `CC`:
+Sau đó, một chuỗi chữ in hoa có phần bí ẩn xuất hiện: `CC`:
 
 ```bash
 CC
 ```
 
-Every letter corresponds to one file. So both of the files inspected by RuboCop reported "convention" as their most severe issues.
-The other letters that you might want to know are `W` for warning and `F` for fatal.
-Finally, the output arrives at the crime scene - offenses:
+Mỗi chữ cái tương ứng với một tập tin. Vì vậy, cả hai tệp được RuboCop kiểm tra đều báo cáo "quy ước" là vấn đề nghiêm trọng nhất của chúng.
+Các chữ cái khác mà bạn có thể muốn biết là `W` dành cho cảnh báo và `F` dành cho trường hợp tử vong.
+Cuối cùng, đầu ra đến hiện trường vụ án - hành vi phạm tội:
 
 ```bash
 Offenses:
@@ -114,16 +114,16 @@ source "https://rubygems.org"
        ^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-The output resembles stack traces a little bit: you get the file, the line and the column, then severity level letter. After that you receive information on whether
-RuboCop can fix the problem on its own. We'll get back to this very soon. Further, you learn of the Department/Cop - in this case, you're dealing with StringLiterals Cop from the Style department.
-Obviously, our cybernetic assistants are polite enough to introduce themselves, so you're being told what is wrong. Finally, you are directly told what and where is the offending part of code.
-Here, RuboCop pointed out that this string could very well be single-quoted, as that string doesn't use anything that comes with double-quoted strings.
+Kết quả đầu ra giống dấu vết ngăn xếp một chút: bạn nhận được tệp, dòng và cột, sau đó là chữ cái mức độ nghiêm trọng. Sau đó bạn nhận được thông tin về việc liệu
+RuboCop có thể tự khắc phục sự cố. Chúng tôi sẽ sớm quay lại vấn đề này. Hơn nữa, bạn tìm hiểu về Phòng/Cảnh sát - trong trường hợp này, bạn đang làm việc với StringLiterals Cop từ phòng Phong cách.
+Rõ ràng, các trợ lý điều khiển học của chúng tôi đủ lịch sự để tự giới thiệu bản thân, vì vậy bạn sẽ được thông báo có điều gì sai. Cuối cùng, bạn sẽ được thông báo trực tiếp phần mã vi phạm là gì và ở đâu.
+Ở đây, RuboCop đã chỉ ra rằng chuỗi này rất có thể được trích dẫn đơn vì chuỗi đó không sử dụng bất kỳ thứ gì đi kèm với chuỗi trích dẫn kép.
 
-You could ask why such a foundational Gem as Bundler can run into trouble with the law. The answer is that RuboCop is highly customizable to accommodate many standards that programmers
-might have. Remember: what is important in linting and formatting is making sure everyone in a group plays by the same rules, so the code is more readable.
+Bạn có thể hỏi tại sao một viên Đá quý nền tảng như Bundler lại có thể gặp rắc rối với pháp luật. Câu trả lời là RuboCop có khả năng tùy biến cao để đáp ứng nhiều tiêu chuẩn mà các lập trình viên
+có thể có. Hãy nhớ: điều quan trọng trong việc tìm lỗi mã nguồn và định dạng là đảm bảo mọi người trong nhóm đều tuân theo các quy tắc giống nhau để mã dễ đọc hơn.
 
-Before you unleash the automated fury of RuboCop upon your code, you might want to become acquainted with a nifty flag: `-S`. This will provide a link to the Ruby Style Guide
-that goes over the rationale for the offense, if the Cop has such link when `bundle exec rubocop -S` is used:
+Trước khi giải phóng cơn giận dữ tự động của RuboCop đối với mã của mình, bạn có thể muốn làm quen với một lá cờ tiện lợi: `-S`. Điều này sẽ cung cấp một liên kết đến Hướng dẫn về Phong cách Ruby
+điều đó đề cập đến lý do căn bản của hành vi phạm tội, nếu Cảnh sát có liên kết như vậy khi sử dụng `bundle exec rubocop -S`:
 
 ```bash
 Gemfile:3:8: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don\'t need string interpolation or special symbols. (https://rubystyle.guide#consistent-string-literals)
@@ -131,9 +131,9 @@ source "https://rubygems.org"
        ^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-Nifty, eh?
+Tiện lợi nhỉ?
 
-But I hear you - you're here for action. So let's go for the `-a` flag, a for action! (Actually, it stands for autocorrect but that's not as fun) `bundle exec rubocop -a`, go!
+Nhưng tôi nghe thấy bạn - bạn ở đây để hành động. Vì vậy, hãy sử dụng cờ `-a`, một hành động! (Trên thực tế, nó là viết tắt của tự động sửa lỗi nhưng điều đó không thú vị bằng) `bundle exec rubocop -a`, bắt đầu!
 
 ```bash
 Inspecting 2 files
@@ -161,62 +161,62 @@ caesars_cipher.rb:16:8: C: [Corrected] Style/StringLiterals: Prefer single-quote
 # Duplicate offenses were truncated.
 ```
 
-See that `.`? That means the first file is now all fine and dandy! Some of the offenses were not corrected by RuboCop and that's because `-a` is for safe autocorrect.
-If you wanted to go through with the `[Correctable]` offenses, you'd want to use `-A` as the output helpfully suggests. This is due to the fact that some Cops are safe, some are unsafe.
+Bạn có thấy `.` đó không? Điều đó có nghĩa là tập tin đầu tiên bây giờ đã ổn và đẹp đẽ! RuboCop đã không sửa một số lỗi vi phạm và đó là do `-a` dành cho tính năng tự động sửa lỗi an toàn.
+Nếu bạn muốn xử lý các vi phạm `[Correctable]`, bạn nên sử dụng `-A` làm kết quả gợi ý hữu ích. Điều này là do thực tế là một số Cảnh sát an toàn, một số không an toàn.
 
-The safe Cops promise that they won't have false positives and that their autocorrect won't change the semantics of the code and it will be fully equivalent to what you had written.
+Cảnh sát an toàn hứa rằng họ sẽ không có kết quả dương tính giả và tính năng tự động sửa lỗi của họ sẽ không thay đổi ngữ nghĩa của mã và nó sẽ hoàn toàn tương đương với những gì bạn đã viết.
 
-From this it follows that unsafe Cops either have false positives or slightly change the semantics of the code. The first characteristic means they tell you something is wrong when actually, everything is alright - for example, you've got a method with the same name as one in standard library in your object and RuboCop treats it as if it were the standard library method.
+Từ đó, có thể suy ra rằng Cảnh sát không an toàn có kết quả dương tính giả hoặc thay đổi một chút ngữ nghĩa của mã. Đặc điểm đầu tiên có nghĩa là chúng cho bạn biết có điều gì đó không ổn trong khi thực tế thì mọi thứ đều ổn - ví dụ: bạn có một phương thức có cùng tên với một phương thức trong thư viện chuẩn trong đối tượng của bạn và RuboCop coi nó như thể đó là phương thức thư viện chuẩn.
 
-The latter means that while your code and the proposed code arrive at the same output, they might change how (but not what) the output is achieved or produce a side-effect that might even break your code.
+Điều sau có nghĩa là mặc dù mã của bạn và mã được đề xuất có cùng một đầu ra, chúng có thể thay đổi cách thức (chứ không phải cái gì) đạt được đầu ra hoặc tạo ra tác dụng phụ thậm chí có thể phá vỡ mã của bạn.
 
-### You are the code dictator
+### Bạn là kẻ độc tài mã
 
-Due to Ruby's ecosystem, RuboCop was built with extensive configurability in mind - both in terms of not using some parts of and in terms of adding onto it. Every single Cop can be disabled, sometimes Cops offer alternative rules like preferring single- or double-quotes for Strings, you can disable Cops on a per-file basis and much more.
+Do hệ sinh thái của Ruby, RuboCop được xây dựng với khả năng cấu hình mở rộng - cả về việc không sử dụng một số phần và về mặt bổ sung vào nó. Mọi Cảnh sát đều có thể bị tắt, đôi khi Cảnh sát đưa ra các quy tắc thay thế như ưu tiên dấu ngoặc đơn hoặc dấu ngoặc kép cho Chuỗi, bạn có thể tắt Cảnh sát trên cơ sở mỗi tệp và hơn thế nữa.
 
-Since [RuboCop is extensible](https://docs.rubocop.org/rubocop/latest/plugins.html), there exist other departments that you can use - like Performance or RSpec. You could even write your own Cop! The process of adding an extension is easy. Suppose you wanted to add the `rubocop-performance` Gem to your project. You first install the Gem locally from the command line:
+Vì [RuboCop có thể mở rộng](https://docs.rubocop.org/rubocop/latest/plugins.html), nên tồn tại các bộ phận khác mà bạn có thể sử dụng - như Hiệu suất hoặc RSpec. Bạn thậm chí có thể viết Cop của riêng bạn! Quá trình thêm tiện ích mở rộng rất dễ dàng. Giả sử bạn muốn thêm Đá quý `rubocop-performance` vào dự án của mình. Trước tiên bạn cài đặt Gem cục bộ từ dòng lệnh:
 
 ```bash
 gem install rubocop-performance
 ```
 
-Next, you must tell Bundler to include the Gem in your project by adding the following line to your GemFile (Gems that are not required for an app to run are usually given the `require: false` flag):
+Tiếp theo, bạn phải yêu cầu Bundler đưa Đá quý vào dự án của bạn bằng cách thêm dòng sau vào GemFile của bạn (Những viên đá quý không bắt buộc để ứng dụng chạy thường được gắn cờ `require: false`):
 
 ```ruby
 gem 'rubocop-performance', require: false
 ```
 
-This way the Gem would be installed normally, but for your `bundle exec` ran code to make use of it, it would need to be explicitly `require`d wherever you'd need it.
+Bằng cách này, Gem sẽ được cài đặt bình thường, nhưng để `bundle exec` chạy mã để sử dụng nó, nó cần phải rõ ràng là `require`d ở bất cứ nơi nào bạn cần.
 
-Next, you need to tell RuboCop to load your new extension. You can do this by editing a `.rubocop.yml` file, which is the configuration file for RuboCop and it lives in the root directory of your project. There you'll change the defaults of RuboCop to your (or most likely, your team's) liking. To create the `.rubocop.yml` file, run this command from your terminal in your project's directory:
+Tiếp theo, bạn cần yêu cầu RuboCop tải tiện ích mở rộng mới của bạn. Bạn có thể thực hiện việc này bằng cách chỉnh sửa tệp `.rubocop.yml`, đây là tệp cấu hình cho RuboCop và nó nằm trong thư mục gốc của dự án của bạn. Ở đó, bạn sẽ thay đổi các giá trị mặc định của RuboCop theo sở thích của bạn (hoặc rất có thể là của nhóm bạn). Để tạo tệp `.rubocop.yml`, hãy chạy lệnh này từ thiết bị đầu cuối trong thư mục dự án của bạn:
 
 ```bash
 bundle exec rubocop --init
 ```
 
-It won't have anything in it besides a comment describing what it is for. Now, all you have to do is copy/paste the following lines in your `.rubocop.yml` file so that `rubocop` will know to use the extension whenever you run `bundle exec rubocop`:
+Nó sẽ không có gì trong đó ngoài một bình luận mô tả mục đích của nó. Bây giờ, tất cả những gì bạn phải làm là sao chép/dán các dòng sau vào tệp `.rubocop.yml` để `rubocop` biết sử dụng tiện ích mở rộng bất cứ khi nào bạn chạy `bundle exec rubocop`:
 
 ```yaml
 plugins:
   - rubocop-performance
 ```
 
-RuboCop is still under development, so changes and additions happen. New Cops join the precinct and they're not enabled by default - if you'd like them to be enabled by default instead of going through all of them and deciding on your own, you can use:
+RuboCop vẫn đang được phát triển nên sẽ có những thay đổi và bổ sung. Cảnh sát mới tham gia khu vực bầu cử và chúng không được bật theo mặc định - nếu bạn muốn bật chúng theo mặc định thay vì xem qua tất cả chúng và tự mình quyết định, bạn có thể sử dụng:
 
 ```yaml
 AllCops:
   NewCops: enable
 ```
 
-in your `.rubocop.yml` to enable all the new Cops.
+trong `.rubocop.yml` của bạn để kích hoạt tất cả Cảnh sát mới.
 
-### Power corrupts
+### Nguồn bị hỏng
 
-Perhaps you're not interested in tailoring RuboCop to your liking, especially since you're just starting out and have absolutely no idea what's good and what's bad. That'd be the correct approach - don't worry about it right now and just go with the RuboCop defaults.
+Có lẽ bạn không quan tâm đến việc điều chỉnh RuboCop theo ý thích của mình, đặc biệt khi bạn mới bắt đầu và hoàn toàn không biết điều gì là tốt và điều gì là xấu. Đó sẽ là cách tiếp cận đúng - đừng lo lắng về điều đó ngay bây giờ và chỉ cần sử dụng các giá trị mặc định của RuboCop.
 
-One of the departments you might be tempted to drop is Metrics. It probably is going to be your worst enemy starting out in writing bigger, more object oriented code. But being that worst enemy has good reasons: it tries to help you write better code. It is fine if you can't always satisfy RuboCop but to shun its guidance during learning is foolish.
+Một trong những bộ phận mà bạn có thể muốn bỏ qua là Số liệu. Nó có thể sẽ là kẻ thù tồi tệ nhất của bạn khi bắt đầu bằng việc viết mã lớn hơn, hướng đối tượng hơn. Nhưng việc trở thành kẻ thù tồi tệ nhất đó có lý do chính đáng: nó cố gắng giúp bạn viết mã tốt hơn. Sẽ không sao nếu bạn không phải lúc nào cũng thỏa mãn được RuboCop nhưng việc trốn tránh sự hướng dẫn của nó trong quá trình học là một điều ngu ngốc.
 
-Having said that, seeing those offenses come up again and again in one place that you've already made peace with being non-compliant is distracting. Since you don't want to disable those Cops altogether, you can use inline comments to turn off what pesters you:
+Phải nói rằng, việc nhìn thấy những hành vi phạm tội đó tái diễn ở một nơi mà bạn đã chấp nhận việc không tuân thủ sẽ khiến bạn mất tập trung. Vì không muốn tắt hoàn toàn các Cảnh sát đó nên bạn có thể sử dụng nhận xét nội tuyến để tắt những điều khiến bạn khó chịu:
 
 ```ruby
 # rubocop: disable Metrics/AbcSize
@@ -226,11 +226,11 @@ end
 # rubocop: enable Metrics/AbcSize
 ```
 
-This will disable the `AbcSize` Cop from `Metrics` department between those comment lines. Remember: don't use this to avoid working on your code, use it whenever appropriate - it might really be the case that some method has to be that complicated, or at least that's the current belief.
+Điều này sẽ vô hiệu hóa Cảnh sát `AbcSize` khỏi bộ phận `Metrics` giữa các dòng nhận xét đó. Hãy nhớ: đừng sử dụng điều này để tránh phải làm việc với mã của bạn, hãy sử dụng nó bất cứ khi nào thích hợp - thực sự có thể xảy ra trường hợp một số phương pháp phải phức tạp đến mức đó hoặc ít nhất đó là niềm tin hiện tại.
 
-Some rules are a lot more arbitrary - the Style department is going to be the prime ground for strong arguments about things that don't really matter - like double-quoting all strings vs making a distinction between plain strings and string interpolation. Perhaps you have strong feelings about quotes, so let's help you out by showing you how to show them to RuboCop.
+Một số quy tắc tùy ý hơn rất nhiều - bộ phận Phong cách sẽ là cơ sở chính cho những tranh luận mạnh mẽ về những thứ không thực sự quan trọng - như trích dẫn kép tất cả các chuỗi so với việc phân biệt giữa chuỗi đơn giản và nội suy chuỗi. Có lẽ bạn có cảm xúc mạnh mẽ về các trích dẫn, vì vậy hãy giúp bạn bằng cách chỉ cho bạn cách hiển thị chúng cho RuboCop.
 
-Start by creating a `.rubocop.yml` file using the command `bundle exec rubocop --init` or manually using touch or nano (nano will open the text editor right away). Don't forget that it must be a dotfile, meaning it needs to have a dot before its name. Now, you need to find out what rule you want to change or disable. For the possible options always consult the documentation - not every Cop is just a simple on/off, there might be more options. As an example, we'll be changing the rules regarding strings, frozen string literals and we'll enable NewCops.
+Bắt đầu bằng cách tạo tệp `.rubocop.yml` bằng lệnh `bundle exec rubocop --init` hoặc thủ công bằng cách sử dụng cảm ứng hoặc nano (nano sẽ mở trình soạn thảo văn bản ngay lập tức). Đừng quên rằng nó phải là một dotfile, nghĩa là nó cần phải có dấu chấm trước tên của nó. Bây giờ, bạn cần tìm ra quy tắc nào bạn muốn thay đổi hoặc vô hiệu hóa. Để biết các tùy chọn có thể, hãy luôn tham khảo tài liệu - không phải mọi Cảnh sát chỉ là bật/tắt đơn giản, có thể có nhiều tùy chọn hơn. Ví dụ: chúng tôi sẽ thay đổi các quy tắc liên quan đến chuỗi, chuỗi ký tự cố định và chúng tôi sẽ kích hoạt NewCops.
 
 ```yaml
 # This is .rubocop.yml in ~/
@@ -244,9 +244,9 @@ Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 ```
 
-Placement of `.rubocop.yml` in `~` is not accidental - if RuboCop can't find a config file anywhere in the project, it'll look for it in couple of more places, one of them being your home directory. This config file will make it so every project without own configuration will follow these rules - NewCops being enabled, string literals all being double-quoted and not allowing for a magic comment enabling or disabling frozen string literals - this last thing will make sense after you work with RuboCop for a while.
+Việc đặt `.rubocop.yml` trong `~` không phải ngẫu nhiên - nếu RuboCop không thể tìm thấy tệp cấu hình ở bất kỳ đâu trong dự án, nó sẽ tìm tệp đó ở một vài nơi khác, một trong số đó là thư mục chính của bạn. Tệp cấu hình này sẽ giúp mọi dự án không có cấu hình riêng sẽ tuân theo các quy tắc này - NewCops được bật, tất cả các chuỗi ký tự đều được trích dẫn kép và không cho phép nhận xét kỳ diệu bật hoặc tắt các ký tự chuỗi cố định - điều cuối cùng này sẽ có ý nghĩa sau khi bạn làm việc với RuboCop một thời gian.
 
-But what with your projects that want to use *some* of the general configuration but not all of it? Enter: `inherit_from:`. By adding a line with `inherit_from: ~/.rubocop.yml` into your local `.rubocop.yml` makes it use the same rules as defined there. You can then overwrite them locally. Neater thing? You can have directory-specific `.rubocop.yml`s that inherit from your project specific configuration file just to make sure every file in that directory is or is not following some rules. Let's see an example:
+Nhưng điều gì sẽ xảy ra với các dự án của bạn muốn sử dụng *một số* cấu hình chung nhưng không phải tất cả? Nhập: `inherit_from:`. Bằng cách thêm một dòng có `inherit_from: ~/.rubocop.yml` vào `.rubocop.yml` cục bộ của bạn, nó sẽ sử dụng các quy tắc tương tự như được xác định ở đó. Sau đó bạn có thể ghi đè lên chúng cục bộ. Điều gọn gàng hơn? Bạn có thể có các `.rubocop.yml` dành riêng cho thư mục kế thừa từ tệp cấu hình cụ thể của dự án của bạn chỉ để đảm bảo mọi tệp trong thư mục đó đều tuân theo hoặc không tuân theo một số quy tắc. Hãy xem một ví dụ:
 
 ```yaml
 # This is .rubocop.yml in ~/my-cool-project/
@@ -260,82 +260,82 @@ Style/FrozenStringLiteralComment:
   EnforcedStyle: always
 ```
 
-And now you are back to single-quoting and always having a magic comment regarding frozen string literals. Word of caution: if you rely on such global configuration you might forget to include it with your project. It would make sense that people who are going to work on the project follow the rules that it has been created in mind with.
+Và bây giờ bạn quay lại trích dẫn đơn và luôn có một nhận xét kỳ diệu liên quan đến chuỗi ký tự cố định. Lưu ý: nếu bạn dựa vào cấu hình toàn cầu như vậy, bạn có thể quên đưa nó vào dự án của mình. Sẽ rất hợp lý nếu những người sẽ thực hiện dự án tuân theo các quy tắc mà nó đã được tạo ra trong đầu.
 
-Defaults are absolutely fine, however. No need to tinker with anything. With time you'll see what rules give you and when it makes sense to break them. Actually, there's an amazing talk about that in the assignment so if you're not yet convinced, just hold your horses for a moment!
+Tuy nhiên, mặc định là hoàn toàn tốt. Không cần phải mày mò bất cứ điều gì. Theo thời gian, bạn sẽ thấy những quy tắc nào đưa ra cho mình và khi nào việc phá bỏ chúng là hợp lý. Trên thực tế, có một cuộc nói chuyện thú vị về điều đó trong bài tập nên nếu bạn chưa bị thuyết phục, hãy tạm dừng ngựa một lát!
 
-So, try your best to deal with RuboCop but accept that your code won't be perfect. That's fine. Resist the temptation to stray away from the defaults. You're still learning - just make an honest attempt to make your code better. Perhaps reading other's code is going to show you the way, so always remember to spend some time reading code after finishing a project!
+Vì vậy, hãy cố gắng hết sức để giải quyết RuboCop nhưng chấp nhận rằng mã của bạn sẽ không hoàn hảo. Không sao đâu. Hãy chống lại sự cám dỗ để thoát khỏi những điều mặc định. Bạn vẫn đang học - chỉ cần nỗ lực một cách trung thực để làm cho mã của bạn tốt hơn. Có lẽ việc đọc code của người khác sẽ chỉ đường cho bạn, vì vậy hãy luôn nhớ dành chút thời gian để đọc code sau khi hoàn thành một dự án!
 
-### Metrics are useless if not understood
+### Số liệu sẽ vô ích nếu không được hiểu rõ
 
-Our recommendation to stick to the Metrics department requires that we help with explaining the more confusing concepts employed there: ABC metric, cyclomatic complexity and perceived complexity.
+Khuyến nghị của chúng tôi là bám sát bộ phận Số liệu yêu cầu chúng tôi giúp giải thích các khái niệm khó hiểu hơn được sử dụng ở đó: số liệu ABC, độ phức tạp chu kỳ và độ phức tạp được nhận thức.
 
-The letters in ABC are not random, they stand for **A**ssignment, **B**ranches and **C**onditionals. Assignment deals with setting or mutating a variable, branches perhaps confusingly, refer to method calls and conditionals are both the usual various conditional statements and comparisons like `==` or `<=`.
+Các chữ cái trong ABC không phải là ngẫu nhiên, chúng là viết tắt của **A**ssignment, **B**ranches và **C**conditionals. Bài tập liên quan đến việc thiết lập hoặc thay đổi một biến, các nhánh có thể gây nhầm lẫn, đề cập đến các lệnh gọi phương thức và điều kiện đều là các câu lệnh và so sánh có điều kiện khác nhau thông thường như `==` hoặc `<=`.
 
-ABC's author said that it measures software size and it was created to quote: "overcome the disadvantages of lines of code and similar measures". Yep, there was a time when code length, not its complexity was the measure of good software.
+Tác giả của ABC cho biết nó đo kích thước phần mềm và nó được tạo ra với câu trích dẫn: "khắc phục nhược điểm của dòng mã và các biện pháp tương tự". Đúng, đã có lúc độ dài mã chứ không phải độ phức tạp của nó mới là thước đo cho một phần mềm tốt.
 
-Besides notifying you about going over the allowed value for the metric, RuboCop will also provide you with the total ABC score and its constituent parts:
+Bên cạnh việc thông báo cho bạn về việc vượt quá giá trị được phép cho số liệu, RuboCop cũng sẽ cung cấp cho bạn tổng điểm ABC và các phần cấu thành của nó:
 
 ```bash
 C: Metrics/AbcSize: Assignment Branch Condition size for testing is too high. \[\<1, 18, 0\> 18.03/17\]
 ```
 
-In this case, there is one assignment, eighteen branches and zero conditionals, after using the formula for calculating the score this ends up being 18.03 while the allowed score is 17.
+Trong trường hợp này, có một bài tập, mười tám nhánh và không có điều kiện, sau khi sử dụng công thức tính điểm, kết quả là 18,03 trong khi điểm cho phép là 17.
 
-One way to interpret this particular score is to say that this method heavily relies on other methods to do something with data. Perhaps this process could be broken down into steps or there exists some design flaw that requires us to manipulate the data so much in this one place.
+Một cách để giải thích điểm cụ thể này là nói rằng phương pháp này phụ thuộc rất nhiều vào các phương pháp khác để thực hiện điều gì đó với dữ liệu. Có lẽ quá trình này có thể được chia thành các bước hoặc tồn tại một số lỗi thiết kế đòi hỏi chúng ta phải thao tác quá nhiều dữ liệu ở một nơi này.
 
-Cyclomatic complexity is similar to the conditional measure in ABC. It aims at providing insight into program complexity based on how many possible paths the program (method) can go through. As you can imagine, this refers to control flow statements like if statements, loops and logical operators like `&&` or `||`.
+Độ phức tạp theo chu kỳ tương tự như thước đo có điều kiện trong ABC. Nó nhằm mục đích cung cấp cái nhìn sâu sắc về độ phức tạp của chương trình dựa trên số lượng đường dẫn mà chương trình (phương pháp) có thể đi qua. Như bạn có thể tưởng tượng, điều này đề cập đến các câu lệnh luồng điều khiển như câu lệnh if, vòng lặp và toán tử logic như `&&` hoặc `||`.
 
-In the Ruby context, instead of loops, you are most likely going to use methods like `#each` to iterate over your collections - that counts, too. Every time code execution can follow one or the other path, one gets added to the score.
+Trong ngữ cảnh Ruby, thay vì các vòng lặp, rất có thể bạn sẽ sử dụng các phương thức như `#each` để lặp lại các bộ sưu tập của mình - điều đó cũng được tính. Mỗi khi việc thực thi mã có thể đi theo đường dẫn này hoặc đường dẫn khác, một đường dẫn sẽ được thêm vào điểm.
 
-Perceived complexity is very similar to cyclomatic complexity. It attempts to measure how hard it is for a human to read the code and where it diverges from cyclomatic complexity is that it uses weights for some control flow statements and counts both `if` and `else` instead of just the if statement as one branching path.
+Sự phức tạp được cảm nhận rất giống với độ phức tạp theo chu kỳ. Nó cố gắng đo lường mức độ khó đọc mã của con người và điểm khác biệt với độ phức tạp theo chu kỳ là nó sử dụng trọng số cho một số câu lệnh luồng điều khiển và đếm cả `if` và `else` thay vì chỉ câu lệnh if làm một đường dẫn phân nhánh.
 
-### Wouldn't it be nice to have all this in VSC?
+### Sẽ thật tuyệt nếu có tất cả những thứ này trong VSC phải không?
 
-It certainly would! Thanks to Ruby-LSP, RuboCop is integrated with Visual Studio Code. All you need is a Gemfile set up with RuboCop in your project. Thanks to this, RuboCop is continuously ran while you're writing your code, providing you with feedback on the go:
+Nó chắc chắn sẽ như vậy! Nhờ Ruby-LSP, RuboCop được tích hợp với Visual Studio Code. Tất cả những gì bạn cần là một Gemfile được thiết lập với RuboCop trong dự án của bạn. Nhờ đó, RuboCop được chạy liên tục trong khi bạn viết mã, cung cấp cho bạn phản hồi khi đang di chuyển:
 
-![Caesar's Cipher project in VSC with many problems](https://cdn.statically.io/gh/TheOdinProject/curriculum/270b3d2430621d1d768234d53588054dc4bdda13/ruby/object_oriented_programming_basics/linting_and_rubocop/imgs/rubocopinvsc.png)
+![Dự án Cipher của Caesar trong VSC có nhiều vấn đề](https://cdn.statically.io/gh/TheOdinProject/curriculum/270b3d2430621d1d768234d53588054dc4bdda13/ruby/object_oriented_programming_basics/linting_and_rubocop/imgs/rubocopinvsc.png)
 
-You've got the underlines and neatly formatted list of issues listed in the `Problems` tab. Remember that `Problems` tab is interactive - make sure to play with it!
+Bạn đã có danh sách các vấn đề được gạch chân và định dạng gọn gàng được liệt kê trong tab `Problems`. Hãy nhớ rằng tab `Problems` có tính tương tác - hãy nhớ sử dụng nó!
 
-When you hover over an underlined piece of code, you will be informed of the offense and be given links to RuboCop documentation - *not* the Ruby Style guide - and also given shortcuts to `View Problems` and `Quickfix`:
+Khi bạn di chuột qua đoạn mã được gạch chân, bạn sẽ được thông báo về hành vi vi phạm và được cung cấp các liên kết đến tài liệu RuboCop - *không phải* hướng dẫn về Ruby Style - đồng thời cũng được cung cấp các phím tắt đến `View Problems` và `Quickfix`:
 
-![VSC pop-up after you hover on an offense](https://cdn.statically.io/gh/TheOdinProject/curriculum/270b3d2430621d1d768234d53588054dc4bdda13/ruby/object_oriented_programming_basics/linting_and_rubocop/imgs/rubohover.png)
+![VSC bật lên sau khi bạn di chuột vào một hành vi phạm tội](https://cdn.statically.io/gh/TheOdinProject/curriculum/270b3d2430621d1d768234d53588054dc4bdda13/ruby/object_oriented_programming_basics/linting_and_rubocop/imgs/rubohover.png)
 
-Quickfixes are pretty much `rubocop -a` but confined to a particular line. Take note that from here you can also disable and enable the Cop behind the offense:
+Các bản sửa lỗi nhanh có khá nhiều `rubocop -a` nhưng chỉ giới hạn ở một dòng cụ thể. Hãy lưu ý rằng từ đây bạn cũng có thể vô hiệu hóa và kích hoạt Cảnh sát đứng sau hành vi phạm tội:
 
-![VSC quickfix pop-up](https://cdn.statically.io/gh/TheOdinProject/curriculum/270b3d2430621d1d768234d53588054dc4bdda13/ruby/object_oriented_programming_basics/linting_and_rubocop/imgs/quickfixrubocop.png)
+![Cửa sổ bật lên sửa lỗi nhanh của VSC](https://cdn.statically.io/gh/TheOdinProject/curriculum/270b3d2430621d1d768234d53588054dc4bdda13/ruby/object_oriented_programming_basics/linting_and_rubocop/imgs/quickfixrubocop.png)
 
-### To write good code you need to write a lot of bad code first
+### Để viết code tốt trước tiên bạn cần phải viết nhiều code xấu
 
-You might be wondering why when you were installing Ruby you weren't told about Rubocop. If writing clean code is the goal, why not start out with a formatter and a linter? Why not go into a style guide right off the bat?
+Bạn có thể thắc mắc tại sao khi cài đặt Ruby bạn lại không được thông báo về Rubocop. Nếu viết mã sạch là mục tiêu, tại sao không bắt đầu với một trình định dạng và một trình nói dối? Tại sao không đi ngay vào phần hướng dẫn về phong cách?
 
-The reasons for this are many, but some of them would be:
+Lý do cho điều này có rất nhiều, nhưng một số trong số đó sẽ là:
 
-- If you were to learn about the style guide only, you would have no idea what it is referring to or your lack of experience with Ruby would prevent you from understanding the pros and cons.
-- Had RuboCop been with you all this journey you'd never be able to commit all those mistakes and appreciate what it does.
-- Also, once again you'd be hit with things that you would have no idea about.
-- You'd need to take care of a lot more things: Bundler, Ruby LSP, RuboCop. You'd drown in inane configuration because of this, not to mention all the potential problems that you would not be equipped to deal with at that point.
+- Nếu bạn chỉ tìm hiểu về hướng dẫn phong cách, bạn sẽ không biết nó đề cập đến điều gì hoặc việc bạn thiếu kinh nghiệm với Ruby sẽ khiến bạn không hiểu được những ưu và nhược điểm.
+- Nếu RuboCop đồng hành cùng bạn trong suốt hành trình này, bạn sẽ không bao giờ có thể phạm phải tất cả những sai lầm đó và đánh giá cao những gì nó làm được.
+- Ngoài ra, một lần nữa bạn sẽ gặp phải những điều mà bạn không hề biết.
+- Bạn còn phải lo nhiều thứ nữa: Bundler, Ruby LSP, RuboCop. Vì điều này, bạn sẽ chìm đắm trong cấu hình không phù hợp, chưa kể đến tất cả các vấn đề tiềm ẩn mà bạn không được trang bị để giải quyết vào thời điểm đó.
 
-Hope that clears this up. Don't forget: RuboCop and the style guide are there to help *you* write predictable, cleaner code. The standards might vary between teams, some of the expectations RuboCop puts on you seem impossible to fulfill and you might feel like some of the rules are too constraining.
+Hy vọng điều đó sẽ làm sáng tỏ điều này. Đừng quên: RuboCop và hướng dẫn về phong cách luôn sẵn sàng giúp *bạn* viết mã rõ ràng hơn, có thể dự đoán được. Các tiêu chuẩn có thể khác nhau giữa các nhóm, một số kỳ vọng mà RuboCop đặt ra cho bạn dường như không thể thực hiện được và bạn có thể cảm thấy một số quy tắc quá hạn chế.
 
-With time, you are going to be better at adhering to rules but perhaps more importantly, you'll understand *why* and *when* to break them. For now, enjoy the ride on the shoulders of giants.
+Theo thời gian, bạn sẽ tuân thủ các quy tắc tốt hơn nhưng có lẽ quan trọng hơn là bạn sẽ hiểu *tại sao* và *khi nào* phá vỡ chúng. Còn bây giờ, hãy tận hưởng chuyến đi trên vai những người khổng lồ.
 
-### Assignment
+### Phân công
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Learn some more [about what linting is](https://en.wikipedia.org/wiki/Lint_(software)).
-1. Acquaint yourself with [the introduction to Ruby Style Guide](https://rubystyle.guide/) and skim it a little.
-1. Check out [what RuboCop is about](https://docs.rubocop.org/rubocop/index.html) and explore its docs.
-1. [Watch Sandi Metz' "Rules"](https://www.youtube.com/watch?v=npOGOmkxuio) for a lovely exploration of the what, why and how of rules generally and also in the Ruby context.
+1. Tìm hiểu thêm [về xơ vải là gì](https://en.wikipedia.org/wiki/Lint_(software)).
+1. Làm quen với [phần giới thiệu về Ruby Style Guide](https://rubystyle.guide/) và đọc lướt qua một chút.
+1. Xem [RuboCop là gì](https://docs.rubocop.org/rubocop/index.html) và khám phá tài liệu của nó.
+1. [Xem "Rules" của Sandi Metz](https://www.youtube.com/watch?v=npOGOmkxuio) để có khám phá thú vị về cái gì, tại sao và như thế nào của các quy tắc nói chung cũng như trong bối cảnh Ruby.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Nó không bắt buộc, vì vậy hãy xem xét nó bổ sung.
 
-- If you're curious about RuboCop's history and how it works [Bozhidar Batsov's All About RuboCop talk](https://www.youtube.com/watch?v=nrHjVCuVsGA) should be a satisfying listen.
-- [Vincius Stock's Improving the development experience with language servers talk](https://www.youtube.com/watch?v=kEfXPTm1aCI) is great for people who want to know more about Language Server Protocol, specifically the Ruby one.
-- [Honeybadger's article about Rubocop](https://www.honeybadger.io/blog/linting-formatting-ruby/) might give you a different perspective and introduce some features not covered in the lesson.
+- Nếu bạn tò mò về lịch sử của RuboCop và cách thức hoạt động của nó thì [Bài nói chuyện về RuboCop của Bozhidar Batsov](https://www.youtube.com/watch?v=nrHjVCuVsGA) chắc chắn sẽ là một buổi nghe thỏa mãn.
+- [Trò chuyện về Cải thiện trải nghiệm phát triển với máy chủ ngôn ngữ của Vincis Stock](https://www.youtube.com/watch?v=kEfXPTm1aCI) rất phù hợp cho những người muốn biết thêm về Giao thức máy chủ ngôn ngữ, đặc biệt là giao thức Ruby.
+- [Bài viết của Honeybadger về Rubocop](https://www.honeybadger.io/blog/linting-formatting-ruby/) có thể mang đến cho bạn một góc nhìn khác và giới thiệu một số tính năng chưa được đề cập trong bài.

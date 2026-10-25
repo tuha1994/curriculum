@@ -1,41 +1,41 @@
-### Introduction
+### Giới thiệu
 
-You've learned about Models, Views, and Controllers.  That's the nuts and bolts, but we've got plenty of neat stuff to cover which makes Rails much more useful to you.  In this lesson, we'll talk about the Asset Pipeline and a few other topics that don't necessarily fit well in other lessons but are important to cover nonetheless.
+Bạn đã tìm hiểu về Model, View và Controller. Đó là những bộ phận cốt lõi, nhưng vẫn còn rất nhiều điều thú vị giúp Rails hữu ích hơn cho bạn. Trong bài học này, chúng ta sẽ nói về Asset Pipeline và một vài chủ đề khác không thật sự phù hợp với các bài học khác nhưng vẫn quan trọng và cần được đề cập.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- How files are processed in the Asset Pipeline.
-- Organization of stylesheets and images in your app.
+- Các tệp được xử lý như thế nào trong Asset Pipeline.
+- Cách tổ chức stylesheet và hình ảnh trong ứng dụng.
 
-### The asset pipeline
+### Asset Pipeline
 
-Assets in your application are additional files that get called by the browser after your initial gob of HTML is received. The word "assets" is used to mean things like CSS stylesheets, JavaScript files, images, videos, etc.—basically anything that requires an additional request to grab.
+Assets trong ứng dụng là những tệp bổ sung được trình duyệt yêu cầu sau khi nhận được phần HTML ban đầu. Từ "assets" dùng để chỉ những thứ như stylesheet CSS, tệp JavaScript, hình ảnh, video, v.v.—về cơ bản là bất kỳ thứ gì cần một request bổ sung để tải xuống.
 
-The Asset Pipeline is one of a few different ways to handle assets in Rails. You will learn about other ways to manage CSS and JS as you move through this course. It may very well depend on the convention followed at the place where you end up working, but as you learn more, you'll understand how the Asset Pipeline differs from alternatives as well as how to use any of the available methods to handle assets in your application. Here we will cover how the Asset Pipeline works, and in future lessons we will cover the alternatives. For your own projects we suggest using import maps for JavaScript code and the Asset Pipeline for other assets.
+Asset Pipeline là một trong vài cách khác nhau để xử lý assets trong Rails. Trong suốt khóa học, bạn sẽ tìm hiểu thêm những cách quản lý CSS và JS khác. Cách phù hợp có thể phụ thuộc rất nhiều vào quy ước tại nơi bạn làm việc sau này, nhưng khi hiểu thêm, bạn sẽ nắm được Asset Pipeline khác các phương án thay thế ra sao cũng như cách sử dụng từng phương pháp sẵn có để xử lý assets trong ứng dụng. Ở đây, chúng ta sẽ tìm hiểu cách Asset Pipeline hoạt động; trong các bài học sau, chúng ta sẽ tìm hiểu những phương án thay thế. Với các dự án riêng, chúng tôi khuyên bạn dùng import maps cho mã JavaScript và Asset Pipeline cho các assets khác.
 
-Getting back to the Asset Pipeline, often times, it's easiest to organize your code for development purposes into many different files so you can keep track of them better. But if the browser has to grab a dozen different CSS files, each one of those requests is going to slow things down. Too many requests and you've harpooned your user's experience with your application.
+Quay lại với Asset Pipeline: để phục vụ việc phát triển, thông thường sẽ dễ tổ chức mã thành nhiều tệp khác nhau để bạn dễ theo dõi hơn. Nhưng nếu trình duyệt phải tải cả chục tệp CSS khác nhau, mỗi request sẽ làm chậm ứng dụng. Quá nhiều request sẽ khiến trải nghiệm của người dùng với ứng dụng bị ảnh hưởng nghiêm trọng.
 
-A similar organizational issue has to do with storing things like images. It's easier to keep them separated in your directory, but you want them to be really easy to link to so your image tags are robust.
+Một vấn đề tổ chức tương tự liên quan đến việc lưu trữ những thứ như hình ảnh. Tách chúng ra trong thư mục sẽ dễ quản lý hơn, nhưng bạn cũng muốn liên kết đến chúng thật thuận tiện để các thẻ hình ảnh hoạt động ổn định.
 
-The Asset Pipeline helps us tackle these issues.
+Asset Pipeline giúp chúng ta giải quyết những vấn đề này.
 
-### History
+### Lịch sử
 
-Before diving into the specifics of the Asset Pipeline, it can be nice to understand some of Rails's history with asset management. It used to be that the Asset Pipeline handled all assets, but it is now better practice to handle JavaScript assets through other JavaScript management tools that come with modern Rails applications. In the next lesson, you'll learn about "import maps," which became the standard way to add and manage JavaScript files with the release of Rails 7.
+Trước khi đi sâu vào chi tiết về Asset Pipeline, tìm hiểu một chút về lịch sử quản lý assets của Rails sẽ rất hữu ích. Trước đây, Asset Pipeline xử lý mọi loại asset, nhưng hiện nay, cách làm tốt hơn là xử lý assets JavaScript bằng những công cụ quản lý JavaScript khác đi kèm các ứng dụng Rails hiện đại. Trong bài học tiếp theo, bạn sẽ tìm hiểu về "import maps", vốn trở thành cách tiêu chuẩn để thêm và quản lý các tệp JavaScript kể từ khi Rails 7 được phát hành.
 
-Prior to Rails 8, the Asset Pipeline was handled through a library called `sprockets`. `sprockets` had more capabilities than the current Asset Pipeline, offering features like minification, concatenation, transpiling, etc. The Rails team decided that these features came with a lot of maintenance overhead and weren't entirely necessary in a world with broad support for ES6 (which brought JS modules to the browser) and HTTP/2.0 (which brought the ability to serve multiple requests over a single TCP connection).
+Trước Rails 8, Asset Pipeline được xử lý thông qua một thư viện có tên là `sprockets`. `sprockets` có nhiều khả năng hơn Asset Pipeline hiện tại, cung cấp các tính năng như thu nhỏ, nối, chuyển đổi cú pháp, v.v. Đội ngũ Rails quyết định rằng những tính năng này tạo ra quá nhiều gánh nặng bảo trì và không hoàn toàn cần thiết trong bối cảnh ES6 được hỗ trợ rộng rãi (giúp đưa các module JS vào trình duyệt) và HTTP/2.0 trở nên phổ biến (cho phép phục vụ nhiều request trên cùng một kết nối TCP).
 
-Now, the Asset Pipeline is handled through a library called `propshaft`, which has a more stripped down set of features but is also much simpler and requires less configuration. If developers have more complicated needs with serving CSS and/or JavaScript, they're encouraged to reach for solutions outside of the Asset Pipeline.
+Hiện nay, Asset Pipeline được xử lý thông qua một thư viện có tên là `propshaft`, với tập tính năng gọn hơn nhưng đơn giản hơn nhiều và cần ít cấu hình hơn. Nếu có nhu cầu phức tạp hơn khi phục vụ CSS và/hoặc JavaScript, các nhà phát triển được khuyến khích tìm đến những giải pháp bên ngoài Asset Pipeline.
 
-Knowing some of this history can be valuable as many apps that use Rails aren't necessarily going to be on the cutting edge. Many Rails apps will still be using `sprockets` to serve assets, and while this curriculum won't dive deep into it, it's good to at least be aware of it and how it's different from `propshaft`.
+Biết một phần lịch sử này có thể hữu ích vì nhiều ứng dụng dùng Rails không nhất thiết đang sử dụng phiên bản tiên tiến nhất. Nhiều ứng dụng Rails vẫn sẽ dùng `sprockets` để phục vụ assets; dù khóa học này không đi sâu vào nó, ít nhất bạn cũng nên biết đến nó và hiểu nó khác `propshaft` như thế nào.
 
 ### Fingerprinting
 
-Rails uses something called "fingerprinting" to add unique identifiers to asset filenames. When the browser goes to fetch `application.css` (for example), you may notice that it's called something like `application-1fc71ddbb281c144b2ee4af31cf0e308.css`. That big string of nonsense in the URL is the "fingerprint", and it's meant to assist with browser caching. Browsers automatically attempt to cache various assets based on their URL, which can speed up performance as the browser won't have to request an asset if it already has it stored. These fingerprints serve as a type of versioning for the browser. If you make a change to `application.css`, Rails will know it needs to change the fingerprint in the URL to that asset, and the browser, which won't find the new asset URL in its cache, will know that it has to fetch the new stylesheet.
+Rails sử dụng một kỹ thuật gọi là "fingerprinting" để thêm mã định danh duy nhất vào tên tệp asset. Khi trình duyệt tải `application.css` (chẳng hạn), bạn có thể thấy tệp này được gọi bằng tên như `application-1fc71ddbb281c144b2ee4af31cf0e308.css`. Chuỗi ký tự trông vô nghĩa trong URL đó là "fingerprint", và nó nhằm hỗ trợ bộ nhớ đệm của trình duyệt. Trình duyệt tự động cố gắng lưu nhiều assets vào bộ nhớ đệm dựa trên URL của chúng, nhờ đó hiệu năng được cải thiện vì trình duyệt không cần request lại một asset nếu đã lưu nó. Những fingerprint này hoạt động như một dạng versioning dành cho trình duyệt. Nếu bạn thay đổi `application.css`, Rails sẽ biết cần thay đổi fingerprint trong URL của asset đó; khi không tìm thấy URL asset mới trong bộ nhớ đệm, trình duyệt sẽ biết phải tải stylesheet mới.
 
-This fingerprinting is automatically provided when using Rails's link helpers. So a CSS file linked in the `<head>` element of `app/views/layouts/application.html.erb` would look like:
+Fingerprinting được tự động cung cấp khi dùng các helper liên kết của Rails. Vì vậy, một tệp CSS được liên kết trong phần tử `<head>` của `app/views/layouts/application.html.erb` sẽ trông như sau:
 
 ```erb
 <head>
@@ -43,23 +43,23 @@ This fingerprinting is automatically provided when using Rails's link helpers. S
 </head>
 ```
 
-### Images
+### Hình ảnh
 
-For images, the asset pipeline keeps them in the `/assets` directory unless you've made your own subdirectories.  Use `image_tag`'s to avoid confusion, e.g. `<%= image_tag "fuzzy_slippers.jpg" %>` will look for a file named `fuzzy_slippers.jpg` in the `/assets/images` folder. You can also organize images into subdirectories, which is helpful as applications grow and use more images and icons.
+Đối với hình ảnh, asset pipeline giữ chúng trong thư mục `/assets`, trừ khi bạn tự tạo các thư mục con. Hãy dùng `image_tag` để tránh nhầm lẫn; chẳng hạn, `<%= image_tag "fuzzy_slippers.jpg" %>` sẽ tìm tệp có tên `fuzzy_slippers.jpg` trong thư mục `/assets/images`. Bạn cũng có thể tổ chức hình ảnh trong các thư mục con, điều này rất hữu ích khi ứng dụng phát triển và sử dụng ngày càng nhiều hình ảnh, biểu tượng.
 
-### Assignment
+### Bài tập
 
-Some necessary and straightforward reading on the Asset Pipeline:
+Dưới đây là phần đọc cần thiết và tương đối dễ tiếp cận về Asset Pipeline:
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read [Rails Guides on the Asset Pipeline](https://guides.rubyonrails.org/asset_pipeline.html) sections 1 to 3.
+  1. Đọc các mục 1 đến 3 trong [Rails Guides về Asset Pipeline](https://guides.rubyonrails.org/asset_pipeline.html).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên bạn có thể xem như tài liệu bổ sung.
 
-- [Ryan Bates' asset pipeline Railscast](http://railscasts.com/episodes/279-understanding-the-asset-pipeline?view=asciicast)
-- [Schneems on the Asset Pipeline](https://www.youtube.com/watch?v=FYdBpNUVxuI)
+- [Railscast của Ryan Bates về asset pipeline](http://railscasts.com/episodes/279-understanding-the-asset-pipeline?view=asciicast)
+- [Schneems nói về Asset Pipeline](https://www.youtube.com/watch?v=FYdBpNUVxuI)

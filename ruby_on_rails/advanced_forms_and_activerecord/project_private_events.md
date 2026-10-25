@@ -1,63 +1,63 @@
-### Introduction
+### Giới thiệu
 
-In these projects, you'll finally really get to dive into ActiveRecord's associations, one of the best features it offers.
+Trong các dự án này, cuối cùng bạn sẽ có dịp tìm hiểu sâu về các association của ActiveRecord, một trong những tính năng tuyệt vời nhất mà nó cung cấp.
 
-### Warmup: thinking data first
+### Khởi động: ưu tiên suy nghĩ về dữ liệu
 
-Lay out the data architecture you'd need to implement to build the following scenarios:
+Hãy phác thảo kiến trúc dữ liệu mà bạn cần triển khai để xây dựng các kịch bản sau:
 
-1. A site for pet-sitting (watching someone's pet while they're gone). People can babysit for multiple pets and pets can have multiple petsitters.
-1. You like hosting people for dinner so you want to build a dinner party invitation site. A user can create parties, invite people to a party, and accept an invitation to someone else's party.
-1. Extra credit (tricky): You and your friends just love posting things and following each other. How would you set up the models so a user can follow another user?
+1. Một trang web trông giữ thú cưng (chăm sóc thú cưng của người khác khi họ vắng nhà). Mỗi người có thể trông nhiều thú cưng và mỗi thú cưng có thể có nhiều người trông.
+1. Bạn thích mời mọi người đến ăn tối, nên muốn xây dựng một trang web mời dự tiệc tối. Một người dùng có thể tạo các bữa tiệc, mời mọi người đến một bữa tiệc và chấp nhận lời mời đến bữa tiệc của người khác.
+1. Bài tập thêm (khó): Bạn và bạn bè rất thích đăng bài và theo dõi nhau. Bạn sẽ thiết lập các model thế nào để một người dùng có thể theo dõi một người dùng khác?
 
-### Project: Private events
+### Dự án: Sự kiện riêng tư
 
-You want to build a site similar to a private [Eventbrite](http://www.eventbrite.com) which allows users to create events and then manage user signups.
+Bạn muốn xây dựng một trang web tương tự như [Eventbrite](http://www.eventbrite.com) phiên bản riêng tư, cho phép người dùng tạo sự kiện rồi quản lý việc đăng ký tham dự.
 
-A user can create events. A user can attend many events. An event can be attended by many users. Events take place at a specific date and at a location (which you can just store as a string, like "Andy's House").
+Một người dùng có thể tạo các sự kiện. Một người dùng có thể tham dự nhiều sự kiện. Một sự kiện có thể có nhiều người dùng tham dự. Các sự kiện diễn ra vào một ngày cụ thể và tại một địa điểm (bạn chỉ cần lưu địa điểm dưới dạng chuỗi, chẳng hạn như "Andy's House").
 
-This project will require you to model many-to-many relationships and also to be very conscious about your foreign keys and class names (hint: you won't be able to just rely on Rails' defaults like you have before).
+Dự án này sẽ yêu cầu bạn mô hình hóa các mối quan hệ nhiều-nhiều, đồng thời phải đặc biệt chú ý đến các khóa ngoại và tên class (gợi ý: bạn sẽ không thể chỉ dựa vào các giá trị mặc định của Rails như trước đây).
 
-### Assignment
+### Bài tập
 
-We've gotten quite far here, so these tasks will only lay out the high level overview of what you're meant to build. You'll need to implement the details yourself. As usual, it's not meant to look pretty, just work. Design is all extra credit.
+Đến đây chúng ta đã đi khá xa, vì vậy các nhiệm vụ này chỉ trình bày tổng quan ở mức cao về những gì bạn cần xây dựng. Bạn sẽ phải tự triển khai các chi tiết. Như thường lệ, sản phẩm không cần trông đẹp mắt, chỉ cần hoạt động. Phần thiết kế là nội dung để làm thêm.
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Setup
+#### Thiết lập
 
-1. Think about and spec out how to set up your data models for this application.
-1. Create a new `private-events` Rails app and GitHub repo.
-1. Update your README to be descriptive and link to this project.
+1. Suy nghĩ và đặc tả cách thiết lập các model dữ liệu cho ứng dụng này.
+1. Tạo một ứng dụng Rails `private-events` mới và một repo GitHub.
+1. Cập nhật README để mô tả rõ ràng và liên kết đến dự án này.
 
-#### Events and users
+#### Sự kiện và người dùng
 
-1. Build and migrate your Event model without any foreign keys or validations. Include the event's date in your model but don't worry about doing anything special with it yet.
-1. Create the EventsController and add an `#index` action that will display all of the events. Create a corresponding view and add a heading with your choice of wording.
-1. Set up [devise](https://github.com/heartcombo/devise) to handle authentication and create your User model. Set the `root_path` to be the Event's Index page.
-1. Add the association between the event creator (a User) and the event. Call this user the "creator". Add the foreign key to the Event model as necessary. You'll need to specify your association properties carefully (e.g. `:foreign_key`, `:class_name`).
-1. Have the User's Show page list all the events a user has created.
-1. Update the EventsController and corresponding routes to allow you to create a new event. The `#create` action should use the `#build` association reference method to create the new event with the user's ID prepopulated. Find the right `#build` [association reference method](https://guides.rubyonrails.org/v7.1/association_basics.html#detailed-association-reference) for the type of association you set up between your models. You could use Event's `::new` method and manually enter the ID but... don't.
-1. Make the form for creating an event.
-1. Have the Event's Show page display the details of the event.
+1. Xây dựng và migrate model Event mà chưa thêm khóa ngoại hay validation nào. Bao gồm ngày của sự kiện trong model, nhưng chưa cần làm gì đặc biệt với trường này.
+1. Tạo EventsController và thêm action `#index` để hiển thị tất cả sự kiện. Tạo view tương ứng và thêm một tiêu đề với nội dung tùy bạn chọn.
+1. Thiết lập [devise](https://github.com/heartcombo/devise) để xử lý việc xác thực và tạo model User. Đặt `root_path` trỏ đến trang Index của Event.
+1. Thêm association giữa người tạo sự kiện (một User) và sự kiện. Gọi user này là "creator". Thêm khóa ngoại vào model Event khi cần. Bạn sẽ cần chỉ định cẩn thận các thuộc tính của association (ví dụ: `:foreign_key`, `:class_name`).
+1. Hiển thị trong trang Show của User tất cả sự kiện mà một user đã tạo.
+1. Cập nhật EventsController và các route tương ứng để cho phép bạn tạo một sự kiện mới. Action `#create` phải sử dụng phương thức tham chiếu association `#build` để tạo sự kiện mới với ID của user được điền sẵn. Hãy tìm đúng [phương thức tham chiếu association](https://guides.rubyonrails.org/v7.1/association_basics.html#detailed-association-reference) `#build` cho loại association bạn đã thiết lập giữa các model. Bạn có thể sử dụng phương thức `::new` của Event rồi nhập ID thủ công, nhưng... đừng làm vậy.
+1. Tạo form để tạo một sự kiện.
+1. Hiển thị thông tin chi tiết của sự kiện trong trang Show của Event.
 
-#### Event attendance
+#### Việc tham dự sự kiện
 
-1. Add the association between the event attendee (also a User) and the event. Call this user the "attendee". Call the event the "attended_event". You'll again need to juggle specially named foreign keys and classes and sources.
-1. Create and migrate all necessary tables and foreign keys. This will require a "through" table since an Event can have many Attendees and a single User (Attendee) can attend many Events... many-to-many.
-1. Create a Controller and corresponding routes for the "through" table that will allow a user to become an "attendee" of an event. This will also require creating some sort of interface in the view(s) where the user can indicate that they want to attend an event.
-1. Update the Event's Show page to display a list of attendees.
-1. Add to the User's Show page a list of their "attended_events".
-1. Separate this list of "attended_events" into either events that have occurred in the past or events that will occur in the future. You'll get some good practice [building queries](https://guides.rubyonrails.org/active_record_querying.html#array-conditions) and working with dates. Keep this logic in the view and do not put separate method calls in the controller.
+1. Thêm association giữa người tham dự sự kiện (cũng là một User) và sự kiện. Gọi user này là "attendee". Gọi sự kiện là "attended_event". Một lần nữa, bạn sẽ phải xử lý các khóa ngoại, class và source được đặt tên riêng.
+1. Tạo và migrate tất cả bảng cùng khóa ngoại cần thiết. Việc này sẽ yêu cầu một bảng "through", vì một Event có thể có nhiều Attendee và một User (Attendee) có thể tham dự nhiều Event... quan hệ nhiều-nhiều.
+1. Tạo một Controller và các route tương ứng cho bảng "through", cho phép một user trở thành "attendee" của một sự kiện. Bạn cũng sẽ cần tạo một dạng giao diện nào đó trong các view để user có thể cho biết họ muốn tham dự một sự kiện.
+1. Cập nhật trang Show của Event để hiển thị danh sách người tham dự.
+1. Thêm danh sách các "attended_events" của user vào trang Show của User.
+1. Chia danh sách "attended_events" này thành các sự kiện đã diễn ra trong quá khứ và các sự kiện sẽ diễn ra trong tương lai. Bạn sẽ có cơ hội thực hành tốt việc [xây dựng các truy vấn](https://guides.rubyonrails.org/active_record_querying.html#array-conditions) và làm việc với ngày tháng. Giữ logic này trong view và không đặt các lời gọi phương thức riêng biệt trong controller.
 
-#### Finishing touches
+#### Hoàn thiện
 
-1. Separate the past and upcoming events on the Event's Index page by creating two class methods on the Event model (e.g. `Event.past`).
-1. Refactor the past and upcoming class methods into [scopes](https://guides.rubyonrails.org/active_record_querying.html#scopes).
-1. Put navigation links across the top to help you jump around.
-1. Make each event private and add the functionality for the event creator to invite specific users to an event.
-1. Extra Credit: Allow users to edit and delete the events they created.
-1. Extra Credit: Allow users to remove themselves as an attendee to their "attended_events".
-1. Extra Credit: Allow creators to toggle events' visibility between public and private.
+1. Chia các sự kiện đã qua và sắp tới trên trang Index của Event bằng cách tạo hai phương thức class trong model Event (ví dụ: `Event.past`).
+1. Refactor các phương thức class dành cho sự kiện đã qua và sắp tới thành các [scope](https://guides.rubyonrails.org/active_record_querying.html#scopes).
+1. Đặt các liên kết điều hướng ở phía trên để giúp bạn chuyển qua lại giữa các trang.
+1. Đặt mỗi sự kiện ở chế độ riêng tư và thêm chức năng cho phép người tạo sự kiện mời những user cụ thể tham dự.
+1. Bài tập thêm: Cho phép user chỉnh sửa và xóa những sự kiện mà họ đã tạo.
+1. Bài tập thêm: Cho phép user tự hủy tư cách người tham dự khỏi các "attended_events" của mình.
+1. Bài tập thêm: Cho phép người tạo chuyển đổi chế độ hiển thị của sự kiện giữa công khai và riêng tư.
 
 </div>

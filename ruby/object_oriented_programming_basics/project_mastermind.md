@@ -1,25 +1,25 @@
-### Introduction
+### Giới thiệu
 
-If you've never played [Mastermind](https://www.wikihow.com/Play-Mastermind), it's a game where you have to guess your opponent's secret code within a certain number of turns (like hangman with colored pegs). Each turn you get some feedback about how good your guess was -- whether it was exactly correct or just the correct color but in the wrong space.
+Nếu bạn chưa từng chơi [Mastermind](https://www.wikihow.com/Play-Mastermind), đây là một trò chơi trong đó bạn phải đoán mã bí mật của đối thủ trong một số lượt nhất định (giống trò đoán chữ, nhưng dùng các chốt màu). Sau mỗi lượt, bạn sẽ nhận được phản hồi về mức độ chính xác của dự đoán — liệu nó hoàn toàn đúng hay chỉ đúng màu nhưng sai vị trí.
 
-### Assignment
+### Bài tập
 
-Build a Mastermind game from the command line where you have 12 turns to guess the secret code, starting with you guessing the computer's random code.
+Xây dựng một trò chơi Mastermind trên dòng lệnh, trong đó bạn có 12 lượt để đoán mã bí mật; bắt đầu với việc bạn đoán mã ngẫu nhiên do máy tính tạo ra.
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Think about how you would set this problem up!
-  1. Build the game assuming the computer randomly selects the secret colors and the human player must guess them.  Remember that you need to give the proper feedback on how good the guess was each turn!
-  1. Now refactor your code to allow the human player to choose whether they want to be the creator of the secret code or the guesser.
-  1. Build it out so that the computer will guess if you decide to choose your own secret colors.  You may choose to implement a computer strategy that follows the rules of the game or you can modify these rules.
-  1. If you choose to modify the rules, you can provide the computer additional information about each guess.  For example, you can start by having the computer guess randomly, but keep the ones that match exactly.  You can add a little bit more intelligence to the computer player so that, if the computer has guessed the right color but the wrong position, its next guess will need to include that color somewhere.
-  1. If you want to follow the rules of the game, you'll need to research [strategies for solving Mastermind](https://puzzling.stackexchange.com/questions/546/clever-ways-to-solve-mastermind).
-  1. Post your solution below!
+  1. Hãy suy nghĩ xem bạn sẽ thiết kế bài toán này như thế nào!
+  1. Xây dựng trò chơi với giả định máy tính chọn ngẫu nhiên các màu bí mật và người chơi phải đoán chúng.  Hãy nhớ rằng bạn cần đưa ra phản hồi phù hợp về mức độ chính xác của dự đoán sau mỗi lượt!
+  1. Tiếp theo, tái cấu trúc mã để cho phép người chơi chọn vai trò tạo mã bí mật hoặc đoán mã.
+  1. Phát triển trò chơi để máy tính có thể đoán nếu bạn chọn tự quyết định các màu bí mật. Bạn có thể triển khai một chiến lược cho máy tính tuân theo luật chơi, hoặc thay đổi các luật đó.
+  1. Nếu chọn thay đổi luật chơi, bạn có thể cung cấp cho máy tính thêm thông tin về mỗi dự đoán. Chẳng hạn, ban đầu bạn có thể để máy tính đoán ngẫu nhiên, nhưng giữ lại những màu khớp chính xác. Bạn có thể bổ sung một chút khả năng suy luận cho máy tính để nếu máy tính đoán đúng màu nhưng sai vị trí, dự đoán tiếp theo của nó phải bao gồm màu đó ở một vị trí nào đó.
+  1. Nếu muốn tuân theo luật chơi, bạn sẽ cần tìm hiểu về [các chiến lược giải Mastermind](https://puzzling.stackexchange.com/questions/546/clever-ways-to-solve-mastermind).
+  1. Hãy đăng lời giải của bạn bên dưới!
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải là phần bắt buộc, vì vậy bạn có thể xem nó như tài liệu bổ sung.
 
-- Not directly helpful, but here are some [Ruby game libraries](https://www.ruby-toolbox.com/categories/game_libraries) for fun.
+- Không trực tiếp hữu ích, nhưng đây là một số [thư viện game Ruby](https://www.ruby-toolbox.com/categories/game_libraries) để bạn tham khảo cho vui.

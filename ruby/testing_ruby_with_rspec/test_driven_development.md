@@ -1,53 +1,53 @@
-### Introduction
+### Giới thiệu
 
-Hopefully, you've been having fun developing in Ruby thus far. Perhaps one thing you may **not** have enjoyed as much, though, is having to run your script on the command line, running through each step manually, only to find that it doesn't return what you expected. And then comes the part that's even *more* fun: tugging at your hair a bit, changing a few variables, and running your script all over again, **hoping** that the results are correct.
+Hy vọng rằng cho đến nay bạn vẫn thấy vui khi lập trình bằng Ruby. Tuy nhiên, có lẽ một điều bạn **không** thích thú lắm là phải chạy tập lệnh trên dòng lệnh, tự mình thực hiện từng bước, rồi cuối cùng nhận ra nó không trả về kết quả như mong đợi. Và phần còn *vui* hơn nữa là đây: vò đầu bứt tóc đôi chút, thay đổi vài biến, rồi chạy lại tập lệnh từ đầu, **hy vọng** rằng kết quả là chính xác.
 
-Folks, we're here to tell you there *IS* a better way. Hoping is for that exam you didn't study for and took by the seat of your pants. **Knowing** is test-driven development.
+Các bạn, chúng tôi ở đây để nói rằng *CÓ* một cách tốt hơn. Hy vọng là dành cho bài kiểm tra mà bạn chưa học và phải làm trong tình thế bất đắc dĩ. **Biết chắc** mới là phát triển hướng kiểm thử.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Understand what test-driven development (TDD) is, and why it's important.
-- Understand the three stages of a TDD cycle.
+- Hiểu phát triển hướng kiểm thử (TDD) là gì và vì sao nó quan trọng.
+- Hiểu ba giai đoạn của một chu kỳ TDD.
 
-### What is test-driven development?
+### Phát triển hướng kiểm thử là gì?
 
-[Test-Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) is a process and technique of software development that relies on the repetition of a very short and specific development cycle. In each cycle, requirements (i.e., what you want your code to do) are turned into specific test cases first. These requirements could be anything from an entire feature that requires end-to-end (E2E) testing, such as tests that cover a user logging into your website successfully AND unsuccessfully, to a new Ruby class you've devised, for which unit tests might suffice. Either way, the test suite for these requirements fail initially, since actual code hasn't been written yet.
+[Phát triển hướng kiểm thử (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) là một quy trình và kỹ thuật phát triển phần mềm dựa trên việc lặp lại một chu kỳ phát triển rất ngắn và cụ thể. Trong mỗi chu kỳ, các yêu cầu (tức là điều bạn muốn mã của mình thực hiện) trước hết được chuyển thành các trường hợp kiểm thử cụ thể. Những yêu cầu này có thể là bất cứ thứ gì, từ một tính năng hoàn chỉnh cần kiểm thử đầu-cuối (E2E), chẳng hạn các bài kiểm thử bao quát việc người dùng đăng nhập thành công VÀ không thành công vào trang web của bạn, cho đến một lớp Ruby mới do bạn xây dựng, với lớp này thì kiểm thử đơn vị có thể là đủ. Dù là trường hợp nào, ban đầu bộ kiểm thử cho các yêu cầu này đều thất bại, vì mã thực tế vẫn chưa được viết.
 
-Once the code is written and passes our test suite, you can move onto refactoring. As you might have guessed, running the test suite against the changes we make to our features or units enables us to refactor *while* making sure everything still works.
+Sau khi mã được viết và vượt qua bộ kiểm thử, bạn có thể chuyển sang tái cấu trúc. Như bạn có thể đoán, việc chạy bộ kiểm thử đối với những thay đổi chúng ta thực hiện cho các tính năng hoặc đơn vị cho phép chúng ta tái cấu trúc *đồng thời* vẫn đảm bảo mọi thứ hoạt động bình thường.
 
-Colloquially, this process is often referred to as the "**red-green-refactor**" cycle. That's all it is, in a nutshell: automated tests **drive** the design of software. You don't need to know how the entire architecture of your sweet, new, industry-breaking application will work. Your application only has to be broken down, step-by-step, until small units are identified and covered by tests.
+Theo cách nói thông thường, quy trình này thường được gọi là chu kỳ "**đỏ-xanh-tái cấu trúc**". Nói ngắn gọn, chỉ có vậy: các bài kiểm thử tự động **dẫn dắt** việc thiết kế phần mềm. Bạn không cần biết toàn bộ kiến trúc của ứng dụng mới mẻ, tuyệt vời và đột phá ngành của mình sẽ hoạt động ra sao. Ứng dụng chỉ cần được chia nhỏ từng bước một, cho đến khi xác định được các đơn vị nhỏ và bao phủ chúng bằng các bài kiểm thử.
 
-### Why is it important?
+### Vì sao điều này quan trọng?
 
-Even if TDD intuitively seems like good practice, its utility is hotly debated even today.
+Ngay cả khi TDD có vẻ là một thực hành tốt theo trực giác, tính hữu ích của nó vẫn được tranh luận gay gắt cho đến tận ngày nay.
 
-No one is saying that tests aren't useful. Testing at all levels is *crucial*. Joël Quenneville's article on the Rails [Testing Pyramid](https://thoughtbot.com/blog/rails-test-types-and-the-testing-pyramid) provides an overview into the different types and levels of testing that Rails developers routinely use.
+Không ai nói rằng các bài kiểm thử không hữu ích. Kiểm thử ở mọi cấp độ đều *cực kỳ quan trọng*. Bài viết của Joël Quenneville về [Kim tự tháp kiểm thử](https://thoughtbot.com/blog/rails-test-types-and-the-testing-pyramid) trong Rails trình bày tổng quan về những loại và cấp độ kiểm thử khác nhau mà các nhà phát triển Rails thường xuyên sử dụng.
 
-Testing ensures that your application is working as intended. More importantly, and perhaps less obviously, testing ensures developer confidence when it comes time to change existing code. Adding new features and dependencies increases the overall instability of your application, and a single misstep can have a cascading, crashing effect in faraway, unintended locations. Testing confirms that what you add works with what you already have. In a sense, it provides a safety net that leaves your application more open to change, and gives it room to grow and evolve as painlessly as possible.
+Kiểm thử đảm bảo ứng dụng của bạn hoạt động đúng như dự định. Quan trọng hơn, và có lẽ ít rõ ràng hơn, kiểm thử giúp nhà phát triển tự tin khi cần thay đổi mã hiện có. Việc thêm tính năng và dependency mới làm tăng sự thiếu ổn định tổng thể của ứng dụng, và chỉ một bước đi sai cũng có thể gây ra hiệu ứng dây chuyền làm sập ứng dụng ở những vị trí xa xôi, ngoài dự kiến. Kiểm thử xác nhận rằng những gì bạn thêm vào hoạt động cùng với những gì bạn đã có. Theo một nghĩa nào đó, nó tạo ra một mạng lưới an toàn, giúp ứng dụng cởi mở hơn với thay đổi và có không gian để phát triển, tiến hóa một cách ít đau đớn nhất có thể.
 
-The real question is whether or not tests should *drive* development, or whether or not it's important for them to come *first*. Many developers write tests after they've written their code. There is definitely a longer list of pros than cons for having tests in general, no one will disagree with that. So should we test first?
+Câu hỏi thực sự là liệu các bài kiểm thử có nên *dẫn dắt* quá trình phát triển hay không, hay liệu chúng có nhất thiết phải xuất hiện *trước* hay không. Nhiều nhà phát triển viết kiểm thử sau khi đã viết mã. Chắc chắn danh sách ưu điểm của việc có kiểm thử nói chung dài hơn danh sách nhược điểm, không ai phủ nhận điều đó. Vậy chúng ta có nên kiểm thử trước không?
 
-As usual, it depends. Still, here are some reasons we think it might be important for you to implement TDD:
+Như thường lệ, câu trả lời là tùy trường hợp. Dù vậy, sau đây là một số lý do khiến chúng tôi cho rằng việc triển khai TDD có thể quan trọng đối với bạn:
 
-1. **Practice**. Many employers look for developers who have experience or interest in testing. Sure, you can write tests later, but will you really? Test first to make sure you get exposure as soon as possible.
-1. **Effectiveness**. Writing tests before code is like stretching before a workout. It's not required, but without it, your workout could suffer. Writing tests first ensures that the code that comes after has clearer design, purpose, and quality.
-1. **Efficiency**. You'll save time in the long run by not having to re-run entire applications just to make sure little parts work.
+1. **Thực hành**. Nhiều nhà tuyển dụng tìm kiếm những nhà phát triển có kinh nghiệm hoặc hứng thú với kiểm thử. Đúng, bạn có thể viết kiểm thử sau, nhưng liệu bạn có thực sự làm vậy không? Hãy kiểm thử trước để đảm bảo bạn được tiếp xúc với việc này sớm nhất có thể.
+1. **Hiệu quả**. Viết kiểm thử trước mã cũng giống như khởi động trước khi tập luyện. Việc đó không bắt buộc, nhưng nếu bỏ qua, buổi tập của bạn có thể bị ảnh hưởng. Viết kiểm thử trước đảm bảo mã được viết sau đó có thiết kế, mục đích và chất lượng rõ ràng hơn.
+1. **Năng suất**. Về lâu dài, bạn sẽ tiết kiệm thời gian vì không phải chạy lại toàn bộ ứng dụng chỉ để đảm bảo những phần nhỏ vẫn hoạt động.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read up on the [9 Benefits of Test-Driven Development](https://www.madetech.com/blog/9-benefits-of-test-driven-development) for additional insight on this practice. Note that many of these points are not specific to TDD, but are also applicable to testing in general.
-1. For a more rounded take, consider DHH's ["TDD is Dead. Long Live Testing"](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html), which sparked controversial conversations on what TDD is, what it has become, and what it should be.
-1. James Sinclair's article explains more about [the why/how and value behind TDD](https://jrsinclair.com/articles/2016/one-weird-trick-that-will-change-the-way-you-code-forever-javascript-tdd/) and also includes some great examples of how to apply it. While the examples are in JavaScript, the focus is on the value behind the TDD approach.
+1. Đọc về [9 lợi ích của phát triển hướng kiểm thử](https://www.madetech.com/blog/9-benefits-of-test-driven-development) để có thêm góc nhìn về thực hành này. Lưu ý rằng nhiều điểm trong số đó không chỉ dành riêng cho TDD mà còn áp dụng cho việc kiểm thử nói chung.
+1. Để có một góc nhìn toàn diện hơn, hãy xem xét bài viết ["TDD đã chết. Kiểm thử muôn năm"](https://dhh.dk/2014/tdd-is-dead-long-live-testing.html) của DHH, bài viết đã khơi mào những cuộc thảo luận gây tranh cãi về TDD là gì, nó đã trở thành gì và nó nên là gì.
+1. Bài viết của James Sinclair giải thích thêm về [lý do/cách thức và giá trị đằng sau TDD](https://jrsinclair.com/articles/2016/one-weird-trick-that-will-change-the-way-you-code-forever-javascript-tdd/), đồng thời đưa ra một số ví dụ rất hay về cách áp dụng nó. Dù các ví dụ được viết bằng JavaScript, trọng tâm nằm ở giá trị đằng sau phương pháp TDD.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem nó như tài liệu bổ sung.
 
-- This video that provides [counter arguments for DHH's “TDD is Dead. Long Live Testing” article](https://www.youtube.com/watch?v=PCEHRFHKZSk) from the assignment.
-- For a more rounded taken on TDD, watch or listen to this [series of talks on the pros and cons of TDD](https://martinfowler.com/articles/is-tdd-dead/).
+- Video này cung cấp [các lập luận phản đối bài viết “TDD đã chết. Kiểm thử muôn năm” của DHH](https://www.youtube.com/watch?v=PCEHRFHKZSk) trong phần bài tập.
+- Để có một góc nhìn toàn diện hơn về TDD, hãy xem hoặc nghe [loạt bài nói chuyện về ưu và nhược điểm của TDD](https://martinfowler.com/articles/is-tdd-dead/).

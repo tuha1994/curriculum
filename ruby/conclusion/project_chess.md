@@ -1,47 +1,47 @@
-### Introduction
+### Giới thiệu
 
-You've come a long way. Now it's time to prove how much you've learned.
+Bạn đã đi được một chặng đường dài. Giờ là lúc chứng minh mình đã học được bao nhiêu.
 
-Chess is a classic game that appears very complicated at first but can be broken down into logical steps that make it a great Ruby capstone project.  If you've never played, be sure to read up on the rules (see the Chess [Wikipedia Page](http://en.wikipedia.org/wiki/Chess)) first.
+Cờ vua là một trò chơi kinh điển, thoạt nhìn có vẻ rất phức tạp nhưng có thể được chia thành các bước logic, khiến nó trở thành một dự án tổng kết Ruby tuyệt vời. Nếu chưa từng chơi, trước hết hãy tìm hiểu về luật chơi (xem [Trang Wikipedia về cờ vua](http://en.wikipedia.org/wiki/Chess)).
 
-The problem specification is deliberately sparse for this, your final project of Ruby -- it's up to you to attack the problem with very little prior information or structure, which is good practice for real world programming challenges.  You have all the tools you need.  You already did a lot of the heavy thinking in the [Knight's Travails project](https://www.theodinproject.com/lessons/ruby-knights-travails).
+Đặc tả bài toán cho dự án Ruby cuối cùng này được cố ý viết khá sơ lược -- bạn phải tự mình bắt tay giải quyết với rất ít thông tin hoặc cấu trúc có sẵn. Đây là cách luyện tập tốt cho những thử thách lập trình trong thực tế. Bạn đã có mọi công cụ cần thiết. Bạn cũng đã thực hiện phần lớn quá trình suy nghĩ khó khăn trong [dự án Hành trình của quân mã](https://www.theodinproject.com/lessons/ruby-knights-travails).
 
-The main difference is that this problem has the broadest scope of anything you've done yet.  The keys here will be thinking it through logically ahead of time and maintaining a disciplined workflow.  It'll be much easier on you if you're able to stay organized and break it down into components that you can tackle one by one.
+Điểm khác biệt chính là bài toán này có phạm vi rộng nhất trong tất cả những gì bạn từng làm. Điều quan trọng ở đây là suy nghĩ thấu đáo về bài toán theo cách logic từ trước và duy trì một quy trình làm việc có kỷ luật. Mọi việc sẽ dễ dàng hơn nhiều nếu bạn có thể giữ cho mình ngăn nắp và chia bài toán thành các thành phần để xử lý lần lượt.
 
-This is a great project to have as a part of your portfolio going forward because it shows you can take on something with a lot of different components to it.
+Đây là một dự án rất đáng đưa vào danh mục sản phẩm cá nhân về sau, vì nó cho thấy bạn có thể đảm nhận một bài toán gồm nhiều thành phần khác nhau.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. **Build a command line Chess game where two players can play against each other.**
-  1. The game should be properly constrained -- it should prevent players from making illegal moves and declare check or check mate in the correct situations.
-  1. Make it so you can save the board at any time (remember how to serialize?)
-  1. Write tests for the important parts.  You don't need to TDD it (unless you want to), but be sure to use RSpec tests for anything that you find yourself typing into the command line repeatedly.
+  1. **Xây dựng một trò chơi cờ vua chạy trên dòng lệnh, trong đó hai người chơi có thể đấu với nhau.**
+  1. Trò chơi phải được ràng buộc đúng cách -- phải ngăn người chơi thực hiện các nước đi không hợp lệ và thông báo đúng lúc khi bị chiếu hoặc chiếu hết.
+  1. Cho phép lưu bàn cờ bất kỳ lúc nào (nhớ cách tuần tự hóa chứ?)
+  1. Viết các bài kiểm thử cho những phần quan trọng. Bạn không nhất thiết phải phát triển theo TDD (trừ khi muốn), nhưng hãy nhớ dùng các bài kiểm thử RSpec cho bất cứ điều gì mà bạn thấy mình phải liên tục nhập vào dòng lệnh.
 
      <div class="lesson-note lesson-note--tip" markdown="1">
 
-     #### Online board editor tools to help with testing
+     #### Công cụ chỉnh sửa bàn cờ trực tuyến hỗ trợ kiểm thử
 
-     Various online chess services offer tools that provide an easy way to set up and visualize chess positions. They also allow for the convenient import and export of positions by [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) and other means. For example, here are the [Board editor](https://lichess.org/editor) and [Analysis board](https://lichess.org/analysis) tools offered by Lichess. These tools can come in handy when preparing some test cases in the advanced stages of the project, particularly if you decide to design your project to leverage FEN.
+     Nhiều dịch vụ cờ vua trực tuyến cung cấp các công cụ giúp bạn dễ dàng thiết lập và trực quan hóa các thế cờ. Chúng cũng cho phép nhập và xuất thế cờ thuận tiện bằng [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation) cùng nhiều cách khác. Ví dụ, Lichess cung cấp [Trình chỉnh sửa bàn cờ](https://lichess.org/editor) và [Bàn phân tích](https://lichess.org/analysis). Những công cụ này có thể rất hữu ích khi bạn chuẩn bị một số trường hợp kiểm thử ở các giai đoạn nâng cao của dự án, đặc biệt nếu bạn quyết định thiết kế dự án để tận dụng FEN.
 
      </div>  
 
-  1. Do your best to keep your classes modular and clean and your methods doing only one thing each.  This is the largest program that you've written, so you'll definitely start to see the benefits of good organization (and testing) when you start running into bugs.
-  1. Unfamiliar with Chess? Check out some of the additional resources to help you get your bearings.
-  1. Have fun!  Check out Wikipedia's [unicode chess characters](http://en.wikipedia.org/wiki/Chess_symbols_in_Unicode) for a little spice for your gameboard.
+  1. Hãy cố gắng giữ cho các lớp của bạn có tính mô-đun và rõ ràng, đồng thời mỗi phương thức chỉ làm một việc. Đây là chương trình lớn nhất bạn từng viết, vì vậy khi bắt đầu gặp lỗi, bạn chắc chắn sẽ thấy lợi ích của việc tổ chức tốt (và kiểm thử).
+  1. Chưa quen với cờ vua? Hãy xem thêm một số tài nguyên để giúp bạn làm quen.
+  1. Hãy vui vẻ! Xem các [ký tự cờ vua Unicode](http://en.wikipedia.org/wiki/Chess_symbols_in_Unicode) trên Wikipedia để tạo thêm chút thú vị cho bàn cờ của bạn.
 
-#### Extra credit
+#### Điểm cộng
 
-1. Build a very basic AI computer player (perhaps who does a random legal move).
+1. Xây dựng một người chơi máy AI rất cơ bản (chẳng hạn có thể thực hiện một nước đi hợp lệ ngẫu nhiên).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này có các liên kết hữu ích đến những nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem nó như tài liệu tham khảo thêm.
 
-- [Illustrated rules of Chess](http://www.chessvariants.org/d.chess/chess.html)
-- [Chess notation for humans and computers](https://en.wikipedia.org/wiki/Chess_notation)
-- If you're feeling stuck, you should visit the community Discord!
-- Once you have completed the project, check out this [discussion on writing chess in Ruby](http://rubyquiz.com/quiz35.html) from RubyQuiz. **Warning**: this resource contains a blueprint for how to complete this project. That means, if you decide to peruse it, you won't get the opportunity to dig into this problem.
+- [Luật cờ vua minh họa](http://www.chessvariants.org/d.chess/chess.html)
+- [Ký hiệu cờ vua cho người và máy tính](https://en.wikipedia.org/wiki/Chess_notation)
+- Nếu cảm thấy bế tắc, bạn nên ghé qua Discord của cộng đồng!
+- Sau khi hoàn thành dự án, hãy xem [bài thảo luận về việc viết cờ vua bằng Ruby](http://rubyquiz.com/quiz35.html) từ RubyQuiz. **Cảnh báo**: tài liệu này chứa bản thiết kế hướng dẫn cách hoàn thành dự án. Điều đó có nghĩa là nếu quyết định xem qua, bạn sẽ không còn cơ hội tự mình đào sâu vào bài toán này.

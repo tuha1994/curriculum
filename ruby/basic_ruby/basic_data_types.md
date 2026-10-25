@@ -1,23 +1,23 @@
-### Introduction
+### Giới thiệu
 
-Ruby is very object-oriented, which means that absolutely everything in Ruby is an object, even the most basic data types. We'll start here with four of Ruby's basic data types: numbers (integers and floats), strings, symbols, and Booleans (`true`, `false`, and `nil`).
+Ruby mang tính hướng đối tượng rất cao, nghĩa là tuyệt đối mọi thứ trong Ruby đều là một đối tượng, kể cả những kiểu dữ liệu cơ bản nhất. Chúng ta sẽ bắt đầu với bốn kiểu dữ liệu cơ bản của Ruby: số (số nguyên và số thực), chuỗi, symbol và Boolean (`true`, `false` và `nil`).
 
-For all of the examples throughout this lesson, feel free to follow along in irb or any appropriate online [REPL](https://www.rubyguides.com/2018/12/what-is-a-repl-in-ruby/) to get a better feel for how they work.
+Trong tất cả các ví dụ của bài học này, bạn có thể thực hành theo trong irb hoặc bất kỳ [REPL](https://www.rubyguides.com/2018/12/what-is-a-repl-in-ruby/) trực tuyến phù hợp nào để hiểu rõ hơn cách chúng hoạt động.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- List the basic arithmetic operators and what they do.
-- Describe the difference between an integer and a float and how to convert between the two.
-- Explain string interpolation and concatenation.
-- Describe what escape characters are, and list several examples.
-- Define what a symbol is and how it differs from a string.
-- Explain what the Booleans `true`, `false`, and `nil` represent.
+- Liệt kê các toán tử số học cơ bản và chức năng của chúng.
+- Mô tả sự khác nhau giữa số nguyên và số thực, cũng như cách chuyển đổi giữa hai kiểu này.
+- Giải thích nội suy chuỗi và phép nối chuỗi.
+- Mô tả ký tự escape là gì và liệt kê một số ví dụ.
+- Định nghĩa symbol là gì và nó khác chuỗi như thế nào.
+- Giải thích các Boolean `true`, `false` và `nil` biểu thị điều gì.
 
-### Numbers
+### Số
 
-You probably already know what numbers are, so there's no need to go into elaborate metaphors here. Ruby has all the typical math operators you would expect:
+Có lẽ bạn đã biết số là gì, nên không cần dùng những phép ẩn dụ cầu kỳ ở đây. Ruby có tất cả các toán tử toán học quen thuộc mà bạn mong đợi:
 
 ```ruby
 # Addition
@@ -41,25 +41,25 @@ You probably already know what numbers are, so there's no need to go into elabor
 10 % 4 #=> 2  (10 / 4 = 2 with a remainder of 2)
 ```
 
-#### Integers and floats
+#### Số nguyên và số thực
 
-There are two main types of numbers in Ruby. **Integers** are whole numbers, such as 10. **Floats** are numbers that contain a decimal point, such as 10.5, 10.0, or 0.25.
+Ruby có hai kiểu số chính. **Số nguyên** là các số không có phần thập phân, chẳng hạn 10. **Số thực** là các số có dấu thập phân, chẳng hạn 10.5, 10.0 hoặc 0.25.
 
-It's important to keep in mind that when doing arithmetic with two integers in Ruby, *the result will always be an integer*.
+Điều quan trọng cần nhớ là khi thực hiện phép tính với hai số nguyên trong Ruby, *kết quả luôn là một số nguyên*.
 
 ```ruby
 17 / 5 #=> 3, not 3.4
 ```
 
-To obtain an accurate answer, just replace one of the integers in the expression with a float.
+Để nhận được kết quả chính xác, chỉ cần thay một trong các số nguyên trong biểu thức bằng một số thực.
 
 ```ruby
 17 / 5.0 #=> 3.4
 ```
 
-#### Converting number types
+#### Chuyển đổi kiểu số
 
-Ruby makes it very easy to convert floats to integers and vice versa.
+Ruby giúp việc chuyển đổi số thực sang số nguyên và ngược lại trở nên rất dễ dàng.
 
 ```ruby
 # To convert an integer to a float:
@@ -70,11 +70,11 @@ Ruby makes it very easy to convert floats to integers and vice versa.
 13.9.to_i #=> 13
 ```
 
-As shown in the last example above, when Ruby converts a float to an integer, the decimal places are cut off. Ruby doesn't do any rounding in this conversion.
+Như ví dụ cuối cho thấy, khi Ruby chuyển một số thực thành số nguyên, phần thập phân sẽ bị cắt bỏ. Ruby không làm tròn trong quá trình chuyển đổi này.
 
-#### Some useful number methods
+#### Một số phương thức hữu ích cho số
 
-There are many useful methods for numbers built into Ruby. For example:
+Ruby tích hợp sẵn rất nhiều phương thức hữu ích cho số. Ví dụ:
 
 - `#even?`
 
@@ -90,19 +90,19 @@ There are many useful methods for numbers built into Ruby. For example:
   7.odd? #=> true
   ```
 
-### Strings
+### Chuỗi
 
-Strings, strings, wonderful things, use them well and...your app will...grow wings? Or something.
+Chuỗi, chuỗi, những thứ tuyệt vời, hãy dùng chúng thật tốt và... ứng dụng của bạn sẽ... mọc cánh? Đại khái là vậy.
 
-At first glance, you might think that strings are just a bunch of characters that aren't very useful beyond getting user input and outputting some information to the screen, but like Burt Reynolds passing up the chance to play Han Solo, you'd be wrong. Very wrong. What were you thinking, Burt?
+Thoạt nhìn, bạn có thể nghĩ chuỗi chỉ là một đống ký tự, chẳng hữu ích mấy ngoài việc nhận dữ liệu người dùng và xuất thông tin ra màn hình; nhưng giống như Burt Reynolds đã bỏ qua cơ hội đóng Han Solo, bạn đã nhầm. Nhầm to. Burt, lúc đó bạn đang nghĩ gì vậy?
 
-#### Double and single quotation marks
+#### Dấu ngoặc kép đôi và đơn
 
-Strings can be formed with either double `""` or single`''` quotation marks, also known as *string literals*. They are pretty similar, but there are some differences. Specifically, string interpolation and the escape characters that we'll discuss soon both only work inside double quotation marks, not single quotation marks.
+Chuỗi có thể được tạo bằng dấu ngoặc kép đôi `""` hoặc dấu ngoặc kép đơn`''`, còn gọi là *literal chuỗi*. Chúng khá giống nhau, nhưng có một số khác biệt. Cụ thể, nội suy chuỗi và các ký tự escape mà chúng ta sắp thảo luận chỉ hoạt động bên trong dấu ngoặc kép đôi, không hoạt động bên trong dấu ngoặc kép đơn.
 
-#### Concatenation
+#### Phép nối chuỗi
 
-In true Ruby style, there are plenty of ways to concatenate strings.
+Đúng với phong cách Ruby, có rất nhiều cách để nối chuỗi.
 
 ```ruby
 # With the plus operator:
@@ -115,11 +115,11 @@ In true Ruby style, there are plenty of ways to concatenate strings.
 "Welcome ".concat("to ").concat("Odin!") #=> "Welcome to Odin!"
 ```
 
-Classic Ruby!
+Ruby đúng là kinh điển!
 
-#### Substrings
+#### Chuỗi con
 
-You can access strings inside strings. Stringception! It's super easy, too.
+Bạn có thể truy cập chuỗi nằm bên trong chuỗi. Stringception! Cách này cũng cực kỳ dễ.
 
 ```ruby
 "hello"[0] #=> "h"
@@ -131,11 +131,11 @@ You can access strings inside strings. Stringception! It's super easy, too.
 "hello"[-1] #=> "o"
 ```
 
-In the above example we can access the individual characters of a string by referencing the index(es) of the character within the string using `[]`. For more information on the topic you can read the [#slice method documentation](https://docs.ruby-lang.org/en/3.4/String.html#class-String-label-String+Slices).
+Trong ví dụ trên, ta có thể truy cập từng ký tự của một chuỗi bằng cách tham chiếu đến chỉ mục của ký tự đó trong chuỗi thông qua `[]`. Để biết thêm thông tin, bạn có thể đọc [tài liệu về phương thức #slice](https://docs.ruby-lang.org/en/3.4/String.html#class-String-label-String+Slices).
 
-#### Escape characters
+#### Ký tự escape
 
-Escape characters allow you to type in representations of whitespace characters and to include quotation marks inside your string without accidentally ending it. As a reminder, escape characters only work inside double quotation marks.
+Ký tự escape cho phép bạn nhập biểu diễn của các ký tự khoảng trắng và đưa dấu ngoặc kép vào chuỗi mà không vô tình kết thúc chuỗi. Xin nhắc lại, ký tự escape chỉ hoạt động bên trong dấu ngoặc kép đôi.
 
 ```ruby
 \\  #=> Need a backslash in your string?
@@ -148,7 +148,7 @@ Escape characters allow you to type in representations of whitespace characters 
 \'  #=> Single quotation mark
 ```
 
-The best thing to do is play around with them in irb or a REPL.
+Cách tốt nhất là thử nghịch với chúng trong irb hoặc một REPL.
 
 ```ruby
 irb(main):001:0> puts "Hello \n\nHello"
@@ -158,9 +158,9 @@ Hello
 => nil
 ```
 
-#### Interpolation
+#### Nội suy
 
-String interpolation allows you to evaluate a string that contains placeholder variables. This is a very useful and common technique, so you will likely find yourself using this often. Be sure to use double quotes so that string interpolation will work!
+Nội suy chuỗi cho phép bạn đánh giá một chuỗi chứa các biến giữ chỗ. Đây là kỹ thuật rất hữu ích và phổ biến, nên bạn sẽ thường xuyên dùng đến nó. Hãy nhớ dùng dấu ngoặc kép đôi để nội suy chuỗi hoạt động!
 
 ```ruby
 name = "Odin"
@@ -169,13 +169,13 @@ puts "Hello, #{name}" #=> "Hello, Odin"
 puts 'Hello, #{name}' #=> "Hello, #{name}"
 ```
 
-#### Common string methods
+#### Các phương thức chuỗi thường dùng
 
-There are many useful string methods that are built into Ruby. You need to capitalize a word? No problem! Reverse a string? Easy peasy. Extract the binary subatomic algorithm from any regex grep? We don't know, but since this is Ruby, let's go with *YES*.
+Ruby tích hợp sẵn rất nhiều phương thức chuỗi hữu ích. Bạn cần viết hoa một từ ư? Không vấn đề! Đảo ngược một chuỗi ư? Dễ như ăn bánh. Trích xuất thuật toán hạ nguyên tử nhị phân từ bất kỳ grep regex nào ư? Chúng tôi không biết, nhưng vì đây là Ruby, cứ chọn *CÓ* vậy.
 
-Just remember, strings have loads of methods provided to you for free, and you can find them all in the [Ruby docs for the String class](https://docs.ruby-lang.org/en/3.4/String.html). If you're working with strings and need to do something, check the Ruby docs first and see if there's a method that does it for you.
+Chỉ cần nhớ rằng chuỗi có vô số phương thức được cung cấp sẵn, và bạn có thể tìm thấy tất cả chúng trong [tài liệu Ruby về lớp String](https://docs.ruby-lang.org/en/3.4/String.html). Nếu đang làm việc với chuỗi và cần thực hiện một thao tác nào đó, trước hết hãy xem tài liệu Ruby để kiểm tra xem đã có phương thức làm việc đó cho bạn chưa.
 
-Below is a quick recap of the more common string methods you might find yourself using:
+Dưới đây là phần ôn nhanh về những phương thức chuỗi phổ biến mà bạn có thể sẽ dùng:
 
 - `#capitalize`
 
@@ -237,7 +237,7 @@ Below is a quick recap of the more common string methods you might find yourself
   " hello, world   ".strip #=> "hello, world"
   ```
 
-You'll read more about these methods and others in the assignment. The examples below are just to get your creative juices flowing with some of the awesome ways you can modify strings.
+Bạn sẽ đọc thêm về những phương thức này và các phương thức khác trong bài tập. Các ví dụ dưới đây chỉ nhằm khơi nguồn sáng tạo bằng một vài cách tuyệt vời để bạn biến đổi chuỗi.
 
 ```ruby
 "he77o".sub("7", "l") #=> "hel7o"
@@ -251,11 +251,11 @@ You'll read more about these methods and others in the assignment. The examples 
 "!".prepend("hello, ", "world") #=> "hello, world!"
 ```
 
-The assignments will go much deeper, so go through them thoroughly and be sure to play around in a REPL as you read.
+Các bài tập sẽ đi sâu hơn nhiều, vì vậy hãy làm thật kỹ và nhớ thử nghiệm trong một REPL khi đọc.
 
-#### Converting other objects to strings
+#### Chuyển các đối tượng khác thành chuỗi
 
-Using the `to_s` method, you can convert pretty much anything to a string. Here are some examples:
+Bằng phương thức `to_s`, bạn có thể chuyển gần như bất cứ thứ gì thành chuỗi. Dưới đây là một vài ví dụ:
 
 ```ruby
 5.to_s #=> "5"
@@ -267,33 +267,33 @@ nil.to_s #=> ""
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Mutating operations with string literals
+#### Thao tác làm biến đổi literal chuỗi
 
-Be careful of performing any operations that mutate string literals, as Ruby will soon not allow this anymore.
+Hãy cẩn thận khi thực hiện các thao tác làm biến đổi literal chuỗi, vì Ruby sẽ sớm không còn cho phép điều này nữa.
 
 </div>
 
-### Symbols
+### Symbol
 
-Symbols are an interesting twist on the idea of a string. The full explanation can be a bit long, but here's the short version:
+Symbol là một biến thể thú vị của ý tưởng chuỗi. Phần giải thích đầy đủ có thể hơi dài, nhưng đây là phiên bản ngắn gọn:
 
-Strings can be changed, so every time a string is used, Ruby has to store it in memory even if an existing string with the same value already exists. Symbols, on the other hand, are stored in memory only once, making them faster in certain situations.
+Chuỗi có thể thay đổi, vì vậy mỗi lần một chuỗi được sử dụng, Ruby phải lưu nó trong bộ nhớ, ngay cả khi đã có một chuỗi khác có cùng giá trị tồn tại. Ngược lại, symbol chỉ được lưu trong bộ nhớ một lần, khiến chúng nhanh hơn trong một số tình huống.
 
-One common application where symbols are preferred over strings are the keys in hashes. We'll cover this in detail in the hashes lesson later in the course.
+Một trường hợp phổ biến mà symbol được ưu tiên hơn chuỗi là làm khóa trong hash. Chúng ta sẽ tìm hiểu chi tiết điều này trong bài học về hash ở phần sau của khóa học.
 
-You won't need to use symbols much in the beginning, but it's good to get familiar with what they are and what they look like so that you can recognize them.
+Ban đầu bạn sẽ không cần dùng symbol nhiều, nhưng làm quen với chúng là điều hữu ích để có thể nhận ra chúng và hình dung chúng trông như thế nào.
 
-#### Create a symbol
+#### Tạo một symbol
 
-To create a symbol, put a colon at the beginning of some text:
+Để tạo symbol, hãy đặt dấu hai chấm ở đầu một đoạn văn bản:
 
 ```ruby
 :my_symbol
 ```
 
-#### Symbols vs. strings
+#### Symbol và chuỗi
 
-To get a better idea of how symbols are stored in memory, give this a whirl in irb or a REPL. The [`#object_id` method](https://docs.ruby-lang.org/en/3.4/Object.html#method-i-object_id) returns an integer identifier for an object. (And remember: in Ruby, *everything* is an object!)
+Để hiểu rõ hơn cách symbol được lưu trong bộ nhớ, hãy thử chạy đoạn này trong irb hoặc một REPL. [Phương thức `#object_id`](https://docs.ruby-lang.org/en/3.4/Object.html#method-i-object_id) trả về một mã định danh số nguyên cho một đối tượng. (Và hãy nhớ: trong Ruby, *mọi thứ* đều là một đối tượng!)
 
 ```ruby
 "string" == "string" #=> true
@@ -303,29 +303,29 @@ To get a better idea of how symbols are stored in memory, give this a whirl in i
 :symbol.object_id == :symbol.object_id #=> true
 ```
 
-### Booleans
+### Boolean
 
-You will learn about these data types in more detail in the Conditional Logic lesson later in this course. The goal of this lesson is for you to get a basic understanding of what Booleans are.
+Bạn sẽ học chi tiết hơn về các kiểu dữ liệu này trong bài Logic điều kiện (Conditional Logic) ở phần sau của khóa học. Mục tiêu của bài này là giúp bạn có hiểu biết cơ bản về Boolean.
 
-#### True and false
+#### True và false
 
-The Boolean values `true` and `false` represent exactly what you think they do: `true` represents something that is true, and `false` represents something that is false.
+Các giá trị Boolean `true` và `false` biểu thị đúng như tên gọi: `true` biểu thị điều đúng, còn `false` biểu thị điều sai.
 
 #### Nil
 
-In Ruby, `nil` represents "nothing". Everything in Ruby has a return value. When a piece of code doesn't have anything to return, it will return `nil`. This is pretty abstract, but it will make more sense as you learn and use Ruby more.
+Trong Ruby, `nil` biểu thị “không có gì”. Mọi thứ trong Ruby đều có một giá trị trả về. Khi một đoạn mã không có gì để trả về, nó sẽ trả về `nil`. Điều này khá trừu tượng, nhưng sẽ dần dễ hiểu hơn khi bạn học và sử dụng Ruby.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-Remember, if you get stuck, ask questions in the #ruby-help channel of our Discord server!
+Nếu gặp khó khăn, hãy đặt câu hỏi trong kênh #ruby-help của máy chủ Discord của chúng ta!
 
-1. Read the [Basics chapter of LaunchSchool's *Introduction to Programming With Ruby*](https://launchschool.com/books/ruby/read/basics) for a different explanation of Ruby's data types. Be sure to also complete the exercises.
-1. Read [Alex Chaffee’s brief writeup on Objects](https://codelikethis.com/lessons/learn-to-code/objects), for a basic understanding of what objects are in programming. We will explore this topic much deeper later in the course.
-1. Now it is time to complete some test-driven exercises to practice what you have learned in this lesson.
-   - Follow the [cloning and installation instructions in the main README of our ruby-exercise repo](https://github.com/TheOdinProject/ruby-exercises?tab=readme-ov-file#cloning-and-installation) to set up the exercises.
-   - Then, follow the [usage instructions in the ruby-basics README](https://github.com/TheOdinProject/ruby-exercises/tree/main/ruby_basics#usage) to complete the exercises in the `1_data_types` folder.
-   - After completing the exercises, check out the solutions branch on GitHub to compare solutions.
+1. Đọc [chương Basics của *Introduction to Programming With Ruby* của LaunchSchool](https://launchschool.com/books/ruby/read/basics) để xem một cách giải thích khác về các kiểu dữ liệu của Ruby. Nhớ hoàn thành cả các bài tập.
+1. Đọc [bài viết ngắn của Alex Chaffee về Objects](https://codelikethis.com/lessons/learn-to-code/objects) để hiểu cơ bản về đối tượng trong lập trình. Chúng ta sẽ tìm hiểu chủ đề này sâu hơn nhiều ở phần sau của khóa học.
+1. Bây giờ là lúc hoàn thành một số bài tập theo hướng kiểm thử trước để thực hành những gì bạn đã học trong bài.
+   - Làm theo [hướng dẫn sao chép và cài đặt trong README chính của kho ruby-exercise](https://github.com/TheOdinProject/ruby-exercises?tab=readme-ov-file#cloning-and-installation) để thiết lập bài tập.
+   - Sau đó, làm theo [hướng dẫn sử dụng trong README của ruby-basics](https://github.com/TheOdinProject/ruby-exercises/tree/main/ruby_basics#usage) để hoàn thành các bài tập trong thư mục `1_data_types`.
+   - Sau khi hoàn thành bài tập, hãy xem nhánh solutions trên GitHub để đối chiếu lời giải.
 
 </div>

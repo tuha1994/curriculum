@@ -1,6 +1,6 @@
-### Introduction
+### Giới thiệu
 
-This lesson is all about controlling the flow of your code. When you have some code that you only want to execute under specific conditions, you will need a way for the computer to check whether those conditions have been met. Conditional logic can be found everywhere in everyday life. Ever had to tidy your room before being allowed to play video games? That's your mother setting up a nice conditional statement that might look like this in a computer program...
+Bài học này tập trung vào việc điều khiển luồng thực thi của mã. Khi có một đoạn mã chỉ muốn chạy trong những điều kiện cụ thể, bạn cần một cách để máy tính kiểm tra xem các điều kiện đó đã được đáp ứng hay chưa. Logic điều kiện xuất hiện ở khắp nơi trong đời sống hằng ngày. Bạn đã bao giờ phải dọn phòng trước khi được phép chơi trò chơi điện tử chưa? Đó là mẹ bạn đang thiết lập một câu lệnh điều kiện, có thể trông như thế này trong một chương trình máy tính...
 
 ```ruby
 if room_tidy == true
@@ -8,33 +8,33 @@ if room_tidy == true
 end
 ```
 
-There must be a motherboard joke in there somewhere. Answers on a postcard!
+Hẳn phải có đâu đó một trò đùa về bo mạch chủ. Câu trả lời xin gửi trên bưu thiếp!
 
-Any conditional statement will always have an expression that evaluates to `true` or `false`. Based on this answer, the computer will decide whether or not to execute the code that follows. If it's true, then the code will be processed; if it's false, the code will be skipped, and you can provide some other code that will be run instead. There can even be several conditional statements on one line, but keep in mind that too many can make code look cluttered.
+Mọi câu lệnh điều kiện luôn có một biểu thức cho kết quả là `true` hoặc `false`. Dựa trên kết quả này, máy tính sẽ quyết định có thực thi đoạn mã tiếp theo hay không. Nếu kết quả là true, đoạn mã sẽ được xử lý; nếu là false, đoạn mã sẽ bị bỏ qua, và bạn có thể cung cấp một đoạn mã khác để chạy thay thế. Thậm chí có thể có nhiều câu lệnh điều kiện trên cùng một dòng, nhưng hãy nhớ rằng quá nhiều câu lệnh có thể khiến mã trở nên rối mắt.
 
-You'll write a lot of conditional statements on your road to programmer stardom. Although they are fundamentally simple, they are a big source of bugs in your code when something isn't working as expected. Make sure you understand the logic behind the expression being evaluated so you can step through it if you need to.
+Bạn sẽ viết rất nhiều câu lệnh điều kiện trên con đường trở thành ngôi sao lập trình. Dù về cơ bản chúng khá đơn giản, chúng lại là nguồn gây lỗi lớn trong mã của bạn khi mọi thứ không hoạt động như mong đợi. Hãy chắc chắn rằng bạn hiểu logic đằng sau biểu thức được đánh giá, để có thể lần theo từng bước nếu cần.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- Describe and list falsy values.
-- Explain how to use `if`, `elsif`, and `else`.
-- Explain the difference between `if` and `unless`.
-- Describe what `||`, `&&`, and `!` do.
-- Explain what short circuit evaluation is.
-- Describe what the ternary operator is and how to use it.
-- Explain what a `case` statement is and how it works.
+- Mô tả và liệt kê các giá trị falsy.
+- Giải thích cách sử dụng `if`, `elsif` và `else`.
+- Giải thích sự khác nhau giữa `if` và `unless`.
+- Mô tả chức năng của `||`, `&&` và `!`.
+- Giải thích đánh giá đoản mạch là gì.
+- Mô tả toán tử ba ngôi và cách sử dụng nó.
+- Giải thích câu lệnh `case` là gì và cách nó hoạt động.
 
-### Truthy and falsy in Ruby
+### Truthy và falsy trong Ruby
 
-You already know that conditional statements check expressions for a true or false value, so it follows that you need to understand what Ruby considers to be true or false. In typical Ruby fashion, it's very simple. The only false values in Ruby are the values `nil` and `false` themselves. That's it! Everything else is considered true. Even the string `"false"` is true in conditional expressions! If you have experience with other programming languages, you might be familiar with the number 0 or an empty string ("") being equivalent to false. This isn't the case with Ruby, so be careful when writing those expressions. Otherwise, you might end up with more bugs on your screen than if you were using light mode at midnight.
+Bạn đã biết câu lệnh điều kiện kiểm tra các biểu thức để nhận giá trị true hoặc false, vì vậy bạn cần hiểu Ruby xem điều gì là true hoặc false. Đúng với phong cách Ruby điển hình, việc này rất đơn giản. Các giá trị false duy nhất trong Ruby chính là `nil` và `false`. Chỉ vậy thôi! Mọi thứ khác đều được xem là true. Ngay cả chuỗi `"false"` cũng là true trong các biểu thức điều kiện! Nếu từng làm việc với những ngôn ngữ lập trình khác, bạn có thể quen với việc số 0 hoặc chuỗi rỗng ("") tương đương với false. Ruby không như vậy, nên hãy cẩn thận khi viết các biểu thức đó. Nếu không, màn hình của bạn có thể đầy lỗi hơn cả khi dùng chế độ sáng lúc nửa đêm.
 
-### Basic conditional statement
+### Câu lệnh điều kiện cơ bản
 
-The simplest way to control the flow of your code using conditionals is with the `if` statement.
+Cách đơn giản nhất để điều khiển luồng mã bằng điều kiện là dùng câu lệnh `if`.
 
-The general syntax of an `if` statement is shown here:
+Cú pháp tổng quát của câu lệnh `if` được minh họa ở đây:
 
 ```ruby
 if statement_to_be_evaluated == true
@@ -47,19 +47,19 @@ end
 #=> Hot diggity, 1 is less than 2!
 ```
 
-If there is only one line of code to be evaluated inside the block, then you can rewrite the code to be more succinct and take up only one line:
+Nếu trong khối chỉ có một dòng mã cần đánh giá, bạn có thể viết lại mã ngắn gọn hơn và chỉ chiếm một dòng:
 
 ```ruby
 puts "Hot diggity damn, 1 is less than 2" if 1 < 2
 ```
 
-You don't even need the `end` statement. Nice and concise!
+Bạn thậm chí không cần câu lệnh `end`. Thật gọn gàng và súc tích!
 
-The statement to be evaluated can be anything that returns true or false. It could be a mathematical expression, a variable value, or a call to a method. Only if the expression evaluates to true does the code inside the block run.
+Câu lệnh cần được đánh giá có thể là bất cứ thứ gì trả về true hoặc false. Đó có thể là một biểu thức toán học, giá trị của một biến hoặc một lệnh gọi phương thức. Chỉ khi biểu thức cho kết quả true thì đoạn mã bên trong khối mới chạy.
 
-### Adding else and elsif
+### Thêm else và elsif
 
-We often want to check a condition and run some code if it's true but then run some other code if it's false. This is done with an `if...else` statement.
+Chúng ta thường muốn kiểm tra một điều kiện và chạy một đoạn mã nếu điều kiện đúng, rồi chạy một đoạn mã khác nếu điều kiện sai. Việc này được thực hiện bằng câu lệnh `if...else`.
 
 ```ruby
 if attack_by_land == true
@@ -69,9 +69,9 @@ else
 end
 ```
 
-Oh yeah! Protected on land and sea.
+Ồ đúng rồi! Bảo vệ cả trên cạn lẫn dưới biển.
 
-But what about if we're attacked by air? We need yet another conditional check. Enter the `if...elsif...else` statement!
+Nhưng nếu chúng ta bị tấn công từ trên không thì sao? Ta cần thêm một lần kiểm tra điều kiện nữa. Hãy dùng câu lệnh `if...elsif...else`!
 
 ```ruby
 if attack_by_land == true
@@ -83,64 +83,64 @@ else
 end
 ```
 
-Ain't nobody pillaging our land!
+Không ai có thể cướp bóc vùng đất của chúng ta!
 
-You can have as many `elsif` expressions as you want. The `else` clause is optional, but you usually want to provide some default value in case none of the previous expressions evaluate to `true`.
+Bạn có thể có bao nhiêu biểu thức `elsif` tùy thích. Mệnh đề `else` là tùy chọn, nhưng thông thường bạn nên cung cấp một giá trị mặc định phòng khi không biểu thức nào trước đó cho kết quả `true`.
 
-### Boolean logic
+### Logic Boolean
 
-To determine whether an expression evaluates to `true` or `false`, you'll need a comparison operator. There are several provided by Ruby:
+Để xác định một biểu thức cho kết quả `true` hay `false`, bạn sẽ cần một toán tử so sánh. Ruby cung cấp một số toán tử như sau:
 
-`==` (equals) returns `true` if the values compared are equal.
+`==` (bằng) trả về `true` nếu các giá trị được so sánh bằng nhau.
 
 ```ruby
 5 == 5 #=> true
 5 == 6 #=> false
 ```
 
-`!=` (not equal) returns `true` if the values compared are not equal.
+`!=` (khác) trả về `true` nếu các giá trị được so sánh không bằng nhau.
 
 ```ruby
 5 != 7 #=> true
 5 != 5 #=> false
 ```
 
-`>` (greater than) returns `true` if the value on the left of the operator is larger than the value on the right.
+`>` (lớn hơn) trả về `true` nếu giá trị bên trái toán tử lớn hơn giá trị bên phải.
 
 ```ruby
 7 > 5 #=> true
 5 > 7 #=> false
 ```
 
-`<` (less than) returns `true` if the value on the left of the operator is smaller than the value on the right.
+`<` (nhỏ hơn) trả về `true` nếu giá trị bên trái toán tử nhỏ hơn giá trị bên phải.
 
 ```ruby
 5 < 7 #=> true
 7 < 5 #=> false
 ```
 
-`>=` (greater than or equal to) returns `true` if the value on the left of the operator is larger than or equal to the value on the right.
+`>=` (lớn hơn hoặc bằng) trả về `true` nếu giá trị bên trái toán tử lớn hơn hoặc bằng giá trị bên phải.
 
 ```ruby
 7 >= 7 #=> true
 7 >= 5 #=> true
 ```
 
-`<=` (less than or equal to) returns `true` if the value on the left of the operator is smaller than or equal to the value on the right.
+`<=` (nhỏ hơn hoặc bằng) trả về `true` nếu giá trị bên trái toán tử nhỏ hơn hoặc bằng giá trị bên phải.
 
 ```ruby
 5 <= 5 #=> true
 5 <= 7 #=> true
 ```
 
-`#eql?` checks both the value type and the actual value it holds.
+`#eql?` kiểm tra cả kiểu giá trị lẫn giá trị thực tế mà nó chứa.
 
 ```ruby
 5.eql?(5.0) #=> false; although they are the same value, one is an integer and the other is a float
 5.eql?(5)   #=> true
 ```
 
-`#equal?` checks whether both values are the exact same object in memory. This can be slightly confusing because of the way computers store some values for efficiency. Two variables pointing to the same number will usually return `true`.
+`#equal?` kiểm tra xem cả hai giá trị có phải chính xác là cùng một đối tượng trong bộ nhớ hay không. Điều này có thể hơi khó hiểu vì cách máy tính lưu trữ một số giá trị để tăng hiệu quả. Hai biến cùng trỏ đến một số thường sẽ trả về `true`.
 
 ```ruby
 a = 5
@@ -148,7 +148,7 @@ b = 5
 a.equal?(b) #=> true
 ```
 
-This expression is true because of the way computers store integers in memory. Although two different variables are holding the number 5, they point to the same object in memory. However, consider the next code example:
+Biểu thức này là true vì cách máy tính lưu số nguyên trong bộ nhớ. Dù hai biến khác nhau cùng chứa số 5, chúng trỏ đến cùng một đối tượng trong bộ nhớ. Tuy nhiên, hãy xem ví dụ mã tiếp theo:
 
 ```ruby
 a = "hello"
@@ -156,15 +156,15 @@ b = "hello"
 a.equal?(b) #=> false
 ```
 
-This happens because computers can't store strings in the same efficient way they store numbers. Although the values of the variables are the same, the computer has created two separate string objects in memory.
+Điều này xảy ra vì máy tính không thể lưu chuỗi theo cách hiệu quả giống như khi lưu số. Dù giá trị của các biến giống nhau, máy tính đã tạo ra hai đối tượng chuỗi riêng biệt trong bộ nhớ.
 
-In addition to the above operators, Ruby has a special operator that is affectionately referred to as the **spaceship operator**. Unlike the other comparison operators, which all return `true` or `false`, the spaceship operator returns one of three numerical values.
+Ngoài các toán tử trên, Ruby còn có một toán tử đặc biệt thường được gọi thân mật là **toán tử phi thuyền**. Không giống các toán tử so sánh khác, vốn đều trả về `true` hoặc `false`, toán tử phi thuyền trả về một trong ba giá trị số.
 
-`<=>` (spaceship operator) returns the following:
+`<=>` (toán tử phi thuyền) trả về:
 
-- `-1` if the value on the left is less than the value on the right;
-- `0` if the value on the left is equal to the value on the right; and
-- `1` if the value on the left is greater than the value on the right.
+- `-1` nếu giá trị bên trái nhỏ hơn giá trị bên phải;
+- `0` nếu giá trị bên trái bằng giá trị bên phải; và
+- `1` nếu giá trị bên trái lớn hơn giá trị bên phải.
 
 ```ruby
 5 <=> 10    #=> -1
@@ -172,17 +172,17 @@ In addition to the above operators, Ruby has a special operator that is affectio
 10 <=> 5    #=> 1
 ```
 
-The spaceship operator is most commonly used in sorting functions, which we'll cover more later.
+Toán tử phi thuyền thường được dùng nhất trong các hàm sắp xếp, nội dung này sẽ được trình bày kỹ hơn ở phần sau.
 
-All of the above operators also work on data types other than numbers, such as strings. Why not play around with this in a REPL?
+Tất cả các toán tử trên cũng hoạt động với những kiểu dữ liệu khác ngoài số, chẳng hạn như chuỗi. Sao không thử nghịch với chúng trong một REPL?
 
-### Logical operators
+### Toán tử logic
 
-Sometimes you'll want to write an expression that contains more than one condition. In Ruby, this is accomplished with logical operators, which are `&&` (and), `||` (or) and `!` (not).
+Đôi khi bạn sẽ muốn viết một biểu thức chứa nhiều hơn một điều kiện. Trong Ruby, việc này được thực hiện bằng các toán tử logic: `&&` (và), `||` (hoặc) và `!` (phủ định).
 
-There are some differences between the word versions and their symbolic equivalents, particularly in the way they evaluate code. We recommend you watch this video that explains the [differences between symbolic logical operators and their word versions](https://avdi.codes/how-to-use-rubys-english-andor-operators-without-going-nuts/).
+Có một số khác biệt giữa các phiên bản dạng từ và tương đương dạng ký hiệu, đặc biệt là ở cách chúng đánh giá mã. Chúng tôi khuyên bạn xem video giải thích [sự khác nhau giữa toán tử logic dạng ký hiệu và dạng từ](https://avdi.codes/how-to-use-rubys-english-andor-operators-without-going-nuts/).
 
-The `&&` operator returns `true` if **both** the left and right expressions return `true`.
+Toán tử `&&` trả về `true` nếu **cả biểu thức bên trái và bên phải đều trả về `true`**.
 
 ```ruby
 if 1 < 2 && 5 < 6
@@ -195,13 +195,13 @@ if 1 < 2 and 5 < 6
 end
 ```
 
-One thing to keep in mind with the `&&` and `||` operators is the order of logic. The expressions are always evaluated from left to right.
+Một điều cần nhớ với các toán tử `&&` và `||` là thứ tự logic. Các biểu thức luôn được đánh giá từ trái sang phải.
 
-Using the `&&` operator, both expressions must return `true`. If the first expression encountered returns `false`, then the second expression is never checked. To the Ruby interpreter, it's pointless to evaluate the second half as the overall expression can never return `true`.
+Với toán tử `&&`, cả hai biểu thức đều phải trả về `true`. Nếu biểu thức đầu tiên được gặp trả về `false`, biểu thức thứ hai sẽ không bao giờ được kiểm tra. Với trình thông dịch Ruby, việc đánh giá nửa sau là vô ích vì toàn bộ biểu thức không thể nào trả về `true`.
 
-With the `||` operator, if the first expression evaluates to `true`, then the second expression is never checked because the complete expression is already `true`, and the code in the block is run.
+Với toán tử `||`, nếu biểu thức đầu tiên cho kết quả `true`, biểu thức thứ hai sẽ không được kiểm tra vì toàn bộ biểu thức đã là `true`, và mã trong khối sẽ được chạy.
 
-This is known as **short circuit evaluation**.
+Điều này được gọi là **đánh giá đoản mạch**.
 
 ```ruby
 if 10 < 2 || 5 < 6 #=> although the left expression is false, there is a party at Kevin's because the right expression returns true
@@ -214,7 +214,7 @@ if 10 < 2 or 5 < 6
 end
 ```
 
-The `!` operator reverses the logic of the expression. Therefore, if the expression itself returns `false`, using the `!` operator makes the expression `true`, and the code inside the block will be executed.
+Toán tử `!` đảo ngược logic của biểu thức. Vì vậy, nếu bản thân biểu thức trả về `false`, việc dùng toán tử `!` sẽ khiến biểu thức trở thành `true`, và mã bên trong khối sẽ được thực thi.
 
 ```ruby
 if !false     #=> true
@@ -222,11 +222,11 @@ if !false     #=> true
 if !(10 < 5)  #=> true
 ```
 
-### Case statements
+### Câu lệnh case
 
-Case statements are a neat way of writing several conditional expressions that would normally result in a messy `if...elsif` statement. You can even assign the return value from a case statement to a variable for use later.
+Câu lệnh case là một cách gọn gàng để viết nhiều biểu thức điều kiện mà nếu viết theo cách thông thường sẽ tạo ra một câu lệnh `if...elsif` lộn xộn. Bạn thậm chí có thể gán giá trị trả về từ câu lệnh case cho một biến để dùng sau này.
 
-Case statements process each condition in turn, and if the condition returns `false`, it will move onto the next one until a match is found. An `else` clause can be provided to serve as a default if no match is found.
+Câu lệnh case xử lý lần lượt từng điều kiện; nếu điều kiện trả về `false`, nó chuyển sang điều kiện tiếp theo cho đến khi tìm thấy kết quả khớp. Có thể cung cấp mệnh đề `else` làm giá trị mặc định nếu không tìm thấy kết quả khớp.
 
 ```ruby
 grade = 'F'
@@ -238,9 +238,9 @@ did_i_pass = case grade #=> create a variable `did_i_pass` and assign the result
 end
 ```
 
-As soon as a match is found, the value of that match is returned, and the case statement stops execution. Can you tell what the value of the `did_i_pass` variable is going to be after the case statement?
+Ngay khi tìm thấy kết quả khớp, giá trị của kết quả đó được trả về và câu lệnh case dừng thực thi. Bạn có đoán được giá trị của biến `did_i_pass` sau câu lệnh case sẽ là gì không?
 
-If you need to do some more complex code manipulation, you can remove the `then` keyword and instead place the code to be executed on the next line.
+Nếu cần thao tác mã phức tạp hơn, bạn có thể bỏ từ khóa `then` và đặt mã cần thực thi ở dòng tiếp theo.
 
 ```ruby
 grade = 'F'
@@ -258,9 +258,9 @@ else
 end
 ```
 
-### Unless statements
+### Câu lệnh unless
 
-An `unless` statement works in the opposite way as an `if` statement: it only processes the code in the block if the expression evaluates to `false`. There isn't much more to it.
+Câu lệnh `unless` hoạt động ngược với câu lệnh `if`: nó chỉ xử lý mã trong khối nếu biểu thức cho kết quả `false`. Không có gì phức tạp hơn thế.
 
 ```ruby
 age = 19
@@ -269,7 +269,7 @@ unless age < 18
 end
 ```
 
-Just like with `if` statements, you can write an `unless` statement on one line, and you can also add an `else` clause.
+Cũng giống câu lệnh `if`, bạn có thể viết câu lệnh `unless` trên một dòng, đồng thời có thể thêm mệnh đề `else`.
 
 ```ruby
 age = 19
@@ -282,13 +282,13 @@ else
 end
 ```
 
-You should use an `unless` statement when you want to **not** do something if a condition is `true`, because it can make your code more readable than using `if !true`.
+Bạn nên dùng câu lệnh `unless` khi muốn **không làm điều gì đó nếu một điều kiện là `true`**, vì cách này có thể khiến mã dễ đọc hơn so với việc dùng `if !true`.
 
-### Ternary operator
+### Toán tử ba ngôi
 
-The ternary operator is a one-line `if...else` statement that can make your code much more concise.
+Toán tử ba ngôi là một câu lệnh `if...else` trên một dòng, giúp mã của bạn ngắn gọn hơn nhiều.
 
-Its syntax is `condition ? <execute if true> : <execute if false>`. You can assign the return value of the expression to a variable.
+Cú pháp của nó là `condition ? <execute if true> : <execute if false>`. Bạn có thể gán giá trị trả về của biểu thức cho một biến.
 
 ```ruby
 age = 19
@@ -296,9 +296,9 @@ response = age < 18 ? "You still have your entire life ahead of you." : "You're 
 puts response #=> "You're all grown up."
 ```
 
-Here, because the expression evaluated to `false`, the code after the `:` was assigned to the variable `response`.
+Ở đây, vì biểu thức cho kết quả `false`, mã sau dấu `:` được gán cho biến `response`.
 
-Writing this as an `if...else` statement would be much more verbose:
+Viết lại dưới dạng câu lệnh `if...else` sẽ dài dòng hơn nhiều:
 
 ```ruby
 age = 19
@@ -311,13 +311,13 @@ end
 puts response #=> "You're all grown up."
 ```
 
-However, if your conditional statements are complicated, then using an `if...else` statement can help to make your code more readable. Remember, **above all else, your code needs to be readable and understandable by other people**, especially in the development stage. You can always optimize your code for efficiency once it's finished and you're moving to a production environment where speed matters.
+Tuy nhiên, nếu các câu lệnh điều kiện của bạn phức tạp, dùng câu lệnh `if...else` có thể giúp mã dễ đọc hơn. Hãy nhớ rằng, **trên hết, mã của bạn cần dễ đọc và dễ hiểu đối với người khác**, đặc biệt trong giai đoạn phát triển. Bạn luôn có thể tối ưu mã để tăng hiệu suất sau khi hoàn tất và chuyển sang môi trường production, nơi tốc độ quan trọng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. For more depth, read the [Flow Control](https://launchschool.com/books/ruby/read/flow_control#conditionals) chapter from LaunchSchool's *Introduction to Programming With Ruby*.
-1. For an overview of flow control, read through this [Ruby Explained: Conditionals and Flow Control](https://www.eriktrautman.com/posts/ruby-explained-conditionals-and-flow-control) article.
+1. Để tìm hiểu sâu hơn, hãy đọc chương [Điều khiển luồng (Flow Control)](https://launchschool.com/books/ruby/read/flow_control#conditionals) trong *Introduction to Programming With Ruby* của LaunchSchool.
+1. Để có cái nhìn tổng quan về việc điều khiển luồng, hãy đọc bài viết [Ruby Explained: Câu lệnh điều kiện và điều khiển luồng](https://www.eriktrautman.com/posts/ruby-explained-conditionals-and-flow-control).
 
 </div>

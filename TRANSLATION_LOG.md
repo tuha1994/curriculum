@@ -349,6 +349,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `ruby/introduction/how_this_course_will_work.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Cần người học đọc duyệt ngữ nghĩa. |
 | `ruby/basic_ruby/arrays.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và tên method. |
 
+## Ruby đã dịch — batch 2
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby/basic_ruby/basic_data_types.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và tên method. |
+| `ruby/basic_ruby/conditional_logic.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và cú pháp điều kiện. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

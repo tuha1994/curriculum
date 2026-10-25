@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-Variables are a way of assigning data to names in your programs. You can think of a variable as a box with a label on it: it stores something and has a name so that you know what's inside. This is an imperfect metaphor as you'll see by the end of this lesson, but it should help with understanding variables for now.
+Biến là cách gán dữ liệu cho các tên trong chương trình của bạn. Bạn có thể hình dung một biến như một chiếc hộp có dán nhãn: nó lưu trữ một thứ gì đó và có một cái tên để bạn biết bên trong chứa gì. Đây là một phép ẩn dụ chưa hoàn hảo, như bạn sẽ thấy ở cuối bài học này, nhưng hiện tại nó sẽ giúp bạn hiểu về biến.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Describe what a variable is and how to assign it a value or expression.
-- Explain what the `+=`, `-=`, `*=`, and `/=` assignment operators do.
-- Describe the naming conventions for variables.
+- Mô tả biến là gì và cách gán cho biến một giá trị hoặc biểu thức.
+- Giải thích các toán tử gán `+=`, `-=`, `*=`, và `/=` hoạt động như thế nào.
+- Mô tả các quy ước đặt tên biến.
 
-### Declaring a variable
+### Khai báo biến
 
-This is how to create a variable in Ruby:
+Đây là cách tạo một biến trong Ruby:
 
 ```ruby
 age = 18 #=> 18
 ```
 
-You can also assign the result of an expression to a variable.
+Bạn cũng có thể gán kết quả của một biểu thức cho một biến.
 
 ```ruby
 age = 18 + 5 #=> 23
 ```
 
-Variable names are reusable, so you can assign a new value to a variable at any point in your program. Naturally, doing so will override the original value.
+Tên biến có thể được sử dụng lại, vì vậy bạn có thể gán một giá trị mới cho biến ở bất kỳ thời điểm nào trong chương trình. Đương nhiên, việc đó sẽ ghi đè giá trị ban đầu.
 
 ```ruby
 age = 18
@@ -33,7 +33,7 @@ age = 33
 age #=> 33
 ```
 
-There will often be scenarios where you want to perform an operation on the original value of a variable and then reassign the result of that operation to the same variable.
+Sẽ có nhiều tình huống bạn muốn thực hiện một phép toán trên giá trị ban đầu của biến, rồi gán lại kết quả của phép toán đó cho chính biến ấy.
 
 ```ruby
 age = 18
@@ -42,14 +42,14 @@ age = age + 4
 age #=> 22
 ```
 
-Because this is a common scenario, Ruby provides a nice shorthand assignment operator for doing this: `+=`.
+Vì đây là một tình huống phổ biến, Ruby cung cấp một toán tử gán viết tắt tiện lợi để thực hiện việc này: `+=`.
 
 ```ruby
 age = 18
 age += 4 #=> 22
 ```
 
-There are similar assignment operators for all the common math operators:
+Có các toán tử gán tương tự cho tất cả những toán tử toán học thông dụng:
 
 ```ruby
 age = 18
@@ -62,17 +62,17 @@ temperature = 40
 temperature /= 10 #=> 4
 ```
 
-#### How to name variables
+#### Cách đặt tên biến
 
-Ruby is a language that aims to be natural to read and easy to write. Remember this when you're naming your variables. The name should, as clearly as possible, describe what the value of the variable represents.
+Ruby là một ngôn ngữ hướng đến việc đọc tự nhiên và viết dễ dàng. Hãy ghi nhớ điều này khi đặt tên biến. Tên biến nên mô tả rõ nhất có thể giá trị của biến đại diện cho điều gì.
 
-Naming variables clearly will pay dividends when you review your code months after you've written it, when you can no longer remember what that variable was designed to store. From now on, when naming your variables, remember the following quote by John Woods:
+Đặt tên biến rõ ràng sẽ mang lại lợi ích khi bạn xem lại mã nguồn vài tháng sau khi viết, lúc bạn không còn nhớ biến đó được thiết kế để lưu trữ gì. Từ giờ trở đi, khi đặt tên biến, hãy ghi nhớ câu nói sau của John Woods:
 
-> Always code as if the person who ends up maintaining your code will be a violent psychopath who knows where you live.
+> Hãy luôn viết mã như thể người cuối cùng bảo trì mã của bạn là một kẻ tâm thần bạo lực biết nơi bạn sống.
 
-The most basic thing you can do to write clean, maintainable code is to name your variables properly. So get into this habit early to avoid psychopath programmers coming after you.
+Điều cơ bản nhất bạn có thể làm để viết mã sạch và dễ bảo trì là đặt tên biến đúng cách. Vì vậy, hãy hình thành thói quen này từ sớm để tránh những lập trình viên tâm thần tìm đến bạn.
 
-Variable names should always be lowercase, and multiple words that make up a variable name should be split by an underscore. This is known as **snake_case**.
+Tên biến luôn phải viết thường, và các từ tạo thành tên biến phải được ngăn cách bằng dấu gạch dưới. Quy ước này được gọi là **snake_case**.
 
 ```ruby
 # bad
@@ -85,11 +85,11 @@ name = "John"
 can_swim = false
 ```
 
-#### Variables are references
+#### Biến là các tham chiếu
 
-The information you name with a variable is stored in memory on your computer, so a variable is effectively a reference or a pointer to that address in memory. This is important to know as it can sometimes be the cause of unexpected behavior from your code.
+Thông tin mà bạn đặt tên bằng một biến được lưu trong bộ nhớ máy tính, vì vậy về bản chất, một biến là một tham chiếu hoặc con trỏ đến địa chỉ đó trong bộ nhớ. Điều này rất quan trọng vì đôi khi nó có thể gây ra hành vi ngoài dự kiến trong mã của bạn.
 
-Let's look at an example of this unexpected behavior, with two variables: `desired_location`, which is assigned to the string "Barcelona", and `johns_location`, which is assigned to the `desired_location` variable. Both variables are pointing to where "Barcelona" is stored in memory.
+Hãy xem một ví dụ về hành vi ngoài dự kiến này, với hai biến: `desired_location`, được gán chuỗi "Barcelona", và `johns_location`, được gán biến `desired_location`. Cả hai biến đều trỏ đến nơi "Barcelona" được lưu trong bộ nhớ.
 
 ```ruby
 desired_location = "Barcelona"
@@ -99,7 +99,7 @@ desired_location  #=> "Barcelona"
 johns_location    #=> "Barcelona"
 ```
 
-Unexpected behavior happens if the string "Barcelona" that is stored in memory is modified. One way to modify a string is to use the `upcase!` method, instead of the safe `upcase` method. If the string is modified using `johns_location.upcase!` then `desired_location` will also reflect that change:
+Hành vi ngoài dự kiến xảy ra nếu chuỗi "Barcelona" được lưu trong bộ nhớ bị sửa đổi. Một cách sửa đổi chuỗi là sử dụng phương thức `upcase!`, thay vì phương thức an toàn `upcase`. Nếu chuỗi được sửa đổi bằng `johns_location.upcase!`, thì `desired_location` cũng sẽ phản ánh thay đổi đó:
 
 ```ruby
 johns_location.upcase!  #=> "BARCELONA"
@@ -108,17 +108,17 @@ desired_location        #=> "BARCELONA"
 johns_location          #=> "BARCELONA"
 ```
 
-This example may be hard to completely understand at this point in the lesson. The important concept is that assigning variables to other variables can have unintended side effects. Just because you can do it, doesn't mean you should. You will have the opportunity to revisit this example in one of the following assignments.
+Ở thời điểm này của bài học, ví dụ này có thể khó hiểu trọn vẹn. Khái niệm quan trọng là việc gán biến này cho biến khác có thể gây ra những tác động phụ ngoài ý muốn. Việc bạn có thể làm điều đó không có nghĩa là bạn nên làm. Bạn sẽ có dịp xem lại ví dụ này trong một bài tập sắp tới.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Variables](https://launchschool.com/books/ruby/read/variables) chapter from LaunchSchool's brilliant *Introduction to Programming With Ruby*. As indicated in this article, remember that you should not use `$global_variables`. Additionally, `@@class_variables` are rarely needed and easily misused.
-1. Read through these short, to-the-point variable lessons by Ruby Monstas:
-      - [Overview of Variables](http://ruby-for-beginners.rubymonstas.org/variables.html)
-      - [Reusing Variable Names](http://ruby-for-beginners.rubymonstas.org/variables/reusing_names.html)
-      - [Things on the Right Go First](http://ruby-for-beginners.rubymonstas.org/variables/right_goes_first.html)
-1. Use IRB in your command line or an appropriate online REPL environment and try naming some variables and assigning values to them. Don't worry so much about good naming conventions at this stage. Instead, experiment with different variable names and see what is valid. Try using symbols or numbers in your variable names. Try assigning a variable to another variable and observe the behavior when using `upcase!`, as in the example above. If you come across anything quirky, Google it to find out why it happened.
+1. Đọc chương [Các biến](https://launchschool.com/books/ruby/read/variables) trong cuốn *Nhập môn lập trình với Ruby* xuất sắc của LaunchSchool. Như bài viết này chỉ ra, hãy nhớ rằng bạn không nên sử dụng `$global_variables`. Ngoài ra, `@@class_variables` hiếm khi cần thiết và rất dễ bị sử dụng sai.
+1. Đọc các bài học ngắn gọn, súc tích về biến của Ruby Monstas:
+      - [Tổng quan về biến](http://ruby-for-beginners.rubymonstas.org/variables.html)
+      - [Sử dụng lại tên biến](http://ruby-for-beginners.rubymonstas.org/variables/reusing_names.html)
+      - [Vế bên phải được thực hiện trước](http://ruby-for-beginners.rubymonstas.org/variables/right_goes_first.html)
+1. Sử dụng IRB trên dòng lệnh hoặc một môi trường REPL trực tuyến phù hợp, rồi thử đặt tên cho một số biến và gán giá trị cho chúng. Ở giai đoạn này, đừng quá lo lắng về các quy ước đặt tên tốt. Thay vào đó, hãy thử nghiệm với nhiều tên biến khác nhau và xem tên nào hợp lệ. Hãy thử dùng ký hiệu hoặc chữ số trong tên biến. Hãy thử gán một biến cho một biến khác và quan sát hành vi khi sử dụng `upcase!`, như trong ví dụ trên. Nếu gặp điều gì kỳ lạ, hãy tra Google để tìm hiểu lý do.
 
 </div>

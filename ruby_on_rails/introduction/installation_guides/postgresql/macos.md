@@ -1,57 +1,57 @@
-### Guide: Install PostgreSQL on macOS
+### Hướng dẫn: Cài đặt PostgreSQL trên macOS
 
-#### Step 1: Make sure the system is up to date
+#### Bước 1: Đảm bảo hệ thống đã được cập nhật
 
-Before running commands with homebrew, you'll want to make sure things are up to date. Run the following commands one by one:
+Trước khi chạy các lệnh với homebrew, bạn nên đảm bảo mọi thứ đã được cập nhật. Hãy chạy lần lượt từng lệnh sau:
 
 ```bash
 brew update
 brew upgrade
 ```
 
-If your terminal doesn't recognize `brew`, then you'll need to go and install homebrew. You can find it and other installs in the [installation appendix](https://www.theodinproject.com/guides/installations).
+Nếu terminal không nhận diện được `brew`, bạn sẽ cần cài đặt homebrew. Bạn có thể tìm homebrew và các trình cài đặt khác trong [phụ lục cài đặt](https://www.theodinproject.com/guides/installations).
 
-#### Step 2: Install PostgreSQL via PostgresApp
+#### Bước 2: Cài đặt PostgreSQL thông qua PostgresApp
 
-Installing PostgreSQL via Postgres.app is simple. Visit [Postgres.app](https://postgresapp.com/) and follow the instructions outlined. Importantly, you'll want to configure your `$PATH` so you can access the tooling that comes along with PostgreSQL. After installing Postgres.app, we can then install a PostgreSQL server. We want to install the latest available version of PostgreSQL.
+Cài đặt PostgreSQL thông qua Postgres.app rất đơn giản. Hãy truy cập [Postgres.app](https://postgresapp.com/) và làm theo các hướng dẫn được cung cấp. Điều quan trọng là bạn cần cấu hình `$PATH` để có thể truy cập các công cụ đi kèm PostgreSQL. Sau khi cài đặt Postgres.app, chúng ta có thể cài đặt một máy chủ PostgreSQL. Chúng ta muốn cài đặt phiên bản PostgreSQL mới nhất hiện có.
 
-After installing PSQL via Postgres.app, you can run this command to update your path to access all the tooling:
+Sau khi cài đặt PSQL thông qua Postgres.app, bạn có thể chạy lệnh này để cập nhật path nhằm truy cập toàn bộ công cụ:
 
 ```bash
 sudo mkdir -p /etc/paths.d &&
 echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
 ```
 
-After you've run this command and restarted your terminal, you can run `which psql` and we would expect this output:
+Sau khi chạy lệnh này và khởi động lại terminal, bạn có thể chạy `which psql`; kết quả dự kiến sẽ là:
 
 ```bash
 /Applications/Postgres.app/Contents/Versions/latest/bin/psql
 ```
 
-If you don't see a similar output, come visit [our Discord server](https://discord.gg/fbFCkYabZB) for some help!
+Nếu không thấy kết quả tương tự, hãy ghé [máy chủ Discord của chúng tôi](https://discord.gg/fbFCkYabZB) để được trợ giúp!
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Postgres.app security
+#### Bảo mật của Postgres.app
 
-Please note that that Postgres.app installs servers without any security configured, and will accept all local connections without a password. This is fine for our development environment, but be aware that when you move things to production, this will not be a good strategy.
+Lưu ý rằng Postgres.app cài đặt các máy chủ mà không cấu hình bất kỳ biện pháp bảo mật nào và sẽ chấp nhận mọi kết nối cục bộ mà không cần mật khẩu. Điều này phù hợp với môi trường phát triển của chúng ta, nhưng hãy nhớ rằng đây sẽ không phải là một chiến lược tốt khi bạn đưa ứng dụng lên môi trường production.
 
 </div>
 
-Postgres.app defaults to creating a role and user database that matches your macOS user. You can confirm this by running this command after installing Postgres.app and updating the path:
+Theo mặc định, Postgres.app tạo một role và cơ sở dữ liệu người dùng trùng với người dùng macOS của bạn. Bạn có thể xác nhận điều này bằng cách chạy lệnh sau sau khi cài đặt Postgres.app và cập nhật path:
 
 ```bash
 psql
 ```
 
-You should see the PostgreSQL prompt come up like this:
+Bạn sẽ thấy lời nhắc PostgreSQL xuất hiện như sau:
 
 ```bash
 <your_user>=#
 ```
 
-Because Postgres.app has configured trusted authentication for all local connections, we don't need to set up any password authentication for our local development environment. Just remember that your `role_name` is the user that appears in the `psql` prompt above. You can type `\q` to exit.
+Vì Postgres.app đã cấu hình cơ chế xác thực đáng tin cậy cho mọi kết nối cục bộ, chúng ta không cần thiết lập xác thực bằng mật khẩu cho môi trường phát triển cục bộ. Chỉ cần nhớ rằng `role_name` chính là người dùng xuất hiện trong lời nhắc `psql` ở trên. Bạn có thể nhập `\q` để thoát.
 
-Once that's done, we can move to testing it out!
+Sau khi hoàn tất, chúng ta có thể chuyển sang kiểm tra thử!
 
-[Return to the Installing PostgreSQL lesson](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql#assignment)
+[Quay lại bài học Cài đặt PostgreSQL](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql#assignment)

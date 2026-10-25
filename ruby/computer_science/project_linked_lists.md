@@ -1,64 +1,61 @@
-### Introduction
+### Giới thiệu
 
-In Computer Science, one of the most basic and fundamental data structures is the
-linked list, which functions similarly to an array. The principal benefit of a linked
-list over a conventional array is that the list elements can easily be inserted or
-removed without reallocation of any other elements.
+Trong Khoa học máy tính, một trong những cấu trúc dữ liệu cơ bản và nền tảng nhất là danh sách liên kết,
+hoạt động tương tự như một mảng. Ưu điểm chính của danh sách liên kết so với mảng thông thường là các phần tử
+của danh sách có thể dễ dàng được thêm vào hoặc xóa đi mà không cần phân bổ lại bất kỳ phần tử nào khác.
 
-In some programming languages, the size of an array is a concern and one of the ways
-to overcome that problem and allow dynamically allocated data is using linked lists.
+Trong một số ngôn ngữ lập trình, kích thước của mảng là một vấn đề, và một trong những cách khắc phục vấn đề đó
+để cho phép dữ liệu được cấp phát động là sử dụng danh sách liên kết.
 
-Luckily in **Ruby**, arrays aren't limited to a certain size, and both insertion and deletion can be done trivially at any index using the appropriate built in array method, so you don't have to think about overcoming those limitations.
+May mắn là trong **Ruby**, mảng không bị giới hạn ở một kích thước nhất định, đồng thời việc thêm và xóa phần tử có thể được thực hiện dễ dàng tại bất kỳ chỉ mục nào bằng phương thức mảng dựng sẵn phù hợp, vì vậy bạn không cần phải suy nghĩ về cách khắc phục những hạn chế đó.
 
-So if array size, array insertion and array deletion are not limitations in Ruby, are linked lists really necessary?
-The short answer to that is *it depends*; however, it's the simplest of the dynamic data
-structures and it will give you a solid foundation, so you can understand more
-complex data structures like graphs and binary trees with more ease.
+Vậy nếu kích thước mảng, việc thêm phần tử vào mảng và việc xóa phần tử khỏi mảng không phải là những hạn chế trong Ruby, liệu danh sách liên kết có thực sự cần thiết không?
+Câu trả lời ngắn gọn là *tùy trường hợp*; tuy nhiên, đây là cấu trúc dữ liệu động đơn giản nhất và sẽ cho bạn một nền tảng vững chắc để có thể hiểu các cấu trúc dữ liệu phức tạp hơn như đồ thị và cây nhị phân một cách dễ dàng hơn.
 
-### Structure of a linked list
+### Cấu trúc của danh sách liên kết
 
-A *linked list* is a linear collection of data elements called nodes that "point"
-to the next node by means of a pointer.
+Một *danh sách liên kết* là một tập hợp tuyến tính gồm các phần tử dữ liệu gọi là các nút, chúng “trỏ”
+đến nút tiếp theo bằng một con trỏ.
 
-Each node holds a single element of data and a link or pointer to the next node in the list.
+Mỗi nút chứa một phần tử dữ liệu duy nhất cùng một liên kết hoặc con trỏ đến nút tiếp theo trong danh sách.
 
-A head node is the first node in the list, a tail node is the last node in the list. Below is a basic representation of a linked list:
+Nút đầu là nút đầu tiên trong danh sách, còn nút cuối là nút cuối cùng trong danh sách. Dưới đây là cách biểu diễn cơ bản của một danh sách liên kết:
 
 `[ NODE(head) ] -> [ NODE ] -> [ NODE(tail) ] -> nil`
 
-For a more thorough explanation, use these resources:
+Để xem phần giải thích kỹ hơn, hãy tham khảo các tài liệu sau:
 
-1. [Linked Lists in Plain English](https://www.youtube.com/watch?v=oiW79L8VYXk)
-1. [What's a Linked List, Anyway?](https://dev.to/vaidehijoshi/whats-a-linked-list-anyway)
-1. [Linked Lists, Ruby's Missing Data Structure](https://www.sitepoint.com/rubys-missing-data-structure/)
-1. [A more verbose explanation with plenty of diagrams](https://web.archive.org/web/20200217010131/http://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html)
-1. [Are Linked Lists necessary?](https://dev.to/karimdevelops/are-linked-lists-necessary-2ckl)
+1. [Danh sách liên kết bằng tiếng Anh dễ hiểu](https://www.youtube.com/watch?v=oiW79L8VYXk)
+1. [Danh sách liên kết là gì vậy?](https://dev.to/vaidehijoshi/whats-a-linked-list-anyway)
+1. [Danh sách liên kết, cấu trúc dữ liệu còn thiếu của Ruby](https://www.sitepoint.com/rubys-missing-data-structure/)
+1. [Phần giải thích chi tiết hơn với nhiều sơ đồ](https://web.archive.org/web/20200217010131/http://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html)
+1. [Danh sách liên kết có cần thiết không?](https://dev.to/karimdevelops/are-linked-lists-necessary-2ckl)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-You will need two classes:
+Bạn sẽ cần hai lớp:
 
-1. `LinkedList` class, which will represent the full list.
-1. `Node` class, containing two instance variables, `#value` and `#next_node`, set both as `nil` by default.
+1. Lớp `LinkedList`, dùng để biểu diễn toàn bộ danh sách.
+1. Lớp `Node`, chứa hai biến instance là `#value` và `#next_node`, mặc định đều được đặt là `nil`.
 
-Build the following methods in your linked list class:
+Hãy xây dựng các phương thức sau trong lớp danh sách liên kết của bạn:
 
-1. `#append(value)` adds a new node containing `value` to the end of the list.
-1. `#prepend(value)` adds a new node containing `value` to the start of the list.
-1. `#size` returns the total number of nodes in the list.
-1. `#head` should return the value of the first node in the list. If the list is empty, it should return nil.
-1. `#tail` should return the value of the final node in the list. If the list is empty, it should return nil.
-1. `#at(index)` should return the value of the node at the given index. If there's no node at the given index, it should return nil.
-1. `#pop` should remove the head node from the list and return that node's value. If called on an empty list, it should just return nil.
-1. `#contains?(value)` returns true if the passed in value is in the list and otherwise returns false.
-1. `#index(value)` returns the index of the node containing the value. If the value isn't found, it should return nil. If more than one node has a value matching the given value, it should return the index of the first node with the matching value.
-1. `#to_s` represent your LinkedList objects as strings, so you can print them out and preview them in the console. If the list is empty, it should return an empty string. The format should be: `( value ) -> ( value ) -> ( value ) -> nil`.
+1. `#append(value)` thêm một nút mới chứa `value` vào cuối danh sách.
+1. `#prepend(value)` thêm một nút mới chứa `value` vào đầu danh sách.
+1. `#size` trả về tổng số nút trong danh sách.
+1. `#head` trả về giá trị của nút đầu tiên trong danh sách. Nếu danh sách rỗng, phương thức phải trả về nil.
+1. `#tail` trả về giá trị của nút cuối cùng trong danh sách. Nếu danh sách rỗng, phương thức phải trả về nil.
+1. `#at(index)` trả về giá trị của nút tại chỉ mục đã cho. Nếu không có nút nào tại chỉ mục đó, phương thức phải trả về nil.
+1. `#pop` xóa nút đầu khỏi danh sách và trả về giá trị của nút đó. Nếu được gọi trên một danh sách rỗng, phương thức chỉ cần trả về nil.
+1. `#contains?(value)` trả về true nếu value được truyền vào có trong danh sách, ngược lại trả về false.
+1. `#index(value)` trả về chỉ mục của nút chứa value. Nếu không tìm thấy giá trị, phương thức phải trả về nil. Nếu có nhiều hơn một nút chứa giá trị trùng với giá trị đã cho, phương thức phải trả về chỉ mục của nút đầu tiên có giá trị phù hợp.
+1. `#to_s` biểu diễn các đối tượng LinkedList của bạn dưới dạng chuỗi, để bạn có thể in chúng ra và xem trước trong bảng điều khiển. Nếu danh sách rỗng, phương thức phải trả về một chuỗi rỗng. Định dạng phải là: `( value ) -> ( value ) -> ( value ) -> nil`.
 
-#### Extra credit
+#### Bài tập thêm điểm
 
-1. `#insert_at(index, *values)` should insert new nodes with the given values at the given index. For example:
+1. `#insert_at(index, *values)` phải chèn các nút mới với những giá trị đã cho tại chỉ mục đã cho. Ví dụ:
 
     ```ruby
     # list that's already set up
@@ -70,19 +67,19 @@ Build the following methods in your linked list class:
     # => "( 1 ) -> ( 10 ) -> ( 11 ) -> ( 2 ) -> ( 3 ) -> nil"
     ```
 
-    If the method is called with an index that is out of bounds (below 0 or above the list's size), raise an `IndexError`.
+    Nếu phương thức được gọi với một chỉ mục nằm ngoài phạm vi (nhỏ hơn 0 hoặc lớn hơn kích thước của danh sách), hãy phát sinh một `IndexError`.
 
-1. `#remove_at(index)` that removes the node at the given `index`. If the given index is out of bounds (below 0 or greater than or equal to the list's size), raise an `IndexError`.
+1. `#remove_at(index)` xóa nút tại `index` đã cho. Nếu chỉ mục đã cho nằm ngoài phạm vi (nhỏ hơn 0 hoặc lớn hơn hoặc bằng kích thước của danh sách), hãy phát sinh một `IndexError`.
 
-**Extra Credit Tip:** When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their `#next_node` link updated.
+**Mẹo cho bài tập thêm điểm:** Khi chèn hoặc xóa một nút, hãy cân nhắc việc đó sẽ ảnh hưởng đến các nút hiện có như thế nào. Một số nút sẽ cần cập nhật liên kết `#next_node` của chúng.
 
-#### Test it out
+#### Tự kiểm tra
 
-Let's test out the Linked List you made!
+Hãy thử nghiệm Danh sách liên kết mà bạn đã tạo!
 
-1. Create a `main.rb` file and make sure it requires the file containing `LinkedList`. This is where we'll test the list.
+1. Tạo một tệp `main.rb` và bảo đảm tệp đó yêu cầu tệp chứa `LinkedList`. Đây là nơi chúng ta sẽ kiểm tra danh sách.
 
-1. Create an instance of `LinkedList` and populate it with nodes:
+1. Tạo một đối tượng `LinkedList` và thêm các nút vào đó:
 
    ```ruby
    list = LinkedList.new
@@ -95,8 +92,8 @@ Let's test out the Linked List you made!
    list.append('turtle')
    ```
 
-1. Add `puts list` to the end of the file and run it. Because of the naming, this should use the `#to_s` method you wrote earlier.
+1. Thêm `puts list` vào cuối tệp rồi chạy tệp. Vì cách đặt tên, câu lệnh này sẽ sử dụng phương thức `#to_s` mà bạn đã viết trước đó.
 
-1. If everything is working, the output should be `( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> nil`. Feel free to use different values to test if you like.
+1. Nếu mọi thứ hoạt động đúng, kết quả xuất ra phải là `( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> nil`. Bạn có thể dùng các giá trị khác để kiểm tra nếu muốn.
 
 </div>

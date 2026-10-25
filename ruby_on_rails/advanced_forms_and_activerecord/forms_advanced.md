@@ -1,24 +1,24 @@
-### Introduction
+### Giới thiệu
 
-You learned about the basics of building forms in HTML and Rails in previous lessons and you can do a whole lot with that knowledge.  But there are also cases when crafting a good user experience demands building a form that handles multiple things (e.g. model objects) at once.  Users only like clicking the submission button once so you'd better be able to give them the experience they demand.
+Ở các bài học trước, bạn đã tìm hiểu những kiến thức cơ bản về cách xây dựng biểu mẫu trong HTML và Rails, và với kiến thức đó bạn có thể làm được rất nhiều việc.  Tuy nhiên, cũng có những trường hợp mà việc tạo ra trải nghiệm người dùng tốt đòi hỏi phải xây dựng một biểu mẫu xử lý nhiều thứ cùng lúc (ví dụ: các đối tượng model).  Người dùng chỉ thích nhấp nút gửi một lần, vì vậy bạn nên có khả năng mang lại cho họ trải nghiệm mà họ mong muốn.
 
-In this section, we'll take a look at some of the options you have to make a form handle multiple model objects at once.  You'll also learn how to prepopulate a dropdown menu with objects.
+Trong phần này, chúng ta sẽ xem xét một số lựa chọn giúp biểu mẫu xử lý nhiều đối tượng model cùng lúc.  Bạn cũng sẽ học cách điền sẵn các đối tượng vào một menu thả xuống.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Working with model objects in forms.
-- How to build dropdown menus in forms.
-- How to make a nested form.
-- How to whitelist nested parameters.
-- How to delete records via form fields.
+- Làm việc với các đối tượng model trong biểu mẫu.
+- Cách xây dựng menu thả xuống trong biểu mẫu.
+- Cách tạo biểu mẫu lồng nhau.
+- Cách cho phép các tham số lồng nhau.
+- Cách xóa các bản ghi thông qua các trường biểu mẫu.
 
-### Prepopulating select tags with collections
+### Điền sẵn các thẻ select bằng collection
 
-Rails provides you with a few handy ways of making dropdown menus which already contain data when the form is loaded (otherwise they're not that useful).
+Rails cung cấp một vài cách tiện dụng để tạo các menu thả xuống đã chứa sẵn dữ liệu khi biểu mẫu được tải (nếu không thì chúng sẽ không hữu ích lắm).
 
-Let's say you want to build a New Post form for your blog but you want to be able to select who the author is from among your list of users.  You will need to make a dropdown which submits the user's ID as a part of your `params` hash.  So you might populate `@users` in your posts controller:
+Giả sử bạn muốn xây dựng biểu mẫu Bài viết mới cho blog, nhưng muốn có thể chọn tác giả từ danh sách người dùng của mình.  Bạn sẽ cần tạo một menu thả xuống gửi ID của người dùng như một phần của hash `params`.  Vì vậy, bạn có thể điền `@users` trong posts controller:
 
 ```ruby
   # app/controllers/posts_controller.rb
@@ -30,7 +30,7 @@ Let's say you want to build a New Post form for your blog but you want to be abl
   ...
 ```
 
-The bare HTML way is to build a bunch of `<option>` tags (inside your `<select>` tag).  You could easily create these in your ERB code by just iterating over some collection, for instance if you'd like to select a post to view from a list of them.
+Cách làm HTML thuần túy là tạo một loạt thẻ `<option>` (bên trong thẻ `<select>`).  Bạn có thể dễ dàng tạo chúng trong mã ERB bằng cách lặp qua một collection, chẳng hạn nếu bạn muốn chọn một bài viết để xem từ danh sách các bài viết.
 
 ```erb
   # app/views/posts/new.html.erb
@@ -43,11 +43,11 @@ The bare HTML way is to build a bunch of `<option>` tags (inside your `<select>`
   ...
 ```
 
-This creates a dropdown list with each user's name as an option.  Your `#create` action will receive an attribute called `user_id` and you can use it to match an author to that post.
+Đoạn này tạo một danh sách thả xuống với tên của mỗi người dùng làm một lựa chọn.  Action `#create` của bạn sẽ nhận một thuộc tính có tên `user_id`, và bạn có thể dùng nó để gắn một tác giả với bài viết đó.
 
-But Rails provides some less verbose ways of doing the same thing, namely using the `#select_tag` helper in conjunction with the `#options_for_select` helper.  The `#select_tag` will create the surrounding tag while the `#options_for_select` gives `#select_tag` the array of options it needs.
+Nhưng Rails cung cấp những cách ít dài dòng hơn để làm điều tương tự, cụ thể là dùng helper `#select_tag` kết hợp với helper `#options_for_select`.  `#select_tag` sẽ tạo thẻ bao quanh, còn `#options_for_select` cung cấp cho `#select_tag` mảng các lựa chọn mà nó cần.
 
-`#options_for_select` expects a very specific input -- an array of arrays which provide the text for the dropdown option and the value it represents.  So `options_for_select([["choice1",1],["choice2",2]])` creates a couple of option tags, one for each choice.  This is great, because that's exactly what `#select_tag` expects for its second argument.  The only wrinkle here is that you need to convert your `@users` collection, which has full User objects, into an array with just `name` and `value`.  That's easy using `#map`:
+`#options_for_select` yêu cầu một đầu vào rất cụ thể -- một mảng các mảng cung cấp văn bản cho lựa chọn trong menu thả xuống và giá trị mà lựa chọn đó đại diện.  Vì vậy, `options_for_select([["choice1",1],["choice2",2]])` sẽ tạo một vài thẻ option, mỗi thẻ tương ứng với một lựa chọn.  Điều này rất tiện, vì đó chính xác là thứ mà `#select_tag` yêu cầu cho đối số thứ hai.  Điểm cần lưu ý duy nhất là bạn phải chuyển collection `@users`, vốn chứa đầy đủ các đối tượng User, thành một mảng chỉ có `name` và `value`.  Dùng `#map` là đủ đơn giản:
 
 ```ruby
   # app/controllers/posts_controller.rb
@@ -66,9 +66,9 @@ But Rails provides some less verbose ways of doing the same thing, namely using 
   ...
 ```
 
-So just pass `#select_tag` the name it should use for your chosen value and the collection and it will output the exact same thing!
+Vậy là chỉ cần truyền cho `#select_tag` tên mà nó nên dùng cho giá trị được chọn cùng collection, và nó sẽ xuất ra chính xác kết quả tương tự!
 
-If you want to avoid the whole `options_for_select` thing altogether and your form is designed to build a model instance (e.g. a Post object), just use the more generic `#select` helper in your view:
+Nếu muốn tránh hoàn toàn việc dùng `options_for_select` và biểu mẫu của bạn được thiết kế để xây dựng một instance của model (ví dụ, một đối tượng Post), chỉ cần dùng helper tổng quát hơn là `#select` trong view:
 
 ```erb
   # app/views/posts/new.html.erb
@@ -77,11 +77,11 @@ If you want to avoid the whole `options_for_select` thing altogether and your fo
   ...
 ```
 
-You still need to pass it the `:post` parameter (which indicates that your form is building a Post object) so the `select` tag can get the `name` right... in this case, it will name the tag `<select name="post[author_id]" id="post_author_id">`.  That means (remember!) that the `author_id` attribute will show up in your `params` nested under the `post` hash.
+Bạn vẫn cần truyền tham số `:post` (cho biết biểu mẫu của bạn đang xây dựng một đối tượng Post) để thẻ `select` có thể đặt đúng `name`... trong trường hợp này, nó sẽ đặt tên cho thẻ là `<select name="post[author_id]" id="post_author_id">`.  Điều đó có nghĩa là (hãy nhớ!) thuộc tính `author_id` sẽ xuất hiện trong `params`, lồng bên trong hash `post`.
 
-The `:author_id` input to the `#select` helper above represents not just what the chosen value should be called (as in the `#select_tag`) but also which column name it represents in your original (in this case Post) model.  This may be a bit annoying at first since you can't just name your choice whatever you want.
+Đầu vào `:author_id` của helper `#select` ở trên không chỉ đại diện cho tên của giá trị được chọn (như trong `#select_tag`), mà còn cho biết tên cột mà nó đại diện trong model gốc của bạn (ở đây là model Post).  Ban đầu điều này có thể hơi phiền, vì bạn không thể tùy ý đặt tên cho lựa chọn của mình.
 
-If you have a `#form_with` form scoped under the `f` variable, you don't need to pass the `:post` symbol above (it gets it from `f`), so could instead use:
+Nếu bạn có một biểu mẫu `#form_with` được phân phạm vi dưới biến `f`, bạn không cần truyền symbol `:post` ở trên (nó lấy thông tin đó từ `f`), nên có thể dùng:
 
 ```erb
   # app/views/posts/new.html.erb
@@ -90,23 +90,23 @@ If you have a `#form_with` form scoped under the `f` variable, you don't need to
   ...
 ```
 
-It took a bit of time for us to get here, but hopefully you can now see how straightforward this method is for generating a potentially large dropdown.
+Phải mất một chút thời gian mới đi đến đây, nhưng hy vọng giờ bạn có thể thấy phương pháp này đơn giản đến mức nào khi cần tạo một menu thả xuống có thể rất lớn.
 
-You'll use dropdowns a lot to populate the association of a model, e.g. the author of a Post.  In the next section, we'll talk about how to actually create both model objects from within a single form.
+Bạn sẽ dùng các menu thả xuống khá thường xuyên để điền association của một model, ví dụ tác giả của một Post.  Trong phần tiếp theo, chúng ta sẽ nói về cách thực sự tạo cả hai đối tượng model từ một biểu mẫu duy nhất.
 
-*Note: If you've used the `simple_form` gem, it has its own way of handling collections of objects which is a bit different (supposedly `simpler`) than this.*
+*Lưu ý: Nếu bạn từng dùng gem `simple_form`, gem này có cách riêng để xử lý các collection đối tượng, hơi khác với cách trên (được cho là `simpler` hơn).*
 
-### Nested forms
+### Biểu mẫu lồng nhau
 
-You've got a form for creating one of your User objects (say for your Amazon.com clone application) but you also want to make that form create one or more ShippingAddress objects (which a User can have many of).  How do you get that one form to create both so your user doesn't get stuck clicking a bunch of form submits?
+Bạn có một biểu mẫu để tạo một trong các đối tượng User (giả sử là cho ứng dụng bản sao Amazon.com), nhưng cũng muốn biểu mẫu đó tạo một hoặc nhiều đối tượng ShippingAddress (một User có thể có nhiều đối tượng như vậy).  Làm thế nào để một biểu mẫu có thể tạo cả hai, để người dùng không bị mắc kẹt trong việc nhấp một loạt nút gửi?
 
-This is a multi-part process.  It involves your controller, view, models and routes... the whole MVC team!  The gist of it is that your form will submit the main object (e.g. the User) as normal but it will sneak in a bunch of attributes for the other object(s) you want to create (e.g. ShippingAddress object(s)).  Your model will have to be ready for this.  It will create not just the original User object but also the nested objects at the same time.
+Đây là một quy trình gồm nhiều phần.  Nó liên quan đến controller, view, model và route của bạn... toàn bộ đội ngũ MVC!  Ý chính là biểu mẫu của bạn sẽ gửi đối tượng chính (ví dụ User) như bình thường, nhưng đồng thời lén gửi thêm một loạt thuộc tính cho các đối tượng khác mà bạn muốn tạo (ví dụ các đối tượng ShippingAddress).  Model của bạn phải được chuẩn bị cho việc này.  Nó sẽ tạo không chỉ đối tượng User ban đầu mà còn cả các đối tượng lồng nhau cùng lúc.
 
-As you can imagine, it's important to get the names and parameters properly listed so all this magic can happen behind the scenes.
+Như bạn có thể hình dung, việc liệt kê đúng tên và tham số là rất quan trọng để toàn bộ phép màu này có thể diễn ra phía sau.
 
-We'll do a broad overview of the process here:
+Chúng ta sẽ xem xét khái quát quy trình:
 
-1. You will need to prepare the User model so that it knows to create one or more ShippingAddress objects if it receives their attributes when creating a normal User. This is done by adding a method to your User model called `#accepts_nested_attributes_for` which accepts the name of an association, e.g:
+1. Bạn cần chuẩn bị model User để nó biết tạo một hoặc nhiều đối tượng ShippingAddress nếu nhận được thuộc tính của chúng khi tạo một User thông thường.  Việc này được thực hiện bằng cách thêm vào model User một method có tên `#accepts_nested_attributes_for`, method này nhận tên của một association, ví dụ:
 
    ```ruby
      # app/models/user.rb
@@ -116,10 +116,10 @@ We'll do a broad overview of the process here:
      end
    ```
 
-1. Make sure you've allowed your `params` to include the nested attributes by appropriately including them in your Strong Parameters controller method.  See the reading for examples of how to do this.
-1. Build the form in the view.  Use the `#fields_for` method to effectively create a `#form_with` inside your existing `#form_with` form.
+1. Đảm bảo bạn đã cho phép `params` bao gồm các thuộc tính lồng nhau bằng cách đưa chúng vào method Strong Parameters của controller một cách phù hợp.  Hãy xem phần đọc thêm để biết ví dụ về cách làm.
+1. Xây dựng biểu mẫu trong view.  Dùng method `#fields_for` để tạo một `#form_with` bên trong biểu mẫu `#form_with` hiện có một cách hiệu quả.
 
-There are a couple new aspects to this process.  With `#fields_for`, you basically create a form within a form (which should make sense since it's actually used behind the scenes by `#form_with`).  In this example, we might create three "sub-forms" for ShippingAddress objects by using our association, e.g.
+Có một vài khía cạnh mới trong quy trình này.  Với `#fields_for`, về cơ bản bạn tạo một biểu mẫu bên trong một biểu mẫu (điều này hợp lý vì phía sau nó thực sự được `#form_with` sử dụng).  Trong ví dụ này, chúng ta có thể tạo ba “biểu mẫu con” cho các đối tượng ShippingAddress bằng cách dùng association, chẳng hạn:
 
 ```erb
 <%= form_with model: @user do |f| %>
@@ -135,65 +135,65 @@ There are a couple new aspects to this process.  With `#fields_for`, you basical
 <% end %>
 ```
 
-Note that we could (and should) also have built the new shipping_address objects in the controller instead of the view; it's just for demonstration purposes here.
+Lưu ý rằng chúng ta cũng có thể (và nên) tạo các đối tượng shipping_address mới trong controller thay vì trong view; ở đây làm vậy chỉ nhằm mục đích minh họa.
 
-The `#accepts_nested_attributes_for` method is fairly straightforward and the docs should be helpful.
+Method `#accepts_nested_attributes_for` khá dễ hiểu và phần tài liệu sẽ hữu ích.
 
-The reading will cover more about allowing the nested parameters.
+Phần đọc thêm sẽ trình bày chi tiết hơn về cách cho phép các tham số lồng nhau.
 
-### Deleting nested form objects
+### Xóa các đối tượng của biểu mẫu lồng nhau
 
-You can also have your form destroy nested forms by first setting the `:allow_destroy` option to `true` for the `#accepts_nested_attributes_for` method, e.g. `accepts_nested_attributes_for :shipping_addresses, :allow_destroy => true`.  Now, any time you want to destroy a ShippingAddress object from a User's form, just include the key `_destroy => 1` in the submitted parameters for that ShippingAddress.
+Bạn cũng có thể để biểu mẫu hủy các biểu mẫu lồng nhau bằng cách trước tiên đặt tùy chọn `:allow_destroy` thành `true` cho method `#accepts_nested_attributes_for`, ví dụ `accepts_nested_attributes_for :shipping_addresses, :allow_destroy => true`.  Sau đó, bất cứ khi nào muốn hủy một đối tượng ShippingAddress từ biểu mẫu của User, chỉ cần đưa khóa `_destroy => 1` vào các tham số được gửi cho ShippingAddress đó.
 
-### Many-to-many relationships
+### Quan hệ nhiều-nhiều
 
-If you've got a `has_many :through` relationship, you'll likely need to go one additional step further by [specifying that each side of your relationship is the inverse of the other](http://robots.thoughtbot.com/accepts-nested-attributes-for-with-has-many-through).
+Nếu bạn có một quan hệ `has_many :through`, có lẽ bạn sẽ cần tiến thêm một bước bằng cách [chỉ rõ rằng mỗi phía của quan hệ là inverse của phía còn lại](http://robots.thoughtbot.com/accepts-nested-attributes-for-with-has-many-through).
 
-### Designing your own forms
+### Tự thiết kế biểu mẫu
 
-Sometimes, despite all the nice helpers Rails gives you, you just want to do something that's not standard.  You should first wonder whether this is the easiest and most straightforward way to do things.  If it passes the smell test, then go ahead and build your form.
+Đôi khi, dù Rails cung cấp rất nhiều helper tiện lợi, bạn vẫn muốn làm một việc không theo chuẩn.  Trước hết, bạn nên tự hỏi liệu đây có phải là cách dễ dàng và thẳng thắn nhất để thực hiện hay không.  Nếu nó vượt qua bài kiểm tra về mùi thiết kế, hãy cứ xây dựng biểu mẫu.
 
-It's often easiest (and good practice while you're learning) to start with the most basic of HTML forms.  If you don't understand what's going on in the basic HTML (and remember to include your CSRF token), then you'll be hopeless trying to use helpers.  Once you've got a good handle on things, gradually bring in the Rails helpers like `#form_tag` and `#form_with`.
+Trong quá trình học, thường dễ nhất (và cũng là một thực hành tốt) là bắt đầu với dạng biểu mẫu HTML cơ bản nhất.  Nếu bạn không hiểu chuyện gì đang xảy ra trong HTML cơ bản (và hãy nhớ đưa CSRF token vào), thì bạn sẽ hoàn toàn bế tắc khi cố dùng helper.  Khi đã nắm chắc mọi thứ, hãy dần đưa các helper Rails như `#form_tag` và `#form_with` vào.
 
-Don't get discouraged if you get some real head-scratcher moments when building nonstandard forms.  It just takes some experience to feel comfortable.  And if things are too out of hand, you may need to re-evaluate your approach (what exactly are you hoping to accomplish with your complex form?) and start again.
+Đừng nản lòng nếu bạn gặp những khoảnh khắc thật sự khó hiểu khi xây dựng các biểu mẫu không theo chuẩn.  Cần có một chút kinh nghiệm để cảm thấy thoải mái.  Và nếu mọi thứ trở nên quá rối ren, có thể bạn cần đánh giá lại cách tiếp cận của mình (chính xác thì bạn đang hy vọng đạt được điều gì với biểu mẫu phức tạp đó?) rồi bắt đầu lại.
 
-### Simple form
+### Biểu mẫu đơn giản
 
-`simple_form` is a gem by Platformatec which can really make your life easier (if you aren't doing anything too crazy).  It provides lots of user-friendly features for building forms and is in wide use today.
+`simple_form` là một gem của Platformatec, có thể thực sự giúp cuộc sống của bạn dễ dàng hơn (nếu bạn không làm điều gì quá điên rồ).  Nó cung cấp nhiều tính năng thân thiện với người dùng để xây dựng biểu mẫu và hiện được sử dụng rộng rãi.
 
-It's up to you to check out [the documentation for `simple_form`](https://github.com/plataformatec/simple_form) and start using it in your own applications as desired.
+Bạn có thể tự xem [tài liệu của `simple_form`](https://github.com/plataformatec/simple_form) và bắt đầu sử dụng nó trong các ứng dụng của mình tùy nhu cầu.
 
-### Miscellania: blank submissions that mean delete
+### Các vấn đề linh tinh: gửi trống có nghĩa là xóa
 
-Sometimes, for a record that already exists, you want to either deselect a dropdown or check none of your checkboxes but you want this to indicate that the associated fields should actually be set to `nil`.  Usually, though, if you submit the form it will include none of the fields and your back end won't know that you actually wanted to remove those fields so nothing will happen.  How do you get around it?
+Đôi khi, với một bản ghi đã tồn tại, bạn muốn bỏ chọn một menu thả xuống hoặc không chọn bất kỳ checkbox nào, nhưng muốn điều đó biểu thị rằng các trường liên quan thực sự phải được đặt thành `nil`.  Tuy nhiên, thông thường khi gửi biểu mẫu, nó sẽ không chứa trường nào trong số đó và phần back end sẽ không biết rằng bạn thực sự muốn xóa các trường ấy, nên sẽ không có gì xảy ra.  Làm thế nào để xử lý việc này?
 
-Try making a hidden field in your form (or nested form) that has the same name as your checkboxes or dropdown but only contains the value `""`.  Now you'll get that attribute to show up in your `params` hash no matter what and you can handle deleting the records however you'd like appropriate.
+Hãy thử tạo một trường ẩn trong biểu mẫu (hoặc biểu mẫu lồng nhau) có cùng tên với các checkbox hoặc menu thả xuống, nhưng chỉ chứa giá trị `""`.  Khi đó, thuộc tính này sẽ luôn xuất hiện trong hash `params`, bất kể chuyện gì xảy ra, và bạn có thể xử lý việc xóa các bản ghi theo cách phù hợp.
 
-Sometimes [Rails helper methods will insert hidden fields for you](https://api.rubyonrails.org/v8.0.0/classes/ActionView/Helpers/FormHelper.html#method-i-checkbox-label-Gotcha), but make sure you know what your form is actually submitting (if anything) if you deselect all options!
+Đôi khi [các method helper của Rails sẽ tự chèn trường ẩn cho bạn](https://api.rubyonrails.org/v8.0.0/classes/ActionView/Helpers/FormHelper.html#method-i-checkbox-label-Gotcha), nhưng hãy chắc chắn rằng bạn biết chính xác biểu mẫu của mình thực sự gửi gì (nếu có) khi bỏ chọn tất cả các lựa chọn!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read the Rails Guide on Forms section 5, which covers [populating a form with a collection of objects](https://guides.rubyonrails.org/form_helpers.html#collection-related-helpers).
-  1. Read the Same Rails Guide on Forms section 9, which covers [accepting nested form data](http://guides.rubyonrails.org/form_helpers.html#building-complex-forms).
-  1. Read the Same Rails Guide on Forms section 8, which covers the [parameter conventions for nested forms](https://guides.rubyonrails.org/form_helpers.html#form-input-naming-conventions-and-params-hash).
+  1. Đọc Rails Guide về Forms, phần 5, trong đó trình bày [cách điền một biểu mẫu bằng một collection các đối tượng](https://guides.rubyonrails.org/form_helpers.html#collection-related-helpers).
+  1. Đọc Rails Guide về Forms nói trên, phần 9, trong đó trình bày [cách tiếp nhận dữ liệu biểu mẫu lồng nhau](http://guides.rubyonrails.org/form_helpers.html#building-complex-forms).
+  1. Đọc Rails Guide về Forms nói trên, phần 8, trong đó trình bày [các quy ước tham số cho biểu mẫu lồng nhau](https://guides.rubyonrails.org/form_helpers.html#form-input-naming-conventions-and-params-hash).
 
 </div>
 
-#### Conclusion
+#### Kết luận
 
-We've covered two of the more common use cases for complex forms -- pre-populating a form with objects and creating multiple objects with a single form.  At this point, even if you're uncomfortable, you should have all the tools you need to work through creating a form.  We'll get your hands dirty in the project, have no fear.
+Chúng ta đã tìm hiểu hai trường hợp sử dụng phổ biến hơn của các biểu mẫu phức tạp -- điền sẵn các đối tượng vào biểu mẫu và tạo nhiều đối tượng bằng một biểu mẫu duy nhất.  Đến lúc này, ngay cả khi vẫn chưa thật sự thoải mái, bạn cũng nên có đủ công cụ cần thiết để bắt tay tạo một biểu mẫu.  Chúng ta sẽ giúp bạn thực hành trực tiếp trong dự án, đừng lo.
 
-The best part?  This is more or less the most complicated conceptual stuff with learning Rails.  Actually, it's not even really Rails-specific... once you're comfortable with the HTML that forms require and how the parameters get submitted to your controller, mapping that to the correct Rails conventions or helpers is the easy part.  So everything you've learned may just be transferable to every form you'll ever make.
+Phần hay nhất là gì?  Đây gần như là những nội dung khái niệm phức tạp nhất khi học Rails.  Thực ra, chúng thậm chí không thực sự đặc thù cho Rails... một khi bạn đã quen với HTML mà biểu mẫu yêu cầu và cách các tham số được gửi đến controller, việc ánh xạ chúng vào đúng quy ước hoặc helper của Rails sẽ là phần dễ dàng.  Vì vậy, mọi thứ bạn học được có thể chuyển giao sang gần như mọi biểu mẫu bạn từng tạo.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ sung.
 
-- [Simple Form Documentation on GitHub](https://github.com/plataformatec/simple_form)
-- [`accepts_nested_attributes_for` documentation](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html)
-- [Another example of a nested form on Stack Overflow](http://stackoverflow.com/questions/15648396/rails-how-to-manage-nested-attributes-without-using-accepts-nested-attributes?rq=1)
-- [Using `inverse_of` to make `accepts_nested_attributes_for` work for `has_many :through` relationships](http://robots.thoughtbot.com/accepts-nested-attributes-for-with-has-many-through)
-- [Understanding Rails' form authenticity tokens](http://stackoverflow.com/questions/941594/understand-rails-authenticity-token)
-- [Why not to hardcode your application's secret token in production](http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/)
+- [Tài liệu Simple Form trên GitHub](https://github.com/plataformatec/simple_form)
+- [Tài liệu về `accepts_nested_attributes_for`](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html)
+- [Một ví dụ khác về biểu mẫu lồng nhau trên Stack Overflow](http://stackoverflow.com/questions/15648396/rails-how-to-manage-nested-attributes-without-using-accepts-nested-attributes?rq=1)
+- [Dùng `inverse_of` để làm cho `accepts_nested_attributes_for` hoạt động với các quan hệ `has_many :through`](http://robots.thoughtbot.com/accepts-nested-attributes-for-with-has-many-through)
+- [Tìm hiểu về authenticity token của biểu mẫu Rails](http://stackoverflow.com/questions/941594/understand-rails-authenticity-token)
+- [Vì sao không nên hardcode secret token của ứng dụng trong production](http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/)

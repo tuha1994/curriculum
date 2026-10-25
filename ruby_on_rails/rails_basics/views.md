@@ -1,43 +1,43 @@
-### Introduction
+### Giới thiệu
 
-The view is really the simplest part of the MVC structure -- at the basic level, it's just a bunch of HTML boilerplate into which you insert the variables you've received from your controller and which will be sent to the browser.  It's your actual "webpage".  It will often have some snippets of code designed to properly present the variables it has received, for instance a loop that will display each one of the posts on your blog.  Views are often called view templates.
+View thực sự là phần đơn giản nhất của cấu trúc MVC -- ở mức cơ bản, nó chỉ là một loạt mã HTML khung, nơi bạn chèn các biến nhận được từ controller rồi gửi tới trình duyệt. Nó chính là "trang web" thực tế của bạn. View thường chứa một vài đoạn code được thiết kế để trình bày đúng các biến đã nhận, chẳng hạn một vòng lặp hiển thị từng bài viết trên blog. View thường được gọi là các view template.
 
-Views live in the directory `app/views/controller_name/action_name.html.erb`, where `controller_name` is the name of the controller the view is linked to and `action_name.html.erb` is the corresponding method inside the controller that was run immediately prior to rendering the view.
+View nằm trong thư mục `app/views/controller_name/action_name.html.erb`, trong đó `controller_name` là tên controller mà view liên kết tới, còn `action_name.html.erb` là method tương ứng bên trong controller vừa được chạy ngay trước khi render view.
 
-So the `Posts` controller running the `#index` action will implicitly render the `app/views/posts/index.html.erb` view when it's done.  You can explicitly tell your controller to render a differently named view by passing it as a parameter to the `render` function in your controller, but why?  This directory and naming structure helps you (and Rails) to always know where to find a given view.
+Vì vậy, khi controller `Posts` chạy action `#index`, nó sẽ ngầm render view `app/views/posts/index.html.erb` khi hoàn tất. Bạn có thể yêu cầu rõ ràng controller render một view có tên khác bằng cách truyền tên đó làm parameter cho hàm `render` trong controller, nhưng tại sao phải làm vậy? Cấu trúc thư mục và cách đặt tên này giúp bạn (và Rails) luôn biết cần tìm một view ở đâu.
 
-To use an instance variable from your view, just call it the same way you would in the controller: `@user.first_name` or `@posts` or `@some_other_variable`.
+Để dùng một biến instance trong view, chỉ cần gọi nó giống hệt như trong controller: `@user.first_name`, `@posts` hoặc `@some_other_variable`.
 
-As always, in this lesson we'll cover the high level stuff then have you read the Rails Guide for a more detailed understanding of how things work.
+Như thường lệ, trong bài này chúng ta sẽ học các nội dung ở mức khái quát trước, sau đó bạn sẽ đọc Rails Guide để hiểu chi tiết hơn cách mọi thứ hoạt động.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp cái nhìn tổng quát về những chủ đề bạn sẽ học trong bài.
 
-- The organization of view templates and layouts in Rails.
-- Applying ERB in your view files.
-- Partials and how to create and call them.
-- Creating dynamic anchor tags in your view files.
+- Cách tổ chức view template và layout trong Rails.
+- Áp dụng ERB trong các file view.
+- Partial và cách tạo, gọi chúng.
+- Tạo anchor tag động trong các file view.
 
-### Layouts
+### Layout
 
-The first thing to note is that the named view template we render from the controller is actually not the entire webpage.  It doesn't contain the `<head>` tags or the `DOCTYPE` declaration or some of the other basic structure that's present in all pages.  Precisely because those things are present in all of your pages, the Rails creators were smart enough to turn that code into its own file called a "layout".  Layouts live in the directory `app/views/layouts`.
+Điều đầu tiên cần lưu ý là view template có tên mà chúng ta render từ controller thực ra không phải toàn bộ trang web. Nó không chứa các tag `<head>`, khai báo `DOCTYPE` hay một số cấu trúc cơ bản khác xuất hiện trên mọi trang. Chính vì những phần đó có mặt trên tất cả các trang, các nhà sáng tạo Rails đủ thông minh để tách chúng thành một file riêng gọi là "layout". Layout nằm trong thư mục `app/views/layouts`.
 
-For a brand new Rails application, the `application.html.erb` layout is pretty basic.  It's got the basic tags you need in all webpages (e.g. `<html>` and `<body>`) and a couple snippets of code that load up the JavaScript and CSS files your webpage will need.  You'll want to put anything that's needed across all your webpages into the layout.  Usually this is stuff like navbars and footers and snippets of code for displaying flash messages.
+Với một ứng dụng Rails hoàn toàn mới, layout `application.html.erb` khá cơ bản. Nó có những tag nền tảng cần có trong mọi trang web (ví dụ `<html>` và `<body>`) cùng một vài đoạn code tải các file JavaScript và CSS mà trang web cần. Bạn nên đặt mọi thứ cần dùng chung cho tất cả trang web vào layout. Thông thường đó là navbar, footer và các đoạn code hiển thị flash message.
 
-So if a layout is basically just a shell around the individual page, how does the page get inserted?  That brings us back to the magic of the `#yield` method, which you saw when you learned about blocks.  The view template at `app/views/posts/index.html.erb` gets inserted where the yield statement is.  When you get more advanced, you'll be able to play around a bit with that statement.
+Nếu layout về cơ bản chỉ là một lớp vỏ bao quanh từng trang riêng lẻ, vậy trang được chèn vào như thế nào? Điều đó đưa chúng ta trở lại với sự kỳ diệu của method `#yield`, thứ bạn đã thấy khi học về block. View template tại `app/views/posts/index.html.erb` sẽ được chèn vào vị trí có câu lệnh yield. Khi nâng cao hơn, bạn sẽ có thể thử nghiệm thêm với câu lệnh đó.
 
-### Preprocessors
+### Bộ tiền xử lý
 
-The other thing you've undoubtedly noticed is the odd HTML code that goes inside `<%=` and `%>` tags.  This is Embedded Ruby (ERB).  It's a special way of executing ruby code inside your HTML.  HTML is static, so you need to dial in some Ruby if you want to do anything dynamic like looping, `if` statements or working with variables.  ERB (and another similar language you might see called HAML) do exactly that.
+Một điều khác mà chắc chắn bạn đã nhận thấy là đoạn mã HTML kỳ lạ nằm bên trong các tag `<%=` và `%>`. Đây là Embedded Ruby (ERB), một cách đặc biệt để thực thi code ruby bên trong HTML. HTML là tĩnh, nên nếu muốn làm những việc động như lặp, dùng câu lệnh `if` hoặc làm việc với biến, bạn cần đưa Ruby vào. ERB (và một ngôn ngữ tương tự khác mà bạn có thể gặp là HAML) làm đúng việc đó.
 
-What those tags do is execute whatever you see inside them exactly as if it was normal Ruby.  So `<em><%= "I am emphasized" %></em>` will output an emphasized piece of text like *I am emphasized* and `<%= @user.first_name %>` might output `joe`.
+Các tag này thực thi mọi thứ bên trong chúng chính xác như khi đó là Ruby thông thường. Vì vậy, `<em><%= "I am emphasized" %></em>` sẽ xuất ra một đoạn văn bản được nhấn mạnh như *Tôi được nhấn mạnh* còn `<%= @user.first_name %>` có thể xuất ra `joe`.
 
-The difference between `<%` and `<%=` is that the `<%=` version actually displays whatever is returned inside the ERB tags.  If you use `<%`, it will execute the code but, no matter what is returned by that line, it will not actually display anything in your HTML template. `<%#` is used to comment and will not execute.
+Điểm khác nhau giữa `<%` và `<%=` là phiên bản `<%=` thực sự hiển thị bất cứ thứ gì được trả về bên trong các tag ERB. Nếu dùng `<%`, code vẫn được thực thi nhưng dù dòng đó trả về gì, nó cũng không thực sự hiển thị trong HTML template. `<%#` được dùng để comment và sẽ không được thực thi.
 
-Most of your tags will be `<%=` because you'll find yourself often just outputting important pieces of the instance variables that you received from your controller, like in the `<%= @user.first_name %>` example above.  You use the `<%` for purely code-related stuff like `if` statements and `each` loops, where you don't actually WANT anything displayed (the stuff you display will occur inside the loop).  
+Phần lớn tag của bạn sẽ là `<%=` vì bạn thường chỉ xuất ra những phần quan trọng trong các biến instance nhận được từ controller, như ví dụ `<%= @user.first_name %>` ở trên. Bạn dùng `<%` cho những việc thuần túy liên quan tới code như câu lệnh `if` và vòng lặp `each`, khi bạn thực sự KHÔNG muốn hiển thị gì (phần được hiển thị sẽ nằm bên trong vòng lặp).
 
-If this is confusing, here's an example:  Say we want to display the first names of all the users in our application, but only if the current user is signed in.  This might look something like:
+Nếu thấy khó hiểu, hãy xem ví dụ này: giả sử chúng ta muốn hiển thị tên của tất cả user trong ứng dụng, nhưng chỉ khi user hiện tại đã đăng nhập. Đoạn code có thể trông như sau:
 
 ```erb
   <% if current_user.signed_in? %>
@@ -51,9 +51,9 @@ If this is confusing, here's an example:  Say we want to display the first names
   <% end %>
 ```
 
-Remember to close your statements and loops with `<% end %>`!  (You'll forget a few times.)
+Hãy nhớ đóng các câu lệnh và vòng lặp bằng `<% end %>`! (Bạn sẽ quên vài lần đấy.)
 
-In the code above, if the user is signed in it will actually render to the web something like:
+Trong đoạn code trên, nếu user đã đăng nhập, kết quả render trên web thực tế sẽ gần giống như sau:
 
 ```html
   <ul>
@@ -63,29 +63,29 @@ In the code above, if the user is signed in it will actually render to the web s
   </ul>
 ```
 
-If the user isn't signed in, it'll be the much shorter:
+Nếu user chưa đăng nhập, kết quả sẽ ngắn hơn nhiều:
 
 ```html
   <strong>You must sign in!</strong>
 ```
 
-In the above code, if we had accidentally used `<%=` in the loop line, e.g. `<%= @users.each do |user| %>` it would run the code fine, but because `each` returns the original collection, we'd also see a dump of our `@users` variable on our page (not very professional).  It'll happen to you several times and you'll learn quick.
+Trong code trên, nếu chúng ta vô tình dùng `<%=` ở dòng vòng lặp, chẳng hạn `<%= @users.each do |user| %>`, code vẫn chạy bình thường, nhưng vì `each` trả về collection ban đầu, chúng ta cũng sẽ thấy một bản dump của biến `@users` trên trang (trông không chuyên nghiệp chút nào). Bạn sẽ gặp việc này vài lần rồi nhanh chóng rút kinh nghiệm.
 
-### How do preprocessors work?
+### Bộ tiền xử lý hoạt động như thế nào?
 
-The important thing to note about the above code execution is that it is all done on the server BEFORE the final HTML file is shipped over to the browser (part of the Asset Pipeline, covered in the next lesson).  That's because, when you render your template in Rails, it first runs "preprocessors" like ERB.  It knows you want to preprocess the file because it has the extension `.html.erb`.  
+Điều quan trọng cần biết về việc thực thi code ở trên là tất cả đều diễn ra trên server TRƯỚC KHI file HTML cuối cùng được gửi tới trình duyệt (đây là một phần của Asset Pipeline, sẽ được học trong bài tiếp theo). Đó là vì khi render template trong Rails, trước tiên Rails chạy các "bộ tiền xử lý" như ERB. Rails biết bạn muốn tiền xử lý file vì file có phần mở rộng `.html.erb`.
 
-Rails starts from the outside in with extra extensions.  So it first processes the file using ERB, then treats it as regular HTML.  That's fine because ERB by definition outputs good clean HTML, like we saw above.  
+Rails xử lý các phần mở rộng bổ sung từ ngoài vào trong. Vì vậy, trước tiên nó xử lý file bằng ERB, rồi xem file như HTML thông thường. Điều đó hợp lý vì ERB, theo định nghĩa, xuất ra HTML sạch và hợp lệ như chúng ta đã thấy ở trên.
 
-There are other preprocessors you'll run into as well.  `.css.scss` files use the SASS preprocessor and become regular CSS files.  `.js.coffee` files, which use the Coffeescript preprocessor, become regular JavaScript after being run.  In both these cases, the preprocessor's language makes your life easier by giving you some additional tools you can use (like having loops and working with variables) and compiles back down into a plain vanilla CSS or JavaScript or HTML.
+Bạn cũng sẽ gặp những bộ tiền xử lý khác. File `.css.scss` dùng bộ tiền xử lý SASS và trở thành file CSS thông thường. File `.js.coffee`, dùng bộ tiền xử lý Coffeescript, trở thành JavaScript thông thường sau khi được chạy qua bộ xử lý. Trong cả hai trường hợp, ngôn ngữ tiền xử lý giúp cuộc sống dễ dàng hơn bằng cách cung cấp thêm các công cụ (như vòng lặp và khả năng làm việc với biến), rồi biên dịch ngược về CSS, JavaScript hoặc HTML thuần.
 
-The point is, there are many different preprocessors.  They are usually gems that either already come with Rails or can easily be attached to it.  Rails then runs them automatically, so all you have to worry about is whether your file has the right extension(s) to tell the preprocessor to run.  
+Điểm cốt lõi là có rất nhiều bộ tiền xử lý khác nhau. Chúng thường là các gem đã đi kèm Rails hoặc có thể dễ dàng gắn vào Rails. Rails tự động chạy chúng, nên tất cả những gì bạn cần quan tâm là file có đúng phần mở rộng để báo cho bộ tiền xử lý chạy hay không.
 
-### View partials
+### View partial
 
-Another nice thing you can do in Rails is break apart your views into partials.  This helps you on several levels -- it makes your code more concise and easier to read, and also lets you reuse certain common patterns.  One example is the form for creating or editing users.  Both the `#new` and `#edit` actions need to render some sort of form for the user, and usually that form is almost exactly the same.  So often people will turn that form into a new file called something like `_user_form.html.erb` and then just call that in both the `new.html.erb` and `edit.html.erb` view templates where it's needed.
+Một việc hữu ích khác bạn có thể làm trong Rails là chia view thành các partial. Điều này giúp ích ở nhiều mặt -- code ngắn gọn, dễ đọc hơn, đồng thời cho phép bạn tái sử dụng những mẫu chung. Một ví dụ là form tạo hoặc chỉnh sửa user. Cả action `#new` lẫn `#edit` đều cần render một dạng form cho user, và form đó thường gần như giống hệt nhau. Vì vậy, người ta thường đưa form thành một file mới có tên như `_user_form.html.erb`, rồi gọi file đó từ cả hai view template `new.html.erb` và `edit.html.erb` ở nơi cần dùng.
 
-Pulling back a bit, partials are just HTML files that aren't meant to be complete but can be shared by other files.  You would call a partial by writing something like:
+Nói khái quát hơn, partial chỉ là các file HTML chưa được thiết kế để hoàn chỉnh độc lập nhưng có thể được các file khác dùng chung. Bạn gọi một partial bằng cách viết như sau:
 
 ```erb
   # app/views/users/new.html.erb
@@ -94,33 +94,33 @@ Pulling back a bit, partials are just HTML files that aren't meant to be complet
   </div>
 ```
 
-There are a couple of syntax oddities you need to pay attention to.  The view partial file is named with an underscore like `_user_form.html.erb` but gets called using just the core portion of the name, e.g. `user_form` in the example above.  
+Có một vài điểm cú pháp hơi đặc biệt mà bạn cần chú ý. File view partial được đặt tên với dấu gạch dưới, như `_user_form.html.erb`, nhưng được gọi chỉ bằng phần cốt lõi của tên, ví dụ `user_form` trong đoạn trên.
 
-If there is no directory specified in partial's name, Rails will only look in the same folder as whichever view called it, e.g. `app/views/users`.  Sometimes it makes sense to share partials across multiple view templates that are in multiple controllers, so you save them in their own folder called `app/views/shared` and would then render them using the code `<%= render "shared/some_partial"%>`.
+Nếu tên partial không chỉ rõ thư mục, Rails chỉ tìm trong cùng thư mục với view đã gọi nó, chẳng hạn `app/views/users`. Đôi khi việc dùng chung partial giữa nhiều view template thuộc nhiều controller là hợp lý, nên bạn lưu chúng vào thư mục riêng `app/views/shared`, rồi render bằng code `<%= render "shared/some_partial"%>`.
 
-### Passing local variables to partials
+### Truyền biến local vào partial
 
-There's a lot you can do with partials and we won't dive into it all here, but one thing that you might find yourself doing a lot is passing variables to partials.  A partial has access to all the variables that the calling view template does, but do NOT rely on them!  What if your partial is used by a different controller that uses a different structure for its instance variables?  It's bad code to expect an instance variable like `@user` to be there in the partial all the time. That means you've got to explicitly pass the partial whichever variables you want it to have access to.  
+Có rất nhiều việc bạn có thể làm với partial và chúng ta sẽ không đi hết tất cả ở đây, nhưng một việc có thể bạn sẽ thường xuyên làm là truyền biến vào partial. Partial có quyền truy cập tất cả biến mà view template gọi nó có, nhưng ĐỪNG phụ thuộc vào điều đó! Nếu partial được một controller khác sử dụng, trong khi controller đó có cấu trúc biến instance khác thì sao? Việc mặc định một biến instance như `@user` luôn tồn tại trong partial là code tệ. Điều đó có nghĩa bạn phải truyền rõ ràng cho partial mọi biến mà bạn muốn nó có quyền truy cập.
 
-In the example above, you most likely want to pass the `@user` variable to the partial so your code can render the right kind of form. `render` is just a regular method and it lets you pass it an [options hash](https://stackoverflow.com/questions/18407618/what-are-options-hashes).  One of those options is the `:locals` key, which will contain the variables you want to pass.  Your code might change to look like:
+Trong ví dụ trên, rất có thể bạn muốn truyền biến `@user` vào partial để code có thể render đúng loại form. `render` chỉ là một method thông thường và cho phép bạn truyền một [options hash](https://stackoverflow.com/questions/18407618/what-are-options-hashes). Một trong các option đó là key `:locals`, chứa các biến bạn muốn truyền vào. Code của bạn có thể đổi thành:
 
 ```erb
   <%= render partial: "shared/your_partial", :locals => { :user => user } %>
-```  
+```
 
-To use the variable in your partial file, you drop the `@` and call it like a normal variable. Note that you should use the `:locals` option if you're calling the `render` method with a `:partial` key.
+Để dùng biến trong file partial, bạn bỏ `@` rồi gọi nó như một biến thông thường. Lưu ý rằng bạn nên dùng option `:locals` nếu gọi method `render` với key `:partial`.
 
-There is a `render` shortcut that allows you to pass in variables without the need of using the `:locals` option:
+Có một cách viết tắt của `render` cho phép truyền biến mà không cần dùng option `:locals`:
 
 ```erb
   <%= render "shared/your_partial", :user => user %>
 ```
 
-### Implicit partials
+### Partial ngầm định
 
-As usual, there are some things you would end up doing so many times that Rails has given you a shortcut.  One of these is the act of rendering a model object like a User or a Post.  If you want a list of all your users, you could write out the HTML and ERB code for displaying a single user's first name, last name, email etc. many times directly in your `app/views/users/index.html.erb` file or you could keep that code in some sort of `each` loop.  
+Như thường lệ, có một số việc bạn sẽ làm nhiều đến mức Rails cung cấp sẵn cách viết tắt. Một trong số đó là render một model object như User hoặc Post. Nếu muốn có danh sách tất cả user, bạn có thể viết trực tiếp HTML và ERB để hiển thị tên, họ, email... của một user nhiều lần trong file `app/views/users/index.html.erb`, hoặc đặt code đó trong một vòng lặp `each`.
 
-But it's usually best to make the User into its own partial called `_user.html.erb` so you can reuse it in other cases as well.  The basic way of calling this might be something just like we saw above, which looks like:
+Tuy nhiên, thường tốt nhất là biến User thành partial riêng có tên `_user.html.erb` để có thể tái sử dụng trong các trường hợp khác. Cách gọi cơ bản có thể giống hệt ví dụ trên, như sau:
 
 ```erb
   # app/views/index.html.erb
@@ -132,16 +132,16 @@ But it's usually best to make the User into its own partial called `_user.html.e
   </ul>
 ```
 
-And in your partial:
+Và trong partial:
 
 ```erb
   # app/views/_user.html.erb
   <li><%= "#{user.first_name} #{user.last_name}, #{user.email}" %></li>
 ```
 
-It may seem strange to have only one line in a partial, but trust me that it usually doesn't stay that way for long so it's worth getting the hang of.
+Có thể việc một partial chỉ có một dòng trông hơi lạ, nhưng tin tôi đi, thường nó sẽ không giữ nguyên như vậy lâu đâu, nên bạn nên làm quen với cách này.
 
-So if that's the basic way, what's the magical Rails way?  Just tell it to render the User object directly, e.g.:
+Nếu đó là cách cơ bản, vậy cách thần kỳ của Rails là gì? Chỉ cần bảo Rails render trực tiếp object User, chẳng hạn:
 
 ```erb
   # app/views/index.html.erb
@@ -153,9 +153,9 @@ So if that's the basic way, what's the magical Rails way?  Just tell it to rende
   </ul>
 ```
 
-Rails then looks for the `_user.html.erb` file in the current directory and passes it the `user` variable automatically.
+Sau đó Rails tìm file `_user.html.erb` trong thư mục hiện tại và tự động truyền biến `user` vào file đó.
 
-What if you want to render a whole bunch of users like we just did?  Rails also does that for you the same way, saving you the trouble of writing out your own `each` loop like we did above. write:
+Nếu muốn render cả một nhóm user như chúng ta vừa làm thì sao? Rails cũng làm việc đó theo cách tương tự, giúp bạn không phải tự viết vòng lặp `each` như ở trên. Hãy viết:
 
 ```erb
   # app/views/index.html.erb
@@ -165,31 +165,31 @@ What if you want to render a whole bunch of users like we just did?  Rails also 
   </ul>
 ```
 
-In that situation, Rails not only finds the `_user.html.erb` file and passes it the correct `user` variable to use, it also loops over all the users in your `@user` collection for you. Pretty handy.
+Trong tình huống này, Rails không chỉ tìm file `_user.html.erb` và truyền cho nó đúng biến `user` để sử dụng, mà còn tự lặp qua toàn bộ user trong collection `@user` của bạn. Khá tiện lợi.
 
-### Helper methods
+### Các helper method
 
-`render`ing partials isn't the only method you can call from within a view.  Rails has a bunch of really handy helper methods that are available for you to use in the view.  A few of the most common:
+`render`ing partial không phải method duy nhất bạn có thể gọi từ bên trong view. Rails có rất nhiều helper method tiện dụng để bạn sử dụng trong view. Một vài method phổ biến nhất:
 
 #### #link_to
 
-`link_to` creates an anchor tag URL.  Instead of writing:
+`link_to` tạo URL cho anchor tag. Thay vì viết:
 
 ```erb
   <a href="<%= users_path %>">See All Users</a>
 ```
 
-You write:
+Bạn viết:
 
 ```erb
   <%= link_to "See All Users", users_path %>
 ```
 
-It's the Rails way.  And recall that `users_path` generates a relative URL like `/users` whereas `users_url` generates a full URL like `http://www.yourapp.com/users`.  In most cases, it isn't an important distinction because your browser can handle both, but make sure you understand the difference.
+Đó là cách làm của Rails. Và hãy nhớ rằng `users_path` tạo một URL tương đối như `/users`, trong khi `users_url` tạo một URL đầy đủ như `http://www.yourapp.com/users`. Trong phần lớn trường hợp, khác biệt này không quan trọng vì trình duyệt xử lý được cả hai, nhưng hãy chắc rằng bạn hiểu sự khác nhau.
 
-### Asset tags
+### Asset tag
 
-As you may have seen in the application layout file we talked about above, Rails gives you helper methods that output HTML tags to grab CSS or JavaScript files.  You can also grab images.  These are called Asset Tags.  We'll get into the "Asset Pipeline" a bit later, but basically these tags locate those files for you based on their name and render the proper HTML tag.
+Như bạn có thể đã thấy trong file application layout được nhắc tới ở trên, Rails cung cấp các helper method xuất ra HTML tag để lấy file CSS hoặc JavaScript. Bạn cũng có thể lấy hình ảnh. Chúng được gọi là Asset Tag. Chúng ta sẽ tìm hiểu kỹ hơn về "Asset Pipeline" sau, nhưng về cơ bản các tag này xác định vị trí các file đó dựa trên tên rồi render HTML tag thích hợp.
 
 ```erb
   <%= stylesheet_link_tag "your_stylesheet" %>
@@ -197,7 +197,7 @@ As you may have seen in the application layout file we talked about above, Rails
   <%= image_tag "happy_cat.jpg" %>
 ```
 
-Will render something like:
+Sẽ render ra thứ tương tự như:
 
 ```html
   <link href="/assets/your_stylesheet.css" media="all" rel="stylesheet">
@@ -205,31 +205,31 @@ Will render something like:
   <img src="/assets/happy_cat.jpg">
 ```
 
-Note: in production, your stylesheet and JavaScript will all get mashed into one strangely-named file, so don't be alarmed if it's named something like `/assets/application-485ea683b962efeaa58dd8e32925dadf`
+Lưu ý: trong môi trường production, stylesheet và JavaScript của bạn sẽ được gộp vào một file có tên kỳ lạ, vì vậy đừng lo nếu nó có tên như `/assets/application-485ea683b962efeaa58dd8e32925dadf`
 
-### Forms
+### Form
 
-Rails offers several different helpers that help you create forms, and we'll go over those in-depth in upcoming lessons.
+Rails cung cấp nhiều helper khác nhau để giúp bạn tạo form, và chúng ta sẽ tìm hiểu sâu về chúng trong các bài sắp tới.
 
-### Conclusion
+### Kết luận
 
-Views in general make up the user-facing side of your app.  It can be a bit tricky at first to imagine how you choose which view to render, what to include in that view and how to use partials, but a few iterations of working with Rails will show you the conventions pretty quickly.  Views will become second nature to you.
+Nhìn chung, view tạo nên phần hướng tới người dùng của ứng dụng. Ban đầu có thể hơi khó hình dung cách chọn view nào để render, cần đưa gì vào view đó và dùng partial ra sao, nhưng chỉ cần vài lần làm việc với Rails là bạn sẽ nhanh chóng nắm được các quy ước. View sẽ trở nên quen thuộc tự nhiên.
 
-### Assignment
+### Bài tập
 
-Now that you've got a taste of the high-level stuff, read through the Rails Guides for a more detailed look at things.  The chapter below will actually start in the controller, where you need to let it know WHICH view file you want to render.  The second half of the chapter gets more into the view side of things.
+Bây giờ bạn đã làm quen với những nội dung khái quát, hãy đọc Rails Guides để tìm hiểu chi tiết hơn. Chương dưới đây thực sự bắt đầu từ controller, nơi bạn cần cho controller biết mình muốn render file view NÀO. Nửa sau của chương đi sâu hơn vào phía view.
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Rails Guide chapter on Layouts and Rendering](http://guides.rubyonrails.org/layouts_and_rendering.html), sections 1 through 3.4.  You can certainly skim when they start going over all the many different options you can pass to a given function... it's good to know what they are and where you can find them, but you don't need to memorize all of them.  Usually you'll have something that you want to do, Google it, and find a Stack Overflow post that shows you the option you can use.
+1. Đọc [chương Layouts và Rendering trong Rails Guide](http://guides.rubyonrails.org/layouts_and_rendering.html), các mục từ 1 đến 3.4. Bạn có thể đọc lướt khi tài liệu bắt đầu trình bày rất nhiều option khác nhau có thể truyền cho một function... biết chúng là gì và tìm chúng ở đâu là tốt, nhưng bạn không cần ghi nhớ tất cả. Thông thường bạn sẽ muốn làm một việc gì đó, tìm kiếm trên Google, rồi thấy một bài đăng Stack Overflow chỉ ra option có thể dùng.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ trợ.
 
-- [Stack Overflow Post on Views](https://stackoverflow.com/questions/14429910/an-alternate-explanation-to-rails-layouts-rendering-partials-templates-and-v)
-- [Video on the Relationship Between Views and Controllers](https://www.youtube.com/watch?v=mRJSovhdzWc&ab_channel=GoRails)
-- [Video on ERB Tags](https://www.youtube.com/watch?v=na28woOGPUw&ab_channel=NoobandTube) - (this video will require you to turn your volume up)
-- [Introduction to Ruby on Rails from freeCodeCamp](https://youtu.be/fmyvWz5TUWg) - If you'd like a deeper dive into routing, MVC, CRUD and partials watch the first 60 minutes of this video which provides a good wrap up for what we've been learning so far. You'll also get to create a basic Rails app from scratch if you'd like some extra practice.
+- [Bài đăng Stack Overflow về View](https://stackoverflow.com/questions/14429910/an-alternate-explanation-to-rails-layouts-rendering-partials-templates-and-v)
+- [Video về mối quan hệ giữa View và Controller](https://www.youtube.com/watch?v=mRJSovhdzWc&ab_channel=GoRails)
+- [Video về các tag ERB](https://www.youtube.com/watch?v=na28woOGPUw&ab_channel=NoobandTube) - (video này sẽ yêu cầu bạn tăng âm lượng)
+- [Giới thiệu Ruby on Rails từ freeCodeCamp](https://youtu.be/fmyvWz5TUWg) - Nếu muốn tìm hiểu sâu hơn về routing, MVC, CRUD và partial, hãy xem 60 phút đầu của video này; nó tổng kết khá tốt những gì chúng ta đã học. Bạn cũng sẽ được tạo một ứng dụng Rails cơ bản từ đầu nếu muốn luyện tập thêm.

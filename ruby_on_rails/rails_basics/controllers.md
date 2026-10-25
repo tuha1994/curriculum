@@ -1,12 +1,12 @@
-### Introduction
+### Giới thiệu
 
-The controller's job is really to act as the ultimate middleman. It knows which questions it wants to ask the Model, but lets the model do all the heavy lifting for actually solving those questions. It knows which view it wants to render and send back to the browser, but lets the view itself take care of putting all that HTML together. That's why it's a "controller"... smart enough to know what to do and then delegate all the hard work. All it does is collect the proper batch of instance variables for sending over to the view.
+Nhiệm vụ của controller thực chất là làm người trung gian tối cao. Nó biết mình muốn hỏi Model những câu hỏi nào, nhưng để model đảm nhận toàn bộ phần nặng nhọc trong việc giải quyết các câu hỏi đó. Nó biết muốn render view nào và gửi view đó trở lại trình duyệt, nhưng để chính view lo việc ghép toàn bộ HTML. Đó là lý do nó được gọi là "controller"... đủ thông minh để biết phải làm gì rồi ủy thác mọi phần việc khó. Tất cả những gì nó làm là tập hợp đúng nhóm các biến instance để gửi sang view.
 
-When does the controller get used? After an HTTP request comes into your application and the router decides which controller and action to map it to, Rails packages up all the parameters that were associated with that request and runs the specified method in the specified controller. Once that method is done, Rails will take any instance variables you've given it in that controller method and ship them over to the appropriate view file so they can be inserted into your HTML template ("View") and ultimately sent back to the browser.
+Khi nào controller được sử dụng? Sau khi một HTTP request đi vào ứng dụng và router quyết định ánh xạ request đó tới controller và action nào, Rails đóng gói tất cả tham số đi kèm request rồi chạy method được chỉ định trong controller tương ứng. Khi method đó hoàn tất, Rails sẽ lấy mọi biến instance bạn đã cung cấp trong method của controller rồi chuyển chúng sang file view thích hợp, để chúng được chèn vào template HTML ("View") và cuối cùng gửi trở lại trình duyệt.
 
-It's pretty straightforward. Typical controllers are pretty lightweight and don't have a whole lot of code but are able to do a lot of work with that code. What if you want to show all your blog posts in your site's index page? Run the `#index` action of your Posts controller and it will grab all your posts and send them over to the `index.html.erb` view file, which figures out how you actually want them displayed (in a giant bulleted list? With slick looking panels?).
+Mọi việc khá dễ hiểu. Các controller điển hình khá gọn nhẹ, không có quá nhiều code nhưng vẫn làm được rất nhiều việc với số code đó. Nếu bạn muốn hiển thị tất cả bài viết blog trên trang index của website thì sao? Hãy chạy action `#index` của controller Posts; action này sẽ lấy toàn bộ bài viết rồi gửi chúng sang file view `index.html.erb`, nơi quyết định bạn thực sự muốn hiển thị chúng như thế nào (một danh sách gạch đầu dòng khổng lồ? Những khung trông thật bắt mắt?).
 
-The controller's `#index` action would actually look like:
+Action `#index` của controller thực tế sẽ trông như sau:
 
 ```ruby
   PostsController < ApplicationController
@@ -18,35 +18,35 @@ The controller's `#index` action would actually look like:
   end
 ```
 
-In this action, we have the controller asking the model for something ("Hey, give me all the posts!"), packaging them up in an instance variable `@posts` so the view can use them, then will automatically render the view at `app/views/posts/index.html.erb` (we'll talk about that in a minute).
+Trong action này, controller yêu cầu model cung cấp một thứ gì đó ("Này, đưa cho tôi tất cả bài viết!"), đóng gói chúng vào biến instance `@posts` để view có thể sử dụng, rồi tự động render view tại `app/views/posts/index.html.erb` (chúng ta sẽ nói về việc này ngay sau đây).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp cái nhìn tổng quát về những chủ đề bạn sẽ học trong bài.
 
-- What goes on in a RESTful controller action.
-- Overriding an implicit render of the view-file.
-- Situations in which to use `redirect_to` versus `render`.
-- Handling and restricting parameters and POST-data passed to your controller.
-- The flash message and how to display it.
+- Những gì diễn ra bên trong một action controller RESTful.
+- Ghi đè việc render ngầm định của file view.
+- Những trường hợp nên dùng `redirect_to` thay vì `render` và ngược lại.
+- Xử lý và hạn chế các parameter cùng dữ liệu POST được truyền tới controller.
+- Flash message và cách hiển thị nó.
 
-### Naming matters
+### Tên gọi rất quan trọng
 
-One way that Rails makes your life a bit easier is that it assumes things are named a certain way and then executes them behind the scenes based on those names. For instance, your controller and its action have to be named whatever you called them in your `routes.rb` file when you mapped a specific type of HTTP request to them.
+Một cách Rails giúp cuộc sống của bạn dễ dàng hơn đôi chút là giả định mọi thứ được đặt tên theo một quy ước nhất định, rồi thực hiện chúng ở phía sau dựa trên những tên đó. Chẳng hạn, controller và action của nó phải được đặt tên giống như tên bạn đã khai báo trong file `routes.rb` khi ánh xạ một loại HTTP request cụ thể tới chúng.
 
-The other end of the process is what the controller does when it's done. Once Rails gets to the `end` of that controller action, it grabs all the instance variables from the controller and sends them over the view file *which is named the same thing as the controller action* and which lives in a folder named after the controller, e.g. `app/views/posts/index.html.erb`. This isn't arbitrary, this is intentional to make your life a lot easier when looking for files later. If you save your files in a different folder or hierarchy, you'll have to explicitly specify which ones you want rendered.
+Đầu bên kia của quy trình là việc controller làm gì sau khi hoàn tất. Khi Rails đi tới `end` của action controller đó, nó lấy tất cả biến instance từ controller và gửi sang file view *được đặt tên giống với action của controller* và nằm trong thư mục mang tên controller, chẳng hạn `app/views/posts/index.html.erb`. Đây không phải sự tùy tiện; quy ước này được thiết kế có chủ đích để sau này bạn dễ tìm file hơn. Nếu lưu file ở một thư mục hoặc hệ thống phân cấp khác, bạn sẽ phải chỉ rõ file nào cần được render.
 
-### Rendering and redirecting
+### Render và redirect
 
-Although Rails will implicitly render a view file that is named the same thing as your controller action, there are plenty of situations when you might want to override it. A main case for this is when you actually want to completely redirect the user to a new page instead of rendering the result of your controller action.
+Mặc dù Rails sẽ ngầm định render một file view có cùng tên với action của controller, có rất nhiều tình huống bạn muốn ghi đè hành vi đó. Một trường hợp chính là khi bạn thực sự muốn chuyển hướng hoàn toàn người dùng sang một trang mới thay vì render kết quả của action controller hiện tại.
 
-Redirects typically occur after controller actions where you've submitted information, such as when creating a new Post. There's no reason to have a `create.html.erb` view file that gets displayed once a post has been created... we usually just want to see the post we created and so we'll redirect over to the Show page for that post. The distinction here is that your application treats a redirect as *a completely new HTTP request*... so it would enter through the router again, look for the Show page corresponding to that post, and render it normally. That also means that any instance variables you set in your original `#create` controller action are wiped out along the way.
+Redirect thường xảy ra sau các action controller đã tiếp nhận thông tin được gửi lên, chẳng hạn khi tạo một Post mới. Không có lý do gì phải có file view `create.html.erb` chỉ để hiển thị một lần sau khi bài viết được tạo... thông thường chúng ta chỉ muốn xem bài viết vừa tạo, nên sẽ redirect tới trang Show của bài viết đó. Điểm khác biệt là ứng dụng của bạn xem redirect như *một HTTP request hoàn toàn mới*... vì vậy request sẽ đi qua router lần nữa, tìm trang Show tương ứng với bài viết đó rồi render trang như bình thường. Điều đó cũng có nghĩa mọi biến instance bạn đặt trong action controller `#create` ban đầu sẽ bị xóa trong quá trình này.
 
-If that's the common way to deal with successfully creating an object, how about when it fails for some reason (like the user entered a too-short post title)? In that case, you can just render the view for another controller action, often the same action that created the form you just submitted (so the `#new` action).
+Nếu đó là cách phổ biến để xử lý việc tạo object thành công, vậy khi việc tạo thất bại vì lý do nào đó (chẳng hạn người dùng nhập tiêu đề bài viết quá ngắn) thì sao? Khi đó, bạn chỉ cần render view của một action controller khác, thường là chính action đã tạo form mà bạn vừa gửi đi (tức action `#new`).
 
-The trick here is that the view page gets passed the instance variables from your *current* controller action. So let's say that you tried to `#create` a Post and stored it to `@post` but it failed to save. You then rendered the `#new` action's view and that view will receive the `@post` you were just working with in the `#create` action. This is great because you don't have to wipe the form completely clean (which is really annoying as a user) -- you can just identify the fields that failed and have the user resubmit. It may sound a bit abstract now but you'll see the difference quickly when building.
+Điểm mấu chốt là trang view sẽ nhận các biến instance từ action controller *hiện tại* của bạn. Giả sử bạn thử `#create` một Post và lưu nó vào `@post` nhưng thao tác lưu thất bại. Sau đó bạn render view của action `#new`, và view đó sẽ nhận `@post` mà bạn vừa xử lý trong action `#create`. Điều này rất hữu ích vì bạn không phải xóa sạch form (một trải nghiệm rất khó chịu đối với người dùng) -- bạn chỉ cần xác định những trường bị lỗi rồi yêu cầu người dùng gửi lại. Bây giờ nghe có vẻ hơi trừu tượng, nhưng khi bắt tay xây dựng bạn sẽ nhanh chóng thấy sự khác biệt.
 
-Let's see it in code:
+Hãy xem qua code:
 
 ```ruby
   # app/controllers/posts_controller.rb
@@ -76,15 +76,15 @@ Let's see it in code:
   end
 ```
 
-So the thing to pay attention to is that, if we successfully are able to save our new post in the database, we redirect to that post's show page. Note that a shortcut you'll see plenty of times is, instead of writing `redirect_to post_path(@post.id)`, just write `redirect_to @post` because Rails knows people did that so often that they gave you the option of writing it shorthand. We'll use this in the example as we develop it further.
+Điều cần chú ý là: nếu lưu bài viết mới vào database thành công, chúng ta redirect tới trang show của bài viết đó. Lưu ý rằng một cách viết tắt bạn sẽ thường xuyên gặp là, thay vì viết `redirect_to post_path(@post.id)`, chỉ cần viết `redirect_to @post`, vì Rails biết mọi người làm vậy rất thường xuyên nên cung cấp sẵn cách viết ngắn gọn này. Chúng ta sẽ dùng nó trong ví dụ khi phát triển tiếp.
 
-The error condition in the `#create` action above is going to render the same form that we rendered in the `#new` action, though this time `@post` will be the Post object that we tried and failed to save, so it will also have some errors attached to it which can be used to highlight in red which form fields were the culprits.
+Điều kiện lỗi trong action `#create` ở trên sẽ render chính form đã được render trong action `#new`, nhưng lần này `@post` sẽ là object Post mà chúng ta đã thử lưu nhưng thất bại, nên nó cũng sẽ chứa một số lỗi. Các lỗi đó có thể được dùng để đánh dấu màu đỏ những trường form gây ra vấn đề.
 
-### Multiple render/redirects
+### Nhiều lần render/redirect
 
-It's important to note that `render` and `redirect_to` do NOT immediately stop your controller action like a `return` statement would. So you have to be really careful that your logic doesn't result in you running more than one of those statements. If you do, you'll get hit with an error. They're usually pretty straightforward to debug.
+Điều quan trọng cần nhớ là `render` và `redirect_to` KHÔNG dừng ngay action controller như một câu lệnh `return`. Vì vậy, bạn phải hết sức cẩn thận để logic của mình không dẫn tới việc chạy nhiều hơn một trong hai câu lệnh đó. Nếu không, bạn sẽ gặp lỗi. Những lỗi này thường khá dễ gỡ lỗi.
 
-If you write something like:
+Nếu bạn viết một đoạn như sau:
 
 ```ruby
   def show
@@ -96,33 +96,33 @@ If you write something like:
   end
 ```
 
-In any case where the user is male, you'll get hit with a multiple render error because you've told Rails to render both "show-boy" and "show-girl".
+Trong mọi trường hợp người dùng là nam, bạn sẽ gặp lỗi multiple render vì đã yêu cầu Rails render cả "show-boy" lẫn "show-girl".
 
-### Params and strong parameters
+### Params và strong parameters
 
-In the example above, we saw `... code here to set up a new @post based on form info ...`. Okay, how do we grab that info? We keep saying that the router packages up all the parameters that were sent with the original HTTP request, but how do we access them?
+Trong ví dụ trên, chúng ta thấy `... code here to set up a new @post based on form info ...`. Được rồi, làm thế nào lấy được thông tin đó? Chúng ta liên tục nói rằng router đóng gói tất cả parameter được gửi cùng HTTP request ban đầu, nhưng truy cập chúng bằng cách nào?
 
-With the `params` object! The `params` object is an instance of `ActionController::Parameters`, and it behaves similarly to a normal Ruby hash. It contains the parameters of the request stored as `:key => value` pairs. So how do we get the ID of the post we're asking for? `params[:id]`. You can access any parameters this way which have "scalar values", e.g. strings, numbers, booleans, `nil`... anything that's "flat".
+Bằng object `params`! Object `params` là một instance của `ActionController::Parameters`, hoạt động tương tự một Ruby hash thông thường. Nó chứa các parameter của request được lưu dưới dạng các cặp `:key => value`. Vậy làm sao lấy ID của bài viết mà chúng ta đang yêu cầu? `params[:id]`. Bạn có thể truy cập mọi parameter theo cách này nếu chúng có "giá trị vô hướng", chẳng hạn string, number, boolean, `nil`... bất cứ thứ gì "phẳng".
 
-Some forms will submit every field as a top level scalar entry in the params hash, e.g. `params[:post_title]` might be "My Test Post Title" and `params[:post_body]` might be "Body of post!" etc and these you can access with no issues. You have control over this, as you'll learn in the lessons on forms.
+Một số form sẽ gửi mỗi trường dưới dạng một mục vô hướng ở cấp cao nhất trong hash params, chẳng hạn `params[:post_title]` có thể là "My Test Post Title" còn `params[:post_body]` có thể là "Body of post!" v.v.; bạn có thể truy cập chúng mà không gặp vấn đề gì. Bạn có quyền kiểm soát cấu trúc này, như sẽ học trong các bài về form.
 
-#### Strong parameters
+#### Tham số mạnh (Strong parameters)
 
-Often times, though, you want to send parameters from the browser that are all packaged nicely into a hash or nested into an array. It can make your life a lot easier because you can just pass that hash straight into `Post.new(your_hash_of_attributes_here)` because that's what `Post.new` expects anyway! We won't really get too deep into this stuff until the lessons on Models and Forms, but you should be aware that the structure of the data you're being sent from a form depends entirely on how you choose to set up that form (it's really based on how you choose to name your fields using the HTML `name=''` attribute).
+Tuy nhiên, thường bạn muốn gửi các parameter từ trình duyệt đã được đóng gói gọn gàng vào một hash hoặc lồng trong một array. Điều đó có thể khiến cuộc sống dễ dàng hơn nhiều, vì bạn chỉ cần truyền thẳng hash đó vào `Post.new(your_hash_of_attributes_here)`, đúng với thứ mà `Post.new` vốn mong đợi! Chúng ta sẽ chưa đi sâu vào phần này cho tới các bài về Model và Form, nhưng bạn nên biết rằng cấu trúc dữ liệu được gửi từ form phụ thuộc hoàn toàn vào cách bạn thiết lập form (thực chất dựa trên cách bạn đặt tên các trường bằng thuộc tính HTML `name=''`).
 
-In our example, we will assume that our `params[:post]` is giving us a hash of Post attributes like `{ :title => "My Test Post Title", :body => "this post rocks!", :author_id => "1"}`, which is exactly what `Post.new` is expecting. Whether you get the parameters packaged up in a hash or all on the top level as individual attributes (like `params[:id]`), again, is up to you and how you create your form. But know it's usually easier for you to handle receiving a nicely packaged hash of Post attributes in your controller.
+Trong ví dụ này, chúng ta giả định `params[:post]` cung cấp một hash gồm các thuộc tính của Post như `{ :title => "My Test Post Title", :body => "this post rocks!", :author_id => "1"}`, đúng là thứ `Post.new` đang mong đợi. Việc parameter được đóng gói trong một hash hay nằm ở cấp cao nhất dưới dạng các thuộc tính riêng lẻ (như `params[:id]`) một lần nữa phụ thuộc vào bạn và cách bạn tạo form. Nhưng hãy nhớ rằng controller thường xử lý dễ hơn khi nhận được một hash thuộc tính Post được đóng gói gọn gàng.
 
-The important distinction between the "scalar" parameter values like strings and more complex parameters like hashes and arrays is that Rails 4 implemented some protections in the controller, called "Strong Parameters". This is so the user can't send you harmful data (like automatically setting themselves as an admin user when they create an account). To do this, Rails makes you explicitly verify that you are willing to accept certain items of a hash or array.
+Điểm khác biệt quan trọng giữa các giá trị parameter "vô hướng" như string với những parameter phức tạp hơn như hash và array là Rails 4 đã triển khai một số cơ chế bảo vệ trong controller, gọi là "Strong Parameters". Cơ chế này ngăn người dùng gửi dữ liệu gây hại (chẳng hạn tự động đặt mình làm admin khi tạo tài khoản). Để làm vậy, Rails buộc bạn phải xác nhận rõ ràng rằng mình chấp nhận những phần tử nhất định của một hash hoặc array.
 
 <div class="lesson-note" markdown="1">
 
-#### Whitelisting "safe" attributes in Rails 3
+#### Whitelist các thuộc tính "an toàn" trong Rails 3
 
-This used to be done in Rails 3 by setting `attr_accessible` in the model to allow attributes, so you will probably see that in a lot of Stack Overflow posts and earlier applications.
+Trước đây, Rails 3 xử lý việc này bằng cách đặt `attr_accessible` trong model để cho phép các thuộc tính, vì vậy bạn có thể sẽ thấy cách này trong rất nhiều bài đăng trên Stack Overflow và các ứng dụng cũ.
 
 </div>
 
-To explicitly allow parameters, you can call the `#expect` method on the `params`. Usually this method will be passed a key matching the name of the model you're working with (ie. a `post`) followed by an array of allowed attributes. For example:
+Để cho phép parameter một cách rõ ràng, bạn có thể gọi method `#expect` trên `params`. Thông thường, method này nhận một key trùng với tên model bạn đang làm việc (tức là một `post`), theo sau là một array gồm các thuộc tính được phép. Ví dụ:
 
 ```ruby
   def allowed_post_params
@@ -130,11 +130,11 @@ To explicitly allow parameters, you can call the `#expect` method on the `params
   end
 ```
 
-This will return the hash of only those params that you explicitly allow (e.g. `{:title => "your title", :body => "your body", :author_id => "1"}` ). If you didn't do this, when you tried to access params[:post] nothing would show up! Also, if there were any additional fields submitted inside the hash, these will be stripped away and made inaccessible (to protect you).
+Method này trả về hash chỉ gồm những params bạn cho phép rõ ràng (ví dụ `{:title => "your title", :body => "your body", :author_id => "1"}` ). Nếu không làm vậy, khi bạn thử truy cập params[:post] sẽ không có gì xuất hiện! Ngoài ra, nếu có trường bổ sung nào được gửi bên trong hash, chúng sẽ bị loại bỏ và không thể truy cập (để bảo vệ bạn).
 
-It can be inconvenient, but it's Rails protecting you from bad users. You'll usually package these strong parameter helpers up in their own private method at the bottom of your controllers, then call that method where you need to get those specific params.
+Điều này có thể hơi bất tiện, nhưng đó là cách Rails bảo vệ bạn khỏi những người dùng xấu. Thông thường, bạn sẽ gom các helper strong parameter này vào một method private riêng ở cuối controller, rồi gọi method đó tại nơi cần lấy những parameter cụ thể.
 
-So our `#create` action above can now be filled out a bit more:
+Vì vậy, action `#create` của chúng ta giờ có thể được viết đầy đủ hơn một chút:
 
 ```ruby
   # app/controllers/posts_controller.rb
@@ -166,9 +166,9 @@ So our `#create` action above can now be filled out a bit more:
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### Handling strong parameters before Rails 8
+#### Xử lý strong parameters trước Rails 8
 
-Prior to Rails 8, strong parameters were handled differently. Instead of the `#expect` method, you had to call `#require` on the top level key name followed by calling `#permit` on the list of attributes. For example:
+Trước Rails 8, strong parameters được xử lý theo cách khác. Thay vì method `#expect`, bạn phải gọi `#require` trên tên key cấp cao nhất, rồi gọi `#permit` với danh sách thuộc tính. Ví dụ:
 
 ```ruby
 def allowed_post_params
@@ -176,25 +176,25 @@ def allowed_post_params
 end
 ```
 
-This way still works, but it has a couple of security flaws that motivated the development of `#expect`. But you will likely be exposed to this way of doing it through older projects, blog posts, and StackOverflow answers. Just know that this is serving the same function as the new `#expect` method.
+Cách này vẫn hoạt động, nhưng có một vài lỗ hổng bảo mật, là động lực thúc đẩy việc phát triển `#expect`. Tuy nhiên, bạn có thể sẽ gặp cách làm này trong các dự án cũ, bài blog và câu trả lời trên StackOverflow. Chỉ cần biết rằng nó thực hiện cùng chức năng với method `#expect` mới.
 
 </div>
 
-### Flash
+### Flash message
 
-The last piece of code we need to write there is how to set our special messages for the user. Rails gives you a neat tool for sending success and error messages (like the little green message that briefly appears at the top of an application to congratulate you for signing up) called the "flash". It acts just like a hash -- you can set its keys to a specific message and then that will be available for you to access if you want to display it in your views.
+Phần code cuối cùng chúng ta cần viết ở đây là cách thiết lập các thông báo đặc biệt cho người dùng. Rails cung cấp một công cụ tiện lợi để gửi thông báo thành công và lỗi (chẳng hạn thông báo màu xanh lá nhỏ xuất hiện thoáng qua ở đầu ứng dụng để chúc mừng bạn đăng ký thành công), gọi là "flash". Nó hoạt động giống một hash -- bạn có thể gán cho các key của nó những thông báo cụ thể, rồi truy cập chúng nếu muốn hiển thị trong view.
 
-You can use any keys you want for the flash, but it's conventional to just stick to three, `:success`, `:error`, and `:notice`. So the success message above might look like `flash[:success] = "Great! Your post has been created!"`.
+Bạn có thể dùng bất kỳ key nào cho flash, nhưng theo thông lệ, người ta thường chỉ dùng ba key là `:success`, `:error` và `:notice`. Vì vậy, thông báo thành công ở trên có thể được viết là `flash[:success] = "Great! Your post has been created!"`.
 
-The reason you can use any key is because you will have to write a snippet of code in your view anyway to display the flash, but sticking to the conventional ones is good practice. The other sneaky trick with the flash is that it automatically erases itself once you've used it, so you don't have to worry about it displaying every time you visit a new page... one time use. Like Snapchat.
+Lý do bạn có thể dùng bất kỳ key nào là vì dù sao bạn cũng phải viết một đoạn code trong view để hiển thị flash, nhưng bám theo các key thông dụng vẫn là thực hành tốt. Một mẹo thú vị khác của flash là nó tự động xóa sau khi được sử dụng, nên bạn không phải lo nó hiển thị mỗi lần truy cập trang mới... chỉ dùng một lần. Giống Snapchat.
 
-One last distinction, though, goes back to the difference between a redirect and a render. Remember, a redirect submits a completely new HTTP request, effectively leaving our application in the dust and starting over from the top. We lose all our data... except for the flash. The flash is specifically designed to travel with that HTTP request so you have access to it when you get redirected to the next page.
+Tuy nhiên, còn một điểm phân biệt cuối cùng liên quan tới sự khác nhau giữa redirect và render. Hãy nhớ rằng redirect gửi một HTTP request hoàn toàn mới, về cơ bản rời bỏ ứng dụng hiện tại và bắt đầu lại từ đầu. Chúng ta mất toàn bộ dữ liệu... ngoại trừ flash. Flash được thiết kế đặc biệt để đi cùng HTTP request đó, nhờ vậy bạn vẫn có thể truy cập nó khi được redirect sang trang tiếp theo.
 
-Render doesn't go that far -- it just uses a view file that's part of your application's normal flow and you have access to all your instance variables in that file. Because the flash is special, you actually have to use `flash.now` instead of `flash` when you are just rendering a view instead of submitting a whole new request. That would look like `flash.now[:error] = "Rats! Fix your mistakes, please."`.
+Render không đi xa đến vậy -- nó chỉ dùng một file view thuộc luồng bình thường của ứng dụng, và bạn có quyền truy cập mọi biến instance trong file đó. Vì flash là một trường hợp đặc biệt, khi chỉ render view thay vì gửi một request hoàn toàn mới, bạn phải dùng `flash.now` thay cho `flash`. Cách viết sẽ là `flash.now[:error] = "Rats! Fix your mistakes, please."`.
 
-The distinction between `flash` and `flash.now` just lets Rails know when it will need to make the flash available to you... if you used `flash` when you should have used `flash.now`, you'll just start seeing your messages showing up a "page too late" and it should be obvious what went wrong.
+Sự phân biệt giữa `flash` và `flash.now` chỉ giúp Rails biết khi nào cần cung cấp flash cho bạn... nếu dùng `flash` ở nơi lẽ ra phải dùng `flash.now`, bạn sẽ bắt đầu thấy thông báo xuất hiện "trễ một trang", và khi đó nguyên nhân chắc sẽ khá rõ.
 
-Now the full controller code can be written out for our `#create` action:
+Bây giờ, toàn bộ code controller cho action `#create` có thể được viết như sau:
 
 ```ruby
   # app/controllers/posts_controller.rb
@@ -222,21 +222,21 @@ Now the full controller code can be written out for our `#create` action:
   end
 ```
 
-So that action did a fair bit of stuff -- grab the form data, make a new post, try to save the post, set up a success message and redirect you to the post if it works, and handle the case where it doesn't work by berating you for your foolishness and re-rendering the form. A lot of work for only 10 lines of Ruby. Now that's smart controlling.
+Như vậy, action đó đã làm khá nhiều việc -- lấy dữ liệu form, tạo một post mới, thử lưu post, thiết lập thông báo thành công và redirect tới post nếu thành công, đồng thời xử lý trường hợp thất bại bằng cách mắng bạn vì sự ngớ ngẩn rồi render lại form. Chỉ 10 dòng Ruby mà làm được cả đống việc. Đó mới là điều khiển thông minh.
 
-### Assignment
+### Bài tập
 
-That's really just a taste of the Rails controller, but you should have a pretty good idea of what's going on and what tricks you can use.
+Đây mới chỉ là phần làm quen với Rails controller, nhưng hẳn bạn đã có ý niệm khá rõ về những gì đang diễn ra và những thủ thuật có thể sử dụng.
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read the [Rails Guides chapter on Controllers](http://guides.rubyonrails.org/action_controller_overview.html), sections 1 - 4.3 and section 6.2. We'll cover sessions (section 6.1) more in the future so don't worry about them now.
+  1. Đọc [chương Controllers trong Rails Guides](http://guides.rubyonrails.org/action_controller_overview.html), các mục 1 - 4.3 và mục 6.2. Chúng ta sẽ học kỹ hơn về session (mục 6.1) sau, nên hiện tại bạn chưa cần lo về phần đó.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ trợ.
 
-- [Controller & Routes Video Demo](https://vimeo.com/168501163)
-- [Rails 3 Rendering and Partials via YouTube](http://www.youtube.com/watch?v=m-tw2OCHPMI)
+- [Video minh họa Controller và Routes](https://vimeo.com/168501163)
+- [Rails 3 Rendering và Partials qua YouTube](http://www.youtube.com/watch?v=m-tw2OCHPMI)

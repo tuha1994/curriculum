@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-In the databases sections, you learned about how a relational database like SQLite3 or PostgreSQL lets you link two tables together using their primary keys -- a table's key that references another table is called a foreign key. It's the real power of relational databases that they let you leverage these, well, relationships. Active Record takes that feature and lets you use it in all kinds of useful ways. Do you want to get all of your first user's blog posts? Try `User.first.posts`. It's as simple as that. That functionality doesn't come out of the box -- you need to tell Rails that posts actually belong to a user. This is accomplished with *associations*.
+Trong các phần về cơ sở dữ liệu, bạn đã học cách một cơ sở dữ liệu quan hệ như SQLite3 hoặc PostgreSQL cho phép liên kết hai bảng với nhau bằng khóa chính của chúng — khóa của một bảng tham chiếu đến bảng khác được gọi là khóa ngoại. Sức mạnh thực sự của cơ sở dữ liệu quan hệ nằm ở việc chúng cho phép bạn tận dụng những, ừm, mối quan hệ này. Bạn muốn lấy tất cả bài đăng blog của người dùng đầu tiên? Hãy thử `User.first.posts`. Đơn giản vậy thôi. Chức năng đó không tự nhiên có sẵn — bạn cần nói cho Rails biết rằng các bài đăng thực sự thuộc về một người dùng. Việc này được thực hiện bằng *các liên kết*.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- What associations are.
-- How to specify associations.
-- The importance of setting up your data model and how to do it.
-- One-to-many relationships.
-- Many-to-many relationships.
+- Liên kết là gì.
+- Cách chỉ định các liên kết.
+- Tầm quan trọng của việc thiết lập mô hình dữ liệu và cách thực hiện việc đó.
+- Quan hệ một-nhiều.
+- Quan hệ nhiều-nhiều.
 
-### What are associations?
+### Liên kết là gì?
 
-Associations are Rails' way of establishing relationships between tables. Conceptually, it makes sense that e.g. a Post would belong to a User. Declaring associations also helps streamline certain operations, such as adding or removing data. For example, once an association has been declared, one can intuitively and explicitly add a new post with `@post = @user.posts.create(title: "New Post Title", content: "Content of the new post")`. Or, if we’re interested in a user’s posts, we just have to query the posts table for all posts that link back to that user’s ID, with `User.find(user_id).posts`. Additionally, associations are Rails' way of abstracting away foreign key relationships. On the database table level, every row in the posts table will have a column for `user_id` that tells you which user "owns" that post. The users table doesn't need to acknowledge the posts at all... after all, a single user can have an infinite number of posts.
+Liên kết là cách Rails thiết lập mối quan hệ giữa các bảng. Về mặt khái niệm, việc một Post thuộc về một User là điều hợp lý. Việc khai báo liên kết cũng giúp đơn giản hóa một số thao tác, chẳng hạn như thêm hoặc xóa dữ liệu. Ví dụ, sau khi đã khai báo một liên kết, bạn có thể trực tiếp và dễ hiểu thêm một bài đăng mới bằng `@post = @user.posts.create(title: "New Post Title", content: "Content of the new post")`. Hoặc nếu quan tâm đến các bài đăng của một người dùng, chúng ta chỉ cần truy vấn bảng posts để lấy tất cả bài đăng liên kết ngược về ID của người dùng đó bằng `User.find(user_id).posts`. Ngoài ra, liên kết là cách Rails trừu tượng hóa các mối quan hệ khóa ngoại. Ở cấp độ bảng cơ sở dữ liệu, mỗi hàng trong bảng posts sẽ có một cột `user_id` cho biết người dùng nào “sở hữu” bài đăng đó. Bảng users không cần biết đến các bài đăng — suy cho cùng, một người dùng có thể có vô số bài đăng.
 
-### How to specify an association
+### Cách chỉ định một liên kết
 
-Our posts-user example has an aptly named "has many / belongs to" association. A User `has_many` Post objects associated with it, and a Post `belongs_to` a single User. Rails makes these relationships very easy to specify. You can establish the association between models by defining the association in your model files. Here's what the associations will look like in your codebase:
+Ví dụ về posts-user của chúng ta có một liên kết mang tên rất phù hợp là “has many / belongs to”. Một User `has_many` đối tượng Post được liên kết với nó, còn một Post `belongs_to` một User duy nhất. Rails giúp việc chỉ định các mối quan hệ này trở nên rất dễ dàng. Bạn có thể thiết lập liên kết giữa các model bằng cách định nghĩa liên kết trong các tệp model của mình. Các liên kết trong mã nguồn của bạn sẽ có dạng như sau:
 
-In `app/models/user.rb`:
+Trong `app/models/user.rb`:
 
 ```ruby
 class User < ApplicationRecord
@@ -28,7 +28,7 @@ class User < ApplicationRecord
 end
 ```
 
-In `app/models/post.rb`:
+Trong `app/models/post.rb`:
 
 ```ruby
 class Post < ApplicationRecord
@@ -36,38 +36,38 @@ class Post < ApplicationRecord
 end
 ```
 
-### Setting up your data model
+### Thiết lập mô hình dữ liệu
 
-Step one with understanding this stuff is just to think about which different types of relationships are possible. Remember, half the battle of setting up your application is understanding what your data relationships will look like, so give this some thought and keep at it when it gets confusing. If your mind is a bit fried right now, start back in the real world and don’t think about it on a database level – remember, all this stuff is our attempt to reflect the kinds of relationships that can occur in the real world.
+Bước đầu tiên để hiểu nội dung này chỉ đơn giản là suy nghĩ về những loại mối quan hệ khác nhau có thể tồn tại. Hãy nhớ rằng một nửa công sức để thiết lập ứng dụng nằm ở việc hiểu các mối quan hệ dữ liệu của bạn sẽ trông như thế nào, vì vậy hãy suy nghĩ kỹ và tiếp tục cố gắng ngay cả khi mọi thứ trở nên khó hiểu. Nếu đầu óc bạn đang hơi quá tải, hãy bắt đầu từ thế giới thực và đừng nghĩ ở cấp độ cơ sở dữ liệu — hãy nhớ rằng tất cả những điều này là nỗ lực phản ánh các kiểu quan hệ có thể xảy ra trong thế giới thực.
 
-### One-to-many relationships
+### Quan hệ một-nhiều
 
-The `has_many` / `belongs_to`, or a "one-to-many", relationship is pretty common, and usually easiest to think of in terms of actual objects... a Child can have many Marble objects, each of which belongs to that Child. But it also applies in slightly less intuitive cases, like where a single object `belongs_to` multiple other objects. An example would be a FranchiseLocation for a McDonalds, which `belongs_to` the Corporation McDonalds but might also `belongs_to` the City San Francisco.
+Quan hệ `has_many` / `belongs_to`, hay quan hệ “một-nhiều”, khá phổ biến và thường dễ hình dung nhất khi nghĩ đến các đối tượng thực tế... một Child có thể có nhiều đối tượng Marble, mỗi đối tượng trong số đó thuộc về Child đó. Tuy nhiên, quan hệ này cũng áp dụng trong những trường hợp kém trực quan hơn một chút, chẳng hạn một đối tượng duy nhất `belongs_to` nhiều đối tượng khác. Ví dụ có thể là một FranchiseLocation của McDonalds, vừa `belongs_to` Corporation McDonalds vừa có thể `belongs_to` City San Francisco.
 
-It’s clear that it should belong to its corporate parent, but why does it belong to a City too? It’s often easier to think of it from the opposite perspective – a City can certainly have many FranchiseLocation objects. As long as a FranchiseLocation can only be in a single city, it effectively “belongs_to” that city in the way that Rails describes it.
+Rõ ràng FranchiseLocation nên thuộc về công ty mẹ, nhưng tại sao nó cũng thuộc về một City? Thường sẽ dễ nghĩ theo chiều ngược lại hơn — một City chắc chắn có thể có nhiều đối tượng FranchiseLocation. Miễn là một FranchiseLocation chỉ có thể nằm trong một thành phố duy nhất, về bản chất nó “belongs_to” thành phố đó theo cách Rails mô tả.
 
-A key distinction here is that we're not talking about how many Post objects a User *currently* has or how many FranchiseLocation objects a City *currently* has, we're trying to model how many they *COULD* have over the entire lifetime of your application. Sure, if your User only has one Post now, you could reference that post's ID in your user table. Then when he has another Post, you'd have to create another table column to fit that ID. And another. And another. Which doesn't make a lick of sense... so that's why we say the User `has_many :posts` and let the Posts table reference in the User's ID, since a post will only ever have one User associated with it (assuming you only have one author).
+Một điểm phân biệt quan trọng là chúng ta không nói đến việc một User *hiện đang* có bao nhiêu đối tượng Post, hay một City *hiện đang* có bao nhiêu đối tượng FranchiseLocation; chúng ta đang cố mô hình hóa số lượng mà chúng *CÓ THỂ* có trong toàn bộ vòng đời của ứng dụng. Nếu User hiện chỉ có một Post, bạn có thể tham chiếu ID của bài đăng đó trong bảng user. Nhưng khi người dùng có thêm một Post khác, bạn sẽ phải tạo thêm một cột trong bảng để chứa ID đó. Rồi thêm một cột nữa. Và thêm nữa. Điều đó hoàn toàn vô lý... vì vậy chúng ta nói User `has_many :posts` và để bảng Posts tham chiếu đến ID của User, bởi một bài đăng sẽ chỉ luôn gắn với một User (giả sử bài đăng chỉ có một tác giả).
 
-### Many-to-many relationships
+### Quan hệ nhiều-nhiều
 
-Another common relationship is the many-to-many relationship, which can also be called `has_and_belongs_to_many` in Rails terms. This often comes up in actual relationships -- a Human can have many favorite Dog objects, and each Dog object can have many favorite Human objects. In this case, how would you specify which Dog objects are your favorites? It actually requires you to create another table (a join table, or "through" table) that specifically keeps track of all those relationships. It's a bit wonky to understand when you're learning but it becomes second nature once you've been at it for a short while.
+Một quan hệ phổ biến khác là quan hệ nhiều-nhiều, trong thuật ngữ Rails cũng có thể gọi là `has_and_belongs_to_many`. Quan hệ này thường xuất hiện trong các mối quan hệ thực tế — một Human có thể có nhiều đối tượng Dog yêu thích, và mỗi Dog cũng có thể có nhiều đối tượng Human yêu thích. Trong trường hợp này, bạn sẽ chỉ định những Dog nào là các đối tượng yêu thích của mình như thế nào? Thực tế, bạn cần tạo thêm một bảng khác (bảng nối, hay bảng “through”) để chuyên theo dõi tất cả các mối quan hệ đó. Khi mới học, khái niệm này hơi khó hiểu, nhưng sau một thời gian làm quen, nó sẽ trở nên hoàn toàn tự nhiên.
 
-### Conclusion
+### Kết luận
 
-Pretty soon you'll start thinking of the world around you in terms of these relationships (if you don't take enough breaks). The real power of them comes when you actually need to use them -- when you want to retrieve data about all the objects that are associated with another. Do you want to see a list of all your X (formerly known as Twitter) followers? Do you want to count up all the classmates you had from high school who are living in the same city as you now? Do you want to see all the comments one of your users left on another user's timelines? All of these things are relatively simple and intuitive once you've actually set up the appropriate data relationships. So focus on understanding these relationships.
+Chẳng bao lâu nữa, bạn sẽ bắt đầu nhìn thế giới xung quanh dưới góc độ những mối quan hệ này (nếu bạn không nghỉ giải lao đủ). Sức mạnh thực sự của chúng xuất hiện khi bạn cần sử dụng chúng — khi muốn truy xuất dữ liệu về tất cả các đối tượng được liên kết với một đối tượng khác. Bạn muốn xem danh sách tất cả người theo dõi X (trước đây có tên là Twitter) của mình? Bạn muốn đếm tất cả bạn học thời trung học hiện đang sống cùng thành phố với mình? Bạn muốn xem tất cả bình luận mà một người dùng đã để lại trên dòng thời gian của người dùng khác? Tất cả những việc này tương đối đơn giản và trực quan một khi bạn đã thiết lập các mối quan hệ dữ liệu phù hợp. Vì vậy, hãy tập trung hiểu những mối quan hệ này.
 
-Active Record is the most powerful part of Rails and also one of the trickiest to get the hang of. You need to be able to translate the real world into database tables, which takes a bit of time to become familiar with. The most difficult concepts for new beginners are usually associations, which you'll learn in upcoming lessons.
+Active Record là phần mạnh mẽ nhất của Rails, đồng thời cũng là một trong những phần khó nắm bắt nhất. Bạn cần có khả năng chuyển thế giới thực thành các bảng cơ sở dữ liệu, và việc đó cần một khoảng thời gian để trở nên quen thuộc. Những khái niệm khó nhất đối với người mới bắt đầu thường là các liên kết, và bạn sẽ học về chúng trong những bài học sắp tới.
 
-It's easiest to start thinking about concrete relationships in the real world and then turning them into Active Record associations. Once you're comfortable with which model `has_many` of which other model and who actually `belongs_to` the other, you can start modeling more abstract concepts like, say, event invitations and invitation acceptances, which aren't as straightforward as a Child and his marbles (the example we used above).
+Cách dễ nhất là bắt đầu suy nghĩ về các mối quan hệ cụ thể trong thế giới thực, rồi chuyển chúng thành các liên kết Active Record. Khi đã thấy thoải mái với việc model nào `has_many` model nào khác và thực sự ai `belongs_to` ai, bạn có thể bắt đầu mô hình hóa những khái niệm trừu tượng hơn, chẳng hạn lời mời tham gia sự kiện và việc chấp nhận lời mời — những thứ không trực quan bằng Child và các viên bi của nó (ví dụ chúng ta đã dùng ở trên).
 
-It's all about practice, so the projects from here on out will ask you to think through your model organization before getting started. Taking a few minutes to think through your relationships ahead of time is essential for getting started in the right direction when you begin writing code.
+Tất cả đều cần luyện tập, nên từ đây trở đi, các dự án sẽ yêu cầu bạn suy nghĩ về cách tổ chức model trước khi bắt đầu. Dành vài phút suy nghĩ trước về các mối quan hệ là điều thiết yếu để khởi đầu đúng hướng khi bạn bắt tay viết mã.
 
-### Assignment
+### Bài tập
 
-If you're a normal human, you're probably somewhere between "huh?" and "I hate you, stop teaching me stuff". Stick with it, the point here is to get you thinking of how to model relationships and give you exposure to them. The project will give you an opportunity to actually build what you've been learning and it should be a lot better once you've had that chance.
+Nếu bạn là một người bình thường, có lẽ hiện giờ bạn đang ở đâu đó giữa “hả?” và “Tôi ghét bạn, đừng dạy tôi nữa”. Hãy kiên trì; mục tiêu ở đây là giúp bạn suy nghĩ về cách mô hình hóa các mối quan hệ và làm quen với chúng. Dự án sẽ cho bạn cơ hội thực sự xây dựng những gì đã học, và mọi thứ sẽ dễ hiểu hơn nhiều sau khi bạn có cơ hội đó.
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the beginning of the [Rails Guides Associations Chapter](http://guides.rubyonrails.org/association_basics.html), just up until section 3.2. Everything after that we can save for later... the important thing is that you've seen the relationships and how they're set up.
+1. Đọc phần đầu của [chương Associations trong Rails Guides](http://guides.rubyonrails.org/association_basics.html), cho đến hết mục 3.2. Mọi nội dung sau đó có thể để dành cho sau... điều quan trọng là bạn đã thấy các mối quan hệ và cách thiết lập chúng.
 
 </div>

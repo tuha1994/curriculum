@@ -1,29 +1,29 @@
-### Introduction
+### Giới thiệu
 
-By now you should feel pretty good working with strings, arrays and hashes. We'll do a couple of classic "intro to programming" problems in the next few lessons to help solidify your knowledge and get warmed up to working on small projects. You'll need to rely on some of your basic knowledge of conditionals and flow control from the prep work but you shouldn't need to do anything you haven't seen before.
+Đến lúc này, bạn hẳn đã khá tự tin khi làm việc với chuỗi, mảng và hash. Trong vài bài học tiếp theo, chúng ta sẽ giải một số bài toán kinh điển dành cho phần "nhập môn lập trình" để củng cố kiến thức và làm quen với việc xây dựng các dự án nhỏ. Bạn sẽ cần vận dụng một số kiến thức cơ bản về câu lệnh điều kiện và điều khiển luồng trong phần chuẩn bị, nhưng không cần làm gì mà bạn chưa từng gặp trước đó.
 
 <div class="lesson-note" markdown="1">
 
-#### Different ways of writing and running Ruby code
+#### Các cách khác nhau để viết và chạy mã Ruby
 
-If you want to actually write and run your own Ruby code, you can either use IRB from the command line (type `irb` after the prompt), run it from a script file using `$ ruby ./your_file_name_in_the_current_directory.rb`, or use any other appropriate REPL.
+Nếu muốn thực sự viết và chạy mã Ruby của riêng mình, bạn có thể dùng IRB từ dòng lệnh (gõ `irb` sau dấu nhắc), chạy mã từ một tệp script bằng `$ ruby ./your_file_name_in_the_current_directory.rb`, hoặc dùng bất kỳ REPL phù hợp nào khác.
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Implement a method `#stock_picker` that takes in an array of stock prices, one for each hypothetical day. It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0.
+1. Hãy triển khai một phương thức `#stock_picker` nhận vào một mảng giá cổ phiếu, mỗi giá ứng với một ngày giả định. Phương thức cần trả về một cặp ngày tương ứng với ngày tốt nhất để mua và ngày tốt nhất để bán. Các ngày bắt đầu từ 0.
 
    ```ruby
      > stock_picker([17,3,6,9,15,8,6,1,10])
      => [1,4]  # for a profit of $15 - $3 == $12
    ```
 
-   **Quick Tips:**
+   **Mẹo nhanh:**
 
-   - You need to buy before you can sell
-   - Pay attention to edge cases like when the lowest day is the last day or the highest day is the first day.
+   - Bạn cần mua trước khi có thể bán
+   - Hãy chú ý đến những trường hợp đặc biệt, chẳng hạn khi ngày có giá thấp nhất là ngày cuối cùng hoặc ngày có giá cao nhất là ngày đầu tiên.
 
 </div>

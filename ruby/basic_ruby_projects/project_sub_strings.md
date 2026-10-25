@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-By now you should feel pretty good working with strings, arrays and hashes. We'll do a couple of classic "intro to programming" problems in the next few lessons to help solidify your knowledge and get warmed up to working on small projects. You'll need to rely on some of your basic knowledge of conditionals and flow control from the prep work but you shouldn't need to do anything you haven't seen before.
+Đến lúc này, bạn hẳn đã khá tự tin khi làm việc với chuỗi, mảng và hash. Trong vài bài học tiếp theo, chúng ta sẽ giải một số bài toán kinh điển dành cho phần "nhập môn lập trình" để củng cố kiến thức và làm quen với việc xây dựng các dự án nhỏ. Bạn sẽ cần vận dụng một số kiến thức cơ bản về câu lệnh điều kiện và điều khiển luồng trong phần chuẩn bị, nhưng không cần làm gì mà bạn chưa từng gặp trước đó.
 
 <div class="lesson-note" markdown="1">
 
-#### Different ways of writing and running Ruby code
+#### Các cách khác nhau để viết và chạy mã Ruby
 
-If you want to actually write and run your own Ruby code, you can either use IRB from the command line (type `irb` after the prompt), run it from a script file using `$ ruby ./your_file_name_in_the_current_directory.rb`, or use any other appropriate REPL.
+Nếu muốn thực sự viết và chạy mã Ruby của riêng mình, bạn có thể dùng IRB từ dòng lệnh (gõ `irb` sau dấu nhắc), chạy mã từ một tệp script bằng `$ ruby ./your_file_name_in_the_current_directory.rb`, hoặc dùng bất kỳ REPL phù hợp nào khác.
 
 </div>
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Implement a method `#substrings` that takes a word as the first argument and then an array of valid substrings (your dictionary) as the second argument. It should return a hash listing each substring (case insensitive) that was found in the original string and how many times it was found.
+1. Hãy triển khai một phương thức `#substrings` nhận một từ làm đối số đầu tiên, sau đó nhận một mảng các chuỗi con hợp lệ (từ điển của bạn) làm đối số thứ hai. Phương thức cần trả về một hash liệt kê từng chuỗi con (không phân biệt chữ hoa chữ thường) được tìm thấy trong chuỗi ban đầu và số lần chuỗi đó xuất hiện.
 
    ```ruby
      > dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
@@ -23,15 +23,15 @@ If you want to actually write and run your own Ruby code, you can either use IRB
      => { "below" => 1, "low" => 1 }
    ```
 
-   Next, make sure your method can handle multiple words:
+   Tiếp theo, hãy đảm bảo phương thức của bạn có thể xử lý nhiều từ:
 
    ```ruby
      > substrings("Howdy partner, sit down! How's it going?", dictionary)
      => { "down" => 1, "go" => 1, "going" => 1, "how" => 2, "howdy" => 1, "it" => 2, "i" => 3, "own" => 1, "part" => 1, "partner" => 1, "sit" => 1 }
    ```
 
-   **Quick Tips:**
+   **Mẹo nhanh:**
 
-   - Recall how to turn strings into arrays and arrays into strings.
+   - Hãy nhớ cách chuyển chuỗi thành mảng và mảng thành chuỗi.
 
 </div>

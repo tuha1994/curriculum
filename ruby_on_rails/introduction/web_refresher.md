@@ -1,72 +1,72 @@
-### Introduction
+### Giới thiệu
 
-To really understand how Rails works, you need to have a solid base in the guts of the web. You've already covered some of this in previous sections (and if you went through the Ruby curriculum you can just skim it), but this time you'll get a chance (in the project) to reach out and make some real web requests.
+Để thực sự hiểu Rails hoạt động như thế nào, bạn cần có nền tảng vững chắc về phần cốt lõi của web. Bạn đã học một số nội dung này trong các phần trước (và nếu đã học qua chương trình Ruby thì bạn chỉ cần đọc lướt), nhưng lần này bạn sẽ có cơ hội (trong dự án) tự mình thực hiện các request web thực tế.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan các chủ đề bạn sẽ học trong bài học.
 
-- The basics of HTTP.
-- The 4 most commonly used HTTP verbs.
-- The 7 RESTful routes of Rails.
-- The different components of a URL.
-- The basics of MVC.
-- What an API is.
-- What "cookies" and "sessions" are.
-- The difference between "authentication" and "authorization".
+- Những kiến thức cơ bản về HTTP.
+- 4 HTTP verb được sử dụng phổ biến nhất.
+- 7 route RESTful của Rails.
+- Các thành phần khác nhau của một URL.
+- Những kiến thức cơ bản về MVC.
+- API là gì.
+- “Cookie” và “session” là gì.
+- Sự khác nhau giữa “xác thực” và “phân quyền”.
 
 ### HTTP
 
-HTTP is just a way of structuring the request-and-response conversation between your browser and the server. Actually, it's not even a conversation since it is stateless... it's more of an "ask and receive". The protocol outlines how that brief piece of dialogue should occur.
+HTTP chỉ đơn giản là cách tổ chức cuộc trao đổi request và response giữa trình duyệt với server. Thực ra đây thậm chí không phải là một cuộc trò chuyện, vì nó stateless... đúng hơn là kiểu “yêu cầu và nhận lại”. Protocol quy định đoạn trao đổi ngắn này sẽ diễn ra như thế nào.
 
-Check out these resources:
+Hãy xem các tài nguyên sau:
 
-1. This [tutsplus post on HTTP](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177) describes what's going on with HTTP.
-1. This [sniffer tool](http://testuri.org/sniffer) - try retrieving a couple of websites (like `https://www.theodinproject.com/`) on your own.
-1. This video on how to [inspect network activity with Chrome DevTools](https://www.youtube.com/watch?v=e1gAyQuIFQo) helps you understand how to inspect web resources delivered over HTTP. Note that the Chrome DevTools UI has changed since this video was made, but you can still follow along for the most part as the core features remain the same. Use `https://www.theodinproject.com` to follow along instead of the `devtools.glitch.me` site they use in the video, which is no longer available.
+1. Bài [viết của tutsplus về HTTP](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177) mô tả những gì diễn ra với HTTP.
+1. [Công cụ sniffer](http://testuri.org/sniffer) này - hãy thử tự truy xuất một vài website (chẳng hạn như `https://www.theodinproject.com/`).
+1. Video hướng dẫn [kiểm tra hoạt động mạng bằng Chrome DevTools](https://www.youtube.com/watch?v=e1gAyQuIFQo) giúp bạn hiểu cách kiểm tra các tài nguyên web được truyền qua HTTP. Lưu ý rằng giao diện Chrome DevTools đã thay đổi kể từ khi video được thực hiện, nhưng phần lớn bạn vẫn có thể làm theo vì các tính năng cốt lõi vẫn giữ nguyên. Hãy dùng `https://www.theodinproject.com` để làm theo thay vì website `devtools.glitch.me` được sử dụng trong video, vì website đó không còn hoạt động.
 
-One key component to pay attention to is the fact that the request and response both have header and (usually) body components. The header contains information about the request or response itself (meta data), including which website to send or return to and what the status of the response is. The body of the request can contain things like data submitted by a form or cookies or authentication tokens while the response will usually contain the HTML page you're trying to access.
+Một thành phần quan trọng cần chú ý là cả request và response đều có phần header và (thường là) body. Header chứa thông tin về chính request hoặc response đó (siêu dữ liệu), bao gồm website cần gửi đến hoặc trả về và trạng thái của response. Body của request có thể chứa dữ liệu được gửi từ form, cookie hoặc token xác thực, trong khi response thường chứa trang HTML mà bạn đang cố truy cập.
 
-The other key component is that each request uses one of four main "verbs" -- GET, POST, PUT, and DELETE. These days, you almost only see GET and POST requests (even if you're trying to do a delete of something they usually fake it using a POST request), but it's important to understand the difference between the verbs.
+Thành phần quan trọng khác là mỗi request sử dụng một trong bốn “verb” chính -- GET, POST, PUT và DELETE. Ngày nay, bạn gần như chỉ thấy request GET và POST (ngay cả khi muốn xóa thứ gì đó, người ta thường giả lập thao tác này bằng request POST), nhưng hiểu được sự khác nhau giữa các verb vẫn rất quan trọng.
 
 ### REST
 
-REST (short for Representational state transfer) is a term that you'll see coming up again and again because it's a very powerful idea. It basically says that there are really only 7 different types of things that you usually want to do to an individual resource via the web and you can do them by mixing and matching the HTTP verbs we just covered. A "resource" usually means a "thing" in your database or a data model. In this case, we'll assume that resource is a blog Post model that you've set up:
+REST (viết tắt của Representational state transfer) là một thuật ngữ bạn sẽ gặp đi gặp lại vì đây là một ý tưởng rất mạnh mẽ. Về cơ bản, REST nói rằng thường chỉ có 7 loại thao tác bạn muốn thực hiện với một resource riêng lẻ qua web, và bạn có thể thực hiện chúng bằng cách kết hợp các HTTP verb vừa tìm hiểu. “Resource” thường có nghĩa là một “thứ” trong cơ sở dữ liệu hoặc một data model của bạn. Trong trường hợp này, hãy giả sử resource đó là một model Post của blog mà bạn đã thiết lập:
 
-1. GET all the posts (aka **"index"** the posts)
-1. GET just one specific post (aka **"show"** that post)
-1. GET the page that lets you create a new post (aka view the **"new"** post page)
-1. POST the data you just filled out for a new post back to the server so it can create that post (aka **"create"** the post)
-1. GET the page that lets you edit an existing post (aka view the **"edit"** post page)
-1. PUT (or PATCH) the data you just filled out for editing the post back to the server so it can actually perform the update (aka **"update"** the post)
-1. DELETE one specific post by sending a delete request to the server (aka **"destroy"** the post)
+1. GET tất cả bài viết (hay còn gọi là **“index”** các bài viết)
+1. GET chỉ một bài viết cụ thể (hay còn gọi là **“show”** bài viết đó)
+1. GET trang cho phép bạn tạo bài viết mới (hay còn gọi là xem trang **“new”** bài viết)
+1. POST dữ liệu bạn vừa điền cho bài viết mới trở lại server để server có thể tạo bài viết đó (hay còn gọi là **“create”** bài viết)
+1. GET trang cho phép bạn chỉnh sửa một bài viết hiện có (hay còn gọi là xem trang **“edit”** bài viết)
+1. PUT (hoặc PATCH) dữ liệu bạn vừa điền khi chỉnh sửa bài viết trở lại server để server thực sự cập nhật bài viết (hay còn gọi là **“update”** bài viết)
+1. DELETE một bài viết cụ thể bằng cách gửi request xóa đến server (hay còn gọi là **“destroy”** bài viết)
 
-The highlighted words correspond to standard Rails controller actions!
+Các từ được nhấn mạnh tương ứng với những controller action tiêu chuẩn của Rails!
 
-Why is this important? Because it gives you a very organized way of thinking about your resources. This is the way to model your requests and should be the ONLY way that those requests are done (e.g. you shouldn't be actually submitting the data for editing a post using a GET request... that should be a POST) If you have a hard time thinking of how those seven scenarios (or at least a subset of them) would apply to a resource you want to create in your database, you may need to rethink how your data is being set up.
+Điều này quan trọng vì nó cho bạn một cách rất có tổ chức để suy nghĩ về các resource. Đây là cách mô hình hóa request, và đó phải là cách DUY NHẤT để thực hiện các request ấy (ví dụ: bạn không nên thực sự gửi dữ liệu chỉnh sửa bài viết bằng request GET... việc đó phải dùng POST). Nếu gặp khó khăn khi hình dung bảy tình huống này (hoặc ít nhất một phần trong số đó) áp dụng cho resource bạn muốn tạo trong cơ sở dữ liệu như thế nào, có thể bạn cần suy nghĩ lại về cách thiết lập dữ liệu của mình.
 
-It's also important because Rails is structured to follow these conventions in a very straightforward way. As long as you're performing those actions, life is very easy for you and the request that you get from the browser can be easily routed through Rails' guts.
+Điều này cũng quan trọng vì Rails được xây dựng để tuân theo các quy ước này theo một cách rất trực tiếp. Miễn là bạn thực hiện những action đó, mọi việc sẽ rất dễ dàng và request nhận được từ trình duyệt có thể được định tuyến dễ dàng qua phần lõi của Rails.
 
-It may seem simplistic to you up front to think of things this way, but once you've got a bit of complexity in your data model, you'll find that falling back on RESTful thinking can help untangle things for you.
+Ban đầu, cách suy nghĩ này có thể có vẻ đơn giản hóa quá mức, nhưng khi data model của bạn trở nên phức tạp hơn một chút, bạn sẽ thấy việc quay về tư duy RESTful có thể giúp tháo gỡ các mối rối.
 
-### URLs
+### URL
 
-You may think you know what's in a URL, but which part is the host? protocol (aka scheme)? parameters? path?
+Bạn có thể nghĩ mình biết URL chứa những gì, nhưng đâu là host? protocol (hay scheme)? parameters? path?
 
-Check out this article by Matt Cutts on [how Googlers pick apart URL components](http://www.mattcutts.com/blog/seo-glossary-url-definitions/).
+Hãy xem bài viết của Matt Cutts về [cách các nhân viên Google phân tích từng thành phần của URL](http://www.mattcutts.com/blog/seo-glossary-url-definitions/).
 
-#### Quick quiz
+#### Câu hỏi nhanh
 
-The URL is: <https://www.google.com/search?q=what+is+a+url>
+URL là: <https://www.google.com/search?q=what+is+a+url>
 
-1. What is the "Path"?
-1. What is the "Parameter" portion?
-1. What is the "Top Level Domain"?
-1. What is the "Protocol"?
+1. “Path” là gì?
+1. Phần “Parameter” là gì?
+1. “Top Level Domain” là gì?
+1. “Protocol” là gì?
 
-Once you understand what these components are, you can easily use Ruby's libraries to help you build your own and send requests. You also run into specific pieces like the "path" and "parameters" again and again when using Rails.
+Khi đã hiểu các thành phần này là gì, bạn có thể dễ dàng sử dụng các thư viện của Ruby để giúp xây dựng và gửi request của riêng mình. Khi dùng Rails, bạn cũng sẽ liên tục gặp lại những phần cụ thể như “path” và “parameters”.
 
-Answers:
+Đáp án:
 
 1. /search
 1. q=what+is+a+url
@@ -75,80 +75,80 @@ Answers:
 
 ### MVC
 
-You've heard about it again and again, but do you really know what MVC is? Errrrmmmmm, ummm....
+Bạn đã nghe về nó hết lần này đến lần khác, nhưng bạn có thực sự biết MVC là gì không? Errrrmmmmm, ummm....
 
-MVC is all about organization and Rails is all about MVC. When you build a new Rails project, you get that giant mass of folders and files created. Though it seems like there is an overwhelming number of files inside your `app` directory, they are highly organized and specifically meant to separate the Model, View, and Controller.
+MVC xoay quanh việc tổ chức, còn Rails xoay quanh MVC. Khi xây dựng một project Rails mới, bạn sẽ có cả một khối khổng lồ các thư mục và tệp được tạo ra. Dù số lượng tệp bên trong thư mục `app` có vẻ áp đảo, chúng được tổ chức rất chặt chẽ và được tạo ra cụ thể để tách biệt Model, View và Controller.
 
-The point of MVC is that the functions of a web application can be broken down into more or less distinct parts. Each part gets its own Ruby class. That's great for you the developer because, when you want to tweak a specific part of the code base or fix a bug, you know exactly which file to modify and where it is.
+Mục đích của MVC là chia các chức năng của một ứng dụng web thành những phần tương đối độc lập. Mỗi phần có class Ruby riêng. Điều đó rất có lợi cho bạn với tư cách developer, vì khi muốn chỉnh sửa một phần cụ thể của code base hoặc sửa một bug, bạn biết chính xác cần sửa tệp nào và nó nằm ở đâu.
 
-### The path through MVC
+### Luồng đi qua MVC
 
-Once a request from a browser comes into your application, at the most basic level:
+Ở mức cơ bản nhất, khi một request từ trình duyệt đi vào ứng dụng:
 
-1. The router figures out which controller to send it to (e.g. for your blog, the Posts controller).
-1. That controller asks the model (e.g. Post model) for data and any other tough questions it has.
-1. Then that controller passes off whatever data it needs to the views (e.g. `index.html.erb`), which are basically just HTML templates that are waiting for those variables.
-1. Once the proper view has been pumped full of the data it needs (like the current user's name), it gets sent back to the client that made the original request. Presto!
+1. Router xác định controller nào sẽ nhận request (ví dụ: với blog của bạn là controller Posts).
+1. Controller đó yêu cầu model (ví dụ: model Post) cung cấp dữ liệu và trả lời mọi câu hỏi hóc búa khác mà nó có.
+1. Sau đó controller chuyển mọi dữ liệu cần thiết cho các view (ví dụ: `index.html.erb`), về cơ bản là những template HTML đang chờ các biến đó.
+1. Khi view phù hợp đã được bơm đầy đủ dữ liệu cần thiết (chẳng hạn tên người dùng hiện tại), nó được gửi trở lại client đã tạo request ban đầu. Xong!
 
-betterexplained.com has a [deeper explanation of MVC](http://betterexplained.com/articles/intermediate-rails-understanding-models-views-and-controllers/).
+betterexplained.com có [phần giải thích sâu hơn về MVC](http://betterexplained.com/articles/intermediate-rails-understanding-models-views-and-controllers/).
 
-To characterize the three (badly), the model is the supersmart geek in the back room, the controller is the social middleman that talks to everyone but doesn't really do anything too intensive (it asks the model in those cases), and the view just looks pretty and waits to get its outfit from the controller.
+Nếu mô tả sơ lược ba thành phần này, model là mọt sách siêu thông minh ở phòng phía sau, controller là người trung gian xã giao nói chuyện với tất cả mọi người nhưng không thực hiện việc gì quá nặng (trong những trường hợp đó, nó hỏi model), còn view chỉ cần trông đẹp mắt và chờ controller đưa cho mình “trang phục”.
 
-Just roll with it, you'll see it in action and learn to love it.
+Cứ tạm làm quen với cách này, bạn sẽ thấy nó hoạt động và học được cách yêu thích nó.
 
-### APIs
+### API
 
-When your computer or a server (which you're programming) wants to make a request to another website, it doesn't bother clicking on things in the browser, it asks that other website for data directly by using that website's API. An API is just an interface. Our web browser goes in the front door to display a bunch of info from Facebook, and our web server goes in the side door for the same data (much faster and more direct) via the API.
+Khi máy tính hoặc server (mà bạn đang lập trình) muốn gửi request đến một website khác, nó không bận tâm đến việc nhấp vào các thứ trong trình duyệt; nó trực tiếp yêu cầu website kia cung cấp dữ liệu bằng API của website đó. API chỉ đơn giản là một interface. Trình duyệt web của chúng ta đi qua cửa trước để hiển thị một loạt thông tin từ Facebook, còn web server đi qua cửa bên để lấy chính dữ liệu đó (nhanh hơn và trực tiếp hơn nhiều) thông qua API.
 
-So you want to get data from Google Maps to display on your webpage? You hit its API using the rules specified in its API documentation. Just about every big website makes some portion of its data available via an API and you can too quite easily using Rails.
+Bạn muốn lấy dữ liệu từ Google Maps để hiển thị trên trang web của mình? Bạn gọi API của nó theo các quy tắc được nêu trong tài liệu API. Hầu như mọi website lớn đều cung cấp một phần dữ liệu của mình thông qua API, và bạn cũng có thể dễ dàng làm điều tương tự bằng Rails.
 
-See this explanation (just the first section) on [What APIs are](http://money.howstuffworks.com/business-communications/how-to-leverage-an-api-for-conferencing1.htm) from howstuffworks.
+Hãy xem phần giải thích này (chỉ phần đầu tiên) về [API là gì](http://money.howstuffworks.com/business-communications/how-to-leverage-an-api-for-conferencing1.htm) từ howstuffworks.
 
-Not all APIs are web-based. Plenty of them use the same HTTP format but are really just designed to pass data between services. In fact, that's how the components of Rails are all strung together -- they use HTTP to communicate with each other.
+Không phải API nào cũng dựa trên web. Nhiều API sử dụng cùng định dạng HTTP nhưng thực sự chỉ được thiết kế để truyền dữ liệu giữa các service. Trên thực tế, đó là cách các thành phần của Rails được kết nối với nhau -- chúng dùng HTTP để giao tiếp.
 
-You'll actually get a chance to build your own API a little later on, and Rails makes it really easy for you. There's nothing magical about it -- you just tell your controller that you want to respond to requests made by other servers instead of (or in addition to) normal web requests and then specify what exactly you'd like returned (since it probably won't be an HTML view).
+Sau này một chút, bạn sẽ có cơ hội tự xây dựng API, và Rails khiến việc đó rất dễ dàng. Không có gì thần kỳ cả -- bạn chỉ cần nói với controller rằng bạn muốn phản hồi các request do server khác gửi đến thay vì (hoặc bên cạnh) các request web thông thường, rồi chỉ định chính xác dữ liệu bạn muốn trả về (vì có lẽ nó sẽ không phải là một view HTML).
 
-But we get ahead of ourselves a bit here... the main point is that you'll see "API" come up plenty of times and it's totally harmless and just means the way that two applications talk to each other.
+Nhưng chúng ta đang đi hơi xa ở đây... điểm chính là bạn sẽ thấy “API” xuất hiện rất nhiều lần, và nó hoàn toàn không đáng sợ; nó chỉ có nghĩa là cách hai ứng dụng giao tiếp với nhau.
 
-### Cookies
+### Cookie
 
-You've heard about cookies. Cookies are basically a way for websites to remember who you are from one request to another. Remember -- every HTTP request is totally independent of each other. Meaning that when you go to the Home page of a website and then click on a link to their About page, the web server treats you as a completely new user.
+Bạn đã nghe nói về cookie. Về cơ bản, cookie là cách để website ghi nhớ bạn là ai từ request này sang request khác. Hãy nhớ -- mỗi request HTTP hoàn toàn độc lập với các request khác. Nghĩa là khi bạn vào trang Home của một website rồi nhấp vào liên kết đến trang About, web server sẽ xem bạn như một người dùng hoàn toàn mới.
 
-...Unless they've given you some cookies (which they almost certainly have). Cookies are little bits of data that your browser sends to the website every time you make a request to it. From the perspective of the web server, it lets the server identify you as the same person who made any of a series of previous requests. It preserves the *state* of your session.
+...Trừ khi website đã cấp cho bạn cookie (điều gần như chắc chắn đã xảy ra). Cookie là những mẩu dữ liệu nhỏ mà trình duyệt gửi đến website mỗi lần bạn request đến đó. Từ góc nhìn của web server, cookie cho phép server nhận ra bạn chính là người đã thực hiện bất kỳ request nào trong chuỗi các request trước đó. Nó duy trì *trạng thái* của session.
 
-Check out [allaboutcookies.org](http://www.allaboutcookies.org/) and read the first three sections for some more info about cookies.
+Hãy xem [allaboutcookies.org](http://www.allaboutcookies.org/) và đọc ba phần đầu để biết thêm thông tin về cookie.
 
-The [Wikipedia article on cookies](http://en.wikipedia.org/wiki/HTTP_cookie) may also be helpful reading.
+[Bài viết trên Wikipedia về cookie](http://en.wikipedia.org/wiki/HTTP_cookie) cũng có thể hữu ích.
 
-Go to a website you normally frequent, open up your developer tools, and find the cookies. In Chrome, it's by clicking on "Application" tab then "cookies" on the leftmost menu. You'll see them as name-value pairs. Often there will be something like a "user_session" or "token" variable that is some unintelligible string of characters.
+Hãy truy cập một website bạn thường dùng, mở developer tools và tìm các cookie. Trong Chrome, bạn có thể làm vậy bằng cách nhấp vào tab “Application”, sau đó chọn “cookies” ở menu ngoài cùng bên trái. Bạn sẽ thấy chúng dưới dạng các cặp name-value. Thường sẽ có một biến như “user_session” hoặc “token” chứa một chuỗi ký tự không thể hiểu nổi.
 
-### Sessions
+### Session
 
-Cookies are important because they enable you to have a single continuous "session" while you're interacting with a website. It means you only have to log in once instead of for every single request (which you probably experienced from a broken website at some point in the late 90's).
+Cookie quan trọng vì chúng cho phép bạn có một “session” liên tục trong suốt quá trình tương tác với website. Điều đó có nghĩa là bạn chỉ cần đăng nhập một lần thay vì đăng nhập trong từng request (điều mà có lẽ bạn từng trải qua với một website bị lỗi nào đó vào cuối những năm 90).
 
-Your browser includes all the cookies that a particular website has set along with its normal request and the server uses those strings to figure out which user you are and whether you are logged in, what your settings are (like if you've set up viewing preferences) and things like that. It's also why, when you clear cookies from your browser history, everything seems to get wiped out and go back to the default.
+Trình duyệt gửi toàn bộ cookie mà một website cụ thể đã thiết lập cùng với request thông thường, và server dùng các chuỗi đó để xác định bạn là người dùng nào, bạn đã đăng nhập hay chưa, cài đặt của bạn là gì (chẳng hạn bạn đã thiết lập tùy chọn hiển thị ra sao), v.v. Đây cũng là lý do khi bạn xóa cookie khỏi lịch sử trình duyệt, mọi thứ dường như bị xóa sạch và trở về mặc định.
 
-It's also how some ads seem to follow you from one website to another -- another name for them is "tracking cookies".
+Đó cũng là cách một số quảng cáo dường như bám theo bạn từ website này sang website khác -- một tên gọi khác của chúng là “tracking cookie”.
 
-### Authentication
+### Xác thực
 
-On the server side, you'll interact with cookies and session variables quite a bit. As mentioned above, one of the main uses of these is to determine who the user is, or "authentication". You'll basically retrieve the cookie that the user sends you, use it to find that user in your database, and (if the user exists) then you can display the customized web page for that user.
+Ở phía server, bạn sẽ tương tác khá nhiều với cookie và biến session. Như đã đề cập ở trên, một trong những công dụng chính của chúng là xác định người dùng là ai, hay “xác thực”. Về cơ bản, bạn sẽ lấy cookie mà người dùng gửi cho mình, dùng nó để tìm người dùng đó trong cơ sở dữ liệu, rồi (nếu người dùng tồn tại) hiển thị trang web được tùy chỉnh cho người dùng ấy.
 
-It's pretty straightforward in theory, but some of the security implications get a bit hairy so luckily some nice folks created a very [handy gem called Devise](https://github.com/heartcombo/devise) which takes care of all this stuff for you. In this curriculum (a bit later on), you'll be creating your own authentication system before learning how to use Devise to take care of the heavy lifting.
+Về lý thuyết, việc này khá đơn giản, nhưng một số vấn đề bảo mật có thể trở nên phức tạp, nên may mắn là có những người tốt bụng đã tạo ra một [gem tiện dụng có tên Devise](https://github.com/heartcombo/devise) để xử lý toàn bộ việc này cho bạn. Trong chương trình học này (ở phần sau), bạn sẽ tự tạo hệ thống xác thực của riêng mình trước khi học cách dùng Devise để đảm nhiệm phần việc nặng nhọc.
 
-### Authorization
+### Phân quyền
 
-Authorization is the partner concept to Authentication... Authentication lets you determine WHO the user is, but the idea behind authorization is that you might limit what the person can see based on their permission level. The most common case of this is actually the distinction between a random not-logged-in user and one who is logged in. Another common case of this is the difference between regular users of a website and the admin users who have special privileges.
+Phân quyền là khái niệm đi đôi với xác thực... Xác thực cho phép bạn xác định người dùng là ai, còn ý tưởng đằng sau phân quyền là bạn có thể giới hạn những gì người đó được xem dựa trên cấp quyền của họ. Trường hợp phổ biến nhất thực ra là sự khác biệt giữa một người dùng ngẫu nhiên chưa đăng nhập và một người đã đăng nhập. Một trường hợp phổ biến khác là sự khác biệt giữa người dùng thông thường của website và người dùng admin có các đặc quyền riêng.
 
-On the server side, you will end up writing (or using) methods which restrict access to certain types of actions based on who the current user is (or whether the requester is logged in at all). Again, Devise will help you with this by providing some of these helper methods (like for checking whether any user is logged in or who the current user is) for you.
+Ở phía server, cuối cùng bạn sẽ viết (hoặc sử dụng) các method giới hạn quyền truy cập vào một số loại action nhất định dựa trên người dùng hiện tại là ai (hoặc liệu người gửi request có đăng nhập hay không). Một lần nữa, Devise sẽ giúp bạn việc này bằng cách cung cấp sẵn một số helper method (chẳng hạn để kiểm tra có người dùng nào đang đăng nhập hay kiểm tra người dùng hiện tại là ai).
 
-### Conclusion
+### Kết luận
 
-We'll dig into this stuff a bit later, but it's good to understand in the context of what we talked about before in regards to how requests are made because it brings a couple of extra layers onto these formerly-independent HTTP requests. Authentication systems allow you to establish sessions which preserve the user's state (like logged in status) across requests and helps you determine whether the user is authorized to do a particular thing.
+Chúng ta sẽ tìm hiểu sâu hơn về những nội dung này sau, nhưng việc hiểu chúng trong bối cảnh những gì đã nói về cách request được tạo ra là rất hữu ích, vì chúng bổ sung một vài lớp lên các request HTTP vốn trước đây độc lập với nhau. Hệ thống xác thực cho phép bạn thiết lập các session để duy trì trạng thái của người dùng (chẳng hạn trạng thái đã đăng nhập) qua nhiều request, đồng thời giúp bạn xác định người dùng có được phép thực hiện một việc nào đó hay không.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- [HTTP explained by Harvard's David Malan](http://www.youtube.com/watch?v=8KuO4r5CHjM)
-- [HTTP Request/Response Basics](http://justahelp.blogspot.com/2013/09/http-requestresponse-basics.html) from Pralay Roy
+- [HTTP được giải thích bởi David Malan của Harvard](http://www.youtube.com/watch?v=8KuO4r5CHjM)
+- [Kiến thức cơ bản về HTTP Request/Response](http://justahelp.blogspot.com/2013/09/http-requestresponse-basics.html) của Pralay Roy

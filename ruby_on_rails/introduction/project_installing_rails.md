@@ -1,52 +1,52 @@
-### Introduction
+### Giới thiệu
 
-Ready to jump into Rails? Let's get started by installing it and creating your first Rails application!
+Sẵn sàng bắt đầu với Rails chưa? Hãy bắt đầu bằng việc cài đặt Rails và tạo ứng dụng Rails đầu tiên của bạn!
 
-Before continuing, let's review a few best practices to keep in mind:
+Trước khi tiếp tục, hãy cùng xem lại một số cách làm tốt cần ghi nhớ:
 
-- Follow the directions closely, and don't skip over any sections.
-- **Do NOT use `sudo` unless The Odin Project specifically says to do so.** Failing to follow this advice can cause *a lot* of headaches. In some instances, you might see a message in the terminal telling you to use `sudo` and/or to install something with `apt`. **Ignore what the terminal says** and follow the instructions below.
-- Copy and paste the commands to avoid typos.
-- If you stop working on this project partway through and come back to it later, be sure to use `cd` to move back inside your project directory so that the commands will work.
+- Làm theo hướng dẫn thật cẩn thận và đừng bỏ qua bất kỳ phần nào.
+- **KHÔNG sử dụng `sudo` trừ khi The Odin Project yêu cầu cụ thể.** Không làm theo lời khuyên này có thể gây ra *rất nhiều* rắc rối. Trong một số trường hợp, bạn có thể thấy một thông báo trong terminal yêu cầu sử dụng `sudo` và/hoặc cài đặt thứ gì đó bằng `apt`. **Hãy bỏ qua những gì terminal nói** và làm theo hướng dẫn bên dưới.
+- Sao chép và dán các lệnh để tránh gõ sai.
+- Nếu bạn dừng làm dự án giữa chừng rồi quay lại sau, hãy nhớ dùng `cd` để di chuyển trở lại thư mục dự án, nếu không các lệnh sẽ không hoạt động.
 
-In this project, we're going to build a fully functional Rails application. The entire point of this exercise is to make sure that you have everything installed and working correctly on your computer. Do *not* worry if you don't fully understand what you're doing. You'll learn exactly what all of these commands are doing later on in the course. For now, go slowly, and be sure to follow **each and every** step closely. If you run into trouble, don't forget that you can always reach out for help on [our Discord server](https://discord.gg/fbFCkYabZB). You can also use the [Discord search function](https://support.discordapp.com/hc/en-us/articles/115000468588-Using-Search) to check if someone else had a similar problem and how they solved it.
+Trong dự án này, chúng ta sẽ xây dựng một ứng dụng Rails đầy đủ chức năng. Mục đích chính của bài tập là đảm bảo mọi thứ đã được cài đặt và hoạt động chính xác trên máy tính của bạn. Đừng *lo lắng* nếu bạn chưa hiểu hoàn toàn mình đang làm gì. Sau này trong khóa học, bạn sẽ học chính xác tất cả các lệnh này thực hiện điều gì. Hiện tại, hãy làm thật chậm và nhớ làm theo **từng bước một** thật cẩn thận. Nếu gặp khó khăn, đừng quên rằng bạn luôn có thể tìm kiếm trợ giúp trên [máy chủ Discord của chúng tôi](https://discord.gg/fbFCkYabZB). Bạn cũng có thể dùng [chức năng tìm kiếm của Discord](https://support.discordapp.com/hc/en-us/articles/115000468588-Using-Search) để kiểm tra xem có ai khác từng gặp vấn đề tương tự và cách họ giải quyết hay chưa.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Create your first Ruby on Rails web application
+#### Tạo ứng dụng web Ruby on Rails đầu tiên
 
-Don't worry if you don't totally understand what you are doing in these next steps. You will learn what all of this does later in The Odin Project curriculum. As long as the commands complete successfully, just keep going. The main reason we're doing this is to ensure everything is properly installed and configured.
+Đừng lo nếu bạn chưa hoàn toàn hiểu mình đang làm gì trong các bước tiếp theo. Sau này, bạn sẽ học tất cả những điều này có tác dụng gì trong chương trình học của The Odin Project. Miễn là các lệnh hoàn tất thành công, hãy cứ tiếp tục. Lý do chính chúng ta thực hiện việc này là để đảm bảo mọi thứ đã được cài đặt và cấu hình đúng cách.
 
-1. #### Install Rails
+1. #### Cài đặt Rails
 
-   We've previously installed Ruby, and now it's time to install Ruby on Rails. It's just running one command!
+   Trước đó chúng ta đã cài đặt Ruby, và bây giờ là lúc cài đặt Ruby on Rails. Chỉ cần chạy một lệnh!
 
    ```bash
    gem install rails
    ```
 
-   Once the installation finishes, you can check if everything went well by restarting your terminal and running the following command:
+   Sau khi quá trình cài đặt hoàn tất, bạn có thể kiểm tra xem mọi thứ có diễn ra tốt đẹp không bằng cách khởi động lại terminal và chạy lệnh sau:
 
    ```bash
    rails -v
    ```
 
-   This should display the version of Rails installed on your system indicating the installation went smoothly.
+   Lệnh này sẽ hiển thị phiên bản Rails đã cài đặt trên hệ thống của bạn, cho biết quá trình cài đặt đã diễn ra suôn sẻ.
 
-1. #### Create the application
+1. #### Tạo ứng dụng
 
-   This is where it might start to be difficult to follow just what is happening. If you don't understand what's going on, just double check that you're typing in the correct commands and keep going. This section is meant to expose you to the process and to verify that everything is working. Again, it's OK to not understand what's going on at this point.
+   Đây là lúc bạn có thể bắt đầu khó theo dõi chính xác điều gì đang xảy ra. Nếu chưa hiểu chuyện gì, chỉ cần kiểm tra lại xem bạn có nhập đúng các lệnh hay không rồi tiếp tục. Phần này nhằm giúp bạn làm quen với quy trình và xác minh rằng mọi thứ đang hoạt động. Một lần nữa, ở giai đoạn này bạn chưa hiểu chuyện gì đang xảy ra cũng không sao.
 
-   We're going to start by navigating to the directory that you house your projects in, then telling Rails to initialize the application for us.
+   Trước tiên, chúng ta sẽ di chuyển đến thư mục dùng để lưu các dự án, sau đó yêu cầu Rails khởi tạo ứng dụng giúp chúng ta.
 
    ```bash
    cd ~/your_odin_project_directory
    rails new my_first_rails_app
    ```
 
-   This will do a bunch of things, and you'll see a lot of output in the terminal. If everything worked, you should see something similar to this around the end of the terminal output:
+   Lệnh này sẽ thực hiện rất nhiều việc, và bạn sẽ thấy rất nhiều kết quả trong terminal. Nếu mọi thứ hoạt động, ở gần cuối phần kết quả trong terminal, bạn sẽ thấy nội dung tương tự như sau:
 
    ```bash
 
@@ -66,76 +66,76 @@ Don't worry if you don't totally understand what you are doing in these next ste
 
    ```
 
-   In the above process, Rails created a new directory for us. Let's `cd` into it now:
+   Trong quá trình trên, Rails đã tạo một thư mục mới cho chúng ta. Bây giờ hãy `cd` vào đó:
 
    ```bash
    cd my_first_rails_app
    ```
 
-   Run the following in the terminal:
+   Chạy lệnh sau trong terminal:
 
    ```bash
    rails generate scaffold car make:string model:string year:integer
    ```
 
-   After generating the scaffolds, we need to migrate the database.
+   Sau khi tạo scaffold, chúng ta cần migrate cơ sở dữ liệu.
 
    ```bash
    rails db:migrate
    ```
 
-1. #### Start up your app
+1. #### Khởi động ứng dụng
 
-   Now that you have created a Rails application, you can start it up and see if it works!
+   Bây giờ bạn đã tạo một ứng dụng Rails, hãy khởi động ứng dụng để xem nó có hoạt động không!
 
-   In the terminal, type
+   Trong terminal, nhập
 
    ```bash
    rails server
    ```
 
-   Now, open a browser and visit [http://localhost:3000/cars](http://localhost:3000/cars) to see your application!
+   Bây giờ, hãy mở trình duyệt và truy cập [http://localhost:3000/cars](http://localhost:3000/cars) để xem ứng dụng của bạn!
 
    <div class="lesson-note lesson-note--warning" markdown=1>
 
-   #### Accessing localhost from a VM
+   #### Truy cập localhost từ máy ảo
 
-   If you're using a VM, you will need to open the browser inside of your VM in order for this to work.
+   Nếu đang sử dụng máy ảo, bạn cần mở trình duyệt bên trong máy ảo để thao tác này hoạt động.
 
    </div>
 
-   Go ahead and create a new car, and then refresh the page to verify it is working. Add as many cars as you'd like! When you're satisfied, go back to the terminal where the Rails server is running, and type <kbd>Ctrl</kbd> + <kbd>C</kbd> to close the server.
+   Hãy tạo một chiếc xe mới, sau đó tải lại trang để kiểm tra xem ứng dụng có hoạt động không. Bạn muốn thêm bao nhiêu chiếc xe cũng được! Khi đã hài lòng, hãy quay lại terminal nơi Rails server đang chạy và nhập <kbd>Ctrl</kbd> + <kbd>C</kbd> để đóng server.
 
-   In the same terminal window, type `rails console --sandbox` to open an IRB session loaded with the project code. This command is useful for exploring your project and testing out quick ideas. The `--sandbox` flag ensures that any changes you make to the application's database do not persist once you leave the session. Try typing `Car.all` to see a list of the car objects that you've created on the website. When you are done with the session, type `exit` to go back to the terminal window.
+   Trong cùng cửa sổ terminal, nhập `rails console --sandbox` để mở một phiên IRB đã được nạp mã của dự án. Lệnh này hữu ích khi bạn muốn khám phá dự án và thử nhanh các ý tưởng. Cờ `--sandbox` đảm bảo mọi thay đổi bạn thực hiện đối với cơ sở dữ liệu của ứng dụng sẽ không được lưu lại sau khi bạn rời phiên. Hãy thử nhập `Car.all` để xem danh sách các đối tượng xe bạn đã tạo trên trang web. Khi hoàn tất phiên, nhập `exit` để quay lại cửa sổ terminal.
 
-#### Git groundwork
+#### Nền tảng Git
 
-Like all of the projects you've done so far we need to use Git for our version control and to push our app to different remotes.
+Giống như tất cả các dự án bạn đã làm cho đến nay, chúng ta cần sử dụng Git để quản lý phiên bản và đẩy ứng dụng lên các remote khác nhau.
 
-1. #### Stage and commit local changes
+1. #### Stage và commit các thay đổi cục bộ
 
-   Rails will already have initialized Git for you when it was doing its thing, so just stage and commit all of the work it's done so far.
+   Rails đã tự khởi tạo Git cho bạn trong quá trình hoạt động, vì vậy hãy stage và commit toàn bộ phần việc đã thực hiện cho đến lúc này.
 
    ```bash
    git add .
    git commit -m "Initial commit"
    ```
 
-1. #### Initialize on GitHub, add the remote, and push
+1. #### Khởi tạo trên GitHub, thêm remote và push
 
-   Make a repo on Github and make sure you **do not** initialize the repository with a README because Rails has created one already. Add this repo as a remote and push your repo to GitHub just like you normally do.
+   Hãy tạo một repo trên Github và nhớ **không** khởi tạo repo bằng README, vì Rails đã tạo sẵn một README rồi. Thêm repo này làm remote và push repo lên GitHub như bạn vẫn thường làm.
 
-   REMINDER: Do not enter the `<` or `>` symbols below. Replace those symbols and everything between them with the URL that you copied from GitHub.
+   NHẮC LẠI: Không nhập các ký hiệu `<` or `>` bên dưới. Hãy thay các ký hiệu đó cùng mọi nội dung nằm giữa chúng bằng URL bạn đã sao chép từ GitHub.
 
    ```bash
    git remote add origin <SSH URL from GitHub>
    git push -u origin main
    ```
 
-1. #### Confirm Git is working correctly
+1. #### Xác nhận Git hoạt động chính xác
 
-   Confirm that the push was successful and on GitHub you see all the folders and files made locally by Rails, starting with a folder called "app".
+   Xác nhận rằng việc push đã thành công và trên GitHub bạn thấy tất cả thư mục, tệp được Rails tạo ở máy cục bộ, bắt đầu bằng thư mục có tên "app".
 
-   This marks the start of your Rails journey! Later on, you'll be able to look back at this repository and marvel over how far you've come!
+   Đây là cột mốc khởi đầu cho hành trình Rails của bạn! Sau này, bạn sẽ có thể nhìn lại repo này và kinh ngạc trước chặng đường mình đã đi được bao xa!
 
 </div>

@@ -1,10 +1,10 @@
-### Introduction
+### Giới thiệu
 
-You are already familiar with Ruby blocks from the [Basic Enumerable Methods](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/basic-enumerable-methods) lesson from earlier. But there is more depth to blocks than we've covered, so this lesson will dive deeper. Blocks are such a fundamental part of Ruby that you should get to know them inside out.
+Bạn đã quen thuộc với các block trong Ruby qua bài học [Các phương thức Enumerable cơ bản](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/basic-enumerable-methods) trước đây. Nhưng block còn nhiều chiều sâu hơn những gì chúng ta đã tìm hiểu, vì vậy bài học này sẽ đi sâu hơn. Block là một phần nền tảng đến mức bạn nên hiểu rõ chúng từ trong ra ngoài.
 
-A very quick recap of the basics that you should already be familiar with...
+Hãy cùng ôn lại thật nhanh những điều cơ bản mà có lẽ bạn đã quen thuộc...
 
-A block can be declared as a single-line or multi-line block. Ruby convention is to use `{}` for single-line blocks and `do..end` for multi-line blocks. You can pass parameters to a block by defining them inside pipes, i.e. `|arg1, arg2|`. You'll already know both forms from working with enumerable methods.
+Một block có thể được khai báo trên một dòng hoặc nhiều dòng. Theo quy ước của Ruby, dùng `{}` cho block một dòng và `do..end` cho block nhiều dòng. Bạn có thể truyền tham số cho block bằng cách định nghĩa chúng giữa các dấu gạch đứng, chẳng hạn `|arg1, arg2|`. Bạn hẳn đã biết cả hai dạng này khi làm việc với các phương thức enumerable.
 
 ```ruby
 # Single-line block
@@ -16,26 +16,26 @@ A block can be declared as a single-line or multi-line block. Ruby convention is
 end
 ```
 
-Although you are familiar with how to write blocks in the context of enumerable methods, there are actually other interesting ways to use them in Ruby. For example, you can write your own methods that accept blocks and even store blocks as variables. By the end of this lesson, you'll have a newfound appreciation for the mighty block.
+Mặc dù bạn đã quen với cách viết block trong ngữ cảnh của các phương thức enumerable, Ruby còn có những cách sử dụng block thú vị khác. Chẳng hạn, bạn có thể tự viết các phương thức nhận block, thậm chí lưu block vào biến. Đến cuối bài học này, bạn sẽ có một sự trân trọng mới dành cho những block đầy sức mạnh.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain what a block is.
-- Describe the similarities between blocks and methods.
-- Describe the two ways to declare a block.
-- Explain why you would decide to use a block instead of a method.
-- Explain `yield`.
-- Explain how arguments are passed to a block from within a method.
-- Explain how to check whether a block has been passed to a method.
-- Describe procs.
-- Describe lambdas.
-- Explain the differences and similarities between blocks, procs, and lambdas.
+- Giải thích block là gì.
+- Mô tả những điểm tương đồng giữa block và phương thức.
+- Mô tả hai cách khai báo block.
+- Giải thích vì sao bạn có thể chọn dùng block thay vì phương thức.
+- Giải thích `yield`.
+- Giải thích cách truyền đối số cho block từ bên trong một phương thức.
+- Giải thích cách kiểm tra xem một block có được truyền vào phương thức hay không.
+- Mô tả proc.
+- Mô tả lambda.
+- Giải thích những điểm khác biệt và tương đồng giữa block, proc và lambda.
 
 ### Yield
 
-`yield` is a keyword that can be called inside a method to relinquish execution to the accompanying block. Let's imagine you're writing a simple method for your library which allows users of that library to log some information to the terminal. The one key requirement you have is that users should be able to define how that information is presented. Sometimes they may just want to `puts` something, other times they may want to inspect something with `p`. If you tried to write this using only a method, it would actually be quite difficult. You'd have to account for every possible option the user of your library might want to call and then create the docs to explain it. With blocks, we can just relinquish control of the method to the block with `yield` and allow the user to define how they want to print it.
+`yield` là một từ khóa có thể được gọi bên trong phương thức để nhường quyền thực thi cho block đi kèm. Hãy tưởng tượng bạn đang viết một phương thức đơn giản cho thư viện của mình, cho phép người dùng thư viện ghi một số thông tin ra terminal. Yêu cầu then chốt là người dùng phải có thể quyết định thông tin đó được trình bày như thế nào. Đôi khi họ chỉ muốn `puts` một thứ gì đó, lúc khác họ có thể muốn kiểm tra một thứ bằng `p`. Nếu chỉ dùng một phương thức để viết việc này thì thực ra sẽ khá khó. Bạn phải tính đến mọi lựa chọn mà người dùng thư viện có thể muốn gọi, rồi viết tài liệu giải thích chúng. Với block, ta chỉ cần dùng `yield` để nhường quyền điều khiển phương thức cho block và cho phép người dùng quyết định cách in thông tin.
 
 ```ruby
 def logger
@@ -51,9 +51,9 @@ end
 #=> [1,2,3]
 ```
 
-This example isn't that interesting, but hopefully you should see that blocks allow huge flexibility in how methods act upon data.
+Ví dụ này chưa có gì thú vị, nhưng hy vọng bạn đã thấy block cho phép các phương thức xử lý dữ liệu linh hoạt đến mức nào.
 
-Let's see if we can make it more interesting. Now your users want a method that allows them to write whatever they want, and it gets printed twice to the terminal. How might you handle this requirement? With `yield`, it's easy! You can call `yield` within a method as many times as you want, and it will behave the same way each time.
+Hãy thử làm ví dụ thú vị hơn. Bây giờ người dùng muốn một phương thức cho phép họ viết bất cứ nội dung nào, và nội dung đó được in ra terminal hai lần. Bạn sẽ xử lý yêu cầu này thế nào? Với `yield`, việc đó rất dễ! Bạn có thể gọi `yield` trong một phương thức bao nhiêu lần tùy ý, và mỗi lần nó sẽ hoạt động giống nhau.
 
 ```ruby
 def double_vision
@@ -66,9 +66,9 @@ double_vision { puts "How many fingers am I holding up?" }
 #=> How many fingers am I holding up?
 ```
 
-Millennial avocados, Batman. That's cool.
+Bơ Millennial, Batman. Hay đấy.
 
-We mentioned earlier that blocks can accept arguments. But how do you pass them to the block? No problem! Just pass them as arguments to `yield`, and they'll be passed to the block as parameters. If you call `yield` more than once, you can pass a different argument each time if you wanted to.
+Trước đó chúng ta đã nói rằng block có thể nhận đối số. Nhưng truyền chúng cho block bằng cách nào? Không vấn đề gì! Chỉ cần truyền chúng làm đối số cho `yield`, và chúng sẽ được chuyển vào block dưới dạng tham số. Nếu gọi `yield` nhiều hơn một lần, bạn có thể truyền một đối số khác nhau ở mỗi lần gọi nếu muốn.
 
 ```ruby
 def love_language
@@ -81,9 +81,9 @@ love_language { |lang| puts "I love #{lang}" }
 #=> I love Rails.
 ```
 
-How might this be useful? Say you're creating a banking app that allows a bank to print a list of transactions to a statement. For our example we'll use the terminal, but it could be a spreadsheet or anything. You have an issue, though. You want your app to work for any bank, but different banks want to print the transactions with different formats. How can you design it so that each bank can choose a different format, but you only have to write the code once?
+Điều này có thể hữu ích như thế nào? Hãy giả sử bạn đang tạo một ứng dụng ngân hàng cho phép ngân hàng in danh sách giao dịch vào một bản sao kê. Trong ví dụ này, ta sẽ dùng terminal, nhưng cũng có thể là bảng tính hay bất cứ thứ gì khác. Tuy nhiên, bạn gặp một vấn đề. Bạn muốn ứng dụng hoạt động cho mọi ngân hàng, nhưng mỗi ngân hàng lại muốn in giao dịch theo một định dạng khác nhau. Làm sao thiết kế để mỗi ngân hàng có thể chọn một định dạng riêng, trong khi bạn chỉ phải viết code một lần?
 
-We can combine the power of `yield` with the `#each` enumerable method. In the example below, we write a method that iterates through a list of transactions, and for each one yields it to a block. The caller of the method (the bank) can call it with any block they want. This way, they can define how the transactions will be printed to their statement, and you can focus on delivering bug-free banking transactions.
+Ta có thể kết hợp sức mạnh của `yield` với phương thức enumerable `#each`. Trong ví dụ dưới đây, ta viết một phương thức lặp qua danh sách giao dịch và yield từng giao dịch cho một block. Bên gọi phương thức (ngân hàng) có thể gọi nó với bất kỳ block nào họ muốn. Nhờ vậy, họ có thể quyết định cách các giao dịch được in vào bản sao kê, còn bạn có thể tập trung cung cấp các giao dịch ngân hàng không lỗi.
 
 ```ruby
 @transactions = [10, -15, 25, 30, -24, -70, 999]
@@ -100,9 +100,9 @@ end
 #=> ["10.00", "-15.00", "25.00", "30.00", "-24.00", "-70.00", "999.00"]
 ```
 
-If another bank wanted to print their transactions another way it's no problem, they can supply their own block.
+Nếu một ngân hàng khác muốn in giao dịch theo cách khác thì cũng không sao, họ có thể cung cấp block riêng của mình.
 
-What if instead you didn't want the caller to define how the transaction is printed, but just the format? Like any method call in Ruby, blocks have a return value. So when you call `yield`, it returns the last executed value from the block. Using the example above, if you instead moved the `p` from the block to inside the `#each` call, your method would be in control of how the transactions were printed. Maybe you only allow exporting to a .csv for example.
+Nếu thay vì để bên gọi quyết định cách in giao dịch, bạn chỉ muốn họ quyết định định dạng thì sao? Giống như mọi lời gọi phương thức trong Ruby, block có giá trị trả về. Vì vậy khi gọi `yield`, nó trả về giá trị được thực thi sau cùng từ block. Dựa trên ví dụ trên, nếu bạn chuyển `p` từ block vào bên trong lời gọi `#each`, phương thức của bạn sẽ kiểm soát cách in các giao dịch. Chẳng hạn, có thể bạn chỉ cho phép xuất sang .csv.
 
 ```ruby
 @transactions = [10, -15, 25, 30, -24, -70, 999]
@@ -119,7 +119,7 @@ end
 #=> ["10.00", "-15.00", "25.00", "30.00", "-24.00", "-70.00", "999.00"]
 ```
 
-If you want to gather the value returned from the block, you can just assign it to a variable or collect it in a data structure.
+Nếu muốn thu thập giá trị mà block trả về, bạn chỉ cần gán nó cho một biến hoặc gom nó vào một cấu trúc dữ liệu.
 
 ```ruby
 @transactions = [10, -15, 25, 30, -24, -70, 999]
@@ -139,11 +139,11 @@ end
 #=> ["10.00", "-15.00", "25.00", "30.00", "-24.00", "-70.00", "999.00"]
 ```
 
-You can also write explicit return statements from a block. This works the same way as an explicit return works in a method. This might be useful if you need some kind of [guard clause](https://blog.techatpower.com/never-let-your-guard-down-533605891528).
+Bạn cũng có thể viết câu lệnh return tường minh trong block. Cách này hoạt động giống như return tường minh trong một phương thức. Điều này có thể hữu ích nếu bạn cần một dạng [mệnh đề bảo vệ](https://blog.techatpower.com/never-let-your-guard-down-533605891528) nào đó.
 
-In the above examples, the value that we yield to the block in `transaction_statement` is captured by the block and assigned to the named parameter (the variable inside the pipes, in this case `|transaction|`). This works the same way it does in enumerable methods like `#each` and `#map`.
+Trong các ví dụ trên, giá trị ta yield cho block trong `transaction_statement` được block nhận và gán cho tham số đã đặt tên (biến nằm giữa các dấu gạch đứng, ở đây là `|transaction|`). Cách này hoạt động giống như trong các phương thức enumerable như `#each` và `#map`.
 
-If you don't pass a value with `yield` and the block expects one, then the argument is assigned `nil`.
+Nếu bạn không truyền giá trị cùng `yield` mà block lại mong đợi một giá trị, đối số đó sẽ được gán là `nil`.
 
 ```ruby
 def say_something
@@ -156,7 +156,7 @@ end
 #=> And then I said:
 ```
 
-If you have two parameters but pass 3 arguments, then the last one is not assigned to a parameter and you can't reference it in the block.
+Nếu bạn có hai tham số nhưng truyền 3 đối số, đối số cuối cùng sẽ không được gán cho tham số nào và bạn không thể tham chiếu đến nó trong block.
 
 ```ruby
 def mad_libs
@@ -169,7 +169,7 @@ end
 #=> I said cool beans!
 ```
 
-If you're working with hashes you might need to yield the key and value, just make sure your block names two parameters.
+Nếu làm việc với hash, bạn có thể cần yield cả key và value; chỉ cần bảo đảm block của bạn đặt tên cho hai tham số.
 
 ```ruby
 def awesome_method
@@ -186,11 +186,11 @@ awesome_method { |key, value| puts "#{key}: #{value}" }
 #=> c: cookie
 ```
 
-We'll end our exploration of `yield` by posing a question. What happens if you call `yield`, but the calling method doesn't include a block? We'll cover that in the next section.
+Ta sẽ kết thúc phần tìm hiểu về `yield` bằng một câu hỏi. Điều gì xảy ra nếu bạn gọi `yield` nhưng phương thức gọi nó không đi kèm block? Ta sẽ tìm hiểu trong phần tiếp theo.
 
-### Block control
+### Điều khiển block
 
-Oftentimes, the person who writes a method and the person who calls a method are different people. If you're writing a method that uses `yield`, how can you be sure the caller will include a block? What happens if they don't?
+Thông thường, người viết một phương thức và người gọi phương thức đó là hai người khác nhau. Nếu bạn viết một phương thức sử dụng `yield`, làm sao chắc chắn rằng bên gọi sẽ truyền vào một block? Điều gì xảy ra nếu họ không truyền?
 
 ```ruby
 def simple_method
@@ -201,11 +201,11 @@ simple_method
 # => `simple_method': no block given (yield) (LocalJumpError)
 ```
 
-Yep, an error. So how can you write a method that works whether or not the caller passes a block to it?
+Đúng vậy, một lỗi đã xảy ra. Vậy làm thế nào để viết một phương thức hoạt động dù bên gọi có truyền block hay không?
 
-Enter `block_given?`
+Hãy dùng `block_given?`
 
-You can use this method as a conditional check inside your own method to see if a block was included by the caller. If so, `block_given?` returns `true`, otherwise it returns `false`. This lets you write your method so that it behaves differently depending on whether or not it receives a block.
+Bạn có thể dùng phương thức này như một phép kiểm tra điều kiện bên trong phương thức của mình để xem bên gọi có truyền block hay không. Nếu có, `block_given?` trả về `true`; nếu không, nó trả về `false`. Nhờ đó, bạn có thể viết phương thức hoạt động khác nhau tùy thuộc vào việc nó có nhận được block hay không.
 
 ```ruby
 def maybe_block
@@ -223,13 +223,13 @@ maybe_block {} # {} is just an empty block
 # => executed regardless
 ```
 
-You may have already come across this in some of the enumerables. [#count](https://docs.ruby-lang.org/en/3.4/Enumerable.html#method-i-count) is a method that can be called with or without a block. If called without an argument, it just returns the size of whatever it was called on. When called with an argument, it counts how many times that argument appears in the object it was called on. And with a block, it yields to the block and provides a count of how many times the block returns a truthy response. If you toggle to view the source code of `#count` on the Ruby Documentation site, you'll see it's written in C, but even glancing over the unfamiliar C syntax, you should be able to tell that it checks if a block has been given. With Ruby we just have a more elegant syntax.
+Có thể bạn đã gặp điều này trong một số enumerable. [#count](https://docs.ruby-lang.org/en/3.4/Enumerable.html#method-i-count) là một phương thức có thể được gọi có hoặc không có block. Nếu được gọi mà không có đối số, nó chỉ trả về kích thước của đối tượng được gọi. Khi được gọi với một đối số, nó đếm số lần đối số đó xuất hiện trong đối tượng. Còn khi có block, nó yield cho block và cung cấp số lần block trả về một phản hồi đúng về mặt logic. Nếu chuyển sang xem mã nguồn của `#count` trên trang Tài liệu Ruby, bạn sẽ thấy nó được viết bằng C; nhưng ngay cả khi chỉ lướt qua cú pháp C xa lạ, bạn vẫn có thể nhận ra nó kiểm tra xem block có được truyền vào hay không. Với Ruby, ta chỉ có cú pháp tao nhã hơn.
 
-### Lambdas
+### Lambda
 
-A lambda is a way to write a block and save it to a variable. This can be useful if you're calling different methods but passing in the same block to each of them. It keeps you from having to type out the same code over and over again.
+Lambda là một cách viết block rồi lưu nó vào một biến. Điều này hữu ích nếu bạn gọi các phương thức khác nhau nhưng truyền cùng một block cho từng phương thức. Nó giúp bạn không phải gõ đi gõ lại cùng một đoạn code.
 
-There are two ways to create a lambda. One is to use the `lambda` keyword e.g. `lambda { "inside the lambda" }`. The other way to declare a lambda is using the "stabby lambda" syntax, `-> {}`. This looks a little funky but you get used to it. Stabby lambda notation is more commonly used, so that's what we'll be using for the other examples.
+Có hai cách tạo lambda. Một cách là dùng từ khóa `lambda`, chẳng hạn `lambda { "inside the lambda" }`. Cách còn lại để khai báo lambda là dùng cú pháp "lambda mũi tên", `-> {}`. Trông nó hơi kỳ lạ nhưng bạn sẽ quen. Cú pháp lambda mũi tên được dùng phổ biến hơn, nên đó là cách chúng ta sẽ dùng trong các ví dụ còn lại.
 
 ```ruby
 my_lambda = lambda { puts "my lambda" }
@@ -237,7 +237,7 @@ my_lambda = lambda { puts "my lambda" }
 my_other_lambda = -> { puts "hello from the other side" }
 ```
 
-To call a lambda you just call the `#call` method.
+Để gọi một lambda, bạn chỉ cần gọi phương thức `#call`.
 
 ```ruby
 my_lambda = -> { puts "high five" }
@@ -245,7 +245,7 @@ my_lambda.call
 # => high five
 ```
 
-If you want to accept arguments into your lambda, you have two options, and which option you use depends on how you declare your lambda. If you use the stabby lambda syntax `->` then you use `()` to name your parameters. If you use the `lambda` keyword, then you use pipes `||` inside the block.
+Nếu muốn lambda nhận đối số, bạn có hai lựa chọn; lựa chọn nào được dùng phụ thuộc vào cách bạn khai báo lambda. Nếu dùng cú pháp lambda mũi tên `->`, bạn dùng `()` để đặt tên các tham số. Nếu dùng từ khóa `lambda`, bạn dùng các dấu gạch đứng `||` bên trong block.
 
 ```ruby
 my_name = ->(name) { puts "hello #{name}" }
@@ -259,7 +259,7 @@ my_age.call(78)
 #=> I am 78 years old
 ```
 
-One weird thing to note about lambdas is that there are numerous ways you can call them.
+Một điều hơi lạ cần lưu ý về lambda là có rất nhiều cách gọi chúng.
 
 ```ruby
 my_name = ->(name) { puts "hello #{name}" }
@@ -270,13 +270,13 @@ my_name["tim"]
 my_name.=== "tim"
 ```
 
-It's probably best to stick to using `#call`.
+Tốt nhất có lẽ là cứ dùng `#call`.
 
-### Procs
+### Proc
 
-A proc is just an object that you can use to store blocks and pass them around like variables. If you think this sounds a bit like a lambda, then you'd be right. In fact, there is no special lambda class. A lambda is actually just a type of proc object but with some distinct behaviors which we'll cover shortly.
+Proc chỉ là một đối tượng mà bạn có thể dùng để lưu block và truyền qua lại như biến. Nếu bạn thấy nó hơi giống lambda thì đúng vậy. Thực tế không có lớp lambda đặc biệt nào. Lambda thật ra chỉ là một loại đối tượng proc nhưng có một số hành vi riêng biệt mà chúng ta sẽ tìm hiểu ngay sau đây.
 
-You declare a new proc in the same way you instantiate any object in Ruby, using `new`.
+Bạn khai báo một proc mới giống như khởi tạo bất kỳ đối tượng nào trong Ruby, bằng cách dùng `new`.
 
 ```ruby
 a_proc = Proc.new { puts "this is a proc" }
@@ -285,7 +285,7 @@ a_proc.call
 #=> this is a proc
 ```
 
-or you can just use 'proc'
+hoặc bạn có thể chỉ dùng 'proc'
 
 ```ruby
 a_proc = proc { puts "this is a proc" }
@@ -294,7 +294,7 @@ a_proc.call
 #=> this is a proc
 ```
 
-Arguments are declared inside pipes `||`
+Các đối số được khai báo bên trong các dấu gạch đứng `||`
 
 ```ruby
 a_proc = Proc.new { |name, age| puts "name: #{name} --- age: #{age}" }
@@ -303,13 +303,13 @@ a_proc.call("tim", 80)
 #=> name: tim --- age: 80
 ```
 
-### Procs vs lambdas
+### Proc và lambda
 
-There isn't much more to creating procs that you haven't already seen with lambdas. So why use one over the other? Well, there are some key differences between procs and lambdas that can make choosing one over the other more suitable.
+Không còn nhiều điều mới về việc tạo proc mà bạn chưa thấy ở lambda. Vậy tại sao chọn cái này thay vì cái kia? Có một số khác biệt then chốt giữa proc và lambda, khiến việc chọn một loại phù hợp hơn loại còn lại trong từng trường hợp.
 
-#### Arguments
+#### Đối số
 
-A proc behaves much like a block with regards to arguments. A proc doesn't care if you pass in fewer or more arguments than you specify. In fact, it doesn't care if you don't pass in any arguments at all. It will assign `nil` to any parameters you name but don't pass through as arguments.
+Về đối số, proc hoạt động khá giống block. Proc không quan tâm bạn truyền ít hay nhiều đối số hơn số lượng đã chỉ định. Thực ra, nó cũng không quan tâm nếu bạn không truyền đối số nào. Nó sẽ gán `nil` cho mọi tham số bạn đặt tên nhưng không truyền vào dưới dạng đối số.
 
 ```ruby
 a_proc = Proc.new { |a, b| puts "a: #{a} --- b: #{b}" }
@@ -318,7 +318,7 @@ a_proc.call("apple")
 # => a: apple --- b:
 ```
 
-which is also why this is possible:
+đó cũng là lý do điều này có thể thực hiện được:
 
 ```ruby
 nested_array = [[1, 2], [3, 4], [5, 6]]
@@ -327,12 +327,12 @@ nested_array.select {|a, b| a + b > 10 }
 # => [5, 6]
 ```
 
-As you can see, `#select` has two arguments specified `|a, b|`, on each iteration we pass a single element of nested_array into the block. On the first iteration this is: `[1, 2]`, this array now, is deconstructed automatically (into a = 1, b = 2) and its values compared as specified. So on to the next rounds of iteration in which we pass `[3, 4]` and `[5, 6]` one by one.
-This happens because the block `{|a, b| if a + b > 10 }` is treated as a non-lambda proc.
-This property is not limited to `#select` but also applies to other `enum` methods like `#map`, `#each` etc.
-You can read more about this in the [Proc class documentation](https://docs.ruby-lang.org/en/3.4/Proc.html).
+Như bạn thấy, `#select` chỉ định hai đối số `|a, b|`; trong mỗi lần lặp, ta truyền một phần tử duy nhất của nested_array vào block. Ở lần lặp đầu tiên, đó là `[1, 2]`; mảng này sẽ tự động được phân rã (thành a = 1, b = 2), rồi các giá trị của nó được so sánh theo chỉ định. Tiếp tục như vậy ở các lần lặp sau, khi ta lần lượt truyền `[3, 4]` và `[5, 6]`.
+Điều này xảy ra vì block `{|a, b| if a + b > 10 }` được xử lý như một proc không phải lambda.
+Tính chất này không chỉ giới hạn ở `#select` mà còn áp dụng cho các phương thức `enum` khác như `#map`, `#each`, v.v.
+Bạn có thể đọc thêm về điều này trong [tài liệu lớp Proc](https://docs.ruby-lang.org/en/3.4/Proc.html).
 
-A lambda, on the other hand, DOES care and will raise an error if you don't honor the number of parameters expected.
+Ngược lại, lambda CÓ quan tâm và sẽ phát sinh lỗi nếu bạn không truyền đúng số lượng tham số mà nó yêu cầu.
 
 ```ruby
 a_lambda = lambda { |a, b| puts "a: #{a} --- b: #{b}" }
@@ -344,9 +344,9 @@ a_lambda.call("apple", "banana", "cake")
 # => wrong number of Arguments (given 3, expected 2) (ArgumentError)
 ```
 
-#### Returning
+#### Giá trị trả về
 
-When you write an explicit return inside a lambda, it returns from the lambda block back to the caller.
+Khi viết một return tường minh bên trong lambda, nó sẽ trả về từ block lambda về cho bên gọi.
 
 ```ruby
 a_lambda = -> { return 1 }
@@ -355,7 +355,7 @@ a_lambda.call
 # => 1
 ```
 
-A proc object, however, returns from the "embracing method" (the method that *defines* the proc).
+Tuy nhiên, một đối tượng proc sẽ trả về từ "phương thức bao ngoài" (phương thức *định nghĩa* proc).
 
 ```ruby
 def my_method
@@ -369,9 +369,9 @@ my_method
 #=> this line will be printed
 ```
 
-In this example, the proc is called inside the method that defines it. The result is to return from the method itself.
+Trong ví dụ này, proc được gọi bên trong phương thức định nghĩa nó. Kết quả là chính phương thức đó được trả về.
 
-Taking a look at a more complex example:
+Hãy xem một ví dụ phức tạp hơn:
 
 ```ruby
 def outer_method
@@ -391,9 +391,9 @@ outer_method
 #=> this line will be printed
 ```
 
-Here the proc is passed to another method and that method calls it. When the `inner_method` calls the proc, it will return from the `outer_method`. This can potentially create confusing behavior where the code path is mysteriously jumping across different contexts, so if you want to define a block that uses `return` and pass it around to other methods, a lambda is likely a better choice.
+Ở đây proc được truyền cho một phương thức khác và phương thức đó gọi nó. Khi `inner_method` gọi proc, nó sẽ trả về từ `outer_method`. Điều này có thể tạo ra hành vi khó hiểu, trong đó luồng thực thi đột nhiên nhảy qua các ngữ cảnh khác nhau. Vì vậy, nếu muốn định nghĩa một block sử dụng `return` rồi truyền nó cho các phương thức khác, lambda có lẽ là lựa chọn tốt hơn.
 
-Note that defining a proc that uses `return` at the top level will just exit the program altogether:
+Lưu ý rằng việc định nghĩa một proc sử dụng `return` ở cấp cao nhất sẽ thoát hẳn khỏi chương trình:
 
 ```ruby
 a_proc = Proc.new { return }
@@ -405,19 +405,19 @@ puts "This line won't run."
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Avoiding LocalJumpError in IRB
+#### Tránh LocalJumpError trong IRB
 
-If you run a proc with a top level return in IRB, it will raise a `LocalJumpError`. This behavior is specific to the way the IRB process works though, and running it from a file will work as described above.
+Nếu chạy một proc có return ở cấp cao nhất trong IRB, nó sẽ phát sinh `LocalJumpError`. Tuy nhiên, hành vi này đặc thù do cách tiến trình IRB hoạt động; nếu chạy từ một file, nó sẽ hoạt động như mô tả ở trên.
 
 </div>
 
-### Similarities
+### Điểm tương đồng
 
-Now that we've covered some big differences between procs and lambdas, there are some similarities we need to cover.
+Giờ chúng ta đã tìm hiểu một số khác biệt lớn giữa proc và lambda, tiếp theo là những điểm tương đồng cần biết.
 
-#### Default arguments
+#### Đối số mặc định
 
-Both procs and lambdas support default arguments in the same way Ruby methods do:
+Cả proc và lambda đều hỗ trợ đối số mặc định giống như các phương thức Ruby:
 
 ```ruby
 my_proc = Proc.new { |name="bob"| puts name }
@@ -431,9 +431,9 @@ my_lambda.call
 # => r2d2
 ```
 
-#### Method parameters
+#### Tham số phương thức
 
-Both procs and lambdas can be used as arguments to a method.
+Cả proc và lambda đều có thể được dùng làm đối số cho một phương thức.
 
 ```ruby
 def my_method(useful_arg)
@@ -450,11 +450,11 @@ my_method(my_proc)
 # => proc
 ```
 
-### Capturing blocks
+### Bắt block
 
-Now that we know how procs and lambdas work, how can this be applied to blocks? As we learned, blocks are like little anonymous methods. But what if we want to capture a reference to that block to do something with it? Maybe we need to receive the block now in our method and store it in an instance variable to be called later.
+Giờ đã biết proc và lambda hoạt động ra sao, ta có thể áp dụng điều này cho block như thế nào? Như đã học, block giống những phương thức ẩn danh nhỏ. Nhưng nếu muốn giữ một tham chiếu đến block đó để làm gì đó với nó thì sao? Có thể ta cần nhận block trong phương thức ngay lúc này và lưu nó vào một biến instance để gọi sau.
 
-Ruby allows us to capture blocks in a method definition as a special argument using `&`.
+Ruby cho phép ta bắt block trong định nghĩa phương thức dưới dạng một đối số đặc biệt bằng `&`.
 
 ```ruby
 def cool_method(&my_block)
@@ -464,15 +464,15 @@ end
 cool_method { puts "cool" }
 ```
 
-If your method names some other parameters, then the block-capturing `&` parameter should always go last.
+Nếu phương thức của bạn có các tham số khác, tham số `&` dùng để bắt block luôn phải đứng cuối.
 
-Capturing a block with `&` is known as an explicit block. When you don't name it in your parameter list, then it's known as an implicit block.
+Việc bắt block bằng `&` được gọi là block tường minh. Khi bạn không đặt tên block trong danh sách tham số, nó được gọi là block ngầm định.
 
-One other thing to note is that even when you do capture a block using an `&`, you can still use `yield` rather than `#call` to yield to the block. This would make the method somewhat unclear, though, so it's not recommended.
+Một điều khác cần lưu ý là ngay cả khi đã bắt block bằng `&`, bạn vẫn có thể dùng `yield` thay vì `#call` để nhường quyền thực thi cho block. Tuy nhiên, cách này khiến phương thức kém rõ ràng hơn, nên không được khuyến nghị.
 
-So how does this work? Well, actually the `&` capturing syntax doesn't only have to be used on blocks. What happens when you use `&` is that Ruby calls a method called `#to_proc` on whatever is assigned to that variable. In the example above, using `&` assigns the block to `my_block` and then calls `#to_proc` on it, which creates a proc object. That is why you can use `#call` on it.
+Vậy cơ chế này hoạt động thế nào? Thực ra cú pháp bắt bằng `&` không chỉ dùng được với block. Khi bạn dùng `&`, Ruby sẽ gọi một phương thức tên là `#to_proc` trên bất cứ thứ gì được gán cho biến đó. Trong ví dụ trên, dùng `&` gán block cho `my_block`, sau đó gọi `#to_proc` trên nó để tạo ra một đối tượng proc. Vì vậy bạn có thể dùng `#call` trên đối tượng đó.
 
-Maybe you've seen or used code like the following
+Có thể bạn từng thấy hoặc sử dụng đoạn code như sau
 
 ```ruby
 arr = ["1", "2", "3"]
@@ -481,11 +481,11 @@ arr.map(&:to_i)
 # => [1, 2, 3]
 ```
 
-What happens under the hood is that `#to_proc` is called on the symbol `:to_i`. You can see [what #to_proc does](https://docs.ruby-lang.org/en/3.4/Symbol.html#method-i-to_proc) in the Ruby docs. It returns a proc object which responds to the given method indicated by the symbol. So here, `#map` yields each value in the array to the proc object, which calls `#to_i` on it.
+Bên dưới, `#to_proc` được gọi trên symbol `:to_i`. Bạn có thể xem [#to_proc hoạt động thế nào](https://docs.ruby-lang.org/en/3.4/Symbol.html#method-i-to_proc) trong tài liệu Ruby. Nó trả về một đối tượng proc phản hồi với phương thức được symbol chỉ định. Vì vậy ở đây, `#map` truyền từng giá trị trong mảng cho đối tượng proc, rồi đối tượng đó gọi `#to_i` trên giá trị.
 
-(Yes, names of methods like `#to_i` can be passed around using symbols. It's outside the scope of this lesson, but check out the [documentation for #send](https://docs.ruby-lang.org/en/3.4/Object.html#method-i-send) if you're interested, and this Stack Overflow article on [how #send and #to_i are used together](https://stackoverflow.com/questions/14881125/what-does-to-proc-method-mean) for `arr.map(&:to_i)` to work.)
+(Đúng vậy, tên các phương thức như `#to_i` có thể được truyền qua lại bằng symbol. Nội dung này nằm ngoài phạm vi bài học, nhưng nếu tò mò, hãy xem [tài liệu về #send](https://docs.ruby-lang.org/en/3.4/Object.html#method-i-send) và bài viết Stack Overflow này về [cách #send và #to_i được dùng cùng nhau](https://stackoverflow.com/questions/14881125/what-does-to-proc-method-mean) để `arr.map(&:to_i)` hoạt động.)
 
-The `&` also works the other way. You can prepend it to a proc object and it converts it to a block, and passes the block to the method being called.
+`&` cũng hoạt động theo chiều ngược lại. Bạn có thể đặt nó trước một đối tượng proc, nó sẽ chuyển đối tượng đó thành block rồi truyền block cho phương thức đang được gọi.
 
 ```ruby
 def cool_method
@@ -498,7 +498,7 @@ cool_method(&my_proc)
 # => proc party
 ```
 
-If you tried to call `cool_method(my_proc)` without the `&` you'd get an error because the method expected no arguments but you supplied one. Similarly, if you have a method that names a parameter and you try to call it with a proc converted to a block, you'll get an error.
+Nếu thử gọi `cool_method(my_proc)` mà không có `&`, bạn sẽ nhận lỗi vì phương thức không mong đợi đối số nào nhưng bạn lại truyền vào một đối số. Tương tự, nếu một phương thức có tham số được đặt tên và bạn gọi nó bằng một proc đã chuyển thành block, bạn cũng sẽ nhận lỗi.
 
 ```ruby
 def cool_method(an_arg)
@@ -512,19 +512,19 @@ cool_method(&a_proc) # Converting the proc object to a block
 # => ArgumentError (wrong number of arguments (given 0, expected 1))
 ```
 
-Like we said earlier, using `&` on a proc when calling a method converts it to a block before passing it to the method. It is no longer a named argument to the method, which is why we get the `ArgumentError` in the above example.
+Như đã nói trước đó, khi gọi một phương thức, việc dùng `&` với proc sẽ chuyển proc thành block trước khi truyền cho phương thức. Nó không còn là một đối số được đặt tên của phương thức, đó là lý do ta nhận được `ArgumentError` trong ví dụ trên.
 
-### Wrapping up
+### Tổng kết
 
-Blocks are used everywhere in Ruby. You'll find many use cases, and see them used extensively in code libraries. They allow callers of methods to pass in some contextual information which might otherwise be hard to do without having numerous methods to handle different scenarios.
+Block xuất hiện ở khắp nơi trong Ruby. Bạn sẽ gặp rất nhiều trường hợp sử dụng chúng, và thấy chúng được dùng rộng rãi trong các thư viện code. Block cho phép bên gọi phương thức truyền vào một số thông tin theo ngữ cảnh — việc vốn có thể khó thực hiện nếu không phải viết nhiều phương thức để xử lý các kịch bản khác nhau.
 
-After coming to grips with the information in this lesson you'll be a block, proc and lambda master, able to easily craft beautiful Ruby code.
+Sau khi nắm được nội dung bài học này, bạn sẽ thành bậc thầy về block, proc và lambda, có thể dễ dàng tạo ra những đoạn code Ruby đẹp.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. This article provides quite a nice [summary of blocks, procs and lambdas](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/).
-1. Read this [article on lambdas in Ruby](https://www.honeybadger.io/blog/using-lambdas-in-ruby/) which also covers much of what we’ve used here. We really liked the small section on using lambdas as computed hashes and arrays. A cool use case.
+1. Bài viết này cung cấp một [bản tóm tắt khá hay về block, proc và lambda](https://www.rubyguides.com/2016/02/ruby-procs-and-lambdas/).
+1. Hãy đọc [bài viết về lambda trong Ruby](https://www.honeybadger.io/blog/using-lambdas-in-ruby/); bài viết này cũng đề cập nhiều nội dung chúng ta đã sử dụng ở đây. Chúng tôi đặc biệt thích phần ngắn nói về việc dùng lambda làm hash và mảng được tính toán. Một trường hợp sử dụng rất thú vị.
 
 </div>

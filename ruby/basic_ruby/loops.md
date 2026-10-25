@@ -1,28 +1,28 @@
-### Introduction
+### Giới thiệu
 
-Not to be confused with Froot Loops, the addictive cereal that causes symptoms similar to ADHD in kids, loops in Ruby are blocks of code that are continually repeated until a certain condition is met.
+Đừng nhầm với Froot Loops, loại ngũ cốc gây nghiện có thể khiến trẻ em xuất hiện những triệu chứng tương tự ADHD, các vòng lặp trong Ruby là những khối mã được lặp đi lặp lại liên tục cho đến khi một điều kiện nhất định được thỏa mãn.
 
-Like me, you've probably experienced real-life loops when you were given detention in school and forced to repeatedly write the same line about not drawing small phallic shapes on your desk. Writing the same thing over and over and over is not only boring but also potentially error prone. You might have made a spelling mistake on one line and forgotten to dot an "i" on another line. It's the same with programming: the less code you have to write, the less chance you have of introducing bugs that can cause your program to crash and burn.
+Có lẽ bạn cũng từng trải qua những vòng lặp ngoài đời giống tôi: bị phạt ở lại trường và phải chép đi chép lại cùng một câu về việc không vẽ những hình thù tục tĩu nhỏ trên bàn. Viết đi viết lại một thứ không chỉ nhàm chán mà còn dễ phát sinh lỗi. Bạn có thể đã viết sai chính tả ở một dòng và quên chấm lên chữ "i" ở dòng khác. Lập trình cũng vậy: bạn càng phải viết ít mã thì khả năng đưa vào những lỗi khiến chương trình gặp sự cố càng thấp.
 
-If you find yourself needing to repeat an action more than once in your code, you probably need loops in your life.
+Nếu thấy mình cần lặp lại một hành động nhiều hơn một lần trong mã, có lẽ bạn cần đến các vòng lặp trong cuộc sống lập trình của mình.
 
-For all of the examples in this lesson, you should code along in irb or any appropriate online REPL environment to get a better feel for how they work.
+Với tất cả các ví dụ trong bài học này, bạn nên tự gõ và chạy theo trong irb hoặc bất kỳ môi trường REPL trực tuyến phù hợp nào để hiểu rõ hơn cách chúng hoạt động.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain what a loop is and why it's useful.
-- Explain what a `loop` loop is and how to use it.
-- Explain what a `while` loop is and how to use it.
-- Explain what a `for` loop is and how to use it.
-- Explain what a `#times` loop is and how to use it.
-- Explain what an `until` loop is and how to use it.
-- Explain what `#upto` and `#downto` loops are and how to use them.
+- Giải thích vòng lặp là gì và vì sao nó hữu ích.
+- Giải thích vòng lặp `loop` là gì và cách sử dụng nó.
+- Giải thích vòng lặp `while` là gì và cách sử dụng nó.
+- Giải thích vòng lặp `for` là gì và cách sử dụng nó.
+- Giải thích vòng lặp `#times` là gì và cách sử dụng nó.
+- Giải thích vòng lặp `until` là gì và cách sử dụng nó.
+- Giải thích vòng lặp `#upto` và `#downto` là gì và cách sử dụng chúng.
 
-### Loop
+### Vòng lặp Loop
 
-The `loop` loop (say what????) is Ruby's loop that just won't quit. It's an infinite loop that will keep going unless you specifically request for it to stop, using the `break` command. Most commonly, `break` is used with a condition, as illustrated in the example below.
+Vòng lặp `loop` (gọi là gì nhỉ????) là vòng lặp của Ruby cứ chạy mãi không chịu dừng. Đây là một vòng lặp vô hạn, sẽ tiếp tục chạy trừ khi bạn chủ động yêu cầu nó dừng bằng lệnh `break`. Thông thường, `break` được dùng cùng một điều kiện, như trong ví dụ dưới đây.
 
 ```ruby
 i = 0
@@ -33,11 +33,11 @@ loop do
 end
 ```
 
-You won't see this loop used much in Ruby. If you find yourself using `loop`, know that there is probably a better loop for you out there, like one of the more specific loops below.
+Bạn sẽ không thường xuyên thấy vòng lặp này được dùng trong Ruby. Nếu thấy mình đang sử dụng `loop`, hãy biết rằng có lẽ tồn tại một vòng lặp phù hợp hơn, chẳng hạn như một trong những vòng lặp chuyên biệt bên dưới.
 
-### While loop
+### Vòng lặp While
 
-A `while` loop is similar to the `loop` loop except that you declare the condition that will break out of the loop up front.
+Vòng lặp `while` tương tự vòng lặp `loop`, ngoại trừ việc bạn khai báo trước điều kiện sẽ khiến vòng lặp dừng lại.
 
 ```ruby
 i = 0
@@ -47,9 +47,9 @@ while i < 10 do
 end
 ```
 
-This is an example of using a `while` loop with a count. Because you declare the condition that breaks the loop up front, the intention of your code is much clearer, making this code easier to read than our `loop` loop above.
+Đây là ví dụ sử dụng vòng lặp `while` với một bộ đếm. Vì bạn khai báo trước điều kiện kết thúc vòng lặp nên mục đích của mã trở nên rõ ràng hơn nhiều, khiến mã này dễ đọc hơn vòng lặp `loop` ở trên.
 
-You can also use `while` loops to repeatedly ask a question of the user until they give the desired response:
+Bạn cũng có thể dùng vòng lặp `while` để liên tục đặt câu hỏi cho người dùng cho đến khi họ đưa ra câu trả lời mong muốn:
 
 ```ruby
 while gets.chomp != "yes" do
@@ -57,15 +57,15 @@ while gets.chomp != "yes" do
 end
 ```
 
-This example shows the flexibility advantage of a `while` loop: it will run until its break condition is met, which could be for a variable number of loops or a number of loops that is initially unknown. Who knows if you've arrived at your destination the first, fourth, or seventy-ninth time you ask?
+Ví dụ này cho thấy ưu điểm về tính linh hoạt của vòng lặp `while`: nó sẽ chạy cho đến khi điều kiện dừng được thỏa mãn, có thể là một số lần lặp thay đổi hoặc một số lần lặp ban đầu chưa biết. Ai mà biết được bạn sẽ đến nơi sau lần hỏi thứ nhất, thứ tư hay thứ bảy mươi chín?
 
-### Until loop
+### Vòng lặp Until
 
-The `until` loop is the opposite of the `while` loop. A `while` loop continues for as long as the condition is true, whereas an `until` loop continues for as long as the condition is false. These two loops can therefore be used pretty much interchangeably. Ultimately, what your break condition is will determine which one is more readable.
+Vòng lặp `until` là đối lập của vòng lặp `while`. Vòng lặp `while` tiếp tục chạy khi điều kiện còn đúng, còn vòng lặp `until` tiếp tục chạy khi điều kiện còn sai. Vì vậy, về cơ bản bạn có thể dùng thay thế lẫn nhau hai vòng lặp này. Sau cùng, điều kiện dừng của bạn sẽ quyết định cách nào dễ đọc hơn.
 
-As much as possible, you should avoid negating your logical expressions using `!` (not). First, it can be difficult to actually notice the exclamation point in your code. Second, using negation makes the logic more difficult to reason through and therefore makes your code more difficult to understand. These situations are where `until` shines.
+Trong khả năng có thể, bạn nên tránh phủ định các biểu thức logic bằng `!` (không). Thứ nhất, dấu chấm than trong mã có thể thực sự khó nhận ra. Thứ hai, việc phủ định khiến logic khó suy luận hơn, từ đó làm mã khó hiểu hơn. Đây là những tình huống mà `until` phát huy tác dụng.
 
-We can re-write our `while` loop examples using `until`.
+Ta có thể viết lại các ví dụ về vòng lặp `while` bằng `until`.
 
 ```ruby
 i = 0
@@ -75,9 +75,9 @@ until i >= 10 do
 end
 ```
 
-You can see here that using `until` means that the loop will continue running until the condition i >= 10 is true.
+Bạn có thể thấy ở đây rằng việc dùng `until` khiến vòng lặp tiếp tục chạy cho đến khi điều kiện i >= 10 trở thành đúng.
 
-The next example shows how you can use `until` to avoid the negation `!` that the above `while` loop had to use.
+Ví dụ tiếp theo cho thấy cách dùng `until` để tránh phép phủ định `!` mà vòng lặp `while` ở trên phải sử dụng.
 
 ```ruby
 until gets.chomp == "yes" do
@@ -85,11 +85,11 @@ until gets.chomp == "yes" do
 end
 ```
 
-Much more readable! And who doesn't like Pizza.
+Dễ đọc hơn nhiều! Mà ai lại không thích Pizza chứ.
 
-### Ranges
+### Phạm vi
 
-What if we know exactly how many times we want our loop to run? Ruby lets us use something called a [range](https://docs.ruby-lang.org/en/3.4/Range.html) to define an interval. All we need to do is give Ruby the starting value, the ending value, and whether we want the range to be inclusive or exclusive.
+Nếu biết chính xác muốn vòng lặp chạy bao nhiêu lần thì sao? Ruby cho phép ta dùng một thứ gọi là [phạm vi](https://docs.ruby-lang.org/en/3.4/Range.html) để định nghĩa một khoảng. Tất cả những gì cần làm là cung cấp cho Ruby giá trị bắt đầu, giá trị kết thúc và cho biết muốn phạm vi bao gồm hay không bao gồm giá trị kết thúc.
 
 ```ruby
 (1..5)      # inclusive range: 1, 2, 3, 4, 5
@@ -99,9 +99,9 @@ What if we know exactly how many times we want our loop to run? Ruby lets us use
 ('a'..'d')  # a, b, c, d
 ```
 
-### For loop
+### Vòng lặp for
 
-A `for` loop is used to iterate through a collection of information such as an array or range. These loops are useful if you need to do something a given number of times while also using an iterator.
+Vòng lặp `for` được dùng để lặp qua một tập hợp thông tin, chẳng hạn như một mảng hoặc phạm vi. Những vòng lặp này hữu ích khi bạn cần thực hiện một việc trong một số lần nhất định đồng thời sử dụng một bộ lặp.
 
 ```ruby
 for i in 0..5
@@ -109,11 +109,11 @@ for i in 0..5
 end
 ```
 
-That's really all there is to it.
+Thực sự chỉ có vậy thôi.
 
-### Times loop
+### Vòng lặp Times
 
-If you need to run a loop for a specified number of times, then look no further than the trusty `#times` loop. It works by iterating through a loop a specified number of times and even throws in the bonus of accessing the number it's currently iterating through.
+Nếu cần chạy một vòng lặp trong một số lần xác định, hãy tìm đến vòng lặp `#times` đáng tin cậy. Nó lặp qua một vòng lặp số lần đã chỉ định, thậm chí còn cho phép bạn truy cập vào số thứ tự mà nó đang lặp qua.
 
 ```ruby
 5.times do
@@ -121,7 +121,7 @@ If you need to run a loop for a specified number of times, then look no further 
 end
 ```
 
-I'm sure you can guess what that code does. Ruby is easily readable that way!
+Chắc bạn cũng đoán được đoạn mã đó làm gì. Ruby vốn dễ đọc như vậy!
 
 ```ruby
 5.times do |number|
@@ -129,11 +129,11 @@ I'm sure you can guess what that code does. Ruby is easily readable that way!
 end
 ```
 
-Remember, loops will start counting from a zero index unless specified otherwise, so the first loop iteration will output `Alternative fact number 0`.
+Hãy nhớ rằng các vòng lặp sẽ bắt đầu đếm từ chỉ mục không nếu không được chỉ định khác đi, vì vậy lần lặp đầu tiên sẽ xuất ra `Alternative fact number 0`.
 
-### Upto and Downto loops
+### Vòng lặp Upto và Downto
 
-The Ruby methods `#upto` and `#downto` do exactly what you'd think they do from their names. You can use these methods to iterate from a starting number either up to or down to another number, respectively.
+Các phương thức Ruby `#upto` và `#downto` thực hiện đúng như bạn có thể đoán từ tên của chúng. Bạn có thể dùng các phương thức này để lặp từ một số bắt đầu tăng lên hoặc giảm xuống một số khác, tương ứng.
 
 ```ruby
 5.upto(10) { |num| print "#{num} " }     #=> 5 6 7 8 9 10
@@ -141,13 +141,13 @@ The Ruby methods `#upto` and `#downto` do exactly what you'd think they do from 
 10.downto(5) { |num| print "#{num} " }   #=> 10 9 8 7 6 5
 ```
 
-If you need to step through a series of numbers (or even letters) within a specific range, then these are the loops for you.
+Nếu cần lần lượt đi qua một dãy số (hoặc thậm chí các chữ cái) trong một phạm vi cụ thể, thì đây là những vòng lặp dành cho bạn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Loops & Iterators chapter](https://launchschool.com/books/ruby/read/loops_iterators) of LaunchSchool's *Introduction to Programming With Ruby*. We recommend skipping the section on recursion since recursion will be covered later on.
-1. Try re-writing the above examples using alternative loop methods to achieve the same results.
+1. Đọc [chương Vòng lặp & Bộ lặp](https://launchschool.com/books/ruby/read/loops_iterators) trong *Introduction to Programming With Ruby* của LaunchSchool. Chúng tôi khuyên bạn bỏ qua phần về đệ quy vì đệ quy sẽ được học ở phần sau.
+1. Thử viết lại các ví dụ trên bằng những phương thức vòng lặp khác để đạt được cùng kết quả.
 
 </div>

@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-In the previous lesson, you learned about some really handy enumerable methods like `#each`, `#map`, and `#select`. In this lesson, we're going to learn about *even more* enumerable methods! Woohoo! The party never ends here at The Odin Project!
+Trong bài học trước, bạn đã học một số phương thức enumerable rất tiện dụng như `#each`, `#map` và `#select`. Trong bài này, chúng ta sẽ học về *nhiều* phương thức enumerable hơn nữa! Tuyệt vời! Bữa tiệc ở The Odin Project không bao giờ kết thúc!
 
-This time, we're focusing on a particular subset of enumerable methods: the **predicate enumerable methods**. You should recall from the Methods lesson that a predicate method is indicated by a question mark (`?`) at the end of the method name and returns either `true` or `false`. Again, we won't be going through all of the predicate enumerable methods, so be sure to have a look at the [Ruby docs](https://docs.ruby-lang.org/en/3.4/) to see what else [Enumerable](https://docs.ruby-lang.org/en/3.4/Enumerable.html) offers.
+Lần này, chúng ta tập trung vào một nhóm con cụ thể của các phương thức enumerable: các **phương thức enumerable dạng vị từ**. Bạn hẳn còn nhớ từ bài học về Methods rằng một phương thức vị từ được nhận biết bởi dấu hỏi (`?`) ở cuối tên phương thức và trả về `true` hoặc `false`. Một lần nữa, chúng ta sẽ không đi qua tất cả các phương thức enumerable dạng vị từ, vì vậy hãy nhớ xem qua [tài liệu Ruby](https://docs.ruby-lang.org/en/3.4/) để biết [Enumerable](https://docs.ruby-lang.org/en/3.4/Enumerable.html) còn cung cấp những gì khác.
 
-For all of the examples throughout this lesson, feel free to follow along in irb or any appropriate online REPL environment to get a better feel for how they work.
+Với tất cả các ví dụ trong bài học này, bạn cứ tự gõ và chạy theo trong irb hoặc bất kỳ môi trường REPL trực tuyến phù hợp nào để hiểu rõ hơn cách chúng hoạt động.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài.
 
-- Describe what a predicate enumerable method is.
-- Explain how the `#include?` method works.
-- Explain how the `#any?` method works.
-- Explain how the `#all?` method works.
-- Explain how the `#none?` method works.
+- Mô tả phương thức enumerable dạng vị từ là gì.
+- Giải thích cách phương thức `#include?` hoạt động.
+- Giải thích cách phương thức `#any?` hoạt động.
+- Giải thích cách phương thức `#all?` hoạt động.
+- Giải thích cách phương thức `#none?` hoạt động.
 
-### The include? method
+### Phương thức include?
 
-The `#include?` method works exactly like you think it should. If we want to know whether a particular element exists in an array, we can use the `#include?` method. This method will return `true` if the element you pass as an argument to `#include?` exists in the array or hash; otherwise, it will return `false`.
+Phương thức `#include?` hoạt động đúng như bạn nghĩ. Nếu muốn biết một phần tử cụ thể có tồn tại trong một mảng hay không, ta có thể dùng phương thức `#include?`. Phương thức này trả về `true` nếu phần tử bạn truyền vào `#include?` dưới dạng đối số tồn tại trong mảng hoặc hash; nếu không, nó trả về `false`.
 
-First, let's explore how we would achieve this with the `#each` method:
+Trước tiên, hãy cùng tìm hiểu cách thực hiện việc này bằng phương thức `#each`:
 
 ```ruby
 numbers = [5, 6, 7, 8]
@@ -53,13 +53,13 @@ result
 
 <div class="lesson-note" markdown="1">
 
-#### Breaking out of the loop
+#### Thoát khỏi vòng lặp
 
-If you notice, there is a `break` statement in the `if` condition so that loop stops executing once the number is found. Otherwise it would still run over all numbers in the array which is not needed as we have already found the element.
+Nếu để ý, bạn sẽ thấy có câu lệnh `break` trong điều kiện `if`, để vòng lặp dừng thực thi ngay khi tìm thấy số đó. Nếu không, vòng lặp vẫn sẽ duyệt qua toàn bộ các số trong mảng, dù điều đó không cần thiết vì ta đã tìm thấy phần tử rồi.
 
 </div>
 
-Using `#include?`, this code can be greatly simplified:
+Dùng `#include?`, ta có thể rút gọn đáng kể đoạn mã này:
 
 ```ruby
 numbers = [5, 6, 7, 8]
@@ -71,7 +71,7 @@ numbers.include?(3)
 #=> false
 ```
 
-For another example, let's return to the `friends` and `invited_friends` arrays from the previous lesson:
+Một ví dụ khác là quay lại các mảng `friends` và `invited_friends` từ bài học trước:
 
 ```ruby
 friends = ['Sharon', 'Leo', 'Leila', 'Brian', 'Arun']
@@ -82,11 +82,11 @@ invited_list.include?('Brian')
 #=> false
 ```
 
-### The any? method
+### Phương thức any?
 
-You might also be able to guess what the `#any?` method does. It returns `true` if *any* elements in your array or hash match the condition within the block; otherwise, it will return `false`.
+Có lẽ bạn cũng đoán được phương thức `#any?` làm gì. Nó trả về `true` nếu *bất kỳ* phần tử nào trong mảng hoặc hash khớp với điều kiện bên trong block; nếu không, nó trả về `false`.
 
-Let's say we want to see if there is any number greater than 500 or less than 20 in an array of numbers. First, let's see how we could achieve this using `#each`.
+Giả sử ta muốn xem trong một mảng số có số nào lớn hơn 500 hoặc nhỏ hơn 20 hay không. Trước tiên, hãy xem ta có thể thực hiện việc đó bằng `#each` như thế nào.
 
 ```ruby
 numbers = [21, 42, 303, 499, 550, 811]
@@ -116,7 +116,7 @@ result
 #=> false
 ```
 
-Using `#any?`, this code can be greatly simplified:
+Dùng `#any?`, ta có thể rút gọn đáng kể đoạn mã này:
 
 ```ruby
 numbers = [21, 42, 303, 499, 550, 811]
@@ -128,11 +128,11 @@ numbers.any? { |number| number < 20 }
 #=> false
 ```
 
-### The all? method
+### Phương thức all?
 
-The `all?` method is also fairly intuitive. It only returns `true` if *all* the elements in your array or hash match the condition you set within the block; otherwise, it will return `false`.
+Phương thức `all?` cũng khá dễ hiểu. Nó chỉ trả về `true` nếu *tất cả* các phần tử trong mảng hoặc hash khớp với điều kiện bạn đặt ra bên trong block; nếu không, nó trả về `false`.
 
-Let's say that we want to check whether all the words in our list are more than 3 characters or 6 characters long. First,let's see how we could achieve this using `#each`:
+Giả sử ta muốn kiểm tra xem tất cả các từ trong danh sách có dài hơn 3 ký tự hoặc 6 ký tự hay không. Trước tiên, hãy xem ta có thể thực hiện việc đó bằng `#each` như thế nào:
 
 ```ruby
 fruits = ["apple", "banana", "strawberry", "pineapple"]
@@ -164,7 +164,7 @@ result
 #=> false
 ```
 
-Using `#all?`, this code can be greatly simplified:
+Dùng `#all?`, ta có thể rút gọn đáng kể đoạn mã này:
 
 ```ruby
 fruits = ["apple", "banana", "strawberry", "pineapple"]
@@ -176,13 +176,13 @@ fruits.all? { |fruit| fruit.length > 6 }
 #=> false
 ```
 
-Special note to keep in mind while debugging: `#all?` will return `true` by default unless the block returns `false` or `nil`. So if you call `#all?` on an empty array or hash (i.e., there are no elements  for the block to evaluate), it will return `true`.
+Một lưu ý đặc biệt khi gỡ lỗi: `#all?` mặc định sẽ trả về `true`, trừ khi block trả về `false` hoặc `nil`. Vì vậy, nếu gọi `#all?` trên một mảng hoặc hash rỗng (tức là không có phần tử nào để block đánh giá), nó sẽ trả về `true`.
 
-### The none? method
+### Phương thức none?
 
-As you might expect, `#none?` returns `true` only if the condition in the block matches *none* of the elements in your array or hash; otherwise, it returns `false`.
+Đúng như bạn có thể mong đợi, `#none?` chỉ trả về `true` nếu điều kiện trong block không khớp với *bất kỳ* phần tử nào trong mảng hoặc hash; nếu không, nó trả về `false`.
 
-First, let's see how this could be achieved using `#each`. You'll notice that this approach is very similar to what we did for `#all?`.
+Trước tiên, hãy xem có thể thực hiện việc này bằng `#each` như thế nào. Bạn sẽ nhận thấy cách tiếp cận này rất giống với những gì ta đã làm cho `#all?`.
 
 ```ruby
 fruits = ["apple", "banana", "strawberry", "pineapple"]
@@ -216,7 +216,7 @@ result
 #=> false
 ```
 
-Using `#none?`, this can be greatly simplified:
+Dùng `#none?`, ta có thể rút gọn đáng kể:
 
 ```ruby
 fruits = ["apple", "banana", "strawberry", "pineapple"]
@@ -228,9 +228,9 @@ fruits.none? { |fruit| fruit.length > 6 }
 #=> false
 ```
 
-### The one? method
+### Phương thức one?
 
-Ruby has methods to check whether all, any, or none of the elements in an array match a condition. But what if you need exactly one match - no more, no less? Ruby has you covered with the `#one?` method, which returns true if the block evaluates to true for exactly one element.
+Ruby có các phương thức để kiểm tra xem tất cả, bất kỳ hay không phần tử nào trong một mảng khớp với một điều kiện. Nhưng nếu bạn cần chính xác một phần tử khớp—không hơn, không kém—thì sao? Ruby đã có sẵn phương thức `#one?`, phương thức này trả về true nếu block cho kết quả true với chính xác một phần tử.
 
 ```ruby
 fruits = ["apple", "banana", "strawberry", "pineapple"]
@@ -242,11 +242,11 @@ fruits.one? { |fruit| fruit.length > 2 }
 #=> false
 ```
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read [How to Use Ruby Any, All, None, and One](https://www.rubyguides.com/2018/10/any-all-none-one/) for alternative explanations for predicate enumerables.
-  1. Complete the predicate enumerable exercises from the [ruby-exercises repo](https://github.com/TheOdinProject/ruby-exercises) that you previously cloned.
+  1. Đọc [Cách sử dụng Any, All, None và One trong Ruby](https://www.rubyguides.com/2018/10/any-all-none-one/) để tham khảo cách giải thích khác về các enumerable dạng vị từ.
+  1. Hoàn thành các bài tập về enumerable dạng vị từ trong [repo ruby-exercises](https://github.com/TheOdinProject/ruby-exercises) mà bạn đã clone trước đó.
 
 </div>

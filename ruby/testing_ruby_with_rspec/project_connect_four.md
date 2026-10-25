@@ -1,55 +1,55 @@
-### Introduction
+### Giới thiệu
 
-A good way to get familiar with and begin contributing to a new project is to write tests for it.  It's also the best way to become familiar with a new code base, something you'll have to do when you start working.  It's pretty common for test code to ultimately take up twice as many lines of code as the actual project code!
+Một cách hay để làm quen và bắt đầu đóng góp cho một dự án mới là viết các bài kiểm thử cho dự án đó. Đây cũng là cách tốt nhất để làm quen với một cơ sở mã mới, điều mà bạn sẽ phải làm khi bắt đầu đi làm. Việc mã kiểm thử cuối cùng chiếm số dòng gấp đôi mã của dự án thực tế là khá phổ biến!
 
-You still may feel shaky on RSpec at this point (which is totally normal), so let's go back in time and write tests for some of the code you've already done to build up a bit of muscle memory.  If you've written a good batch, submit them below and we'll include them as part of the original project description to help future students!
+Có thể lúc này bạn vẫn chưa thật sự tự tin với RSpec (điều đó hoàn toàn bình thường), vì vậy hãy quay lại và viết các bài kiểm thử cho một số mã bạn đã hoàn thành để rèn thêm kỹ năng. Nếu bạn đã viết được một loạt bài kiểm thử tốt, hãy gửi chúng ở bên dưới và chúng tôi sẽ đưa chúng vào phần mô tả dự án gốc để giúp đỡ các học viên trong tương lai!
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Clone our [ruby testing repo](https://github.com/TheOdinProject/ruby_testing) and complete the lessons in the spec folder.
-1. Watch this [helpful video by Sandi Metz](https://www.youtube.com/watch?v=URSWYvyc42M) to learn more about Ruby testing.
-1. Go back to the [Caesar Cipher Project](/lessons/ruby-caesar-cipher) and write tests for your code.  It shouldn't take more than a half-dozen tests to cover all the possible cases. As always, use the git workflow you learned in [Revisiting Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors) to work on a new feature so you can work on your new code without fear.
+1. Sao chép [repo kiểm thử Ruby](https://github.com/TheOdinProject/ruby_testing) của chúng tôi và hoàn thành các bài học trong thư mục spec.
+1. Xem [video hữu ích của Sandi Metz](https://www.youtube.com/watch?v=URSWYvyc42M) này để tìm hiểu thêm về việc kiểm thử Ruby.
+1. Quay lại [Dự án Mật mã Caesar](/lessons/ruby-caesar-cipher) và viết các bài kiểm thử cho mã của bạn. Bạn không cần quá nửa tá bài kiểm thử để bao quát mọi trường hợp có thể xảy ra. Như mọi khi, hãy sử dụng quy trình làm việc với git mà bạn đã học trong [Ôn lại Oẳn tù tì](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors) để làm việc trên một tính năng mới, nhờ đó bạn có thể phát triển mã mới mà không phải lo lắng.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Using RuboCop RSpec
+   #### Sử dụng RuboCop RSpec
 
-   You should have solid experience with RuboCop by this point and hopefully you've noticed how it can help guide you to write better Ruby. You may remember when we discussed [extending RuboCop](https://www.theodinproject.com/lessons/ruby-linting-and-rubocop#you-are-the-code-dictator) in the Linting and RuboCop lesson. Well, now as you return to write tests for your Caesar Cipher project is a great time to start putting the powerful [RuboCop RSpec](https://github.com/rubocop/rubocop-rspec) extension to use.
+   Đến thời điểm này, bạn hẳn đã có kinh nghiệm vững vàng với RuboCop và hy vọng bạn đã nhận ra công cụ này có thể hướng dẫn bạn viết Ruby tốt hơn như thế nào. Có thể bạn vẫn nhớ khi chúng ta thảo luận về việc [mở rộng RuboCop](https://www.theodinproject.com/lessons/ruby-linting-and-rubocop#you-are-the-code-dictator) trong bài học Kiểm tra mã và RuboCop. Vậy thì bây giờ, khi quay lại viết các bài kiểm thử cho dự án Mật mã Caesar, chính là lúc thích hợp để bắt đầu sử dụng phần mở rộng [RuboCop RSpec](https://github.com/rubocop/rubocop-rspec) đầy mạnh mẽ này.
 
-   Just like the base RuboCop helps you to write better Ruby, RuboCop RSpec helps you to write better RSpec by making you aware of common pitfalls, why they should generally be avoided and how to resolve them. It's highly recommended that you practice installing and using RuboCop RSpec in all of your projects involving RSpec from this point forward.
+   Cũng như RuboCop cơ bản giúp bạn viết Ruby tốt hơn, RuboCop RSpec giúp bạn viết RSpec tốt hơn bằng cách chỉ ra những cạm bẫy thường gặp, lý do nhìn chung nên tránh chúng và cách khắc phục. Từ giờ trở đi, bạn được khuyến khích mạnh mẽ nên luyện tập cài đặt và sử dụng RuboCop RSpec trong mọi dự án có dùng RSpec.
 
    </div>
 
-1. Write tests for your [Tic Tac Toe project](/lessons/ruby-tic-tac-toe). In this situation, it's not quite as straightforward as just coming up with inputs and making sure the method returns the correct thing. You'll need to make sure the tests that determine victory or loss conditions are correctly assessed.
-   1. Start by writing tests to make sure players win when they should, e.g. when the board reads X X X across the top row, your `#game_over` method (or its equivalent) should trigger.
-   1. Test each of your critical methods to make sure they function properly and handle edge cases.
-   1. Use mocks/doubles to isolate methods to make sure that they're sending back the right outputs.
+1. Viết các bài kiểm thử cho [dự án Tic Tac Toe](/lessons/ruby-tic-tac-toe) của bạn. Trong trường hợp này, việc chỉ nghĩ ra các đầu vào rồi kiểm tra xem phương thức có trả về kết quả đúng hay không sẽ không hoàn toàn đơn giản. Bạn sẽ cần đảm bảo rằng các bài kiểm thử xác định điều kiện thắng hoặc thua được đánh giá chính xác.
+   1. Hãy bắt đầu bằng việc viết các bài kiểm thử để đảm bảo người chơi thắng khi họ phải thắng, chẳng hạn như khi bàn cờ có X X X trên hàng đầu tiên, phương thức `#game_over` của bạn (hoặc phương thức tương đương) phải được kích hoạt.
+   1. Kiểm thử từng phương thức quan trọng để đảm bảo chúng hoạt động đúng và xử lý các trường hợp biên.
+   1. Sử dụng mock/double để cô lập các phương thức và đảm bảo chúng trả về đúng kết quả.
 
 </div>
 
-### Project: TDD Connect Four
+### Dự án: TDD Connect Four
 
-Hopefully most people will have played [Connect Four](http://en.wikipedia.org/wiki/Connect_Four) at some point. It's a basic game where each player takes turns dropping pieces into the cage. Players win if they manage to get 4 of their pieces consecutively in a row, column, or along a diagonal.
+Hy vọng hầu hết mọi người đã từng chơi [Connect Four](http://en.wikipedia.org/wiki/Connect_Four). Đây là một trò chơi cơ bản, trong đó mỗi người chơi lần lượt thả các quân cờ vào khung. Người chơi thắng nếu đặt được 4 quân cờ của mình liên tiếp theo hàng ngang, hàng dọc hoặc đường chéo.
 
-The game rules are fairly straightforward and you'll be building it on the command line like you did with the other games.  If you want to spice up your game pieces, look up the [unicode miscellaneous symbols](http://en.wikipedia.org/wiki/List_of_Unicode_characters#Miscellaneous_Symbols) on Wikipedia.  The Ruby part of this should be well within your capability by now so it shouldn't tax you much to think about it.
+Luật chơi khá đơn giản và bạn sẽ xây dựng trò chơi này trên dòng lệnh, giống như đã làm với các trò chơi khác. Nếu muốn làm các quân cờ trở nên thú vị hơn, hãy tìm hiểu [các ký hiệu linh tinh trong Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters#Miscellaneous_Symbols) trên Wikipedia. Phần Ruby của bài này hiện đã hoàn toàn nằm trong khả năng của bạn, vì vậy việc suy nghĩ về nó sẽ không quá khó khăn.
 
-The major difference here is that you'll be doing this TDD-style.  So figure out what needs to happen, write a (failing) test for it, then write the code to make that test pass, then see if there's anything you can do to refactor your code and make it better.
+Điểm khác biệt lớn ở đây là bạn sẽ thực hiện bài này theo phong cách TDD. Vì vậy, hãy xác định điều gì cần xảy ra, viết một bài kiểm thử (đang thất bại) cho điều đó, sau đó viết mã để bài kiểm thử vượt qua, rồi xem có thể tái cấu trúc mã để làm cho nó tốt hơn hay không.
 
-Only write exactly enough code to make your test pass.  Oftentimes, you'll end up having to write two tests in order to make a method do anything useful.  That's okay here.  It may feel a bit like overkill, but that's the point of the exercise.  Your thoughts will probably be something like "Okay, I need to make this thing happen.  How do I test it?  Okay, wrote the test, how do I code it into Ruby?  Okay, wrote the Ruby, how can I make this better?"  You'll find yourself spending a fair bit of time Googling and trying to figure out exactly how to test a particular bit of functionality.  That's also okay... You're really learning RSpec here, not Ruby, and it takes some getting used to.
+Chỉ viết vừa đủ mã để bài kiểm thử vượt qua. Thông thường, bạn sẽ phải viết hai bài kiểm thử để một phương thức thực hiện được điều gì đó hữu ích. Điều đó hoàn toàn ổn trong bài này. Có thể bạn sẽ cảm thấy hơi quá mức cần thiết, nhưng đó chính là mục đích của bài tập. Suy nghĩ của bạn có lẽ sẽ giống như: "Được rồi, mình cần khiến việc này xảy ra. Mình kiểm thử nó thế nào đây? Được rồi, đã viết bài kiểm thử, vậy mình chuyển nó thành mã Ruby ra sao? Được rồi, đã viết mã Ruby, giờ mình có thể cải thiện nó thế nào?" Bạn sẽ dành khá nhiều thời gian tìm kiếm trên Google và cố gắng tìm hiểu chính xác cách kiểm thử một chức năng cụ thể. Điều đó cũng hoàn toàn ổn... Thực ra bạn đang học RSpec ở đây, chứ không phải Ruby, và sẽ cần một thời gian để quen với nó.
 
-### Assignment continued
+### Bài tập tiếp theo
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Build Connect Four!  Just be sure to keep it TDD.
+  1. Xây dựng Connect Four! Chỉ cần đảm bảo bạn thực hiện theo TDD.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy bạn có thể xem nó như tài liệu bổ sung.
 
-- Stack Overflow has an [RSpec Mock Object example](http://stackoverflow.com/questions/3622604/rspec-mock-object-example).
-- Tutorials Point has an article about [RSpec Writing Specs](https://www.tutorialspoint.com/rspec/rspec_writing_specs.htm).
+- Stack Overflow có một [ví dụ về Mock Object trong RSpec](http://stackoverflow.com/questions/3622604/rspec-mock-object-example).
+- Tutorials Point có một bài viết về [viết spec trong RSpec](https://www.tutorialspoint.com/rspec/rspec_writing_specs.htm).

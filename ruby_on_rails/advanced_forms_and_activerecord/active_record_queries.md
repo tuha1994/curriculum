@@ -1,71 +1,71 @@
-### Introduction
+### Giới thiệu
 
-Up until now, we've covered the bread and butter you need to build basic queries using Active Record. After building a handful of projects and working through the tutorial, you should be comfortable making these queries.
+Cho đến nay, chúng ta đã tìm hiểu những kiến thức cốt lõi cần có để xây dựng các truy vấn cơ bản bằng Active Record. Sau khi hoàn thành một vài dự án và làm theo phần hướng dẫn, bạn sẽ đủ tự tin để viết những truy vấn này.
 
-Active Record is much more powerful than just CRUD actions on individual records. It gives you a Ruby-ish interface to do almost anything you can do with bare-metal SQL statements. You can cherry-pick individual groups of records based on specific criteria and order them however you want. You can join tables manually or query using associations set up by Rails. You can return lists of records or perform basic math like counts and averages.
+Active Record mạnh hơn nhiều so với việc chỉ thực hiện các thao tác CRUD trên từng bản ghi. Nó cung cấp một giao diện mang phong cách Ruby để thực hiện gần như mọi việc bạn có thể làm bằng các câu lệnh SQL thuần. Bạn có thể chọn ra từng nhóm bản ghi dựa trên tiêu chí cụ thể và sắp xếp chúng theo ý muốn. Bạn có thể tự nối các bảng hoặc truy vấn thông qua các association do Rails thiết lập. Bạn cũng có thể trả về danh sách bản ghi hoặc thực hiện những phép tính cơ bản như đếm và tính trung bình.
 
-All this is done at the database level, which is much faster than loading up a whole table of stuff into Ruby objects before parsing and chopping and calculating with it.
+Tất cả việc này được thực hiện ở cấp cơ sở dữ liệu, nhanh hơn nhiều so với việc tải toàn bộ một bảng dữ liệu vào các đối tượng Ruby rồi mới phân tích, tách lọc và tính toán.
 
-In this lesson, we'll get into the more interesting and useful areas of Active Record queries. You'll learn what Active Record actually returns and how to manipulate the returned values at will. You'll also learn how to make your queries more efficient along the way.
+Trong bài học này, chúng ta sẽ đi sâu vào những khía cạnh thú vị và hữu ích hơn của các truy vấn Active Record. Bạn sẽ tìm hiểu Active Record thực sự trả về gì và cách tùy ý thao tác với các giá trị được trả về. Trên đường đi, bạn cũng sẽ học cách làm cho các truy vấn hiệu quả hơn.
 
-There's a lot of material to read and cover, but it basically follows the idea "anything you can do in SQL, you can do in Active Record". They mostly use the same terminology as well. Active Record just extends that functionality by giving you a suite of versatile methods (and concepts like Relations) to make it much more user-friendly along the way.
+Có khá nhiều tài liệu cần đọc và nội dung cần bao quát, nhưng nhìn chung bài học dựa trên ý tưởng: "bạn làm được gì trong SQL thì cũng có thể làm điều đó trong Active Record". Hai bên phần lớn cũng sử dụng cùng một thuật ngữ. Active Record mở rộng chức năng đó bằng cách cung cấp một bộ phương thức linh hoạt (cùng những khái niệm như Relation), giúp mọi việc thân thiện hơn với người dùng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- What an Active Record relation is.
-- What lazy evaluation is.
-- Commonly used Rails query methods.
-- N+1 queries and why they are a concern.
-- What scopes are.
-- What enums are.
+- Relation của Active Record là gì.
+- Đánh giá trì hoãn là gì.
+- Những phương thức truy vấn Rails thường dùng.
+- Truy vấn N+1 và lý do chúng đáng lo ngại.
+- Scope là gì.
+- Enum là gì.
 
-### Relations and lazy evaluation
+### Relation và đánh giá trì hoãn
 
-Using `User.find(1)` will return an unambiguous object -- it's going to find the user with ID = 1 and give it to you as a Ruby object. But this behavior is actually unusual. Most queries don't actually return a Ruby object, they just fake it. For example:
+Sử dụng `User.find(1)` sẽ trả về một đối tượng rõ ràng -- nó sẽ tìm người dùng có ID = 1 và trả đối tượng đó cho bạn dưới dạng một đối tượng Ruby. Tuy nhiên, hành vi này thực ra khá đặc biệt. Phần lớn truy vấn không thực sự trả về một đối tượng Ruby mà chỉ giả lập như vậy. Ví dụ:
 
 ```ruby
   User.where(id: 1)
 ```
 
-Might look like it returns an array that contains a serialized User object, like:
+có vẻ sẽ trả về một mảng chứa đối tượng User đã được tuần tự hóa, chẳng hạn:
 
 ```ruby
   [#<User id: 1, email: "foo@bar.com">]
 ```
 
-But try running `User.where(id: 1).class` and you'll see that it isn't an `Array`, it's actually an instance of `ActiveRecord::Relation`. Relations are actually just really good at looking like arrays but they've got more going on.
+Nhưng hãy thử chạy `User.where(id: 1).class`, bạn sẽ thấy nó không phải là một `Array` mà thực ra là một instance của `ActiveRecord::Relation`. Relation chỉ rất giỏi trong việc trông giống mảng, còn bên trong nó làm được nhiều việc hơn thế.
 
-Active Record queries return relations to be lazy. There's basically no reason to actually tell the database to execute a query until the very last possible minute. What if you never actually needed to use that query at all? What if you want to make it more complex before executing it? Relations give you that flexibility and make much more efficient use of your database's valuable time.
+Các truy vấn Active Record trả về relation để trì hoãn việc thực thi. Về cơ bản, không có lý do gì phải yêu cầu cơ sở dữ liệu thực thi truy vấn trước thời điểm cuối cùng có thể. Nếu bạn hoàn toàn không cần dùng truy vấn đó thì sao? Nếu bạn muốn làm cho nó phức tạp hơn trước khi thực thi thì sao? Relation cho bạn sự linh hoạt ấy và giúp sử dụng hiệu quả hơn khoảng thời gian quý giá của cơ sở dữ liệu.
 
-Relations only get executed when it becomes absolutely necessary to know what's inside them. So if your controller grabs 5 blog posts using `@posts = Post.limit(5)`, that is really passing your view a relation. It's only when the code in the view actually calls a method on `@posts` (like `@posts.first.title`) that the query will be run and the relation will get stored as a real Ruby object in memory.
+Relation chỉ được thực thi khi việc biết bên trong nó có gì trở nên thực sự cần thiết. Vì vậy, nếu controller lấy 5 bài viết blog bằng `@posts = Post.limit(5)`, thì thực chất nó đang truyền cho view một relation. Chỉ khi code trong view thực sự gọi một phương thức trên `@posts` (chẳng hạn `@posts.first.title`) thì truy vấn mới chạy và relation mới được lưu trong bộ nhớ như một đối tượng Ruby thật sự.
 
-This behavior can be a bit tricky to observe if you use something like the Rails Console (`$ rails console`) to test them out, because the queries will actually be run right away in the console since it implicitly runs something like the `.inspect` method on the relation, which requires the query to be run. But try playing with building a query like we did above and checking out its `#class`... you'll usually get back `ActiveRecord::Relation`.
+Hành vi này có thể hơi khó quan sát nếu bạn dùng thứ gì đó như Rails Console (`$ rails console`) để thử nghiệm, vì truy vấn sẽ được chạy ngay trong console: console ngầm gọi một phương thức tương tự `.inspect` trên relation, mà phương thức đó yêu cầu truy vấn phải được thực thi. Tuy vậy, hãy thử xây dựng một truy vấn như ví dụ trên và kiểm tra `#class` của nó... thông thường bạn sẽ nhận được `ActiveRecord::Relation`.
 
-#### Chaining queries
+#### Nối chuỗi truy vấn
 
-Relations aren't just built for speed... they're also built for flexibility. Let's say you want to grab the first 5 posts listed in descending order (`Post.limit(5).order(created_at: :desc)`). Because `#limit` returns a Relation, `#order` takes that relation and adds its own criteria to it. You can chain together a dozen methods this way, and, when it's finally time to execute, ActiveRecord and SQL (if that's what you're using for the DB) will figure out the optimal way to structure the query to achieve the desired result.
+Relation không chỉ được xây dựng để tăng tốc... chúng còn được xây dựng để linh hoạt. Giả sử bạn muốn lấy 5 bài viết đầu tiên theo thứ tự giảm dần (`Post.limit(5).order(created_at: :desc)`). Vì `#limit` trả về một Relation, `#order` nhận relation đó rồi bổ sung tiêu chí riêng của nó. Bạn có thể nối hàng chục phương thức theo cách này; đến lúc cần thực thi, ActiveRecord và SQL (nếu đó là hệ quản trị cơ sở dữ liệu bạn dùng) sẽ tìm ra cách tối ưu để cấu trúc truy vấn nhằm đạt kết quả mong muốn.
 
-This is the sort of behavior that you just sort of expect to work, and Relations are what enables it to do so.
+Đây là kiểu hành vi mà bạn thường mặc nhiên mong đợi sẽ hoạt động, và Relation chính là thứ cho phép điều đó xảy ra.
 
-#### Why care?
+#### Vì sao cần quan tâm?
 
-You should care that ActiveRecord queries usually return Relations because you'll run into them often when coding and debugging. The knowledge should make you comfortable chaining query methods together to construct elaborate queries.
+Bạn nên quan tâm đến việc các truy vấn ActiveRecord thường trả về Relation vì khi viết code và gỡ lỗi, bạn sẽ thường xuyên gặp chúng. Kiến thức này sẽ giúp bạn tự tin nối các phương thức truy vấn để tạo ra những truy vấn phức tạp.
 
-If you end up working with a Relation when you really want it to act like an Array, you can sometimes run `#to_a` on it to force it to evaluate the query.
+Nếu gặp một Relation nhưng thực sự muốn nó hoạt động như một Array, đôi khi bạn có thể chạy `#to_a` để buộc nó đánh giá truy vấn.
 
-Methods implemented in `ActiveRecord::FinderMethods` do NOT return `ActiveRecord::Relation` objects. The `#find`, `#find_by`, `#first` and `#last` methods return a single record (a model instance). `#take` returns either a single model instance, or an array of them if a parameter is provided. Unlike the methods that return `Relation` objects, when called, these will run SQL queries immediately.
+Các phương thức được triển khai trong `ActiveRecord::FinderMethods` KHÔNG trả về các đối tượng `ActiveRecord::Relation`. Các phương thức `#find`, `#find_by`, `#first` và `#last` trả về một bản ghi duy nhất (một instance của model). `#take` trả về một instance model duy nhất hoặc một mảng các instance nếu được truyền tham số. Không giống các phương thức trả về đối tượng `Relation`, những phương thức này sẽ chạy truy vấn SQL ngay lập tức khi được gọi.
 
-### Beyond basic querying
+### Vượt ra ngoài truy vấn cơ bản
 
-You should be pretty comfortable now with queries like finding objects. The reading you do for this section will cover the basics and then dive in a bit further than before. There are a couple of new concepts worth mentioning.
+Đến đây, bạn hẳn đã khá quen với những truy vấn dùng để tìm đối tượng. Phần tài liệu tiếp theo sẽ bao quát nền tảng rồi đi sâu hơn một chút so với trước. Có vài khái niệm mới đáng được nhắc đến.
 
-#### Checking for existence
+#### Kiểm tra sự tồn tại
 
-The new concept is how to check whether an object actually exists yet or not, which you may want to do before running a method which depends on the object actually having been saved already.
+Khái niệm mới là cách kiểm tra một đối tượng có thực sự tồn tại hay chưa. Bạn có thể muốn làm điều này trước khi chạy một phương thức phụ thuộc vào việc đối tượng đó đã được lưu hay chưa.
 
-`#exists?` will return true/false. `#any?` will be true if any records match the specified criteria and `#many?` will be true if multiple records match the specified criteria. You can run each of these either on a model directly, a Relation, an association, or a scope (which we'll cover later). Basically, anywhere you might think of using them, they're likely to work:
+`#exists?` sẽ trả về true/false. `#any?` sẽ trả về true nếu có bản ghi nào khớp tiêu chí đã chỉ định, còn `#many?` sẽ trả về true nếu có nhiều bản ghi khớp tiêu chí đó. Bạn có thể chạy từng phương thức trên model, một Relation, một association hoặc một scope (chúng ta sẽ tìm hiểu sau). Về cơ bản, ở bất kỳ nơi nào bạn nghĩ đến việc sử dụng chúng, rất có thể chúng đều hoạt động:
 
 ```ruby
   # From the Guide:
@@ -82,9 +82,9 @@ The new concept is how to check whether an object actually exists yet or not, wh
   Post.first.categories.many?
 ```
 
-#### Arguments
+#### Đối số
 
-There are multiple ways to submit arguments for most Rails query methods. You can typically use either symbols or strings or both. We prefer to stick with symbols and hashes wherever possible. You can also use `?` parameters like in normal SQL. When it's not ambiguous (e.g. if you aren't working with multiple tables) you can also choose to specify the table name or not (see #5 below). All of the following are the same:
+Có nhiều cách truyền đối số cho hầu hết các phương thức truy vấn Rails. Thông thường, bạn có thể dùng symbol, string hoặc kết hợp cả hai. Khi có thể, chúng tôi khuyến nghị dùng symbol và hash. Bạn cũng có thể dùng tham số `?` như trong SQL thông thường. Khi không gây mơ hồ (ví dụ bạn không làm việc với nhiều bảng), bạn có thể chọn chỉ rõ tên bảng hoặc không (xem mục số 5 bên dưới). Tất cả các cách sau đều tương đương:
 
 1. `User.where(email: "foo@bar.com")`
 1. `User.where("email" => "foo@bar.com")`
@@ -92,45 +92,45 @@ There are multiple ways to submit arguments for most Rails query methods. You ca
 1. `User.where("email = ?", "foo@bar.com")`
 1. `User.where("users.email" => "foo@bar.com")`
 
-#### More assorted querying knowledge
+#### Một số kiến thức truy vấn khác
 
-Very large queries can actually be batched into lots of subqueries so they don't eat up tons of performance resources. `#find_each` does the trick. The basic principle is that it chunks the query into pieces, loading up the first piece and evaluating it before moving onto the next one. This will be helpful for you when optimizing queries but isn't really something to worry too much about up front.
+Các truy vấn rất lớn thực ra có thể được chia thành nhiều truy vấn con để không tiêu tốn quá nhiều tài nguyên hiệu năng. `#find_each` đảm nhiệm việc này. Nguyên tắc cơ bản là nó chia truy vấn thành từng phần, tải và đánh giá phần đầu tiên trước khi chuyển sang phần tiếp theo. Điều này sẽ hữu ích khi tối ưu truy vấn, nhưng ban đầu bạn chưa cần quá lo lắng về nó.
 
-`#where` queries give you a fair bit of flexibility -- they let you specify an exact value to find, a range of values to find, or several values to find. If you know what type of query you're looking for, you can almost guess the proper syntax for executing it.
+Các truy vấn `#where` khá linh hoạt -- chúng cho phép bạn chỉ định một giá trị chính xác, một khoảng giá trị hoặc nhiều giá trị cần tìm. Nếu biết loại truy vấn mình muốn, bạn gần như có thể đoán được cú pháp phù hợp để thực hiện nó.
 
-The key thing to note is that `#find` returns the actual record while `#where` returns an `ActiveRecord::Relation` which basically acts like an array. So if you're using `#where` to find a single record, you still need to remember to go into that "array" and grab the first record, e.g. `User.where(email: "foo@bar.com")[0]` or `User.where(email: "foo@bar.com").first`.
+Điểm quan trọng cần nhớ là `#find` trả về bản ghi thực, còn `#where` trả về một `ActiveRecord::Relation` về cơ bản hoạt động như một mảng. Vì vậy, nếu dùng `#where` để tìm một bản ghi duy nhất, bạn vẫn phải nhớ truy cập vào "mảng" đó và lấy bản ghi đầu tiên, chẳng hạn `User.where(email: "foo@bar.com")[0]` hoặc `User.where(email: "foo@bar.com").first`.
 
-`#find_by` is a really neat method that basically lets you build your own finder method. It's an alternative to using `#where` (to which you'd have to add another method like `#take` or `#first` to pull the result out of the returned array). If you want to find by a user's email, write `User.find_by(email: 'foo@bar.com')`.
+`#find_by` là một phương thức rất tiện, về cơ bản cho phép bạn tự xây dựng phương thức tìm kiếm của riêng mình. Đây là lựa chọn thay thế cho `#where` (bạn phải thêm một phương thức khác như `#take` hoặc `#first` để lấy kết quả ra khỏi mảng được trả về). Nếu muốn tìm theo email của người dùng, hãy viết `User.find_by(email: 'foo@bar.com')`.
 
-`#select` should be pretty obvious to a SQL ninja like you -- it lets you choose which columns to select from the table(s), just like in SQL. To select just the ID column for all users, it's as straightforward as `User.select(:id)`. You can also use aliases like in SQL but should use quotes instead of symbols, e.g. `@users = User.select("users.id AS user_id")` will create a new attribute called `user_id`, e.g. allowing you to access `@users.first.user_id`.
+`#select` hẳn khá dễ hiểu với một SQL ninja như bạn -- nó cho phép chọn những cột cần lấy từ các bảng, giống như trong SQL. Để chỉ chọn cột ID của tất cả người dùng, cú pháp rất đơn giản: `User.select(:id)`. Bạn cũng có thể dùng alias như trong SQL, nhưng nên dùng chuỗi thay vì symbol; chẳng hạn `@users = User.select("users.id AS user_id")` sẽ tạo một thuộc tính mới tên là `user_id`, cho phép bạn truy cập `@users.first.user_id`.
 
-### Aggregations
+### Phép tổng hợp
 
-Just like with SQL, you often want to group fields together (or "roll up" the values under one header). For example, grouping blog posts written on a certain date. This is most useful when you also apply mathematical operations to them like `#count` or `#max`. An example (a bit more complex because it involves joining two tables) is if we want to get a count of all the blog posts categorized by each tag. We might write something like:
-
-```bash
-  Post.joins(:tags).group("tags.name").count
-  # => {"tag1" => 4, "tag2" => 2, "tag3" => 5}
-```
-
-### Joins
-
-When working with multiple tables, you'll often want to join them together. Rails associations often do the heavy lifting of setting up the joins for you if you're working with instances of an object, so you may not need to explicitly use a `#join` right away.
-
-But if you're running queries like in the Post-Tag-count grouping example used above, you'll need to use joins to bring together the appropriate tables. You need to be more careful with how you select data when using joins -- if you are looking for the `:id` column, which table's ID are we asking for? You'll find yourself using more explicit strings when joining, e.g. in the example above (copied below) where we specify the `name` attribute of the `tags` table:
+Cũng như trong SQL, bạn thường muốn nhóm các trường lại với nhau (hoặc "cuộn" các giá trị dưới một tiêu đề). Ví dụ, nhóm các bài viết blog được viết vào một ngày nhất định. Việc này hữu ích nhất khi kết hợp với các phép toán như `#count` hoặc `#max`. Một ví dụ (phức tạp hơn một chút vì liên quan đến việc nối hai bảng) là khi muốn đếm tất cả bài viết blog được phân loại theo từng thẻ. Ta có thể viết như sau:
 
 ```bash
   Post.joins(:tags).group("tags.name").count
   # => {"tag1" => 4, "tag2" => 2, "tag3" => 5}
 ```
 
-### N+1 queries and eager loading
+### Nối bảng
 
-If you want your application to run with any kind of efficiency at all, you should strive to reduce the number of queries that are run on your database as much as possible. That means figuring out ahead of time exactly what you're looking for and then building the correct query to grab that thing one time only.
+Khi làm việc với nhiều bảng, bạn thường muốn nối chúng lại với nhau. Các association của Rails thường gánh phần lớn việc thiết lập các phép nối nếu bạn làm việc với instance của một đối tượng, nên có thể ban đầu bạn chưa cần dùng `#join` một cách tường minh.
 
-It's okay to grab the SAME information multiple times... Rails caches the first result anyway so it doesn't result in a performance hit. But there are situations where you force the `ActiveRecord::Relation` that is returned by a query to execute itself immediately and then you try to run queries on each member of the collection. That's a whole lot of queries and can quickly slow your application down to a snail's pace.
+Nhưng nếu đang chạy những truy vấn như ví dụ nhóm số lượng Bài viết-Thẻ ở trên, bạn sẽ cần dùng phép nối để kết hợp các bảng phù hợp. Bạn cần cẩn thận hơn khi chọn dữ liệu bằng phép nối -- nếu tìm cột `:id`, ta đang hỏi ID của bảng nào? Khi nối bảng, bạn sẽ thấy mình dùng các chuỗi tường minh hơn, chẳng hạn trong ví dụ trên (được chép lại bên dưới), nơi chúng ta chỉ rõ thuộc tính `name` của bảng `tags`:
 
-The N+1 query problem is the classic case of this -- you grab all the records for your users (`User.all`) then loop through each user and call an association it has, like the city the user lives in (`user.city`). For this example we're assuming an association exists between User and City, where User `belongs_to` a City. This might look like:
+```bash
+  Post.joins(:tags).group("tags.name").count
+  # => {"tag1" => 4, "tag2" => 2, "tag3" => 5}
+```
+
+### Truy vấn N+1 và eager loading
+
+Nếu muốn ứng dụng đạt hiệu năng ở mức chấp nhận được, bạn nên cố gắng giảm số truy vấn chạy trên cơ sở dữ liệu nhiều nhất có thể. Điều đó có nghĩa là phải xác định trước chính xác mình cần gì rồi xây dựng đúng truy vấn để lấy thứ đó chỉ một lần.
+
+Việc lấy cùng một thông tin nhiều lần cũng không sao... Rails vốn đã lưu kết quả đầu tiên vào bộ nhớ đệm nên không gây ảnh hưởng hiệu năng. Tuy nhiên, có những tình huống bạn buộc `ActiveRecord::Relation` do một truy vấn trả về phải tự thực thi ngay, rồi lại chạy truy vấn trên từng phần tử trong tập hợp. Đó là một lượng truy vấn rất lớn và có thể nhanh chóng khiến ứng dụng chậm như sên.
+
+Vấn đề truy vấn N+1 là trường hợp kinh điển của tình huống này -- bạn lấy tất cả bản ghi người dùng (`User.all`), sau đó lặp qua từng người dùng và gọi một association của họ, chẳng hạn thành phố nơi người dùng sống (`user.city`). Trong ví dụ này, chúng ta giả định có association giữa User và City, trong đó User `belongs_to` một City. Đoạn code có thể như sau:
 
 ```ruby
   User.all.each do |user|
@@ -138,11 +138,11 @@ The N+1 query problem is the classic case of this -- you grab all the records fo
   end
 ```
 
-This is going to result in one query to get all the users, then another query for each user to find its city through the association... so N additional queries, where N is the total number of users. Hence "N+1" problems. Note that it's totally fine to just grab a regular attribute of User like `user.name`... it's because you're reaching through the association with City that we've got to run another full query.
+Kết quả sẽ là một truy vấn để lấy tất cả người dùng, sau đó thêm một truy vấn cho mỗi người dùng để tìm thành phố thông qua association... tức N truy vấn bổ sung, trong đó N là tổng số người dùng. Vì vậy nó được gọi là vấn đề "N+1". Lưu ý rằng việc chỉ lấy một thuộc tính thông thường của User như `user.name` hoàn toàn ổn... vấn đề xuất hiện vì bạn truy cập xuyên qua association đến City, khiến phải chạy thêm một truy vấn đầy đủ.
 
-If the best way to make an application run faster is to reduce database calls, we've just messed up badly by causing a potentially huge number of them.
+Nếu cách tốt nhất để làm ứng dụng nhanh hơn là giảm số lần gọi cơ sở dữ liệu, thì chúng ta vừa làm hỏng mọi thứ khi tạo ra một số lượng truy vấn có thể cực kỳ lớn.
 
-Rails is well aware of your distress and has provided a solution -- "eager loading". When you first grab the list of all users, you can tell Rails to also grab the cities at the same time (with just one additional query) and store them in memory until you'd like to call upon them. Then `user.city` gets treated the same way as `user.name`... it doesn't run another query. The trick is the `#includes` method.
+Rails hiểu rõ khó khăn này và cung cấp một giải pháp -- "eager loading". Khi lần đầu lấy danh sách tất cả người dùng, bạn có thể yêu cầu Rails lấy luôn các thành phố (chỉ với một truy vấn bổ sung) và lưu chúng trong bộ nhớ cho đến khi cần dùng. Khi đó `user.city` được xử lý giống như `user.name`... nó không chạy thêm truy vấn. Bí quyết nằm ở phương thức `#includes`.
 
 ```ruby
   User.all.includes(:city).each do |user|
@@ -150,30 +150,30 @@ Rails is well aware of your distress and has provided a solution -- "eager loadi
   end
 ```
 
-`#includes` basically takes the name of one or more associations that you'd like to load at the same time as your original object and brings them into memory. You can chain it onto other methods like `#where` or `#order` clauses.
+Về cơ bản, `#includes` nhận tên của một hoặc nhiều association bạn muốn tải cùng lúc với đối tượng ban đầu rồi đưa chúng vào bộ nhớ. Bạn có thể nối nó với các phương thức khác như mệnh đề `#where` hoặc `#order`.
 
 <div class="lesson-note" markdown="1">
 
-#### Output of eager-Loaded fields
+#### Kết quả của các trường eager loading
 
-One thing which can be a bit annoying from a development standpoint is that we haven't found an easy way to "see" your eager-loaded fields by looking at the output from your Rails server. So don't be alarmed if they don't show up in the server output
+Xét trên phương diện phát triển, một điều hơi khó chịu là chúng ta chưa tìm ra cách dễ dàng để "nhìn thấy" các trường eager loading khi xem output từ máy chủ Rails. Vì vậy, đừng lo nếu chúng không xuất hiện trong output của máy chủ.
 
 </div>
 
-Almost as useful is the `#pluck` method, which is covered in the Rails Guide. `#pluck` lets you skip several steps in the process of pulling up a bunch of records, storing them in memory, then grabbing a specific column and placing it into an array. `#pluck` just gives you the resulting array right away:
+Phương thức `#pluck`, được đề cập trong Rails Guide, cũng hữu ích gần như vậy. `#pluck` cho phép bỏ qua vài bước trong quy trình lấy nhiều bản ghi, lưu chúng vào bộ nhớ, sau đó lấy một cột cụ thể và đưa cột đó vào một mảng. `#pluck` trả về ngay mảng kết quả:
 
 ```ruby
   User.pluck(:name)
   # => ["Foo", "Bar", "Baz", "Jimmy-Bob"]
 ```
 
-This is another way to help speed up your application if you've found pain points. Start by getting rid of N+1 queries, though.
+Đây là một cách khác để tăng tốc ứng dụng nếu bạn đã tìm thấy những điểm gây chậm. Tuy vậy, trước tiên hãy loại bỏ các truy vấn N+1.
 
-### Scopes
+### Scope
 
-Scopes are underappreciated, and awesome. A scope is basically a custom chain of ActiveRecord methods that you can slap onto an existing Relation by calling its name like a normal method. It's easiest to see in an example.
+Scope thường bị đánh giá thấp, nhưng cực kỳ hữu ích. Về cơ bản, scope là một chuỗi tùy chỉnh các phương thức ActiveRecord mà bạn có thể gắn vào một Relation hiện có bằng cách gọi tên nó như một phương thức thông thường. Xem ví dụ sẽ dễ hiểu nhất.
 
-Let's say you let your user choose to filter your blog posts only for those marked "important":
+Giả sử bạn cho phép người dùng lọc các bài viết blog chỉ lấy những bài được đánh dấu là "important":
 
 ```ruby
   # app/models/post.rb
@@ -192,9 +192,9 @@ Let's say you let your user choose to filter your blog posts only for those mark
   end
 ```
 
-Instead of always having to rewrite that chain of ActiveRecord methods when you want them, you can create nicely named scopes to contain all the component logic. You reduce repetition and make your code more readable. The best part is that scopes return Relations... so you can chain as many of them as you want.
+Thay vì luôn phải viết lại chuỗi phương thức ActiveRecord đó mỗi khi cần, bạn có thể tạo những scope có tên rõ ràng để chứa toàn bộ logic thành phần. Cách này giảm lặp code và giúp code dễ đọc hơn. Điểm hay nhất là scope trả về Relation... vì vậy bạn có thể nối bao nhiêu scope tùy thích.
 
-You might be thinking, Why use a scope when you can write a class method to do the same thing? You can, as long as your class method returns a Relation (which can take some additional thought for edge cases). In fact, using a class method is often best if your logic chains are quite complicated. The example above could be solved using the following class method as well:
+Bạn có thể nghĩ: Tại sao dùng scope khi có thể viết một class method để làm điều tương tự? Bạn có thể làm vậy, miễn là class method trả về một Relation (điều này có thể cần suy nghĩ thêm cho các trường hợp biên). Thực tế, class method thường là lựa chọn tốt hơn nếu chuỗi logic của bạn khá phức tạp. Ví dụ trên cũng có thể được giải quyết bằng class method sau:
 
 ```ruby
   # app/models/post.rb
@@ -205,21 +205,21 @@ You might be thinking, Why use a scope when you can write a class method to do t
   ...
 ```
 
-See the [Additional Resources section](#additional-resources) for links to some posts that dig a bit deeper into the use cases for these two.
+Xem [phần Tài nguyên bổ sung](#additional-resources) để tìm các liên kết đến một số bài viết đào sâu hơn về trường hợp sử dụng của hai cách này.
 
-How much do you need to understand or care about scopes? In the early going, you probably won't run into them or see why to use them. Keep them in the back of your mind for when you start working on some slightly more complicated projects that might need them.
+Bạn cần hiểu hoặc quan tâm đến scope ở mức nào? Trong giai đoạn đầu, có lẽ bạn chưa gặp chúng hoặc chưa thấy lý do nên dùng. Hãy ghi nhớ chúng để dùng khi bắt đầu làm những dự án phức tạp hơn một chút và có thể cần đến chúng.
 
-### Enums
+### Enum
 
-Enums (short for "enumerations") map database column values, typically stored as integers, to a set of symbolic names. They make code more readable and maintainable, and they offer a performance boost since queries involving integers are faster than those involving strings.
+Enum (viết tắt của "enumerations") ánh xạ các giá trị của cột cơ sở dữ liệu, thường được lưu dưới dạng số nguyên, sang một tập hợp tên tượng trưng. Chúng giúp code dễ đọc và bảo trì hơn, đồng thời tăng hiệu năng vì các truy vấn liên quan đến số nguyên nhanh hơn các truy vấn liên quan đến chuỗi.
 
-Enums are perfect for representing the state of an attribute that has a discrete value. As an example, suppose an article on a blog can be in a `draft` or `published` state. It is never between these two states, and it is never in more than one at any time.
+Enum phù hợp để biểu diễn trạng thái của một thuộc tính có giá trị rời rạc. Ví dụ, một bài viết trên blog có thể ở trạng thái `draft` hoặc `published`. Nó không bao giờ ở giữa hai trạng thái này và cũng không bao giờ ở nhiều hơn một trạng thái tại cùng thời điểm.
 
-#### How to use enums
+#### Cách sử dụng enum
 
-To implement `enum`s, we need to declare them in the model and add a column to store them in the database table that stores instances of the model.
+Để triển khai `enum`, chúng ta cần khai báo chúng trong model và thêm một cột để lưu trữ chúng trong bảng cơ sở dữ liệu chứa các instance của model.
 
-Since enums are stored as integers in the database and there is no native `enum` type available in most database schemas, we set their data type to `integer`:
+Vì enum được lưu dưới dạng số nguyên trong cơ sở dữ liệu và hầu hết schema cơ sở dữ liệu không có kiểu `enum` gốc, chúng ta đặt kiểu dữ liệu của chúng là `integer`:
 
 ```bash
 # If building a new model, pass `column_name:integer` to the model generator
@@ -229,7 +229,7 @@ bin/rails g model Article status:integer
 bin/rails g migration AddStatusToLightSwitch status:integer
 ```
 
-Enums are declared in the model's class as either an array or a hash. The hash flavor has a slight advantage in that the integer values mapped to the `enum` are independent of their position and the values stored in the database are explicitly stated.
+Enum được khai báo trong class của model dưới dạng một mảng hoặc một hash. Cách dùng hash có một ưu điểm nhỏ: các giá trị số nguyên được ánh xạ tới `enum` không phụ thuộc vào vị trí, và các giá trị lưu trong cơ sở dữ liệu được nêu rõ.
 
 ```ruby
 # Hash declaration (recommended)
@@ -239,13 +239,13 @@ class Article < ApplicationRecord
 end
 ```
 
-Articles can now be passed a status during creation:
+Bây giờ, khi tạo Article, bạn có thể truyền vào một trạng thái:
 
 ```ruby
 article = Article.create(status: :draft)
 ```
 
-Defining an enum on a model exposes a number of class methods that return collections:
+Việc định nghĩa enum trên một model cung cấp một số class method trả về các collection:
 
 ```ruby
 Article.draft
@@ -254,7 +254,7 @@ Article.published
 Article.not_published
 ```
 
-These are functionally equivalent to the following [scopes](#scopes):
+Về chức năng, chúng tương đương với các [scope](#scopes) sau:
 
 ```ruby
 scope :draft, -> { where(status: "draft") }
@@ -263,7 +263,7 @@ scope :published, -> { where(status: "published") }
 scope :not_published, -> { where.not(status: "published") }
 ```
 
-A number of handy instance methods are also exposed:
+Ngoài ra còn có một số instance method tiện dụng:
 
 ```ruby
 # Predicates
@@ -278,45 +278,45 @@ article.status = "published" #=> "published"
 article.draft!               #=> "draft"
 ```
 
-### Bare-metal SQL
+### SQL thuần
 
-Sometimes, you just can't get ActiveRecord to do what you want it to. In that case, it gives you an interface to the bare metal SQL so you can just type in your query as desired. This should really be a last resort -- it's basically hard-coding your application code. Use the `#find_by_sql` method for this.
+Đôi khi bạn không thể khiến ActiveRecord làm đúng điều mình muốn. Khi đó, nó cung cấp một giao diện đến SQL thuần để bạn tự nhập truy vấn theo ý muốn. Đây thực sự nên là phương án cuối cùng -- về cơ bản, bạn đang hard-code vào code ứng dụng. Hãy dùng phương thức `#find_by_sql` cho việc này.
 
-### Conclusion
+### Kết luận
 
-This was a lot of material, but you should have a healthy appreciation for the breadth of things that you can do with Active Record. At the most basic level, though, you can do pretty much anything you can in SQL by using Active Record query methods. You'll get a chance to use some of these newfound query methods in future projects and others will come up when you're building things on your own.
+Đây là một lượng kiến thức khá lớn, nhưng bạn hẳn đã có cái nhìn đầy đủ hơn về phạm vi những việc có thể làm với Active Record. Tuy nhiên, ở mức cơ bản nhất, bạn có thể làm gần như mọi việc trong SQL bằng các phương thức truy vấn Active Record. Trong những dự án sau, bạn sẽ có cơ hội sử dụng một số phương thức truy vấn mới này; những phương thức khác sẽ xuất hiện khi bạn tự xây dựng ứng dụng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Querying basics
+#### Kiến thức truy vấn cơ bản
 
-1. Read the first 6 sections of the [Rails Guide on Active Record Querying](http://guides.rubyonrails.org/active_record_querying.html) for a more basic overview of query functions. Don't worry too much about batching and `#find_each`.
-1. Read section 20 of the same Rails guide for a brief look at [using `exists?`, `any?` and `many?`](https://guides.rubyonrails.org/active_record_querying.html#existence-of-objects).
-1. Read sections 7 and 21 to learn about [grouping and aggregate functions](https://guides.rubyonrails.org/active_record_querying.html#grouping).
-1. Skim section 8 to learn about [overriding conditions](https://guides.rubyonrails.org/active_record_querying.html#overriding-conditions).
-1. Read section 12 of the same Rails guide to see how Rails lets you play with [joining tables together](https://guides.rubyonrails.org/active_record_querying.html#joining-tables).
-1. Read section 18 of the same Rails guide for a quick look at [the helpful `find_or_create_by` methods](https://guides.rubyonrails.org/active_record_querying.html#find-or-build-a-new-object).
+1. Đọc 6 phần đầu của [Rails Guide về truy vấn Active Record](http://guides.rubyonrails.org/active_record_querying.html) để có cái nhìn cơ bản hơn về các hàm truy vấn. Bạn chưa cần quá quan tâm đến batching và `#find_each`.
+1. Đọc phần 20 của cùng Rails guide để xem nhanh cách [sử dụng `exists?`, `any?` và `many?`](https://guides.rubyonrails.org/active_record_querying.html#existence-of-objects).
+1. Đọc các phần 7 và 21 để tìm hiểu về [hàm nhóm và hàm tổng hợp](https://guides.rubyonrails.org/active_record_querying.html#grouping).
+1. Đọc lướt phần 8 để tìm hiểu về [ghi đè điều kiện](https://guides.rubyonrails.org/active_record_querying.html#overriding-conditions).
+1. Đọc phần 12 của cùng Rails guide để xem Rails cho phép bạn [nối các bảng với nhau](https://guides.rubyonrails.org/active_record_querying.html#joining-tables) như thế nào.
+1. Đọc phần 18 của cùng Rails guide để xem nhanh [các phương thức `find_or_create_by` hữu ích](https://guides.rubyonrails.org/active_record_querying.html#find-or-build-a-new-object).
 
-#### Advanced querying
+#### Truy vấn nâng cao
 
-1. Read section 14 in the [Rails Guide on Querying](https://guides.rubyonrails.org/active_record_querying.html#scopes) for a look at scopes. Again, you don't necessarily need to memorize all the details of scopes, but you should understand the concept and when it might be useful.
-1. Read [How to Use Enums in Rails](https://blog.saeloun.com/2022/01/05/how-to-use-enums-in-rails/).
-1. Read section 19 “Finding by SQL” of the same Rails guide for a look at [using SQL directly to query](http://guides.rubyonrails.org/active_record_querying.html#finding-by-sql).
+1. Đọc phần 14 trong [Rails Guide về truy vấn](https://guides.rubyonrails.org/active_record_querying.html#scopes) để tìm hiểu về scope. Một lần nữa, bạn không nhất thiết phải ghi nhớ mọi chi tiết về scope, nhưng nên hiểu khái niệm và lúc nào nó hữu ích.
+1. Đọc bài [Cách sử dụng Enum trong Rails](https://blog.saeloun.com/2022/01/05/how-to-use-enums-in-rails/).
+1. Đọc phần 19 “Tìm bằng SQL” của cùng Rails guide để tìm hiểu cách [dùng SQL trực tiếp để truy vấn](http://guides.rubyonrails.org/active_record_querying.html#finding-by-sql).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem nó như tài liệu bổ sung.
 
-- [SO post on Using Scopes vs Class Methods](http://stackoverflow.com/questions/5899765/activerecord-rails-3-scope-vs-class-method)
-- [Platformatec diving more into the use case of scopes vs class methods](http://blog.plataformatec.com.br/2013/02/active-record-scopes-vs-class-methods/)
-- [RailsCasts #22 Eager Loading](http://railscasts.com/episodes/22-eager-loading-revised)
-- [Introduction to the N+1 Problem](https://www.youtube.com/watch?v=Xr3hZdIwuSw)
-- [N+1 Problem: Eager Loading with Active Record](https://www.youtube.com/watch?v=wLMRzdOztUY)
-- [N+1 Problem: Optimized Counts with Joins and Custom Select](https://www.youtube.com/watch?v=rJg3I-leoo4)
-- [Speed up ActiveRecord with a little tweaking](https://blog.codeship.com/speed-up-activerecord/)
-- [A useful gem that identifies N+1 queries](https://github.com/flyerhzm/bullet)
-- [ActiveRecord::Enum API docs](https://api.rubyonrails.org/classes/ActiveRecord/Enum.html)
+- [Bài viết SO về việc dùng Scope hay Class Method](http://stackoverflow.com/questions/5899765/activerecord-rails-3-scope-vs-class-method)
+- [Platformatec đào sâu hơn về trường hợp sử dụng scope và class method](http://blog.plataformatec.com.br/2013/02/active-record-scopes-vs-class-methods/)
+- [RailsCasts #22 về Eager Loading](http://railscasts.com/episodes/22-eager-loading-revised)
+- [Giới thiệu về vấn đề N+1](https://www.youtube.com/watch?v=Xr3hZdIwuSw)
+- [Vấn đề N+1: Eager Loading với Active Record](https://www.youtube.com/watch?v=wLMRzdOztUY)
+- [Vấn đề N+1: Tối ưu số lượng bằng Join và Select tùy chỉnh](https://www.youtube.com/watch?v=rJg3I-leoo4)
+- [Tăng tốc ActiveRecord bằng một chút tinh chỉnh](https://blog.codeship.com/speed-up-activerecord/)
+- [Một gem hữu ích để phát hiện truy vấn N+1](https://github.com/flyerhzm/bullet)
+- [Tài liệu API của ActiveRecord::Enum](https://api.rubyonrails.org/classes/ActiveRecord/Enum.html)

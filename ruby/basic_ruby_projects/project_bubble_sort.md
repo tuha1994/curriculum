@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-Sorting algorithms are some of the earliest that you typically get exposed to in Computer Science. It may not be immediately obvious how important they are, but it shouldn't be hard to think of some examples where your computer needs to sort some massive datasets during everyday operations.
+Các thuật toán sắp xếp là một trong những loại thuật toán đầu tiên mà bạn thường được làm quen trong ngành Khoa học máy tính. Có thể ngay lập tức bạn chưa thấy rõ chúng quan trọng đến mức nào, nhưng hẳn không khó để nghĩ ra một vài ví dụ trong đó máy tính của bạn cần sắp xếp những tập dữ liệu khổng lồ trong các thao tác hằng ngày.
 
-One of the simpler (but more processor-intensive) ways of sorting a group of items in an array is **bubble sort**, where each element is compared to the one next to it and they are swapped if the one on the left is larger than the one on the right. This continues until the array is eventually sorted.
+Một trong những cách đơn giản hơn (nhưng tiêu tốn nhiều năng lực xử lý hơn) để sắp xếp một nhóm phần tử trong một mảng là **sắp xếp nổi bọt**, trong đó mỗi phần tử được so sánh với phần tử ngay bên cạnh và chúng được hoán đổi nếu phần tử bên trái lớn hơn phần tử bên phải. Quá trình này tiếp tục cho đến khi mảng được sắp xếp hoàn toàn.
 
-Check out this [video from Harvard’s CS50 on Bubble Sort](https://www.youtube.com/watch?v=8Kp-8OGwphY).
+Hãy xem [video về Sắp xếp nổi bọt của CS50 tại Harvard](https://www.youtube.com/watch?v=8Kp-8OGwphY).
 
-There's also [an entry on Bubble Sort on Wikipedia](http://en.wikipedia.org/wiki/Bubble_sort) that's worth taking a look at.
+Ngoài ra còn có [mục viết về Sắp xếp nổi bọt trên Wikipedia](http://en.wikipedia.org/wiki/Bubble_sort) mà bạn nên xem qua.
 
-![How bubble sort works](https://cdn.statically.io/gh/TheOdinProject/curriculum/284f0cdc998be7e4751e29e8458323ad5d320303/ruby_programming/basic_ruby_projects/bubble_sort/img/00.gif)
+![Cách hoạt động của sắp xếp nổi bọt](https://cdn.statically.io/gh/TheOdinProject/curriculum/284f0cdc998be7e4751e29e8458323ad5d320303/ruby_programming/basic_ruby_projects/bubble_sort/img/00.gif)
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-- Build a method `#bubble_sort` that takes an array and returns a sorted array. It must use the bubble sort methodology (using `#sort` would be pretty pointless, wouldn't it?).
+- Xây dựng một phương thức `#bubble_sort` nhận vào một mảng và trả về một mảng đã được sắp xếp. Phương thức này phải sử dụng cách thức sắp xếp nổi bọt (nếu dùng `#sort` thì còn gì thú vị nữa, đúng không?).
 
 ```ruby
 > bubble_sort([4,3,78,2,0,2])

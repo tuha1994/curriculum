@@ -363,6 +363,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `ruby/basic_ruby/debugging.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và thông báo lỗi. |
 | `ruby/basic_ruby/hashes.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và tên method. |
 
+## Ruby đã dịch — batch 4
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby/basic_ruby/basic_enumerable_methods.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và tên method enumerable. |
+| `ruby/basic_ruby/methods.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và cú pháp method. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

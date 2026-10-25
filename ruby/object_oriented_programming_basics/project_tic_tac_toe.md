@@ -1,15 +1,15 @@
-### Introduction
+### Giới thiệu
 
-Remember [Tic Tac Toe](https://en.wikipedia.org/wiki/Tic-tac-toe) (also known as "Noughts and Crosses")? It involves a couple of players, a board, checking for victory in a game loop... all the conditions that make it a fun little problem to solve using our newfound OOP sea legs. Let's build it!
+Bạn còn nhớ [Tic Tac Toe](https://en.wikipedia.org/wiki/Tic-tac-toe) (còn gọi là "Noughts and Crosses") không? Trò chơi này có hai người chơi, một bàn cờ và việc kiểm tra chiến thắng trong một vòng lặp trò chơi... tất cả những yếu tố khiến nó trở thành một bài toán nhỏ thú vị để giải bằng những kỹ năng OOP mới học. Hãy cùng xây dựng nó!
 
-### Assignment
+### Bài tập
 
-Build a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
+Xây dựng một trò chơi tic-tac-toe trên dòng lệnh, trong đó hai người chơi là người thật có thể đấu với nhau và bàn cờ được hiển thị giữa các lượt chơi.
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Think about how you would set up the different elements within the game... What should be a class? Instance variable?  Method? A few minutes of thought can save you from wasting an hour of coding.
-  1. Build your game, taking care to not share information between classes any more than you have to.
-  1. Post your solution below, then check out this [example Tic Tac Toe solution from RosettaCode.org](http://rosettacode.org/wiki/Tic-tac-toe#Ruby).
+  1. Hãy suy nghĩ về cách bạn sẽ tổ chức những thành phần khác nhau trong trò chơi... Thành phần nào nên là lớp? Biến thực thể? Phương thức? Vài phút suy nghĩ có thể giúp bạn tránh lãng phí cả giờ viết mã.
+  1. Xây dựng trò chơi, chú ý không chia sẻ thông tin giữa các lớp nhiều hơn mức cần thiết.
+  1. Đăng lời giải của bạn bên dưới, sau đó xem [lời giải Tic Tac Toe mẫu trên RosettaCode.org](http://rosettacode.org/wiki/Tic-tac-toe#Ruby).
 
 </div>

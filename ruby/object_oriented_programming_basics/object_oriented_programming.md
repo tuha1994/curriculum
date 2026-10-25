@@ -1,31 +1,31 @@
-### Introduction
+### Giới thiệu
 
-You've got the building blocks of Ruby out of the way, great! Now it's time to get into the fun stuff... how do we combine those building blocks in the most efficient and elegant ways to produce the programs we'd like to write?
+Bạn đã nắm được những khối xây dựng cơ bản của Ruby, thật tuyệt! Bây giờ là lúc khám phá phần thú vị hơn... làm thế nào để kết hợp những khối xây dựng đó theo cách hiệu quả và tao nhã nhất, nhằm tạo ra những chương trình chúng ta muốn viết?
 
-The concepts you'll learn here are often less specific to Ruby itself and more widely applicable to any object-oriented language. That's because the fundamental concepts are just that... fundamental. Don't repeat yourself. Modularize your code. Have your classes and methods only do one thing. Show as little of your interfaces to the world as you can. Don't make methods or classes heavily dependent on each other. These will take some time and practice to implement effectively, but you'll already be taking a big step towards creating high quality code just by finishing up this section.
+Các khái niệm bạn sẽ học ở đây thường không chỉ dành riêng cho Ruby mà còn có thể áp dụng rộng rãi cho mọi ngôn ngữ hướng đối tượng. Đó là vì những khái niệm nền tảng vốn chính là... nền tảng. Đừng lặp lại chính mình. Hãy mô-đun hóa mã của bạn. Hãy để mỗi lớp và phương thức chỉ làm một việc. Chỉ để lộ ra bên ngoài phần giao diện ít nhất có thể. Đừng khiến các phương thức hoặc lớp phụ thuộc quá nhiều vào nhau. Sẽ cần thời gian và thực hành để áp dụng những nguyên tắc này hiệu quả, nhưng chỉ cần hoàn thành phần này, bạn đã tiến một bước lớn trên con đường tạo ra mã chất lượng cao.
 
-There are two projects in this Object Oriented Programming Basics section, but this does not mean that you will only use OOP for these two projects. Ruby is a object-oriented language, so it is important to use OOP for all of the remaining projects.
+Có hai dự án trong phần Lập trình hướng đối tượng cơ bản này, nhưng điều đó không có nghĩa là bạn chỉ sử dụng OOP cho hai dự án ấy. Ruby là một ngôn ngữ hướng đối tượng, vì vậy việc sử dụng OOP trong tất cả các dự án còn lại là rất quan trọng.
 
-There is a lot of reading in this lesson, so you are encouraged to code along with each example. If you find an example that does not make sense, ask for help in the `#ruby-help` channel in [our Discord server](https://discord.gg/fbFCkYabZB). To get the most out of each example, try to apply what you learned by adding similar functionality on your own.
+Có khá nhiều nội dung cần đọc trong bài học này, vì vậy bạn nên tự viết mã theo từng ví dụ. Nếu gặp ví dụ nào chưa rõ, hãy hỏi trợ giúp trong kênh `#ruby-help` trên [máy chủ Discord của chúng tôi](https://discord.gg/fbFCkYabZB). Để rút ra nhiều nhất từ mỗi ví dụ, hãy thử tự áp dụng điều đã học bằng cách bổ sung chức năng tương tự.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- You will learn about classes.
-- You will learn about methods.
-- You will learn about scope.
+- Bạn sẽ tìm hiểu về lớp.
+- Bạn sẽ tìm hiểu về phương thức.
+- Bạn sẽ tìm hiểu về phạm vi.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Object Oriented Programming with Ruby](https://launchschool.com/books/oo_ruby) online book, by Launch School.
-1. Read through these reinforcing posts by Erik Trautman:
-    - [Ruby Explained: Classes](http://www.eriktrautman.com/posts/ruby-explained-classes)
-    - [Ruby Explained: Inheritance and Scope](http://www.eriktrautman.com/posts/ruby-explained-inheritance-and-scope)
-1. Read the article [Object Relationships in Basic Ruby](https://medium.com/@marcellamaki/object-relationships-in-basic-ruby-1af5773fff48) to see an example of how two classes can interact.
-1. Read the [Bastard's Chapter on Error Handling](http://ruby.bastardsbook.com/chapters/exception-handling/) to reinforce your understanding of dealing with errors.
-1. Do this [quiz on introductory object-oriented programming](http://www.codequizzes.com/ruby/beginner/intro-object-oriented-programming) and this [quiz on modules, classes, and inheritance](http://www.codequizzes.com/ruby/beginner/modules-classes-inheritance) from Code Quizzes.
+1. Đọc cuốn sách trực tuyến [Lập trình hướng đối tượng với Ruby](https://launchschool.com/books/oo_ruby) của Launch School.
+1. Đọc các bài viết củng cố kiến thức sau của Erik Trautman:
+    - [Ruby giải thích: Lớp](http://www.eriktrautman.com/posts/ruby-explained-classes)
+    - [Ruby giải thích: Kế thừa và phạm vi](http://www.eriktrautman.com/posts/ruby-explained-inheritance-and-scope)
+1. Đọc bài viết [Mối quan hệ giữa các đối tượng trong Ruby cơ bản](https://medium.com/@marcellamaki/object-relationships-in-basic-ruby-1af5773fff48) để xem ví dụ về cách hai lớp có thể tương tác với nhau.
+1. Đọc [Chương về xử lý lỗi của Bastard](http://ruby.bastardsbook.com/chapters/exception-handling/) để củng cố hiểu biết về cách xử lý lỗi.
+1. Làm [bài trắc nghiệm về lập trình hướng đối tượng nhập môn](http://www.codequizzes.com/ruby/beginner/intro-object-oriented-programming) và [bài trắc nghiệm về mô-đun, lớp và kế thừa](http://www.codequizzes.com/ruby/beginner/modules-classes-inheritance) của Code Quizzes.
 
 </div>

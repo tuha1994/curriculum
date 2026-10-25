@@ -1,120 +1,120 @@
-### Introduction
+### Giới thiệu
 
-Before we start learning, we'll need to install Ruby first. This section is where you could potentially encounter a lot of errors.
+Trước khi bắt đầu học, trước hết chúng ta cần cài đặt Ruby. Đây là phần bạn có thể gặp khá nhiều lỗi.
 
-Before continuing, let's review a few best practices to keep in mind:
+Trước khi tiếp tục, hãy cùng xem lại một vài cách làm tốt cần ghi nhớ:
 
-- Copy and paste the commands to avoid typos.
-- Follow the directions closely, and don't skip over any sections.
-- **Do NOT use `sudo` unless The Odin Project specifically says to do so.** Failing to follow this can cause a lot of headaches, and never run as the `root` user. In some instances, you might see a message in the terminal telling you to use `sudo` and install something with `apt`. Ignore that and follow *our* instructions for now.
+- Sao chép và dán các lệnh để tránh gõ sai.
+- Làm theo hướng dẫn thật cẩn thận và đừng bỏ qua bất kỳ phần nào.
+- **KHÔNG sử dụng `sudo` trừ khi The Odin Project yêu cầu cụ thể.** Không làm theo điều này có thể gây ra rất nhiều rắc rối, và đừng bao giờ chạy với tư cách người dùng `root`. Trong một số trường hợp, bạn có thể thấy một thông báo trong terminal yêu cầu sử dụng `sudo` và cài đặt thứ gì đó bằng `apt`. Tạm thời hãy bỏ qua thông báo đó và làm theo hướng dẫn *của chúng ta*.
 
-Now, let's get started!
+Bây giờ, hãy bắt đầu!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề mà bạn sẽ học trong bài này.
 
-- Installing and updating Ruby.
-- Setting local and global Ruby versions.
+- Cài đặt và cập nhật Ruby.
+- Thiết lập các phiên bản Ruby cục bộ và toàn cục.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Install Ruby
+#### Cài đặt Ruby
 
-1. Depending on the OS you are running, follow the appropriate Ruby installation guide below:
+1. Tùy thuộc vào hệ điều hành bạn đang sử dụng, hãy làm theo hướng dẫn cài đặt Ruby phù hợp dưới đây:
    - [Linux](https://github.com/TheOdinProject/curriculum/tree/main/ruby/introduction/installation_guides/ruby/linux.md "Ruby installation for Linux")
    - [macOS](https://github.com/TheOdinProject/curriculum/tree/main/ruby/introduction/installation_guides/ruby/macos.md "Ruby installation for macOS")
 
-#### Updating Ruby
+#### Cập nhật Ruby
 
-If you've just installed Ruby, congratulations! Your version is probably completely up to date, and you can safely skip this section. However, if you stick with this long enough, the need to update your version of Ruby will eventually arise. Fortunately, having `rbenv` installed makes this quite straightforward. Here are step by step instructions on how to update your ruby version:
+Nếu bạn vừa cài đặt Ruby, xin chúc mừng! Có lẽ phiên bản của bạn đã hoàn toàn được cập nhật, nên bạn có thể bỏ qua phần này một cách an toàn. Tuy nhiên, nếu bạn tiếp tục sử dụng đủ lâu, cuối cùng sẽ đến lúc bạn cần cập nhật phiên bản Ruby của mình. May mắn là việc đã cài đặt `rbenv` giúp quá trình này khá đơn giản. Dưới đây là hướng dẫn từng bước để cập nhật phiên bản ruby của bạn:
 
-1. Go to `.rbenv/` folder in your home directory.
+1. Đi đến thư mục `.rbenv/` trong thư mục chính của bạn.
 
    ```bash
      cd ~/.rbenv
    ```
 
-1. Pull latest changes for your ruby version manager (`rbenv`).
+1. Tải về các thay đổi mới nhất cho trình quản lý phiên bản ruby của bạn (`rbenv`).
 
    ```bash
      git pull
    ```
 
-1. Run this command.
+1. Chạy lệnh này.
 
    ```bash
      ~/.rbenv/bin/rbenv init
    ```
 
-1. Go to `ruby-build` plugin directory. This is what `rbenv` uses to compile ruby from source code (which is written in C).
+1. Đi đến thư mục plugin `ruby-build`. Đây là công cụ mà `rbenv` sử dụng để biên dịch ruby từ mã nguồn (được viết bằng C).
 
    ```bash
      cd ~/.rbenv/plugins/ruby-build
    ```
 
-1. Pull latest changes for `ruby-build`.
+1. Tải về các thay đổi mới nhất cho `ruby-build`.
 
    ```bash
      git pull
    ```
 
-1. Now you can check list of all the latest versions available for you to install.
+1. Bây giờ bạn có thể xem danh sách tất cả các phiên bản mới nhất có sẵn để cài đặt.
 
    ```bash
      rbenv install --list-all
    ```
 
-1. Now you can install the version of Ruby you like by running:
+1. Bây giờ bạn có thể cài đặt phiên bản Ruby mình muốn bằng cách chạy:
 
    ```bash
      rbenv install x.y.z
    ```
 
-   where in `x.y.z` - `x` is the major version, `y` is the minor version and `z` is the patch version. This is called [semantic versioning](https://semver.org/#summary)
+   trong đó trong `x.y.z`, `x` là phiên bản chính, `y` là phiên bản phụ và `z` là bản vá. Cách đánh số này được gọi là [quản lý phiên bản theo ngữ nghĩa](https://semver.org/#summary)
 
-   For example:
+   Ví dụ:
 
    ```bash
      rbenv install 3.4.6
    ```
 
-#### Setting local and global Ruby versions
+#### Thiết lập phiên bản Ruby cục bộ và toàn cục
 
-`rbenv` makes it easy to have multiple different versions of Ruby installed and switch between them. You may have one project that runs with Ruby 3.4 and another that runs with Ruby 3.3, and `rbenv` will coordinate this for you. The version of Ruby set at the project level is called the "local" version.
+`rbenv` giúp bạn dễ dàng cài đặt nhiều phiên bản Ruby khác nhau và chuyển đổi giữa chúng. Bạn có thể có một dự án chạy bằng Ruby 3.4 và một dự án khác chạy bằng Ruby 3.3, còn `rbenv` sẽ điều phối việc này cho bạn. Phiên bản Ruby được thiết lập ở cấp dự án được gọi là phiên bản "local".
 
-To set the local Ruby version, run:
+Để thiết lập phiên bản Ruby cục bộ, hãy chạy:
 
 ```bash
 rbenv local x.y.z
 ```
 
-This creates a `.ruby-version` file for storing the local version. To check the current project/directory's local Ruby version, run:
+Lệnh này tạo một tệp `.ruby-version` để lưu phiên bản cục bộ. Để kiểm tra phiên bản Ruby cục bộ của dự án/thư mục hiện tại, hãy chạy:
 
 ```bash
 rbenv local
 ```
 
-You can also configure your default Ruby version. This is called the "global" version. To set the global default Ruby version run:
+Bạn cũng có thể cấu hình phiên bản Ruby mặc định. Phiên bản này được gọi là phiên bản "global". Để thiết lập phiên bản Ruby mặc định toàn cục, hãy chạy:
 
 ```bash
 rbenv global x.y.z
 ```
 
-To check current global ruby version run:
+Để kiểm tra phiên bản ruby toàn cục hiện tại, hãy chạy:
 
 ```bash
 rbenv global
 ```
 
-#### Extras
+#### Phần bổ sung
 
-If you are using Visual Studio Code as your IDE, you can install the "Ruby LSP" extension, which will provide you with semantic highlighting and formatting support.
+Nếu bạn sử dụng Visual Studio Code làm IDE, bạn có thể cài đặt tiện ích mở rộng "Ruby LSP", tiện ích này sẽ cung cấp khả năng tô sáng ngữ nghĩa và hỗ trợ định dạng.
 
-Using the extension is optional, but it is a quick install; go to the "Extensions" tab in VS Code (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>), search "Ruby LSP", and click install on the first one. Congratulations, the extension is now installed.
+Sử dụng tiện ích mở rộng này là tùy chọn, nhưng cài đặt rất nhanh; hãy đi đến thẻ "Extensions" trong VS Code (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>), tìm kiếm "Ruby LSP" và nhấp vào nút cài đặt ở tiện ích đầu tiên. Xin chúc mừng, tiện ích mở rộng đã được cài đặt.
 
-The most important features Ruby LSP provides will work out of the box. But it may bug you about using a monorepo setup, missing lockfiles or rubocop - you can choose "Don't show again" for now. We will introduce these later.
+Các tính năng quan trọng nhất do Ruby LSP cung cấp sẽ hoạt động ngay mà không cần cấu hình thêm. Tuy nhiên, tiện ích này có thể làm phiền bạn về việc sử dụng thiết lập monorepo, thiếu lockfile hoặc rubocop - hiện tại bạn có thể chọn "Don't show again". Chúng ta sẽ giới thiệu các nội dung này sau.
 
 </div>

@@ -1,47 +1,47 @@
-### Introduction
+### Giới thiệu
 
-"Sessions" are the idea that your user's state is somehow preserved when they click from one page to the next. Remember, HTTP is stateless, so it's up to either the browser or your application to "remember" what needs to be remembered.
+"Session" là khái niệm chỉ việc trạng thái của người dùng được duy trì theo một cách nào đó khi họ chuyển từ trang này sang trang khác. Hãy nhớ rằng HTTP là giao thức không lưu trạng thái, vì vậy trình duyệt hoặc ứng dụng của bạn phải đảm nhiệm việc "ghi nhớ" những gì cần được ghi nhớ.
 
-In this lesson you'll learn about sessions, browser cookies, and how authentication is built in Rails.  We'll cover both home-grown authentication and the most commonly used authentication gem, Devise.
+Trong bài học này, bạn sẽ tìm hiểu về session, cookie của trình duyệt và cách xây dựng cơ chế xác thực trong Rails. Chúng ta sẽ đề cập đến cả việc tự xây dựng hệ thống xác thực và gem xác thực được sử dụng phổ biến nhất là Devise.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- What a cookie is.
-- What a session is.
-- The difference between the `session` "hash" and the `cookies` "hash".
-- Usages for the `flash` "hash".
-- When to use `flash.now` instead of `flash`.
-- Controller filters and why they are useful.
-- How to run a controller filter for just a specific few actions.
-- The difference between authentication and authorization.
-- Why `#has_secure_password` is a handy method.
-- A basic overview of how to authenticate a user with that method.
-- Additional steps needed (on a high level) to actually "remember" a user after they've closed the browser.
-- The Devise gem and why it is useful.
+- Cookie là gì.
+- Session là gì.
+- Sự khác nhau giữa "hash" `session` và "hash" `cookies`.
+- Các cách sử dụng "hash" `flash`.
+- Khi nào nên dùng `flash.now` thay cho `flash`.
+- Bộ lọc của controller và lý do chúng hữu ích.
+- Cách chạy bộ lọc của controller chỉ cho một vài action cụ thể.
+- Sự khác nhau giữa xác thực và phân quyền.
+- Vì sao `#has_secure_password` là một phương thức tiện dụng.
+- Tổng quan cơ bản về cách xác thực người dùng bằng phương thức đó.
+- Các bước bổ sung cần thực hiện (ở mức khái quát) để thực sự "ghi nhớ" người dùng sau khi họ đóng trình duyệt.
+- Gem Devise và lý do nó hữu ích.
 
-### Cookies, sessions and flashes
+### Cookie, session và flash
 
-Cookies, Sessions and Flashes are three special objects that Rails gives you in which each behave a lot like hashes. They are used to persist data between requests, whether until just the next request, until the browser is closed, or until a specified expiration has been reached. In addition to different temporal concerns, they each solve slightly different use cases, covered below.
+Cookie, session và flash là ba đối tượng đặc biệt mà Rails cung cấp; mỗi đối tượng hoạt động khá giống một hash. Chúng được dùng để duy trì dữ liệu giữa các request, có thể chỉ đến request kế tiếp, cho đến khi trình duyệt đóng, hoặc cho đến khi đạt thời hạn đã chỉ định. Ngoài khác biệt về thời gian tồn tại, mỗi đối tượng còn giải quyết những trường hợp sử dụng hơi khác nhau, như mô tả dưới đây.
 
-### Cookies
+### Cookie
 
-Cookies are key-value data pairs that are stored in the user's browser until they reach their specified expiration date.  They can be used for pretty much anything, most commonly to "bookmark" the user's place in a web page if they get disconnected or to store simple site display preferences. You could also store shopping cart information or even passwords but that would be a bad idea -- you shouldn't store anything in regular browser cookies that needs to either be secure or persisted across browser sessions.  It's too easy for users to clear their cache and/or steal/manipulate unsecured cookies.
+Cookie là các cặp dữ liệu khóa-giá trị được lưu trong trình duyệt của người dùng cho đến khi đạt ngày hết hạn đã chỉ định. Chúng có thể được dùng cho gần như mọi thứ, phổ biến nhất là để "đánh dấu" vị trí của người dùng trên một trang web nếu họ bị ngắt kết nối, hoặc để lưu các tùy chọn hiển thị đơn giản của trang web. Bạn cũng có thể lưu thông tin giỏ hàng hoặc thậm chí mật khẩu, nhưng đó sẽ là một ý tưởng tồi -- bạn không nên lưu bất kỳ thứ gì cần được bảo mật hoặc cần tồn tại qua nhiều phiên trình duyệt trong cookie trình duyệt thông thường. Người dùng rất dễ xóa bộ nhớ đệm và/hoặc đánh cắp, thay đổi các cookie không được bảo vệ.
 
-To work with cookies, Rails gives you access to a special hash called `cookies`, where each key-value pair is stored as a separate cookie on the user's browser.  If you were to save `cookies[:hair-color] = "blonde"`, you'd be able to pull up your browser's developer tools and see a cookie on the user's browser that has a key of `hair-color` and a value of `blonde`.  Delete it using `cookies.delete(:hair-color)`.
+Để làm việc với cookie, Rails cho bạn truy cập vào một hash đặc biệt tên là `cookies`, trong đó mỗi cặp khóa-giá trị được lưu thành một cookie riêng trên trình duyệt của người dùng. Nếu bạn lưu `cookies[:hair-color] = "blonde"`, bạn có thể mở công cụ dành cho nhà phát triển của trình duyệt và thấy một cookie trên trình duyệt của người dùng có khóa là `hair-color` và giá trị là `blonde`. Hãy xóa nó bằng `cookies.delete(:hair-color)`.
 
-With each new request to your server, the browser will send along all the cookies and you can access them in your controllers and views like a normal hash.  You can also set their expiration dates, for example using syntax like `cookies[:name] = { value: "cookies YUM", expires: Time.now + 3600}`.
+Mỗi khi có request mới đến máy chủ, trình duyệt sẽ gửi kèm tất cả cookie, và bạn có thể truy cập chúng trong controller và view như một hash thông thường. Bạn cũng có thể đặt ngày hết hạn cho chúng, chẳng hạn bằng cú pháp `cookies[:name] = { value: "cookies YUM", expires: Time.now + 3600}`.
 
-### Sessions
+### Session
 
-Think about how websites keep track of how a user is logged in when the page reloads.  HTTP requests are stateless so how can you tell that a given request actually came from that particular user who is logged in?  This is why cookies are important -- they allow you to keep track of your user from one request to another until the cookie expires.
+Hãy nghĩ xem các website theo dõi trạng thái đăng nhập của người dùng như thế nào khi trang được tải lại. Các request HTTP không lưu trạng thái, vậy làm sao bạn biết một request cụ thể thực sự đến từ đúng người dùng đang đăng nhập đó? Đây là lý do cookie quan trọng -- chúng cho phép bạn theo dõi người dùng từ request này sang request khác cho đến khi cookie hết hạn.
 
-A special case is when you want to keep track of data in the user's "session", which represents all the stuff your user does while you've chosen to "remember" them, typically until the browser window is closed.  In that case, every page they visit until the browser is closed will be part of the same session.
+Một trường hợp đặc biệt là khi bạn muốn theo dõi dữ liệu trong "session" của người dùng, đại diện cho toàn bộ những gì người dùng thực hiện trong khoảng thời gian bạn chọn "ghi nhớ" họ, thường là cho đến khi cửa sổ trình duyệt đóng. Khi đó, mọi trang họ truy cập trước lúc trình duyệt đóng đều thuộc cùng một session.
 
-To identify a user's session information, Rails stores a special secure and tamper-proof cookie on the user's browser that contains their entire session hash (look for it in your developer tools, usually under the “Application” section) and it expires when the browser is closed.  Whenever the user makes a request to your application, that request will also automatically include that session cookie (along with the other cookies) and you can use it to keep track of their logged-in state. This may all seem abstract now, but you'll get a chance to see it in action shortly.
+Để nhận diện thông tin session của người dùng, Rails lưu một cookie đặc biệt, an toàn và chống giả mạo trong trình duyệt của người dùng; cookie này chứa toàn bộ hash session của họ (hãy tìm nó trong công cụ dành cho nhà phát triển, thường ở phần “Application”) và hết hạn khi trình duyệt đóng. Mỗi khi người dùng gửi request đến ứng dụng, request đó cũng tự động bao gồm cookie session này (cùng với các cookie khác), và bạn có thể dùng nó để theo dõi trạng thái đăng nhập của họ. Có thể lúc này tất cả còn hơi trừu tượng, nhưng chẳng bao lâu nữa bạn sẽ được thấy nó hoạt động thực tế.
 
-Rails gives you access to the `session` hash in an almost identical way to the above-mentioned `cookies` hash.  Use the `session` variable in your views or controllers like so:
+Rails cho phép bạn truy cập hash `session` theo cách gần như giống hệt hash `cookies` đã nêu ở trên. Hãy dùng biến `session` trong view hoặc controller như sau:
 
 ```ruby
   # app/controllers/users_controller.rb
@@ -60,26 +60,26 @@ Rails gives you access to the `session` hash in an almost identical way to the a
   ...
 ```
 
-Why would you need both cookies and sessions?  They are similar but not the same.  `session` is an entire hash that gets put in the secure session cookie that expires when the user closes the browser.  If you look in your developer tools, the "expiration" of that cookie is "session".  Each value in the `cookies` hash gets stored as an individual cookie.
+Tại sao bạn cần cả cookie lẫn session? Chúng tương tự nhưng không giống nhau. `session` là toàn bộ một hash được đặt vào cookie session an toàn, cookie này hết hạn khi người dùng đóng trình duyệt. Nếu xem trong công cụ dành cho nhà phát triển, giá trị "expiration" của cookie đó là "session". Mỗi giá trị trong hash `cookies` được lưu thành một cookie riêng.
 
-So cookies and sessions are sort of like temporary free database tables for you to use that are unique to a given user and will last until you either manually delete them, they have reached their expiration date, or the session is ended (depending on what you specified).
+Vì vậy, cookie và session phần nào giống những bảng cơ sở dữ liệu tạm thời, miễn phí để bạn sử dụng; chúng là duy nhất cho từng người dùng và tồn tại cho đến khi bạn xóa thủ công, chúng đạt ngày hết hạn hoặc session kết thúc (tùy theo điều bạn đã chỉ định).
 
-#### A few additional notes on sessions and cookies
+#### Một số lưu ý bổ sung về session và cookie
 
-- `session` and `cookies` aren't really hashes, Rails just pretends they are so it's easy for you to work with them.  You can still consider them as hashes just because they act very similarly to hashes.
-- You are size-limited in terms of how much you can store inside a session hash or browser cookie (~4kb).  It is sufficient for any "normal" usage, but don't go pretending either of these are actually substitutes for a database.
+- `session` và `cookies` thực ra không phải hash; Rails chỉ giả lập chúng như vậy để bạn dễ làm việc. Bạn vẫn có thể xem chúng là hash vì chúng hoạt động rất giống hash.
+- Có giới hạn kích thước đối với lượng dữ liệu bạn có thể lưu trong hash session hoặc cookie trình duyệt (~4kb). Mức này đủ cho mọi cách sử dụng "thông thường", nhưng đừng coi chúng là vật thay thế cho cơ sở dữ liệu.
 
-### Flashes
+### Flash
 
-You've already seen and used the `flash` hash by now, but we'll cover it again from the perspective of understanding sessions.  `flash` is a special hash (okay, a method that acts like a hash) that persists only from one request to the next.  You can think of it as a `session` hash that self destructs after it's opened.  It's commonly used to send messages from the controller to the view so the user can see success and failure messages after submitting forms.
+Đến đây có lẽ bạn đã thấy và sử dụng hash `flash`, nhưng chúng ta sẽ xem lại nó dưới góc độ tìm hiểu session. `flash` là một hash đặc biệt (chính xác hơn là một phương thức hoạt động như hash), chỉ tồn tại từ request này đến request kế tiếp. Bạn có thể hình dung nó như một hash `session` tự hủy sau khi được mở. Nó thường được dùng để gửi thông báo từ controller đến view, để người dùng thấy thông báo thành công hoặc thất bại sau khi gửi form.
 
-If you want to pop up "Thanks for signing up!" on the user's browser after running the `#create` action (which usually uses `redirect_to` to send the user to a totally new page when successful), how do you send that success message?  You can't use an instance variable because the redirect caused the browser to issue a brand new HTTP request and so all instance variables were lost.
+Nếu bạn muốn hiển thị "Cảm ơn bạn đã đăng ký!" trên trình duyệt của người dùng sau khi chạy action `#create` (action này thường dùng `redirect_to` để đưa người dùng đến một trang hoàn toàn mới khi thành công), bạn sẽ gửi thông báo thành công đó bằng cách nào? Bạn không thể dùng biến instance, vì việc redirect khiến trình duyệt gửi một request HTTP hoàn toàn mới và do đó mọi biến instance đều bị mất.
 
-The flash is there to save the day!  Just store `flash[:success]` (or whatever you'd like it called) and it will be available to your view on the next new request.  As soon as the view accesses the hash, Rails erases the data so you don't have it show up every time the user hits a new page.  So clean, so convenient.
+Flash xuất hiện để giải quyết việc đó! Chỉ cần lưu `flash[:success]` (hoặc đặt tên tùy ý), và nó sẽ có sẵn trong view ở request mới tiếp theo. Ngay khi view truy cập hash này, Rails sẽ xóa dữ liệu để nó không xuất hiện mỗi lần người dùng truy cập một trang mới. Thật gọn gàng và tiện lợi.
 
-What about cases where the user can't sign up because of failed validations?  In this case, the typical `#create` action would just `render` the `#new` action using the existing instance variables.  Since it's not a totally new request, you'll want to have your error message available immediately.  That's why there's the handy `flash.now` hash, e.g. `flash.now[:error] = "Fix your submission!"`.  Just like the regular flash, this one self destructs automatically after opening.
+Còn trường hợp người dùng không thể đăng ký vì validation thất bại thì sao? Trong trường hợp này, action `#create` điển hình chỉ `render` action `#new` bằng các biến instance hiện có. Vì đây không phải một request hoàn toàn mới, bạn sẽ muốn thông báo lỗi có sẵn ngay lập tức. Đó là lý do hash `flash.now` rất tiện dụng, ví dụ `flash.now[:error] = "Fix your submission!"`. Giống flash thông thường, flash này cũng tự động hủy sau khi được mở.
 
-You still have to write view code to display the flash messages.  It's common to write a short view helper that will pin any available flash message(s) to the top of the browser.  You might also add a class to the message which will allow you to write some custom CSS, for instance turning `:success` messages green and `:error` messages red.
+Bạn vẫn phải viết code trong view để hiển thị các thông báo flash. Thông thường, người ta viết một view helper ngắn để ghim mọi thông báo flash hiện có lên đầu trình duyệt. Bạn cũng có thể thêm một class cho thông báo, nhờ đó viết CSS tùy chỉnh; chẳng hạn biến thông báo `:success` thành màu xanh lá và `:error` thành màu đỏ.
 
 ```erb
   # app/views/layouts/application.html.erb
@@ -89,11 +89,11 @@ You still have to write view code to display the flash messages.  It's common to
   <% end %>
 ```
 
-### Controller filters
+### Bộ lọc của controller
 
-Before we talk about authentication, we need to cover controller filters.  The idea of these filters is to run some code in your controller at very specific times, for instance before any other code has been run.  That's important because, if a user is requesting to run an action they haven't been authorized for, you need to nip that request in the bud and send back the appropriate error/redirect before they're able to do anything else.  You're basically "filtering out" unauthorized requests.
+Trước khi nói về xác thực, chúng ta cần tìm hiểu bộ lọc của controller. Ý tưởng của các bộ lọc này là chạy một đoạn code trong controller vào những thời điểm rất cụ thể, chẳng hạn trước khi bất kỳ code nào khác được chạy. Điều đó quan trọng vì nếu người dùng yêu cầu chạy một action mà họ chưa được cấp quyền, bạn cần chặn request ngay từ đầu và gửi về lỗi/redirect phù hợp trước khi họ có thể làm bất cứ điều gì khác. Về cơ bản, bạn đang "lọc bỏ" các request chưa được cấp quyền.
 
-We do this through the use of a "before filter", which takes the name of the method we want to run:
+Chúng ta thực hiện việc này bằng một "bộ lọc trước", nhận tên của phương thức cần chạy:
 
 ```ruby
   # app/controllers/users_controller
@@ -115,91 +115,91 @@ We do this through the use of a "before filter", which takes the name of the met
   end
 ```
 
-The `before_action` method takes the symbol of the method to run before anything else gets run in the controller. In the case that this callback renders or redirects, the request, as well as any callbacks that are scheduled to run after that callback, are also cancelled. So in the case above, if the user was redirected to the login page, the `before_action :do_something_cool` callback wouldn't have been executed either.
+Phương thức `before_action` nhận symbol của phương thức cần chạy trước mọi thứ khác trong controller. Nếu callback này render hoặc redirect, request cũng như mọi callback được lên lịch chạy sau callback đó đều bị hủy. Vì vậy, trong ví dụ trên, nếu người dùng bị redirect đến trang đăng nhập thì callback `before_action :do_something_cool` cũng sẽ không được thực thi.
 
-You can specify to only apply the filter for specific actions by specifying the `only` option, e.g. `before_action :require_login, only: [:edit, :update]`.  The opposite applies by using the `:except` option... it will run for all actions except those specified.
+Bạn có thể chỉ áp dụng bộ lọc cho các action cụ thể bằng cách chỉ định tùy chọn `only`, ví dụ `before_action :require_login, only: [:edit, :update]`. Điều ngược lại được thực hiện bằng tùy chọn `:except`... bộ lọc sẽ chạy cho mọi action trừ những action được chỉ định.
 
-You'll want to hide your filter methods behind the `private` designation so they can only be used by that controller.
+Bạn nên đặt các phương thức bộ lọc phía sau khai báo `private` để chúng chỉ có thể được controller đó sử dụng.
 
-Finally, filters are inherited so if you'd like a filter to apply to absolutely every controller action, put it in your `app/controllers/application_controller.rb` file.
+Cuối cùng, các bộ lọc được kế thừa. Vì vậy, nếu muốn một bộ lọc áp dụng cho tuyệt đối mọi action của controller, hãy đặt nó trong file `app/controllers/application_controller.rb`.
 
-### Authentication
+### Xác thực
 
-The whole point of authentication is to make sure that the user is who they say they are.  The standard way of managing this is through logging in your user via a sign in form.  Once the user is logged in, you keep track of that user using the session until the user logs out.
+Mục đích cốt lõi của xác thực là bảo đảm người dùng đúng là người họ tự nhận. Cách quản lý tiêu chuẩn là cho người dùng đăng nhập qua form đăng nhập. Sau khi người dùng đăng nhập, bạn theo dõi người dùng đó bằng session cho đến khi họ đăng xuất.
 
-A related concept is authorization.  Yes, you may be signed in, but are you actually authorized to access what you're trying to access?  The typical example is the difference between a regular user and an admin user.  They both authenticate with the system but only the admin is authorized to make changes to certain things.
+Một khái niệm liên quan là phân quyền. Đúng, bạn có thể đã đăng nhập, nhưng liệu bạn có thực sự được phép truy cập thứ mình đang cố truy cập không? Ví dụ điển hình là sự khác nhau giữa người dùng thông thường và người dùng quản trị. Cả hai đều được xác thực với hệ thống, nhưng chỉ quản trị viên được phép thay đổi một số thứ.
 
-Authentication and authorization go hand in hand -- you first authenticate someone so you know who they are and can check if they're authorized to view a page or perform an action.  When you build your app, you'll have a system of authentication to get the user signed in and to verify the user is who they say they are.  You authorize the user to do certain things (like delete stuff) based on which methods are protected by controller filters that require signin or elevated permissions (e.g. admin status).
+Xác thực và phân quyền đi đôi với nhau -- trước hết bạn xác thực ai đó để biết họ là ai và kiểm tra xem họ có được phép xem một trang hoặc thực hiện một action hay không. Khi xây dựng ứng dụng, bạn sẽ có một hệ thống xác thực để đăng nhập người dùng và xác minh họ đúng là người họ tự nhận. Bạn phân quyền cho người dùng thực hiện một số việc nhất định (chẳng hạn xóa dữ liệu) dựa trên những phương thức được bảo vệ bởi các bộ lọc controller yêu cầu đăng nhập hoặc quyền hạn cao hơn (ví dụ trạng thái quản trị viên).
 
-### Basic and digest authentication
+### Xác thực Basic và Digest
 
-If you're looking for a very casual and insecure way of authenticating people, HTTP Basic authentication can be used.  We won't cover the details here, but it basically involves submitting a username and password to a form and sending it (unencrypted) across the network.  You use the `#http_basic_authenticate_with` method to do so (see the reading for examples) and to restrict access to certain controllers without it.
+Nếu bạn đang tìm một cách xác thực người dùng rất đơn giản và thiếu an toàn, có thể dùng xác thực HTTP Basic. Chúng ta sẽ không đi vào chi tiết ở đây, nhưng về cơ bản nó gồm việc gửi tên người dùng và password vào một form rồi truyền chúng (không mã hóa) qua mạng. Bạn dùng phương thức `#http_basic_authenticate_with` để thực hiện việc đó (xem phần đọc thêm để biết ví dụ) và giới hạn quyền truy cập vào một số controller khi không có xác thực này.
 
-For a slightly more secure (over HTTP) authentication system, use HTTP Digest Authentication.  We'll again not cover it here.  It relies on a `#before_action` running a method which calls upon `#authenticate_or_request_with_http_digest`, which takes a block that should return the "correct" password that should have been provided.
+Để có hệ thống xác thực an toàn hơn một chút (trên HTTP), hãy dùng HTTP Digest Authentication. Chúng ta cũng sẽ không trình bày chi tiết về nó. Cơ chế này dựa vào một `#before_action` chạy một phương thức gọi `#authenticate_or_request_with_http_digest`, phương thức này nhận một block phải trả về password "đúng" lẽ ra người dùng cần cung cấp.
 
-The problem with both of these is that they hard code user names and passwords in your controller (or somewhere), so it's really just a band-aid solution.
+Vấn đề của cả hai cách này là chúng ghi cứng tên người dùng và password trong controller (hoặc ở đâu đó), nên thực chất chỉ là giải pháp tạm thời.
 
-### Rolling your own auth
+### Tự xây dựng hệ thống xác thực
 
-If you want user logins, you'll need to go through a few extra steps. It's worth mentioning that you should never roll your own authentication system as there are already well battle tested solutions out there that you can use in your projects. One of these is Devise which we will explore later. But a few principles are useful to know.
+Nếu muốn có chức năng đăng nhập người dùng, bạn sẽ phải trải qua thêm vài bước. Cần nhấn mạnh rằng bạn không bao giờ nên tự xây dựng hệ thống xác thực, vì đã có những giải pháp được kiểm chứng kỹ lưỡng mà bạn có thể dùng trong dự án. Devise là một trong số đó và chúng ta sẽ tìm hiểu sau. Tuy vậy, biết một vài nguyên tắc vẫn rất hữu ích.
 
-First, we don't store passwords in plain text in the database.  That's just asking for trouble (how many news stories have you seen about major sites getting hacked and passwords being exposed in plain text?).  Instead, you'll store an encrypted "password digest" version of the password.
+Trước hết, chúng ta không lưu password dạng văn bản thuần trong cơ sở dữ liệu. Làm vậy chẳng khác nào tự chuốc rắc rối (bạn đã đọc bao nhiêu tin về các website lớn bị hack và password bị lộ dưới dạng văn bản thuần?). Thay vào đó, bạn sẽ lưu phiên bản "password digest" đã được mã hóa của password.
 
-When a user submits their password via the login form, instead of comparing it directly with a plaintext version of that password, you actually convert the submitted password into digest form.  You'll then compare that new digest with the digest you'd previously stored from the user. If they match, you've got yourself a logged in user.
+Khi người dùng gửi password qua form đăng nhập, thay vì so sánh trực tiếp với phiên bản dạng văn bản thuần của password đó, bạn thực sự chuyển password được gửi sang dạng digest. Sau đó, bạn so sánh digest mới này với digest đã lưu trước đó của người dùng. Nếu chúng khớp nhau, bạn đã có một người dùng đang đăng nhập.
 
-This is much better because digests are one-way encryption. You can easily create a digest from a password string, but it's extremely difficult to decrypt the digest and retrieve the original password.  The most effective way to crack a bunch of digests is just to make a giant list of possible passwords, turn them into digests, and see if those digests match the one you're trying to crack (i.e. guess-and-check on a massive scale).
+Cách này tốt hơn nhiều vì digest là dạng mã hóa một chiều. Bạn có thể dễ dàng tạo digest từ một chuỗi password, nhưng việc giải mã digest để lấy lại password gốc cực kỳ khó. Cách hiệu quả nhất để phá một loạt digest chỉ là lập một danh sách khổng lồ các password có thể có, chuyển chúng thành digest rồi xem các digest đó có khớp với digest bạn đang cố phá hay không (tức là đoán-và-kiểm tra trên quy mô lớn).
 
-Rails doesn't make you do everything yourself.  It has a method called `#has_secure_password` which you just drop into your User model and it will add a lot of the functionality you're looking for.  To work with that handy method, you basically set up your User model to handle accepting `password` and `password_confirmation` attributes but you won't actually persist those to the database.  `has_secure_password` intercepts those values and converts them into the password digest for you.
+Rails không bắt bạn tự làm mọi thứ. Nó có một phương thức tên là `#has_secure_password`; bạn chỉ cần thêm phương thức này vào model User và nó sẽ bổ sung nhiều chức năng bạn cần. Để dùng phương thức tiện lợi đó, về cơ bản bạn thiết lập model User để tiếp nhận các thuộc tính `password` và `password_confirmation`, nhưng thực tế không lưu chúng vào cơ sở dữ liệu. `has_secure_password` chặn các giá trị đó và chuyển chúng thành password digest giúp bạn.
 
-To initialize a new user session (when your user signs in), you'll need to create a new controller (usually `sessions_controller.rb`) and the corresponding routes for `:new`, `:create` and `:destroy`.  If the user passes the correct credentials (which we can check using the `#authenticate` method), you'll use the `session` variable to store their ID, which you can use to validate that they are who they say they are. This is a way of authenticating the user that uses Rails' existing session infrastructure, but only lasts as long as the session does.
+Để khởi tạo một session mới cho người dùng (khi người dùng đăng nhập), bạn sẽ cần tạo một controller mới (thường là `sessions_controller.rb`) cùng các route tương ứng cho `:new`, `:create` và `:destroy`. Nếu người dùng cung cấp thông tin xác thực đúng (có thể kiểm tra bằng phương thức `#authenticate`), bạn sẽ dùng biến `session` để lưu ID của họ, rồi dùng ID đó xác nhận họ đúng là người họ tự nhận. Đây là cách xác thực người dùng dựa trên hạ tầng session sẵn có của Rails, nhưng chỉ kéo dài chừng nào session còn tồn tại.
 
-If your user wants to be "remembered" (you've probably seen the "remember me" checkbox plenty of times on login forms), you need a way to remember them for longer than just the length of the browser session.  To do this, you'll need to create another column in your Users table for an encrypted `remember_token` (or whatever you'd like to call it).  You'll use that to store a random string for that user that will be used in the future to identify them.
+Nếu người dùng muốn được "ghi nhớ" (có lẽ bạn đã nhiều lần thấy checkbox "ghi nhớ tôi" trong các form đăng nhập), bạn cần một cách ghi nhớ họ lâu hơn thời lượng của session trình duyệt. Để làm vậy, bạn cần tạo thêm một cột trong bảng Users cho `remember_token` được mã hóa (hoặc tên tùy ý). Bạn sẽ dùng cột đó để lưu một chuỗi ngẫu nhiên cho người dùng, được dùng về sau để nhận diện họ.
 
-You will drop the unencrypted token as a permanent cookie (using `cookies.permanent[:remember_token]`) into the user's browser.  That cookie will be submitted with each new request, so you can check with the encrypted version in the database to see who that user is whenever they make a request.  This is basically a more explicit and permanent version of what Rails is doing with sessions.  It's best practice to reset the token on each new signin if the user signs out.
+Bạn sẽ đưa token chưa mã hóa vào trình duyệt của người dùng dưới dạng cookie vĩnh viễn (bằng `cookies.permanent[:remember_token]`). Cookie đó sẽ được gửi cùng mỗi request mới, vì vậy mỗi khi người dùng tạo request, bạn có thể đối chiếu nó với phiên bản đã mã hóa trong cơ sở dữ liệu để biết người dùng là ai. Về cơ bản, đây là phiên bản rõ ràng và lâu dài hơn của việc Rails đang làm với session. Một thông lệ tốt là đặt lại token sau mỗi lần đăng nhập mới nếu người dùng đăng xuất.
 
-It's usually good to make some helper methods for yourself to cover common behavior like signing in a user, checking if a user is signed in, and comparing the currently signed in user with another user (useful if the current user is looking at another user's page and shouldn't see links to "edit" it).  These things will make your life much easier since you can reuse them in your controller filters or your views or even your tests.
+Thông thường, bạn nên tạo một số phương thức helper để xử lý các hành vi phổ biến như đăng nhập người dùng, kiểm tra xem người dùng đã đăng nhập chưa và so sánh người dùng hiện đang đăng nhập với một người dùng khác (hữu ích khi người dùng hiện tại đang xem trang của người dùng khác và không nên thấy liên kết để "chỉnh sửa" trang đó). Những phương thức này sẽ giúp cuộc sống của bạn dễ dàng hơn nhiều vì bạn có thể tái sử dụng chúng trong bộ lọc controller, view hoặc thậm chí cả test.
 
-A generic step-by-step overview:
+Tổng quan từng bước:
 
-1. Add a column to your Users table to contain the user's `password_digest`.
-1. When the user signs up, turn the password they submitted into digest form and then store THAT in the new database column by adding the `has_secure_password` method to your User model.
-1. Don't forget any necessary validations for password and password confirmation length.
-1. Build a sessions controller (and corresponding routes) and use the `#authenticate` method to sign in the user when the user has submitted the proper credentials using the signin form.
-1. Allow the user to be remembered by creating a `remember_token` column in the Users table and saving that token as a permanent cookie in the user's browser.  Reset on each new signin.
-1. On each page load that requires authentication (and using a `#before_action` in the appropriate controller(s)), first check the user's cookie `remember_token` against the database to see if they're already signed in.  If not, redirect to the signin page.
-1. Make helper methods as necessary to let you do things like easily determine if a user is signed in or compare another user to the currently signed in user.
-1. Profit.
+1. Thêm một cột vào bảng Users để chứa `password_digest` của người dùng.
+1. Khi người dùng đăng ký, chuyển password họ gửi sang dạng digest rồi lưu CHÍNH digest đó vào cột cơ sở dữ liệu mới bằng cách thêm phương thức `has_secure_password` vào model User.
+1. Đừng quên mọi validation cần thiết về độ dài của password và password confirmation.
+1. Xây dựng một sessions controller (và các route tương ứng), rồi dùng phương thức `#authenticate` để đăng nhập người dùng khi họ đã gửi đúng thông tin xác thực bằng form đăng nhập.
+1. Cho phép ghi nhớ người dùng bằng cách tạo một cột `remember_token` trong bảng Users và lưu token đó thành cookie vĩnh viễn trong trình duyệt của người dùng. Đặt lại sau mỗi lần đăng nhập mới.
+1. Với mỗi lần tải trang yêu cầu xác thực (và dùng một `#before_action` trong các controller phù hợp), trước tiên kiểm tra cookie `remember_token` của người dùng với cơ sở dữ liệu để xem họ đã đăng nhập chưa. Nếu chưa, redirect đến trang đăng nhập.
+1. Tạo các phương thức helper khi cần để dễ dàng xác định người dùng đã đăng nhập hay chưa, hoặc so sánh một người dùng khác với người dùng hiện đang đăng nhập.
+1. Hưởng lợi.
 
 ### Devise
 
-Devise is a gem which has been built to handle all this stuff for you.  It's ultimately better than rolling your own auth because they've covered a lot of the edge cases and security loopholes that you might not think about.  Devise lets you interface with more advanced authentication systems for talking to APIs like OAuth.  So it's quite useful down the road.
+Devise là một gem được xây dựng để xử lý toàn bộ những việc này giúp bạn. Về lâu dài, nó tốt hơn việc tự xây dựng xác thực vì đã bao quát nhiều trường hợp biên và lỗ hổng bảo mật mà bạn có thể không nghĩ đến. Devise cho phép bạn tích hợp với các hệ thống xác thực nâng cao hơn để giao tiếp với những API như OAuth. Vì vậy, về sau nó sẽ khá hữu ích.
 
-In a short word, Devise prepackages for you a bunch of signin and signup forms and methods to help implement them.  It's made up of 10 modules (and you can choose which ones you want to use).  You install the `devise` gem and run the installer to drop their files into your application.  You'll also need to run a database migration to add their additional fields to your Users table.
+Nói ngắn gọn, Devise đóng gói sẵn một loạt form và phương thức đăng nhập, đăng ký để hỗ trợ bạn triển khai chúng. Nó gồm 10 module (và bạn có thể chọn những module muốn dùng). Bạn cài gem `devise` rồi chạy trình cài đặt để đưa các file của Devise vào ứng dụng. Bạn cũng cần chạy migration cơ sở dữ liệu để thêm các trường bổ sung của Devise vào bảng Users.
 
-Configuration will be dependent on your use case.  Do you want to make the user confirm their signup using an email (the `Confirmable` module)?  Do you want to allow the user to reset their password (the `Recoverable` module)?
+Cấu hình sẽ phụ thuộc vào trường hợp sử dụng của bạn. Bạn có muốn người dùng xác nhận việc đăng ký qua email (module `Confirmable`) không? Bạn có muốn cho phép người dùng đặt lại password (module `Recoverable`) không?
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read this article about [how Rails sessions work](https://www.justinweiss.com/articles/how-rails-sessions-work/).
-1. Watch this video to [dive deep into sessions](https://www.youtube.com/watch?v=mqUbnZIY3OQ).
-1. Read sections 5 and 6 of the [Rails Guides on Controllers](http://guides.rubyonrails.org/action_controller_overview.html#cookies).  Don't worry too much about the details of `session_store` configurations in 6.4 right now.
-1. Read section 7 of the [Rails Guides on Controllers](https://guides.rubyonrails.org/action_controller_overview.html#controller-callbacks) to understand controller filters.
-1. Read section 4 of the [Rails Guides on Controller Advanced Topics](https://guides.rubyonrails.org/action_controller_advanced_topics.html#http-authentication) to understand more about authentication.
-1. Glance over the [Devise Documentation](https://github.com/plataformatec/devise). Read about how to install it in your Rails App and what the different modules do.  You'll be using it with upcoming projects.
+1. Đọc bài viết về [cách session Rails hoạt động](https://www.justinweiss.com/articles/how-rails-sessions-work/).
+1. Xem video để [tìm hiểu sâu về session](https://www.youtube.com/watch?v=mqUbnZIY3OQ).
+1. Đọc phần 5 và 6 trong [Rails Guides về Controller](http://guides.rubyonrails.org/action_controller_overview.html#cookies). Hiện tại, bạn không cần quá lo lắng về chi tiết cấu hình `session_store` trong mục 6.4.
+1. Đọc phần 7 trong [Rails Guides về Controller](https://guides.rubyonrails.org/action_controller_overview.html#controller-callbacks) để hiểu về bộ lọc controller.
+1. Đọc phần 4 trong [Rails Guides về các chủ đề nâng cao của Controller](https://guides.rubyonrails.org/action_controller_advanced_topics.html#http-authentication) để hiểu thêm về xác thực.
+1. Xem qua [Tài liệu Devise](https://github.com/plataformatec/devise). Đọc về cách cài đặt nó trong ứng dụng Rails và chức năng của các module khác nhau. Bạn sẽ dùng nó trong những dự án sắp tới.
 
 </div>
 
-#### Conclusion
+#### Kết luận
 
-Authentication can appear to be a fairly complicated topic -- there are a lot of moving parts.  At it's core, though, you're just checking whether the person making a request is actually a signed in user who has the permissions to do so, all by using browser cookies in some form or another.
+Xác thực có vẻ là một chủ đề khá phức tạp -- có rất nhiều thành phần cùng vận hành. Tuy nhiên, về cốt lõi, bạn chỉ đang kiểm tra xem người tạo request có thực sự là người dùng đã đăng nhập và có quyền thực hiện việc đó hay không, thông qua một hình thức cookie trình duyệt nào đó.
 
-This lesson should have given you some appreciation for how complicated login systems can potentially get but it should also have removed the veil from the websites you've visited countless times.  Auth isn't rocket science and you'll shortly be building it into your own applications.
+Bài học này hẳn đã giúp bạn phần nào hiểu được các hệ thống đăng nhập có thể phức tạp đến đâu, đồng thời vén bức màn về những website bạn đã truy cập vô số lần. Xác thực không phải khoa học tên lửa, và chẳng bao lâu nữa bạn sẽ tích hợp nó vào các ứng dụng của chính mình.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ trợ.
 
-- [Authentication in Rails 3.1 from Railscasts](http://railscasts.com/episodes/270-authentication-in-rails-3-1)... better than we can explain it.
-- [All About Cookies (.org)](http://www.allaboutcookies.org/)
+- [Xác thực trong Rails 3.1 từ Railscasts](http://railscasts.com/episodes/270-authentication-in-rails-3-1)... hay hơn cách chúng ta có thể giải thích.
+- [Tất cả về Cookie (.org)](http://www.allaboutcookies.org/)

@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-You've already had some familiarity with associations, especially the basic `has_one`, `has_many`, and `belongs_to` variety.  Thus far, you've probably mostly used these associations to grab collections of objects like a user's posts (`user.posts`).  There are a lot of other handy things that Rails lets you do with associations too.  This brief section will highlight some of the more useful methods that come along with associations.
+Bạn hẳn đã làm quen phần nào với association, đặc biệt là các dạng cơ bản `has_one`, `has_many` và `belongs_to`. Cho đến lúc này, có lẽ bạn chủ yếu dùng các association này để lấy ra những tập hợp đối tượng như các bài đăng của một người dùng (`user.posts`). Rails còn cho phép bạn làm rất nhiều việc tiện dụng khác với association. Phần ngắn này sẽ giới thiệu một số phương thức hữu ích hơn đi kèm với association.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- How Rails normally knows which table and foreign key to use when you have an association (e.g. `User.first.posts`).
-- Specifying the `:class_name` option in an association.
-- Specifying the `:foreign_key` option.
-- Specifying the `:source` option.
-- Polymorphic associations and when you would use them.
-- Two ways to use an association to create a new object instead of just calling `YourObject.new`.
-- When and why using an association to create a new object may be useful or preferred.
-- How to automatically destroy associated objects when an object is deleted.
-- How to set up a self-association, such as with Users following Users.
+- Cách Rails thường biết nên sử dụng bảng và foreign key nào khi bạn có một association (ví dụ: `User.first.posts`).
+- Chỉ định tùy chọn `:class_name` trong một association.
+- Chỉ định tùy chọn `:foreign_key`.
+- Chỉ định tùy chọn `:source`.
+- Polymorphic association và khi nào bạn nên dùng chúng.
+- Hai cách dùng association để tạo một đối tượng mới thay vì chỉ gọi `YourObject.new`.
+- Khi nào và vì sao việc dùng association để tạo đối tượng mới có thể hữu ích hoặc được ưu tiên.
+- Cách tự động hủy các đối tượng liên kết khi một đối tượng bị xóa.
+- Cách thiết lập self-association, chẳng hạn Users theo dõi Users.
 
-### Basic stuff
+### Kiến thức cơ bản
 
-If you're still shaky on basic associations, go back and check out the Associations section of the [Basic Active Record lesson](https://www.theodinproject.com/lessons/ruby-on-rails-active-record-basics) first.  This section is meant to just bring up some of the basic stuff you may not yet have been exposed to.
+Nếu bạn vẫn chưa nắm chắc association cơ bản, trước hết hãy quay lại xem phần Associations trong [bài học Basic Active Record](https://www.theodinproject.com/lessons/ruby-on-rails-active-record-basics). Phần này chỉ nhằm nhắc lại một số kiến thức cơ bản mà có thể bạn chưa từng được tiếp cận.
 
-#### Foreign keys and class names
+#### Foreign key và tên class
 
-When you create an association, Rails makes two major assumptions -- first, that the class of the model your association points to is based directly off of the name of the association, and, second, that the foreign key in any `belongs_to` relationship will be called `yourassociationname_id`.  Any time you go away from these defaults, you just need to let Rails know what kind of class to look for and which foreign key to use.
+Khi bạn tạo một association, Rails đưa ra hai giả định chính -- thứ nhất, class của model mà association trỏ tới được suy ra trực tiếp từ tên association; thứ hai, foreign key trong bất kỳ quan hệ `belongs_to` nào sẽ có tên là `yourassociationname_id`. Bất cứ khi nào bạn đi lệch khỏi các mặc định này, bạn chỉ cần cho Rails biết nên tìm loại class nào và sử dụng foreign key nào.
 
-A very simple case would be a User who can create many Posts for a blog:
+Một trường hợp rất đơn giản là một User có thể tạo nhiều Post cho một blog:
 
 ```ruby
   # app/models/user.rb
@@ -40,9 +40,9 @@ A very simple case would be a User who can create many Posts for a blog:
   end
 ```
 
-So you could ask the first user for all her posts with `User.first.posts` or the first post for its author user with `Post.first.user`.  Rails knows to look for a foreign key called `user_id` in the Posts table.  If you ask for `Post.first.user`, Rails will look in the Users table for the User with the ID corresponding to the `user_id` column in the Posts table.  All is well in the world when your association names correspond directly to the names of your models and tables.
+Vì vậy, bạn có thể yêu cầu người dùng đầu tiên trả về tất cả bài đăng của cô ấy bằng `User.first.posts`, hoặc yêu cầu bài đăng đầu tiên trả về user tác giả của nó bằng `Post.first.user`. Rails biết phải tìm foreign key tên là `user_id` trong bảng Posts. Nếu bạn yêu cầu `Post.first.user`, Rails sẽ tìm trong bảng Users User có ID tương ứng với cột `user_id` trong bảng Posts. Mọi việc đều ổn khi tên association tương ứng trực tiếp với tên model và bảng.
 
-But what if you want to have two types of users that the post belongs to -- the "author" and the "editor"?  In this case, you'll need two separate foreign keys in your Posts table, presumably one called `author_id` and another called `editor_id`.  How do you tell Rails that each of these foreign keys actually point to a User (so it knows to look in the Users table for them)?  Just specify the class your association should point to using the aptly named `:class_name` option:
+Nhưng nếu bạn muốn bài đăng thuộc về hai loại user -- "author" và "editor" thì sao? Trong trường hợp này, bạn sẽ cần hai foreign key riêng trong bảng Posts, có lẽ một cột tên `author_id` và một cột khác tên `editor_id`. Làm thế nào để nói cho Rails biết mỗi foreign key này thực sự trỏ tới một User (để Rails biết phải tìm chúng trong bảng Users)? Chỉ cần chỉ định class mà association của bạn sẽ trỏ tới bằng tùy chọn có tên rất phù hợp là `:class_name`:
 
 ```ruby
   # app/models/post.rb
@@ -52,11 +52,11 @@ But what if you want to have two types of users that the post belongs to -- the 
   end
 ```
 
-In this case, Rails will automatically look for the foreign key named after the association, e.g. `author_id` or `editor_id`, in the Posts table.
+Trong trường hợp này, Rails sẽ tự động tìm foreign key được đặt tên theo association, ví dụ `author_id` hoặc `editor_id`, trong bảng Posts.
 
-If you called the association something which didn't correspond exactly to what you'd named the foreign key in your table, you need to tell Rails that as well.  This should be obvious if you think of this relationship from the side of the User.  The User will have some posts for which she is an author and others for which she is an editor.  You'll need to rename the association on the User's side as well to keep things crystal clear, for instance splitting up `authored_posts` from `edited_posts`.
+Nếu bạn đặt tên association khác hoàn toàn với tên foreign key trong bảng, bạn cũng cần nói cho Rails biết điều đó. Điều này sẽ trở nên rõ ràng nếu bạn suy nghĩ về mối quan hệ này từ phía User. User sẽ có một số bài đăng mà cô ấy là author và những bài khác mà cô ấy là editor. Bạn cũng sẽ cần đổi tên association ở phía User để mọi thứ thật rõ ràng, chẳng hạn tách `authored_posts` khỏi `edited_posts`.
 
-But now Rails doesn't have the foggiest idea where to look and what to look for.  By default, if you ask for `User.first.authored_posts` it will go looking in the `authored_posts` table for a foreign key called `user_id` (neither of which exist).  To get it pointing at the right table, we again need to specify the `:class_name` and to get it using the correct foreign key, we need to specify the right `:foreign_key`.  For instance:
+Nhưng lúc này Rails hoàn toàn không biết phải tìm ở đâu và tìm gì. Theo mặc định, nếu bạn yêu cầu `User.first.authored_posts`, nó sẽ tìm trong bảng `authored_posts` một foreign key tên `user_id` (cả hai đều không tồn tại). Để trỏ tới đúng bảng, một lần nữa chúng ta cần chỉ định `:class_name`; và để dùng đúng foreign key, chúng ta cần chỉ định `:foreign_key` phù hợp. Ví dụ:
 
 ```ruby
   # app/models/user.rb
@@ -66,13 +66,13 @@ But now Rails doesn't have the foggiest idea where to look and what to look for.
   end
 ```
 
-The basic gist of this is to assume that Rails is looking for the foreign key named after the association in the table also named after the association.  If any of these are incorrect because of a creatively named association or foreign key, you'll need to specify.  This is quite common to make your associations more legible.
+Ý chính là giả định rằng Rails đang tìm foreign key được đặt tên theo association trong bảng cũng được đặt tên theo association. Nếu bất kỳ tên nào trong số này không đúng vì association hoặc foreign key được đặt tên sáng tạo, bạn cần chỉ định chúng. Đây là cách khá phổ biến để làm cho association dễ đọc hơn.
 
-#### Source
+#### Source (nguồn)
 
-Now that it's clear you need to let Rails know when you've creatively named your associations or foreign keys, we should point out that there's one additional step required if you're using a creatively named `has_many :through` association.  Recall that has-many-through associations are where you create a "through table" to act as a go-between for two models that have a many-to-many relationship.
+Giờ đã rõ rằng bạn cần cho Rails biết khi mình đặt tên sáng tạo cho association hoặc foreign key, chúng ta nên chỉ ra rằng sẽ có thêm một bước nếu bạn dùng association `has_many :through` được đặt tên sáng tạo. Hãy nhớ rằng association has-many-through là nơi bạn tạo một "bảng trung gian" đóng vai trò kết nối giữa hai model có quan hệ nhiều-nhiều.
 
-For example, perhaps we change the example above so a Post actually can have multiple Authors (but still only one editor).  We'll need to create a new table, which we'll call `post_authorings`.  `post_authorings` joins these two models together and contains columns for `authored_post_id` and `post_author_id`.  You can probably see where this is going -- we've named our foreign keys something more descriptive and helpful than just `post_id` and `user_id` but it will require us to inform Rails of the change.  Our models look like:
+Ví dụ, có thể chúng ta thay đổi ví dụ trên để một Post thực sự có nhiều Author (nhưng vẫn chỉ có một editor). Chúng ta sẽ cần tạo một bảng mới, gọi là `post_authorings`. `post_authorings` nối hai model này với nhau và chứa các cột `authored_post_id` và `post_author_id`. Có lẽ bạn đã hình dung được vấn đề -- chúng ta đã đặt tên cho foreign key mô tả và hữu ích hơn chỉ `post_id` và `user_id`, nhưng sẽ phải thông báo cho Rails về thay đổi này. Các model của chúng ta trông như sau:
 
 ```ruby
   # app/models/post.rb
@@ -100,7 +100,7 @@ For example, perhaps we change the example above so a Post actually can have mul
   end
 ```
 
-And our data model looks like:
+Và mô hình dữ liệu của chúng ta trông như sau:
 
 | **users**  |            |
 | ---------- | ---------- |
@@ -122,30 +122,30 @@ And our data model looks like:
 | created_at           | *datetime* |
 | updated_at           | *datetime* |
 
-The major thing to note here is that with has-many-through associations, Rails uses *the name of the association in the through table* to determine which foreign key and table name to reach out to.  If it's named anything irregular, you'll use the `:source` option to specify which association actually points where we'd like to go.  You can think of `:source` as being just like `:class_name` but for the associations in the "through table".
+Điều quan trọng cần lưu ý là với association has-many-through, Rails sử dụng *tên của association trong bảng trung gian* để xác định foreign key và tên bảng cần truy cập. Nếu tên đó không theo quy tắc thông thường, bạn sẽ dùng tùy chọn `:source` để chỉ định association nào thực sự trỏ tới nơi chúng ta muốn đi. Bạn có thể nghĩ về `:source` như `:class_name`, nhưng dành cho các association trong "bảng trung gian".
 
-It may be helpful to illustrate what Rails is doing.  In the example above, if you ask for `Post.first.authors`, Rails sort of "thinks" like this:
+Minh họa cách Rails đang làm việc có thể sẽ hữu ích. Trong ví dụ trên, nếu bạn yêu cầu `Post.first.authors`, Rails sẽ "suy nghĩ" đại khái như sau:
 
-1. You just called for the "authors" association on the Post model
-1. To get "authors", we first need to go through the `post_authorings` association to get there.
-1. Once we're at the `PostAuthoring` model, to get to the `author`, we'll need to use the `:belongs_to` association and it'll be called `post_author`. We know this because we used the `:source` option.  If we hadn't used the `:source` option in the original has-many-through association, we would have been looking for `belongs_to :author` instead.
-1. Now we've got all the information we need to structure our SQL joins and grab the list of authors for the post.
+1. Bạn vừa gọi association "authors" trên model Post
+1. Để lấy "authors", trước tiên chúng ta cần đi qua association `post_authorings` để tới đó.
+1. Khi đã ở model `PostAuthoring`, để đi tới `author`, chúng ta cần dùng association `:belongs_to` và nó sẽ có tên là `post_author`. Chúng ta biết điều này vì đã dùng tùy chọn `:source`. Nếu không dùng tùy chọn `:source` trong association has-many-through ban đầu, chúng ta sẽ tìm `belongs_to :author` thay thế.
+1. Bây giờ chúng ta đã có mọi thông tin cần thiết để tạo các phép nối SQL và lấy danh sách author của bài đăng.
 
-It sounds a bit wonky but it's just the same logic as before -- if Rails can't tell based on its assumptions which associations or class names or foreign keys you're supposed to use, you need to specify them yourself using `:source` or `:foreign_key` or `:class_name`.  It takes some practice but you'll get it.  Usually you know something's up if you get error messages of the flavor `ActiveRecord::StatementInvalid: SQLite3::SQLException: no such column`.
+Nghe có vẻ hơi kỳ quặc nhưng thực ra chỉ là cùng logic như trước -- nếu Rails không thể biết dựa trên các giả định của nó rằng bạn định dùng association, tên class hoặc foreign key nào, bạn cần tự chỉ định chúng bằng `:source`, `:foreign_key` hoặc `:class_name`. Cần luyện tập một chút nhưng bạn sẽ nắm được. Thông thường, bạn biết có vấn đề khi gặp các thông báo lỗi dạng `ActiveRecord::StatementInvalid: SQLite3::SQLException: no such column`.
 
-Once you do get things figured out, it can still be helpful to look in your Rails server output to see which joins are being done to build the SQL query.  That's a great window into what your associations are doing behind the scenes (because in the end, it's all about figuring out the correct SQL query to run).
+Khi đã hiểu ra mọi thứ, bạn vẫn nên xem output máy chủ Rails để biết những phép nối nào đang được thực hiện nhằm xây dựng truy vấn SQL. Đây là một cửa sổ tuyệt vời cho thấy association đang làm gì ở phía sau (vì rốt cuộc, mọi thứ đều xoay quanh việc tìm ra truy vấn SQL đúng để chạy).
 
-### Polymorphic associations
+### Association polymorphic
 
-We'll cover polymorphism here but, if your head is really spinning from the other concepts, feel free to just skim it.  Consider this an "additional topic" instead of a core topic like foreign keys, class names and source.
+Chúng ta sẽ trình bày polymorphism ở đây nhưng nếu đầu bạn thực sự quay cuồng vì các khái niệm khác, cứ lướt qua phần này. Hãy xem đây là một "chủ đề bổ sung" thay vì chủ đề cốt lõi như foreign key, tên class và source.
 
-Polymorphic associations can be a bit of a head scratcher at first and aren't terribly common, but are well suited for their use case. They use a big word to describe a pretty straightforward concept -- what if you have a single model that can belong to a bunch of different types of models?  For example, let's say you're building a service like Facebook where users can comment on any of the different types of things posted by other users (like text, pictures, images).  How do you make it okay to comment on all these different types of objects using just a single Comment model?
+Polymorphic association ban đầu có thể hơi khó hiểu và không quá phổ biến, nhưng rất phù hợp với trường hợp sử dụng của nó. Chúng dùng một từ lớn để mô tả một khái niệm khá đơn giản -- nếu bạn có một model duy nhất có thể thuộc về nhiều loại model khác nhau thì sao? Ví dụ, hãy tưởng tượng bạn đang xây dựng một dịch vụ như Facebook, nơi user có thể bình luận vào bất kỳ loại nội dung nào do user khác đăng (như văn bản, ảnh, hình). Làm thế nào để cho phép bình luận lên tất cả các loại đối tượng khác nhau này chỉ bằng một model Comment duy nhất?
 
-In a plain vanilla situation, the comment would `belongs_to` a Post or a Picture or a Video (or whatever you're commenting on).  You would have a foreign key called something like `post_id` in your Comments table.  Now if we want to be able to comment on multiple types of things, we need to figure out a different way of dealing with the foreign key because a single foreign key could be referencing a post, an image, a video etc and we don't know which one... it's ambiguous.  You could just make a different column for each one, e.g. `post_id`, `image_id`, `video_id`, but that is terribly inelegant and hardcoded (imagine if there were 100 different types of posts we want to be able to comment on!).  We need to stick with a single foreign key column.
+Trong tình huống thông thường, comment sẽ `belongs_to` một Post, Picture hoặc Video (hay bất kỳ thứ gì bạn đang bình luận). Bạn sẽ có một foreign key kiểu như `post_id` trong bảng Comments. Nhưng nếu muốn có thể bình luận lên nhiều loại nội dung, chúng ta cần tìm một cách khác để xử lý foreign key, bởi vì một foreign key duy nhất có thể trỏ tới post, image, video, v.v. và chúng ta không biết nó trỏ tới cái nào... điều đó thật mơ hồ. Bạn có thể tạo một cột khác cho từng loại, ví dụ `post_id`, `image_id`, `video_id`, nhưng cách này cực kỳ thiếu thanh lịch và bị hardcode (hãy tưởng tượng nếu có 100 loại bài đăng khác nhau mà chúng ta muốn cho phép bình luận!). Chúng ta cần giữ lại một cột foreign key duy nhất.
 
-We solve this by storing not just the foreign key **id**, but also a reference to which **type** of model it corresponds to.  That way, whenever you want to retrieve a comment, by specifying which type of thing it belongs to it is no longer ambiguous what you're asking for.  Note that Rails does this for you in the background as long as it knows you're working with a polymorphic association.
+Chúng ta giải quyết việc này bằng cách lưu không chỉ foreign key **id**, mà còn một tham chiếu cho biết nó tương ứng với **loại** model nào. Nhờ vậy, mỗi khi muốn lấy một comment, chỉ cần chỉ định nó thuộc về loại đối tượng nào thì yêu cầu của bạn không còn mơ hồ. Lưu ý rằng Rails thực hiện việc này giúp bạn ở phía sau, miễn là nó biết bạn đang làm việc với một polymorphic association.
 
-We have to call our foreign key something a bit different from the normal case since it's ambiguous which model it's referencing and you can't just use `post_id` or `picture_id`.  A convention is to come up with an abstract term for what type of action you're doing and use that to name the association.  So in this case we're commenting on things and can thus call the foreign key `"commentable"`.  You'll see the `*able` convention used a fair bit. So the migration for that model might look like:
+Chúng ta phải đặt tên foreign key hơi khác so với trường hợp thông thường vì không rõ nó đang tham chiếu tới model nào và bạn không thể chỉ dùng `post_id` hay `picture_id`. Một quy ước là nghĩ ra một thuật ngữ trừu tượng cho loại hành động bạn đang thực hiện và dùng thuật ngữ đó để đặt tên association. Trong trường hợp này, chúng ta đang bình luận lên các đối tượng nên có thể gọi foreign key là `"commentable"`. Bạn sẽ thấy quy ước `*able` được dùng khá nhiều. Vì vậy, migration cho model đó có thể trông như sau:
 
 ```ruby
   class CreateComments < ActiveRecord::Migration
@@ -161,7 +161,7 @@ We have to call our foreign key something a bit different from the normal case s
   end
 ```
 
-"Commentable" will be used to refer to the associations as well.  You'll need to tell your Comment model that it is actually polymorphic so Rails knows to also check for a `commentable_type` column when using it.  This is done like:
+"Commentable" cũng sẽ được dùng để chỉ các association. Bạn cần cho model Comment biết rằng nó thực sự là polymorphic để Rails biết phải kiểm tra thêm cột `commentable_type` khi sử dụng nó. Việc này được thực hiện như sau:
 
 ```ruby
   # app/models/comment.rb
@@ -170,7 +170,7 @@ We have to call our foreign key something a bit different from the normal case s
   end
 ```
 
-On the other side of the association, you just treat your comment like any other association (which happens to have a nonstandard name).  You just need to specify the association on every model that `has_many` of it.  The only wrinkle is that, because it's using the "commentable" name, you need to specify it in an alias just like you would if any other association had a nonstandard name:
+Ở phía còn lại của association, bạn chỉ cần xử lý comment như bất kỳ association nào khác (vốn tình cờ có một tên không theo chuẩn). Bạn chỉ cần chỉ định association trên mọi model `has_many` comment. Điểm cần lưu ý duy nhất là vì đang dùng tên "commentable", bạn cần chỉ định nó trong một alias giống như khi bất kỳ association nào khác có tên không theo chuẩn:
 
 ```ruby
   # app/models/post.rb
@@ -184,11 +184,11 @@ On the other side of the association, you just treat your comment like any other
   end
 ```
 
-Rails does the rest of the work for you.  Any time you ask a Picture for all its comments (`Picture.first.comments`), Rails will return just the comments that belong to that picture without you having to worry about anything else.
+Rails sẽ lo phần còn lại. Mỗi khi bạn yêu cầu một Picture trả về tất cả comment của nó (`Picture.first.comments`), Rails sẽ chỉ trả về những comment thuộc về picture đó mà bạn không cần lo lắng thêm điều gì.
 
-### Self joins
+### Self join (liên kết với chính nó)
 
-Oftentimes you have relationships between the same type of model, for instance users who can follow other users.  In this case, you need to specify both associations in your User model but name them differently.  You will need to specify in your `has_many` association what the name of the `foreign_key` will be:
+Nhiều khi bạn có các mối quan hệ giữa những model cùng loại, chẳng hạn user có thể theo dõi user khác. Trong trường hợp này, bạn cần chỉ định cả hai association trong model User nhưng đặt tên chúng khác nhau. Bạn sẽ cần chỉ định trong association `has_many` tên của `foreign_key` là gì:
 
 ```ruby
   class Employee < ActiveRecord::Base
@@ -199,13 +199,13 @@ Oftentimes you have relationships between the same type of model, for instance u
   end
 ```
 
-### Handy methods
+### Các phương thức tiện dụng
 
-As mentioned in the intro, associations give you access to some nifty tricks that you might not think of.
+Như đã đề cập trong phần giới thiệu, association cho bạn quyền truy cập vào một số thủ thuật hữu ích mà có thể bạn chưa nghĩ tới.
 
-#### Creating association objects
+#### Tạo các đối tượng association
 
-There's a couple of shortcuts for creating new association objects.  The first is to call `#new` or `#create` on the association to automatically populate the foreign key.  For instance, if a User `has_many` Posts and Post `belongs_to` a User:
+Có một vài lối tắt để tạo các đối tượng association mới. Cách đầu tiên là gọi `#new` hoặc `#create` trên association để tự động điền foreign key. Ví dụ, nếu một User `has_many` Post và Post `belongs_to` một User:
 
 ```bash
   # Long version:
@@ -217,7 +217,7 @@ There's a couple of shortcuts for creating new association objects.  The first i
   > user.posts.create(title: "sample")
 ```
 
-Another nifty trick is to create a new object and then use the shovel operator to add it to the association.  This is just one of the ways that **associations sometimes act like arrays**:
+Một thủ thuật tiện dụng khác là tạo một đối tượng mới rồi dùng toán tử shovel để thêm nó vào association. Đây chỉ là một trong những cách **association đôi khi hoạt động như mảng**:
 
 ```bash
   > user = User.create(name: "foobar")
@@ -225,14 +225,14 @@ Another nifty trick is to create a new object and then use the shovel operator t
   > user.posts << post
 ```
 
-This will save the post to the database with that User's foreign key.  It's roughly equivalent to calling:
+Thao tác này sẽ lưu post vào cơ sở dữ liệu với foreign key của User đó. Về cơ bản, nó tương đương với việc gọi:
 
 ```bash
   > post.user_id = user.id
   > post.save
 ```
 
-If you really want to, you can actually replace the entire association with a new collection by setting it equal to the new collection:
+Nếu thực sự muốn, bạn có thể thay thế toàn bộ association bằng một tập hợp mới bằng cách gán nó bằng tập hợp mới đó:
 
 ```bash
   > user = User.first
@@ -241,9 +241,9 @@ If you really want to, you can actually replace the entire association with a ne
   > user.posts = [post1, post2]  # posts added to that user's collection
 ```
 
-#### Destroying dependents
+#### Hủy các đối tượng phụ thuộc
 
-If your user has created a bunch of posts and then decides to delete her account, how do you delete all the associated posts?  Specify the `dependent: :destroy` option when first declaring the association:
+Nếu user của bạn đã tạo rất nhiều post rồi quyết định xóa tài khoản, làm thế nào để xóa tất cả post liên kết? Hãy chỉ định tùy chọn `dependent: :destroy` khi khai báo association lần đầu:
 
 ```ruby
   # app/models/user.rb
@@ -252,28 +252,28 @@ If your user has created a bunch of posts and then decides to delete her account
   end
 ```
 
-This is just the most common among several options to specify for `:dependent`.  It will run the `destroy` method on all objects that belong to that user when the user is destroyed.
+Đây chỉ là tùy chọn phổ biến nhất trong số nhiều tùy chọn bạn có thể chỉ định cho `:dependent`. Nó sẽ chạy phương thức `destroy` trên tất cả đối tượng thuộc về user đó khi user bị hủy.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Rails Guide on Associations](https://guides.rubyonrails.org/association_basics.html). Start by skimming chapters 1 and 2 (which you should have already done).
-1. Read all the content in chapters 3, 4, and 7.
+1. Đọc [Rails Guide về Associations](https://guides.rubyonrails.org/association_basics.html). Bắt đầu bằng cách đọc lướt chương 1 và 2 (những chương bạn hẳn đã đọc rồi).
+1. Đọc toàn bộ nội dung trong chương 3, 4 và 7.
 
 </div>
 
-#### Conclusion
+#### Kết luận
 
-In this lesson we covered some of the more advanced associations material.  Associations are all over the place in Rails and incredibly useful because of all the new methods they give you access to.  As long as you pause and think about what Rails is assuming when you set them up, you should be able to modify them to your liking without too much trouble.  Practice makes perfect, though, so keep building projects with associations in them and it'll eventually stick.
+Trong bài học này, chúng ta đã tìm hiểu một số nội dung nâng cao hơn về association. Association xuất hiện ở khắp nơi trong Rails và cực kỳ hữu ích vì chúng cung cấp cho bạn rất nhiều phương thức mới. Miễn là bạn dừng lại và suy nghĩ về những gì Rails đang giả định khi thiết lập chúng, bạn sẽ có thể tùy chỉnh chúng theo ý muốn mà không gặp quá nhiều khó khăn. Tuy nhiên, luyện tập sẽ giúp bạn hoàn thiện, vì vậy hãy tiếp tục xây dựng các dự án có association và cuối cùng bạn sẽ ghi nhớ được.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Đây không phải nội dung bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- [Brush up Your Knowledge of Rails Associations](https://www.sitepoint.com/brush-up-your-knowledge-of-rails-associations/)
-- [Rails' Polymorphic Associations](https://dev.to/adjoa/rails-polymorphic-associations-511n)
-- [Understanding Polymorphic Associations in Rails](https://web.archive.org/web/20210507031450/https://launchschool.com/blog/understanding-polymorphic-associations-in-rails)
-- [RailsCasts #154 Polymorphic Association](http://railscasts.com/episodes/154-polymorphic-association-revised)
-- [Comments with Polymorphic Associations](https://gorails.com/episodes/comments-with-polymorphic-associations)
-- [RailsCasts Pro #394 STI and Polymorphic Associations](http://railscasts.com/episodes/394-sti-and-polymorphic-associations)
+- [Ôn lại kiến thức về Rails Associations](https://www.sitepoint.com/brush-up-your-knowledge-of-rails-associations/)
+- [Polymorphic Association trong Rails](https://dev.to/adjoa/rails-polymorphic-associations-511n)
+- [Tìm hiểu về Polymorphic Association trong Rails](https://web.archive.org/web/20210507031450/https://launchschool.com/blog/understanding-polymorphic-associations-in-rails)
+- [RailsCasts #154 về Polymorphic Association](http://railscasts.com/episodes/154-polymorphic-association-revised)
+- [Comment với Polymorphic Association](https://gorails.com/episodes/comments-with-polymorphic-associations)
+- [RailsCasts Pro #394 STI và Polymorphic Association](http://railscasts.com/episodes/394-sti-and-polymorphic-associations)

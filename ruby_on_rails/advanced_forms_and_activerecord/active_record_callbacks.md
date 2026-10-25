@@ -1,38 +1,38 @@
-### Introduction
+### Giới thiệu
 
-Callbacks are a common way for you to execute code at specific times in the life cycle of an Active Record object, for instance just before it is created, after it is saved, or after it is destroyed.  These can be very useful if you've got something to execute whenever an object hits one of those lifecycle points, like modifying the user's email to be lowercase when creating her account.  Callbacks are a way of saying something like "Hey Active Record, when you've finished creating a new User object, give me a call so I can run this method before anything else happens."
+Callback là một cách phổ biến để thực thi mã tại những thời điểm cụ thể trong vòng đời của một đối tượng Active Record, chẳng hạn ngay trước khi đối tượng được tạo, sau khi được lưu hoặc sau khi bị hủy. Chúng có thể rất hữu ích nếu bạn cần thực hiện một thao tác mỗi khi đối tượng chạm tới một trong những mốc vòng đời đó, chẳng hạn chuyển email của người dùng thành chữ thường khi tạo tài khoản. Callback là cách nói kiểu như: "Này Active Record, khi bạn tạo xong một đối tượng User mới, hãy gọi cho tôi để tôi chạy phương thức này trước khi bất kỳ việc gì khác diễn ra."
 
-This is a brief section on a useful topic.  The Rails Guide reading provides good coverage of it, so our summary will be necessarily brief.
+Đây là một phần ngắn về một chủ đề hữu ích. Phần đọc trong Rails Guide đã trình bày khá đầy đủ, vì vậy phần tóm tắt của chúng ta đương nhiên sẽ ngắn gọn.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- What a callback is used for.
-- The major lifecycle stages of an Active Record object.
-- How to build an "around" callback.
-- How to specify a particular action to run a callback for.
+- Callback được dùng để làm gì.
+- Các giai đoạn chính trong vòng đời của một đối tượng Active Record.
+- Cách xây dựng một callback "around".
+- Cách chỉ định một hành động cụ thể để chạy callback.
 
-### The life cycle of an active record object
+### Vòng đời của một đối tượng active record
 
-Callbacks provide hooks into specific points (either before, after, or sometimes "around") in the life cycle of an object.  Those life cycle moments are:
+Callback cung cấp các hook tại những thời điểm cụ thể (trước, sau hoặc đôi khi là "xung quanh") trong vòng đời của một đối tượng. Những thời điểm đó là:
 
-- **Initialization** -- When the object is first built OR whenever it is reloaded from the database and into memory (so any time you find it in a query).
-- **Validation** -- Whenever Rails checks if the object is valid. That could be when you're trying to save it or if you've manually run the `#valid?` method.
-- **Saving** -- The actual act of saving an already-built object to the database. This is triggered any time the object is saved, not just the first time it is created.
-- **Creating** -- The creation and saving of a new object.
-- **Updating** -- The updating of an existing object.
-- **Finding** -- The query of existing objects (e.g., `#all`, `#first`, `#find`). This is often triggered by Rails working with objects behind the scenes.
+- **Khởi tạo** -- Khi đối tượng được dựng lần đầu HOẶC bất cứ khi nào nó được tải lại từ cơ sở dữ liệu vào bộ nhớ (tức là mỗi khi bạn tìm thấy nó trong một truy vấn).
+- **Xác thực** -- Mỗi khi Rails kiểm tra đối tượng có hợp lệ hay không. Việc này có thể xảy ra khi bạn đang cố lưu đối tượng hoặc khi bạn tự chạy phương thức `#valid?`.
+- **Lưu** -- Hành động thực sự lưu một đối tượng đã được dựng vào cơ sở dữ liệu. Việc này được kích hoạt bất cứ khi nào đối tượng được lưu, không chỉ trong lần đầu nó được tạo.
+- **Tạo** -- Việc tạo và lưu một đối tượng mới.
+- **Cập nhật** -- Việc cập nhật một đối tượng hiện có.
+- **Tìm** -- Truy vấn các đối tượng hiện có (ví dụ: `#all`, `#first`, `#find`). Việc này thường được kích hoạt khi Rails thao tác với các đối tượng ở phía sau.
 
-You often get three choices for callbacks.  Not all object lifecycle steps support all callbacks, but the basic three are (using `create` as an example):
+Bạn thường có ba lựa chọn cho callback. Không phải mọi bước trong vòng đời đối tượng đều hỗ trợ mọi callback, nhưng ba lựa chọn cơ bản là (lấy `create` làm ví dụ):
 
-1. `before_create` -- Runs the method before the stated action
-1. `after_create` -- Runs the method after the stated action
-1. `around_create` -- A bit trickier.  In this one, you will write a method which actually `yield`s at some point to the original action.  That way you can have code before it and after it and YOU decide at which point the original action gets done.  Not entirely common.
+1. `before_create` -- Chạy phương thức trước hành động được nêu
+1. `after_create` -- Chạy phương thức sau hành động được nêu
+1. `around_create` -- Hơi phức tạp hơn. Với lựa chọn này, bạn sẽ viết một phương thức thực sự gọi `yield` tại một thời điểm nào đó tới hành động gốc. Nhờ vậy, bạn có thể đặt mã ở trước và sau nó, đồng thời BẠN quyết định hành động gốc được thực hiện ở thời điểm nào. Không quá phổ biến.
 
-### Using callbacks
+### Sử dụng callback
 
-To use a callback, you need to "register" it at the top of your Model by using the appropriate method (e.g. `before_create`).  You pass that method either a symbol which corresponds to a method name or you could just write the callback as a block then and there.  Rails will hang onto that method and call it at the appropriate time.  For example:
+Để sử dụng callback, bạn cần "đăng ký" nó ở đầu Model bằng phương thức thích hợp (ví dụ: `before_create`). Bạn truyền cho phương thức đó một symbol tương ứng với tên phương thức, hoặc có thể viết callback dưới dạng một block ngay tại đó. Rails sẽ giữ phương thức này lại và gọi nó vào đúng thời điểm. Ví dụ:
 
 ```ruby
   # app/models/user.rb
@@ -52,11 +52,11 @@ To use a callback, you need to "register" it at the top of your Model by using t
   end
 ```
 
-### Specifying callback characteristics
+### Chỉ định đặc điểm của callback
 
-Callbacks give you several options for narrowing down or selecting specifically when you want them to run.  If you only want to run a callback when a particular controller action calls it, use the `:on` option, which takes either a single symbol or a full array, e.g. `before_create :run_code, :on => [:create, :update]`.
+Callback cung cấp cho bạn một số tùy chọn để thu hẹp hoặc lựa chọn chính xác thời điểm bạn muốn chúng chạy. Nếu chỉ muốn chạy callback khi một action cụ thể của controller gọi nó, hãy dùng tùy chọn `:on`, tùy chọn này nhận một symbol đơn hoặc cả một mảng, ví dụ `before_create :run_code, :on => [:create, :update]`.
 
-You can also use conditional logic options `:if` and `:unless` to try a method before running callbacks, for instance:
+Bạn cũng có thể dùng các tùy chọn logic điều kiện `:if` và `:unless` để kiểm tra một phương thức trước khi chạy callback, chẳng hạn:
 
 ```ruby
   before_create :run_code, :unless => :method_is_true
@@ -68,27 +68,27 @@ You can also use conditional logic options `:if` and `:unless` to try a method b
   end
 ```
 
-### Transaction callbacks
+### Callback giao dịch
 
-Sometimes your Rails app will need to interact with an external application (which is inherently imperfect) as a part of the save process.  Other times your save will involve juggling several balls at once and, if one fails, they all need to be rolled back.  Typically these cases will involve wrapping your database save operation in a "transaction," which means that either all the steps work or they all fail and are rolled back.
+Đôi khi ứng dụng Rails của bạn cần tương tác với một ứng dụng bên ngoài (vốn không hoàn hảo) trong quá trình lưu. Những lúc khác, thao tác lưu của bạn sẽ phải xử lý nhiều việc cùng lúc và nếu một việc thất bại, tất cả đều cần được rollback. Thông thường, những trường hợp này sẽ bao gồm việc bọc thao tác lưu cơ sở dữ liệu trong một "transaction", nghĩa là hoặc tất cả các bước đều thành công, hoặc tất cả đều thất bại và được rollback.
 
-The `commit`ting of a transaction and its potential `rollback` if it fails are both lifecycle events that you can latch onto with callbacks, e.g. `after_commit` and `after_rollback`.  This is uncommon, so consider it another one of those "just remember that it's an option" type things.
+Việc `commit` một transaction và khả năng `rollback` nếu nó thất bại đều là các sự kiện trong vòng đời mà bạn có thể móc vào bằng callback, ví dụ `after_commit` và `after_rollback`. Điều này không phổ biến, vì vậy hãy xem nó như một trong những điều kiểu "chỉ cần nhớ rằng đây là một tùy chọn".
 
-### Conclusion
+### Kết luận
 
-Callbacks are useful and many, like `:after_create` and `:before_destroy`, are pretty common.  There's no rocket science here, just a helpful concept.
+Callback hữu ích và nhiều callback, như `:after_create` và `:before_destroy`, khá phổ biến. Không có gì quá cao siêu ở đây, chỉ là một khái niệm hữu ích.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read through the [Rails Guide on Callbacks](http://guides.rubyonrails.org/active_record_callbacks.html)
-  1. Read this post from Samuel Mullen on [guidelines for using callbacks](https://samuelmullen.com/articles/guidelines-for-using-activerecord-callbacks).
+  1. Đọc [Rails Guide về Callback](http://guides.rubyonrails.org/active_record_callbacks.html)
+  1. Đọc bài viết này của Samuel Mullen về [các hướng dẫn sử dụng callback](https://samuelmullen.com/articles/guidelines-for-using-activerecord-callbacks).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Đây không phải nội dung bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- [WikiBooks Reference on Callbacks](http://en.wikibooks.org/wiki/Ruby_on_Rails/ActiveRecord/Callbacks)
+- [Tài liệu tham khảo WikiBooks về Callback](http://en.wikibooks.org/wiki/Ruby_on_Rails/ActiveRecord/Callbacks)

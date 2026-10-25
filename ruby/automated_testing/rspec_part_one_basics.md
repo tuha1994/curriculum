@@ -1,41 +1,41 @@
-### Introduction
+### Giới thiệu
 
-In this lesson we will learn all about RSpec, a testing framework for Ruby that provides tools to help you structure and write automated tests.
+Trong bài học này, chúng ta sẽ tìm hiểu toàn diện về RSpec, một framework kiểm thử cho Ruby cung cấp các công cụ giúp bạn cấu trúc và viết các bài kiểm thử tự động.
 
-In the Ruby sphere there are a [few different options](https://www.ruby-toolbox.com/categories/testing_frameworks.html) when it comes to testing frameworks. But RSpec is by far the most popular, having at the time of writing over half a billion downloads since it was created.
+Trong hệ sinh thái Ruby có [một vài lựa chọn khác nhau](https://www.ruby-toolbox.com/categories/testing_frameworks.html) khi nói đến các framework kiểm thử. Tuy nhiên, RSpec phổ biến hơn hẳn; tại thời điểm viết bài, nó đã có hơn nửa tỷ lượt tải xuống kể từ khi được tạo ra.
 
-RSpec's popularity is largely owed to its rich, expressive syntax which makes writing readable and maintainable tests a breeze.
+RSpec được ưa chuộng phần lớn nhờ cú pháp phong phú, giàu tính biểu đạt, giúp việc viết các bài kiểm thử dễ đọc và dễ bảo trì trở nên đơn giản.
 
-This lesson is designed to be a guide through all the basic RSpec features you will need to know to get started writing your own automated tests. To get the most out this lesson, please follow along with all the examples.
+Bài học này được thiết kế như một hướng dẫn về tất cả các tính năng RSpec cơ bản mà bạn cần biết để bắt đầu tự viết các bài kiểm thử tự động. Để tận dụng bài học tốt nhất, hãy làm theo tất cả các ví dụ.
 
-### Learning Outcomes
+### Mục tiêu học tập
 
-- How to install RSpec
-- What is an example group and how do you define one?
-- What is an `it` block for?
-- What is an expectation?
-- What is a matcher?
-- What are the 3 phases of a test?
-- When should a teardown phase be used?
+- Cài đặt RSpec như thế nào
+- Example group là gì và định nghĩa nó ra sao?
+- Khối `it` dùng để làm gì?
+- Expectation là gì?
+- Matcher là gì?
+- Ba giai đoạn của một bài kiểm thử là gì?
+- Khi nào nên sử dụng giai đoạn teardown?
 
-### Project Setup and Installing RSpec
+### Thiết lập dự án và cài đặt RSpec
 
-To kick things off, we need to create a new project where we can install RSpec and start using it.
+Để bắt đầu, chúng ta cần tạo một dự án mới, nơi có thể cài đặt RSpec và bắt đầu sử dụng nó.
 
-Fire up a terminal, create a new directory and then navigate into it:
+Mở terminal, tạo một thư mục mới rồi chuyển vào đó:
 
 ~~~bash
 $ mkdir odin_rspec
 $ cd odin_rspec
 ~~~
 
-Create a lib directory and `todo_list.rb` file
+Tạo thư mục lib và tệp `todo_list.rb`
 
 ~~~bash
 $ mkdir lib && touch lib/todo_list.rb
 ~~~
 
-Open up the `todo_list.rb` file in your favourite text editor and paste the following code into it. This will be the code we will be writing tests for throughout the first part of this lesson.
+Mở tệp `todo_list.rb` bằng trình soạn thảo văn bản bạn yêu thích và dán đoạn mã sau vào đó. Đây sẽ là phần mã mà chúng ta viết các bài kiểm thử cho trong suốt phần đầu của bài học này.
 
 ~~~ruby
 # lib/todo_list.rb
@@ -78,15 +78,15 @@ class TodoList
 end
 ~~~
 
-Now that we have the code we will write tests for in place, it's time to install and setup RSpec. Back in your terminal, make sure you are in the root directory of the `odin_rspec` project and create a `Gemfile`
+Giờ khi phần mã cần kiểm thử đã sẵn sàng, đã đến lúc cài đặt và thiết lập RSpec. Quay lại terminal, bảo đảm bạn đang ở thư mục gốc của dự án `odin_rspec`, rồi tạo một `Gemfile`
 
 ~~~ruby
 $ touch Gemfile
 ~~~
 
-Gems are Ruby libraries written by other other programmers and allow us to easily add ready made functionality to our projects. In our case we want to add RSpec to our project.
+Gem là các thư viện Ruby do những lập trình viên khác viết, cho phép chúng ta dễ dàng thêm chức năng có sẵn vào dự án. Trong trường hợp này, chúng ta muốn thêm RSpec vào dự án.
 
-Paste the following into the `Gemfile`:
+Dán nội dung sau vào `Gemfile`:
 
 ~~~ruby
 source 'https://rubygems.org'
@@ -94,13 +94,13 @@ source 'https://rubygems.org'
 gem 'rspec', '3.10'
 ~~~
 
-Back in the terminal, we will run bundle install to make the RSpec gem available to our project:
+Quay lại terminal, chúng ta sẽ chạy bundle install để gem RSpec khả dụng trong dự án:
 
 ~~~ruby
 $ bundle install
 ~~~
 
-Next run the RSpec install script, which will create a couple of files for us. We will explain what these do a little later.
+Tiếp theo, chạy script cài đặt RSpec; script này sẽ tạo cho chúng ta một vài tệp. Chúng ta sẽ giải thích công dụng của chúng ở phần sau.
 
 ~~~ruby
 $ rspec --init
@@ -108,13 +108,13 @@ $ rspec --init
   create   spec/spec_helper.rb
 ~~~
 
-Open up the `.rspec` file which was just created, it should only include this code at the moment:
+Mở tệp `.rspec` vừa được tạo; lúc này nó chỉ nên chứa đoạn mã sau:
 
 ~~~ruby
 --require spec_helper
 ~~~
 
-Add the following to the file and then save it:
+Thêm nội dung sau vào tệp rồi lưu lại:
 
 ~~~ruby
 --require spec_helper
@@ -122,21 +122,21 @@ Add the following to the file and then save it:
 --order rand
 ~~~
 
-The Last thing we need to do is create the file where the tests will live for our `TodoList` class.
+Việc cuối cùng cần làm là tạo tệp chứa các bài kiểm thử cho lớp `TodoList`.
 
-In RSpec these are commonly called *spec* files because their filename is appended with `_spec.rb`.
+Trong RSpec, các tệp này thường được gọi là tệp *spec* vì tên tệp được nối thêm `_spec.rb`.
 
 ~~~ruby
 $ touch spec/todo_list_spec.rb
 ~~~
 
-Finally, to verify everything is setup correctly, run `$ rspec` which should include the following in its output:
+Cuối cùng, để xác nhận mọi thứ đã được thiết lập đúng, chạy `$ rspec`; kết quả của lệnh này nên bao gồm nội dung sau:
 
 ~~~ruby
 0 examples, 0 failures
 ~~~
 
-That's it, we're up and running with RSpec. The final folder structure of the project looks like this:
+Vậy là xong, chúng ta đã có một dự án RSpec đang hoạt động. Cấu trúc thư mục cuối cùng của dự án sẽ như sau:
 
 ~~~bash
 .
@@ -150,25 +150,25 @@ That's it, we're up and running with RSpec. The final folder structure of the pr
     └── spec_helper.rb
 ~~~
 
-The `Gemfile` is where we list the outside dependencies needed for our project to run correctly. In our project, we only need the RSpec gem so we can write and run RSpec tests.
+`Gemfile` là nơi chúng ta liệt kê các dependency bên ngoài cần thiết để dự án chạy đúng. Trong dự án này, chúng ta chỉ cần gem RSpec để viết và chạy các bài kiểm thử RSpec.
 
-The `Gemfile.lock` was automatically generated after we ran the bundle install command earlier. It locks your gems down to specific versions so the project always uses the same versions no matter what machine the project is installed on.
+`Gemfile.lock` được tự động tạo sau khi chúng ta chạy lệnh bundle install ở trên. Tệp này khóa các gem ở những phiên bản cụ thể để dự án luôn sử dụng cùng phiên bản, bất kể được cài đặt trên máy nào.
 
-This is all you really need to know about Gemfile's for now, but we will include a link in the additional resources if you want to learn more about them.
+Hiện tại, đó là tất cả những gì bạn thực sự cần biết về các Gemfile, nhưng chúng ta sẽ thêm một liên kết vào phần tài nguyên bổ sung nếu bạn muốn tìm hiểu thêm.
 
-The lib directory is where our actual executable source code lives. In our case the todo list class.
+Thư mục lib là nơi chứa mã nguồn thực thi thực tế của chúng ta. Trong trường hợp này là lớp todo list.
 
-The spec directory is where we put all of our test files. We don't want to mix our test code with our source code as that would get messy very quickly and make it hard to discern the test code from the source code. Therefore it is best practice to put the test code in separate files within a different directory.
+Thư mục spec là nơi đặt tất cả các tệp kiểm thử. Chúng ta không muốn trộn mã kiểm thử với mã nguồn vì mọi thứ sẽ nhanh chóng trở nên rối rắm và khó phân biệt phần kiểm thử với phần mã nguồn. Vì vậy, thông lệ tốt là đặt mã kiểm thử trong các tệp riêng, bên trong một thư mục khác.
 
-Finally the `rspec --init` command we ran earlier generated a couple of files for us. The first of these was the  `.rspec` file, this is where we would add extra command line configuration for when we run the `rspec` command to execute our tests. Things like the format of the output RSpec produces in the terminal and if the tests should be run in a random order or not for example.
+Cuối cùng, lệnh `rspec --init` mà chúng ta chạy trước đó đã tạo một vài tệp. Tệp đầu tiên là `.rspec`, nơi chúng ta thêm cấu hình dòng lệnh bổ sung cho lúc chạy lệnh `rspec` để thực thi các bài kiểm thử. Chẳng hạn như định dạng đầu ra RSpec trong terminal và việc có chạy các bài kiểm thử theo thứ tự ngẫu nhiên hay không.
 
-The second file was the `spec_helper.rb` file, this is where we would add configuration that needs to be shared among many test files. We won't be doing anything more with either of these files during this lesson. But for completion sake, it's good to know what they are for.
+Tệp thứ hai là `spec_helper.rb`, nơi chúng ta thêm các cấu hình cần được chia sẻ giữa nhiều tệp kiểm thử. Trong bài học này, chúng ta sẽ không làm gì thêm với hai tệp đó. Tuy vậy, biết mục đích của chúng vẫn rất hữu ích.
 
-### Structure of a RSpec test file
+### Cấu trúc một tệp kiểm thử RSpec
 
-Open up the `todo_list_spec.rb` file we created earlier. The first thing we need to do is require a couple of dependencies. The first is the `spec_helper` file RSpec generated for us.
+Mở tệp `todo_list_spec.rb` đã tạo trước đó. Việc đầu tiên cần làm là require một vài dependency. Dependency đầu tiên là tệp `spec_helper` do RSpec tạo cho chúng ta.
 
-The second file is the `todo_list.rb` file in lib so we can create an instance of the `TodoList` class in the our test file so we can invoke its methods and test what they do.
+Tệp thứ hai là `todo_list.rb` trong lib, để chúng ta có thể tạo một instance của lớp `TodoList` trong tệp kiểm thử rồi gọi các phương thức của nó và kiểm tra chúng thực hiện điều gì.
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -177,11 +177,11 @@ require "spec_helper"
 require "todo_list"
 ~~~
 
-#### Example Groups
+#### Example group
 
-Now let's create the top level example group. Example groups serve two purposes, they are how we organize our test file by grouping related tests together and they allow us to *describe* the behaviour we are testing within them.
+Bây giờ hãy tạo example group cấp cao nhất. Example group có hai mục đích: tổ chức tệp kiểm thử bằng cách nhóm các bài kiểm thử liên quan lại với nhau, và cho phép chúng ta *mô tả* hành vi đang kiểm thử bên trong nhóm đó.
 
-We define an example group using the `describe` method. In the case of the following example group we are creating an example group for all the tests related to the `TodoList` Class.
+Chúng ta định nghĩa một example group bằng phương thức `describe`. Trong ví dụ sau, chúng ta tạo một example group cho tất cả các bài kiểm thử liên quan đến lớp `TodoList`.
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -194,7 +194,7 @@ RSpec.describe TodoList do
 end
 ~~~
 
-Example groups can be nested within each other. This allows us to be more granular with grouping related tests together. We will see how that works by creating a nested example group where we can put all the tests for the `#name` method on the `TodoList` class.
+Các example group có thể được lồng vào nhau. Điều này cho phép nhóm các bài kiểm thử liên quan một cách chi tiết hơn. Chúng ta sẽ thấy cách hoạt động bằng việc tạo một example group lồng nhau, nơi đặt tất cả bài kiểm thử cho phương thức `#name` của lớp `TodoList`.
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -210,25 +210,25 @@ RSpec.describe TodoList do
 end
 ~~~
 
-The describe method takes an argument that can either be a class name or a string. Typically you will pass the name of the class you are testing to the outer most example group and use strings for the nested example groups.
+Phương thức describe nhận một đối số có thể là tên lớp hoặc một chuỗi. Thông thường, bạn truyền tên lớp đang kiểm thử cho example group ngoài cùng và dùng chuỗi cho các example group lồng nhau.
 
-We will get into why you'd want to use a class name for some example groups and strings for others later on. For now, the most important thing to note is that the argument is used to provide a label that describes the behaviour we will test within the example group.
+Sau này chúng ta sẽ tìm hiểu vì sao muốn dùng tên lớp cho một số example group và chuỗi cho những nhóm khác. Hiện tại, điều quan trọng nhất cần ghi nhớ là đối số này được dùng làm nhãn mô tả hành vi sẽ được kiểm thử trong example group.
 
-In our case the the top level example group describes all the tests within it will be for the `TodoList` class.
+Trong trường hợp của chúng ta, example group cấp cao nhất mô tả rằng tất cả bài kiểm thử bên trong dành cho lớp `TodoList`.
 
-The nested example group describes all tests within it will be for the `name` method on the `TodoList` class.
+Example group lồng nhau mô tả rằng tất cả bài kiểm thử bên trong dành cho phương thức `name` của lớp `TodoList`.
 
-Structuring your test files and providing descriptive labels like this makes it easy for you to read the test file and determine what is being tested within it.
+Việc cấu trúc tệp kiểm thử và cung cấp các nhãn mô tả như vậy giúp bạn dễ đọc tệp kiểm thử và xác định phần nào đang được kiểm tra.
 
-The describe method also takes a block ( `do..end`). As we have already seen, nested example groups can go within the block. But we can also put individual examples within the block. Or in other words, our actual tests.
+Phương thức describe cũng nhận một block ( `do..end`). Như đã thấy, các example group lồng nhau có thể nằm trong block này. Nhưng chúng ta cũng có thể đặt các example riêng lẻ trong đó, hay nói cách khác là các bài kiểm thử thực tế.
 
-#### It blocks
+#### Khối it
 
-`it` blocks are used to define the individual examples within our example groups. Much like the describe method,  `it` is also a method that accepts an argument that allows us to express what we expect to happen in that individual test, for example `it "returns the users name"`.
+Các khối `it` được dùng để định nghĩa những example riêng lẻ bên trong example group. Tương tự phương thức describe, `it` cũng là một phương thức nhận một đối số cho phép chúng ta diễn đạt điều mong đợi xảy ra trong bài kiểm thử đó, chẳng hạn `it "returns the users name"`.
 
-However unlike the `describe` method, the argument **must** always be a string and we cannot nest anything within an `it` block. This is because `it` blocks are reserved for our actual test code.
+Tuy nhiên, khác với phương thức `describe`, đối số này **luôn phải** là một chuỗi và chúng ta không thể lồng bất cứ thứ gì bên trong khối `it`. Đó là vì các khối `it` được dành riêng cho mã kiểm thử thực tế.
 
-Let's create a few `it` blocks which we can use to test the `name` method of the todo list:
+Hãy tạo một vài khối `it` để kiểm thử phương thức `name` của todo list:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -251,9 +251,9 @@ RSpec.describe TodoList do
 end
 ~~~
 
-To see all the structuring we have been doing in action we need to execute our tests. To execute the tests, open the terminal and run the `$ rspec` command from the root directory of the `odin_rspec` project directory.
+Để thấy toàn bộ phần cấu trúc vừa làm hoạt động, chúng ta cần thực thi các bài kiểm thử. Mở terminal và chạy lệnh `$ rspec` từ thư mục gốc của dự án `odin_rspec`.
 
-The output, as shown in the code snippet below uses the arguments we passed to our example groups and `it` blocks to output the structure of our tests to the terminal.
+Đầu ra trong đoạn mã dưới đây dùng các đối số chúng ta truyền cho example group và các khối `it` để in cấu trúc bài kiểm thử ra terminal.
 
 ~~~bash
 TodoList
@@ -266,21 +266,21 @@ Finished in 0.00247 seconds (files took 0.1574 seconds to load)
 3 examples, 0 failures
 ~~~
 
-#### Test Order
+#### Thứ tự kiểm thử
 
-You may have noticed the tests are not displaying in order we wrote them in. When we set up the project earlier, we configured the tests to execute in a random order by adding the `--order rand` line to the `.rspec` file.
+Có thể bạn nhận thấy các bài kiểm thử không hiển thị theo thứ tự chúng ta viết. Khi thiết lập dự án trước đó, chúng ta đã cấu hình để các bài kiểm thử chạy theo thứ tự ngẫu nhiên bằng cách thêm dòng `--order rand` vào tệp `.rspec`.
 
-We did this because each of our tests should be deterministic, meaning that they should be independent of each other and execute the same way every-time no matter what order they are in.
+Chúng ta làm vậy vì mỗi bài kiểm thử phải mang tính tất định, nghĩa là chúng độc lập với nhau và thực thi theo cùng một cách, bất kể thứ tự là gì.
 
-If the tests did execute in the same order every-time. It would be possible to write tests that depend on that order to succeed. This would eventually lead to a very brittle and hard to maintain test suite.
+Nếu các bài kiểm thử luôn chạy theo cùng một thứ tự, chúng ta có thể viết các bài kiểm thử phụ thuộc vào thứ tự đó để thành công. Điều này cuối cùng sẽ dẫn đến một bộ kiểm thử rất mong manh và khó bảo trì.
 
-#### Pending Tests
+#### Kiểm thử đang chờ
 
-The output also shows us our three individual `it` blocks in green. In testing terms green means the test is passing. But that's not quite right, we aren't testing anything in our examples yet.
+Đầu ra cũng hiển thị ba khối `it` riêng lẻ màu xanh. Trong kiểm thử, màu xanh nghĩa là bài kiểm thử đang đạt. Nhưng điều đó chưa hoàn toàn đúng, vì các example của chúng ta chưa kiểm thử điều gì cả.
 
-By default RSpec will treat empty `it` blocks as passing tests. Let's instead set them to pending to signify that they still need to completed.
+Theo mặc định, RSpec coi các khối `it` rỗng là bài kiểm thử đạt. Thay vào đó, hãy đặt chúng ở trạng thái pending để biểu thị rằng chúng vẫn cần được hoàn thành.
 
-There are a [few different ways to set it blocks to pending in RSpec](https://relishapp.com/rspec/rspec-core/v/3-10/docs/pending-and-skipped-examples/skip-examples). But for our purposes we are going to add an x to the start of each it block to set them to pending:
+Có [một vài cách khác nhau để đặt các khối it ở trạng thái pending trong RSpec](https://relishapp.com/rspec/rspec-core/v/3-10/docs/pending-and-skipped-examples/skip-examples). Nhưng trong phạm vi bài này, chúng ta sẽ thêm chữ x vào đầu mỗi khối it để đặt chúng ở trạng thái pending:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -303,7 +303,7 @@ RSpec.describe TodoList do
 end
 ~~~
 
-Run the test suite once again using the `$ rspec` command. You should now get output that looks something like the following terminal output, with the `it` blocks output now colored in yellow. Yellow signals a test is pending and needs to be completed.
+Chạy lại bộ kiểm thử bằng lệnh `$ rspec`. Lúc này đầu ra sẽ gần giống kết quả terminal sau, trong đó các khối `it` được in màu vàng. Màu vàng báo hiệu một bài kiểm thử đang pending và cần được hoàn thành.
 
 ~~~bash
 Pending: (Failures listed here are expected and do not affect your suite's status)
@@ -324,11 +324,11 @@ Finished in 0.00179 seconds (files took 0.06131 seconds to load)
 3 examples, 0 failures, 3 pending
 ~~~
 
-### Making Expectations
+### Tạo expectation
 
-Now that we have the basic structure in place, its time to write some actual test code. To test something in RSpec we make *expectations* about what the code does.
+Giờ khi cấu trúc cơ bản đã sẵn sàng, đã đến lúc viết mã kiểm thử thực tế. Để kiểm thử một điều gì đó trong RSpec, chúng ta đặt ra các *expectation* về việc mã sẽ làm gì.
 
-To demonstrate this, let's write the test for the first `it` block. Remove the x from the `it` method to stop it from being a pending test and put the following within the block:
+Để minh họa, hãy viết bài kiểm thử cho khối `it` đầu tiên. Xóa x khỏi phương thức `it` để nó không còn pending, rồi đặt nội dung sau vào trong block:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -340,9 +340,9 @@ it "returns the name with 0 tasks remaining" do
 end
 ~~~
 
-You can probably guess what this does just from reading the code, it expects the the name of the todo list we created to equal `"My List (0 tasks)"`.
+Có lẽ chỉ cần đọc mã là bạn đã đoán được tác dụng của nó: nó kỳ vọng tên của todo list vừa tạo bằng `"My List (0 tasks)"`.
 
-Run the test suite with the `$ rspec` command in your terminal. You should see that the output for the test we just filled in is now green. That means we've just wrote our first proper passing test 🎉
+Chạy bộ kiểm thử bằng lệnh `$ rspec` trong terminal. Bạn sẽ thấy đầu ra của bài kiểm thử vừa hoàn thành có màu xanh. Điều đó nghĩa là chúng ta vừa viết bài kiểm thử đạt đầu tiên 🎉
 
 ~~~bash
 TodoList
@@ -367,23 +367,23 @@ Finished in 0.00179 seconds (files took 0.06131 seconds to load)
 Randomized with seed 3657
 ~~~
 
-#### Parts of an Expectation
+#### Các phần của một expectation
 
-An RSpec expectation is made up of two distinct parts. The first part is the actual value we want to make the expectation on: `expect(todo_list.name).to`
+Một expectation trong RSpec gồm hai phần riêng biệt. Phần đầu là giá trị thực tế mà chúng ta muốn đặt expectation lên: `expect(todo_list.name).to`
 
-The second part is a matcher, which is used to verify that the actual value **matches** our expected value: `eq("My List (0 tasks)")`
+Phần thứ hai là matcher, được dùng để xác minh giá trị thực tế **khớp** với giá trị kỳ vọng: `eq("My List (0 tasks)")`
 
-These two parts together make up a full expectation in RSpec:
+Hai phần này kết hợp lại tạo thành một expectation hoàn chỉnh trong RSpec:
 
 ~~~ruby
 expect(actual_value).to eq(expected_value)
 ~~~
 
-#### Negative Expectations
+#### Expectation phủ định
 
-Suppose you want to expect something is not to equal to something else. RSpec has you covered. You can use the `expect(actual_value).not_to` expectation, which does the opposite of `expect(actual_value).to` and will fail if the expectation **does** match.
+Giả sử bạn muốn kỳ vọng một thứ gì đó không bằng một thứ khác. RSpec có hỗ trợ cho trường hợp này. Bạn có thể dùng expectation `expect(actual_value).not_to`, làm điều ngược lại với `expect(actual_value).to` và sẽ thất bại nếu expectation **có** khớp.
 
-To see this in action, let's add a negative expectation to the first test case we created for the name method. In this expectation we will expect the todo list name **not to** equal `"Barrys List (0 tasks)"`
+Để xem cách này hoạt động, hãy thêm một expectation phủ định vào test đầu tiên cho phương thức name. Trong expectation này, chúng ta kỳ vọng tên todo list **không bằng** `"Barrys List (0 tasks)"`
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -396,11 +396,11 @@ it "returns the name with 0 tasks remaining" do
 end
 ~~~
 
-Run your tests once again with `$ rspec` .  The first test case should still be passing.
+Chạy lại các bài kiểm thử bằng `$ rspec`. Test đầu tiên vẫn phải đạt.
 
-#### Failing Tests
+#### Bài kiểm thử thất bại
 
-So far we've seen pending and passing tests, but what does a failing test look like? to find out. Remove the `x` from the second test cases  `it` method we wrote earlier and put the following within its block:
+Cho đến giờ chúng ta đã thấy bài kiểm thử pending và bài kiểm thử đạt, nhưng bài kiểm thử thất bại trông như thế nào? Hãy tìm hiểu. Xóa `x` khỏi phương thức `it` của bài kiểm thử thứ hai đã viết trước đó rồi đặt nội dung sau vào block của nó:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -412,7 +412,7 @@ it "returns the name with 1 task remaining" do
 end
 ~~~
 
-We are expecting the todo list name to display that it has one task. Run the tests to find out if our expectation is correct: `$ rspec`
+Chúng ta kỳ vọng tên todo list hiển thị rằng nó có một task. Chạy kiểm thử để xem expectation có đúng không: `$ rspec`
 
 ~~~bash
 1) TodoList name returns the name with 1 task remaining
@@ -425,24 +425,24 @@ We are expecting the todo list name to display that it has one task. Run the tes
      # ./spec/todo_list_spec.rb:15:in `block (3 levels) in <top (required)>'
 ~~~
 
-As you have probably been anticipating, this test did indeed fail. The output is coloured red which signifies a failing test.
+Như bạn có lẽ đã dự đoán, bài kiểm thử này thực sự thất bại. Đầu ra có màu đỏ, biểu thị một bài kiểm thử thất bại.
 
-The output also displays some useful information indicating what went wrong. There are two important parts of the output in-particular that will help you debug why it failed.
+Đầu ra cũng hiển thị thông tin hữu ích cho biết điều gì đã sai. Có hai phần đặc biệt quan trọng giúp bạn gỡ lỗi nguyên nhân thất bại.
 
-The first part, is the output showing what the test expected and what it got instead. This is usually enough to let you know what went wrong and where to start with fixing the test.
+Phần đầu tiên là kết quả cho biết bài kiểm thử kỳ vọng điều gì và thực tế nhận được gì. Thông tin này thường đủ để bạn biết điều gì đã sai và nên bắt đầu sửa từ đâu.
 
 ~~~ruby
 expected: "My List (1 task)"
 got: "My List (0 tasks)"
 ~~~
 
-Another useful part of the output is the line number it failed on. In larger, more complicated test files where the expected and got output doesn't provide enough of a clue as to what went wrong. This will provide a useful place to start when tracking down why the test failed
+Một phần hữu ích khác là số dòng nơi bài kiểm thử thất bại. Trong những tệp kiểm thử lớn và phức tạp hơn, khi kết quả expected và got không cung cấp đủ manh mối về lỗi, thông tin này sẽ là điểm bắt đầu hữu ích để truy tìm nguyên nhân bài kiểm thử thất bại.
 
 ~~~ruby
 # ./spec/todo_list_spec.rb:16:in `block (3 levels) in <top (required)>'
 ~~~
 
-Let's quickly fix this test to get it working. We just need to pass in a tasks array which contains one task:
+Hãy nhanh chóng sửa bài kiểm thử này để nó hoạt động. Chúng ta chỉ cần truyền vào một mảng tasks chứa một task:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -454,19 +454,19 @@ it "returns the name with 1 task remaining" do
 end
 ~~~
 
-Run the tests again with `$ rspec`. We should now have 2 passing tests and one pending test remaining.
+Chạy lại các bài kiểm thử bằng `$ rspec`. Lúc này chúng ta sẽ có 2 bài kiểm thử đạt và còn lại một bài pending.
 
-### Matchers
+### Matcher
 
-So far we have been using `eq` matcher in our expectations. But RSpec has a wide selection of different matchers we can use to make the tests more expressive in all sorts of different scenarios.
+Từ đầu đến giờ, chúng ta đã dùng matcher `eq` trong các expectation. Nhưng RSpec có rất nhiều matcher khác nhau để làm cho bài kiểm thử giàu tính biểu đạt hơn trong đủ loại tình huống.
 
-We'll cover a few matchers that you are likely to find the most useful here. But we encourage you to have a browse through the [RSpec matchers documentation](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers) to see what other matchers are at your disposal.
+Ở đây chúng ta sẽ giới thiệu một vài matcher mà bạn có khả năng thấy hữu ích nhất. Tuy nhiên, bạn nên xem qua [tài liệu matcher của RSpec](https://relishapp.com/rspec/rspec-expectations/docs/built-in-matchers) để biết những matcher khác đang có sẵn.
 
-#### The Eq Matcher
+#### Matcher Eq
 
-The `eq` matcher is the most versatile and commonly used matcher. It will likely be the matcher you use the most. It compares the actual value against the expected value and will return true if it **matches**. Otherwise it will return false.
+Matcher `eq` là matcher linh hoạt và thường dùng nhất. Có lẽ đây sẽ là matcher bạn dùng nhiều nhất. Nó so sánh giá trị thực tế với giá trị kỳ vọng và trả về true nếu chúng **khớp**. Nếu không, nó trả về false.
 
-Lets see this matcher in action once again by finishing off the tests for the todo list name method:
+Hãy xem matcher này hoạt động một lần nữa bằng cách hoàn thành các bài kiểm thử cho phương thức name của todo list:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -478,17 +478,17 @@ it "returns the name with 2 tasks remaining" do
 end
 ~~~
 
-Run all the tests in the terminal once again with `$ rspec` to see all of our todo list name method tests now passing.
+Chạy lại toàn bộ bài kiểm thử trong terminal bằng `$ rspec` để thấy tất cả bài kiểm thử phương thức name của todo list đều đạt.
 
-#### The Be Matcher
+#### Matcher Be
 
-We'll often need to test predicate methods in our classes that return either true or false. We could use the `eq` matcher to test these methods.
+Chúng ta thường cần kiểm thử các phương thức predicate trong lớp, vốn trả về true hoặc false. Chúng ta có thể dùng matcher `eq` để kiểm thử các phương thức này.
 
-But RSpec has a more expressive `be` matcher which is better suited to the job and will make the tests much nicer to read as you can expect the result to *be true* or *be false* rather than equal to true or equal to false which doesn't quite read as well.
+Nhưng RSpec có matcher `be` giàu tính biểu đạt hơn, phù hợp với công việc này và giúp bài kiểm thử dễ đọc hơn nhiều: bạn có thể kỳ vọng kết quả *là true* hoặc *là false*, thay vì bằng true hoặc bằng false, vốn không tự nhiên bằng.
 
-To demonstrate the `be` matcher, we are going write a test for another one of the `TodoList` methods. Specifically the `completed?` method.
+Để minh họa matcher `be`, chúng ta sẽ viết bài kiểm thử cho một phương thức khác của `TodoList`, cụ thể là phương thức `completed?`.
 
-First we need an example group where we can group the tests for the `completed?` method together.
+Trước hết, chúng ta cần một example group để nhóm các bài kiểm thử cho phương thức `completed?`.
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -506,9 +506,9 @@ RSpec.describe TodoList do
 end
 ~~~
 
-Next we will write the individual test cases for the `completed?` method. There are only two cases that we care about.
+Tiếp theo, chúng ta sẽ viết các trường hợp kiểm thử riêng lẻ cho phương thức `completed?`. Chỉ có hai trường hợp cần quan tâm.
 
-What does the method return when the list is completed and what does it return when the list is not completed:
+Phương thức trả về gì khi danh sách đã hoàn thành và trả về gì khi danh sách chưa hoàn thành:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -522,7 +522,7 @@ describe "completed?" do
 end
 ~~~
 
-Now lets see how to use that `be` matcher we have been hyping up by writing the expectation for the first test case:
+Bây giờ hãy xem cách dùng matcher `be` mà chúng ta vừa giới thiệu bằng cách viết expectation cho trường hợp đầu tiên:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -534,7 +534,7 @@ it "returns true when all tasks are completed" do
 end
 ~~~
 
-And to finish off the tests for the `completed?` method, we will write the test for when the todo list is not completed:
+Để hoàn thành các bài kiểm thử cho phương thức `completed?`, chúng ta sẽ viết bài kiểm thử khi todo list chưa hoàn thành:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -546,15 +546,15 @@ it "returns false when all tasks are not completed" do
 end
 ~~~
 
-Finally run all the tests once again with `$ rspec` and everything should still be passing.
+Cuối cùng, chạy lại toàn bộ các bài kiểm thử bằng `$ rspec`; mọi thứ vẫn phải đạt.
 
-#### The Include Matcher
+#### Matcher Include
 
-The include matcher functions much like the  `include?` method you've already been using with Ruby collections. It passes the expectation if the actual value *includes* the expected value.
+Matcher include hoạt động tương tự phương thức `include?` mà bạn đã dùng với các collection của Ruby. Nó đạt expectation nếu giá trị thực tế *bao gồm* giá trị kỳ vọng.
 
-To see how the include matcher works, we will write some tests for yet another one of the todo lists methods. This time the `add_task` method.
+Để xem matcher include hoạt động ra sao, chúng ta sẽ viết một số bài kiểm thử cho một phương thức khác của todo list, lần này là phương thức `add_task`.
 
-Write the following test and make sure it works by running the tests with the   `$ rspec` command in the terminal.
+Viết bài kiểm thử sau và bảo đảm nó hoạt động bằng cách chạy `$ rspec` trong terminal.
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -578,21 +578,21 @@ RSpec.describe TodoList do
 end
 ~~~
 
-In this test, we are adding a new task to a todo list which already contains an existing task. However we don't care about the existing task. We only care that the list *includes* the new task we've added.
+Trong bài kiểm thử này, chúng ta thêm một task mới vào todo list vốn đã chứa một task hiện có. Tuy nhiên, chúng ta không quan tâm đến task hiện có. Điều duy nhất cần quan tâm là danh sách *bao gồm* task mới được thêm.
 
-The `include` matcher is perfect for situations like this, where we only care about a certain part of the actual value.
+Matcher `include` rất phù hợp với những tình huống như vậy, khi chúng ta chỉ quan tâm đến một phần nhất định của giá trị thực tế.
 
-You've likely noticed that the tests for the `add_task` method look quite a bit different from the tests we've been writing previously. That's a pretty good cue to have a deeper look at the different parts of an individual test.
+Có lẽ bạn đã nhận thấy các bài kiểm thử cho phương thức `add_task` trông khá khác so với các bài kiểm thử trước đó. Đây là dấu hiệu tốt để chúng ta xem kỹ hơn các phần khác nhau của một bài kiểm thử riêng lẻ.
 
-### Anatomy of a Test
+### Giải phẫu một bài kiểm thử
 
-Each test is generally made up of three distinct phases, these are:
+Mỗi bài kiểm thử thường gồm ba giai đoạn riêng biệt:
 
 1. **Arrange**
 2. **Act**
 3. **Assert**
 
-Lets write a test for the `complete_task` method to examine each of these phases in more detail:
+Hãy viết một bài kiểm thử cho phương thức `complete_task` để xem xét chi tiết hơn từng giai đoạn:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -619,15 +619,15 @@ RSpec.describe TodoList do
 end
 ~~~
 
-1. **Arrange** - First we need to arrange the right conditions in our example so we can test the correct behaviour. For the arrange phase In our `complete_task` test, we initialised a new todo list with an uncompleted task so we can test the complete behaviour on this task. This phase is also commonly known as the setup phase.
+1. **Arrange** - Trước tiên, chúng ta cần sắp xếp các điều kiện phù hợp trong example để có thể kiểm thử đúng hành vi. Ở giai đoạn arrange của bài kiểm thử `complete_task`, chúng ta khởi tạo một todo list mới với một task chưa hoàn thành, để có thể kiểm thử hành vi hoàn thành trên task này. Giai đoạn này còn thường được gọi là giai đoạn setup.
 
-2. **Act** - In the second phase we *act*, or in other words we invoke the behaviour that we are testing. In the act phase of our test we invoke the `complete_task` method, passing in the name of the task we created in the arrange phase to complete it.
+2. **Act** - Ở giai đoạn thứ hai, chúng ta *hành động*, hay nói cách khác là gọi hành vi đang kiểm thử. Trong giai đoạn act của bài kiểm thử, chúng ta gọi phương thức `complete_task`, truyền vào tên task đã tạo ở giai đoạn arrange để hoàn thành nó.
 
-3. **Assert** - In the final phase we assert that the behaviour did what we expected it to do. In the assert phase of our test we made an expectation that the todo list no longer included the task which we just completed.
+3. **Assert** - Ở giai đoạn cuối, chúng ta xác nhận hành vi đã làm đúng điều mong đợi. Trong giai đoạn assert, chúng ta đặt expectation rằng todo list không còn bao gồm task vừa được hoàn thành.
 
-#### Style
+#### Phong cách
 
-Some of our earlier tests combined the act and assert phases. For instance, in our `completed?` method tests. We both acted and asserted in the expectation:
+Một số bài kiểm thử trước đó gộp giai đoạn act và assert. Ví dụ như các bài kiểm thử phương thức `completed?`, trong đó chúng ta vừa act vừa assert ngay trong expectation:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -641,7 +641,7 @@ it "returns true when all tasks are completed" do
 end
 ~~~
 
-This test could be rewritten to make the different phases clearer:
+Có thể viết lại bài kiểm thử này để các giai đoạn rõ ràng hơn:
 
 ~~~ruby
 # spec/todo_list_spec.rb
@@ -658,13 +658,13 @@ it "returns true when all tasks are completed" do
 end
 ~~~
 
-Which version of these you use is up to you. Many find the terser syntax of the first version more readable. It's also a common practice to separate each phase using a newline so it is easy to distinguish the different phases from each other at a glance.
+Bạn dùng phiên bản nào là tùy bạn. Nhiều người thấy cú pháp ngắn gọn hơn của phiên bản đầu dễ đọc hơn. Một thông lệ phổ biến khác là tách mỗi giai đoạn bằng một dòng trống để dễ nhận ra chúng ngay lập tức.
 
-#### Teardown Phase
+#### Giai đoạn teardown
 
-There is an extra phase which is sometimes needed when we need to undo something that was done in the arrange or act phases to change the global state in our system. This phase is called the teardown phase.
+Đôi khi cần thêm một giai đoạn để hoàn tác điều đã thực hiện trong giai đoạn arrange hoặc act nhằm thay đổi trạng thái toàn cục trong hệ thống. Giai đoạn này được gọi là teardown.
 
-To see how this phase works, create a new file in the lib directory named `counter.rb` and paste the following code into it:
+Để xem giai đoạn này hoạt động ra sao, hãy tạo một tệp mới trong thư mục lib có tên `counter.rb` và dán đoạn mã sau vào đó:
 
 ~~~ruby
 # lib/counter.rb
@@ -688,7 +688,7 @@ class Counter
 end
 ~~~
 
-Next, create a new test file for the `Counter` class in the spec directory named `counter_spec.rb` and enter the following test code into it:
+Tiếp theo, tạo một tệp kiểm thử mới cho lớp `Counter` trong thư mục spec, đặt tên là `counter_spec.rb`, rồi nhập đoạn mã kiểm thử sau:
 
 ~~~ruby
 # spec/counter_spec.rb
@@ -720,11 +720,11 @@ RSpec.describe Counter do
 end
 ~~~
 
-In the test file, we have two tests for the `increment!` method. One for asserting it increments the count by one, and another to assert it increments the count by 2.
+Trong tệp kiểm thử, chúng ta có hai bài kiểm thử cho phương thức `increment!`: một bài xác nhận bộ đếm tăng lên một, và bài kia xác nhận bộ đếm tăng lên 2.
 
-If we run these tests now we will see one of two failures depending on the order the tests are executed in. Recall that by default RSpec executes tests in a random order.
+Nếu chạy các bài kiểm thử ngay lúc này, chúng ta sẽ thấy một trong hai lỗi, tùy vào thứ tự thực thi. Hãy nhớ rằng theo mặc định RSpec chạy các bài kiểm thử theo thứ tự ngẫu nhiên.
 
-If the increment by one test was run first, the increment by two test will fail for the following reason:
+Nếu bài kiểm thử tăng một được chạy trước, bài kiểm thử tăng hai sẽ thất bại vì lý do sau:
 
 ~~~ruby
 1) Counter increment! increments the counter by two
@@ -734,7 +734,7 @@ If the increment by one test was run first, the increment by two test will fail 
             got: 3
 ~~~
 
- If the increment by two test was run first, then the increment by one test will fail for this reason:
+Nếu bài kiểm thử tăng hai được chạy trước, bài kiểm thử tăng một sẽ thất bại vì lý do này:
 
 ~~~ruby
 1) Counter increment! increments the counter by one
@@ -744,15 +744,15 @@ If the increment by one test was run first, the increment by two test will fail 
             got: 3
 ~~~
 
-If we run the tests a few times we will see both of these test failures eventually as the random order changes.
+Nếu chạy các bài kiểm thử vài lần, cuối cùng chúng ta sẽ thấy cả hai lỗi này khi thứ tự ngẫu nhiên thay đổi.
 
-The problem is that both our tests expect the count to start from zero. But both of our tests are also changing the state of our system by incrementing the `$global_count`.
+Vấn đề là cả hai bài kiểm thử đều kỳ vọng bộ đếm bắt đầu từ 0. Nhưng cả hai cũng đang thay đổi trạng thái hệ thống bằng cách tăng `$global_count`.
 
-These state changes in the system are hanging around and *leaking* between our two tests. Meaning that the global count is only zero for the first test to be executed.
+Các thay đổi trạng thái này cứ tồn tại và *rò rỉ* giữa hai bài kiểm thử. Điều đó nghĩa là bộ đếm toàn cục chỉ bằng 0 ở bài kiểm thử được thực thi đầu tiên.
 
-This is where the teardown phase comes into play, we need to clean up after each test by resetting the global count back zero after the test has been executed. This will ensure the state changes made in one test will not affect the other test.
+Đây là lúc giai đoạn teardown phát huy tác dụng: chúng ta cần dọn dẹp sau mỗi bài kiểm thử bằng cách đặt bộ đếm toàn cục về 0 sau khi bài kiểm thử thực thi xong. Như vậy, các thay đổi trạng thái do một bài kiểm thử tạo ra sẽ không ảnh hưởng đến bài còn lại.
 
-Luckily our counter class has a handy `reset!` method which we can use to do this. Add the following teardown phases to the counter tests:
+May mắn là lớp counter có phương thức `reset!` tiện dụng để làm việc này. Thêm các giai đoạn teardown sau vào các bài kiểm thử counter:
 
 ~~~ruby
 # spec/counter_spec.rb
@@ -796,26 +796,26 @@ RSpec.describe Counter do
 end
 ~~~
 
-Now when we run the tests suite, both of these tests will pass every-time. No matter which order they are executed in.
+Giờ khi chạy bộ kiểm thử, cả hai bài này sẽ luôn đạt, bất kể chúng được thực thi theo thứ tự nào.
 
-This counter class was a contrived example to demonstrate the teardown phase. You won't have to use the teardown phase all that often because you would not normally do something like this with a global variable in a real system.
+Lớp counter này là một ví dụ được dựng lên để minh họa giai đoạn teardown. Trong thực tế, bạn sẽ không phải dùng giai đoạn teardown quá thường xuyên vì thông thường sẽ không làm điều như vậy với biến toàn cục trong một hệ thống thực.
 
-But later on in the curriculum you will be working with things that persist data such as databases and the file system. The teardown phase will come in useful when you need to clean up the persisted data between your tests.
+Tuy nhiên, về sau trong chương trình học, bạn sẽ làm việc với những thứ lưu trữ dữ liệu như database và hệ thống tệp. Giai đoạn teardown sẽ hữu ích khi bạn cần dọn dẹp dữ liệu đã lưu giữa các bài kiểm thử.
 
-### Conclusion
+### Kết luận
 
-We've covered a lot of ground here, you now know all of the basic building blocks of how to write tests using RSpec. In the coming lessons we will explore what we should test.
+Chúng ta đã đi qua khá nhiều nội dung; giờ bạn đã biết tất cả khối xây dựng cơ bản để viết bài kiểm thử bằng RSpec. Trong các bài học sắp tới, chúng ta sẽ tìm hiểu nên kiểm thử những gì.
 
-But before that, in the next lesson we will explore a few more RSpec features that allow us to share common code between our tests.
+Nhưng trước đó, ở bài học tiếp theo, chúng ta sẽ khám phá thêm một vài tính năng RSpec cho phép chia sẻ mã giữa các bài kiểm thử.
 
-We will once again be using the `odin_rspec` project we set up in this lesson to demonstrate those features so make sure to keep that project around.
+Một lần nữa, chúng ta sẽ dùng dự án `odin_rspec` đã thiết lập trong bài học này để minh họa các tính năng đó, vì vậy hãy giữ lại dự án.
 
-### Assignment
+### Bài tập
 <div class="lesson-content__panel" markdown="1">
-1. TODO: Matcher exercises in the testing repo
+1. TODO: Bài tập về matcher trong kho mã kiểm thử
 </div>
 
-### Additional Resources
-This section contains helpful links to other content. It isn't required, so consider it supplemental.
+### Tài nguyên bổ sung
+Phần này chứa các liên kết hữu ích đến nội dung khác. Đây không phải phần bắt buộc, nên bạn có thể xem như tài liệu bổ sung.
 
 - [https://www.rubyguides.com/2018/09/ruby-gems-gemfiles-bundler/](https://www.rubyguides.com/2018/09/ruby-gems-gemfiles-bundler/)

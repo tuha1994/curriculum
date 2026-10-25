@@ -1,25 +1,25 @@
-### Introduction
+### Giới thiệu
 
-In this lesson we will be exploring some of the tools RSpec provides for sharing code among multiple tests. Specifically, we will be looking at hook, let and subject helper methods. These methods are frequently used in RSpec test suites so it's important to know how they work and when to use them.
+Trong bài học này, chúng ta sẽ khám phá một số công cụ RSpec cung cấp để chia sẻ mã giữa nhiều bài kiểm thử. Cụ thể, chúng ta sẽ tìm hiểu các phương thức helper hook, let và subject. Những phương thức này thường xuyên được dùng trong các bộ kiểm thử RSpec, vì vậy điều quan trọng là biết chúng hoạt động thế nào và khi nào nên dùng.
 
-We will once again be working from the `odin_rspec` project we set up in the previous lesson. To get the most out this lesson, please follow along with all the examples.
+Một lần nữa, chúng ta sẽ làm việc trên dự án `odin_rspec` đã thiết lập ở bài học trước. Để tận dụng bài học tốt nhất, hãy làm theo tất cả các ví dụ.
 
-### Learning Outcomes
+### Mục tiêu học tập
 
-- What is a before hook and what phase of a test should you use it for?
-- What is an after hook and phase of a test should you use it for?
-- What is a let variable for?
-- What is a subject for?
+- Before hook là gì và nên dùng nó cho giai đoạn nào của bài kiểm thử?
+- After hook là gì và nên dùng nó cho giai đoạn nào của bài kiểm thử?
+- Biến let dùng để làm gì?
+- Subject dùng để làm gì?
 
-### Hooks
+### Hook
 
-We will often have the same arrange, act and teardown code in multiple test cases. RSpec provides a way of sharing this code by using hook methods that allow us to run code before and after our tests.
+Chúng ta thường có cùng mã arrange, act và teardown trong nhiều trường hợp kiểm thử. RSpec cung cấp cách chia sẻ mã này bằng các phương thức hook, cho phép chạy mã trước và sau các bài kiểm thử.
 
-#### Before Hooks
+#### Before hook
 
-Before hooks run **before** the tests are executed. We could put any code we wished into them, but they are best used to share the same arrange phase and on some occasions the same act phase code between multiple tests.
+Before hook chạy **trước** khi các bài kiểm thử được thực thi. Chúng ta có thể đặt bất kỳ mã nào vào đó, nhưng cách dùng phù hợp nhất là chia sẻ cùng giai đoạn arrange và, trong một số trường hợp, cùng mã ở giai đoạn act giữa nhiều bài kiểm thử.
 
-To see this in action, create a new file in the lib directory of your `odin_rspec` project named `user.rb` and paste the following code into it:
+Để xem cách này hoạt động, hãy tạo một tệp mới trong thư mục lib của dự án `odin_rspec`, đặt tên là `user.rb`, rồi dán đoạn mã sau vào đó:
 
 ~~~ruby
 # lib/user.rb
@@ -39,7 +39,7 @@ class User
 end
 ~~~
 
-Next, create a test file for the user class in the spec directory named `user_spec.rb` and write the following tests for the `User` class to exercise the name, email and age attributes:
+Tiếp theo, tạo tệp kiểm thử cho lớp user trong thư mục spec, đặt tên là `user_spec.rb`, rồi viết các bài kiểm thử sau cho lớp `User` để kiểm tra các thuộc tính name, email và age:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -76,13 +76,13 @@ RSpec.describe User do
 end
 ~~~
 
-Run the tests to make sure everything is wired together correctly. We can run just the tests for this user class by passing the test file name to the `rspec` command: `$rspec spec/user_spec.rb` .
+Chạy các bài kiểm thử để bảo đảm mọi thứ đã được kết nối đúng. Chúng ta có thể chỉ chạy các bài kiểm thử cho lớp user bằng cách truyền tên tệp kiểm thử cho lệnh `rspec`: `$rspec spec/user_spec.rb` .
 
-Examine the test file again, we need to create a new user object with the same attributes in the arrange phase of all of the tests. Which is quite a bit of duplication between the tests.
+Xem lại tệp kiểm thử: chúng ta cần tạo một đối tượng user mới với cùng các thuộc tính trong giai đoạn arrange của tất cả bài kiểm thử. Điều này tạo ra khá nhiều phần trùng lặp giữa các bài kiểm thử.
 
-To reduce this duplication, we could instead use a before hook to execute the arrange phase code and make the tests much more concise.
+Để giảm phần trùng lặp này, thay vào đó chúng ta có thể dùng before hook để thực thi mã của giai đoạn arrange và làm cho các bài kiểm thử ngắn gọn hơn nhiều.
 
-In our case, we can include a before hook that will create a new `User` instance and assign that instance to a `@user` instance variable that we can use in each of our tests:
+Trong trường hợp này, chúng ta có thể thêm một before hook để tạo một instance `User` mới và gán instance đó vào biến instance `@user`, rồi dùng biến này trong từng bài kiểm thử:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -117,7 +117,7 @@ RSpec.describe User do
 end
 ~~~
 
-By default, before hooks run *before* each test in the same example group. We can see this a bit more clearly by including a puts statement in our before hook:
+Theo mặc định, before hook chạy *trước* mỗi bài kiểm thử trong cùng một example group. Chúng ta có thể thấy rõ hơn bằng cách thêm một câu lệnh puts vào before hook:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -128,11 +128,11 @@ before do
 end
 ~~~
 
-Now, when we run our tests again we should see "running the before hook" printed to the screen three times, once for each of our tests.
+Giờ khi chạy lại các bài kiểm thử, chúng ta sẽ thấy dòng "running the before hook" được in ra màn hình ba lần, một lần cho mỗi bài kiểm thử.
 
-Alternatively, we can pass an `:all` argument to the before method. This will make the before hook run only once before all the tests.
+Ngoài ra, chúng ta có thể truyền đối số `:all` cho phương thức before. Khi đó before hook chỉ chạy một lần trước toàn bộ các bài kiểm thử.
 
-Change the before hook to the following and run the tests. The puts statement will only print once in the terminal, proving the before block was only executed once.
+Thay before hook bằng đoạn sau rồi chạy các bài kiểm thử. Câu lệnh puts chỉ in một lần trong terminal, chứng minh block before chỉ được thực thi một lần.
 
 ~~~ruby
 # spec/user_spec.rb
@@ -143,17 +143,17 @@ before(:all) do
 end
 ~~~
 
-However, it is a good rule of thumb to avoid using the `:all` argument and stick to the default before hook behaviour of running before each individual test.
+Tuy nhiên, một nguyên tắc thực tế tốt là tránh dùng đối số `:all` và giữ hành vi mặc định của before hook, tức chạy trước từng bài kiểm thử riêng lẻ.
 
-When the before hook runs before each test, it ensures each of the tests start with a fresh object to work with and state changes to the object will not leak to other tests. Potentially causing hard to debug test failures.
+Khi before hook chạy trước mỗi bài kiểm thử, nó bảo đảm mỗi bài bắt đầu với một đối tượng mới để làm việc, đồng thời các thay đổi trạng thái trên đối tượng sẽ không rò rỉ sang bài kiểm thử khác, vốn có thể gây ra những lỗi khó gỡ.
 
-#### After Hook
+#### After hook
 
-After hooks are run after our tests have executed. They are best used for the teardown phase so we can clean up **after** our tests and get the state of the system back to what it was before the test was executed.
+After hook chạy sau khi các bài kiểm thử đã thực thi. Cách dùng phù hợp nhất của chúng là cho giai đoạn teardown, để chúng ta có thể dọn dẹp **sau** các bài kiểm thử và đưa trạng thái hệ thống trở lại như trước khi bài kiểm thử chạy.
 
-Using the counter example we used to demonstrate the teardown phase in the previous less, we can refactor the counter tests to use an after hook for the teardown phase and reset the count between each of the tests.
+Dùng ví dụ counter mà chúng ta đã dùng để minh họa giai đoạn teardown trong bài trước, chúng ta có thể tái cấu trúc các bài kiểm thử counter để dùng after hook cho giai đoạn teardown và đặt lại bộ đếm giữa các bài kiểm thử.
 
-We will also move the arrange phase code of creating the count into a before hook and assign it to an instance variable to show both hooks working together:
+Chúng ta cũng sẽ chuyển mã tạo counter của giai đoạn arrange vào before hook và gán nó cho một biến instance để minh họa cách hai hook phối hợp:
 
 ~~~ruby
 
@@ -191,19 +191,19 @@ RSpec.describe Counter do
 end
 ~~~
 
-Run the counter tests with `$ rspec spec/counter_spec.rb` to make sure everything is still working.
+Chạy các bài kiểm thử counter bằng `$ rspec spec/counter_spec.rb` để bảo đảm mọi thứ vẫn hoạt động.
 
-### Let and Subject Variables
+### Biến Let và Subject
 
-Using instance variables in before hooks like we have been doing has some big drawbacks that can lead to slower and less stable test suites.
+Việc dùng biến instance trong before hook như chúng ta vừa làm có một số nhược điểm lớn, có thể khiến bộ kiểm thử chậm hơn và kém ổn định hơn.
 
-- Before hooks are run for every test in the same example group. Some of those tests may not need that instance variable.
-- Instance variables return nil if they are not assigned, it's fairly easy and a common mistake to misspell an instance variable and end up with a no method error for nil class in Ruby. You've probably seen this error a few times already while working through the OOP section.
-- Instance variables can leak between tests and even between test files. Which could potentially cause all sorts of havoc in our test suite.
+- Before hook chạy cho mọi bài kiểm thử trong cùng một example group. Một số bài có thể không cần biến instance đó.
+- Biến instance trả về nil nếu chưa được gán; rất dễ và cũng thường gặp lỗi viết sai tên biến instance, rồi nhận lỗi no method for nil class trong Ruby. Có lẽ bạn đã gặp lỗi này vài lần khi học phần OOP.
+- Biến instance có thể rò rỉ giữa các bài kiểm thử, thậm chí giữa các tệp kiểm thử. Điều này có khả năng gây đủ loại rắc rối trong bộ kiểm thử.
 
-Thankfully RSpec provides a more idiomatic and safer way of creating variables that can be used in multiple tests, The `let` method.
+May mắn là RSpec cung cấp một cách tạo biến mang tính idiomatic và an toàn hơn để dùng trong nhiều bài kiểm thử: phương thức `let`.
 
-Returning to the user example we used to demonstrate before hooks earlier. Instead of using instance variables we could instead use a `let` variable. Remove the before block and create a let variable just under the top level example group. Also rename the instance variables in the tests from `@user` to just `user` :
+Quay lại ví dụ user dùng để minh họa before hook ở trên. Thay vì dùng biến instance, chúng ta có thể dùng biến `let`. Xóa block before và tạo một biến let ngay bên dưới example group cấp cao nhất. Đồng thời đổi tên các biến instance trong bài kiểm thử từ `@user` thành chỉ `user`:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -235,23 +235,23 @@ RSpec.describe User do
 end
 ~~~
 
-Make sure everything is still passing by running the user tests with `$ rspec spec/user_spec.rb`.
+Bảo đảm mọi thứ vẫn đạt bằng cách chạy các bài kiểm thử user với `$ rspec spec/user_spec.rb`.
 
-The let method takes a symbol argument which is the name of the variable and is what we use to invoke the variable within our test cases. In our code, we named our let variable `user`.
+Phương thức let nhận một đối số symbol, chính là tên biến và cũng là cách chúng ta gọi biến đó trong các trường hợp kiểm thử. Trong mã của chúng ta, tên biến let là `user`.
 
-It also takes a block, the result of the block is what will be returned when we invoke the let variable. In our code, this is an instance of the `User` class.
+Nó cũng nhận một block; kết quả của block sẽ được trả về khi chúng ta gọi biến let. Trong mã này, đó là một instance của lớp `User`.
 
-The let method is lazily evaluated, which means it doesn't execute until we invoke it in our tests. There is another version of the let method: `let!`. This version executes immediately before our tests like a before hook does.
+Phương thức let được đánh giá lười, nghĩa là nó không thực thi cho đến khi được gọi trong bài kiểm thử. Có một phiên bản khác của phương thức let: `let!`. Phiên bản này thực thi ngay trước các bài kiểm thử, giống như before hook.
 
-But this version of the let variable will be more useful later in the course when we are writing tests for Rails apps and need to create database records before our tests and assign it to a variable we can use later.
+Tuy nhiên, phiên bản biến let này sẽ hữu ích hơn về sau trong khóa học, khi chúng ta viết bài kiểm thử cho ứng dụng Rails và cần tạo các bản ghi database trước bài kiểm thử rồi gán chúng vào một biến để dùng sau.
 
 #### Subject
 
-As you have seen time and time again throughout this guide, we need to initialize new instances of the class we are testing and assign it to a variable in the arrange phase of almost all of our tests.
+Như bạn đã thấy nhiều lần trong hướng dẫn này, chúng ta cần khởi tạo instance mới của lớp đang kiểm thử và gán nó cho một biến trong giai đoạn arrange của hầu hết các bài kiểm thử.
 
-Because this is such a common pattern, RSpec provides an even more specialised method just for creating an instance we can use in all of our tests. The `subject` helper method.
+Vì đây là một pattern rất phổ biến, RSpec cung cấp một phương thức chuyên biệt hơn chỉ để tạo một instance có thể dùng trong tất cả bài kiểm thử. Đó là phương thức helper `subject`.
 
-Refactoring the previous user example to use a `subject` instead of a `let` variable is incredibly easy. We just replace the `let` method call with `subject`:
+Tái cấu trúc ví dụ user trước đó để dùng `subject` thay cho biến `let` cực kỳ đơn giản. Chúng ta chỉ cần thay lời gọi phương thức `let` bằng `subject`:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -266,13 +266,13 @@ RSpec.describe User do
 end
 ~~~
 
-If we run our tests after making this change, they should all still  pass.
+Nếu chạy các bài kiểm thử sau khi thay đổi, tất cả vẫn phải đạt.
 
-Subject and let variables have very similar syntax. They both accept a name argument in the form of a symbol and they both accept a block. Functionally, they work pretty much the same.
+Subject và biến let có cú pháp rất giống nhau. Cả hai đều nhận đối số tên dưới dạng symbol và đều nhận một block. Về chức năng, chúng gần như hoạt động giống nhau.
 
-However there are some subtle differences. The name argument is optional, we could have omitted it and used an *unnamed subject* instead. But we would then have to reference the subject using using a `subject` method call.
+Tuy nhiên, có một số khác biệt tinh tế. Đối số tên là tùy chọn; chúng ta có thể bỏ qua nó và dùng *subject không tên*. Nhưng khi đó phải tham chiếu subject bằng lời gọi phương thức `subject`.
 
-Using a named subject makes our tests much more readable and is considered the best practice way of using subjects. The contrast between these two approaches is shown below:
+Dùng subject có tên khiến bài kiểm thử dễ đọc hơn nhiều và được xem là cách tốt nhất để dùng subject. Sự khác nhau giữa hai cách này được thể hiện dưới đây:
 
 ~~~ruby
 # Using an unnamed subject
@@ -294,19 +294,19 @@ describe "age" do
 end
 ~~~
 
-The main difference between subject and let is what they mean to the human reader.
+Khác biệt chính giữa subject và let nằm ở ý nghĩa của chúng đối với người đọc.
 
-Subject is meant to be used for the *subject* of the test file or in other words the instance of the object under test. Using the `subject` method makes it easy to identify where the instance is being created for the reader.
+Subject được dùng cho *subject* của tệp kiểm thử, hay nói cách khác là instance của đối tượng đang được kiểm thử. Dùng phương thức `subject` giúp người đọc dễ nhận ra instance được tạo ở đâu.
 
-Let variables on the other hand, can be used for any generic data that needs to be shared.
+Ngược lại, biến let có thể dùng cho mọi dữ liệu chung cần được chia sẻ.
 
-#### So when should you use let?
+#### Vậy khi nào nên dùng let?
 
-The rule here is to use `let` variables for anything other than creating the object under test since that should be reserved for `subject`.
+Quy tắc ở đây là dùng biến `let` cho mọi thứ ngoài việc tạo đối tượng đang kiểm thử, vì việc đó nên dành cho `subject`.
 
-One common use case is using let variables for the arguments we pass to the instance created in the subject.
+Một trường hợp thường gặp là dùng biến let cho các đối số truyền vào instance được tạo trong subject.
 
-Back in our user tests, lets extract all the arguments we are passing into [`User.new`](http://user.new) in the subject out into let variables:
+Quay lại các bài kiểm thử user, hãy tách tất cả đối số chúng ta truyền vào [`User.new`](http://user.new) trong subject thành các biến let:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -326,13 +326,13 @@ RSpec.describe User do
 end
 ~~~
 
-Run the user tests with `$ rspec spec/user_spec.rb` and they should all still be passing.
+Chạy các bài kiểm thử user bằng `$ rspec spec/user_spec.rb`; tất cả vẫn phải đạt.
 
-This may seem like an unnecessary refactor since it was working fine before and this just seems to have added more lines of code. However, using the let variables to name the arguments that we are passing to [`User.new`](http://user.new) adds some clarity to what those arguments represent and improves the readability of the tests.
+Việc này có thể trông như một refactor không cần thiết vì trước đó mã đã hoạt động tốt và thay đổi chỉ có vẻ thêm nhiều dòng hơn. Tuy nhiên, dùng các biến let để đặt tên cho những đối số truyền vào [`User.new`](http://user.new) giúp làm rõ các đối số đại diện cho điều gì và cải thiện khả năng đọc của bài kiểm thử.
 
-But a far more interesting reason for making this refactor is that it allows us to create user instances with different arguments so we can then test the various different outcomes those different arguments will produce.
+Nhưng lý do thú vị hơn nhiều để thực hiện refactor này là nó cho phép chúng ta tạo các instance user với những đối số khác nhau, từ đó kiểm thử nhiều kết quả khác nhau mà các đối số đó tạo ra.
 
-An example is the best way of getting a clear understanding of this, we are going to write a test for the previously untested `retired?` method on the user class. As a reminder this is what that method looks like:
+Ví dụ là cách tốt nhất để hiểu rõ điều này. Chúng ta sẽ viết bài kiểm thử cho phương thức `retired?` trước đây chưa được kiểm thử trên lớp user. Nhắc lại, phương thức đó có dạng:
 
 ~~~ruby
 # lib/user.rb
@@ -342,13 +342,13 @@ def retired?
 end
 ~~~
 
-There are 3 possible paths we need to cover with test cases:
+Có 3 nhánh khả dĩ cần bao phủ bằng các trường hợp kiểm thử:
 
-1. When the users age is less than 65
-2. When the users age is equal to 65
-3. When the users age is greater than 65
+1. Khi tuổi của user nhỏ hơn 65
+2. Khi tuổi của user bằng 65
+3. Khi tuổi của user lớn hơn 65
 
-To write these test cases, we are going to introduce a new piece of RSpec syntax. The `context` method:
+Để viết các trường hợp kiểm thử này, chúng ta sẽ giới thiệu một cú pháp RSpec mới: phương thức `context`:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -385,13 +385,13 @@ RSpec.describe User do
 end
 ~~~
 
-The `context` method is just an alias for the `describe` method we have already gotten very familiar with. Meaning, both methods function the exact same and can be used interchangeably.  However they differ in what they represent to the human reader.
+Phương thức `context` chỉ là bí danh của phương thức `describe` mà chúng ta đã khá quen thuộc. Nghĩa là hai phương thức hoạt động giống hệt nhau và có thể dùng thay thế cho nhau. Tuy nhiên, chúng khác nhau ở ý nghĩa đối với người đọc.
 
-Whereas `describe` is used to represent example groups for *things* such as classes and methods. Context on the other hand, outlines and represents example groups around different states, For example the age state in our user class. Like when a user is 65, when a user is older than 65 and so on.
+`describe` dùng để biểu diễn example group cho những *thứ* như lớp và phương thức. Còn context mô tả và biểu diễn các example group xoay quanh những trạng thái khác nhau, chẳng hạn trạng thái tuổi trong lớp user: khi user 65 tuổi, khi user lớn hơn 65 tuổi, v.v.
 
-In other words, It gives *context* about certain conditions in our test so we can test what happens when those conditions are in place. The rule of when to use context is when we want to test the outcomes our methods will produce under different conditions.
+Nói cách khác, nó cung cấp *ngữ cảnh* về một số điều kiện trong bài kiểm thử, để chúng ta kiểm thử điều gì xảy ra khi các điều kiện đó được đặt ra. Quy tắc dùng context là khi muốn kiểm thử kết quả mà phương thức tạo ra trong những điều kiện khác nhau.
 
-Fill in the expectations for each of the test cases:
+Điền các expectation cho từng trường hợp kiểm thử:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -431,7 +431,7 @@ RSpec.describe User do
 end
 ~~~
 
-If we run our tests now with `$ rspec spec/user_spec.rb` we will get two failures:
+Nếu chạy các bài kiểm thử bằng `$ rspec spec/user_spec.rb`, chúng ta sẽ nhận được hai lỗi:
 
 ~~~bash
 Failures:
@@ -451,9 +451,9 @@ Failures:
      # ./spec/user_spec.rb:38:in `block (4 levels) in <top (required)>'
 ~~~
 
-This is because we are defaulting the users age to 30 in the age let variable defined in the top example group `let(:age) { 30 }` . Therefore only the test case for the user being younger than 65 is passing at the moment.
+Lý do là chúng ta đang mặc định tuổi của user là 30 trong biến let age được định nghĩa ở example group cấp cao nhất `let(:age) { 30 }` . Vì vậy, hiện tại chỉ trường hợp user trẻ hơn 65 là đạt.
 
-However, we can override the age let variable in our contexts to create the correct conditions that will allow our failing tests to pass:
+Tuy nhiên, chúng ta có thể ghi đè biến let age trong các context để tạo đúng điều kiện, giúp các bài kiểm thử đang thất bại đạt:
 
 ~~~ruby
 # spec/user_spec.rb
@@ -497,30 +497,30 @@ RSpec.describe User do
 end
 ~~~
 
-If we run our tests now everything will be passing 🎉
+Nếu chạy các bài kiểm thử lúc này, mọi thứ sẽ đạt 🎉
 
-The mechanics of how this works is simpler than it looks. If there are multiple let variables with the same name in our test file, then our test case will use the let variable that is defined closet to it.
+Cơ chế hoạt động đơn giản hơn vẻ ngoài. Nếu có nhiều biến let cùng tên trong tệp kiểm thử, trường hợp kiểm thử sẽ dùng biến let được định nghĩa gần nó nhất.
 
-In our code we have an age let variable in the top example group and other let variables named age within the context example groups as well.
+Trong mã của chúng ta, có một biến let age ở example group cấp cao nhất và các biến let khác cũng tên age trong những example group context.
 
-When the test case for when the user is 65 is executed for example, it will use the let variable that is closest to it. In other words, it will use the let variable that is defined within the same example group: `let(:age) { 65 }`.
+Ví dụ, khi trường hợp kiểm thử user 65 tuổi được thực thi, nó dùng biến let gần nhất. Nói cách khác, nó dùng biến let được định nghĩa trong cùng example group: `let(:age) { 65 }`.
 
-### Conclusion
+### Kết luận
 
-Hooks, lets and subjects are incredibly powerful. They can help greatly with crafting well structured and easy to understand tests by cutting down on duplication and unnecessary noise within a test suite.
+Hook, let và subject cực kỳ mạnh mẽ. Chúng có thể giúp tạo ra các bài kiểm thử có cấu trúc tốt và dễ hiểu hơn nhiều bằng cách giảm sự trùng lặp và phần nhiễu không cần thiết trong bộ kiểm thử.
 
-However, it is easy to overuse them and end up with test files that the reader will need to repeatedly bounce around between hooks, lets and the actual tests to get a full picture of what the tests are doing. Making it a chore to read and reason about what's going on in the individual test cases.
+Tuy nhiên, rất dễ lạm dụng chúng và tạo ra các tệp kiểm thử buộc người đọc phải liên tục chuyển qua lại giữa hook, let và các bài kiểm thử thực tế để có được toàn cảnh về những gì bài kiểm thử đang làm. Khi đó việc đọc và suy luận về từng trường hợp kiểm thử trở nên phiền phức.
 
-These code sharing tools are best only when they improve the overall readability and clarity of your tests. Most of the time, it is best for clarity sake to have the arrange and teardown code in the test block that uses it. Much like we did with the original todo list example.
+Các công cụ chia sẻ mã này chỉ nên được dùng khi chúng cải thiện khả năng đọc và sự rõ ràng tổng thể của bài kiểm thử. Phần lớn thời gian, để giữ cho mọi thứ rõ ràng, tốt nhất nên đặt mã arrange và teardown ngay trong block kiểm thử sử dụng nó, tương tự cách chúng ta làm với ví dụ todo list ban đầu.
 
-### Assignment
+### Bài tập
 <div class="lesson-content__panel" markdown="1">
-1. TODO: Hook exercises in the testing repo
-1. TODO: Subject exercises in the testing repo
-1. TODO: Let exercises in the testing repo
+1. TODO: Bài tập về hook trong kho mã kiểm thử
+1. TODO: Bài tập về subject trong kho mã kiểm thử
+1. TODO: Bài tập về let trong kho mã kiểm thử
 </div>
 
-### Additional Resources
-This section contains helpful links to other content. It isn't required, so consider it supplemental.
+### Tài nguyên bổ sung
+Phần này chứa các liên kết hữu ích đến nội dung khác. Đây không phải phần bắt buộc, nên bạn có thể xem như tài liệu bổ sung.
 
 - [https://mixandgo.com/learn/let-vs-instance-variables-in-rspec](https://mixandgo.com/learn/let-vs-instance-variables-in-rspec)

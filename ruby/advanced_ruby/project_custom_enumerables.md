@@ -1,8 +1,8 @@
-### Introduction
+### Giới thiệu
 
-You should be very familiar with the Enumerable module that gets mixed into the Array and Hash classes (among others) and provides you with lots of handy iterator methods. To prove that there's no magic to it, you're going to rebuild those methods.
+Bạn hẳn đã khá quen thuộc với module Enumerable được trộn vào các lớp Array và Hash (cùng nhiều lớp khác), cung cấp cho bạn rất nhiều phương thức lặp tiện dụng. Để chứng minh rằng đằng sau nó không có phép màu nào, bạn sẽ tự xây dựng lại những phương thức đó.
 
-We will explain an example of how an enumerable works to give you an idea of how to start tackling these methods. Specifically we're going to break down the `#find` enumerable method. The `#find` method finds the first element that matches the given block's condition and returns it. If one isn't found, it returns `nil`.
+Chúng ta sẽ giải thích một ví dụ về cách một enumerable hoạt động để giúp bạn hình dung cách bắt đầu xử lý những phương thức này. Cụ thể, chúng ta sẽ phân tích phương thức enumerable `#find`. Phương thức `#find` tìm phần tử đầu tiên khớp với điều kiện của block được truyền vào rồi trả về phần tử đó. Nếu không tìm thấy phần tử nào, nó sẽ trả về `nil`.
 
 ```ruby
 a = [1, 2, 3, 4]
@@ -13,7 +13,7 @@ a.find { |n| n == 10 }
 # results in `nil`
 ```
 
-Now the question is how would we rebuild this method using our knowledge of yield and blocks? Let's go over the example shown below line by line.
+Vậy câu hỏi đặt ra là: làm thế nào chúng ta có thể xây dựng lại phương thức này bằng kiến thức về yield và block? Hãy cùng xem qua từng dòng của ví dụ bên dưới.
 
 ```ruby
 module Enumerable
@@ -31,13 +31,13 @@ a.my_find { |n| n == 2 }
 #=> 2
 ```
 
-First of all, we're doing something you've maybe not seen before here: manipulating an existing class/module in the Ruby language. Ruby allows you to do this. We can reopen the `Enumerable` module and add our custom methods there.
+Trước hết, ở đây chúng ta đang làm một việc mà có thể bạn chưa từng thấy: thao tác với một class/module đã tồn tại trong ngôn ngữ Ruby. Ruby cho phép bạn làm điều đó. Chúng ta có thể mở lại module `Enumerable` rồi thêm các phương thức tùy chỉnh của mình vào đó.
 
-With `self.each`, we're calling the `#each` method on the object instance that's invoking this method. In the example, this will end up being an array. So `self` will refer to the array that's calling `#my_find`. We can then use the `#each` method to iterate through its elements. Now this is where `yield` becomes extremely useful. When called inside of the `#my_find` method, `yield` will give control to the block that has been provided for `#my_find`. In the usage example just below the definition, we can see the `{ |n| n == 2 }` block is passed to the `#my_find` method. Inside of `#my_find`, each element in the array gets yielded to that block as an argument.
+Với `self.each`, chúng ta gọi phương thức `#each` trên instance của đối tượng đang gọi phương thức này. Trong ví dụ trên, đối tượng đó sẽ là một mảng. Vì vậy, `self` sẽ tham chiếu đến mảng đang gọi `#my_find`. Sau đó, chúng ta có thể dùng phương thức `#each` để lặp qua các phần tử của mảng. Đây chính là lúc `yield` trở nên cực kỳ hữu ích. Khi được gọi bên trong phương thức `#my_find`, `yield` sẽ chuyển quyền điều khiển cho block được cung cấp cho `#my_find`. Trong ví dụ sử dụng ngay bên dưới phần định nghĩa, ta thấy block `{ |n| n == 2 }` được truyền vào phương thức `#my_find`. Bên trong `#my_find`, mỗi phần tử trong mảng sẽ được yield cho block đó dưới dạng một đối số.
 
-If the block returns `true`/truthy for an element, we immediately `return` that element. If nothing is found, we'll iterate all the way through the array and end up executing the `nil` return at the very end. Pretty cool, huh?
+Nếu block trả về `true` hoặc một giá trị truthy cho một phần tử, chúng ta lập tức `return` phần tử đó. Nếu không tìm thấy gì, chúng ta sẽ lặp qua toàn bộ mảng rồi thực thi việc trả về `nil` ở cuối cùng. Khá thú vị phải không?
 
-Another thing you may not be familiar with: the [`Enumerator` class](https://docs.ruby-lang.org/en/3.4/Enumerator.html). A lot of Enumerable methods return an `Enumerator` instance if a block isn't passed in. We can see from the documentation that [`Enumerable#find`](https://docs.ruby-lang.org/en/3.4/Enumerable.html#method-i-find) is no different. This allows Enumerable methods to be chained in a clean and performant way. Fortunately, creating an `Enumerator` is quite straightforward. You can just make use of the `to_enum` method.
+Một điều khác mà có thể bạn chưa quen thuộc là [lớp `Enumerator`](https://docs.ruby-lang.org/en/3.4/Enumerator.html). Nhiều phương thức Enumerable sẽ trả về một instance `Enumerator` nếu không được truyền block. Theo tài liệu, [`Enumerable#find`](https://docs.ruby-lang.org/en/3.4/Enumerable.html#method-i-find) cũng hoạt động như vậy. Nhờ đó, các phương thức Enumerable có thể được nối chuỗi một cách gọn gàng và hiệu quả. May mắn là việc tạo một `Enumerator` khá đơn giản. Bạn chỉ cần sử dụng phương thức `to_enum`.
 
 ```ruby
 module Enumerable
@@ -60,22 +60,22 @@ a.my_find.with_index { |num, idx| num.odd? && idx.even? }
 #=> 9
 ```
 
-This is the power of Enumerators. If `#find` could only ever return a result, we would have no way to combine it with other methods through chaining like that.
+Đó chính là sức mạnh của Enumerator. Nếu `#find` chỉ có thể luôn trả về một kết quả, chúng ta sẽ không có cách nào kết hợp nó với các phương thức khác bằng cách nối chuỗi như trên.
 
-Now it's time for you to practice:
+Bây giờ là lúc bạn thực hành:
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Fork and clone our [custom enumerables repo](https://github.com/TheOdinProject/custom_enumerable_project)
-1. Follow the [installation instructions in the README](https://github.com/TheOdinProject/custom_enumerable_project#installation) to get the repo setup locally.
-1. Rebuild each of [the methods in the table at the end of the README](https://github.com/TheOdinProject/custom_enumerable_project#methods) and make sure they all pass the tests associated with them.
+1. Fork và clone [repo về các enumerable tùy chỉnh](https://github.com/TheOdinProject/custom_enumerable_project) của chúng ta.
+1. Làm theo [hướng dẫn cài đặt trong README](https://github.com/TheOdinProject/custom_enumerable_project#installation) để thiết lập repo trên máy của bạn.
+1. Xây dựng lại từng [phương thức trong bảng ở cuối README](https://github.com/TheOdinProject/custom_enumerable_project#methods) và đảm bảo tất cả đều vượt qua các bài kiểm thử tương ứng.
 
 </div>
 
-#### Additional resources
+#### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy bạn có thể xem nó như tài liệu bổ sung.
 
-- Jason Mattingly has a useful article on [Writing Your Own Enumerables in Ruby](https://jsonmattingly.medium.com/writing-your-own-enumerables-in-ruby-18db4fa0e5fe).
+- Jason Mattingly có một bài viết hữu ích về [Tự viết các Enumerable của riêng bạn trong Ruby](https://jsonmattingly.medium.com/writing-your-own-enumerables-in-ruby-18db4fa0e5fe).

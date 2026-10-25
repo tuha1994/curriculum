@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-You may remember testing from the Ruby section and the emphasis on the importance of testing. Similar to that section, testing in Ruby on Rails is important to ensure your application is stable and to catch bugs before you expand your application even more! The first kind of testing that we will cover will be unit tests.
+Bạn có thể còn nhớ phần kiểm thử trong mục Ruby và tầm quan trọng của việc kiểm thử. Tương tự như phần đó, kiểm thử trong Ruby on Rails rất quan trọng để bảo đảm ứng dụng của bạn ổn định và phát hiện lỗi trước khi bạn mở rộng ứng dụng hơn nữa! Loại kiểm thử đầu tiên chúng ta sẽ tìm hiểu là kiểm thử đơn vị.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- What unit tests are and what they do.
-- Why unit tests are so important.
-- Unit tests in the context of Ruby on Rails.
+- Kiểm thử đơn vị là gì và chúng thực hiện nhiệm vụ gì.
+- Vì sao kiểm thử đơn vị lại quan trọng đến vậy.
+- Kiểm thử đơn vị trong bối cảnh Ruby on Rails.
 
-### What are unit tests?
+### Kiểm thử đơn vị là gì?
 
-A unit test is testing a single unit of code to ensure that method/unit works as it is supposed to! In Ruby on Rails your models are one of the areas that should be covered with unit tests. These model tests specifically are used to test the logic behind your model objects. This can include validating user inputs from form submissions and other logic between models. Such as if you need to ensure your object method for generating discounts work properly. It's important as you scale your projects to ensure that the logic behind your models works as your project consistently expands. This helps make the project more maintainable as the tests provide a safety net to ensure existing functionality continues working as expected when models need to be expanded or modified.
+Kiểm thử đơn vị là việc kiểm thử một đơn vị code duy nhất để bảo đảm method hoặc đơn vị đó hoạt động đúng như mong đợi! Trong Ruby on Rails, model là một trong những khu vực nên được bao phủ bằng kiểm thử đơn vị. Cụ thể, các bài kiểm thử model này được dùng để kiểm thử logic phía sau các đối tượng model. Logic đó có thể bao gồm việc xác thực dữ liệu người dùng nhập từ biểu mẫu và các logic khác giữa các model, chẳng hạn như khi bạn cần bảo đảm method tạo mức giảm giá cho đối tượng hoạt động chính xác. Khi dự án phát triển, điều quan trọng là phải bảo đảm logic phía sau các model vẫn hoạt động đúng trong quá trình dự án liên tục mở rộng. Điều này giúp dự án dễ bảo trì hơn, vì các bài kiểm thử tạo ra một mạng lưới an toàn để bảo đảm chức năng hiện có tiếp tục hoạt động như mong đợi khi model cần được mở rộng hoặc chỉnh sửa.
 
-Earlier you used RSpec for testing projects in the Ruby section. While Ruby on Rails comes with it's own testing framework. RSpec is a very popular framework for testing even in Ruby on Rail's. As such we will be using RSpec for the Ruby on Rails testing section.
+Trước đó, bạn đã sử dụng RSpec để kiểm thử các dự án trong phần Ruby. Mặc dù Ruby on Rails đi kèm framework kiểm thử riêng, RSpec vẫn là một framework rất phổ biến để kiểm thử, kể cả trong Ruby on Rails. Vì vậy, chúng ta sẽ sử dụng RSpec cho phần kiểm thử Ruby on Rails.
 
-### Setting up RSpec
+### Thiết lập RSpec
 
-Installing RSpec for rails is a relatively straightforward task.
+Cài đặt RSpec cho Rails là một việc tương đối đơn giản.
 
-First we add it the development and test group of the gemfile. Navigate to the gemfile and add this to the development/test section.
+Trước tiên, chúng ta thêm nó vào nhóm development và test của gemfile. Hãy mở gemfile và thêm đoạn này vào phần development/test.
 
 ```ruby
 group :development, :test do
@@ -28,19 +28,19 @@ group :development, :test do
 end
 ```
 
-Next visit the [rspec-rails installation guide](https://github.com/rspec/rspec-rails#installation) to finish the rest of the steps. Afterwards you will see an additional spec folder on the top level of your project.
+Tiếp theo, hãy xem [hướng dẫn cài đặt rspec-rails](https://github.com/rspec/rspec-rails#installation) để hoàn tất các bước còn lại. Sau đó, bạn sẽ thấy một thư mục spec bổ sung ở cấp cao nhất của dự án.
 
-There you will find different folders for different areas of your application such as controllers, models, system, etc. When you use the command to generate a model, controller, etc. The spec file will be created in the corresponding folder to the object that you created. If you create a spec file manually, make sure you're creating it in the correct folder, such as a controller spec file within the controller folder. There will also be a rails_helper and spec_helper files. These RSpec files are where you can configure your test environment.
+Trong đó, bạn sẽ tìm thấy các thư mục khác nhau cho từng khu vực của ứng dụng, chẳng hạn như controller, model, system, v.v. Khi dùng lệnh để tạo model, controller, v.v., file spec sẽ được tạo trong thư mục tương ứng với đối tượng bạn đã tạo. Nếu tự tạo file spec, hãy bảo đảm bạn tạo file trong đúng thư mục, chẳng hạn file spec cho controller phải nằm trong thư mục controller. Bạn cũng sẽ thấy các file rails_helper và spec_helper. Đây là những file RSpec dùng để cấu hình môi trường kiểm thử.
 
-### Example test
+### Ví dụ kiểm thử
 
-Each model should have it's own spec file within the spec/models folder. This will be created when you use the following command.
+Mỗi model nên có file spec riêng trong thư mục spec/models. File này sẽ được tạo khi bạn sử dụng lệnh sau.
 
 ```bash
 rails generate model <model_name>
 ```
 
-Here is an example of what a test should look like.
+Dưới đây là ví dụ về một bài kiểm thử.
 
 ```ruby
 RSpec.describe 'Post' do           
@@ -53,16 +53,16 @@ RSpec.describe 'Post' do
 end
 ```
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. For an additional example of a unit test and other helpful information, read through the [rspec-rails gem repository](https://github.com/rspec/rspec-rails/tree/6-0-maintenance#rspec-dsl-basics-or-how-do-i-write-a-spec).
+1. Để xem thêm một ví dụ về kiểm thử đơn vị cùng các thông tin hữu ích khác, hãy đọc [repository của gem rspec-rails](https://github.com/rspec/rspec-rails/tree/6-0-maintenance#rspec-dsl-basics-or-how-do-i-write-a-spec).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- For an example of a model test and having a useful resource. You can visit [code with Jason](https://www.codewithjason.com/a-rails-model-test-hello-world/)
+- Để xem một ví dụ về kiểm thử model và một tài nguyên hữu ích, bạn có thể truy cập [code with Jason](https://www.codewithjason.com/a-rails-model-test-hello-world/)

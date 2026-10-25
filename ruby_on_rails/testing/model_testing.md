@@ -1,22 +1,22 @@
-### Introduction
+### Giới thiệu
 
-The last lesson covered unit testing and now we will move into model testing. Here you will get an idea of how to test within Rails for model testing as well as a deeper dive of how to structure these tests.
+Bài học trước đã đề cập đến kiểm thử đơn vị, và giờ chúng ta sẽ chuyển sang kiểm thử model. Trong bài này, bạn sẽ hình dung được cách kiểm thử trong Rails đối với model, đồng thời tìm hiểu sâu hơn về cách cấu trúc các bài kiểm thử này.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- What model tests are and when to use them.
-- How to run a model test.
-- How to structure model testing.
+- Kiểm thử model là gì và khi nào nên sử dụng.
+- Cách chạy một bài kiểm thử model.
+- Cách cấu trúc việc kiểm thử model.
 
-### What are model tests?
+### Kiểm thử model là gì?
 
-A model test is a unit test in the context of Ruby on Rails. When testing our models we usually want to focus on testing the business logic. Essentially what goes on behind each model that enables the user experience to work correctly. This could mean ensuring promotion tickets prices are correct, only correct form data is accepted, custom user verification etc. It's important to note that each model should have it's own file in the `spec/models` file. This is helpful for keeping your model tests organized and readable.
+Kiểm thử model là một dạng kiểm thử đơn vị trong bối cảnh Ruby on Rails. Khi kiểm thử các model, chúng ta thường muốn tập trung vào việc kiểm thử logic nghiệp vụ — về cơ bản là những gì diễn ra phía sau mỗi model và giúp trải nghiệm người dùng hoạt động chính xác. Chẳng hạn, đó có thể là bảo đảm giá vé khuyến mãi chính xác, chỉ chấp nhận dữ liệu biểu mẫu hợp lệ, hoặc thực hiện quy trình xác minh người dùng tùy chỉnh. Điều quan trọng cần lưu ý là mỗi model nên có một file riêng trong `spec/models`. Cách này giúp các bài kiểm thử model được sắp xếp gọn gàng và dễ đọc.
 
-### Setting the test
+### Thiết lập kiểm thử
 
-The first tool that we are going to go over for setting up the data is [factory bot](https://github.com/thoughtbot/factory_bot). Factory bot is a gem that you can use to set up test data and create necessary data for your tests. Adding Factory bot is similar to adding other testing gems. Add the following line to the to the following section in your Gemfile.
+Công cụ đầu tiên chúng ta sẽ tìm hiểu để thiết lập dữ liệu là [factory bot](https://github.com/thoughtbot/factory_bot). Factory bot là một gem có thể dùng để thiết lập dữ liệu kiểm thử và tạo dữ liệu cần thiết cho các bài kiểm thử. Việc thêm Factory bot tương tự như thêm các gem kiểm thử khác. Hãy thêm dòng sau vào phần tương ứng trong Gemfile.
 
 ```ruby
 group :development, :test do
@@ -26,7 +26,7 @@ group :development, :test do
 end
 ```
 
-Then in your terminal enter `bundle install` to the terminal where it will install the gem. Now we need to move into setting up our test configuration to utilize Factory bot. First were going to navigate to `spec/support/factory_bot.rb` and add the following configuration.
+Sau đó, nhập `bundle install` trong terminal để cài đặt gem. Bây giờ chúng ta cần chuyển sang thiết lập cấu hình kiểm thử để sử dụng Factory bot. Trước hết, hãy mở `spec/support/factory_bot.rb` và thêm cấu hình sau.
 
 ```ruby
 RSpec.configure do |config|
@@ -34,13 +34,13 @@ RSpec.configure do |config|
 end
 ```
 
-Make sure to require this file in `rails_helper.rb`. While you can require the file by adding `require support/factory_bot` to the top of the file. Rails also provides this in the commented out line `Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }` which enables you to load all of the support files when booting up. This is useful for not having to manually add all of the support files and avoids issues if you forget to add a file for example.
+Hãy chắc chắn rằng file này được require trong `rails_helper.rb`. Bạn có thể require file bằng cách thêm `require support/factory_bot` vào đầu file. Rails cũng cung cấp cách này trong dòng đã được comment `Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }`, cho phép bạn tải tất cả các file hỗ trợ khi khởi động. Điều này hữu ích vì bạn không phải thêm thủ công từng file hỗ trợ, đồng thời tránh các sự cố nếu chẳng hạn bạn quên thêm một file.
 
-The last thing you might be wondering is how the test database clears itself in between it's tests. Rail's does this automatically for you, however if Rail's is not doing it for you make sure your following the instructions in the rails_helper.rb file and make sure to ask in the [Discord](https://discord.com/channels/505093832157691914/690591236922409012) first! If you are interested, you can learn more about database cleaning in the additional resources.
+Điều cuối cùng có thể khiến bạn thắc mắc là cơ sở dữ liệu kiểm thử tự xóa dữ liệu giữa các bài kiểm thử như thế nào. Rails tự động thực hiện việc này cho bạn. Tuy nhiên, nếu Rails không thực hiện, hãy bảo đảm bạn đang làm theo hướng dẫn trong file rails_helper.rb và trước tiên hãy hỏi trên [Discord](https://discord.com/channels/505093832157691914/690591236922409012)! Nếu quan tâm, bạn có thể tìm hiểu thêm về việc dọn dẹp cơ sở dữ liệu trong phần tài nguyên bổ sung.
 
-### Creating a factory
+### Tạo một factory
 
-Below is an example of a user factory. Notice that the factory will be a User class based off of the name of your factory. You can also define as many attributes as you want and it can be useful to focus on adding only the attributes you are testing and adding them as need be.
+Dưới đây là ví dụ về một factory cho user. Lưu ý rằng factory sẽ là một lớp User dựa trên tên của factory. Bạn cũng có thể định nghĩa bao nhiêu thuộc tính tùy ý; thông thường, chỉ nên thêm những thuộc tính mà bạn đang kiểm thử và bổ sung chúng khi cần.
 
 ```ruby
 # This will guess the User class
@@ -53,11 +53,11 @@ FactoryBot.define do
 end
 ```
 
-When creating a factory bot record you have the choice of using the `create(:user)` which returns a saved instance of the object from your database or `build(:user)` which returns an unsaved instance of an object.
+Khi tạo một bản ghi bằng factory bot, bạn có thể dùng `create(:user)` để nhận về một instance đã được lưu của đối tượng trong cơ sở dữ liệu, hoặc `build(:user)` để nhận về một instance chưa được lưu của đối tượng.
 
-### Example model test
+### Ví dụ về kiểm thử model
 
-In the following example one of the things we often see when users sign up is that sites will ask for an email to send a user notifications for example. RSpec can help you test this by utilizing model tests. Let's take a look at what a requiring the presence of a user email would look like in a model and the corresponding tests.
+Trong ví dụ sau, một tình huống thường gặp khi người dùng đăng ký là website sẽ yêu cầu email để gửi thông báo cho người dùng. RSpec có thể giúp bạn kiểm thử điều này bằng cách sử dụng các bài kiểm thử model. Hãy xem việc yêu cầu email của user phải tồn tại trong model và các bài kiểm thử tương ứng sẽ như thế nào.
 
 ```ruby
 class User < ApplicationRecord
@@ -65,7 +65,7 @@ class User < ApplicationRecord
 end
 ```
 
-In the above code validates will check for the presence of the email. By using validates the model will check the following conditions which in this case is that the email is present when the record is created. That then brings us to the following RSpec test where we will write the context and what we expect the outcome to be.
+Trong đoạn code trên, validates sẽ kiểm tra sự hiện diện của email. Khi dùng validates, model sẽ kiểm tra điều kiện sau: trong trường hợp này, email phải tồn tại khi bản ghi được tạo. Từ đó, chúng ta có bài kiểm thử RSpec sau, trong đó sẽ viết bối cảnh và kết quả mà chúng ta mong đợi.
 
 ```ruby
 RSpec.describe User, type: :model do
@@ -89,20 +89,20 @@ RSpec.describe User, type: :model do
 end
 ```
 
-One thing to note is that we have two tests. We want to test both the successful conditions while having a separate test for rejecting the invalid condition. The other thing to note is that you can set attributes when creating a factory record as well rather than going back to the factory file.
+Một điều cần lưu ý là chúng ta có hai bài kiểm thử. Chúng ta muốn kiểm thử cả điều kiện thành công, đồng thời có một bài kiểm thử riêng cho trường hợp không hợp lệ bị từ chối. Một điểm khác cần lưu ý là bạn có thể thiết lập các thuộc tính khi tạo bản ghi factory thay vì phải quay lại file factory.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. [The Factory bot repository](https://github.com/thoughtbot/factory_bot/blob/main/GETTING_STARTED.md#setup) has excellent information for diving in deeper and it's highly recommended to read through it to understand factory bot better.
+1. [Repository của Factory bot](https://github.com/thoughtbot/factory_bot/blob/main/GETTING_STARTED.md#setup) có thông tin rất hữu ích để tìm hiểu sâu hơn, và bạn nên đọc qua để hiểu rõ hơn về factory bot.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- For an example of a model test and having a useful resource. You can visit [code with Jason](https://www.codewithjason.com/write-model-tests-part/).
-- If RSpecs built in database cleaner isn't working for testing, you can find an alternative in the [Database Cleaner section](https://thoughtbot.com/blog/how-we-test-rails-applications#database-cleaner) in the thoughtbot blog.
-- Read the [betterspecs.org article](https://www.betterspecs.org/#factories) for going over some of the best practices for tests.
+- Để xem một ví dụ về kiểm thử model và một tài nguyên hữu ích, bạn có thể truy cập [code with Jason](https://www.codewithjason.com/write-model-tests-part/).
+- Nếu database cleaner tích hợp sẵn của RSpec không hoạt động khi kiểm thử, bạn có thể tìm một giải pháp thay thế trong [phần Database Cleaner](https://thoughtbot.com/blog/how-we-test-rails-applications#database-cleaner) trên blog của thoughtbot.
+- Đọc [bài viết trên betterspecs.org](https://www.betterspecs.org/#factories) để tìm hiểu một số phương pháp hay nhất khi viết kiểm thử.

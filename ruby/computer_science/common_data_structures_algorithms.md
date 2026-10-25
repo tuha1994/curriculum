@@ -1,51 +1,51 @@
-### Introduction
+### Giới thiệu
 
-The basic idea of a **data structure** is to store data in a way that meets the needs of your particular application. You might be inclined to store a particular kind of data in one giant array, but it would be rather time consuming to locate a specific value if you had a significant number and depth of items. So you need to look to other options.
+Ý tưởng cơ bản của một **cấu trúc dữ liệu** là lưu trữ dữ liệu theo cách đáp ứng nhu cầu của ứng dụng cụ thể. Bạn có thể muốn lưu một loại dữ liệu nhất định trong một mảng khổng lồ, nhưng nếu có số lượng phần tử lớn và cấu trúc lồng nhau sâu, việc tìm một giá trị cụ thể sẽ khá tốn thời gian. Vì vậy, bạn cần cân nhắc những lựa chọn khác.
 
-Depending on the application, there are a batch of other basic data structures available to help you out. The differences between them typically have to do with trade-offs between how long it takes to first populate the structure, how long it takes to add or find elements, and how large the structure is in memory.
+Tùy vào ứng dụng, có nhiều cấu trúc dữ liệu cơ bản khác có thể hỗ trợ bạn. Sự khác biệt giữa chúng thường nằm ở sự đánh đổi giữa thời gian cần để khởi tạo cấu trúc, thời gian cần để thêm hoặc tìm phần tử, và lượng bộ nhớ mà cấu trúc chiếm dụng.
 
-We'll save the specifics of data structures for more computer-science-oriented courses, but this introduction should again expand your toolbox slightly so you can identify and solve certain problems where plain old Arrays, Hashes and Sets don't quite cut it. New structures and strategies will be particularly relevant, for instance, when you're trying to search through a large batch of data for a particular value or plan out a strategy several moves in advance.
+Chúng ta sẽ dành phần chi tiết về cấu trúc dữ liệu cho các khóa học thiên về khoa học máy tính hơn, nhưng phần giới thiệu này sẽ tiếp tục mở rộng một chút bộ công cụ của bạn, để bạn có thể nhận diện và giải quyết một số vấn đề mà Arrays, Hashes và Sets thông thường không đủ sức xử lý. Những cấu trúc và chiến lược mới sẽ đặc biệt hữu ích, chẳng hạn khi bạn cố tìm một giá trị cụ thể trong một lượng dữ liệu lớn hoặc lập chiến lược trước vài nước đi.
 
-You've already had a brief introduction to **algorithms** over some of the other lessons and you even got to write your own Merge Sort algorithm in the last project. You'll find that sorting algorithms are quite common. Another major area for algorithms is in search, where milliseconds count. When you're searching through enormous troves of data, the quality of your search algorithm is incredibly important. Traversing a data tree looking for a particular element is a related problem that's common in data intensive applications.
+Bạn đã được giới thiệu sơ lược về **thuật toán** trong một số bài học trước, và thậm chí còn tự viết thuật toán Merge Sort trong dự án gần nhất. Bạn sẽ thấy các thuật toán sắp xếp xuất hiện khá phổ biến. Một lĩnh vực lớn khác của thuật toán là tìm kiếm, nơi từng mili-giây đều đáng kể. Khi tìm kiếm trong những kho dữ liệu khổng lồ, chất lượng của thuật toán tìm kiếm cực kỳ quan trọng. Duyệt qua một cây dữ liệu để tìm một phần tử cụ thể là một bài toán liên quan, thường gặp trong các ứng dụng xử lý nhiều dữ liệu.
 
-Luckily for you, these complex algorithmic problems have all been solved many times in the past. Understanding *how* they are solved will give you some great tools to apply to other (similar) problems on your own. Algorithms are really just ways of solving problems systematically. In this brief introduction, we'll focus on a couple of algorithms that you may run into when coding on your own -- breadth-first-search and depth-first-search.
+May mắn là những bài toán thuật toán phức tạp này đã được giải quyết nhiều lần trong quá khứ. Hiểu *cách* chúng được giải quyết sẽ mang lại cho bạn những công cụ hữu ích để tự áp dụng vào các bài toán khác (tương tự). Về bản chất, thuật toán chỉ là những cách giải quyết vấn đề một cách có hệ thống. Trong phần giới thiệu ngắn này, chúng ta sẽ tập trung vào một vài thuật toán mà bạn có thể gặp khi tự viết mã -- tìm kiếm theo chiều rộng và tìm kiếm theo chiều sâu.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Data structures.
-- Stacks and queues, their usage, and their differences.
-- The best way to implement stacks and queues in Ruby.
-- Why we have so many different search algorithms.
-- Breadth-first-search (BFS) and depth-first-search (DFS) algorithms, and their use cases.
-- When BFS would be impractical.
+- Cấu trúc dữ liệu.
+- Stack và queue, cách sử dụng và điểm khác biệt giữa chúng.
+- Cách tốt nhất để cài đặt stack và queue trong Ruby.
+- Vì sao chúng ta có rất nhiều thuật toán tìm kiếm khác nhau.
+- Thuật toán tìm kiếm theo chiều rộng (BFS) và tìm kiếm theo chiều sâu (DFS), cùng các trường hợp sử dụng.
+- Khi nào BFS không thực tế.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Glance over the [Wikipedia entry on Data Structures](http://en.wikipedia.org/wiki/Data_structure) for a high level overview of things.
-1. Watch the first 10 minutes of [Why Study Algorithms](https://www.youtube.com/watch?v=u2TwK3fED8A). The rest is more mathematical if you're interested.
-1. Read [What is an Algorithm and How Does it Make You a Better Programmer](https://web.archive.org/web/20231223233808/http://blog.thefirehoseproject.com/posts/what-is-an-algorithm/) for another basic look at what algorithms are.
-1. Learn about [how binary search works](https://www.youtube.com/watch?v=DSffdCT5Cx4) from Harvard’s CS50 on YouTube.
-1. Now, we're going to focus on learning about binary search trees. Start by watching this video to learn [how a binary search tree is constructed from an unordered array](https://www.youtube.com/watch?v=FvdPo8PBQtc).
-1. Next, learn about the [principles of queues and stacks](https://www.youtube.com/watch?v=6QS_Cup1YoI), which are concepts used in breadth-first search and depth-first search respectively.
-1. Finally, learn about breadth-first search and depth-first search of binary search trees from this series of videos on YouTube:
-   - [Binary tree traversal](https://www.youtube.com/watch?v=9RHO6jU--GU)
-   - [Breadth-first traversal](https://www.youtube.com/watch?v=86g8jAQug04)
-   - [Depth-first traversal](https://www.youtube.com/watch?v=gm8DUJJhmY4)
+1. Xem qua [bài viết Wikipedia về Cấu trúc dữ liệu](http://en.wikipedia.org/wiki/Data_structure) để có cái nhìn tổng quan ở mức cao.
+1. Xem 10 phút đầu của [Tại sao nên học thuật toán](https://www.youtube.com/watch?v=u2TwK3fED8A). Phần còn lại thiên về toán học hơn, nếu bạn quan tâm.
+1. Đọc bài [Thuật toán là gì và nó giúp bạn trở thành lập trình viên giỏi hơn như thế nào](https://web.archive.org/web/20231223233808/http://blog.thefirehoseproject.com/posts/what-is-an-algorithm/) để có thêm một cách nhìn cơ bản về thuật toán.
+1. Tìm hiểu [tìm kiếm nhị phân hoạt động như thế nào](https://www.youtube.com/watch?v=DSffdCT5Cx4) qua CS50 của Harvard trên YouTube.
+1. Bây giờ, chúng ta sẽ tập trung tìm hiểu về cây tìm kiếm nhị phân. Hãy bắt đầu bằng cách xem video này để tìm hiểu [cây tìm kiếm nhị phân được xây dựng từ một mảng chưa sắp xếp như thế nào](https://www.youtube.com/watch?v=FvdPo8PBQtc).
+1. Tiếp theo, tìm hiểu về [nguyên lý của queue và stack](https://www.youtube.com/watch?v=6QS_Cup1YoI), những khái niệm lần lượt được sử dụng trong tìm kiếm theo chiều rộng và tìm kiếm theo chiều sâu.
+1. Cuối cùng, tìm hiểu về việc tìm kiếm theo chiều rộng và tìm kiếm theo chiều sâu trên cây tìm kiếm nhị phân qua loạt video này trên YouTube:
+   - [Duyệt cây nhị phân](https://www.youtube.com/watch?v=9RHO6jU--GU)
+   - [Duyệt theo chiều rộng](https://www.youtube.com/watch?v=86g8jAQug04)
+   - [Duyệt theo chiều sâu](https://www.youtube.com/watch?v=gm8DUJJhmY4)
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ trợ.
 
-- [Khan Academy's great Algorithms Course](https://www.khanacademy.org/computing/computer-science/algorithms)
-- [Stanford's Coursera 4-Part Algorithm Course](https://www.coursera.org/specializations/algorithms)
-- [Visualizing Algorithms from Mike Bostock](http://bost.ocks.org/mike/algorithms/)
-- [Another free course on algorithms by Udacity](https://www.udacity.com/course/intro-to-algorithms--cs215)
-- [A brief note on putting Sorting, Tries and Heaps into Ruby, by Ilya Grigorik](http://www.igvita.com/2009/03/26/ruby-algorithms-sorting-trie-heaps/)
-- [A more detailed video on stacks and queues](https://www.youtube.com/watch?v=idrrIMXXeHM)
-- A stack overflow discussion on the [relative strengths of BFS and DFS](https://stackoverflow.com/questions/3332947/what-are-the-practical-factors-to-consider-when-choosing-between-depth-first-sea).
+- [Khóa học Thuật toán tuyệt vời của Khan Academy](https://www.khanacademy.org/computing/computer-science/algorithms)
+- [Khóa học Thuật toán 4 phần trên Coursera của Stanford](https://www.coursera.org/specializations/algorithms)
+- [Trực quan hóa thuật toán của Mike Bostock](http://bost.ocks.org/mike/algorithms/)
+- [Một khóa học miễn phí khác về thuật toán của Udacity](https://www.udacity.com/course/intro-to-algorithms--cs215)
+- [Ghi chú ngắn về việc đưa Sorting, Tries và Heaps vào Ruby, của Ilya Grigorik](http://www.igvita.com/2009/03/26/ruby-algorithms-sorting-trie-heaps/)
+- [Video chi tiết hơn về stack và queue](https://www.youtube.com/watch?v=idrrIMXXeHM)
+- Một thảo luận trên Stack Overflow về [ưu điểm tương đối của BFS và DFS](https://stackoverflow.com/questions/3332947/what-are-the-practical-factors-to-consider-when-choosing-between-depth-first-sea).

@@ -1,44 +1,44 @@
-### Introduction
+### Giới thiệu
 
-Until now you've mostly been working with self-contained command line programs.  It's time to start branching out and interacting with files.  Files are basically just collections of bits and bytes that you'll somehow need to open, read into your program, modify, and save.  Even though many files (like images) look like a giant jumble of data when you open them up in a text editor, it can be helpful to think of all files as one really long string, or stream, of bytes.  Your script will read them in from top to bottom, performing whatever operations you specify along the way.
+Cho đến nay, phần lớn bạn mới chỉ làm việc với các chương trình dòng lệnh độc lập. Đã đến lúc bắt đầu mở rộng phạm vi và tương tác với các tệp. Về cơ bản, tệp chỉ là tập hợp các bit và byte mà bạn sẽ cần mở, đọc vào chương trình, chỉnh sửa rồi lưu lại theo một cách nào đó. Dù nhiều tệp (chẳng hạn như hình ảnh) trông giống một mớ dữ liệu khổng lồ khi mở trong trình soạn thảo văn bản, bạn vẫn có thể hình dung mọi tệp như một chuỗi hoặc luồng byte rất dài. Tập lệnh của bạn sẽ đọc chúng từ đầu đến cuối, đồng thời thực hiện mọi thao tác mà bạn chỉ định.
 
-Lucky for you, Ruby makes your life pretty easy with regards to dealing with files.  It has the tools necessary to read those long streams of bytes into your program and then allow you to work with them using the objects you're familiar with.  As long as you remember that the files are just a long stream of words/characters/bytes being read in from top to bottom, it should be fairly intuitive.  If you want to do more detailed stuff like write to a specific point in a file, you'll need to figure out what position you're at first, since you may be in the middle of it somewhere.
+May mắn là Ruby giúp bạn xử lý tệp khá dễ dàng. Ruby có những công cụ cần thiết để đọc các luồng byte dài đó vào chương trình, sau đó cho phép bạn làm việc với chúng bằng những đối tượng quen thuộc. Chỉ cần nhớ rằng tệp là một luồng dài gồm các từ/ký tự/byte được đọc từ đầu đến cuối thì mọi việc sẽ khá trực quan. Nếu muốn thực hiện những thao tác chi tiết hơn, chẳng hạn như ghi vào một vị trí cụ thể trong tệp, trước hết bạn cần xác định mình đang ở vị trí nào, vì có thể bạn đang ở giữa tệp.
 
-Working with files gets you into the idea of serialization, which basically just means converting your data into a storable format like a string.  That's very useful whether you're thinking of saving your objects and classes (say, when you're in the middle of a game) to a file or when you're transmitting those same types of objects to the web browser (since the only way for information to travel via HTTP is as a string).
+Làm việc với tệp sẽ đưa bạn đến với khái niệm tuần tự hóa (serialization), về cơ bản là chuyển đổi dữ liệu sang một định dạng có thể lưu trữ, chẳng hạn như chuỗi. Điều này rất hữu ích, dù bạn đang nghĩ đến việc lưu các đối tượng và lớp của mình vào tệp (ví dụ khi đang ở giữa một ván game), hay truyền chính những loại đối tượng đó đến trình duyệt web (vì cách duy nhất để thông tin truyền qua HTTP là dưới dạng chuỗi).
 
-Luckily, Ruby again makes things pretty easy for you. There are some generally accepted formats for serializing data and Ruby gives you the tools you'll need to work with all of them.  The two you'll run into again and again are YAML and JSON.  You often see YAML used to save configuration files in Ruby on Rails because it's very lightweight and straightforward.  You can read it easily in a text editor.  JSON is ubiquitous across the web, and is the format of choice to deliver complex or deeply nested data (like objects) from some website to your program via an API (like if you want to interface with Google Maps).
+Một lần nữa, Ruby lại giúp mọi việc trở nên khá dễ dàng. Có một số định dạng tuần tự hóa dữ liệu được chấp nhận rộng rãi, và Ruby cung cấp cho bạn các công cụ cần thiết để làm việc với tất cả chúng. Hai định dạng bạn sẽ thường xuyên gặp là YAML và JSON. YAML thường được dùng để lưu các tệp cấu hình trong Ruby on Rails vì nó rất nhẹ và dễ hiểu. Bạn có thể đọc YAML dễ dàng trong trình soạn thảo văn bản. JSON hiện diện ở khắp nơi trên web và là định dạng được ưu tiên để truyền dữ liệu phức tạp hoặc lồng nhau sâu (chẳng hạn như đối tượng) từ một website đến chương trình của bạn thông qua API (ví dụ khi bạn muốn tích hợp với Google Maps).
 
-Finally, files and serialization overlap in a lot of ways with the idea and purpose of databases -- they facilitate the ability to maintain state and permanence for your data.  We'll briefly look into some basic database connections that Ruby provides as well.
+Cuối cùng, tệp và tuần tự hóa có nhiều điểm giao thoa với ý tưởng cũng như mục đích của cơ sở dữ liệu — chúng hỗ trợ việc duy trì trạng thái và tính lâu bền cho dữ liệu của bạn. Chúng ta cũng sẽ xem qua một số kết nối cơ sở dữ liệu cơ bản mà Ruby cung cấp.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học này.
 
-- Two ways to store a file from your hard drive into a string or array in your Ruby script.
-- Three things made possible or much easier by serialization.
-- What is JSON.
-- What is YAML.
-- Turning a Ruby object into JSON.
-- Turning JSON into a Ruby object.
-- What classes and methods can your Ruby script use to read and write to the hard drive.
+- Hai cách lưu một tệp từ ổ cứng vào chuỗi hoặc mảng trong tập lệnh Ruby.
+- Ba việc trở nên khả thi hoặc dễ thực hiện hơn nhiều nhờ tuần tự hóa.
+- JSON là gì.
+- YAML là gì.
+- Chuyển một đối tượng Ruby thành JSON.
+- Chuyển JSON thành một đối tượng Ruby.
+- Những lớp và phương thức nào có thể được tập lệnh Ruby sử dụng để đọc và ghi vào ổ cứng.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read [Thoughtbot's I/O in Ruby](https://thoughtbot.com/blog/io-in-ruby). You can ignore both the 'Putting it all together' and the 'Working with disparate APIs' sections.
-  1. Watch [icc0612's introduction to serialization](https://www.youtube.com/watch?v=uS37TujnLRw). It will explain the concept of serialization before you implement it in Ruby.
-  1. Read [Choosing the Right Serialization Format](https://www.sitepoint.com/choosing-right-serialization-format/) for more information about the various serialization options you can choose from.
-  1. Skim [Alan Skorkin's article about object oriented serialization in Ruby](http://www.skorks.com/2010/04/serializing-and-deserializing-objects-with-ruby/). The article isn't well formatted and some code examples are outdated, but this post still contains relevant information. To view in a better format, you can copy the contents of this [pastebin](https://pastebin.com/ZixCHcWk) and paste them into the [Odin Markdown Preview Tool](https://www.theodinproject.com/lessons/preview).
-  1. Read the sections 'Ruby files' and 'Ruby directories' from the [Input/Output chapter of Zetcode's Ruby Tutorial](http://zetcode.com/lang/rubytutorial/io/) for examples of how to manipulate files and directories using the `File` and `Dir` classes.
+  1. Đọc bài viết [I/O trong Ruby của Thoughtbot](https://thoughtbot.com/blog/io-in-ruby). Bạn có thể bỏ qua cả phần 'Kết hợp mọi thứ lại với nhau' và phần 'Làm việc với các API không đồng nhất'.
+  1. Xem [phần giới thiệu về tuần tự hóa của icc0612](https://www.youtube.com/watch?v=uS37TujnLRw). Phần này sẽ giải thích khái niệm tuần tự hóa trước khi bạn triển khai nó trong Ruby.
+  1. Đọc bài [Chọn định dạng tuần tự hóa phù hợp](https://www.sitepoint.com/choosing-right-serialization-format/) để tìm hiểu thêm về các tùy chọn tuần tự hóa khác nhau mà bạn có thể lựa chọn.
+  1. Đọc lướt [bài viết của Alan Skorkin về tuần tự hóa hướng đối tượng trong Ruby](http://www.skorks.com/2010/04/serializing-and-deserializing-objects-with-ruby/). Bài viết được trình bày chưa tốt và một số ví dụ mã đã lỗi thời, nhưng vẫn chứa những thông tin hữu ích. Để xem ở định dạng dễ đọc hơn, bạn có thể sao chép nội dung từ [pastebin này](https://pastebin.com/ZixCHcWk) rồi dán vào [Công cụ xem trước Markdown của Odin](https://www.theodinproject.com/lessons/preview).
+  1. Đọc các phần 'Tệp Ruby' và 'Thư mục Ruby' trong [chương Nhập/Xuất của Ruby Tutorial trên Zetcode](http://zetcode.com/lang/rubytutorial/io/) để xem ví dụ về cách thao tác với tệp và thư mục bằng các lớp `File` và `Dir`.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến những nội dung liên quan. Đây không phải phần bắt buộc, nên bạn có thể xem như tài liệu bổ sung.
 
-- [Everything You Need to know about Serialization in Ruby on Rails](https://blog.kiprosh.com/serialization_in_ruby_on_rails_part_one/)
-- [Ruby Monk's section on Serializing](https://web.archive.org/web/20160505174806/http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/45-more-classes/lessons/104-serializing)
-- [Short Example of Serialization](https://web.archive.org/web/20200627063721/http://rubylearning.com/satishtalim/object_serialization.html) from Ruby Learning
-- How to [Read](https://www.youtube.com/watch?v=92li0A8d4io) and [Write](https://www.youtube.com/watch?v=FW9hDsMY1is) Files by Giraffe Academy
+- [Mọi điều bạn cần biết về tuần tự hóa trong Ruby on Rails](https://blog.kiprosh.com/serialization_in_ruby_on_rails_part_one/)
+- [Phần về tuần tự hóa của Ruby Monk](https://web.archive.org/web/20160505174806/http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/45-more-classes/lessons/104-serializing)
+- [Ví dụ ngắn về tuần tự hóa](https://web.archive.org/web/20200627063721/http://rubylearning.com/satishtalim/object_serialization.html) từ Ruby Learning
+- Cách [đọc](https://www.youtube.com/watch?v=92li0A8d4io) và [ghi](https://www.youtube.com/watch?v=FW9hDsMY1is) tệp của Giraffe Academy

@@ -1,125 +1,125 @@
-### Introduction
+### Giới thiệu
 
-It's pretty easy to turn your application into an API, but what about grabbing data from other APIs across the internet?  That's where things usually get a bit more challenging because they're all different and you've got to authenticate yourself.
+Việc biến ứng dụng của bạn thành một API khá dễ, nhưng còn việc lấy dữ liệu từ những API khác trên internet thì sao? Đây thường là phần khó hơn một chút, vì mỗi API đều khác nhau và bạn phải tự xác thực với chúng.
 
-Most popular services offer APIs so developers can interface with them (they love it if you can get more people using their platform).  Facebook, X, Instagram, Flickr, Dropbox, AirBnB... They've all got APIs.  Just Google "companyX API docs" and you'll get to their developers section.
+Hầu hết các service phổ biến đều cung cấp API để developer có thể tương tác với chúng (họ rất thích nếu bạn giúp có thêm người sử dụng platform của họ). Facebook, X, Instagram, Flickr, Dropbox, AirBnB... tất cả đều có API. Chỉ cần Google "companyX API docs" là bạn sẽ đến được khu vực dành cho developer của họ.
 
-If you go to the documentation for an API, it can sometimes be a bit overwhelming because much of the material sort of assumes that you know what you're doing, but some are definitely better than others.  There are also elements that are common across almost all of them.  The more you work with APIs (and get the hang of the authentication flow), the easier they get.  You'll be making mashups in no time.
+Khi mở tài liệu của một API, đôi khi bạn có thể thấy hơi choáng ngợp vì phần lớn nội dung dường như mặc định rằng bạn đã biết mình đang làm gì, nhưng chắc chắn có tài liệu tốt hơn những tài liệu khác. Ngoài ra, gần như mọi API đều có một số thành phần chung. Bạn càng làm việc với API nhiều (và càng nắm được flow xác thực), chúng càng trở nên dễ hơn. Chẳng bao lâu nữa, bạn sẽ tạo được các mashup.
 
-This lesson will cover some general steps that are common across APIs and will do high level overviews of some of the methods for authenticating with APIs like Omniauth.  Try to gain as much conceptual understanding as you can here and use the documentation each gem or API provides to help with the implementation.  If you find great free learning resources that explain APIs, you can [suggest resources via a GitHub issue in our curriculum repo](https://github.com/TheOdinProject/curriculum/issues/new/choose)!
+Bài học này sẽ trình bày một số bước tổng quát thường gặp ở các API và tổng quan ở mức cao về một số phương thức xác thực với API như Omniauth. Hãy cố gắng nắm được càng nhiều kiến thức khái niệm càng tốt, đồng thời sử dụng tài liệu do từng gem hoặc API cung cấp để hỗ trợ việc triển khai. Nếu bạn tìm được những tài nguyên học miễn phí hay giải thích về API, bạn có thể [đề xuất tài nguyên thông qua một GitHub issue trong curriculum repo của chúng ta](https://github.com/TheOdinProject/curriculum/issues/new/choose)!
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về những chủ đề bạn sẽ học trong bài học này.
 
-- How to set up your app to use an API.
-- How API use is typically controlled.
-- RESTful APIs and how they can make your life easier.
-- What OAuth is.
-- What OmniAuth is.
-- What an SDK is.
+- Cách thiết lập app để sử dụng API.
+- Cách việc sử dụng API thường được kiểm soát.
+- RESTful API và cách chúng có thể giúp cuộc sống của bạn dễ dàng hơn.
+- OAuth là gì.
+- OmniAuth là gì.
+- SDK là gì.
 
-### First steps
+### Những bước đầu tiên
 
-You will need to register yourself and your application with the API provider.  They will track and monitor your usage this way.  Typically, there is a free tier of usage and it will cost you if you're going over your limits, whether they are expressed in terms of total MB downloaded, number of requests, or number of transactions (for instance).  Usually, even if you're a user of their service, you will need to separately go to their developer portal.
+Bạn sẽ cần đăng ký bản thân và ứng dụng của mình với API provider. Bằng cách này, họ có thể theo dõi và giám sát việc sử dụng của bạn. Thông thường, họ có một mức sử dụng miễn phí và sẽ tính phí nếu bạn vượt quá giới hạn, dù giới hạn đó được tính theo tổng số MB đã tải xuống, số request hay số transaction (chẳng hạn). Thông thường, ngay cả khi bạn là user của service, bạn vẫn phải truy cập developer portal của họ riêng biệt.
 
-You will need to get an **API key** from the API provider, which often is the last part of registration.  This key will uniquely identify your application to the API provider and you will send it along with every request.  It's sort of like a user on your site automatically submitting their session cookie with each request so you know they're logged in.  
+Bạn sẽ cần lấy một **API key** từ API provider, thường là bước cuối của quá trình đăng ký. Key này sẽ nhận diện duy nhất ứng dụng của bạn với API provider và bạn sẽ gửi nó kèm theo mọi request. Nó hơi giống việc một user trên site của bạn tự động gửi session cookie cùng mỗi request để bạn biết họ đã đăng nhập.
 
-You'll typically also get a "secret key" or similarly named code.  Whereas the API key is usually public, the secret key is an added layer of security that's required for the more secure APIs and you will use it to generate a cryptographic token that authenticates any requests you make.  You will need to make sure you don't include this secret key in your Git repo!  Use the `figaro` gem or environment variables to put the key on the server instead of hard coding it.
+Thông thường, bạn cũng sẽ nhận được một "secret key" hoặc một code có tên tương tự. Trong khi API key thường là thông tin công khai, secret key là một lớp bảo mật bổ sung cần thiết cho những API an toàn hơn; bạn sẽ dùng nó để tạo một cryptographic token xác thực mọi request bạn thực hiện. Bạn phải đảm bảo không đưa secret key này vào Git repo! Hãy dùng gem `figaro` hoặc environment variable để đặt key trên server thay vì hard code nó.
 
-### API rates and security tokens
+### Giới hạn API và security token
 
-Most APIs require a different type of "security clearance" for different requests:  
+Hầu hết API yêu cầu các loại "security clearance" khác nhau cho những request khác nhau:
 
-1. You can usually make innocuous requests like asking for posts from X's (formerly known as Twitter) API with straightforward and unauthenticated GET requests.  You can make these from any command line or an application like [Postman](http://getpostman.com). These types of API requests are usually severely rate limited to incentivize you to sign up.  
-1. The next layer is making requests that include your API key. These are still usually fairly innocuous things (like getting public data) and limited by the API's pricing tiers.
-1. More sensitive requests like asking for specific user data or submitting/modifying/deleting data will likely require you to use an authentication process involving your secret token.  We'll cover the basics of this in the project.  Rates for these requests are subject to the API pricing tiers.
-1. Oftentimes, you actually want to make requests on behalf of a user.  For instance, showing a user a dashboard of all their posts and Facebook posts together would require asking X for that user's posts and Facebook for that user's posts.  This can involve a LOT of requests over a large user base, but luckily you're actually able to make them on the user's behalf by asking for the user's permission.  We'll cover this as well later, but basically you send the user to the API provider's site to sign in, then the API provider will give you a user-specific token to use when making requests on their behalf in the future.  Rates for this are usually more advantageous because they are covered in a per-user bucket.  We typically use the OAuth protocol for this, as described below.
+1. Bạn thường có thể thực hiện những request vô hại, chẳng hạn yêu cầu các bài đăng từ API của X (trước đây có tên là Twitter), bằng các GET request đơn giản và không cần xác thực. Bạn có thể thực hiện chúng từ bất kỳ command line nào hoặc một ứng dụng như [Postman](http://getpostman.com). Những loại API request này thường bị giới hạn rate rất nghiêm ngặt để khuyến khích bạn đăng ký.
+1. Lớp tiếp theo là các request có kèm API key. Đây vẫn thường là những thao tác khá vô hại (chẳng hạn lấy dữ liệu công khai) và bị giới hạn theo các pricing tier của API.
+1. Những request nhạy cảm hơn, chẳng hạn yêu cầu dữ liệu cụ thể của user hoặc gửi/thay đổi/xóa dữ liệu, có thể sẽ yêu cầu bạn sử dụng quy trình xác thực có secret token. Chúng ta sẽ đề cập những điều cơ bản của việc này trong project. Rate dành cho các request này phụ thuộc vào pricing tier của API.
+1. Nhiều khi, bạn thực sự muốn thực hiện request thay mặt cho một user. Ví dụ, để hiển thị cho user một dashboard gồm tất cả bài đăng của họ và các bài đăng trên Facebook, bạn sẽ phải yêu cầu X cung cấp bài đăng của user đó và Facebook cũng cung cấp bài đăng của user đó. Việc này có thể tạo ra RẤT NHIỀU request trên một lượng user lớn, nhưng may mắn là bạn có thể thực hiện chúng thay mặt user bằng cách xin phép user. Chúng ta cũng sẽ đề cập việc này sau, nhưng về cơ bản, bạn đưa user đến site của API provider để đăng nhập, sau đó API provider sẽ cấp cho bạn một token riêng của user để sử dụng cho các request thay mặt họ về sau. Rate cho cách này thường có lợi hơn vì được tính trong một bucket riêng cho từng user. Chúng ta thường dùng giao thức OAuth cho việc này, như mô tả bên dưới.
 
-### Versions
+### Phiên bản
 
-Tech companies, especially if they've been around for a while, typically have several versions of their API.  Usually, they built a first draft version when they were a startup and then had to build a real one later, but still have to support the original since so many other applications are likely to be using it.  
+Các công ty công nghệ, đặc biệt những công ty đã hoạt động lâu năm, thường có nhiều phiên bản API. Thông thường, họ xây dựng một phiên bản nháp đầu tiên khi còn là startup rồi sau đó phải xây dựng một phiên bản thực sự, nhưng vẫn phải hỗ trợ phiên bản ban đầu vì có rất nhiều ứng dụng khác có thể đang sử dụng nó.
 
-Just go for the latest version unless you have a compelling reason not to (it's usually got a separate section of documentation for each version).  Pay attention to which version's docs you're looking at... there's nothing like the frustration of realizing you've been looking at the v1 API instead of the v2 API docs.
+Hãy chọn phiên bản mới nhất, trừ khi bạn có lý do thuyết phục để không làm vậy (thường tài liệu sẽ có một phần riêng cho từng phiên bản). Hãy chú ý bạn đang đọc tài liệu của phiên bản nào... không gì khó chịu bằng việc nhận ra mình đã xem tài liệu API v1 thay vì tài liệu API v2.
 
-### RESTful APIs
+### RESTful API
 
-Just like your routes should ideally be set up in a RESTful way, so too should APIs.  These days, most APIs are RESTful, meaning the usual batch of HTTP methods (GET/POST/PUT/PATCH/DELETE) requests will retrieve resources as expected.  The good part about setting up your application routes RESTfully is that your API will be the same way.
+Cũng như routes của bạn lý tưởng nhất nên được thiết lập theo cách RESTful, API cũng vậy. Ngày nay, hầu hết API đều là RESTful, nghĩa là các request sử dụng nhóm HTTP method thông thường (GET/POST/PUT/PATCH/DELETE) sẽ truy xuất resource như mong đợi. Điểm hay của việc thiết lập routes trong app theo kiểu RESTful là API của bạn cũng sẽ hoạt động theo cách tương tự.
 
-Working with RESTful APIs at least takes a lot of the headache out of the process since you can usually sort of guess what you should be doing, then can head over to the docs to figure out how exactly and what format you'll get the results back in.  For instance, just like you'd expect the GET request to the `/users` route in your app to display a page listing all its users, a GET request to a RESTful API for the same route should probably give you back a JSON or XML object filled with all the users (or at least some paginated sample of them).
+Làm việc với RESTful API ít nhất giúp giảm đáng kể sự đau đầu trong quá trình này, vì bạn thường có thể đoán được mình nên làm gì, rồi vào tài liệu để tìm hiểu chính xác cách thực hiện và kết quả sẽ được trả về dưới định dạng nào. Ví dụ, cũng như bạn mong đợi GET request đến route `/users` trong app sẽ hiển thị một trang liệt kê tất cả user, GET request đến RESTful API với cùng route đó có lẽ sẽ trả về một object JSON hoặc XML chứa tất cả user (hoặc ít nhất là một phần dữ liệu được phân trang).
 
-### Oauth and login via API
+### OAuth và đăng nhập qua API
 
-You've seen sites where their homepage lets you log in using Facebook or X or LinkedIn.  After logging in with one of those third-party services you magically have a new account with them but don't need to give them a new password.
+Bạn hẳn đã thấy những site có trang chủ cho phép đăng nhập bằng Facebook, X hoặc LinkedIn. Sau khi đăng nhập bằng một trong các service bên thứ ba đó, bạn gần như ngay lập tức có một account mới trên site nhưng không cần cung cấp cho site một password mới.
 
-OAuth is usually behind this.  It solves the very real problem of user data privacy and access control.  The idea is that the user shouldn't need to give your awesome application their password in order for you to make requests on their behalf.  So OAuth allows Facebook to act as a sort of intermediary when dealing with the user.
+OAuth thường đứng sau cơ chế này. Nó giải quyết vấn đề rất thực tế về quyền riêng tư dữ liệu và kiểm soát truy cập của user. Ý tưởng là user không cần cung cấp password cho ứng dụng tuyệt vời của bạn để bạn có thể thực hiện request thay mặt họ. Vì vậy, OAuth cho phép Facebook đóng vai trò trung gian khi làm việc với user.
 
-This has two great use cases -- logging in the user with an external site like Facebook and making requests for or submissions of data on the User's behalf.
+Cơ chế này có hai trường hợp sử dụng tuyệt vời -- đăng nhập user bằng một site bên ngoài như Facebook và thực hiện request hoặc gửi dữ liệu thay mặt User.
 
-In the first case, you never actually discover the user's Facebook password.  They get redirected to Facebook's website to sign in, where they authorize you to use some of their data (which you'll have to configure when you set up this process).  Facebook then calls you back (by sending a request to a URL of your choosing with the proper data) and gives you a special access token for that user.  You can then use that to get any additional data that the user has authorized you to access (like their name and email address).  Now you can create a new user in your database with that data and everyone's relatively happy.
+Trong trường hợp đầu tiên, bạn không bao giờ biết password Facebook của user. User được chuyển hướng đến website Facebook để đăng nhập, tại đó họ cho phép bạn sử dụng một phần dữ liệu của họ (những dữ liệu này sẽ phải được bạn cấu hình khi thiết lập quy trình). Sau đó Facebook gọi ngược lại cho bạn (bằng cách gửi request đến một URL do bạn chọn cùng dữ liệu phù hợp) và cung cấp một access token đặc biệt cho user đó. Bạn có thể dùng token này để lấy thêm bất kỳ dữ liệu nào mà user đã cho phép bạn truy cập (chẳng hạn tên và địa chỉ email). Bây giờ bạn có thể tạo một user mới trong database bằng dữ liệu đó, và mọi người tương đối hài lòng.
 
-From the user's perspective, they only need to remember their Facebook password to log into your site so it's easy for them.  They also don't need to trust you with their password.  As long as they trust Facebook, they can use your site.  Also, if your site is doing bad things with their data (like when SocialCam spammed the hell out of everyone's Facebook timeline for a while), they can tell Facebook to stop allowing you to use their data and Facebook will turn off access for the token they gave you.  
+Từ góc nhìn của user, họ chỉ cần nhớ password Facebook để đăng nhập vào site của bạn, nên việc này rất thuận tiện. Họ cũng không cần tin tưởng bạn với password của họ. Miễn là họ tin Facebook, họ có thể sử dụng site của bạn. Ngoài ra, nếu site của bạn làm những điều không tốt với dữ liệu của họ (chẳng hạn khi SocialCam từng spam dữ dội lên timeline Facebook của mọi người trong một thời gian), họ có thể yêu cầu Facebook ngừng cho phép bạn sử dụng dữ liệu của họ, và Facebook sẽ tắt quyền truy cập của token đã cấp cho bạn.
 
-From Facebook's perspective, they retain majority ownership of the user and nestle deeper into everyone's lives (for better or for worse).
+Từ góc nhìn của Facebook, họ giữ phần lớn quyền sở hữu user và len sâu hơn vào đời sống của mọi người (dù theo hướng tốt hay xấu).
 
-Once you have the user token, you are allowed to make requests or submissions based on whatever permissions Facebook (and the user) authorized you to.  That could involve asking who their friends are, posting on their timeline, or "liking" something.  You just need to include the token as a part of your authentication process for the request.
+Khi đã có user token, bạn được phép thực hiện request hoặc gửi dữ liệu dựa trên bất kỳ permission nào mà Facebook (và user) đã cấp cho bạn. Việc đó có thể bao gồm hỏi danh sách bạn bè của user, đăng lên timeline của họ hoặc "like" một thứ gì đó. Bạn chỉ cần đưa token vào quy trình xác thực của request.
 
-#### Restrictions
+#### Các hạn chế
 
-Every site, in addition to rate limiting their API, will have terms of use.  This usually covers what you're allowed to do with the data you gather.  For instance, they probably aren't going to allow you to store a whole bunch of their data in your own database (harvesting).  They also probably won't allow you to do anything SPAMmy or which will hurt their user's experience.  Common sense should be your initial guide, but consult the TOU documentation for specifics.  Basically, if you'll be hurting their user's experience or taking their precious data, you can't do it.
+Bên cạnh việc giới hạn rate cho API, mọi site đều có điều khoản sử dụng. Điều khoản này thường quy định bạn được phép làm gì với dữ liệu thu thập được. Chẳng hạn, họ có thể sẽ không cho phép bạn lưu một lượng lớn dữ liệu của họ vào database riêng (harvesting). Họ cũng có thể không cho phép bạn làm điều gì đó mang tính SPAM hoặc gây ảnh hưởng xấu đến trải nghiệm của user. Hãy dùng lẽ thường làm chỉ dẫn ban đầu, nhưng hãy đọc tài liệu TOU để biết chi tiết. Về cơ bản, nếu việc bạn làm gây ảnh hưởng đến trải nghiệm của user hoặc lấy đi dữ liệu quý giá của họ, bạn không được phép làm.
 
-It should be noted that any time you develop using someone else's API, you're putting yourself at their mercy.  If you're using it to the point where you pay for data, they'll love you.  If you get too successful and become competitive with them, they've got you by the neck and will cut you off or demand exorbitant fees.  Just be cognizant of those risks.
+Cần lưu ý rằng bất cứ khi nào phát triển bằng API của người khác, bạn đều đặt mình vào thế phụ thuộc họ. Nếu bạn sử dụng API đến mức phải trả tiền cho dữ liệu, họ sẽ rất vui. Nếu bạn trở nên quá thành công và cạnh tranh với họ, họ sẽ nắm điểm yếu của bạn rồi ngắt quyền truy cập hoặc đòi mức phí cắt cổ. Chỉ cần nhận thức rõ những rủi ro đó.
 
-#### OAuth 2.0 basics
+#### Những điều cơ bản về OAuth 2.0
 
-OAuth 2.0 is actually pretty complicated, so we'll just cover the basic process.  You don't really need to care how exactly it works behind the scenes until you start really developing with it or trying to create your own API that uses it.  You **will** need to understand the steps involved in the user experience because, well, the user is the reason you're building your application.
+OAuth 2.0 thực sự khá phức tạp, nên chúng ta sẽ chỉ trình bày quy trình cơ bản. Bạn chưa cần quan tâm chính xác nó hoạt động phía sau hậu trường như thế nào cho đến khi bắt đầu phát triển nghiêm túc với nó hoặc thử tạo API của riêng mình có sử dụng nó. Tuy nhiên, bạn **sẽ** cần hiểu các bước liên quan đến trải nghiệm của user, vì user chính là lý do bạn xây dựng ứng dụng.
 
-Basically (still using Facebook as an example):
+Về cơ bản (vẫn lấy Facebook làm ví dụ):
 
-1. User tries to access a page on your app and you ask the user to login
-1. User chooses the "Login With Facebook" option
-1. User is redirected to a Facebook page asking them to review the permissions you are asking for and telling them to sign in.  The URI will contain parameters that tell Facebook who your application is and possibly which URI they should submit their response to (or maybe you specified this as a part of your API registration process with them).
-1. User decides you seem like a fun application so they'll allow you to see their email address and post to their timeline.  User signs in to their Facebook account.  Facebook creates an authorization code and sends it back to your application's callback URI.
-1. The user waits while your application takes that authorization code and uses it to ask Facebook for the real good stuff.  Facebook makes sure your application is the same one the user authorized, then POSTs back to you a unique authentication token for the user (which likely expires in 90 days) and any data you asked for up front (like email address).
-1. You store the user's unique token in your database and use it, along with your application key(s), to make any subsequent requests on the user's behalf.
+1. User cố truy cập một page trên app của bạn và bạn yêu cầu user đăng nhập
+1. User chọn tùy chọn "Login With Facebook"
+1. User được chuyển hướng đến một page Facebook yêu cầu họ xem lại những permission bạn xin và yêu cầu họ đăng nhập. URI sẽ chứa các parameter cho Facebook biết ứng dụng của bạn là ứng dụng nào và có thể cả URI mà Facebook cần gửi response đến (hoặc có thể bạn đã chỉ định URI này khi đăng ký API với họ).
+1. User thấy bạn có vẻ là một ứng dụng thú vị nên cho phép bạn xem địa chỉ email và đăng lên timeline của họ. User đăng nhập vào account Facebook. Facebook tạo một authorization code rồi gửi code đó về callback URI của app bạn.
+1. User chờ trong khi app của bạn lấy authorization code đó và dùng nó để yêu cầu Facebook cung cấp phần dữ liệu thực sự cần thiết. Facebook xác nhận app của bạn chính là app mà user đã cấp quyền, sau đó POST về cho bạn một authentication token duy nhất của user (có thể hết hạn sau 90 ngày) cùng mọi dữ liệu bạn đã yêu cầu từ đầu (chẳng hạn địa chỉ email).
+1. Bạn lưu unique token của user vào database và dùng nó cùng với application key(s) để thực hiện các request tiếp theo thay mặt user.
 
-See this brief [overview of OAuth 2.0](http://tutorials.jenkov.com/oauth2/overview.html).  Then check out this [more substantive explanation of OAuth 2.0 from tutsplus.com](https://code.tutsplus.com/articles/oauth-20-the-good-the-bad-the-ugly--net-33216).
+Hãy xem [tổng quan ngắn gọn về OAuth 2.0](http://tutorials.jenkov.com/oauth2/overview.html) này. Sau đó đọc [phần giải thích đầy đủ hơn về OAuth 2.0 từ tutsplus.com](https://code.tutsplus.com/articles/oauth-20-the-good-the-bad-the-ugly--net-33216).
 
-#### Implementing OAuth 2.0 in Rails -- Use OmniAuth!
+#### Triển khai OAuth 2.0 trong Rails -- Hãy dùng OmniAuth!
 
-This sounds horribly complicated! Someone must have made a gem for it...
+Nghe có vẻ vô cùng phức tạp! Chắc hẳn đã có ai đó tạo một gem cho việc này...
 
-Luckily someone has.  Many someones, actually.  There is a generic OAuth gem called `omniauth` ([Omniauth documentation](https://github.com/intridea/omniauth)) and then a separate gem which provides a specific authentication strategy for every major API ([list of Omniauth strategies](https://github.com/intridea/omniauth/wiki/List-of-Strategies)).  Once you've gone through things with one of them, you'll become comfortable with all of them. It's also worth noting that if you install and use [Devise](https://github.com/heartcombo/devise) (to handle your user model, for example), it comes with support for Omniauth built in! They have documentation on [how to integrate Devise with Omniauth](https://github.com/heartcombo/devise/wiki/OmniAuth%3A-Overview).
+May mắn là có rồi. Thực ra là nhiều người cùng tạo. Có một gem OAuth tổng quát tên là `omniauth` ([tài liệu Omniauth](https://github.com/intridea/omniauth)) và một gem riêng cung cấp authentication strategy cụ thể cho mỗi API lớn ([danh sách các strategy của Omniauth](https://github.com/intridea/omniauth/wiki/List-of-Strategies)). Sau khi làm quen với một strategy, bạn sẽ thấy thoải mái với tất cả strategy còn lại. Cũng đáng lưu ý rằng nếu bạn cài đặt và sử dụng [Devise](https://github.com/heartcombo/devise) (chẳng hạn để xử lý user model), nó đã tích hợp sẵn hỗ trợ cho Omniauth! Họ có tài liệu về [cách tích hợp Devise với Omniauth](https://github.com/heartcombo/devise/wiki/OmniAuth%3A-Overview).
 
-Using Omniauth is much easier to learn by doing than reading a bunch of bullet points. You'll have the opportunity to implement it in your final project where you can ask questions if needed.
+Học cách sử dụng Omniauth thông qua thực hành dễ hơn nhiều so với việc đọc một loạt bullet point. Bạn sẽ có cơ hội triển khai nó trong final project, nơi bạn có thể đặt câu hỏi nếu cần.
 
-### SDKs
+### SDK
 
-In addition to or instead of API access, many companies provide SDKs (software development kits).  Usually these are JavaScript libraries that contain all the code necessary to access their API.  This can be useful because you're then able to access the API with JavaScript methods instead of doing backflips on your own backend.  It comes with the downside, however, of expanding your code base and forcing you to use their conventions for everything.  
+Ngoài hoặc thay cho việc truy cập API, nhiều công ty cung cấp SDK (software development kit). Thông thường, đây là các thư viện JavaScript chứa mọi code cần thiết để truy cập API của họ. Điều này hữu ích vì bạn có thể truy cập API bằng các JavaScript method thay vì phải thực hiện những màn nhào lộn ở backend của mình. Tuy nhiên, nhược điểm là code base của bạn sẽ lớn hơn và bạn bị buộc phải sử dụng convention của họ cho mọi thứ.
 
-We won't cover SDKs explicitly in this course but they should be well within reach to pick up by reading the documentation.
+Chúng ta sẽ không trình bày SDK một cách cụ thể trong khóa học này, nhưng việc học chúng bằng cách đọc tài liệu hoàn toàn nằm trong khả năng của bạn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Watch this Railscast on [using Omniauth to allow X (formerly known as Twitter) Signin](http://railscasts.com/episodes/241-simple-omniauth-revised).
-  1. Read through the [Omniauth documentation](https://github.com/intridea/omniauth)
-  1. Pick an API that you really might like to interface with or a web product you use almost every day (e.g. Google, Facebook, Instagram...).  Google for its docs, e.g. with "instagram api documentation", and have a look at them.  Some docs are better than others, but they will be your source for understanding which methods you can call, what they will return, how to register your application to get an API key, and more useful tidbits.
+  1. Xem Railscast này về [việc dùng Omniauth để cho phép đăng nhập bằng X (trước đây có tên là Twitter)](http://railscasts.com/episodes/241-simple-omniauth-revised).
+  1. Đọc tài liệu [Omniauth](https://github.com/intridea/omniauth)
+  1. Chọn một API mà bạn thực sự muốn tương tác, hoặc một web product mà bạn sử dụng gần như mỗi ngày (ví dụ Google, Facebook, Instagram...). Google để tìm tài liệu của API đó, chẳng hạn tìm "instagram api documentation", rồi đọc qua. Có tài liệu tốt hơn những tài liệu khác, nhưng chúng sẽ là nguồn giúp bạn hiểu những method nào có thể gọi, chúng trả về gì, cách đăng ký ứng dụng để nhận API key và nhiều thông tin hữu ích khác.
 
 </div>
 
-#### Conclusion
+#### Kết luận
 
-APIs are fundamental to making rich web applications and they're also a lot of fun -- it makes your app feel a lot more "real" when you're able to let your users log in using Facebook or if you can display information from different sources across the web.  If you're building a startup, it improves the user experience enough that you'll likely see an uptick in conversion rates.
+API là nền tảng để xây dựng các web application phong phú, đồng thời cũng rất thú vị -- ứng dụng của bạn có cảm giác "thực" hơn nhiều khi bạn có thể cho phép user đăng nhập bằng Facebook hoặc hiển thị thông tin từ nhiều nguồn khác nhau trên web. Nếu bạn đang xây dựng một startup, trải nghiệm user được cải thiện đủ nhiều để bạn có thể sẽ thấy tỷ lệ chuyển đổi tăng lên.
 
-Working with external APIs can be incredibly rewarding because you're able to leverage functionality that others have spent a lot of time perfecting but also incredibly frustrating because they're all different and you have to rely on gems which are doing things behind the scenes that you're not entirely sure of.  Over time, you'll start to see a lot of similarities between APIs and the procedure for working with them will feel more and more comfortable.  To help get you there, the next project will have you working with an API and your final project will have you implementing signin via API as well.  
+Làm việc với external API có thể vô cùng đáng giá vì bạn tận dụng được những functionality mà người khác đã dành rất nhiều thời gian để hoàn thiện, nhưng cũng vô cùng bực bội vì mỗi API đều khác nhau và bạn phải phụ thuộc vào các gem thực hiện những việc phía sau hậu trường mà bạn không hoàn toàn chắc chắn. Theo thời gian, bạn sẽ bắt đầu nhận ra nhiều điểm tương đồng giữa các API, và quy trình làm việc với chúng sẽ ngày càng trở nên quen thuộc. Để giúp bạn đạt được điều đó, project tiếp theo sẽ cho bạn làm việc với một API, và final project cũng sẽ yêu cầu bạn triển khai đăng nhập qua API.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- See this Stack Overflow post on [interfacing with third-party APIs](http://stackoverflow.com/questions/6228870/interfacing-with-a-third-party-api-in-rails-opeing-urls-and-parsing-xml-json) for tips.
-- [RailsConf 2016 - From Zero to API Hero: Consuming APIs like a Pro by Cecy Correa](https://www.youtube.com/watch?v=Af5HDgvGuXk)
-- Take a look at this Medium article over [integrating a third party API with Rails 5](https://revs.runtime-revolution.com/integrating-a-third-party-api-with-rails-5-134f960ddbba).
-- See this other Medium Article on [creating a basic Rails app using the OMDB API](https://medium.com/food4fluctuations/using-an-api-in-rails-for-noobs-5e02edb0e56b), an open source movie database.
+- Xem bài đăng Stack Overflow này về [việc tương tác với API bên thứ ba](http://stackoverflow.com/questions/6228870/interfacing-with-a-third-party-api-in-rails-opeing-urls-and-parsing-xml-json) để tham khảo các mẹo.
+- [RailsConf 2016 - Từ Zero đến API Hero: Sử dụng API như một chuyên gia, của Cecy Correa](https://www.youtube.com/watch?v=Af5HDgvGuXk)
+- Xem bài viết Medium này về [tích hợp API bên thứ ba với Rails 5](https://revs.runtime-revolution.com/integrating-a-third-party-api-with-rails-5-134f960ddbba).
+- Xem bài viết Medium khác về [tạo một Rails app cơ bản sử dụng OMDB API](https://medium.com/food4fluctuations/using-an-api-in-rails-for-noobs-5e02edb0e56b), một cơ sở dữ liệu phim mã nguồn mở.

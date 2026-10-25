@@ -1,47 +1,47 @@
-### Introduction
+### Giới thiệu
 
-These projects will give you a chance to actually build some forms, both using nearly-pure HTML and then graduating to using the helper methods that Rails provides.
+Các project này sẽ cho bạn cơ hội thực sự xây dựng một số form, trước hết bằng HTML gần như thuần túy, sau đó chuyển sang sử dụng các phương thức helper mà Rails cung cấp.
 
-### Project: Bare metal forms and helpers
+### Project: Form thủ công và helper
 
-In this project, you'll build a form the old fashioned way and then the Rails way.
+Trong project này, bạn sẽ xây dựng một form theo cách truyền thống, rồi xây dựng lại theo cách của Rails.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Set up the Back end
+#### Thiết lập back end
 
-You'll get good at setting up apps quickly in the coming lessons by using more or less this same series of steps (though we'll help you less and less each time):
+Trong các bài học sắp tới, bạn sẽ ngày càng thành thạo việc thiết lập app nhanh chóng bằng cách sử dụng gần như cùng một chuỗi bước này (dù mỗi lần chúng tôi sẽ hướng dẫn bạn ít hơn):
 
-1. Build a new rails app (called "re-former").
-1. Create a new Github repo and connect the remote to your local git repo. Check in and commit the initial stuff.
-1. Modify your README file to say something you'll remember later, like "This is part of the Forms Project in The Odin Project's Ruby on Rails Curriculum. Find it at [https://www.theodinproject.com](https://www.theodinproject.com)"
-1. Create and migrate a User model with `:username`, `:email` and `:password`.
-1. Add validations for presence to each field in the model.
-1. Create the `:users` resource in your routes file so requests actually have somewhere to go.  Use the `only:` option to specify just the `:new` and `:create` actions.
-1. Build a new UsersController (either manually or via the `$ rails generate controller Users` generator).
-1. Write empty methods for `#new` and `#create` in your UsersController.
-1. Create your `#new` view in `app/views/users/new.html.erb`.
-1. Fire up a rails server in another tab.
-1. Make sure everything works by visiting `http://localhost:3000/users/new` in the browser.
+1. Xây dựng một app rails mới (có tên là "re-former").
+1. Tạo một repo Github mới và kết nối remote với repo git cục bộ của bạn. Đưa các tệp ban đầu vào stage và commit chúng.
+1. Sửa tệp README để ghi một điều bạn sẽ nhớ về sau, chẳng hạn như "Đây là một phần của Forms Project trong Ruby on Rails Curriculum của The Odin Project. Xem tại [https://www.theodinproject.com](https://www.theodinproject.com)"
+1. Tạo và migrate một model User với `:username`, `:email` và `:password`.
+1. Thêm validation về tính hiện diện cho từng trường trong model.
+1. Tạo resource `:users` trong tệp routes để các request thực sự có nơi được xử lý. Dùng tùy chọn `only:` để chỉ định các action `:new` và `:create`.
+1. Xây dựng một UsersController mới (bằng tay hoặc thông qua generator `$ rails generate controller Users`).
+1. Viết các method rỗng cho `#new` và `#create` trong UsersController.
+1. Tạo view `#new` tại `app/views/users/new.html.erb`.
+1. Khởi động một rails server trong tab khác.
+1. Đảm bảo mọi thứ hoạt động bằng cách truy cập `http://localhost:3000/users/new` trong trình duyệt.
 
-#### HTML form
+#### Form HTML
 
-The first form you build will be mostly HTML (remember that stuff at all?).  Build it in your New view at `app/views/users/new.html.erb`.  The goal is to build a form that is almost identical to what you'd get by using a Rails helper so you can see how it's done behind the scenes.
+Form đầu tiên bạn xây dựng sẽ chủ yếu là HTML (bạn còn nhớ những thứ đó chứ?). Hãy xây dựng nó trong view New tại `app/views/users/new.html.erb`. Mục tiêu là tạo một form gần như giống hệt form bạn nhận được khi dùng helper của Rails, để bạn thấy nó được thực hiện bên dưới như thế nào.
 
-1. Build a form for creating a new user. See the [W3Schools page for forms](https://www.w3schools.com/tags/tag_form.asp) if you’ve totally forgotten how they work. Specify the `method` and the `action` attributes in your `<form>` tag (use `$ rails routes` to see which HTTP method and path are being expected based on the resource you created).  Include the attribute `accept-charset="UTF-8"` as well, which Rails naturally adds to its forms to specify Unicode character encoding.
+1. Xây dựng một form để tạo user mới. Nếu bạn đã quên hoàn toàn cách form hoạt động, hãy xem [trang W3Schools về form](https://www.w3schools.com/tags/tag_form.asp). Chỉ định các thuộc tính `method` và `action` trong thẻ `<form>` (dùng `$ rails routes` để xem method HTTP và path nào được mong đợi dựa trên resource bạn đã tạo). Đồng thời thêm thuộc tính `accept-charset="UTF-8"`, vì Rails tự nhiên thêm thuộc tính này vào các form của nó để chỉ định bảng mã ký tự Unicode.
 
-1. Create the proper input tags for your user's fields (email, username and password).  Use the proper password input for "password".  Be sure to specify the `name` attribute for these inputs.  Make label tags which correspond to each field.
+1. Tạo các thẻ input phù hợp cho các trường của user (email, username và password). Dùng input password phù hợp cho "password". Nhớ chỉ định thuộc tính `name` cho các input này. Tạo các thẻ label tương ứng với từng trường.
 
-1. For CSRF safety with Rails 7, Turbo is enabled by default in new apps. Turbo intercepts form submission and makes a partial XHR request instead of a standard HTTP request with full page reload. To get a better grasp of Rails protection against [cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery), let's take a short detour and disable Turbo for this form by setting the data attribute `data-turbo=false`.
-In the dev tools network tab, compare the request type with and without the `data-turbo=false` attribute to confirm it works as expected.
+1. Để đảm bảo an toàn CSRF với Rails 7, Turbo được bật mặc định trong các app mới. Turbo chặn việc gửi form và tạo một request XHR từng phần thay vì request HTTP tiêu chuẩn kèm việc tải lại toàn bộ trang. Để hiểu rõ hơn về cơ chế Rails bảo vệ khỏi [cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery), hãy tạm dừng ngắn để vô hiệu hóa Turbo cho form này bằng cách đặt thuộc tính dữ liệu `data-turbo=false`.
+Trong tab network của dev tools, hãy so sánh loại request khi có và không có thuộc tính `data-turbo=false` để xác nhận mọi thứ hoạt động như mong đợi.
 
-1. Submit your form and view the server output. The request should be intercepted before reaching your controller and the server will throw a CSRF error `ActionController::InvalidAuthenticityToken  (Can't verify CSRF token authenticity.)`.
+1. Gửi form và xem output của server. Request sẽ bị chặn trước khi tới controller và server sẽ đưa ra lỗi CSRF `ActionController::InvalidAuthenticityToken  (Can't verify CSRF token authenticity.)`.
 
-    That's because Rails by default automatically protects you from [cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) and it requires you to verify that the form was actually submitted from a page you generated. In order to do so, it generates an ["authenticity token"](http://guides.rubyonrails.org/security.html#cross-site-request-forgery-csrf) which looks like gibberish but helps Rails match the form with your session and the application.
+    Đó là vì theo mặc định Rails tự động bảo vệ bạn khỏi [cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery) và yêu cầu bạn xác minh rằng form thực sự được gửi từ một trang do bạn tạo ra. Để làm vậy, nó tạo ra một ["authenticity token"](http://guides.rubyonrails.org/security.html#cross-site-request-forgery-csrf) trông như một chuỗi vô nghĩa nhưng giúp Rails đối chiếu form với session và application của bạn.
 
-   So, if you want to create your own form that gets handled by Rails, you need to provide the token somehow as well. Luckily, Rails gives you a method called `form_authenticity_token` to do so
+   Vì vậy, nếu muốn tự tạo một form được Rails xử lý, bạn cũng cần cung cấp token theo một cách nào đó. May mắn là Rails cung cấp cho bạn một method có tên `form_authenticity_token` để làm việc đó
 
    ```erb
    <input
@@ -51,15 +51,15 @@ In the dev tools network tab, compare the request type with and without the `dat
    >
    ```
 
-   You'll now notice the token in the server output:
+   Bây giờ bạn sẽ thấy token trong output của server:
 
    ```bash
    ...
    Parameters: {"utf8"=>"✓", "authenticity_token"=>"jJa87aK1OpXfjojryBk2Db6thv0K3bSZeYTuW8hF4Ns=", "email"=>"foo@bar.com", "commit"=>"Submit Form"}
    ```
 
-1. However, if you look at the server output, you will see nothing much happening after the log of parameters received. The log should indicate a completed response with status 204 (no content). And indeed, if you look at the network tab in your inspector, you can see that a request was issued, but a response of `204 No Content` is returned.
-1. That's A-OK because it means that we've successfully gotten through our blank `#create` action in the controller (and didn't specify what should happen next).  Look at the server output.  It should include the parameters that were submitted, looking something like:
+1. Tuy nhiên, nếu xem output của server, bạn sẽ thấy sau log về các parameter đã nhận thì hầu như không có gì xảy ra. Log sẽ cho biết response đã hoàn tất với status 204 (không có nội dung). Quả thực, nếu xem tab network trong inspector, bạn có thể thấy request đã được gửi nhưng response trả về là `204 No Content`.
+1. Như vậy hoàn toàn ổn, vì điều đó có nghĩa là chúng ta đã đi qua action `#create` rỗng trong controller (và không chỉ định bước tiếp theo cần làm gì). Hãy xem output của server. Nó sẽ bao gồm các parameter đã gửi, tương tự như sau:
 
    ```bash
    Started POST "/users" for 127.0.0.1 at 2013-12-12 13:04:19 -0800
@@ -67,11 +67,11 @@ In the dev tools network tab, compare the request type with and without the `dat
    Parameters: {"authenticity_token"=>"WUaJBOpLhFo3Mt2vlEmPQ93zMv53sDk6WFzZ2YJJQ0M=", "username"=>"foobar", "email"=>"foo@bar.com", "password"=>"[FILTERED]"}
    ```
 
-That looks a whole lot like what you normally see when Rails does it, right?
+Trông rất giống những gì bạn thường thấy khi Rails tự thực hiện việc này, đúng không?
 
-#### Controller setup
+#### Thiết lập controller
 
-1. Go into your UsersController and build out the `#create` action to take those parameters and create a new User from them.  If you successfully save the user, you should redirect back to the New User form (which will be blank) and if you don't, it should render the `:new` form again (but it will still have the existing information entered in it).  You should be able to use something like:
+1. Mở UsersController và hoàn thiện action `#create` để nhận các parameter đó rồi tạo một User mới từ chúng. Nếu lưu user thành công, bạn nên redirect trở lại form New User (form sẽ trống); nếu không, nó nên render lại form `:new` (nhưng thông tin đã nhập vẫn còn). Bạn có thể dùng đoạn tương tự như sau:
 
    ```ruby
    # app/controllers/users_controller.rb
@@ -86,49 +86,49 @@ That looks a whole lot like what you normally see when Rails does it, right?
    end
    ```
 
-1. Test this out -- can you now create users with your form? If so, you should see an INSERT SQL command in the server log.
-1. We're not done just yet... that looks too long and difficult to build a user with all those `params` calls. It'd be a whole lot easier if we could just use a hash of the user's attributes so we could just say something like `User.new(user_params)`. Let's build it... we need our form to submit a hash of attributes that will be used to create a user, just like we would with Rails' `form_with` method. Remember, that method submits a top level `user` field which actually points to a hash of values. This is easy to achieve, though -- just change the `name` attribute slightly. Nest your three User fields inside the variable attribute using brackets in their names, e.g. `name="user[email]"`.
-1. Resubmit. Now your user parameters should be nested under the `"user"` key like:
+1. Hãy kiểm tra thử -- bây giờ bạn đã có thể tạo user bằng form chưa? Nếu có, bạn sẽ thấy một lệnh INSERT SQL trong log của server.
+1. Chúng ta vẫn chưa xong... cách này trông quá dài và khó khăn để xây dựng user với tất cả các lệnh gọi `params` đó. Sẽ dễ hơn nhiều nếu chỉ cần dùng một hash chứa các thuộc tính của user, để có thể viết như `User.new(user_params)`. Hãy xây dựng nó... form của chúng ta cần gửi một hash thuộc tính được dùng để tạo user, giống như method `form_with` của Rails. Hãy nhớ rằng method đó gửi một trường `user` ở cấp cao nhất, trường này thực sự trỏ tới một hash các giá trị. Tuy vậy, việc này khá dễ -- chỉ cần thay đổi nhẹ thuộc tính `name`. Lồng ba trường User vào trong thuộc tính biến bằng dấu ngoặc vuông trong tên của chúng, ví dụ `name="user[email]"`.
+1. Gửi lại. Bây giờ các parameter của user phải được lồng dưới key `"user"` như sau:
 
    ```bash
    Parameters: {"authenticity_token" => "WUaJBOpLhFo3Mt2vlEmPQ93zMv53sDk6WFzZ2YJJQ0M=", "user" =>{ "username" => "foobar", "email" => "foo@bar.com", "password" => "[FILTERED]" } }
    ```
 
-1. You'll get some errors because now your controller will need to change.  But recall that we're no longer allowed to just directly call `params[:user]` because that would return a hash and Rails' security features prevent us from doing that without first validating it.
-1. Go into your controller and comment out the line in your `#create` action where you instantiated a `::new` User (we'll use it later).
-1. Implement a private method at the bottom called `user_params` which will `expect` the proper fields (see the [Controllers Lesson](/lessons/ruby-on-rails-controllers) for a refresher).
-1. Add a new `::new` User line which makes use of that new allow params method.
-1. Submit your form now.  It should work marvelously (once you debug your typos)!
+1. Bạn sẽ gặp một số lỗi vì controller bây giờ cần thay đổi. Nhưng hãy nhớ rằng chúng ta không còn được phép gọi trực tiếp `params[:user]`, vì nó sẽ trả về một hash và các tính năng bảo mật của Rails ngăn chúng ta làm vậy nếu chưa xác thực nó trước.
+1. Mở controller và comment dòng trong action `#create` nơi bạn khởi tạo User `::new` (chúng ta sẽ dùng lại nó sau).
+1. Triển khai một private method ở cuối có tên `user_params`, method này sẽ `expect` các trường phù hợp (xem lại [bài học Controllers](/lessons/ruby-on-rails-controllers) nếu cần).
+1. Thêm một dòng User `::new` mới sử dụng method allow params vừa tạo.
+1. Bây giờ hãy gửi form. Nó sẽ hoạt động tuyệt vời (sau khi bạn tự sửa các lỗi đánh máy)!
 
-#### Railsy forms with #form_with
+#### Form theo phong cách Rails với #form_with
 
-Now we'll start morphing our form into a full Rails form using `#form_with`, which will make use of our model objects to build the form.
+Bây giờ chúng ta sẽ bắt đầu chuyển form thành một form Rails hoàn chỉnh bằng `#form_with`, helper này sẽ dùng các object model để xây dựng form.
 
-1. Modify your `#new` action in the controller to instantiate a blank `User` object and store it in an instance variable called `@user`.
-1. Comment out your entire HTML form.  It may be helpful to save it for later on if you get stuck.
-1. Convert your `<form>` tag to use a `#form_with` helper and the `@user` from your controller. The good thing is that you no longer need the authentication token because `form_with` method will insert that for you automatically.
-1. Generate your input fields by calling their methods on your new form object.  See the [Action View Form Builder Documentation](https://api.rubyonrails.org/v8.0.1/classes/ActionView/Helpers/FormBuilder.html) for a list of all input methods you can use with `#form_with`.
-1. Play with the `#input` method options -- add a default placeholder (like "<example@example.com>" for the email field), make it generate a different label than the default one (like "Your user name here"), and try starting with a value already populated. Some of these things you may need to Google for, but check out the [`#form_with` Rails API docs](https://api.rubyonrails.org/v6.1.1/classes/ActionView/Helpers/FormHelper.html#method-i-form_with)
-1. Test it out.
+1. Sửa action `#new` trong controller để khởi tạo một object `User` trống và lưu nó vào một instance variable có tên `@user`.
+1. Comment toàn bộ form HTML. Bạn nên lưu lại form để dùng sau nếu bị mắc kẹt.
+1. Chuyển thẻ `<form>` sang dùng helper `#form_with` và `@user` từ controller. Điểm hay là bạn không còn cần authentication token nữa, vì method `form_with` sẽ tự động chèn token đó cho bạn.
+1. Tạo các trường input bằng cách gọi các method tương ứng trên form object mới. Xem [tài liệu Action View Form Builder](https://api.rubyonrails.org/v8.0.1/classes/ActionView/Helpers/FormBuilder.html) để biết danh sách tất cả input method bạn có thể dùng với `#form_with`.
+1. Thử các tùy chọn của method `#input` -- thêm placeholder mặc định (chẳng hạn "<example@example.com>" cho trường email), cho nó tạo một label khác với mặc định (chẳng hạn "Tên user của bạn"), và thử bắt đầu với một giá trị đã được điền sẵn. Có thể bạn sẽ cần Google một số phần, nhưng hãy xem [tài liệu API Rails về `#form_with`](https://api.rubyonrails.org/v6.1.1/classes/ActionView/Helpers/FormHelper.html#method-i-form_with)
+1. Kiểm tra thử.
 
-#### Turn Turbo back ON
+#### Bật lại Turbo
 
-Above, we asked to disable Turbo for the sake of the exercise.
+Ở trên, chúng ta đã yêu cầu tắt Turbo để phục vụ bài tập.
 
-1. Re-enable form submission with Turbo by removing the `data-turbo=false` attribute on the form tag, then also remove the hidden input with CSRF token tag and submit.
+1. Bật lại việc gửi form bằng Turbo bằng cách xóa thuộc tính `data-turbo=false` khỏi thẻ form, sau đó cũng xóa input ẩn chứa thẻ CSRF token rồi gửi form.
 
-   No more CSRF error?!
+   Không còn lỗi CSRF nữa sao?!
 
-1. The form is now submitted with Turbo, yet Rails still protects you by verifying a CSRF token. Where does this token come from? Check your inspector and your `application.html.erb` template. Can you find a CSRF token that is always available? Remove this one too from `application.html.erb`, and verify that the server hits back with a CSRF error.
+1. Form giờ được gửi bằng Turbo, vậy mà Rails vẫn bảo vệ bạn bằng cách xác minh CSRF token. Token này đến từ đâu? Hãy kiểm tra inspector và template `application.html.erb`. Bạn có tìm thấy một CSRF token luôn có sẵn không? Hãy xóa cả token này khỏi `application.html.erb`, rồi xác minh rằng server trả về lỗi CSRF.
 
-1. Reinstate the CSRF token tag in both places and carry on.
+1. Khôi phục thẻ CSRF token ở cả hai vị trí và tiếp tục.
 
-#### Editing
+#### Chỉnh sửa
 
-1. Update your routes and controller to handle editing an existing user.  You'll need your controller to find a user based on the submitted `params` ID.
-1. Create the Edit view at `app/views/users/edit.html.erb` and copy/paste your form from the New view.  Your HTML form (which should still be commented out) will not work -- it will submit the form as a POST request when you need it to be a PATCH (PUT) request (remember your `$ rails routes`?).  It's an easy fix, which you should be able to see if you attempt to edit a user with the `#form_with` form (which is smart enough to know if you're trying to edit a user or creating a new one).
-1. Do a "view source" on the form generated by `#form_with` in your Edit view, paying particular attention to the hidden fields at the top nested inside the `<form>`.  See it?
-1. Modify the top of your form view to display a list of the error messages that are attached to the failed model object when it fails validations. Recall the `#errors` and `#full_messages` methods.
-1. Save this project to Git and upload to GitHub.
+1. Cập nhật routes và controller để xử lý việc chỉnh sửa một user hiện có. Bạn sẽ cần controller tìm một user dựa trên ID `params` được gửi lên.
+1. Tạo view Edit tại `app/views/users/edit.html.erb` và copy/paste form từ view New. Form HTML của bạn (vẫn đang được comment) sẽ không hoạt động -- nó sẽ gửi form bằng request POST trong khi bạn cần request PATCH (PUT) (hãy nhớ `$ rails routes`?). Đây là một cách sửa đơn giản, bạn có thể nhận ra khi thử chỉnh sửa user bằng form `#form_with` (form này đủ thông minh để biết bạn đang chỉnh sửa user hay tạo user mới).
+1. Dùng "view source" trên form do `#form_with` tạo ra trong view Edit, đặc biệt chú ý các trường ẩn ở đầu, nằm bên trong `<form>`. Thấy chưa?
+1. Sửa phần đầu view form để hiển thị danh sách các thông báo lỗi được gắn với model object thất bại khi nó không vượt qua validation. Hãy nhớ các method `#errors` và `#full_messages`.
+1. Lưu project này vào Git và upload lên GitHub.
 
 </div>

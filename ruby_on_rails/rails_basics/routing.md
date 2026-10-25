@@ -1,51 +1,51 @@
-### Introduction
+### Giới thiệu
 
-The router is the doorman of your application.  When an HTTP request arrives from the user's browser, it needs to know which controller action (method) should be run.  Should we display the "new user" webpage?  Should we edit an existing user with whatever data got sent along?
+Router là người gác cửa của ứng dụng. Khi một HTTP request đến từ trình duyệt của người dùng, router cần biết action (method) nào của controller cần được chạy. Có nên hiển thị trang web “người dùng mới” không? Hay nên chỉnh sửa một người dùng hiện có bằng dữ liệu được gửi kèm?
 
-The Router is basically just a matching service.  It looks at the HTTP verb (GET, POST, PUT, DELETE) and the URL that is being requested and matches it with the appropriate controller action to run.  It's a basic function but an essential one.  If it can't find a route that matches the request, your application will throw an error.
+Về cơ bản, Router chỉ là một dịch vụ đối sánh. Nó xem xét HTTP verb (GET, POST, PUT, DELETE) và URL được yêu cầu, rồi đối sánh chúng với action tương ứng của controller để chạy. Đây là một chức năng cơ bản nhưng thiết yếu. Nếu không tìm được route phù hợp với request, ứng dụng sẽ phát sinh lỗi.
 
-The other handy thing that goes on when a request enters your application is that Rails grabs all the parameters that came with it and makes them available for you in a special hash called `params` that you can later use in your controller.  That's good for things like form submissions so that you later can use that form data to create or modify objects.
+Một điều hữu ích khác diễn ra khi request đi vào ứng dụng là Rails lấy tất cả parameter đi kèm và cung cấp chúng cho bạn trong một hash đặc biệt gọi là `params`, để sau đó bạn có thể dùng trong controller. Điều này rất hữu ích với những việc như gửi form, vì bạn có thể dùng dữ liệu form đó để tạo hoặc chỉnh sửa object.
 
-If you open the routes file in your Rails app (located in `config/routes.rb`), you'll see a link to the Rails Guides routing section. This resource does a good job of explaining how it works, so you're never in much danger of losing your way.
+Nếu mở file routes trong ứng dụng Rails (nằm tại `config/routes.rb`), bạn sẽ thấy một liên kết đến phần routing của Rails Guides. Tài liệu này giải thích khá rõ cách hoạt động, vì vậy bạn sẽ không dễ bị lạc hướng.
 
-Lots of training courses and tutorials kind of gloss over routes, and they seem quite easy in hindsight, but when learning Rails it's easy to get hung up on what exactly is going on. Luckily, typing `$ rails routes` into the command line will give you an output of all the routes that are available to your application.  In this section we'll go into what's actually happening with this file.
+Nhiều khóa học và hướng dẫn thường lướt qua routes, và khi nhìn lại chúng có vẻ khá dễ, nhưng lúc học Rails, bạn rất dễ mắc kẹt ở việc chính xác thì điều gì đang diễn ra. May mắn là việc nhập `$ rails routes` trên dòng lệnh sẽ cho ra danh sách tất cả route có sẵn trong ứng dụng. Trong phần này, chúng ta sẽ tìm hiểu điều thực sự diễn ra với file này.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học.
 
-- Configuring a root route.
-- Configuring RESTful routes for a resource.
-- Configuring customized routes for a resource.
-- The 7 RESTful controller actions.
-- How to obtain a list of all possible routes for your current Rails application.
-- Helper methods to create a navigation link on your webpage.
+- Cấu hình route root.
+- Cấu hình route RESTful cho một resource.
+- Cấu hình route tùy chỉnh cho một resource.
+- 7 controller action RESTful.
+- Cách lấy danh sách tất cả route khả dụng cho ứng dụng Rails hiện tại.
+- Các method helper để tạo liên kết điều hướng trên webpage.
 
-### Root
+### Route gốc
 
-The most important route in your file is the root URL... where should users be deposited when they land on `http://supercutekittenphotos.com`?  Just tell Rails which controller and action to map that route to, and it is so:
+Route quan trọng nhất trong file của bạn là URL root... khi người dùng truy cập `http://supercutekittenphotos.com`? Họ sẽ được đưa đến đâu? Chỉ cần nói cho Rails controller và action nào sẽ xử lý route đó:
 
 ```ruby
   root to: "kittens#index"  #kittens controller, index action (method)
 ```
 
-Remember, when we say "action" we really mean "the method inside the controller that is called that", e.g. the `index` action is just the `index` method that's defined in the KittensController*
+Hãy nhớ rằng khi nói “action”, chúng ta thực sự muốn nói đến “method bên trong controller được gọi như vậy”; ví dụ, action `index` chỉ là method `index` được định nghĩa trong KittensController*
 
-### RESTful routes
+### Route RESTful
 
-If you recall our earlier discussion about REST, there are basically seven main types of actions that you can (and should) do to a "resource", or an object like a blog post or user... something with its own database model.  From that discussion, they are:
+Nếu bạn còn nhớ phần thảo luận trước đây về REST, về cơ bản có bảy loại action chính mà bạn có thể (và nên) thực hiện với một “resource”, tức một object như bài đăng blog hoặc người dùng... một thứ có model cơ sở dữ liệu riêng. Theo phần thảo luận đó, chúng là:
 
-1. GET all the posts (aka **"index"** the posts)
-1. GET just one specific post (aka **"show"** that post)
-1. GET the page that lets you create a new post (aka view the **"new"** post page)
-1. POST the data you just filled out for a new post back to the server so it can create that post (aka **"create"** the post)
-1. GET the page that lets you edit an existing post (aka view the **"edit"** post page)
-1. PUT the data you just filled out to edit the post back to the server so it can actually perform the update (aka **"update"** the post)
-1. DELETE one specific post by sending a delete request to the server (aka **"destroy"** the post)
+1. GET tất cả bài đăng (hay **“index”** các bài đăng)
+1. GET một bài đăng cụ thể (hay **“show”** bài đăng đó)
+1. GET trang cho phép bạn tạo bài đăng mới (hay xem trang bài đăng **“new”**)
+1. POST dữ liệu bạn vừa điền cho bài đăng mới về server để server có thể tạo bài đăng đó (hay **“create”** bài đăng)
+1. GET trang cho phép bạn chỉnh sửa bài đăng hiện có (hay xem trang bài đăng **“edit”**)
+1. PUT dữ liệu bạn vừa điền để chỉnh sửa bài đăng về server để server thực sự thực hiện việc cập nhật (hay **“update”** bài đăng)
+1. DELETE một bài đăng cụ thể bằng cách gửi delete request đến server (hay **“destroy”** bài đăng)
 
-The highlighted words correspond to standard Rails controller actions!
+Các từ được nhấn mạnh tương ứng với những controller action chuẩn của Rails!
 
-Each of these represents a "RESTful" route, and so it makes sense that you'll need a way to write these in your Router file so the requests they represent are actually routed to the proper action of your controller (in this case, the "Posts" controller).  One way to write them out would be the long way:
+Mỗi mục trên đại diện cho một route “RESTful”, vì vậy bạn cần có cách viết chúng trong file Router để các request mà chúng đại diện thực sự được chuyển đến action phù hợp của controller (trong trường hợp này là controller “Posts”). Một cách viết dài dòng sẽ là:
 
 ```ruby
   get "/posts", to: "posts#index"
@@ -57,21 +57,21 @@ Each of these represents a "RESTful" route, and so it makes sense that you'll ne
   delete "/posts/:id", to: "posts#destroy"
 ```
 
-Each of these routes is basically a Ruby method that matches that particular URL and HTTP verb with the correct controller action.  Two things to notice:
+Về cơ bản, mỗi route này là một Ruby method đối sánh URL và HTTP verb cụ thể với action đúng của controller. Có hai điều cần lưu ý:
 
-1. The first key thing to notice is that several of those routes submit to the SAME URL... they just use different HTTP verbs, so Rails can send them to a different controller action.  That trips up a lot of beginners.  
-1. The other thing to notice is that the "id" field is prepended by a colon... that just tells Rails "Look for anything here and save it as the ID in the params hash".  It lets you submit a GET request for the first post and the fifth post to the same route, just a different ID:
+1. Điều quan trọng đầu tiên là một số route trong đó gửi đến CÙNG MỘT URL... chúng chỉ dùng các HTTP verb khác nhau, nhờ vậy Rails có thể gửi chúng đến các controller action khác nhau. Đây là điều khiến nhiều người mới bắt đầu nhầm lẫn.
+1. Điều thứ hai cần lưu ý là trường “id” được thêm dấu hai chấm ở phía trước... điều đó chỉ nói với Rails rằng “Hãy tìm bất kỳ giá trị nào ở đây và lưu nó dưới dạng ID trong params hash”. Nhờ vậy, bạn có thể gửi GET request cho bài đăng thứ nhất và bài đăng thứ năm đến cùng một route, chỉ khác ID:
 
 ```ruby
   /posts/1  # going to the #show action of the PostsController
-  /posts/5  # also going to the #show action of PostsController
+  /posts/5  # also going to the #show action of the PostsController
 ```
 
-You will be able to access that ID directly from the controller by tapping into the params hash where it got stored.
+Bạn có thể truy cập ID đó trực tiếp từ controller bằng cách lấy nó trong params hash, nơi nó được lưu lại.
 
-### The Rails way to write RESTful routes
+### Cách Rails viết route RESTful
 
-Rails knows you want to use those seven actions all the time... so they came up with a handy helper method which lets you do in one line what we just wrote in seven lines in our resources file:
+Rails biết rằng bạn sẽ thường xuyên muốn dùng bảy action đó... vì vậy họ tạo ra một method helper tiện dụng, cho phép bạn làm trong một dòng điều mà chúng ta vừa viết thành bảy dòng trong file resources:
 
 ```ruby
   # in config/routes.rb
@@ -80,11 +80,11 @@ Rails knows you want to use those seven actions all the time... so they came up 
   ...
 ```
 
-That's it.  That is a Ruby method which basically just outputs those seven routes we talked about before.  No magic.  You see it a whole lot, now you know what it does.
+Chỉ vậy thôi. Đó là một Ruby method về cơ bản chỉ xuất ra bảy route mà chúng ta đã nói đến. Không có phép màu nào cả. Bạn sẽ thấy nó xuất hiện rất nhiều; giờ thì bạn đã biết nó làm gì.
 
-### Rails routes and route helpers
+### Rails routes và route helper
 
-With that above line in our routes file, what do our routes look like?  If you type `$ rails routes` on the command line, it'll output all the routes your application knows, which look like:
+Với dòng trên trong file routes, các route của chúng ta trông như thế nào? Nếu nhập `$ rails routes` trên dòng lệnh, lệnh này sẽ xuất ra tất cả route mà ứng dụng biết, chẳng hạn:
 
 ```bash
   edit_post  GET  /posts/:id/edit(.:format)  posts#edit
@@ -92,41 +92,41 @@ With that above line in our routes file, what do our routes look like?  If you t
 
 <div class="lesson-note lesson-note--tip" markdown="1">
 
-#### Viewing Rails routes
+#### Xem Rails routes
 
-The output of the `rails routes` command might be formatted incorrectly if your terminal is zoomed in or if your screen is not wide enough to display the route information. If this is the case, you can try zooming out in the terminal using the <kbd>Ctrl</kbd> + <kbd>-</kbd> keyboard shortcut. You can also use the following command to view a longer, expanded list of each route:
+Đầu ra của lệnh `rails routes` có thể bị định dạng sai nếu terminal của bạn đang phóng to hoặc màn hình không đủ rộng để hiển thị thông tin route. Nếu vậy, bạn có thể thử thu nhỏ terminal bằng phím tắt <kbd>Ctrl</kbd> + <kbd>-</kbd>. Bạn cũng có thể dùng lệnh sau để xem danh sách dài và đầy đủ hơn của từng route:
 
 ```bash
 rails routes --expanded
 ```
 
-Alternatively, if you have your server running, you can view your routes in the browser by navigating to `localhost:3000/rails/info/routes`. One of the nice things about this is that you get a search bar to search over the routes in your project.
+Ngoài ra, nếu server đang chạy, bạn có thể xem routes trong trình duyệt bằng cách truy cập `localhost:3000/rails/info/routes`. Một điểm hay là bạn sẽ có thanh tìm kiếm để tìm trong các route của dự án.
 
 </div>
 
-You can see the incoming HTTP verb and URL in the middle columns, then the controller action they map to on the right, which should all be quite familiar because you just wrote it in the routes file.  The `(.:format)` just means that it's okay but not required to specify a file extension like `.doc` at the end of the route... it will just get saved in the `params` hash for later anyway.  But what's on the leftmost column?  That's the "name" of the route.
+Bạn có thể thấy HTTP verb và URL đầu vào ở các cột giữa, sau đó là controller action mà chúng ánh xạ tới ở bên phải; tất cả hẳn khá quen thuộc vì bạn vừa viết chúng trong file routes. `(.:format)` chỉ có nghĩa là bạn có thể, nhưng không bắt buộc phải, chỉ định phần mở rộng file như `.doc` ở cuối route... dù sao nó cũng sẽ được lưu trong `params` hash để dùng sau. Nhưng cột ngoài cùng bên trái là gì? Đó là “tên” của route.
 
-There are a lot of situations where you want to be able to retrieve the URL for a particular route, like when you want to show navigation links on your webpage (do NOT hard code the URLS, because you'll be out of luck when you decide to change the URLs and have to manually go in and change them yourself).  Rails gives you a helper method that lets you create links called `link_to`, but you'll need to supply it with the text that you want to show and the URL to link it to.
+Có nhiều tình huống bạn muốn lấy URL của một route cụ thể, chẳng hạn khi muốn hiển thị liên kết điều hướng trên webpage (ĐỪNG hard-code URL, vì bạn sẽ gặp rắc rối khi quyết định thay đổi URL và phải tự vào sửa từng chỗ). Rails cung cấp một method helper tên là `link_to` để tạo liên kết, nhưng bạn cần truyền vào đó đoạn text muốn hiển thị và URL mà liên kết trỏ tới.
 
 ```ruby
   link_to "Edit this post", edit_post_path(3) # don't hardcode 3!
 ```
 
-We're jumping a little bit ahead, but in this case, the second argument is supposed to be a path or a URL, so we use the path helper method to generate that.  `edit_post_path(3)` will generate the path `/posts/3/edit`.
+Ở đây chúng ta đi trước một chút, nhưng trong trường hợp này, đối số thứ hai phải là một path hoặc URL, nên chúng ta dùng path helper method để tạo nó. `edit_post_path(3)` sẽ tạo path `/posts/3/edit`.
 
-Rails automatically generates helper methods for you which correspond to the names of all your routes.  These methods end with `_path` and `_url`.  `path`, as in `edit_post_path(3)`, will generate just the path portion of the URL, which is sufficient for most applications.  `url` will generate the full URL.
+Rails tự động tạo các method helper tương ứng với tên của tất cả route. Các method này kết thúc bằng `_path` và `_url`. `path`, như trong `edit_post_path(3)`, chỉ tạo phần path của URL, đủ dùng cho hầu hết ứng dụng. `url` sẽ tạo URL đầy đủ.
 
-Any routes which require you to specify an ID or other parameters will need you to supply those to the helper methods as well (like we did above for edit).  You can also put in a query string by adding an additional parameter:
+Mọi route yêu cầu bạn chỉ định ID hoặc parameter khác cũng sẽ yêu cầu bạn truyền chúng vào method helper (như chúng ta đã làm ở trên với edit). Bạn cũng có thể thêm query string bằng cách bổ sung một parameter:
 
 ```ruby
   post_path(3, :referral_link => "/some/path/or/something")
 ```
 
-Now the `:referral_link` parameter would be available in your `params` hash in your controller in addition to the normal set of parameters.
+Khi đó, parameter `:referral_link` sẽ có sẵn trong `params` hash của controller, bên cạnh tập parameter thông thường.
 
-### Routes go to controller actions!
+### Route dẫn đến controller action!
 
-Just to drive home that routes correspond directly to controller actions, a sample controller which would fulfill the above routes generated by `resources :posts` might look like:
+Để nhấn mạnh rằng route tương ứng trực tiếp với controller action, một controller mẫu đáp ứng các route được tạo bởi `resources :posts` ở trên có thể trông như sau:
 
 ```ruby
   # in app/controllers/posts_controller.rb
@@ -174,48 +174,48 @@ Just to drive home that routes correspond directly to controller actions, a samp
   end
 ```
 
-Remember that you can run `$ rails routes` in the project directory to see all of the routes with their corresponding controllers and actions.
+Hãy nhớ rằng bạn có thể chạy `$ rails routes` trong thư mục dự án để xem tất cả route cùng controller và action tương ứng.
 
-### We don't want all seven routes!
+### Chúng ta không muốn cả bảy route!
 
-Sometimes you just don't want all seven of the RESTful routes that `resources` provides.  Easy, either specify just the ones you want using `only` or just the ones you DON'T want using `except`:
+Đôi khi bạn không muốn cả bảy route RESTful mà `resources` cung cấp. Rất đơn giản: hãy chỉ định những route muốn dùng bằng `only`, hoặc những route KHÔNG muốn dùng bằng `except`:
 
 ```ruby
   resources :posts, only: [:index, :show]
   resources :users, except: [:index]
 ```
 
-### Non-RESTful routes
+### Route không theo RESTful
 
-Of course, you don't have to do everything the RESTful way.  You probably should, but there are times that you want to make up your own route and map it to your own controller action.  Just follow the examples we gave at the top for RESTful routes:
+Dĩ nhiên, bạn không nhất thiết phải làm mọi thứ theo cách RESTful. Có lẽ bạn nên làm vậy, nhưng đôi khi bạn muốn tự tạo route và ánh xạ nó đến controller action của riêng mình. Chỉ cần làm theo các ví dụ về route RESTful ở phần đầu:
 
 ```ruby
   get '/somepath', to: 'somecontroller#someaction'
 ```
 
-... of course, the `config/routes.rb` comments should be helpful to you here as well.
+... dĩ nhiên, các comment trong `config/routes.rb` cũng sẽ hữu ích trong trường hợp này.
 
-### Assignment
+### Bài tập
 
-You should have a good sense of what's going on in the routes file by now but probably also have plenty of questions.  The Rails Guides to the rescue!
+Đến đây, có lẽ bạn đã hiểu khá rõ chuyện gì đang diễn ra trong file routes, nhưng cũng có thể còn rất nhiều câu hỏi. Rails Guides sẽ giúp bạn!
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Rails Guides chapter on Routing](http://guides.rubyonrails.org/routing.html), sections 1-2.5, 3.1-3.4, 4.6, and 6.1
-1. Watch this [Wonderful explanation of how REST and HTTP works](https://www.youtube.com/watch?v=Q-BpqyOT3a8). You can follow the tutorial using `curl https://api.github.com`.
+1. Đọc [chương Routing của Rails Guides](http://guides.rubyonrails.org/routing.html), các phần 1-2.5, 3.1-3.4, 4.6 và 6.1.
+1. Xem [Video giải thích tuyệt vời về cách REST và HTTP hoạt động](https://www.youtube.com/watch?v=Q-BpqyOT3a8). Bạn có thể làm theo hướng dẫn bằng `curl https://api.github.com`.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Don't use the Postman Chrome Extension
+   #### Không sử dụng tiện ích mở rộng Postman cho Chrome
 
-   The Postman Chrome Extension shown in the video is deprecated. Use the native [Postman App](https://www.postman.com/downloads/) or use the web version.
+   Tiện ích mở rộng Postman cho Chrome xuất hiện trong video đã bị ngừng hỗ trợ. Hãy dùng [ứng dụng Postman](https://www.postman.com/downloads/) bản native hoặc dùng phiên bản web.
 
    </div>
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem nó như tài liệu bổ sung.
 
-- [Medium article on Rails routing](https://medium.com/podiihq/understanding-rails-routes-and-restful-design-a192d64cbbb5). It covers a lot of the same things that the Rails Guides cover but with a little different tone that some people may find easier to digest.
+- [Bài viết Medium về routing trong Rails](https://medium.com/podiihq/understanding-rails-routes-and-restful-design-a192d64cbbb5). Bài viết trình bày nhiều nội dung giống Rails Guides, nhưng với giọng điệu hơi khác mà một số người có thể thấy dễ tiếp thu hơn.

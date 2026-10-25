@@ -1,27 +1,27 @@
-### Introduction
+### Giới thiệu
 
-Remember JavaScript? What did we learn that for? Well, sometimes you want a bit more interactivity in your browser,
-like hiding/showing a part of your page. Making a round trip to your server is impractical. That is where JavaScript
-comes in: Rails suggests using the JS framework Stimulus to augment your HTML. Stimulus gives you a way of creating and using reusable
-controllers that give you an extra little bit of interactivity.
+Còn nhớ JavaScript không? Chúng ta học nó để làm gì nhỉ? Đôi khi bạn muốn trình duyệt có thêm một chút tính tương tác,
+chẳng hạn ẩn/hiện một phần trang. Việc thực hiện một vòng request đến server rồi quay lại là không thực tế. Đó là lúc JavaScript
+phát huy tác dụng: Rails gợi ý sử dụng framework JS Stimulus để bổ sung khả năng cho HTML. Stimulus cho bạn cách tạo và sử dụng các
+controller có thể tái sử dụng, giúp thêm một chút tính tương tác.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- How to attach Stimulus controllers to your HTML.
-- How to use targets instead of query selectors.
-- How to use action attributes instead of event listeners.
-- Where to keep state.
-- How to use lifecycle callbacks.
-- How to make your controllers reusable.
-- How to make your controllers customizable with attributes.
+- Cách gắn Stimulus controller vào HTML.
+- Cách sử dụng target thay cho query selector.
+- Cách sử dụng action attribute thay cho event listener.
+- Nên lưu state ở đâu.
+- Cách sử dụng lifecycle callback.
+- Cách làm cho controller có thể tái sử dụng.
+- Cách tùy biến controller bằng attribute.
 
-### The idea
+### Ý tưởng
 
-Stimulus is a modest framework. It leaves things mostly up to you, but gives you a consistent way of doing things.
-It uses HTML `data-attributes` to attach and configure behavior on your HTML. Let us look at an HTML example
-from the handbook:
+Stimulus là một framework khiêm tốn. Nó để phần lớn công việc cho bạn, nhưng cung cấp một cách nhất quán để thực hiện mọi việc.
+Nó sử dụng HTML `data-attributes` để gắn và cấu hình hành vi cho HTML. Hãy xem một ví dụ HTML
+trong handbook:
 
 ```html
 <div data-controller="clipboard">
@@ -30,70 +30,70 @@ from the handbook:
 </div>
 ```
 
-Read carefully through the example, and pay special attention to the data attributes! Can you guess what the example does?
+Hãy đọc kỹ ví dụ và đặc biệt chú ý đến các data attribute! Bạn đoán được ví dụ này làm gì không?
 
-This example is using three data attributes: `data-controller`, `data-clipboard-target`, `data-action`. So what is their
-purpose?
+Ví dụ này sử dụng ba data attribute: `data-controller`, `data-clipboard-target`, `data-action`. Vậy chúng có
+mục đích gì?
 
-- **data-controller** is set to `clipboard`, which says "Hey Stimulus, we want to enhance this HTML with some clipboard
-behavior."
-- **data-clipboard-target** is set to `source`, which says "This is the `source` we are gonna use for our clipboard
-controller."
-- **data-action** is set to `click->clipboard#copy`, which says "On a click invoke the `copy` action from our clipboard
-controller."
+- **data-controller** được đặt thành `clipboard`, nghĩa là "Này Stimulus, chúng ta muốn bổ sung
+một số hành vi clipboard cho HTML này."
+- **data-clipboard-target** được đặt thành `source`, nghĩa là "Đây là `source` chúng ta sẽ dùng cho clipboard
+controller đó."
+- **data-action** được đặt thành `click->clipboard#copy`, nghĩa là "Khi click, hãy gọi action `copy` từ clipboard
+controller tương ứng."
 
-So together these three attributes enable the following behavior: When a user `click`s on the button, use the function
-`copy` of Stimulus controller `clipboard` with the input as a `source`. The yet-to-be-seen JavaScript controller will
-then take care of the rest and will copy the value of the source target to the user's clipboard.
+Kết hợp lại, ba attribute này tạo ra hành vi sau: Khi người dùng `click` vào button, hãy sử dụng hàm
+`copy` của Stimulus controller `clipboard`, với input làm `source`. Stimulus controller JavaScript mà ta chưa thấy
+sẽ xử lý phần còn lại và sao chép giá trị của source target vào clipboard của người dùng.
 
-Wasn't this supposed to be a JavaScript lesson? Yes, but the point is that Stimulus is a HTML first framework.
-It generally does not render HTML; instead it attaches behavior to your existing HTML with sprinkles of JavaScript.
-Through the consistent use of some data attributes, we can read the HTML and can see where the HTML is enhanced.
+Chẳng phải đây là bài học JavaScript sao? Đúng, nhưng điểm cốt lõi là Stimulus là một framework ưu tiên HTML.
+Nó thường không render HTML; thay vào đó, nó gắn hành vi vào HTML sẵn có của bạn bằng những mẩu JavaScript nhỏ.
+Nhờ sử dụng nhất quán một số data attribute, chúng ta có thể đọc HTML và biết HTML được bổ sung hành vi ở đâu.
 
-Look at this HTML without the special data-attributes Stimulus uses:
+Hãy xem HTML này khi không có các data attribute đặc biệt mà Stimulus sử dụng:
 
 ```html
 <input id="pin-code" value="1337" readonly>
 <button id="pin-button">Copy to Clipboard</button>
 ```
 
-Probably something is supposed to happen when you click that button. However you can't tell from the HTML
-alone how things are wired up. You have to search for some JavaScript that handles this behavior.
+Có lẽ button đó phải làm gì đó khi bạn click. Tuy nhiên, chỉ nhìn vào HTML,
+bạn không thể biết mọi thứ được nối với nhau như thế nào. Bạn phải tìm một đoạn JavaScript xử lý hành vi này.
 
-So let's go through the basic aspects of Stimulus controllers. Don't worry if you don't understand
-everything on the first read through; the assignments will give more in depth information.
+Vậy hãy cùng đi qua những khía cạnh cơ bản của Stimulus controller. Đừng lo nếu lần đọc đầu tiên bạn chưa hiểu
+mọi thứ; các bài tập sẽ cung cấp thông tin chuyên sâu hơn.
 
-### The Stimulus controller
+### Stimulus controller
 
-A Stimulus controller gets attached to a DOM element by declaring it with the `data-controller` attribute.
+Một Stimulus controller được gắn vào phần tử DOM bằng cách khai báo nó với attribute `data-controller`.
 
 ```html
 <input data-controller="input">
 ```
 
-This will attach the Stimulus controller that is located in `app/javascript/controllers/input_controller.js`.
-If you want to add a new
-controller, create a file `some_name_controller.js` and it will be automatically loaded.
+Thao tác này sẽ gắn Stimulus controller nằm trong `app/javascript/controllers/input_controller.js`.
+Nếu muốn thêm một controller mới,
+hãy tạo file `some_name_controller.js`, và nó sẽ được tự động nạp.
 
-An empty controller looks something like this:
+Một controller rỗng trông như sau:
 
 ```javascript
 import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {}
 ```
 
-This controller does not do anything; it only shows how it imports the class `Controller` that we use as a basis.
-As you see, there is no mention of the name of the controller. The name is inferred from the file name
-(`input_controller.js` becomes `input`).
+Controller này không làm gì cả; nó chỉ cho thấy cách import class `Controller` mà chúng ta dùng làm cơ sở.
+Như bạn thấy, không có chỗ nào nhắc đến tên controller. Tên được suy ra từ tên file
+(`input_controller.js` trở thành `input`).
 
-This creates a scope. All the following attributes will only work within the scope of that controller / DOM element.
+Điều này tạo ra một scope. Tất cả attribute sau đó chỉ hoạt động trong scope của controller / phần tử DOM đó.
 
-### Triggering an action
+### Kích hoạt một action
 
-You learned how to trigger events with event listeners; in Stimulus, instead, you use `data-action` attributes to
-execute JavaScript to react to a user click or input.
+Bạn đã học cách kích hoạt event bằng event listener; còn trong Stimulus, bạn sử dụng attribute `data-action` để
+thực thi JavaScript nhằm phản hồi một lần click hoặc input của người dùng.
 
-So instead of `document.querySelector("button").addEventListener("click", showAlert)` we write the following HTML:
+Vì vậy, thay vì `document.querySelector("button").addEventListener("click", showAlert)`, chúng ta viết HTML sau:
 
 ```html
 <div data-controller="alert">
@@ -101,7 +101,7 @@ So instead of `document.querySelector("button").addEventListener("click", showAl
 </div>
 ```
 
-Now clicking the button will trigger the action of the associated Stimulus controller:
+Giờ khi click button, action của Stimulus controller tương ứng sẽ được kích hoạt:
 
 ```javascript
 // app/javascript/controllers/alert_controller.js
@@ -113,10 +113,10 @@ export default class extends Controller {
 }
 ```
 
-### Selecting elements
+### Chọn phần tử
 
-You learned how to access DOM elements with selectors, such as `document.querySelector` and `document.getElementById`.
-Again Stimulus gives you a way to declare elements you want to select in the HTML:
+Bạn đã học cách truy cập phần tử DOM bằng selector, chẳng hạn `document.querySelector` và `document.getElementById`.
+Một lần nữa, Stimulus cung cấp cách khai báo các phần tử bạn muốn chọn ngay trong HTML:
 
 ```html
 <div data-controller="greeter">
@@ -126,7 +126,7 @@ Again Stimulus gives you a way to declare elements you want to select in the HTM
 </div>
 ```
 
-Notice the `data-greeter-target`. Targets can then be used in your controller:
+Hãy chú ý đến `data-greeter-target`. Sau đó, target có thể được sử dụng trong controller:
 
 ```javascript
 // app/javascript/controllers/greeter_controller.js
@@ -139,18 +139,18 @@ export default class extends Controller {
 }
 ```
 
-You need to declare your targets, once you have Stimulus provides the following properties to you controller:
+Bạn cần khai báo các target; sau khi khai báo, Stimulus cung cấp cho controller các property sau:
 
-- `this.nameTarget` - the first DOM element of matching target name.
-- `this.nameTargets` - An array of all targets matching name.
-- `this.hasNameTarget` - Boolean indicator of whether target of name is in scope.
+- `this.nameTarget` - phần tử DOM đầu tiên có tên target tương ứng.
+- `this.nameTargets` - một mảng gồm tất cả target khớp với tên đó.
+- `this.hasNameTarget` - giá trị Boolean cho biết target có tên đó có nằm trong scope hay không.
 
-### Keeping state
+### Lưu state
 
-A Stimulus controller can have its internal state, meaning you can keep data in the controller. Though usually you want
-to keep this to a minimum.
+Stimulus controller có thể có state nội bộ, nghĩa là bạn có thể lưu dữ liệu trong controller. Tuy vậy, thông thường bạn nên
+giữ phần này ở mức tối thiểu.
 
-So anything you define on `this` is available throughout the controller:
+Vì thế, mọi thứ bạn định nghĩa trên `this` đều có thể truy cập trong toàn bộ controller:
 
 ```javascript
 export default class extends Controller {
@@ -164,7 +164,7 @@ export default class extends Controller {
 }
 ```
 
-Stimulus also lets you declare specific value attributes that allow you to listen to changes:
+Stimulus cũng cho phép bạn khai báo các value attribute cụ thể để lắng nghe thay đổi:
 
 ```javascript
 // app/javascript/controllers/counter_controller.js
@@ -181,32 +181,32 @@ export default class extends Controller {
 }
 ```
 
-So here we declare a count value that we then interact with: the `countValueChanged` function will automatically be
-called whenever the value changes. As we said Stimulus is HTML first. So the HTML actually shows the value on the
-element where the controller lives:
+Ở đây, chúng ta khai báo một count value rồi tương tác với nó: hàm `countValueChanged` sẽ tự động được
+gọi mỗi khi value thay đổi. Như đã nói, Stimulus ưu tiên HTML. Vì vậy, HTML thực sự hiển thị value trên
+phần tử nơi controller cư trú:
 
 ```html
 <div data-controller="counter" data-counter-count-value="0"></div>
 ```
 
-So the above HTML will always reflect the value of `this.countValue`. If you change the value through an action in the
-controller, the HTML value will be updated. But also if you change the value in the HTML, the `countValueChange`
-callback is called.
+Do đó, HTML ở trên sẽ luôn phản ánh giá trị của `this.countValue`. Nếu bạn thay đổi value thông qua một action trong
+controller, giá trị HTML sẽ được cập nhật. Nhưng nếu bạn thay đổi value trong HTML, callback `countValueChange`
+cũng được gọi.
 
-This may be a bit abstract for now, but opens up really interesting possibilities for many use cases.
+Điều này có thể hơi trừu tượng lúc này, nhưng mở ra những khả năng rất thú vị cho nhiều trường hợp sử dụng.
 
-### Use class attributes to make your controllers more configurable
+### Dùng class attribute để controller dễ tùy biến hơn
 
-Stimulus controllers are best written so that they are reusable. Often you will want to toggle, remove or add
-a specific CSS class on an element. But the class might be different every time. For example you sometimes want
-to toggle a `hidden` class, but sometimes an `active` one. For these situations you can configure your controller
-with an attribute to specify the CSS class to be used:
+Stimulus controller nên được viết theo hướng có thể tái sử dụng. Bạn thường sẽ muốn bật/tắt, xóa hoặc thêm
+một CSS class cụ thể cho một phần tử. Nhưng class đó có thể khác nhau mỗi lần. Chẳng hạn, đôi khi bạn muốn
+bật/tắt class `hidden`, nhưng đôi khi lại là class `active`. Trong những tình huống này, bạn có thể cấu hình controller
+bằng một attribute để chỉ định CSS class cần dùng:
 
 ```html
 <div data-controller="toggle" data-toggle-change-class="hidden"></div>
 ```
 
-And in your controller:
+Và trong controller:
 
 ```javascript
 // app/javascript/controllers/toggle_controller.js
@@ -219,11 +219,11 @@ export default class extends Controller {
 }
 ```
 
-### Set up stuff with the lifecycle functions
+### Thiết lập bằng các hàm lifecycle
 
-Often you will want to use Stimulus to use third party JavaScript libraries with your code. For example, to turn your
-normal select form input into a fancy interactive field with autocompletion. This means you want to execute
-some JavaScript whenever you got such a field.
+Bạn thường sẽ muốn dùng Stimulus để sử dụng các thư viện JavaScript bên thứ ba cùng với code của mình. Chẳng hạn, biến
+một select input thông thường trong form thành một trường tương tác đẹp mắt có tính năng tự động hoàn thành. Điều này có nghĩa là bạn muốn thực thi
+một đoạn JavaScript mỗi khi xuất hiện một trường như vậy.
 
 ```html
 <select name="foods" id="foods" data-controller="select">
@@ -232,8 +232,8 @@ some JavaScript whenever you got such a field.
 </select>
 ```
 
-In this situation you don't have a user do anything you could react to, as they probably just came from another page. For
-these situations you can use the lifecycle methods Stimulus. We'll cover only the most important one for now: `connect`
+Trong tình huống này, không có hành động nào của người dùng để bạn phản hồi, vì có thể họ vừa chuyển đến từ một trang khác. Với
+những tình huống như vậy, bạn có thể sử dụng các method lifecycle của Stimulus. Hiện tại, chúng ta chỉ đề cập đến method quan trọng nhất: `connect`
 
 ```javascript
 import { Controller } from "@hotwired/stimulus"
@@ -246,13 +246,13 @@ export default class extends Controller {
 }
 ```
 
-So connect is a special function that gets called whenever an element with the `data-controller="controller-name"`
-appears in the DOM. So it's the perfect solution to change things about the HTML that just appeared on the page.
+Connect là một hàm đặc biệt được gọi mỗi khi một phần tử có `data-controller="controller-name"`
+xuất hiện trong DOM. Vì vậy, đây là giải pháp hoàn hảo để thay đổi HTML vừa xuất hiện trên trang.
 
-### A little hint on things containing multiple words
+### Gợi ý nhỏ về những thứ có nhiều từ
 
-Because Stimulus lives between HTML and JavaScript it can be a bit confusing to sort out how to name controllers, actions and target.
-Some things use `camelCase` and some `kebab-case`. This little snippet helps to figure out what you need:
+Vì Stimulus nằm giữa HTML và JavaScript, việc xác định cách đặt tên cho controller, action và target đôi khi có thể gây nhầm lẫn.
+Một số thứ dùng `camelCase`, một số khác dùng `kebab-case`. Đoạn code nhỏ này giúp bạn xác định cần dùng gì:
 
 ```html
 <div data-controller="reset-input">
@@ -263,48 +263,48 @@ Some things use `camelCase` and some `kebab-case`. This little snippet helps to 
 </div>
 ```
 
-### Summary
+### Tóm tắt
 
-Stimulus gives you a way to make your HTML more interactive, by using data attributes your HTML makes visible where
-your JavaScript will interact with your HTML. This was just a broad introduction; the assignments that follow will
-go into more depth.
+Stimulus cho bạn cách làm HTML có tính tương tác hơn. Bằng cách sử dụng data attribute, HTML cho biết rõ nơi
+JavaScript sẽ tương tác với HTML. Đây mới chỉ là phần giới thiệu khái quát; các bài tập tiếp theo sẽ
+đi sâu hơn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-- Read the [Stimulus Handbook](https://stimulus.hotwired.dev/handbook/origin) to get an overview of how to code
-with Stimulus.
-- Watch this [Stimulus 2.0 Tutorial Video](https://www.driftingruby.com/episodes/the-stimulus-2-0-tutorial); it may give
-you a bit of a feel on how to work with Stimulus controllers. You can ignore the part about installation with Webpacker as
-we will use the new Rails standard of using import maps.
-- Make sure to also read the [Stimulus reference section](https://stimulus.hotwired.dev/reference/controllers), if you
-haven't already. Don't worry if not everything sticks, but you should know where to look up what you need.
+- Đọc [Stimulus Handbook](https://stimulus.hotwired.dev/handbook/origin) để có cái nhìn tổng quan về cách viết code
+với Stimulus.
+- Xem [video hướng dẫn Stimulus 2.0](https://www.driftingruby.com/episodes/the-stimulus-2-0-tutorial); video có thể giúp
+bạn hình dung phần nào cách làm việc với Stimulus controller. Bạn có thể bỏ qua phần cài đặt bằng Webpacker vì
+chúng ta sẽ sử dụng tiêu chuẩn Rails mới là import map.
+- Hãy nhớ đọc thêm [phần tham khảo Stimulus](https://stimulus.hotwired.dev/reference/controllers) nếu bạn
+chưa đọc. Đừng lo nếu không nhớ hết mọi thứ, nhưng bạn nên biết nơi tra cứu điều mình cần.
 
 </div>
 
-#### Exercises
+#### Bài tập thực hành
 
-To practice you need to create a new standard Rails application. Stimulus will be installed by default with Rails 7.0.
+Để thực hành, bạn cần tạo một ứng dụng Rails tiêu chuẩn mới. Stimulus sẽ được cài mặc định cùng Rails 7.0.
 
-- Write some HTML that uses the example controller in `app/javascript/controllers/hello_controller.js`
-- Create your own toggle controller and use it in your view. It should be able to show/hide elements upon clicking a
-button.
-- Make sure your toggle controller is reusable. Try to make it do the following things:
-  - Clicking a button will show another element (like a dropdown menu)
-  - Clicking an element will hide the clicked element and show another
-  - Clicking a checkbox will highlight the element containing the checkbox
-- Write a controller for text inputs with a limited length. Warn a user when they are close or over the maximum character
-count (imagine a user writing a post which has a maximum length of 280 characters)
-- **Project**:
-Go back to you **Flight Booker** project and improve it:
-  - Add a controller that allows the user to add another passenger by clicking on an "Add passenger" button, which adds another set of fields to enter the passenger details (hint: have a look at the [\<template\> tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)).
-  - Allow to remove existing passengers by clicking a "Remove" button, which removes the one set of passenger fields (make sure submissions to the server still works as expected)
-  - Prevent removing the last set of passenger details.
+- Viết một chút HTML sử dụng controller mẫu trong `app/javascript/controllers/hello_controller.js`
+- Tạo controller toggle của riêng bạn và sử dụng nó trong view. Controller này phải có khả năng ẩn/hiện phần tử khi click một
+nút.
+- Đảm bảo controller toggle có thể tái sử dụng. Hãy thử làm cho nó thực hiện các việc sau:
+  - Click một button sẽ hiện một phần tử khác (chẳng hạn menu dropdown)
+  - Click một phần tử sẽ ẩn phần tử vừa click và hiện một phần tử khác
+  - Click một checkbox sẽ làm nổi bật phần tử chứa checkbox đó
+- Viết một controller cho các text input có độ dài giới hạn. Cảnh báo người dùng khi họ sắp đạt hoặc đã vượt số ký tự tối đa
+(giả sử người dùng đang viết một bài đăng có độ dài tối đa 280 ký tự)
+- **Dự án**:
+Quay lại dự án **Flight Booker** và cải thiện nó:
+  - Thêm một controller cho phép người dùng thêm hành khách khác bằng cách click button "Add passenger"; thao tác này thêm một nhóm field khác để nhập thông tin hành khách (gợi ý: xem [thẻ \<template\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)).
+  - Cho phép xóa hành khách hiện có bằng cách click button "Remove"; thao tác này xóa một nhóm field thông tin hành khách (đảm bảo việc submit lên server vẫn hoạt động như mong đợi)
+  - Ngăn không cho xóa nhóm thông tin hành khách cuối cùng.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này có các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên bạn có thể xem như tài liệu bổ sung.
 
-- [Better Stimulus](https://www.betterstimulus.com/), a good resource that shows best practices around Stimulus
-- [Stimulus Components](https://stimulus-components.netlify.app/), a collection of reusable Stimulus components
+- [Better Stimulus](https://www.betterstimulus.com/), một tài nguyên hay trình bày các phương pháp tốt nhất khi làm việc với Stimulus
+- [Stimulus Components](https://stimulus-components.netlify.app/), một tập hợp các Stimulus component có thể tái sử dụng

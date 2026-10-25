@@ -1,20 +1,20 @@
-### Introduction
+### Giới thiệu
 
-In this project, you'll get to spend some quality time with models.  We will be doing some data modeling and putting your active record knowledge to practice by building your own light weight Reddit clone.
+Trong dự án này, bạn sẽ có cơ hội dành thời gian tìm hiểu kỹ về các model. Chúng ta sẽ thực hiện một số công việc mô hình hóa dữ liệu và áp dụng kiến thức về Active Record bằng cách xây dựng phiên bản Reddit thu gọn của riêng bạn.
 
-### Warmup: Thinking data first
+### Khởi động: Nghĩ về dữ liệu trước
 
-The first step to building a good data model is usually not on the computer.  You'll want to take a minute and think through what you're going to need.  You may not really know everything when you first start, but mapping out an approach path is crucial to avoiding costly mistakes later.
+Bước đầu tiên để xây dựng một mô hình dữ liệu tốt thường không diễn ra trên máy tính. Bạn nên dành một chút thời gian suy nghĩ về những gì mình sẽ cần. Khi mới bắt đầu, có thể bạn chưa biết hết mọi thứ, nhưng việc vạch ra hướng tiếp cận là yếu tố then chốt để tránh những sai lầm tốn kém về sau.
 
-In this warmup, you'll be given a variety of scenarios and you'll be asked to map out what the data models will look like for each one.  You can do it with a pen and paper or, if you're lucky enough to be around one, a whiteboard. There are a few specific accepted techniques for how to map out models and associations but just do whatever comes naturally to you.  One way to do it is with a list of models and another is to create a visual diagram where each model is represented by a box and you connect them with appropriate arrows.
+Trong phần khởi động này, bạn sẽ được đưa ra nhiều kịch bản khác nhau và được yêu cầu phác thảo các model dữ liệu cho từng kịch bản. Bạn có thể dùng giấy bút hoặc, nếu may mắn có sẵn, một chiếc bảng trắng. Có một vài kỹ thuật cụ thể thường được chấp nhận để phác thảo model và association, nhưng bạn cứ làm theo cách tự nhiên nhất với mình. Một cách là lập danh sách các model; cách khác là tạo một sơ đồ trực quan, trong đó mỗi model được biểu diễn bằng một ô và bạn nối chúng bằng những mũi tên phù hợp.
 
-For each scenario, you'll be asked to write down the data, associations, and validations necessary to build it.  That means which models (data tables) will be necessary to store the data (and which columns you will need), which fields of those tables will be subject to validation (e.g. minimum password length or username uniqueness).  Don't worry if you're not quite sure how to implement a given thing, the point here is to start thinking about how the data would be structured.
+Với mỗi kịch bản, bạn sẽ được yêu cầu ghi ra dữ liệu, association và validation cần thiết để xây dựng nó. Điều đó có nghĩa là xác định những model (bảng dữ liệu) nào cần thiết để lưu trữ dữ liệu (và cần những cột nào), cũng như những trường nào của các bảng đó phải chịu validation (ví dụ: độ dài mật khẩu tối thiểu hoặc username phải là duy nhất). Đừng lo nếu bạn chưa chắc cách triển khai một phần nào đó; mục đích ở đây là bắt đầu suy nghĩ về cách dữ liệu sẽ được cấu trúc.
 
-Example: You are building a blog for your startup which will have multiple authors and each author can write multiple posts.
+Ví dụ: Bạn đang xây dựng một blog cho startup của mình, blog có nhiều tác giả và mỗi tác giả có thể viết nhiều bài đăng.
 
-This might look like:
+Có thể mô hình sẽ trông như sau:
 
-Note: We'll include the `:id`, `:created_at` and `:updated_at` columns but you can safely assume they're always there since Rails or the database gives them to you automatically
+Lưu ý: Chúng ta sẽ bao gồm các cột `:id`, `:created_at` và `:updated_at`, nhưng bạn có thể yên tâm giả định rằng chúng luôn tồn tại vì Rails hoặc cơ sở dữ liệu sẽ tự động cung cấp chúng
 
 - Authors
 
@@ -42,87 +42,87 @@ Note: We'll include the `:id`, `:created_at` and `:updated_at` columns but you c
   belongs_to author
   ```
 
-Use whatever format feels best to you.
+Hãy dùng bất kỳ định dạng nào bạn thấy phù hợp nhất.
 
-### Data model task
+### Bài tập về mô hình dữ liệu
 
-For each of the following scenarios, write down the models, columns, validations and associations you might use to implement it.  Some of these are more difficult than others and you'll have to use a bit of creativity to infer which columns might need to be present for the scenario to make sense in the real world.
+Với mỗi kịch bản sau đây, hãy ghi ra những model, cột, validation và association mà bạn có thể sử dụng để triển khai kịch bản đó. Một số kịch bản khó hơn những kịch bản khác, và bạn sẽ phải vận dụng một chút sáng tạo để suy ra những cột nào có thể cần thiết để kịch bản có ý nghĩa trong thế giới thực.
 
-The trick is identifying what should be a different model and how these models will relate to each other via associations (all the ones below are `has_many`, `has_one` and/or `belongs_to` relationship).  If you can't quite figure out how it might look, keep the scenario in mind as you go through the next few lessons.
+Điểm mấu chốt là xác định phần nào nên là một model riêng và các model đó sẽ liên hệ với nhau qua association như thế nào (tất cả các quan hệ bên dưới đều là `has_many`, `has_one` và/hoặc `belongs_to`). Nếu chưa hình dung được chính xác, hãy ghi nhớ kịch bản khi học qua vài bài tiếp theo.
 
-Remember, if you feel like you will be hard coding data multiple times, it's probably a sign that you should create a separate table.  A common example is address information -- you could write down the city and state explicitly for each user.  How about making separate City and State models and relating them to each other?
+Hãy nhớ rằng, nếu bạn cảm thấy mình sẽ phải hard-code cùng một dữ liệu nhiều lần, đó có lẽ là dấu hiệu cho thấy bạn nên tạo một bảng riêng. Một ví dụ phổ biến là thông tin địa chỉ — bạn có thể ghi rõ thành phố và bang cho từng user. Vậy tại sao không tạo các model City và State riêng rồi liên kết chúng với nhau?
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. You are building an online learning platform (much like this!).  You've got many different courses, each with a title and description, and each course has multiple lessons.  Lesson content consists of a title and body text.
-  1. You are building the profile tab for a new user on your site.  You are already storing your user's username and email, but now you want to collect demographic information like city, state, country, age and gender.  Think -- how many profiles should a user have?  How would you relate this to the User model?
-  1. You want to build a virtual pinboard, so you'll have users on your platform who can create "pins".  Each pin will contain the URL to an image on the web.  Users can comment on pins (but can't comment on comments).
-  1. You want to build a message board like [Hacker News](http://news.ycombinator.com).  Users can post links.  Other users can comment on these submissions or comment on the comments.  How would you make sure a comment knows where in the hierarchy it lives?
+  1. Bạn đang xây dựng một nền tảng học trực tuyến (khá giống nền tảng này!). Bạn có nhiều khóa học khác nhau, mỗi khóa có tiêu đề và mô tả, và mỗi khóa học có nhiều bài học. Nội dung bài học gồm một tiêu đề và phần văn bản nội dung.
+  1. Bạn đang xây dựng tab hồ sơ cho một user mới trên trang web. Bạn đã lưu username và email của user, nhưng giờ muốn thu thập thông tin nhân khẩu học như thành phố, bang, quốc gia, tuổi và giới tính. Hãy suy nghĩ — mỗi user nên có bao nhiêu profile? Bạn sẽ liên kết profile này với model User như thế nào?
+  1. Bạn muốn xây dựng một bảng ghim ảo, nơi các user trên nền tảng có thể tạo "pin". Mỗi pin chứa URL trỏ tới một hình ảnh trên web. User có thể bình luận trên pin (nhưng không thể bình luận trên bình luận).
+  1. Bạn muốn xây dựng một bảng tin nhắn giống [Hacker News](http://news.ycombinator.com). User có thể đăng các liên kết. Những user khác có thể bình luận trên các bài gửi đó hoặc bình luận trên các bình luận. Bạn sẽ làm thế nào để bảo đảm một bình luận biết nó nằm ở đâu trong hệ thống phân cấp?
 
 </div>
 
-### Project: Micro-Reddit
+### Dự án: Micro-Reddit
 
-Let's build [Reddit](http://reddit.com).  Well, maybe a very junior version of it called `micro-reddit`.  In this project, you'll build the data structures necessary to support link submissions and commenting.  We won't build a front end for it because we don't need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.
+Hãy xây dựng [Reddit](http://reddit.com). À, có lẽ là một phiên bản rất sơ khai của nó mang tên `micro-reddit`. Trong dự án này, bạn sẽ xây dựng các cấu trúc dữ liệu cần thiết để hỗ trợ việc gửi liên kết và bình luận. Chúng ta sẽ không xây dựng giao diện người dùng vì không cần thiết... bạn có thể dùng Rails console để thử nghiệm với các model mà không phải mất công tạo HTTP request và liên quan đến controller hay view.
 
-Speaking of the console, here are a few convenient shortcut commands you can use:
+Nhắc đến console, dưới đây là một vài lệnh tắt tiện lợi mà bạn có thể sử dụng:
 
-- `rails c` (for `rails console`)
-- `rails s` (for `rails server`)
-- `rails g ...` (for `rails generate ...`)
+- `rails c` (viết tắt của `rails console`)
+- `rails s` (viết tắt của `rails server`)
+- `rails g ...` (viết tắt của `rails generate ...`)
 
-Feel free to use whatever you feel more comfortable with. We'll still refer to the full commands in the following lessons for clarity.
+Bạn cứ dùng cách nào thấy thoải mái hơn. Trong các bài học sau, chúng tôi vẫn sẽ tham chiếu đến các lệnh đầy đủ để dễ theo dõi.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Get started
+1. Bắt đầu
 
-   1. Just like in the warmup, plan out what data models you would need to allow users to be on the site (don't worry about login/logout or securing the passwords right now), to submit links ("posts"), and to comment on links.  Users do NOT need to be able to comment on comments... each comment refers to a Post.
-   1. Generate a new rails app from the command line (`$ rails new micro-reddit`) and open it up.  We'll use the default SQLite3 database so you shouldn't have to change anything on that front.
-   1. Generate your User model and fill out the migration to get the columns you want.
-   1. Run the migration with `$ rails db:migrate`.  You can use `$ rails db:rollback` if you realize you forgot anything or just create a new migration for the correction (which might involve the `#add_column` `#remove_column` or `#change_column` commands).  See the [Rails API Documentation](http://api.rubyonrails.org/classes/ActiveRecord/Migration.html) for details on syntax and available methods.
+   1. Cũng như trong phần khởi động, hãy lập kế hoạch về các model dữ liệu cần có để user có thể sử dụng trang web (hiện chưa cần lo về đăng nhập/đăng xuất hay bảo mật mật khẩu), gửi liên kết ("post") và bình luận trên liên kết. User KHÔNG cần bình luận được trên bình luận... mỗi bình luận đều tham chiếu đến một Post.
+   1. Tạo một ứng dụng rails mới từ dòng lệnh (`$ rails new micro-reddit`) và mở ứng dụng đó. Chúng ta sẽ dùng cơ sở dữ liệu SQLite3 mặc định nên bạn không cần thay đổi gì ở phần này.
+   1. Tạo model User và điền vào migration để có các cột bạn muốn.
+   1. Chạy migration bằng `$ rails db:migrate`. Bạn có thể dùng `$ rails db:rollback` nếu nhận ra mình đã quên điều gì đó, hoặc chỉ cần tạo một migration mới để sửa (có thể sẽ dùng các lệnh `#add_column`, `#remove_column` hoặc `#change_column`). Xem [Tài liệu Rails API](http://api.rubyonrails.org/classes/ActiveRecord/Migration.html) để biết chi tiết về cú pháp và các method hiện có.
 
-1. Playing with validations
+1. Thử nghiệm với validation
 
-   1. In a new tab, open up the `$ rails console` (you may use `rails c` for short).  Try asking for all the users with `> User.all`.  You should get back an empty array (no users yet!).  Now create a blank new user and store it to a variable with `> u = User.new`.  This user has been created in the ether of Ruby's memory but hasn't been saved to the database yet.  Remember, if you'd used the `#create` method instead of the `#new` method, it would have just gone ahead and tried to save the new user right off the bat.  Instead, we now get to play with it.
-   1. Check whether your new user is actually valid (e.g. will it save if we tried?).  `> u.valid?` will run all the validations.  It comes up `true`... surprise! We haven't written any validations so that's to be expected.  It's also a problem because we don't want to have users running around with blank usernames.
-   1. Implement the user validations you thought of in the first step in your `app/models/user.rb` file.  These might involve constraints on the size of the username and that it must be present (otherwise you'll potentially have users with no usernames!) and that it must be unique.
-   1. Reload your console using `> reload!`.  You'll need to do this every time you make changes to your app so the console can reload the current version.  If it still seems broken, just `> quit` out of it and relaunch (sometimes `#reload!` doesn't seem to do the trick).  Build another new user but don't save it yet by using `> u2 = User.new`. Run `> u2.valid?` again to run the validations and it should come up false. Good.
-   1. How do we find out what went wrong?  Rails is helpful because it actually attaches error messages directly onto your user object when you fail validations so you can read into them with the `#errors` method.  Try out `> u2.errors` to see the errors or, better, `> u2.errors.full_messages` to return a nice friendly array of messages.  If you wrote custom messages into your validations, they will show up here as well.
-   1. Create a user who will actually save with `> u3 = User.new(your_attributes_here)` and run the validations.  They should come up true.  Save your user with the `#save` method so you've got your first user in the database.
+   1. Mở `$ rails console` trong một tab mới (có thể dùng `rails c` cho ngắn). Hãy thử yêu cầu tất cả user bằng `> User.all`. Bạn sẽ nhận lại một mảng rỗng (chưa có user nào!). Bây giờ tạo một user mới trống và lưu nó vào một biến bằng `> u = User.new`. User này đã được tạo trong vùng nhớ của Ruby nhưng chưa được lưu vào cơ sở dữ liệu. Hãy nhớ rằng nếu bạn dùng method `#create` thay vì method `#new`, nó sẽ ngay lập tức thử lưu user mới. Thay vào đó, giờ chúng ta có thể thử nghiệm với user này.
+   1. Kiểm tra xem user mới có thực sự hợp lệ không (ví dụ: nếu thử thì có lưu được không?). `> u.valid?` sẽ chạy tất cả validation. Kết quả là `true`... bất ngờ nhỉ! Chúng ta chưa viết validation nào nên kết quả như vậy là đúng dự đoán. Nhưng đây cũng là một vấn đề, vì chúng ta không muốn có những user đi lại trong hệ thống với username trống.
+   1. Triển khai các validation cho user mà bạn đã nghĩ đến ở bước đầu tiên trong file `app/models/user.rb`. Chúng có thể bao gồm giới hạn về độ dài username, yêu cầu username phải hiện diện (nếu không, bạn có thể có user không có username!) và username phải là duy nhất.
+   1. Tải lại console bằng `> reload!`. Bạn sẽ cần làm vậy mỗi khi thay đổi ứng dụng để console có thể tải phiên bản hiện tại. Nếu vẫn có vẻ không hoạt động, hãy `> quit` để thoát rồi khởi động lại (đôi khi `#reload!` không thực sự có tác dụng). Tạo một user mới khác nhưng chưa lưu bằng `> u2 = User.new`. Chạy lại `> u2.valid?` để thực hiện validation và kết quả sẽ là false. Tốt.
+   1. Làm thế nào để biết có lỗi gì? Rails rất hữu ích vì thực sự gắn các thông báo lỗi trực tiếp vào đối tượng user khi validation thất bại, để bạn có thể đọc chúng bằng method `#errors`. Hãy thử `> u2.errors` để xem lỗi hoặc tốt hơn, `> u2.errors.full_messages` để trả về một mảng thông báo dễ đọc. Nếu bạn viết thông báo tùy chỉnh trong validation, chúng cũng sẽ xuất hiện ở đây.
+   1. Tạo một user thực sự có thể lưu bằng `> u3 = User.new(your_attributes_here)` và chạy validation. Kết quả phải là true. Hãy lưu user bằng method `#save` để bạn có user đầu tiên trong cơ sở dữ liệu.
 
-1. Playing with associations
+1. Thử nghiệm với association
 
-   1. Create your Post model by referencing your data plan from the first step above, migrate the database, and add its validations.
-   1. Test your validations from the console, remembering to reload or relaunch it between changes.
-   1. Now set up your associations between User and Post models.  Did you remember to include the foreign key column (`user_id`) in your posts table?  If not, you can just add a new migration (`$ rails generate migration yourmigrationname`) and use the `#add_column` method mentioned above.
-   1. If you've properly set up your associations, you should be able to use a few more methods in the console, including finding a User's Posts and finding the Post's User.  First test finding your lone User's Posts -- `> User.first.posts`.  It should be an empty array since you haven't created posts, but it shouldn't throw an error at you.
-   1. Build (but don't yet save) a new post from the console, called `p1`, something like `> p1 = Post.new(your_attributes_here)`.  Don't forget to include the ID of the user in your `user_id` field!
-   1. Now build another post using the association to the user -- substitute `#new` with `#build` and run through the association instead -- `p2 = User.first.posts.build`.  Don't fill in any fields yet.  Examine the object that was created and you'll see that the ID field already got filled out for you, cool! This is a neat trick you'll learn about in the lesson on associations.
-   1. Save your original new post `p1` so your user has officially written something.  Test that you can use the other side of the association by trying `> Post.first.user`, which should return the original User object whose ID you pointed to when building the post.  All has come full circle!
+   1. Tạo model Post dựa trên kế hoạch dữ liệu ở bước đầu tiên, migrate cơ sở dữ liệu và thêm validation cho model.
+   1. Kiểm tra validation từ console, nhớ reload hoặc khởi động lại console giữa các lần thay đổi.
+   1. Bây giờ hãy thiết lập association giữa các model User và Post. Bạn có nhớ đưa cột khóa ngoại (`user_id`) vào bảng posts không? Nếu chưa, bạn chỉ cần thêm một migration mới (`$ rails generate migration yourmigrationname`) và dùng method `#add_column` đã đề cập ở trên.
+   1. Nếu đã thiết lập association đúng cách, bạn sẽ có thể dùng thêm một số method trong console, bao gồm tìm Posts của một User và tìm User của một Post. Trước tiên hãy thử tìm Posts của User duy nhất — `> User.first.posts`. Kết quả phải là một mảng rỗng vì bạn chưa tạo post nào, nhưng không được phát sinh lỗi.
+   1. Tạo (nhưng chưa lưu) một post mới từ console, đặt tên là `p1`, chẳng hạn như `> p1 = Post.new(your_attributes_here)`. Đừng quên đưa ID của user vào trường `user_id`!
+   1. Bây giờ hãy tạo một post khác bằng association với user — thay `#new` bằng `#build` và đi qua association — `p2 = User.first.posts.build`. Chưa cần điền trường nào. Kiểm tra đối tượng đã tạo và bạn sẽ thấy trường ID đã được tự động điền, hay thật! Đây là một thủ thuật thú vị mà bạn sẽ học trong bài về association.
+   1. Lưu post mới ban đầu `p1` để user của bạn chính thức viết được một bài. Kiểm tra phía còn lại của association bằng cách thử `> Post.first.user`, kết quả phải trả về chính đối tượng User ban đầu có ID mà bạn đã chỉ đến khi tạo post. Mọi thứ đã khép kín!
 
-1. Add in commenting
+1. Thêm bình luận
 
-   1. You've now got a User and a Post and they've been linked. Commenting will look quite similar to your Post model but will be related not just to the post who is its "parent" but also to the user who has authored it.  Set up the migration and migrate the database for your Comment model.
-   1. As before, add validations into your model and test them out in the console (refresh it!).  Make sure you've required the two foreign keys (for posts and users) to be submitted, otherwise you could potentially have an orphan comment.  You should not be able to save an invalid Comment and be able to save a valid Comment.
-   1. Build a second user and create a new comment which represents this user commenting on the first user's post.
-   1. As before, add the associations you need between users, posts, and comments.  You'll need to be able to do the following methods successfully from the console (assuming your second user has an ID of 2):
+   1. Bây giờ bạn đã có một User và một Post được liên kết với nhau. Model Comment sẽ khá giống model Post nhưng không chỉ liên quan đến post là "parent" của nó mà còn liên quan đến user đã viết bình luận. Hãy thiết lập migration và migrate cơ sở dữ liệu cho model Comment.
+   1. Như trước, hãy thêm validation vào model và kiểm tra chúng trong console (refresh console!). Hãy bảo đảm bạn yêu cầu hai khóa ngoại (cho posts và users) phải được gửi lên, nếu không bạn có thể tạo ra một bình luận mồ côi. Bạn không được lưu một Comment không hợp lệ và phải có thể lưu một Comment hợp lệ.
+   1. Tạo user thứ hai và tạo một bình luận mới thể hiện việc user này bình luận trên post của user đầu tiên.
+   1. Như trước, hãy thêm các association cần thiết giữa users, posts và comments. Bạn cần thực hiện thành công các method sau trong console (giả sử user thứ hai có ID là 2):
       1. `> u2 = User.find(2)`
-      1. `> c1 = u2.comments.first` should return that user's comment.  `#comments` returns an array with comments, which is why we need to use `#first` to actually retrieve the comment itself.
-      1. `> c1.user` should return that comment's author User (`u2`).
+      1. `> c1 = u2.comments.first` phải trả về bình luận của user đó. `#comments` trả về một mảng các bình luận, vì vậy cần dùng `#first` để thực sự lấy được bình luận.
+      1. `> c1.user` phải trả về User là tác giả của bình luận đó (`u2`).
       1. `> p1 = Post.first`
-      1. `> p1.comments.first` should return the comment `c1`.
-      1. `> c1.post` should return the post `p1`.
+      1. `> p1.comments.first` phải trả về bình luận `c1`.
+      1. `> c1.post` phải trả về post `p1`.
 
-If any of those don't work, double check your associations.  Sometimes the error messages can be helpful in prompting you for how to set up those associations.
+Nếu bất kỳ thao tác nào không hoạt động, hãy kiểm tra lại association. Đôi khi thông báo lỗi có thể gợi ý cách thiết lập các association đó.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- The [Rails API](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html) has good documentation for these things, in addition to the Edge Guides you've already read.  Often it can be easier to search Google for the proper API page than navigating the site, e.g. "rails api has_many".
-- [JumpstartLab page on Model Relationships](https://web.archive.org/web/20231205162005/http://tutorials.jumpstartlab.com/topics/models/relationships.html) has some good unique information on how to approach optimizing common associations.
+- [Rails API](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html) có tài liệu tốt về những nội dung này, bên cạnh Edge Guides mà bạn đã đọc. Thông thường, tìm kiếm trên Google trang API phù hợp sẽ dễ hơn là điều hướng trên trang web, ví dụ: "rails api has_many".
+- [Trang JumpstartLab về Quan hệ giữa các Model](https://web.archive.org/web/20231205162005/http://tutorials.jumpstartlab.com/topics/models/relationships.html) có một số thông tin đặc thù hữu ích về cách tiếp cận việc tối ưu các association phổ biến.

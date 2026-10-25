@@ -1,64 +1,64 @@
-### Introduction
+### Giới thiệu
 
-In this project, you'll get a chance to tackle some more advanced forms.  This is the kind of thing you'll have to work with when handling user orders for anything more complicated than an e-book.  In this case, we'll build the first three steps of a typical checkout process for booking a one-way flight:
+Trong dự án này, bạn sẽ có cơ hội xử lý một số form nâng cao hơn. Đây là dạng công việc bạn sẽ phải làm khi xử lý đơn hàng của người dùng cho bất kỳ thứ gì phức tạp hơn một cuốn e-book. Trong trường hợp này, chúng ta sẽ xây dựng ba bước đầu tiên của một quy trình thanh toán điển hình để đặt một chuyến bay một chiều:
 
-A typical airline booking flow:
+Quy trình đặt vé máy bay điển hình:
 
-1. Enter desired dates / airports and click "Search"
-1. Choose from among a list of available flights
-1. Enter passenger information for all passengers
-1. Enter billing information
+1. Nhập ngày tháng / sân bay mong muốn và nhấp "Tìm kiếm"
+1. Chọn từ danh sách các chuyến bay hiện có
+1. Nhập thông tin hành khách cho tất cả hành khách
+1. Nhập thông tin thanh toán
 
-Step 4 would be done via integration of something like [the Paypal API](http://coding.smashingmagazine.com/2011/09/05/getting-started-with-the-paypal-api/), via [the paypal-express gem](https://github.com/nov/paypal-express), [the paypal-sdk-merchant SDK](https://www.tommyblue.it/2013/07/02/paypal-express-checkout-with-ruby-on-rails-and-paypal-sdk-merchant/), or [Stripe](https://docs.stripe.com/checkout/quickstart).
+Bước 4 sẽ được thực hiện bằng cách tích hợp với một dịch vụ như [API Paypal](http://coding.smashingmagazine.com/2011/09/05/getting-started-with-the-paypal-api/), thông qua [gem paypal-express](https://github.com/nov/paypal-express), [SDK paypal-sdk-merchant](https://www.tommyblue.it/2013/07/02/paypal-express-checkout-with-ruby-on-rails-and-paypal-sdk-merchant/), hoặc [Stripe](https://docs.stripe.com/checkout/quickstart).
 
-### Assignment
+### Bài tập
 
-We'll be creating a one-way flight booker.  You'll get lots of practice populating and building dropdown menus, radio buttons, and nested submissions.  Let the fun begin!
+Chúng ta sẽ tạo một ứng dụng đặt vé máy bay một chiều. Bạn sẽ được thực hành rất nhiều việc điền dữ liệu và xây dựng menu dropdown, nút radio và các lần gửi form lồng nhau. Hãy bắt đầu!
 
-This project will require you to seed your database, so use your `db/seeds.rb` file to write the code necessary to populate Airports and Flights.  One trick for toy apps like this (don't do it for production!) is to use the `db:seed:replant` task for simultaneously clearing the database and running your seeds file.  That way, when you create a new model or change how you want your sample data set up, you can just update the `seeds.rb` file and run `$ rake db:seed:replant` to have a clean slate of data.
+Dự án này yêu cầu bạn seed cơ sở dữ liệu, vì vậy hãy dùng file `db/seeds.rb` để viết code cần thiết nhằm tạo dữ liệu cho Airports và Flights. Một mẹo dành cho các ứng dụng thử nghiệm như thế này (đừng làm vậy trong môi trường production!) là dùng task `db:seed:replant` để đồng thời xóa cơ sở dữ liệu và chạy file seed. Nhờ đó, khi tạo model mới hoặc thay đổi cách thiết lập dữ liệu mẫu, bạn chỉ cần cập nhật file `seeds.rb` rồi chạy `$ rake db:seed:replant` để có một bộ dữ liệu sạch.
 
 <div class="lesson-content__panel" markdown="1">
 
-#### Setup
+#### Thiết lập
 
-1. Think through the data architecture required to bring this to life.
-1. Create a new Rails app, e.g. `odin-flight-booker`, and a new Git repo
-1. Modify the README to explain what you're doing and link back to the project here.
+1. Suy nghĩ về kiến trúc dữ liệu cần thiết để biến ý tưởng này thành hiện thực.
+1. Tạo một ứng dụng Rails mới, ví dụ `odin-flight-booker`, và một Git repo mới
+1. Chỉnh sửa README để giải thích bạn đang làm gì và liên kết ngược về dự án này.
 
-#### Screen 1: search
+#### Màn hình 1: tìm kiếm
 
-For the first screen, you will be creating 4 dropdown menus that will allow users to search for available flights -  departure airport, arrival airport, date, and number of passengers. This requires relatively vanilla forms that happen to be prepopulated with collections of data.  Working with dates will cover a bit of new ground for you.
+Ở màn hình đầu tiên, bạn sẽ tạo 4 menu dropdown cho phép người dùng tìm các chuyến bay hiện có — sân bay khởi hành, sân bay đến, ngày và số hành khách. Đây là những form tương đối cơ bản, chỉ khác là chúng được điền sẵn bằng các tập hợp dữ liệu. Làm việc với ngày tháng sẽ giúp bạn tiếp cận thêm một chút kiến thức mới.
 
-1. Create an Airport model (which basically just needs an airport code like "SFO" or "NYC") and use the `db/seeds.rb` file to create several airports.
-1. Create a Flight model (with the departure and arrival airport `id`s, start datetime and flight duration).
-1. Set up associations so you can ask `Flight.first.departure_airport`, `Flight.first.arrival_airport` and get back Airport objects. Same for `Airport.first.departing_flights` and `Airport.first.arriving_flights`, which should return a list of Flight objects.
-1. Seed your database with flights.
-1. You will search and view results in the same page.  Set up your FlightsController and routes to make the Index page (`/flights`) the root route.
-1. Create your search form on the `/flights` index page to submit using a GET (not POST) request back to the same URL.
-1. Add the four dropdown menus -- a list of departure airports, arrival airports, number of passengers (1-4), and a date dropdown for the flight date. The date dropdown should only include dates that have existing flights. Don't worry about restricting the contents of the airport dropdowns -- you'd normally use JavaScript -- so just allow the user to select any airport. See this [Stack Overflow post on formatting dates in dropdown lists](http://stackoverflow.com/questions/15720940/rails-format-date-in-drop-down-list-in-view), this short [Stack Overflow post on selecting months/years](http://stackoverflow.com/questions/13001904/rails-drop-down-select-month-year) and the Rails [DateHelper API Docs](http://api.rubyonrails.org/classes/ActionView/Helpers/DateHelper.html) for some help with creating Date selects.
+1. Tạo model Airport (về cơ bản chỉ cần một mã sân bay như "SFO" hoặc "NYC") và dùng file `db/seeds.rb` để tạo một số sân bay.
+1. Tạo model Flight (với `id` của sân bay khởi hành và sân bay đến, datetime bắt đầu và thời lượng chuyến bay).
+1. Thiết lập association để bạn có thể gọi `Flight.first.departure_airport`, `Flight.first.arrival_airport` và nhận lại các đối tượng Airport. Tương tự với `Airport.first.departing_flights` và `Airport.first.arriving_flights`, các method này phải trả về một danh sách các đối tượng Flight.
+1. Seed cơ sở dữ liệu với các chuyến bay.
+1. Bạn sẽ tìm kiếm và xem kết quả trên cùng một trang. Thiết lập FlightsController và routes để trang Index (`/flights`) là root route.
+1. Tạo form tìm kiếm trên trang index `/flights`, cho phép gửi bằng request GET (không phải POST) về cùng URL.
+1. Thêm bốn menu dropdown — danh sách sân bay khởi hành, sân bay đến, số hành khách (1-4) và dropdown ngày cho ngày bay. Dropdown ngày chỉ được bao gồm những ngày có chuyến bay hiện có. Đừng lo về việc hạn chế nội dung của các dropdown sân bay — thông thường bạn sẽ dùng JavaScript — nên hiện tại chỉ cần cho phép người dùng chọn bất kỳ sân bay nào. Xem [bài đăng Stack Overflow này về định dạng ngày trong danh sách dropdown](http://stackoverflow.com/questions/15720940/rails-format-date-in-drop-down-list-in-view), [bài đăng Stack Overflow ngắn này về chọn tháng/năm](http://stackoverflow.com/questions/13001904/rails-drop-down-select-month-year) và [tài liệu Rails DateHelper API](http://api.rubyonrails.org/classes/ActionView/Helpers/DateHelper.html) để được trợ giúp tạo các select ngày.
 
-#### Screen 2: pick a flight
+#### Màn hình 2: chọn chuyến bay
 
-Once search results are returned, the user just needs to choose from among the available flights.
+Sau khi kết quả tìm kiếm được trả về, người dùng chỉ cần chọn một trong các chuyến bay hiện có.
 
-1. Once the user has submitted the form, your controller should detect the additional query parameters (e.g. from `/flights?departure_code=SFO&arrival_code=NYC&date=20131215&num_tickets=2`) and should pull the flights which match that criteria from your database through smart querying model methods.
-1. Send those flights back to your `app/views/flights/index.html.erb` view.  Make it so that the view will display the results below (if present).
-1. Don't get rid of the search dropdowns -- keep the search form active at the top so the user can try running a new search.
-1. The search results will need to be in their own form -- this time for selecting which of the flights the user would like to choose.  Each returned flight should render with a radio button next to it.  The user will select which flight to submit and move onto the next step.  The form should submit to the `#new` action of the BookingsController you're about to create using another GET method.  You'll need to include a hidden field that contains the number of passengers.
+1. Sau khi người dùng gửi form, controller của bạn phải phát hiện các tham số truy vấn bổ sung (ví dụ từ `/flights?departure_code=SFO&arrival_code=NYC&date=20131215&num_tickets=2`) và truy vấn thông minh các chuyến bay phù hợp với tiêu chí đó từ cơ sở dữ liệu thông qua các method của model.
+1. Gửi các chuyến bay đó về view `app/views/flights/index.html.erb`. Hãy để view hiển thị kết quả bên dưới (nếu có).
+1. Đừng xóa các dropdown tìm kiếm — giữ form tìm kiếm hoạt động ở đầu trang để người dùng có thể thử một tìm kiếm mới.
+1. Kết quả tìm kiếm cần nằm trong form riêng — lần này để chọn chuyến bay mà người dùng muốn chọn. Mỗi chuyến bay trả về phải được hiển thị kèm một nút radio. Người dùng sẽ chọn chuyến bay rồi gửi để chuyển sang bước tiếp theo. Form phải gửi đến action `#new` của BookingsController mà bạn sắp tạo, sử dụng một method GET khác. Bạn sẽ cần thêm một hidden field chứa số hành khách.
 
-#### Screen 3: passenger information
+#### Màn hình 3: thông tin hành khách
 
-Once the user has submitted their chosen flight, it's time to take their booking information.  You'll need a form to submit the Booking and also create a Passenger object for each passenger who needs a ticket.  Don't worry about creating a separate "Ticket" object, we'll assume the airline will issue those once the booking is verified.
+Sau khi người dùng gửi chuyến bay đã chọn, đã đến lúc lấy thông tin đặt chỗ. Bạn sẽ cần một form để gửi Booking và đồng thời tạo một đối tượng Passenger cho mỗi hành khách cần vé. Đừng lo về việc tạo một đối tượng "Ticket" riêng; chúng ta sẽ giả định hãng hàng không sẽ cấp các vé đó sau khi booking được xác minh.
 
-1. Create and migrate the Booking model.
-1. Create and migrate the Passenger model (just keep the information simple -- name and email only).
-1. Set up associations between Bookings, Passengers, and Flights.
-1. Create a BookingsController and appropriate routes.
-1. Set up your `#new` action, which should have received the flight ID and passenger number parameters, and use it to help render a form for a new booking which displays the currently chosen date, airports, flight ID and a set of fields to enter personal information for each passenger.  You'll want to create a new blank Passenger object in your controller for each passenger, and then use `#fields_for` in the view to set up the sub-forms.
-1. Try submitting the form and check out the parameters in your server.
-1. You'll need your `#create` action to create a new Booking (linking it to the appropriate Flight) but it will also need to accept the nested attributes for each of the Passenger objects and create a new Passenger from them.  Be mindful of allowing the nested parameters as well.
-1. Go to the Booking model and implement the `#accepts_nested_attributes_for` method.  See the [Rails API](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html) for examples and this [Stack Overflow post on nested attributes and mass assignment](http://stackoverflow.com/questions/18540679/rails-4-accepts-nested-attributes-for-and-mass-assignment) for another.
-1. Once your form is successfully submitted, render the booking's `#show` page which displays the booking information (flight and passenger information).
-1. Make sure your ticketing flow is working properly. Good work!
+1. Tạo và migrate model Booking.
+1. Tạo và migrate model Passenger (chỉ cần giữ thông tin đơn giản — chỉ tên và email).
+1. Thiết lập association giữa Bookings, Passengers và Flights.
+1. Tạo BookingsController và các routes phù hợp.
+1. Thiết lập action `#new`, action này sẽ nhận các tham số ID chuyến bay và số hành khách, rồi dùng chúng để hỗ trợ render form cho một booking mới; form hiển thị ngày, các sân bay, ID chuyến bay đã chọn và một nhóm trường để nhập thông tin cá nhân cho từng hành khách. Bạn sẽ muốn tạo một đối tượng Passenger trống mới trong controller cho mỗi hành khách, sau đó dùng `#fields_for` trong view để thiết lập các form con.
+1. Thử gửi form và xem các tham số trong server.
+1. Action `#create` của bạn cần tạo một Booking mới (liên kết nó với Flight phù hợp), nhưng cũng phải chấp nhận các nested attributes cho từng đối tượng Passenger và tạo Passenger mới từ chúng. Hãy chú ý cho phép các nested parameter.
+1. Mở model Booking và triển khai method `#accepts_nested_attributes_for`. Xem [Rails API](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html) để xem các ví dụ và [bài đăng Stack Overflow này về nested attributes và mass assignment](http://stackoverflow.com/questions/18540679/rails-4-accepts-nested-attributes-for-and-mass-assignment) để tham khảo thêm.
+1. Sau khi form được gửi thành công, hãy render trang `#show` của booking, trang này hiển thị thông tin booking (thông tin chuyến bay và hành khách).
+1. Bảo đảm quy trình cấp vé hoạt động đúng. Làm tốt lắm!
 
 </div>

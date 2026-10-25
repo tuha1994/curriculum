@@ -1,28 +1,28 @@
-### Introduction
+### Giới thiệu
 
-You've written a lot of code up to this point, and you've hopefully moved on from just trying to write code that works, to now considering code readability and maintainability. You might spend some time considering how you can create the necessary abstractions so that your code stays easy to work with even as the requirements for it grow.
+Đến thời điểm này, bạn đã viết khá nhiều mã và hy vọng đã chuyển từ việc chỉ cố gắng viết mã hoạt động được sang quan tâm đến khả năng đọc hiểu và bảo trì mã. Bạn có thể dành thời gian suy nghĩ về cách tạo ra những lớp trừu tượng cần thiết để mã vẫn dễ làm việc ngay cả khi các yêu cầu đối với nó ngày càng mở rộng.
 
-Code readability and maintainability are super important. After all, you will likely spend as much, if not more, time reading code than writing it. You need to make sure new features are integrated with ease.
+Khả năng đọc hiểu và khả năng bảo trì mã cực kỳ quan trọng. Sau cùng, có lẽ bạn sẽ dành nhiều thời gian, nếu không muốn nói là nhiều hơn, để đọc mã so với viết mã. Bạn cần bảo đảm rằng các tính năng mới có thể được tích hợp một cách dễ dàng.
 
-However, there is another consideration that can be just as important when writing code. Efficiency! You need to understand how the code you write will perform. You also need to understand how the choices you make impact that performance so that you can choose the right data structure and algorithm for your requirement.
+Tuy nhiên, khi viết mã còn có một yếu tố khác cũng quan trọng không kém. Đó là hiệu năng! Bạn cần hiểu mã mình viết sẽ hoạt động như thế nào. Bạn cũng cần hiểu những lựa chọn của mình ảnh hưởng đến hiệu năng ra sao, để có thể chọn đúng cấu trúc dữ liệu và thuật toán cho yêu cầu của mình.
 
-In programming, there are two ways we can measure the efficiency of our code. We can measure the time complexity or the space complexity.
+Trong lập trình, có hai cách để đo lường hiệu quả của mã. Chúng ta có thể đo độ phức tạp thời gian hoặc độ phức tạp không gian.
 
-In this lesson, we'll introduce the core concepts around measuring the time efficiency of the code you write.
+Trong bài học này, chúng ta sẽ giới thiệu những khái niệm cốt lõi liên quan đến việc đo lường hiệu quả về thời gian của mã bạn viết.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài học này.
 
-- How the efficiency of an algorithm is measured.
-- What is Big O.
-- What are the Big O notations used to measure an algorithm's efficiency.
-- How else can we measure an algorithm's efficiency.
-- What to do when two algorithms have the same complexity.
+- Cách đo lường hiệu quả của một thuật toán.
+- Big O là gì.
+- Những ký hiệu Big O nào được dùng để đo lường hiệu quả của một thuật toán.
+- Những cách khác để đo lường hiệu quả của một thuật toán.
+- Cần làm gì khi hai thuật toán có cùng độ phức tạp.
 
-### Efficiency basics
+### Những kiến thức cơ bản về hiệu năng
 
-The very first step in mastering efficient code is to understand how to measure it. Let's take a look at a little program that prints out all odd numbers between 1 and 10.
+Bước đầu tiên để thành thạo việc viết mã hiệu quả là hiểu cách đo lường hiệu quả đó. Hãy cùng xem một chương trình nhỏ in ra tất cả các số lẻ từ 1 đến 10.
 
 ```ruby
 def odd_numbers_less_than_ten
@@ -38,30 +38,30 @@ def odd_numbers_less_than_ten
 end
 ```
 
-If you were to run this in your terminal, you should get the numbers `1`, `3`, `5`, `7` and `9` printed to the console. It probably took a fraction of a second to run. If you were to run it again, it might take the same time, or it might be faster or slower depending on what else your computer is doing. If you were to run it on a different computer, it would again run faster or slower. Therefore it's important to understand that you never measure the efficiency of an algorithm by how long it takes to execute.
+Nếu chạy đoạn mã này trong terminal, bạn sẽ thấy các số `1`, `3`, `5`, `7` và `9` được in ra màn hình. Có lẽ chương trình chỉ mất một phần nhỏ của một giây để chạy. Nếu chạy lại, thời gian có thể giống vậy, hoặc nhanh hơn hay chậm hơn tùy vào những việc khác mà máy tính của bạn đang thực hiện. Nếu chạy trên một máy tính khác, chương trình cũng có thể nhanh hơn hoặc chậm hơn. Vì vậy, điều quan trọng là phải hiểu rằng bạn không bao giờ đo hiệu quả của một thuật toán bằng thời gian nó cần để thực thi.
 
-So how do we measure it?
+Vậy chúng ta đo lường bằng cách nào?
 
-The way to measure code efficiency is to evaluate how many 'steps' it takes to complete. If you know that one algorithm you write takes 5 steps and another one takes 20 steps to accomplish the same task, then you can say that the 5-step algorithm will always run faster than the 20-step algorithm on the same computer.
+Cách đo hiệu quả của mã là đánh giá nó cần bao nhiêu “bước” để hoàn thành. Nếu biết một thuật toán bạn viết cần 5 bước còn một thuật toán khác cần 20 bước để thực hiện cùng một nhiệm vụ, bạn có thể nói rằng thuật toán 5 bước sẽ luôn chạy nhanh hơn thuật toán 20 bước trên cùng một máy tính.
 
-Let's go back to our `odd_numbers_less_than_ten` method. How many steps does our algorithm take?
+Hãy quay lại phương thức `odd_numbers_less_than_ten`. Thuật toán của chúng ta cần bao nhiêu bước?
 
-1. We assign the number 1 to a variable. That's one step.
+1. Gán số 1 cho một biến. Đây là một bước.
 
-1. We have a loop. For each iteration of the loop, we do the following:
+1. Chúng ta có một vòng lặp. Trong mỗi lần lặp, ta thực hiện những việc sau:
 
-    1. Compare `current_number` to see if it is less than 10. That is 1 step.
-    1. We then check if `current_number` is odd. That is 1 step.
-    1. If it is then we output it to the terminal. That's 1 step every 2 iterations.
-    1. We increase `current_number` by 1. That is 1 step.
+    1. So sánh `current_number` để kiểm tra xem nó có nhỏ hơn 10 hay không. Đây là 1 bước.
+    1. Sau đó kiểm tra xem `current_number` có phải số lẻ hay không. Đây là 1 bước.
+    1. Nếu đúng, in nó ra terminal. Đây là 1 bước sau mỗi 2 lần lặp.
+    1. Tăng `current_number` lên 1. Đây là 1 bước.
 
-1. To exit the loop, we need to compare `current_number` one last time to see that it is not less than ten any more. That is one last step.
+1. Để thoát khỏi vòng lặp, chúng ta cần so sánh `current_number` thêm một lần cuối để xác nhận rằng nó không còn nhỏ hơn 10. Đây là một bước cuối cùng.
 
-So there are 3 steps for every loop iteration and it iterates 9 times which is 27 steps. Then we have one step which iterates for only half the loop iteration which is 5 steps. Assigning an initial value to `current_number` and checking the exit condition of the loop is one step each. 27 + 5 + 1 + 1 = 34 steps.
+Như vậy, mỗi lần lặp có 3 bước và vòng lặp chạy 9 lần, tức là 27 bước. Ngoài ra còn có một bước chỉ được thực hiện trong một nửa số lần lặp, tức là 5 bước. Việc gán giá trị ban đầu cho `current_number` và kiểm tra điều kiện kết thúc vòng lặp mỗi việc là một bước. 27 + 5 + 1 + 1 = 34 bước.
 
-Therefore, we can say our algorithm takes 34 steps to complete.
+Vì vậy, có thể nói thuật toán của chúng ta cần 34 bước để hoàn thành.
 
-While this is useful to know, it isn't actually helpful for comparing algorithms. To see why, let's slightly modify our initial algorithm to take in a number instead of setting a hard default of 10.
+Biết điều này rất hữu ích, nhưng thực tế nó không giúp ích nhiều cho việc so sánh các thuật toán. Để thấy lý do, hãy sửa đổi một chút thuật toán ban đầu để nhận vào một số thay vì đặt giá trị mặc định cố định là 10.
 
 ```ruby
 def odd_numbers(max_number)
@@ -77,106 +77,106 @@ def odd_numbers(max_number)
 end
 ```
 
-How many steps does this algorithm take?
+Thuật toán này cần bao nhiêu bước?
 
-You've probably realized the answer is it depends. If you set `max_number` to be 10, like we did before, the number of steps is 34, but if you enter another number then the number of steps changes. There is no concrete number we can use to measure the efficiency of our code because it changes based on an external input.
+Có lẽ bạn đã nhận ra câu trả lời là: còn tùy. Nếu đặt `max_number` bằng 10 như trước, số bước là 34, nhưng nếu nhập một số khác thì số bước cũng thay đổi. Không có một con số cụ thể nào có thể dùng để đo hiệu quả của mã, vì số đó thay đổi theo đầu vào bên ngoài.
 
-So what we really want to be able to measure is how the number of steps of our algorithm changes when the data changes. This helps us answer the question of whether the code we write will scale.
+Điều chúng ta thực sự muốn đo là số bước của thuật toán thay đổi như thế nào khi dữ liệu thay đổi. Điều này giúp chúng ta trả lời câu hỏi liệu mã mình viết có thể mở rộng tốt hay không.
 
-To do that, we need to delve into a new concept: Asymptotic Notations and, in particular, Big O.
+Để làm được vậy, chúng ta cần tìm hiểu một khái niệm mới: các ký hiệu tiệm cận và đặc biệt là Big O.
 
-### Asymptotic notations
+### Các ký hiệu tiệm cận
 
-Asymptotic Notations are used to describe the running time of an algorithm. Because an algorithm's running time can differ depending on the input, there are several notations that measure that running time in different ways. The 3 most common are as follows:
+Các ký hiệu tiệm cận được dùng để mô tả thời gian chạy của một thuật toán. Vì thời gian chạy của thuật toán có thể khác nhau tùy thuộc vào đầu vào, có một số ký hiệu đo thời gian chạy theo những cách khác nhau. Ba ký hiệu phổ biến nhất là:
 
-- Big O Notation - represents the upper bound of an algorithm. This means the worst-case scenario for how the algorithm will perform.
-- Omega Notation - represents the lower bound of an algorithm. This is the best-case scenario.
-- Theta Notation - represents both the upper bound and lower bound and therefore analyses the average case complexity of an algorithm.
+- Ký hiệu Big O - biểu diễn cận trên của một thuật toán. Điều này có nghĩa là trường hợp xấu nhất về cách thuật toán sẽ hoạt động.
+- Ký hiệu Omega - biểu diễn cận dưới của một thuật toán. Đây là trường hợp tốt nhất.
+- Ký hiệu Theta - biểu diễn cả cận trên lẫn cận dưới, từ đó phân tích độ phức tạp trong trường hợp trung bình của một thuật toán.
 
-Big O is the one you'll most commonly see referenced because you need to be sure the worst-case scenario for any code you write is scalable as the inputs grow in your application.
+Big O là ký hiệu bạn thường thấy nhất, vì bạn cần bảo đảm trường hợp xấu nhất của mọi mã mình viết vẫn có thể mở rộng khi đầu vào trong ứng dụng tăng lên.
 
-It's also worth noting that the Notations given below for Big O also apply to Omega and Theta notations. The differences are in how they look to measure the efficiency of the algorithm and therefore which Notation should apply. This should become clearer as you read on.
+Cũng cần lưu ý rằng những ký hiệu được trình bày dưới đây cho Big O cũng áp dụng cho ký hiệu Omega và Theta. Điểm khác nhau nằm ở cách chúng đo hiệu quả của thuật toán, và do đó ký hiệu nào nên được áp dụng. Điều này sẽ trở nên rõ ràng hơn khi bạn đọc tiếp.
 
-### What is big O?
+### Big O là gì?
 
-Big O gives us a consistent way to measure the efficiency of an algorithm. It gives us a measurement for the time it takes for an algorithm to run as the input grows so that you can directly compare the performance of two algorithms and pick the best one.
+Big O cung cấp một cách nhất quán để đo hiệu quả của một thuật toán. Nó cho biết thời gian một thuật toán cần để chạy khi đầu vào tăng lên, nhờ đó bạn có thể trực tiếp so sánh hiệu năng của hai thuật toán và chọn thuật toán tốt hơn.
 
-Big O is not a piece of code you can put your algorithm into that tells you how efficient it is. You will need to measure how the number of steps changes as the data grows, and using this you can apply a Big O Notation to it and measure it against other algorithms. In many cases you'll be using a data structure in which the ways you interact with it are well known, and in that case it's easier to judge how it will scale as the input changes.
+Big O không phải là một đoạn mã mà bạn có thể đưa thuật toán vào để nhận được câu trả lời thuật toán hiệu quả đến đâu. Bạn cần đo số bước thay đổi như thế nào khi dữ liệu tăng lên, rồi dựa vào đó áp dụng một ký hiệu Big O và so sánh với các thuật toán khác. Trong nhiều trường hợp, bạn sẽ sử dụng một cấu trúc dữ liệu có những cách tương tác đã được biết rõ; khi đó, việc đánh giá khả năng mở rộng của nó khi đầu vào thay đổi sẽ dễ dàng hơn.
 
-Firstly, we'll summarize the Big O Notations and then provide a little more context for each one. The reading materials will dive into greater detail.
+Trước hết, chúng ta sẽ tóm tắt các ký hiệu Big O, sau đó cung cấp thêm một chút bối cảnh cho từng ký hiệu. Tài liệu đọc thêm sẽ đi sâu hơn vào chi tiết.
 
-#### Big O notation
+#### Ký hiệu Big O
 
-The most common Big O Notations in the order of speed from fastest to slowest are:
+Các ký hiệu Big O phổ biến nhất, được sắp xếp theo tốc độ từ nhanh nhất đến chậm nhất, là:
 
-- O(1) - Constant Complexity
-- O(log N) - Logarithmic Complexity
-- O(N) - Linear Complexity
-- O(N log N) - N x log N Complexity
-- O(n&#178;) - Quadratic Complexity
-- O(n&#179;) - Cubic Complexity
-- O(2&#8319;) - Exponential Complexity
-- O(N!) - Factorial Complexity
+- O(1) - Độ phức tạp hằng số
+- O(log N) - Độ phức tạp logarit
+- O(N) - Độ phức tạp tuyến tính
+- O(N log N) - Độ phức tạp N x log N
+- O(n&#178;) - Độ phức tạp bậc hai
+- O(n&#179;) - Độ phức tạp bậc ba
+- O(2&#8319;) - Độ phức tạp hàm mũ
+- O(N!) - Độ phức tạp giai thừa
 
-#### O(1) - constant complexity
+#### O(1) - độ phức tạp hằng số
 
-To understand Constant Complexity, let's use an array.
+Để hiểu độ phức tạp hằng số, hãy sử dụng một mảng.
 
 ```ruby
 arr = [1, 2, 3, 4, 5]
 ```
 
-If we want to look up what is at index 2, we can get to the element using `arr[2]` which would give us back `3`. This takes just one step. If we double our array...
+Nếu muốn tra cứu phần tử ở chỉ mục 2, chúng ta có thể lấy phần tử đó bằng `arr[2]`, kết quả là `3`. Việc này chỉ mất một bước. Nếu tăng gấp đôi kích thước mảng...
 
 ```ruby
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
-We can still access any element in just one step. `arr[7]` gives us `8` in a single step. Our array can keep growing and we can always access any element in a single step. It's constant. Hence we have `O(1)`.
+Chúng ta vẫn có thể truy cập bất kỳ phần tử nào chỉ trong một bước. `arr[7]` cho ta `8` chỉ với một bước. Mảng có thể tiếp tục tăng lên nhưng chúng ta vẫn luôn truy cập được bất kỳ phần tử nào trong một bước. Đó là tính hằng số. Vì vậy, ta có `O(1)`.
 
-Looking up something in one step is as good as it gets for time complexity.
+Tra cứu một thứ gì đó trong một bước là mức tốt nhất có thể đạt được về độ phức tạp thời gian.
 
-While we're looking at the basic form of Big O, let's take a look at one of its little gotchas to keep in mind. You may have thought a moment ago, is it really just one step? The answer is technically no, in reality the computer must first look up where the array is in memory, then from the first element in the array it needs to jump to the index argument provided. That's at least a couple of steps. So you wouldn't be wrong for writing something like `O(1 + 2(steps))`. However, the 2 steps are merely incidental. With an array of 10,000 elements, it still takes the same amount of steps as if the array was 2 elements. Because of this, Big O doesn't concern itself with these incidental numbers. They don't provide any context to how the complexity grows when the data size changes, because they are constant, and so in Big O they are dropped. Big O only wants to tell us an algorithm's complexity relative to the size of the input.
+Khi xem dạng cơ bản của Big O, hãy lưu ý một điểm nhỏ dễ gây nhầm lẫn. Có thể lúc nãy bạn đã nghĩ: có thật sự chỉ là một bước không? Về mặt kỹ thuật thì không; trên thực tế, trước tiên máy tính phải tra cứu vị trí của mảng trong bộ nhớ, sau đó từ phần tử đầu tiên của mảng nhảy đến chỉ mục được cung cấp. Như vậy phải mất ít nhất vài bước. Vì thế, viết `O(1 + 2(steps))` cũng không sai. Tuy nhiên, 2 bước đó chỉ là những chi phí vụn vặt. Với một mảng có 10.000 phần tử, số bước vẫn giống như khi mảng chỉ có 2 phần tử. Vì lý do này, Big O không quan tâm đến những con số vụn vặt đó. Chúng không cho biết độ phức tạp tăng như thế nào khi kích thước dữ liệu thay đổi, vì chúng là hằng số và do đó bị loại bỏ trong Big O. Big O chỉ muốn cho chúng ta biết độ phức tạp của thuật toán tương quan với kích thước đầu vào.
 
-Do the number of steps matter? Yes, they might. We'll touch on when this may be the case a little later.
+Số bước có quan trọng không? Có thể có. Chúng ta sẽ nói về trường hợp đó sau một chút.
 
-#### O(log N) - logarithmic complexity
+#### O(log N) - độ phức tạp logarit
 
-Logarithmic Complexity tells us that the number of steps an algorithm takes increases by 1 as the data doubles. That's still pretty efficient when you think about it. Going from 5,000 to 10,000 data elements and only taking one additional step can scale really well.
+Độ phức tạp logarit cho biết số bước mà thuật toán cần tăng thêm 1 khi dữ liệu tăng gấp đôi. Nếu suy nghĩ kỹ, đây vẫn là hiệu quả khá tốt. Từ 5.000 lên 10.000 phần tử dữ liệu mà chỉ cần thêm một bước có thể mở rộng rất tốt.
 
-One such algorithm that does this is Binary Search. It only works on sorted arrays, but if you have an array of 10 items in sorted order:
+Một thuật toán hoạt động như vậy là tìm kiếm nhị phân. Nó chỉ hoạt động trên các mảng đã được sắp xếp, nhưng nếu có một mảng gồm 10 phần tử theo thứ tự:
 
 ```ruby
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
-To find out if the array contains the number `7`, Binary Search calculates the middle index using the formula:
+Để kiểm tra xem mảng có chứa số `7` hay không, tìm kiếm nhị phân tính chỉ mục ở giữa bằng công thức:
 
 ```ruby
 middle_index = (start_index + end_index) / 2
 ```
 
-Here, `start_index` is the beginning of the array (initially `0`), and `end_index` is the last element of the array (initially `9` for a 10-element array). The middle element at index `4` would be `5`.
+Ở đây, `start_index` là đầu mảng (ban đầu là `0`), còn `end_index` là phần tử cuối mảng (ban đầu là `9` đối với mảng 10 phần tử). Phần tử ở giữa, tại chỉ mục `4`, sẽ là `5`.
 
-Because the array is sorted and `7` is greater than `5`, we can eliminate `5` and everything to its left, as those numbers are all less than `7`.
+Vì mảng đã được sắp xếp và `7` lớn hơn `5`, chúng ta có thể loại bỏ `5` cùng mọi phần tử bên trái nó, vì tất cả những số đó đều nhỏ hơn `7`.
 
 ```ruby
 arr = [-, -, -, -, -, 6, 7, 8, 9, 10]
 ```
 
-In just one step, we've eliminated half of the array. Now, we recalculate the middle index with the new `start_index` and `end_index` values. The middle index would now be `7`, and the number at this index is `8`.
+Chỉ trong một bước, chúng ta đã loại bỏ một nửa mảng. Bây giờ, ta tính lại chỉ mục ở giữa bằng các giá trị `start_index` và `end_index` mới. Chỉ mục ở giữa lúc này sẽ là `7`, và số ở chỉ mục đó là `8`.
 
-Since `7` is less than `8`, we can eliminate `8` and everything to its right.
+Vì `7` nhỏ hơn `8`, chúng ta có thể loại bỏ `8` cùng mọi phần tử bên phải nó.
 
 ```ruby
 arr = [6, 7, -, -, -]
 ```
 
-We repeat this process until we have an array of just one item. If that item matches the number we're looking for, we've found it. If not, the number isn't in the array.
+Chúng ta lặp lại quá trình này cho đến khi mảng chỉ còn một phần tử. Nếu phần tử đó trùng với số cần tìm, ta đã tìm thấy nó. Nếu không, số đó không có trong mảng.
 
-The below table summarizes the size of an array doubling and how many steps in Big O terms we would need to arrive at one element to see if it matches what we're looking for:
+Bảng dưới đây tóm tắt việc kích thước mảng tăng gấp đôi và số bước, theo ký hiệu Big O, cần thực hiện để còn lại một phần tử nhằm kiểm tra xem nó có khớp với giá trị cần tìm hay không:
 
-| Size | Steps |
+| Kích thước | Số bước |
 | ---- | ----- |
 | 1    | 1     |
 | 2    | 2     |
@@ -185,34 +185,34 @@ The below table summarizes the size of an array doubling and how many steps in B
 | 16   | 5     |
 | 32   | 6     |
 
-Pretty impressive eh!
+Khá ấn tượng phải không!
 
-#### O(N) - linear complexity
+#### O(N) - độ phức tạp tuyến tính
 
-This one is pretty easy to wrap your head around. Linear Complexity just tells us that as the number of items grows, the number of steps grows at exactly the same rate. Every time you iterate over an array is an example of Linear Complexity. If you have an array of 5 items, then we can iterate every element in 5 steps. An array of 10 items can be iterated in 10 steps. If you come across any algorithm with a Big O efficiency of `O(N)`, you know that the number of steps will increase in line with the number of elements in your data structure.
+Khái niệm này khá dễ nắm bắt. Độ phức tạp tuyến tính chỉ cho biết rằng khi số lượng phần tử tăng, số bước cũng tăng với đúng cùng một tốc độ. Mỗi lần duyệt qua một mảng là một ví dụ về độ phức tạp tuyến tính. Nếu có một mảng gồm 5 phần tử, chúng ta có thể duyệt qua mọi phần tử trong 5 bước. Mảng gồm 10 phần tử có thể được duyệt trong 10 bước. Nếu gặp một thuật toán có hiệu quả Big O là `O(N)`, bạn biết rằng số bước sẽ tăng tương ứng với số phần tử trong cấu trúc dữ liệu.
 
-#### O(N log N) - N x log N complexity
+#### O(N log N) - độ phức tạp N x log N
 
-You can't say this one isn't appropriately named. This notation means we have an algorithm which initially is `O(log N)` such as our example earlier of Binary Search where it repeatedly breaks an array in half, but with `O(N log N)` each of those array halves is processed by another algorithm with a complexity of `O(N)`.
+Khó có thể nói tên gọi của khái niệm này không phù hợp. Ký hiệu này có nghĩa là chúng ta có một thuật toán ban đầu là `O(log N)`, chẳng hạn ví dụ tìm kiếm nhị phân ở trên, trong đó mảng liên tục bị chia đôi; nhưng với `O(N log N)`, mỗi nửa mảng đó lại được xử lý bởi một thuật toán khác có độ phức tạp `O(N)`.
 
-One such algorithm is the merge sort algorithm from our previous lesson. :)
+Một thuật toán như vậy là thuật toán sắp xếp trộn trong bài học trước của chúng ta. :)
 
-#### O(n&#178;) - quadratic complexity
+#### O(n&#178;) - độ phức tạp bậc hai
 
-You've probably written code with a Quadratic Complexity on your programming journey. It's commonly seen when you loop over a data set and within each loop you loop over it again.
-For example, if our array has 3 items, the nested loops require 3&#178; = 9 sub-steps. Adding just one more item to the array almost doubles this number to 4&#178; = 16. Adding a 5th item takes us to 5&#178; = 25 sub-steps. Then doubling the array size to 10 items increases the sub-steps from 25 to 100, so 4 times as much work needed!
-We hope you can see where we're going with this...
+Có lẽ trong quá trình học lập trình, bạn đã từng viết mã có độ phức tạp bậc hai. Nó thường xuất hiện khi bạn lặp qua một tập dữ liệu và bên trong mỗi vòng lặp lại lặp qua tập dữ liệu đó một lần nữa.
+Ví dụ, nếu mảng có 3 phần tử, các vòng lặp lồng nhau cần 3&#178; = 9 bước con. Chỉ cần thêm một phần tử vào mảng, con số này gần như tăng gấp đôi thành 4&#178; = 16. Thêm phần tử thứ 5, ta có 5&#178; = 25 bước con. Sau đó, tăng gấp đôi kích thước mảng lên 10 phần tử sẽ làm số bước con tăng từ 25 lên 100, tức là cần nhiều công việc gấp 4 lần!
+Hy vọng bạn đã thấy được vấn đề đang dẫn đến đâu...
 
-#### O(n&#179;) - cubic complexity
+#### O(n&#179;) - độ phức tạp bậc ba
 
-Think triple nested loops baby. If looping over an array with n items, 1 extra item adds an extra outer loop, an extra middle loop, and an extra innermost loop. When using such triply nested loops on an array of size n, we require a total of n&#179; sub-steps.
-For example, if our array has 3 items, the triply-nested loops require a total of 3&#179; = 27 sub-steps. Adding one more item more than doubles this number to 4&#179; = 64 sub-steps. The task almost doubles again for 5 items, with 5&#179; = 125 sub-steps. Doubling our array size to 10 items means we require 10&#179; = 1000 sub-steps in total, 8 times as many as before! 100 items in the array require a total of 1,000,000 sub-steps. Ouch!
+Hãy nghĩ đến các vòng lặp lồng nhau ba tầng. Nếu lặp qua một mảng có n phần tử, thêm 1 phần tử sẽ làm tăng thêm một vòng lặp bên ngoài, một vòng lặp ở giữa và một vòng lặp trong cùng. Khi sử dụng các vòng lặp lồng nhau ba tầng như vậy trên một mảng kích thước n, chúng ta cần tổng cộng n&#179; bước con.
+Ví dụ, nếu mảng có 3 phần tử, các vòng lặp lồng nhau ba tầng cần tổng cộng 3&#179; = 27 bước con. Thêm một phần tử sẽ làm con số này tăng hơn gấp đôi thành 4&#179; = 64 bước con. Với 5 phần tử, nhiệm vụ lại gần như tăng gấp đôi, thành 5&#179; = 125 bước con. Tăng gấp đôi kích thước mảng lên 10 phần tử nghĩa là cần tổng cộng 10&#179; = 1000 bước con, gấp 8 lần trước đó! Mảng có 100 phần tử cần tổng cộng 1.000.000 bước con. Thật khủng khiếp!
 
-#### O(2&#8319;) - exponential complexity
+#### O(2&#8319;) - độ phức tạp hàm mũ
 
-Exponential Complexity means that with each item added to the data size, the number of steps doubles from the previous number of steps. Let's provide a little table to see how quickly this can get out of hand.
+Độ phức tạp hàm mũ có nghĩa là với mỗi phần tử thêm vào kích thước dữ liệu, số bước sẽ tăng gấp đôi so với số bước trước đó. Hãy xem một bảng nhỏ để thấy tình hình có thể nhanh chóng vượt khỏi tầm kiểm soát như thế nào.
 
-| Size | Steps |
+| Kích thước | Số bước |
 | ---- | ----- |
 | 1    | 2     |
 | 2    | 4     |
@@ -225,23 +225,23 @@ Exponential Complexity means that with each item added to the data size, the num
 | 9    | 512   |
 | 10   | 1024  |
 
-You want to avoid this if at all possible, otherwise you won't be processing much data quickly.
+Bạn nên tránh độ phức tạp này nếu có thể, nếu không bạn sẽ không thể xử lý nhiều dữ liệu một cách nhanh chóng.
 
-#### O(N!) - factorial complexity
+#### O(N!) - độ phức tạp giai thừa
 
-The factorial of a number is the product of all numbers between 1 and that number. For example, the factorial of 4 (written as 4!) is 4 \* 3 \* 2 \* 1.
+Giai thừa của một số là tích của tất cả các số từ 1 đến số đó. Ví dụ, giai thừa của 4 (viết là 4!) là 4 \* 3 \* 2 \* 1.
 
-You will come across Factorial Complexity if you ever need to calculate permutations or combinations. If you have an array and have to work out all the combinations you can make from the array, that is a Factorial complexity. It's manageable for a small number of items, but the leap with each new item in a dataset can be huge.
+Bạn sẽ gặp độ phức tạp giai thừa nếu cần tính các hoán vị hoặc tổ hợp. Nếu có một mảng và phải tính tất cả các tổ hợp có thể tạo ra từ mảng đó, thì đó là độ phức tạp giai thừa. Nó vẫn có thể xử lý được với số lượng phần tử nhỏ, nhưng mỗi phần tử mới trong tập dữ liệu có thể làm công việc tăng vọt.
 
-The factorial of 3 is 6 (3 \* 2 \* 1). The factorial of 4 is 24. The factorial of 10? 3,628,800. So you can see how quickly things can get out of hand.
+Giai thừa của 3 là 6 (3 \* 2 \* 1). Giai thừa của 4 là 24. Còn giai thừa của 10? Là 3.628.800. Như vậy, bạn có thể thấy mọi thứ nhanh chóng vượt khỏi tầm kiểm soát đến mức nào.
 
-### Alternatives to big O
+### Các lựa chọn thay thế Big O
 
-If Big O gives us the worst-case scenario of how our algorithm will scale, what alternatives are there?
+Nếu Big O cho chúng ta biết trường hợp xấu nhất về khả năng mở rộng của thuật toán, thì có những lựa chọn thay thế nào?
 
-#### Big &#937; (omega notation)
+#### Big &#937; (ký hiệu omega)
 
-Omega Notation gives us the best-case scenario for an algorithm. To understand where this might be, let's look at a method and discuss how we can measure its complexity.
+Ký hiệu Omega cho biết trường hợp tốt nhất của một thuật toán. Để hiểu trường hợp này có thể xảy ra ở đâu, hãy xem một phương thức và thảo luận cách đo độ phức tạp của nó.
 
 ```ruby
 def find_value(arr)
@@ -251,31 +251,31 @@ def find_value(arr)
 end
 ```
 
-In the worst case (Big O), which occurs if the item is not in the array or is the last item in the array, the algorithm has linear complexity `O(N)`. This happens because, in both cases, the code must iterate through every element. As the input size doubles, the number of iterations required in the worst case also doubles.
+Trong trường hợp xấu nhất (Big O), xảy ra khi phần tử không có trong mảng hoặc là phần tử cuối cùng trong mảng, thuật toán có độ phức tạp tuyến tính `O(N)`. Điều này xảy ra vì trong cả hai trường hợp, mã phải duyệt qua mọi phần tử. Khi kích thước đầu vào tăng gấp đôi, số lần lặp cần thiết trong trường hợp xấu nhất cũng tăng gấp đôi.
 
-However, in the best-case scenario the value we are looking for will be the first item in the array. In this case our algorithm takes just one step. This has a complexity of `Ω(1)`. This is its Omega Complexity.
+Tuy nhiên, trong trường hợp tốt nhất, giá trị chúng ta tìm sẽ là phần tử đầu tiên trong mảng. Khi đó, thuật toán chỉ cần một bước. Độ phức tạp là `Ω(1)`. Đây là độ phức tạp Omega của nó.
 
-Omega Notation isn't considered as useful because it is unlikely our item will often be the first item in our data structure search, so it doesn't give us any idea how well the algorithm will scale.
+Ký hiệu Omega không được xem là hữu ích bằng, vì không chắc phần tử cần tìm thường xuyên là phần tử đầu tiên trong cấu trúc dữ liệu; do đó, ký hiệu này không cho chúng ta biết thuật toán sẽ mở rộng tốt đến đâu.
 
-#### Big-Θ (big-theta notation)
+#### Big-Θ (ký hiệu big-theta)
 
-While Omega Notation measures the best-case scenario for an algorithm's efficiency, and Big O measures the worst case, Theta looks to give the exact value or a useful range between narrow upper and lower bounds.
+Trong khi ký hiệu Omega đo trường hợp tốt nhất về hiệu quả của thuật toán và Big O đo trường hợp xấu nhất, Theta cố gắng đưa ra giá trị chính xác hoặc một khoảng hữu ích giữa cận trên và cận dưới đủ hẹp.
 
-If we had some code that looped every item in an array, then it doesn't matter the size of the array. Our algorithm will always run in `O(N)` time in its best-case and worst-case scenarios. In that case we know its exact performance in all scenarios is `Θ(N)`, and that is the Theta performance of our algorithm. For other algorithms, Theta may represent both the lower and upper bound of an algorithm that has different complexities. We won't get into this more here because Big O is the primary notation used for general algorithm time complexity.
+Nếu có một đoạn mã lặp qua mọi phần tử trong một mảng, thì kích thước mảng không quan trọng. Thuật toán của chúng ta sẽ luôn chạy trong thời gian `O(N)` ở cả trường hợp tốt nhất và xấu nhất. Khi đó, chúng ta biết hiệu năng chính xác của nó trong mọi trường hợp là `Θ(N)`, và đó là hiệu năng Theta của thuật toán. Với những thuật toán khác, Theta có thể biểu diễn cả cận dưới và cận trên của một thuật toán có độ phức tạp khác nhau. Chúng ta sẽ không đi sâu hơn ở đây, vì Big O là ký hiệu chính được dùng cho độ phức tạp thời gian của thuật toán nói chung.
 
-This is just a simplistic explanation to try to make the topic approachable. If you do happen to be mathematically minded, then you'll find more detailed explanations with a quick search online.
+Đây chỉ là cách giải thích đơn giản nhằm giúp chủ đề dễ tiếp cận hơn. Nếu bạn có thiên hướng về toán học, một tìm kiếm nhanh trên mạng sẽ giúp bạn tìm thấy những lời giải thích chi tiết hơn.
 
-### Why big O
+### Vì sao dùng Big O
 
-Now that we've touched on the different ways of quantifying an algorithm's efficiency, hopefully it's clear why we choose to use the worst-case scenario when measuring the efficiency of that algorithm.
+Sau khi đã tìm hiểu các cách khác nhau để định lượng hiệu quả của một thuật toán, hy vọng bạn đã hiểu rõ vì sao chúng ta chọn trường hợp xấu nhất khi đo hiệu quả của thuật toán đó.
 
-Using a worst-case scenario we can make sure our algorithm will scale in all outcomes. If we write an algorithm that could potentially run in constant time, but could also run in linear time in the worst case, it can only scale as the input grows if it still works when the worst case does happen. You need to be confident your code won't lock up and leave users frustrated if you suddenly get an input of a million items instead of 10.
+Dùng trường hợp xấu nhất giúp chúng ta bảo đảm thuật toán có thể mở rộng trong mọi kết quả. Nếu viết một thuật toán có thể chạy trong thời gian hằng số, nhưng trong trường hợp xấu nhất cũng có thể chạy trong thời gian tuyến tính, nó chỉ có thể mở rộng khi đầu vào tăng nếu vẫn hoạt động được khi trường hợp xấu nhất xảy ra. Bạn cần tin chắc rằng mã của mình sẽ không bị treo và khiến người dùng bực bội nếu đột nhiên nhận đầu vào gồm một triệu phần tử thay vì 10 phần tử.
 
-### Algorithms with the same complexity
+### Các thuật toán có cùng độ phức tạp
 
-If we write two algorithms with the same complexity, does that mean they're equally good to use? We'll answer this question with two code examples which we'll then discuss a bit further to try and answer the question.
+Nếu viết hai thuật toán có cùng độ phức tạp, điều đó có nghĩa là chúng tốt như nhau để sử dụng sao? Chúng ta sẽ trả lời câu hỏi này bằng hai ví dụ mã, sau đó thảo luận thêm để cố gắng giải đáp.
 
-The first example is some code we've seen already, our `odd_numbers` method.
+Ví dụ đầu tiên là đoạn mã chúng ta đã thấy, phương thức `odd_numbers`.
 
 ```ruby
 def odd_numbers(max_number)
@@ -291,9 +291,9 @@ def odd_numbers(max_number)
 end
 ```
 
-The time complexity of this algorithm is `O(N)`. As the data size increases, the number of steps of our algorithm increases at the same rate.
+Độ phức tạp thời gian của thuật toán này là `O(N)`. Khi kích thước dữ liệu tăng, số bước của thuật toán cũng tăng với cùng tốc độ.
 
-Let's look at another version:
+Hãy xem một phiên bản khác:
 
 ```ruby
 def odd_numbers(max_number)
@@ -309,38 +309,38 @@ def odd_numbers(max_number)
 end
 ```
 
-Not much of a change, but this time we increase `current_number` by 2. How does this affect our algorithm runtime? Well, for an input of `n`, the number of steps is approximately half as we iterate by 2 each time. This is an algorithm of `O(N/2)` but as mentioned earlier, we are not trying to get the exact time, but rather how the time grows relative to the size of the input. Big O doesn't concern itself with constants because they aren't relative to how an algorithm scales as the input changes and it wouldn't be fun or easy to have to compare an algorithm of `O(N/2 + 5 N)` against `O(N + 5 / 2N)`. Therefore, the Big O efficiency of both algorithms is `O(N)`. They scale at the same rate as the input grows.
+Không có nhiều thay đổi, nhưng lần này chúng ta tăng `current_number` lên 2. Điều này ảnh hưởng thế nào đến thời gian chạy của thuật toán? Với đầu vào là `n`, số bước xấp xỉ bằng một nửa vì mỗi lần lặp tăng thêm 2. Đây là thuật toán `O(N/2)`, nhưng như đã đề cập trước đó, chúng ta không cố tìm thời gian chính xác mà quan tâm đến cách thời gian tăng tương quan với kích thước đầu vào. Big O không quan tâm đến các hằng số, vì chúng không phản ánh cách thuật toán mở rộng khi đầu vào thay đổi; hơn nữa, sẽ không thú vị hoặc dễ dàng gì nếu phải so sánh thuật toán `O(N/2 + 5 N)` với `O(N + 5 / 2N)`. Vì vậy, hiệu quả Big O của cả hai thuật toán đều là `O(N)`. Chúng mở rộng với cùng tốc độ khi đầu vào tăng.
 
-Another way to look at it is that constants eventually become irrelevant. Take the following:
+Một cách khác để nhìn nhận là các hằng số cuối cùng sẽ trở nên không đáng kể. Hãy xem các trường hợp sau:
 
 N=1, O(10N) = 10, O(n&#178;) = 1
 
 N = 5, O(10N) = 50, O(n&#178;) = 25
 
-N = 100, O(10N) = 1,000, O(n&#178;) = 10,000 *10x bigger*
+N = 100, O(10N) = 1,000, O(n&#178;) = 10,000 *lớn hơn 10 lần*
 
-N = 1000, O(10N) = 10,000, O(n&#178;) = 1,000,000 *100x bigger*
+N = 1000, O(10N) = 10,000, O(n&#178;) = 1,000,000 *lớn hơn 100 lần*
 
-N = 10000, O(10N) = 100,000, O(n&#178;) = 100,000,000 *1000x bigger*
+N = 10000, O(10N) = 100,000, O(n&#178;) = 100,000,000 *lớn hơn 1000 lần*
 
-Therefore, O(10N) is faster than O(n²) with an N of 100. Practically speaking, sometimes an n² algorithm is faster than an N algorithm for some small set of inputs, which can be seen in the first two examples above.
+Do đó, O(10N) nhanh hơn O(n²) khi N bằng 100. Trên thực tế, đôi khi một thuật toán n² nhanh hơn một thuật toán N với một số lượng đầu vào nhỏ, như có thể thấy trong hai ví dụ đầu tiên ở trên.
 
-Remember to ensure the code you write is as efficient as it can be within its time complexity.
+Hãy nhớ bảo đảm mã bạn viết hiệu quả nhất có thể trong phạm vi độ phức tạp thời gian của nó.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through [A Rubyists Guide to Big-O Notation](https://www.honeybadger.io/blog/a-rubyist-s-guide-to-big-o-notation/). The last section talks about how this applies to database queries in a web app, which you won't have covered yet, but it's something to keep in mind as you move forward into the Rails materials.
-1. The [Big-O cheat sheet](https://www.bigocheatsheet.com/) is an amazing resource. It gives a complexity chart where you can see how the different algorithms perform as the data size increases and also gives the time complexity for common data structure operations along with those for common sorting algorithms.
-1. This [Guide to Time Complexity for Ruby Developers](https://www.rubyguides.com/2018/03/time-complexity-for-ruby-developers/) gives some more insight into applying a Big-O notation to your own code.
+1. Đọc [Hướng dẫn về ký hiệu Big-O dành cho Rubyist](https://www.honeybadger.io/blog/a-rubyist-s-guide-to-big-o-notation/). Phần cuối nói về việc áp dụng nội dung này cho các truy vấn cơ sở dữ liệu trong một ứng dụng web; bạn chưa học phần đó, nhưng hãy ghi nhớ khi tiếp tục sang các tài liệu về Rails.
+1. [Bảng tra cứu Big-O](https://www.bigocheatsheet.com/) là một tài nguyên tuyệt vời. Bảng này cung cấp biểu đồ độ phức tạp để bạn có thể thấy các thuật toán khác nhau hoạt động như thế nào khi kích thước dữ liệu tăng, đồng thời cho biết độ phức tạp thời gian của những thao tác phổ biến trên cấu trúc dữ liệu cũng như các thuật toán sắp xếp phổ biến.
+1. [Hướng dẫn về độ phức tạp thời gian dành cho Ruby Developer](https://www.rubyguides.com/2018/03/time-complexity-for-ruby-developers/) cung cấp thêm góc nhìn về cách áp dụng ký hiệu Big-O cho mã của chính bạn.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- It's not a free resource but [A common sense guide to data structures and algorithms](https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/) does a great job making these topics approachable to people not familiar with some of the mathematical terminology used.
+- Đây không phải là tài nguyên miễn phí, nhưng [Hướng dẫn dễ hiểu về cấu trúc dữ liệu và thuật toán](https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/) đã làm rất tốt việc trình bày các chủ đề này theo cách dễ tiếp cận với những người chưa quen với một số thuật ngữ toán học được sử dụng.
 
-- In this video, [Introduction to Big O Notation and Time Complexity](https://www.youtube.com/watch?v=D6xkbGLQesk), the author provides a step-by-step process for how to analyze and understand time complexity for various algorithms.
+- Trong video [Giới thiệu về ký hiệu Big O và độ phức tạp thời gian](https://www.youtube.com/watch?v=D6xkbGLQesk), tác giả trình bày quy trình từng bước để phân tích và hiểu độ phức tạp thời gian của nhiều thuật toán khác nhau.

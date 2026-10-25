@@ -481,6 +481,12 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 |---|---|---|---|---|
 | `ruby/computer_science/space_complexity.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và thuật ngữ độ phức tạp không gian. |
 
+## Ruby đã dịch — batch 22
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby/computer_science/time_complexity.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Ruby và thuật ngữ độ phức tạp thời gian. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

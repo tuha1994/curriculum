@@ -1,48 +1,48 @@
-### Introduction
+### Giới thiệu
 
-This course is all about teaching you **Ruby**, the language designed specifically for programmer happiness. What could possibly be better than that?! A task that takes dozens of lines of code to accomplish in Java or a hundred in C could take just a few in Ruby thanks to Ruby prepackaging so many useful functions into easy-to-use and convenient methods.
+Khóa học này tập trung vào việc dạy bạn **Ruby**, ngôn ngữ được thiết kế đặc biệt để lập trình viên cảm thấy hạnh phúc. Còn gì có thể tuyệt hơn thế nữa?! Một tác vụ cần hàng chục dòng mã để hoàn thành trong Java hoặc cả trăm dòng trong C có thể chỉ cần vài dòng trong Ruby, nhờ Ruby đóng gói sẵn rất nhiều hàm hữu ích thành những phương thức tiện lợi và dễ sử dụng.
 
-Ruby and Python are quite similar and in some ways resemble Romance languages; once you've learned one, it's not terribly hard to pick up the other because they tend to follow many of the same conventions. Python tends to be taught more in colleges and is often used for more data-intensive and processor-heavy applications.
+Ruby và Python khá giống nhau, và ở một vài khía cạnh còn gợi nhớ đến các ngôn ngữ La-tinh; một khi đã học một ngôn ngữ, bạn sẽ không quá khó để làm quen với ngôn ngữ còn lại vì chúng thường tuân theo nhiều quy ước giống nhau. Python thường được giảng dạy nhiều hơn ở các trường đại học và thường được dùng cho những ứng dụng cần xử lý nhiều dữ liệu hoặc đòi hỏi nhiều năng lực xử lý hơn.
 
-However, Ruby has a secret weapon that makes it the love of fast-iterating web developers: the **Ruby on Rails** framework, which we'll cover in a later course. Rails has been optimized for writing code faster and with fewer headaches, allowing you to iterate more frequently when building a website. Faster iteration means that the end product is more likely to suit the client's or users' needs, making your projects more successful.
+Tuy nhiên, Ruby có một vũ khí bí mật khiến các nhà phát triển web thích lặp nhanh say mê: framework **Ruby on Rails**, mà chúng ta sẽ học trong một khóa sau. Rails được tối ưu để viết mã nhanh hơn và ít đau đầu hơn, cho phép bạn lặp lại thường xuyên hơn khi xây dựng một website. Lặp nhanh hơn đồng nghĩa với việc sản phẩm cuối cùng có nhiều khả năng đáp ứng nhu cầu của khách hàng hoặc người dùng hơn, từ đó giúp các dự án của bạn thành công hơn.
 
-You'll do a healthy chunk of learning in this course, but by the end of it all, you'll have built some pretty sweet projects including **Tic Tac Toe**, **Hangman**, and even **Chess**. You'll be able to save and open files, write tests for your code, separate out your spaghetti code into nice, distinct classes, and even reproduce some basic algorithms and data structures to solve complex problems.
+Bạn sẽ học được khá nhiều trong khóa học này, nhưng đến cuối khóa, bạn sẽ xây dựng được một số dự án rất thú vị, bao gồm **Tic Tac Toe**, **Hangman**, và thậm chí cả **Chess**. Bạn sẽ có thể lưu và mở tệp, viết bài kiểm thử cho mã của mình, tách phần mã spaghetti thành những lớp riêng biệt, gọn gàng, và thậm chí tự hiện thực một số thuật toán cùng cấu trúc dữ liệu cơ bản để giải quyết các bài toán phức tạp.
 
-**Basically, you're going to start feeling a whole lot more like a real programmer, and that feeling will be justified.**
+**Nói ngắn gọn, bạn sẽ bắt đầu cảm thấy mình giống một lập trình viên thực thụ hơn rất nhiều, và cảm giác đó hoàn toàn có cơ sở.**
 
-### Learning Ruby before Ruby on Rails
+### Học Ruby trước Ruby on Rails
 
-Some people believe you can just dive right into Rails and start firing out websites. So why do we have an entire course dedicated to only Ruby before we start looking at Rails? Rails is a framework built using exclusively Ruby, and every bit of code in it is written with Ruby. When (*not* "if") something in your project breaks, you'd better be able to debug it, which means having a strong understanding of Ruby, how it works, and what its error messages look like. Beyond that, when you start to stretch your wings and do something just a bit beyond what the vanilla tutorials explicitly show you how to do, you'll quickly discover a world of frustration if you don't have a strong foundation in Ruby. The amount of time you would spend Googling your error messages and staring blankly at help docs would be better spent learning Ruby now.
+Một số người cho rằng bạn có thể lao thẳng vào Rails và bắt đầu nhanh chóng tạo ra các website. Vậy tại sao chúng ta lại dành hẳn một khóa học chỉ cho Ruby trước khi tìm hiểu Rails? Rails là một framework được xây dựng hoàn toàn bằng Ruby, và từng phần mã trong đó đều được viết bằng Ruby. Khi (*không phải* là "nếu") có gì đó trong dự án của bạn bị hỏng, bạn phải có khả năng gỡ lỗi; điều đó đòi hỏi bạn hiểu vững Ruby, cách Ruby hoạt động, cũng như hình thức các thông báo lỗi của nó. Hơn nữa, khi bắt đầu mở rộng khả năng của mình và làm điều gì đó vượt ra ngoài những gì các bài hướng dẫn cơ bản chỉ rõ, bạn sẽ nhanh chóng thấy vô cùng nản lòng nếu không có nền tảng Ruby vững chắc. Khoảng thời gian bạn phải dành để Google các thông báo lỗi rồi ngồi nhìn chằm chằm vào tài liệu trợ giúp sẽ hữu ích hơn nhiều nếu được dùng để học Ruby ngay từ bây giờ.
 
-### The path ahead
+### Chặng đường phía trước
 
-Ruby is a big language with lots of syntax, so we've broken the concepts up into smaller chunks to make it more digestible. Some of the early material will be fairly straightforward and will rely on beginner friendly exercises to help reinforce your understanding. As you progress through the course, the goal is for you to get a much deeper and more practical understanding of the material. As you move into some of the more advanced topics, you'll be reading less and building more-just the way it should be!
+Ruby là một ngôn ngữ lớn với rất nhiều cú pháp, vì vậy chúng ta đã chia các khái niệm thành những phần nhỏ hơn để bạn dễ tiếp thu. Một số nội dung ban đầu sẽ khá đơn giản và dựa vào các bài tập thân thiện với người mới để củng cố hiểu biết của bạn. Khi tiến bộ qua khóa học, mục tiêu là giúp bạn hiểu tài liệu sâu sắc và thực tế hơn nhiều. Khi chuyển sang những chủ đề nâng cao hơn, bạn sẽ đọc ít hơn và xây dựng nhiều hơn — đúng như cách nên làm!
 
-- In the first section, you'll learn all about the basics of Ruby along with some classic programming basics.
-- In the second section, you'll learn about object-oriented programming, which will show you how to cleanly and neatly organize your code into reusable objects.
-- In the third section, you'll dive into some basic computer science, where you'll learn about recursion and common data structures.
-- In the fourth section, you'll learn some more advanced features of Git and the Git workflow used by professional developers.
-- In the fifth section, you'll learn the basics of test-driven development.
-- In the sixth and final section, you'll tie everything together by building a fully fledged chess game.
+- Trong phần đầu tiên, bạn sẽ học toàn bộ kiến thức cơ bản về Ruby cùng với một số nền tảng lập trình kinh điển.
+- Trong phần thứ hai, bạn sẽ học về lập trình hướng đối tượng, qua đó biết cách tổ chức mã của mình thành các đối tượng có thể tái sử dụng một cách rõ ràng và ngăn nắp.
+- Trong phần thứ ba, bạn sẽ tìm hiểu một số kiến thức khoa học máy tính cơ bản, trong đó có đệ quy và các cấu trúc dữ liệu phổ biến.
+- Trong phần thứ tư, bạn sẽ học thêm một số tính năng nâng cao của Git và quy trình làm việc với Git được các nhà phát triển chuyên nghiệp sử dụng.
+- Trong phần thứ năm, bạn sẽ học những kiến thức cơ bản về phát triển hướng kiểm thử.
+- Trong phần thứ sáu và cũng là phần cuối, bạn sẽ kết nối mọi thứ lại bằng cách xây dựng một trò chơi cờ vua hoàn chỉnh.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
 <div class="lesson-note lesson-note--warning" markdown="1">
 
-#### LaunchSchool's AI chatbot
+#### Chatbot AI của LaunchSchool
 
-This course will frequently link resources from LaunchSchool and they recently incorporated a chatbot for learning support into their platform. We do not recommend using it for your learning in this curriculum for the reasons that we have outlined in our [Motivation and Mindset lesson](https://www.theodinproject.com/lessons/foundations-motivation-and-mindset#a-note-on-ai-code-generation). If you are ever stuck on a problem or confused about any of the content you are reading, you should reach out to us in [our Discord server](https://discord.com/invite/fbFCkYabZB) instead.
+Khóa học này thường xuyên liên kết đến các tài nguyên của LaunchSchool, và gần đây họ đã tích hợp một chatbot hỗ trợ việc học vào nền tảng của mình. Chúng tôi không khuyến khích bạn sử dụng chatbot đó để học trong chương trình này vì những lý do đã được trình bày trong [bài học Động lực và Tư duy](https://www.theodinproject.com/lessons/foundations-motivation-and-mindset#a-note-on-ai-code-generation). Nếu bạn từng bị mắc kẹt ở một bài toán hoặc không hiểu một phần nội dung đang đọc, thay vào đó hãy liên hệ với chúng tôi trong [máy chủ Discord của chúng tôi](https://discord.com/invite/fbFCkYabZB).
 
 </div>
 
-1. Read the Introduction of [Launch School's *Introduction to Programming with Ruby*](https://launchschool.com/books/ruby/read/introduction) book to learn a bit more about the history of Ruby.
+1. Đọc phần Giới thiệu của cuốn sách [*Introduction to Programming with Ruby* của Launch School](https://launchschool.com/books/ruby/read/introduction) để tìm hiểu thêm một chút về lịch sử của Ruby.
 
-1. To understand how you'll be interacting with Ruby throughout this course, read through the [Your Tools chapter of The *Ruby for Beginners* book](http://ruby-for-beginners.rubymonstas.org/your_tools.html) from Ruby Monstas. (Note that even though they recommend using Sublime as your text editor, any code editor will work. For the record, we still tend to prefer VS Code around here!)
-1. Skip the installation instructions and read through the ["Preparations" chapter of Launch School's *Introduction to Programming with Ruby* book](https://launchschool.com/books/ruby/read/preparations#usingacodeeditor) for some helpful advice about using and learning Ruby effectively. Also, you won't be able to install Pry until you have installed Ruby in the next lesson.
-1. Now that you've learned a few ways to interact with your Ruby code, read about [how to use code files inside IRB](https://stackoverflow.com/questions/13112245/ruby-how-to-load-a-file-into-interactive-ruby-console-irb/38533339), which will be helpful for quick troubleshooting and experimenting.
+1. Để hiểu cách bạn sẽ tương tác với Ruby trong suốt khóa học này, hãy đọc chương [Your Tools trong cuốn *Ruby for Beginners*](http://ruby-for-beginners.rubymonstas.org/your_tools.html) của Ruby Monstas. (Lưu ý rằng dù họ khuyến nghị dùng Sublime làm trình soạn thảo văn bản, bất kỳ trình soạn thảo mã nào cũng dùng được. Nói thêm là ở đây chúng tôi vẫn thường thích VS Code hơn!)
+1. Bỏ qua phần hướng dẫn cài đặt và đọc chương ["Preparations" trong cuốn *Introduction to Programming with Ruby* của Launch School](https://launchschool.com/books/ruby/read/preparations#usingacodeeditor) để nhận được một số lời khuyên hữu ích về cách sử dụng và học Ruby hiệu quả. Ngoài ra, bạn sẽ chưa thể cài Pry cho đến khi cài Ruby ở bài học tiếp theo.
+1. Giờ bạn đã biết một vài cách tương tác với mã Ruby của mình, hãy đọc về [cách sử dụng các tệp mã bên trong IRB](https://stackoverflow.com/questions/13112245/ruby-how-to-load-a-file-into-interactive-ruby-console-irb/38533339), điều này sẽ hữu ích khi bạn cần nhanh chóng khắc phục sự cố và thử nghiệm.
 
-**Okay, enough talk. Let's learn Ruby!**
+**Được rồi, nói đủ rồi. Hãy học Ruby thôi!**
 
 </div>

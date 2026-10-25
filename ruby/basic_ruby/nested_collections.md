@@ -1,27 +1,27 @@
-### Introduction
+### Giới thiệu
 
-This lesson is going to build on your knowledge of arrays and hashes. As you have seen, arrays and hashes are great ways to store data. However, sometimes the data is more complex and needs more structure than a basic array or hash offers.
+Bài học này sẽ xây dựng dựa trên kiến thức của bạn về mảng và hash. Như bạn đã thấy, mảng và hash là những cách tuyệt vời để lưu trữ dữ liệu. Tuy nhiên, đôi khi dữ liệu phức tạp hơn và cần nhiều cấu trúc hơn những gì một mảng hoặc hash cơ bản có thể cung cấp.
 
-Let's take a look at how you can use nested arrays and nested hashes to store more complex data.
+Hãy cùng tìm hiểu cách dùng mảng lồng nhau và hash lồng nhau để lưu trữ dữ liệu phức tạp hơn.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Describe a nested array and hash.
-- Explain what data is useful to store in a nested array and hash.
-- Explain how to access data in a nested array and hash.
-- Explain why the `#dig` method is useful.
-- Explain how to add data to a nested array and hash.
-- Explain how to delete data in a nested array and hash.
-- Explain how to create a new nested array that is not mutable.
-- Explain how to iterate over a nested array and hash.
+- Mô tả mảng và hash lồng nhau.
+- Giải thích loại dữ liệu nào phù hợp để lưu trữ trong mảng và hash lồng nhau.
+- Giải thích cách truy cập dữ liệu trong mảng và hash lồng nhau.
+- Giải thích vì sao phương thức `#dig` hữu ích.
+- Giải thích cách thêm dữ liệu vào mảng và hash lồng nhau.
+- Giải thích cách xóa dữ liệu trong mảng và hash lồng nhau.
+- Giải thích cách tạo một mảng lồng nhau mới không bị thay đổi.
+- Giải thích cách lặp qua mảng và hash lồng nhau.
 
-### Nested arrays
+### Mảng lồng nhau
 
-Arrays can contain any type of data, including other arrays. An array that contains other arrays is called a nested array, or a multidimensional array.
+Mảng có thể chứa mọi loại dữ liệu, bao gồm cả những mảng khác. Một mảng chứa các mảng khác được gọi là mảng lồng nhau, hoặc mảng đa chiều.
 
-Nested arrays can be useful to store groups of similar data or positional data. The following nested array of test scores is storing groups of similar data and the teacher mailboxes is storing groups of positional data.
+Mảng lồng nhau có thể hữu ích khi lưu trữ các nhóm dữ liệu tương tự hoặc dữ liệu theo vị trí. Mảng lồng nhau về điểm kiểm tra dưới đây lưu trữ các nhóm dữ liệu tương tự, còn các hộp thư của giáo viên lưu trữ các nhóm dữ liệu theo vị trí.
 
 ```ruby
 test_scores = [
@@ -38,9 +38,9 @@ teacher_mailboxes = [
 ]
 ```
 
-### Accessing elements
+### Truy cập phần tử
 
-You already know that every element in an array has an index. Accessing a specific element within a nested array is done by calling `array[x][y]`, where `x` is the index of the nested element and `y` is the index inside of the nested element.
+Bạn đã biết mọi phần tử trong một mảng đều có chỉ mục. Để truy cập một phần tử cụ thể bên trong mảng lồng nhau, ta gọi `array[x][y]`, trong đó `x` là chỉ mục của phần tử lồng nhau và `y` là chỉ mục bên trong phần tử lồng nhau đó.
 
 ```ruby
 teacher_mailboxes[0][0]
@@ -51,7 +51,7 @@ teacher_mailboxes[2][0]
 #=> "Perez"
 ```
 
-You can also use negative indices to return elements from the end of an array, starting at [-1].
+Bạn cũng có thể dùng chỉ mục âm để trả về các phần tử tính từ cuối mảng, bắt đầu từ [-1].
 
 ```ruby
 teacher_mailboxes[0][-1]
@@ -62,7 +62,7 @@ teacher_mailboxes[-1][-2]
 #=> "Smith"
 ```
 
-If you try to access an index of a nonexistent nested element, it will raise an `NoMethodError`, because the nil class does not have a `[]` method. However, just like a regular array, if you try to access a nonexistent index inside of an existing nested element, it will return nil.
+Nếu cố truy cập chỉ mục của một phần tử lồng nhau không tồn tại, Ruby sẽ phát sinh `NoMethodError`, vì lớp nil không có phương thức `[]`. Tuy nhiên, cũng giống như với mảng thông thường, nếu cố truy cập một chỉ mục không tồn tại bên trong phần tử lồng nhau đang tồn tại, Ruby sẽ trả về nil.
 
 ```ruby
 teacher_mailboxes[3][0]
@@ -71,7 +71,7 @@ teacher_mailboxes[0][4]
 #=> nil
 ```
 
-If you want a nil value returned when trying to access an index of a nonexistent nested element, you can use the `#dig` method. This method can also be used when accessing a nonexistent index inside of an existing nested element.
+Nếu muốn nhận về giá trị nil khi cố truy cập chỉ mục của một phần tử lồng nhau không tồn tại, bạn có thể dùng phương thức `#dig`. Phương thức này cũng có thể được dùng khi truy cập một chỉ mục không tồn tại bên trong phần tử lồng nhau đang tồn tại.
 
 ```ruby
 teacher_mailboxes.dig(3, 0)
@@ -80,13 +80,13 @@ teacher_mailboxes.dig(0, 4)
 #=> nil
 ```
 
-### Creating a new nested array
+### Tạo mảng lồng nhau mới
 
-Now that you have seen how to access values inside a nested array, we need to take a step back to look at creating a new nested array. In a previous lesson you were taught to create a new array, by calling the Array.new method with up to 2 optional arguments (initial size and default value), like `Array.new(3)` or `Array.new(3, 7)`. However, there is one major "gotcha" that is important to point out. According to the [Array class documentation](https://docs.ruby-lang.org/en/3.4/Array.html), the second optional argument for `Array.new` (the default value), should only be used with an immutable (unable to be changed) object such as a number, boolean value, or symbol. Using a string, array, hash, or other mutable object may result in confusing behavior because each default value in the array will actually be a *reference to* the same default value. Therefore, any change to **one** of the elements will change **all** of the elements in the array.
+Giờ bạn đã biết cách truy cập các giá trị bên trong mảng lồng nhau, chúng ta cần lùi lại một bước để xem cách tạo mảng lồng nhau mới. Trong một bài học trước, bạn đã được học cách tạo mảng mới bằng cách gọi phương thức Array.new với tối đa 2 đối số tùy chọn (kích thước ban đầu và giá trị mặc định), chẳng hạn như `Array.new(3)` hoặc `Array.new(3, 7)`. Tuy nhiên, có một "cạm bẫy" lớn cần lưu ý. Theo [tài liệu lớp Array](https://docs.ruby-lang.org/en/3.4/Array.html), đối số tùy chọn thứ hai của `Array.new` (giá trị mặc định) chỉ nên được dùng với một đối tượng bất biến (không thể thay đổi), chẳng hạn như số, giá trị boolean hoặc symbol. Việc dùng chuỗi, mảng, hash hoặc một đối tượng khả biến khác có thể dẫn đến hành vi khó hiểu, vì mỗi giá trị mặc định trong mảng thực chất sẽ là một *tham chiếu đến* cùng một giá trị mặc định. Vì vậy, bất kỳ thay đổi nào đối với **một** phần tử cũng sẽ thay đổi **tất cả** các phần tử trong mảng.
 
-To create an immutable array of mutable objects (string, array, hash, etc), you will need to pass the default value for `Array.new` via a block, using curly braces, instead of the second optional argument. The code in the block gets evaluated for every slot in the array, creating multiple objects to initialize the array with, rather than references to the same object.
+Để tạo một mảng chứa các đối tượng khả biến (chuỗi, mảng, hash, v.v.) nhưng mỗi đối tượng là một thể hiện riêng, bạn cần truyền giá trị mặc định cho `Array.new` thông qua block, dùng dấu ngoặc nhọn, thay vì đối số tùy chọn thứ hai. Đoạn mã trong block được đánh giá cho từng vị trí trong mảng, tạo ra nhiều đối tượng để khởi tạo mảng thay vì các tham chiếu đến cùng một đối tượng.
 
-To see this for yourself, let's look at two examples. This first example uses the second optional argument for the default value.
+Để tự mình thấy điều này, hãy xem hai ví dụ. Ví dụ đầu tiên dùng đối số tùy chọn thứ hai làm giá trị mặc định.
 
 ```ruby
 mutable = Array.new(3, Array.new(2))
@@ -97,9 +97,9 @@ mutable
 #=> [[1000, nil], [1000, nil], [1000, nil]]
 ```
 
-Changing the value of the first element in the first nested array, causes the first element to change in all three nested arrays! This same behavior will happen with strings, hashes, or any other mutable objects.
+Việc thay đổi giá trị của phần tử đầu tiên trong mảng lồng nhau đầu tiên khiến phần tử đầu tiên thay đổi trong cả ba mảng lồng nhau! Hành vi tương tự cũng xảy ra với chuỗi, hash hoặc bất kỳ đối tượng khả biến nào khác.
 
-Now, let's take a look at an example that omits the second optional argument and instead passes in the mutable value in a block.
+Bây giờ hãy xem một ví dụ bỏ qua đối số tùy chọn thứ hai và thay vào đó truyền giá trị khả biến trong một block.
 
 ```ruby
 nested_arrays = Array.new(3) { Array.new(2) }
@@ -110,13 +110,13 @@ nested_arrays
 #=> [[1000, nil], [nil, nil], [nil, nil]]
 ```
 
-Each `{ Array.new(2) }` block creates a new inner array. This means all three inner arrays are **independent objects**. When you modify one, the others stay the same.
+Mỗi block `{ Array.new(2) }` tạo ra một mảng bên trong mới. Điều này có nghĩa là cả ba mảng bên trong đều là **các đối tượng độc lập**. Khi bạn thay đổi một mảng, những mảng còn lại vẫn giữ nguyên.
 
-Changing the value of the first element in the first nested array does not cause the value to change in any other nested array.
+Việc thay đổi giá trị của phần tử đầu tiên trong mảng lồng nhau đầu tiên không làm giá trị thay đổi trong bất kỳ mảng lồng nhau nào khác.
 
-### Adding and removing elements
+### Thêm và xóa phần tử
 
-You can add another element to the end of a nested array using the `#push` method or the shovel operator `<<`. If you want to add an element to a specific nested array, you will need to specify the index of the nested array.
+Bạn có thể thêm một phần tử khác vào cuối mảng lồng nhau bằng phương thức `#push` hoặc toán tử shovel `<<`. Nếu muốn thêm một phần tử vào một mảng lồng nhau cụ thể, bạn cần chỉ rõ chỉ mục của mảng lồng nhau đó.
 
 ```ruby
 test_scores << [100, 99, 98, 97]
@@ -127,7 +127,7 @@ test_scores
 #=> [[97, 76, 79, 93, 100], [79, 84, 76, 79], [88, 67, 64, 76], [94, 55, 67, 81], [100, 99, 98, 97]]
 ```
 
-Using this similar syntax, you can add or remove elements from the entire nested array or from a specific nested element.
+Với cú pháp tương tự, bạn có thể thêm hoặc xóa phần tử khỏi toàn bộ mảng lồng nhau hoặc khỏi một phần tử lồng nhau cụ thể.
 
 ```ruby
 test_scores.pop
@@ -138,9 +138,9 @@ test_scores
 #=> [[97, 76, 79, 93], [79, 84, 76, 79], [88, 67, 64, 76], [94, 55, 67, 81]]
 ```
 
-### Iterating over a nested array
+### Lặp qua mảng lồng nhau
 
-Let's break down how to iterate over a nested array using the `#each_with_index` method. You might find it helpful to think of a nested array as having rows and columns. Each row is the nested element and each column is the index of the nested element. When we iterate over the teacher_mailboxes example, each element will be one row.
+Hãy phân tích cách lặp qua một mảng lồng nhau bằng phương thức `#each_with_index`. Bạn có thể thấy hữu ích nếu hình dung mảng lồng nhau gồm các hàng và cột. Mỗi hàng là một phần tử lồng nhau, còn mỗi cột là chỉ mục của phần tử lồng nhau đó. Khi lặp qua ví dụ teacher_mailboxes, mỗi phần tử sẽ là một hàng.
 
 ```ruby
 teacher_mailboxes.each_with_index do |row, row_index|
@@ -152,7 +152,7 @@ end
 #=> [["Adams", "Baker", "Clark", "Davis"], ["Jones", "Lewis", "Lopez", "Moore"], ["Perez", "Scott", "Smith", "Young"]]
 ```
 
-To iterate over the individual elements inside of each row, you will need to nest another enumerable method inside.
+Để lặp qua từng phần tử bên trong mỗi hàng, bạn cần lồng thêm một phương thức enumerable khác vào bên trong.
 
 ```ruby
 teacher_mailboxes.each_with_index do |row, row_index|
@@ -175,7 +175,7 @@ end
 #=> [["Adams", "Baker", "Clark", "Davis"], ["Jones", "Lewis", "Lopez", "Moore"], ["Perez", "Scott", "Smith", "Young"]]
 ```
 
-Although these examples are a bit contrived, it is important to note that if we only need each teacher's name it would be beneficial to use `#flatten` before iterating.
+Mặc dù những ví dụ này hơi gượng ép, điều quan trọng cần lưu ý là nếu chỉ cần tên của từng giáo viên thì sẽ có lợi hơn khi dùng `#flatten` trước khi lặp.
 
 ```ruby
 teacher_mailboxes.flatten.each do |teacher|
@@ -196,7 +196,7 @@ end
 #=> ["Adams", "Baker", "Clark", "Davis", "Jones", "Lewis", "Lopez", "Moore", "Perez", "Scott", "Smith", "Young"]
 ```
 
-Now let's take a look at a more complicated example of nesting two predicate enumerables together. Using the above nested array of test scores, let's determine if any student scored higher than 80 on everything.
+Bây giờ hãy xem một ví dụ phức tạp hơn, trong đó lồng hai enumerable dạng vị từ vào nhau. Dùng mảng lồng nhau chứa điểm kiểm tra ở trên, hãy xác định xem có học sinh nào đạt trên 80 ở mọi bài hay không.
 
 ```ruby
 test_scores = [[97, 76, 79, 93], [79, 84, 76, 79], [88, 67, 64, 76], [94, 55, 67, 81]]
@@ -208,7 +208,7 @@ end
 #=> false
 ```
 
-This seems pretty straight-forward. It returns false, because none of the nested arrays have scores that are all over 80. What do you think will happen if we switch `#any?` and `#all?`? Do you think we will get the same results?
+Điều này khá dễ hiểu. Kết quả là false vì không có mảng lồng nhau nào có toàn bộ điểm đều trên 80. Theo bạn, điều gì sẽ xảy ra nếu đổi `#any?` và `#all?` cho nhau? Kết quả có giống trước không?
 
 ```ruby
 test_scores.all? do |scores|
@@ -217,11 +217,11 @@ end
 #=> true
 ```
 
-The results are different, because now it is determining if **all** of the nested arrays contain **any** number over 80. This returns true, because each of the nested arrays have at least one number over 80.
+Kết quả khác nhau vì giờ đây biểu thức xác định xem **tất cả** các mảng lồng nhau có chứa **bất kỳ** số nào lớn hơn 80 hay không. Kết quả là true vì mỗi mảng lồng nhau đều có ít nhất một số lớn hơn 80.
 
-### Nested hashes
+### Hash lồng nhau
 
-The hashes that you've seen so far have single key/value pairs. However, just like arrays, they can be nested, or multidimensional. Nested hashes are a very common way to store complex associated data.
+Những hash bạn đã thấy từ đầu đến giờ chỉ có các cặp khóa/giá trị đơn. Tuy nhiên, cũng giống như mảng, chúng có thể được lồng vào nhau hoặc có nhiều chiều. Hash lồng nhau là một cách rất phổ biến để lưu trữ dữ liệu liên kết phức tạp.
 
 ```ruby
 vehicles = {
@@ -231,9 +231,9 @@ vehicles = {
 }
 ```
 
-### Accessing data
+### Truy cập dữ liệu
 
-Accessing a specific element in a nested hash is very similar to a nested array. It is done by calling `hash[:x][:y]`, where `:x` is the key of the hash and `:y` is the key of the nested hash.
+Việc truy cập một phần tử cụ thể trong hash lồng nhau rất giống với mảng lồng nhau. Ta thực hiện bằng cách gọi `hash[:x][:y]`, trong đó `:x` là khóa của hash và `:y` là khóa của hash lồng nhau.
 
 ```ruby
 vehicles[:alice][:year]
@@ -244,7 +244,7 @@ vehicles[:caleb][:model]
 #=> "Accord"
 ```
 
-Similar to nested arrays, if you try to access a key in a nonexistent nested hash, it will raise an `NoMethodError`, therefore you may want to use the `#dig` method. As expected, if you try to access a nonexistent key in an existing nested hash, it will return nil.
+Tương tự mảng lồng nhau, nếu cố truy cập một khóa trong hash lồng nhau không tồn tại, Ruby sẽ phát sinh `NoMethodError`, vì vậy bạn có thể muốn dùng phương thức `#dig`. Như dự đoán, nếu cố truy cập một khóa không tồn tại trong hash lồng nhau đang tồn tại, Ruby sẽ trả về nil.
 
 ```ruby
 vehicles[:zoe][:year]
@@ -257,9 +257,9 @@ vehicles.dig(:alice, :color)
 #=> nil
 ```
 
-### Adding and removing data
+### Thêm và xóa dữ liệu
 
-You can add more nested hashes, just like a regular hash. Let's say Dave just bought a new vehicle and we want to add it to the list.
+Bạn có thể thêm các hash lồng nhau, giống như với hash thông thường. Giả sử Dave vừa mua một chiếc xe mới và chúng ta muốn thêm nó vào danh sách.
 
 ```ruby
 vehicles[:dave] = {year: 2021, make: "Ford", model: "Escape"}
@@ -268,7 +268,7 @@ vehicles
 #=> {:alice=>{:year=>2019, :make=>"Toyota", :model=>"Corolla"}, :blake=>{:year=>2020, :make=>"Volkswagen", :model=>"Beetle"}, :caleb=>{:year=>2020, :make=>"Honda", :model=>"Accord"}, :dave=>{:year=>2021, :make=>"Ford", :model=>"Escape"}}
 ```
 
-You can also add an element to one of the nested hashes. Let's say that Dave really loves his new Escape and thinks we should keep track of the color of the vehicles. To add a new key/value pair to a nested hash, specify the key of the nested hash right before naming the new key.
+Bạn cũng có thể thêm một phần tử vào một trong các hash lồng nhau. Giả sử Dave rất thích chiếc Escape mới của mình và chúng ta muốn theo dõi màu của các xe. Để thêm một cặp khóa/giá trị mới vào hash lồng nhau, hãy chỉ rõ khóa của hash lồng nhau ngay trước khi nêu khóa mới.
 
 ```ruby
 vehicles[:dave][:color] = "red"
@@ -277,7 +277,7 @@ vehicles
 #=> {:alice=>{:year=>2019, :make=>"Toyota", :model=>"Corolla"}, :blake=>{:year=>2020, :make=>"Volkswagen", :model=>"Beetle"}, :caleb=>{:year=>2020, :make=>"Honda", :model=>"Accord"}, :dave=>{:year=>2021, :make=>"Ford", :model=>"Escape", :color=>"red"}}
 ```
 
-Deleting one of the nested hashes will be just like a regular hash. Let's say Blake has decided to sell his Beetle and backpack across Europe. So, let's delete Blake's car.
+Xóa một trong các hash lồng nhau cũng giống như xóa trong hash thông thường. Giả sử Blake quyết định bán chiếc Beetle của mình và đeo ba lô đi khắp châu Âu. Vậy hãy xóa xe của Blake.
 
 ```ruby
 vehicles.delete(:blake)
@@ -286,7 +286,7 @@ vehicles
 #=> {:alice=>{:year=>2019, :make=>"Toyota", :model=>"Corolla"}, :caleb=>{:year=>2020, :make=>"Honda", :model=>"Accord"}, :dave=>{:year=>2021, :make=>"Ford", :model=>"Escape", :color=>"red"}}
 ```
 
-To delete one of the key/value pairs inside of a nested hash, you first specify the key of the hash. Let's say Dave decided that we don't need to specify the color of his vehicle. Therefore, we specify `vehicles[:dave]` before we indicate the key of the nested hash to delete.
+Để xóa một trong các cặp khóa/giá trị bên trong hash lồng nhau, trước tiên bạn chỉ rõ khóa của hash. Giả sử Dave quyết định không cần lưu màu xe nữa. Vì vậy, trước khi chỉ ra khóa của hash lồng nhau cần xóa, ta chỉ rõ `vehicles[:dave]`.
 
 ```ruby
 vehicles[:dave].delete(:color)
@@ -295,48 +295,48 @@ vehicles
 #=> {:alice=>{:year=>2019, :make=>"Toyota", :model=>"Corolla"}, :caleb=>{:year=>2020, :make=>"Honda", :model=>"Accord"}, :dave=>{:year=>2021, :make=>"Ford", :model=>"Escape"}}
 ```
 
-### Methods
+### Phương thức
 
-There are many helpful methods to use with nested hashes. Once you know what data you need from a nested hash, you might find that browsing through the documentation and experimenting with them in IRB is the best way for you to understand how they work.
+Có rất nhiều phương thức hữu ích để dùng với hash lồng nhau. Khi đã biết mình cần dữ liệu nào từ một hash lồng nhau, bạn có thể thấy rằng việc xem tài liệu và thử nghiệm các phương thức đó trong IRB là cách tốt nhất để hiểu cách chúng hoạt động.
 
-Let's look at an example using the vehicles nested hash. Let's say that we want to know who owns vehicles that are from 2020 or newer. At first glance in the documentation, it looks like `#select` would be a great method to use.
+Hãy xem một ví dụ dùng hash lồng nhau vehicles. Giả sử chúng ta muốn biết ai sở hữu các xe có đời từ năm 2020 trở lên. Thoạt nhìn vào tài liệu, có vẻ `#select` là một phương thức rất phù hợp.
 
 ```ruby
 vehicles.select { |name, data| data[:year] >= 2020 }
 #=> {:caleb=>{:year=>2020, :make=>"Honda", :model=>"Accord"}, :dave=>{:year=>2021, :make=>"Ford", :model=>"Escape"}}
 ```
 
-Yes, using `#select` gives us the information that we need. However, what if we only want the names of the owners and not another nested hash. Let's keep looking through the documentation to see what else we find. The `#collect` method sounds very useful for this situation. Let's collect the names if the year is 2020 or newer.
+Đúng vậy, dùng `#select` cho ta thông tin cần thiết. Tuy nhiên, nếu chỉ muốn tên của chủ xe chứ không muốn một hash lồng nhau khác thì sao? Hãy tiếp tục xem tài liệu để tìm hiểu thêm. Phương thức `#collect` có vẻ rất hữu ích trong tình huống này. Hãy thu thập tên nếu đời xe từ năm 2020 trở lên.
 
 ```ruby
 vehicles.collect { |name, data| name if data[:year] >= 2020 }
 #=> [nil, :caleb, :dave]
 ```
 
-Using `#collect` gets us a lot closer to only having the names of the new vehicle owners. If you look at this method in the documentation you will see that `#collect` and `#map` have the same functionality. Both of these methods use the return value of each iteration, so when the if statement is false, it will return a nil value.
+Dùng `#collect` giúp chúng ta tiến gần hơn đến mục tiêu chỉ lấy tên của những chủ xe mới. Nếu xem phương thức này trong tài liệu, bạn sẽ thấy `#collect` và `#map` có cùng chức năng. Cả hai phương thức đều dùng giá trị trả về của mỗi lần lặp, vì vậy khi câu lệnh if cho kết quả false, nó sẽ trả về giá trị nil.
 
-Nil values can cause problems down the road, so let's look through the documentation to see if we can find a method to help solve this problem. The `#compact` method returns an array (or hash) without nil values, so let's chain it on the end of the block.
+Các giá trị nil có thể gây ra vấn đề về sau, vì vậy hãy xem tài liệu để tìm một phương thức giúp giải quyết vấn đề này. Phương thức `#compact` trả về một mảng (hoặc hash) không có các giá trị nil, nên hãy nối nó vào cuối block.
 
 ```ruby
 vehicles.collect { |name, data| name if data[:year] >= 2020 }.compact
 #=> [:caleb, :dave]
 ```
 
-Yes, using `#collect` and `#compact` returns the data that we want. As you can see, chaining methods can be very useful. However, if we continue exploring the documentation, we will find another method that combines the functionality of these two methods. Ruby version 2.7 added a new enumerable method called `#filter_map` that sounds very useful for this situation.
+Đúng vậy, dùng `#collect` và `#compact` trả về dữ liệu chúng ta cần. Như bạn thấy, việc nối chuỗi các phương thức có thể rất hữu ích. Tuy nhiên, nếu tiếp tục khám phá tài liệu, chúng ta sẽ tìm thấy một phương thức kết hợp chức năng của hai phương thức này. Ruby phiên bản 2.7 đã thêm một phương thức enumerable mới có tên `#filter_map`, tỏ ra rất phù hợp cho tình huống này.
 
 ```ruby
 vehicles.filter_map { |name, data| name if data[:year] >= 2020 }
 #=> [:caleb, :dave]
 ```
 
-Amazing! We have found a great solution to returning an array that only contains the names of the owners of vehicles from 2020 or newer! Plus, we got experience using other methods that you will probably use in the future. We have found some really useful methods by exploring the documentation when we have a specific use case in mind.
+Tuyệt vời! Chúng ta đã tìm được một giải pháp hay để trả về một mảng chỉ chứa tên của những chủ xe có xe đời từ năm 2020 trở lên! Ngoài ra, chúng ta còn có thêm kinh nghiệm dùng những phương thức khác mà có lẽ bạn sẽ sử dụng trong tương lai. Khi có một trường hợp sử dụng cụ thể, việc khám phá tài liệu đã giúp chúng ta tìm ra một số phương thức thực sự hữu ích.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read more about [using a hash with a nested array](https://web.archive.org/web/20220525215038/https://learn.co/lessons/nested-hash-iteration).
-1. This Stack Overflow answer explains more about [using arrays with a nested hash](https://stackoverflow.com/questions/50529389/manipulating-output-from-an-array-of-nested-hashes-in-ruby).
-1. Complete the nested collections exercises from the [ruby-exercises repo](https://github.com/TheOdinProject/ruby-exercises).
+1. Đọc thêm về [việc dùng hash với mảng lồng nhau](https://web.archive.org/web/20220525215038/https://learn.co/lessons/nested-hash-iteration).
+1. Câu trả lời trên Stack Overflow này giải thích thêm về [việc dùng mảng với hash lồng nhau](https://stackoverflow.com/questions/50529389/manipulating-output-from-an-array-of-nested-hashes-in-ruby).
+1. Hoàn thành các bài tập về collection lồng nhau trong [repo ruby-exercises](https://github.com/TheOdinProject/ruby-exercises).
 
 </div>

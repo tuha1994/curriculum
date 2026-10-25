@@ -1,17 +1,17 @@
-### Introduction
+### Giới thiệu
 
-To create programs that are user friendly and interactive, you'll need to know how to **output** data to a screen and how to get **input** from a user. In this lesson, we'll cover the most common ways to achieve these tasks in Ruby. As with other lessons, and this one in particular, following along in irb or an appropriate online REPL will be helpful.
+Để tạo ra những chương trình thân thiện với người dùng và có tính tương tác, bạn cần biết cách **xuất** dữ liệu ra màn hình cũng như cách nhận **đầu vào** từ người dùng. Trong bài học này, chúng ta sẽ tìm hiểu những cách phổ biến nhất để thực hiện các công việc đó trong Ruby. Cũng như với các bài học khác, đặc biệt là bài này, việc làm theo các ví dụ trong irb hoặc một REPL trực tuyến phù hợp sẽ rất hữu ích.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài này.
 
-- Differentiate between the `print` and `puts` commands.
-- Describe the method used to get input from the user.
+- Phân biệt lệnh `print` và `puts`.
+- Mô tả phương thức dùng để nhận đầu vào từ người dùng.
 
-### Output commands
+### Các lệnh xuất dữ liệu
 
-To output information, such as into your irb or REPL environment or into the command line, we can use the `print` command. To better show the differences between what Ruby is printing to the terminal and returning, the examples in this lesson use the full irb syntax, which is exactly what you'd see if you typed these commands into your own terminal irb session.
+Để xuất thông tin, chẳng hạn ra môi trường irb hoặc REPL hay dòng lệnh, chúng ta có thể dùng lệnh `print`. Để thể hiện rõ hơn sự khác biệt giữa nội dung Ruby in ra thiết bị đầu cuối và giá trị trả về, các ví dụ trong bài này sử dụng cú pháp irb đầy đủ, đúng như những gì bạn sẽ thấy nếu gõ các lệnh này trong phiên irb trên thiết bị đầu cuối của mình.
 
 ```ruby
 irb(main):001:0> print "Learning to code is FUN!"
@@ -21,7 +21,7 @@ irb(main):002:0> print "1234"
 1234=> nil
 ```
 
-We can also use the `puts` command:
+Chúng ta cũng có thể dùng lệnh `puts`:
 
 ```ruby
 irb(main):001:0> puts "Learning to code is cool!!"
@@ -40,9 +40,9 @@ My name is ALEX! :)
 => nil
 ```
 
-As you can see, the `puts` and `print` commands are quite similar, but you should have already noticed the small difference between the two: `puts` appends a new line to the argument passed in, whereas `print` keeps things all on one line. A very important thing to notice for both commands is that after printing whatever argument they are passed, `puts` and `print` both return `nil`.
+Như bạn thấy, các lệnh `puts` và `print` khá giống nhau, nhưng có lẽ bạn đã nhận ra điểm khác biệt nhỏ giữa chúng: `puts` nối thêm một dòng mới vào đối số được truyền vào, còn `print` giữ mọi thứ trên cùng một dòng. Một điều rất quan trọng cần lưu ý với cả hai lệnh là sau khi in ra bất kỳ đối số nào được truyền vào, cả `puts` và `print` đều trả về `nil`.
 
-To highlight the difference between `puts` and `print`, we're going to pull out a piece of rarely used Ruby syntax: [the semicolon](https://stackoverflow.com/questions/3953846/can-you-use-semicolons-in-ruby). In short, semicolons are never required in Ruby, but they allow you to run multiple Ruby commands all on one line. This type of [code golf](https://en.wikipedia.org/wiki/Code_golf) is not generally recommended, but it's helpful for this example. In a REPL, the two statements can be written on separate lines without the semicolon and still produce the desired output. However, irb can read only one statement at a time, making the semicolons necessary for this code to work as intended.
+Để làm nổi bật sự khác nhau giữa `puts` và `print`, chúng ta sẽ dùng một cú pháp Ruby hiếm khi được sử dụng: [dấu chấm phẩy](https://stackoverflow.com/questions/3953846/can-you-use-semicolons-in-ruby). Tóm lại, dấu chấm phẩy không bao giờ bắt buộc trong Ruby, nhưng cho phép bạn chạy nhiều lệnh Ruby trên cùng một dòng. Kiểu [code golf](https://en.wikipedia.org/wiki/Code_golf) này nhìn chung không được khuyến khích, nhưng hữu ích cho ví dụ này. Trong một REPL, hai câu lệnh có thể được viết trên các dòng riêng mà không cần dấu chấm phẩy và vẫn cho ra kết quả mong muốn. Tuy nhiên, irb chỉ có thể đọc một câu lệnh mỗi lần, nên dấu chấm phẩy là cần thiết để đoạn mã này hoạt động như dự định.
 
 ```ruby
 irb(main):001:0> print "Hello World"; print "I love drinking coffee"
@@ -54,11 +54,11 @@ I love drinking coffee
 => nil
 ```
 
-### Input commands
+### Các lệnh nhận đầu vào
 
-To accept input from a user, we can use the `gets` command. When we use `gets`, program execution will stop and wait for user input. After the user presses <kbd>Enter</kbd>, the program will continue its execution.
+Để nhận đầu vào từ người dùng, chúng ta có thể dùng lệnh `gets`. Khi dùng `gets`, chương trình sẽ tạm dừng và chờ người dùng nhập dữ liệu. Sau khi người dùng nhấn <kbd>Enter</kbd>, chương trình sẽ tiếp tục thực thi.
 
-Let's give this a go. Open irb, type `gets`, and then type `The Odin Project`. You should see something like the following:
+Hãy thử nhé. Mở irb, gõ `gets`, rồi gõ `The Odin Project`. Bạn sẽ thấy kết quả tương tự như sau:
 
 ```ruby
 irb(main):001:0> gets
@@ -66,11 +66,11 @@ The Odin Project
 => "The Odin Project\n"
 ```
 
-How about that? Let's break this process down a bit.
+Thú vị chứ? Hãy cùng phân tích quá trình này một chút.
 
-You'll notice that, unlike `puts` and `print`, `gets` actually **returns** the user input instead of returning `nil`. This means that the input can be assigned to a variable for you to then use and manipulate and twist and turn and spit back out.
+Bạn sẽ nhận thấy rằng, không giống `puts` và `print`, `gets` thực sự **trả về** dữ liệu người dùng nhập thay vì trả về `nil`. Điều này có nghĩa là đầu vào có thể được gán cho một biến để bạn tiếp tục sử dụng, thao tác, biến đổi và in ra theo cách mình muốn.
 
-As you might also remember from the String section of the Basic Data Types lesson, `"\n"` is an escape character that represents a new line. The `gets` command always returns a new line at the end of the input. This command often makes use of a "separator" to read streams and multi-line files, but that's beyond the scope of this beginner lesson. For now, it's helpful to know that `#chomp` is a method commonly used to trim separators.
+Có thể bạn cũng nhớ từ phần String trong bài học Kiểu dữ liệu cơ bản rằng `"\n"` là một ký tự escape biểu diễn một dòng mới. Lệnh `gets` luôn trả về một dòng mới ở cuối phần đầu vào. Lệnh này thường sử dụng một "dấu phân cách" để đọc các luồng dữ liệu và tệp nhiều dòng, nhưng nội dung đó nằm ngoài phạm vi của bài học nhập môn này. Hiện tại, bạn chỉ cần biết rằng `#chomp` là một phương thức thường được dùng để loại bỏ dấu phân cách.
 
 ```ruby
 irb(main):001:0> new_string = gets.chomp
@@ -82,12 +82,12 @@ This is a sentence.
 => nil
 ```
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read through and complete the exercise from [learnrubyonline.org's "Hello, World" lesson](https://www.learnrubyonline.org/en/Hello_World).
-1. Read the first four sections of the [Ruby - File I/0](https://www.tutorialspoint.com/ruby/ruby_input_output.htm) from TutorialsPoint on `puts`, `gets`, `putc`, and `print`.
-1. Read this [Ruby guides article describing the differences between `puts`, `print` and `p`](https://www.rubyguides.com/2018/10/puts-vs-print/).
+1. Đọc và hoàn thành bài tập trong [bài học "Hello, World" của learnrubyonline.org](https://www.learnrubyonline.org/en/Hello_World).
+1. Đọc bốn phần đầu tiên của [Ruby - File I/0](https://www.tutorialspoint.com/ruby/ruby_input_output.htm) trên TutorialsPoint về `puts`, `gets`, `putc` và `print`.
+1. Đọc [bài viết trên Ruby guides mô tả sự khác nhau giữa `puts`, `print` và `p`](https://www.rubyguides.com/2018/10/puts-vs-print/).
 
 </div>

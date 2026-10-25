@@ -1,63 +1,63 @@
-### Introduction
+### Giới thiệu
 
-You've come a long way, congratulations! At this point, you should feel comfortable with building new Rails applications, modelling data, and working with forms. This project will require you to put all your newfound knowledge to the test. It should serve as a great portfolio piece for what you're capable of. It'll take some thought and time but it's certainly within reach of your skills.
+Bạn đã đi được một chặng đường dài, xin chúc mừng! Đến thời điểm này, bạn hẳn đã cảm thấy khá tự tin khi xây dựng các ứng dụng Rails mới, mô hình hóa dữ liệu và làm việc với các biểu mẫu. Dự án này sẽ yêu cầu bạn vận dụng toàn bộ kiến thức mới học để kiểm tra năng lực của mình. Đây cũng sẽ là một sản phẩm tuyệt vời trong hồ sơ năng lực, thể hiện những gì bạn có thể làm được. Dự án sẽ cần một chút suy nghĩ và thời gian, nhưng chắc chắn nằm trong khả năng của bạn.
 
-You'll be building a clone of a social media site, such as Facebook, X, Myspace, or Threads. As with our previous lessons, how much effort you want to put into the styling and front end is up to you. The important stuff is the data and backend. You'll put together the core features of the platform like users, profiles, posts, following, and "liking".
+Bạn sẽ xây dựng một bản sao của một trang mạng xã hội, chẳng hạn như Facebook, X, Myspace hoặc Threads. Cũng như các bài học trước, bạn muốn đầu tư bao nhiêu công sức cho phần định kiểu và giao diện người dùng là tùy bạn. Phần quan trọng là dữ liệu và phần máy chủ. Bạn sẽ xây dựng các tính năng cốt lõi của nền tảng như người dùng, hồ sơ, bài đăng, theo dõi và "thích".
 
-You'll also implement some form of authentication. Ideally, you'll want to use OmniAuth to support authenticating via the social media site you're cloning, but some sites (such as Facebook), have recently made this process impossible. If this is the case for your site, you can use Devise to support authenticating via username and password (using Devise) or via Github with `omniauth-github`.
+Bạn cũng sẽ triển khai một hình thức xác thực nào đó. Tốt nhất là bạn nên dùng OmniAuth để hỗ trợ xác thực thông qua trang mạng xã hội mà bạn đang xây dựng bản sao, nhưng một số trang (chẳng hạn như Facebook) gần đây đã khiến quy trình này trở nên bất khả thi. Nếu trang của bạn rơi vào trường hợp đó, bạn có thể dùng Devise để hỗ trợ xác thực bằng tên người dùng và mật khẩu (sử dụng Devise), hoặc thông qua Github với `omniauth-github`.
 
-There will probably be features you haven't been exposed to -- for instance chat, realtime updates of the newsfeed, and realtime notifications. You won't be responsible for creating those unless you'd like to jump ahead and give it a shot.
+Có thể sẽ có những tính năng bạn chưa từng được làm quen -- chẳng hạn như trò chuyện, cập nhật bảng tin theo thời gian thực và thông báo theo thời gian thực. Bạn không bắt buộc phải tạo những tính năng đó, trừ khi muốn đi trước chương trình và thử sức.
 
-### Assignment
+### Bài tập
 
-Build a social media site! You'll build a large portion of the core user functionality of your chosen site in this project. You don't have to worry about some of the more flashy front-end stuff unless you want to, but you don't need it to get a nice user experience.
+Hãy xây dựng một trang mạng xã hội! Trong dự án này, bạn sẽ xây dựng phần lớn chức năng cốt lõi dành cho người dùng của trang bạn đã chọn. Bạn không cần lo lắng về một số phần giao diện cầu kỳ hơn trừ khi muốn làm, vì chúng không cần thiết để tạo ra trải nghiệm người dùng tốt.
 
-You should write at least a basic set of integration tests which let you know if each page is loading properly and unit tests to make sure your associations have been properly set up (e.g. testing that `User.first.posts` works properly). Run them continuously in the background with [Guard](https://github.com/guard/guard) (See the [Ruby on Rails Tutorial Chapter 3.7.3](https://www.learnenough.com/ruby-on-rails-4th-edition-tutorial/static_pages#sec-guard)).
+Bạn nên viết ít nhất một bộ kiểm thử tích hợp cơ bản để kiểm tra mỗi trang có tải đúng hay không, cùng với các kiểm thử đơn vị để đảm bảo những association đã được thiết lập chính xác (ví dụ: kiểm tra `User.first.posts` hoạt động đúng). Hãy chạy chúng liên tục ở chế độ nền bằng [Guard](https://github.com/guard/guard) (xem [Chương 3.7.3 của Ruby on Rails Tutorial](https://www.learnenough.com/ruby-on-rails-4th-edition-tutorial/static_pages#sec-guard)).
 
-This project will give you a chance to take a relatively high level set of requirements and turn it into a functioning website. You'll need to read through the documentation on GitHub for some of the gems you'll be using.
+Dự án này cho bạn cơ hội biến một bộ yêu cầu tương đối khái quát thành một website hoạt động được. Bạn sẽ cần đọc tài liệu trên GitHub về các gem mà mình sử dụng.
 
-Keep the following requirements in mind. We'll cover specific steps to get started below this list:
+Hãy ghi nhớ các yêu cầu sau. Chúng ta sẽ trình bày những bước cụ thể để bắt đầu ở bên dưới danh sách này:
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Use PostgreSQL for your database from the beginning (not SQLite3), that way your deployment will go much more smoothly.
-1. Users must sign in to see anything except the sign in page.
-1. User sign-in should use the [Devise](https://github.com/plataformatec/devise) gem. Devise gives you all sorts of helpful methods so you no longer have to write your own user passwords, sessions, and `#current_user` methods. See the [Railscast on Devise](http://railscasts.com/episodes/209-introducing-devise?view=asciicast) (which uses Rails 3) for a step-by-step introduction. The docs will be fully current.
-1. Users can send follow requests to other users.
-1. Users can create posts (begin with text only).
-1. Users can like posts.
-1. Users can comment on posts.
-1. Posts should always display the post content, author, comments, and likes.
-1. There should be an index page for posts, which shows all the recent posts from the current user and users they are following.
-1. Users can create a profile with a profile picture. You may be able to get the profile picture when users sign in using OmniAuth. If this isn't the case you can use [Gravatar](https://en.gravatar.com/) to generate the photo.
-1. A user's profile page should contain their profile information, profile photo, and posts.
-1. There should be an index page for users, which shows all users and buttons for sending follow requests to users the user is not already following or have a pending request.
-1. Set up a [mailer](http://guides.rubyonrails.org/action_mailer_basics.html) to send a welcome email when a new user signs up. Use the [Letter Opener gem](https://github.com/ryanb/letter_opener) to test it in development mode.
-1. Deploy your App to a hosting provider.
-1. Set up an email provider and start sending real emails.
+1. Ngay từ đầu, hãy sử dụng PostgreSQL cho cơ sở dữ liệu (không dùng SQLite3), để việc triển khai sau này diễn ra thuận lợi hơn nhiều.
+1. Người dùng phải đăng nhập mới có thể xem bất kỳ nội dung nào ngoài trang đăng nhập.
+1. Chức năng đăng nhập của người dùng phải sử dụng gem [Devise](https://github.com/plataformatec/devise). Devise cung cấp rất nhiều phương thức hữu ích, vì vậy bạn không còn phải tự viết mật khẩu người dùng, session và các phương thức `#current_user`. Hãy xem [Railscast về Devise](http://railscasts.com/episodes/209-introducing-devise?view=asciicast) (sử dụng Rails 3) để được hướng dẫn từng bước. Tài liệu chính thức sẽ được cập nhật đầy đủ.
+1. Người dùng có thể gửi yêu cầu theo dõi đến những người dùng khác.
+1. Người dùng có thể tạo bài đăng (ban đầu chỉ cần hỗ trợ văn bản).
+1. Người dùng có thể thích bài đăng.
+1. Người dùng có thể bình luận trên bài đăng.
+1. Bài đăng luôn phải hiển thị nội dung bài đăng, tác giả, bình luận và lượt thích.
+1. Cần có một trang danh sách bài đăng, hiển thị tất cả bài đăng gần đây của người dùng hiện tại và những người dùng mà họ đang theo dõi.
+1. Người dùng có thể tạo hồ sơ kèm ảnh đại diện. Bạn có thể lấy ảnh đại diện khi người dùng đăng nhập bằng OmniAuth. Nếu không thể, bạn có thể dùng [Gravatar](https://en.gravatar.com/) để tạo ảnh.
+1. Trang hồ sơ của người dùng phải chứa thông tin hồ sơ, ảnh hồ sơ và các bài đăng của họ.
+1. Cần có một trang danh sách người dùng, hiển thị tất cả người dùng cùng các nút gửi yêu cầu theo dõi đến những người dùng mà người dùng hiện tại chưa theo dõi hoặc chưa có yêu cầu đang chờ.
+1. Thiết lập một [mailer](http://guides.rubyonrails.org/action_mailer_basics.html) để gửi email chào mừng khi người dùng mới đăng ký. Sử dụng [gem Letter Opener](https://github.com/ryanb/letter_opener) để kiểm thử trong môi trường phát triển.
+1. Triển khai ứng dụng lên một nhà cung cấp dịch vụ lưu trữ.
+1. Thiết lập một nhà cung cấp email và bắt đầu gửi email thật.
 
-#### Extra credit
+#### Điểm cộng
 
-1. Make posts also allow images (either just via a URL or, more complicated, by uploading one).
-1. Use [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html) to allow users to upload a photo to their profile.
-1. Make your post able to be either a text OR a photo by using a polymorphic association (so users can still like or comment on it while being none-the-wiser).
-1. Style it up nicely! We'll dive into HTML/CSS in the next course.
+1. Cho phép bài đăng chứa cả hình ảnh (chỉ thông qua URL hoặc, phức tạp hơn, bằng cách tải ảnh lên).
+1. Sử dụng [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html) để cho phép người dùng tải ảnh lên hồ sơ của mình.
+1. Cho phép bài đăng là văn bản HOẶC ảnh bằng cách sử dụng một polymorphic association (để người dùng vẫn có thể thích hoặc bình luận mà không cần biết bài đăng thuộc loại nào).
+1. Hãy định kiểu cho website thật đẹp! Chúng ta sẽ tìm hiểu sâu hơn về HTML/CSS trong khóa học tiếp theo.
 
-#### Getting started
+#### Bắt đầu
 
-1. Think through the data architecture required to make this work. There are a lot of models and a lot of associations, so take the time to plan out your approach.
-1. Build the new PostgreSQL Rails app `$ rails new odinbook --database=postgresql`, initialize the Git repo and update the README to link back to this page.
-1. Work your way down the list above! Each step will involve a new challenge but you've got the tools.
-1. You can populate data like users and posts using the [Faker](https://github.com/stympy/faker) gem, which is basically just a library of sample names and emails. It may just be easier, though, for you to write your own seeds in the `db/seeds.rb` file, which gets run if you type `$ rake db:seed`.
+1. Hãy suy nghĩ về kiến trúc dữ liệu cần thiết để dự án hoạt động. Có rất nhiều model và association, vì vậy hãy dành thời gian lập kế hoạch cho cách tiếp cận của bạn.
+1. Xây dựng ứng dụng Rails PostgreSQL mới bằng `$ rails new odinbook --database=postgresql`, khởi tạo kho Git và cập nhật README để liên kết trở lại trang này.
+1. Lần lượt thực hiện danh sách ở trên! Mỗi bước sẽ đem đến một thử thách mới, nhưng bạn đã có đủ công cụ.
+1. Bạn có thể tạo dữ liệu như người dùng và bài đăng bằng gem [Faker](https://github.com/stympy/faker), về cơ bản đây là một thư viện chứa tên và email mẫu. Tuy vậy, có lẽ sẽ dễ hơn nếu bạn tự viết seed trong tệp `db/seeds.rb`; tệp này sẽ được chạy khi bạn nhập `$ rake db:seed`.
 
-#### Final step
+#### Bước cuối cùng
 
-1. Before you move on, we would love it if you could [send us your feedback on the Ruby on Rails course](https://docs.google.com/forms/d/e/1FAIpQLScrIWkh4Bm3Qv7FH7PuWjLRCryevoJGgpA4tTis4R7CpXp9oQ/viewform?usp=sf_link). Getting user(you) feedback is important so we can continue to improve the curriculum and get an idea of your experience.
+1. Trước khi tiếp tục, chúng tôi rất mong bạn [gửi phản hồi về khóa học Ruby on Rails](https://docs.google.com/forms/d/e/1FAIpQLScrIWkh4Bm3Qv7FH7PuWjLRCryevoJGgpA4tTis4R7CpXp9oQ/viewform?usp=sf_link). Phản hồi của người dùng (chính là bạn) rất quan trọng để chúng tôi có thể tiếp tục cải thiện chương trình và hiểu hơn về trải nghiệm của bạn.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Bạn không bắt buộc phải đọc, nên hãy xem đây là phần bổ trợ.
 
-- For an alternative to using AWS S3 for image storage take a look at this [cloudinary](https://cloudinary.com/documentation/rails_integration)
+- Để tìm một giải pháp thay thế cho việc dùng AWS S3 lưu trữ hình ảnh, hãy xem [cloudinary](https://cloudinary.com/documentation/rails_integration) này

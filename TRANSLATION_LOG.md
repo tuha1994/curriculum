@@ -706,6 +706,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `ruby_on_rails/mailers_advanced_topics/advanced_topics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails advanced topics code. |
 | `ruby_on_rails/mailers_advanced_topics/conclusion.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không thêm lời giải project. |
 
+## Ruby on Rails đã dịch — batch 25
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby_on_rails/mailers_advanced_topics/project_sending_confirmation_emails.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải project. |
+| `ruby_on_rails/mailers_advanced_topics/project_odin_book.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải project. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

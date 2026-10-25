@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-You should be familiar with forms, both as a normal Internet user and as an HTML coder who has done the [Intermediate HTML and CSS course](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/intermediate-html-and-css). But how much do you REALLY know about forms? It may sound strange, but forms are possibly the most complicated thing about learning web development. Not necessarily because the code itself is difficult, but because you usually want to build forms that accomplish so many different things at once.
+Bạn hẳn đã quen với biểu mẫu, cả với tư cách người dùng Internet thông thường lẫn người viết HTML từng học [khóa Intermediate HTML and CSS](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/intermediate-html-and-css). Nhưng bạn THỰC SỰ hiểu về biểu mẫu đến đâu? Nghe có vẻ lạ, nhưng biểu mẫu có lẽ là phần phức tạp nhất khi học phát triển web. Không nhất thiết vì bản thân mã khó, mà vì bạn thường muốn xây dựng các biểu mẫu có thể làm rất nhiều việc khác nhau cùng lúc.
 
-Up until now, we've been thinking about Models in Rails on sort of a one-off basis. The User model. The Post model. Sometimes we've had the models relate to each other via associations, like that a Post can `has_many` Comment objects. Usually, though, we tend to silo our thoughts to only deal with one at a time.
+Cho đến nay, chúng ta vẫn thường suy nghĩ về các Model trong Rails theo kiểu tách riêng từng cái một. Model User. Model Post. Đôi khi các model liên hệ với nhau qua association, chẳng hạn một Post có thể `has_many` đối tượng Comment. Tuy nhiên, phần lớn thời gian chúng ta có xu hướng chỉ tập trung xử lý từng model riêng lẻ.
 
-Now think about a web form to buy an airline ticket. You probably need to enter your name, address, phone number, email, the airline, the flight number, the flight date, your credit card number, your credit card security number, your card expiration date, your card's zipcode, and a bunch of checkboxes for additional things like trip insurance. That's a whole lot of different models embedded in one form! But you still submit it with a single button. Holy macaroni!
+Bây giờ hãy nghĩ đến một biểu mẫu web để mua vé máy bay. Có lẽ bạn cần nhập tên, địa chỉ, số điện thoại, email, hãng hàng không, số hiệu chuyến bay, ngày bay, số thẻ tín dụng, mã bảo mật thẻ tín dụng, ngày hết hạn thẻ, mã bưu chính của thẻ, cùng một loạt checkbox cho những lựa chọn bổ sung như bảo hiểm chuyến đi. Có quá nhiều model khác nhau được nhúng trong một biểu mẫu! Vậy mà bạn vẫn gửi tất cả chỉ bằng một nút. Trời đất ơi!
 
-Most forms won't be that long or complicated for you, but it's useful to appreciate all the things you can (and one day will) do with them. It's incredibly easy to make a basic form so the first thing we'll do is make sure you've got an intimate understanding of how forms are created in HTML and then how Rails offers you some helpers to make your life easier. We'll cover the way data is structured and sent to the controller until you feel pretty comfortable with that. Then a later lesson will deal with how to take that basic understanding and make forms handle some more firepower.
+Hầu hết biểu mẫu của bạn sẽ không dài hay phức tạp đến vậy, nhưng việc hình dung tất cả những gì bạn có thể (và một ngày nào đó sẽ) làm với chúng vẫn rất hữu ích. Tạo một biểu mẫu cơ bản cực kỳ dễ, nên việc đầu tiên chúng ta sẽ làm là bảo đảm bạn hiểu thật sâu cách tạo biểu mẫu bằng HTML, rồi cách Rails cung cấp các helper để giúp công việc của bạn dễ dàng hơn. Chúng ta sẽ tìm hiểu cách dữ liệu được cấu trúc và gửi đến controller cho đến khi bạn cảm thấy khá thoải mái với việc đó. Sau đó, một bài học khác sẽ chỉ cho bạn cách tận dụng hiểu biết cơ bản này để làm cho biểu mẫu mạnh mẽ hơn.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài này.
 
-- Form creation in Rails.
-- How Rails protects against CSRF attacks.
-- How to handle forms that fail validations.
-- Linking forms and models with the `form_with` helper.
-- How to access and use values submitted in a form.
+- Tạo biểu mẫu trong Rails.
+- Cách Rails bảo vệ trước các cuộc tấn công CSRF.
+- Cách xử lý các biểu mẫu không vượt qua validation.
+- Liên kết biểu mẫu và model bằng helper `form_with`.
+- Cách truy cập và sử dụng các giá trị được gửi trong biểu mẫu.
 
-### Forms in HTML
+### Biểu mẫu trong HTML
 
-Step one is to be able to create a form in HTML. Remember how that looks?
+Bước đầu tiên là có thể tạo một biểu mẫu bằng HTML. Bạn còn nhớ nó trông như thế nào không?
 
 ```html
 <form action="/somepath" method="post">
@@ -30,11 +30,11 @@ Step one is to be able to create a form in HTML. Remember how that looks?
 </form>
 ```
 
-There are plenty of `input` tags to choose from, including `button`, `checkbox`, `date`, `hidden`, `password`, `radio` and many more (see [the full list of HTML input types from W3Schools](https://www.w3schools.com/html/html_form_input_types.asp)).
+Có rất nhiều thẻ `input` để bạn lựa chọn, bao gồm `button`, `checkbox`, `date`, `hidden`, `password`, `radio` và nhiều loại khác (xem [danh sách đầy đủ các loại input HTML trên W3Schools](https://www.w3schools.com/html/html_form_input_types.asp)).
 
-### Viewing what your form submits
+### Xem những gì biểu mẫu gửi đi
 
-If you want to see what your forms are submitting to your Rails app, look through the output that gets printed into your console when you run your `$ rails server`. Whenever you submit a very basic form for a user email signup, it should include lines that look something like:
+Nếu muốn xem biểu mẫu đang gửi gì đến ứng dụng Rails, hãy xem phần output được in ra console khi bạn chạy `$ rails server`. Mỗi khi gửi một biểu mẫu rất cơ bản để đăng ký email người dùng, output sẽ có những dòng tương tự như sau:
 
 ```bash
   Started POST "/user" for 127.0.0.1 at 2013-11-21 19:10:47 -0800
@@ -42,15 +42,15 @@ If you want to see what your forms are submitting to your Rails app, look throug
   Parameters: {"utf8"=>"✓", "authenticity_token"=>"jJa87aK1OpXfjojryBk2Db6thv0K3bSZeYTuW8hF4Ns=", "email"=>"foo@bar.com", "commit"=>"Submit Form"}
 ```
 
-**Note** this is from a form that might be generated by a Rails helper method, as explained in a later section below.
+**Lưu ý**: đây là output từ một biểu mẫu có thể được tạo bởi một phương thức helper của Rails, như sẽ giải thích ở phần sau.
 
-The first line tells us which HTTP method was used and which route the form went to. The second line tells us which controller and action the form will be handled by, note the TURBO_STREAM action as the default behavior. The third line contains everything that will get stuffed into the `params` hash for the controller to use. We'll talk about the contents in the next sections.
+Dòng đầu tiên cho biết phương thức HTTP nào đã được dùng và biểu mẫu đã đi đến route nào. Dòng thứ hai cho biết controller và action nào sẽ xử lý biểu mẫu; hãy chú ý action TURBO_STREAM vì đây là hành vi mặc định. Dòng thứ ba chứa mọi thứ sẽ được đưa vào hash `params` để controller sử dụng. Chúng ta sẽ nói về nội dung của hash này trong các phần tiếp theo.
 
-You'll find yourself looking at this server output a lot when you start building forms. It'll keep you sane because it tells you exactly what the browser sent back to your application so you can see if there's been a... misunderstanding.
+Khi bắt đầu xây dựng biểu mẫu, bạn sẽ thường xuyên xem output này của server. Nó giúp bạn giữ được bình tĩnh vì cho biết chính xác trình duyệt đã gửi gì về ứng dụng, nhờ đó bạn có thể nhận ra liệu đã có một... hiểu lầm nào xảy ra hay chưa.
 
-### Railsifying your form by making forms input into params
+### Rails hóa biểu mẫu bằng cách đưa dữ liệu vào params
 
-Each one of these inputs is structured slightly differently, but there are some commonalities. One important thing to note is the `name` attribute that you can give to an input tag. In Rails, that's very important. The `name` attribute tells Rails what it should call the stuff you entered in that input field when it creates the `params` hash. For instance,
+Mỗi input trong số này có cấu trúc hơi khác nhau, nhưng chúng có một số điểm chung. Một điều quan trọng cần lưu ý là thuộc tính `name` bạn có thể gán cho một thẻ input. Trong Rails, thuộc tính này rất quan trọng. Thuộc tính `name` cho Rails biết phải gọi dữ liệu bạn nhập vào trường đó là gì khi tạo hash `params`. Ví dụ:
 
 ```html
 ...
@@ -58,11 +58,11 @@ Each one of these inputs is structured slightly differently, but there are some 
 ...
 ```
 
-Will result in your `params` hash containing a key called `description` that you can access as normal, e.g. `params[:description]`, inside your controller. That's also why some inputs like radio buttons (where `type="radio"`) use the `name` attribute to know which radio buttons should be grouped together such that clicking one of them will unclick the others. The `name` attribute is surprisingly important!
+sẽ khiến hash `params` chứa một key tên là `description`, bạn có thể truy cập như bình thường, chẳng hạn `params[:description]`, bên trong controller. Đó cũng là lý do một số input như radio button (trong đó `type="radio"`) dùng thuộc tính `name` để biết radio button nào cần được nhóm với nhau, sao cho khi chọn một nút thì các nút còn lại sẽ bỏ chọn. Thuộc tính `name` quan trọng một cách đáng ngạc nhiên!
 
-Now another thing we talked about in the controller section was nesting data. You'll often want to tuck submitted data neatly into a hash instead of keeping them all at the top level. This can be useful because, as we saw with controllers, it lets you do a one-line `#create` (once you've allowed the parameters with `#expect`). When you access `params[:user]`, it's actually a hash containing all the user's attributes, for instance `{first_name: "foo", last_name: "bar", email: "foo@bar.com"}`. How do you get your forms to submit parameters like this? It's easy!
+Một điều khác chúng ta đã nói trong phần controller là việc lồng dữ liệu. Bạn thường sẽ muốn xếp gọn dữ liệu đã gửi vào một hash thay vì để tất cả ở cấp cao nhất. Điều này hữu ích vì như đã thấy với controller, nó cho phép bạn viết `#create` trên một dòng (sau khi đã cho phép các parameter bằng `#expect`). Khi truy cập `params[:user]`, thực ra bạn nhận được một hash chứa toàn bộ thuộc tính của người dùng, chẳng hạn `{first_name: "foo", last_name: "bar", email: "foo@bar.com"}`. Làm thế nào để biểu mẫu gửi các parameter như vậy? Dễ thôi!
 
-It all comes back to the `name` attribute of your form inputs. Just use hard brackets to nest data like so:
+Mọi thứ lại quay về thuộc tính `name` của các input trong biểu mẫu. Chỉ cần dùng dấu ngoặc vuông để lồng dữ liệu như sau:
 
 ```html
 ...
@@ -72,29 +72,29 @@ It all comes back to the `name` attribute of your form inputs. Just use hard bra
 ...
 ```
 
-Those inputs will now get transformed into a nested hash under the `:user` key. The server output becomes:
+Các input này giờ sẽ được chuyển thành một hash lồng nhau dưới key `:user`. Output của server sẽ trở thành:
 
 ```bash
   Parameters: {"utf8"=>"✓", "authenticity_token"=>"jJa87aK1OpXfjojryBk2Db6thv0K3bSZeYTuW8hF4Ns=", "user"=>{"first_name"=>"foo","last_name"=>"bar","email"=>"foo@bar.com"}, "commit"=>"Submit Form"}
 ```
 
-Specific parameters of the `params` hash are accessed like any other nested hash `params[:user][:email]`.
+Các parameter cụ thể trong hash `params` được truy cập giống như mọi hash lồng nhau khác: `params[:user][:email]`.
 
-Don't forget that you have to allow the params now in your controller using `#expect` because they are a hash instead of just a flat string. See the Controller section below for a refresher on the controller side of things.
+Đừng quên rằng giờ bạn phải cho phép các params trong controller bằng `#expect`, vì chúng là một hash chứ không chỉ là một chuỗi phẳng. Hãy xem lại phần Controller bên dưới để nhớ lại cách xử lý ở phía controller.
 
-This is cool stuff that you'll get a chance to play with in the project.
+Đây là phần khá thú vị mà bạn sẽ có dịp thực hành trong project.
 
-#### The authenticity token
+#### Authenticity token
 
-You may have noticed in the above examples that Rails is always sending a parameter to your backend called the `"authenticity_token"`, and it has a value set to a seemingly random jumble of numbers and letters. This token is a unique, random string that Rails includes in forms to protect against Cross-Site Request Forgery (CSRF) attacks. This is basically a way for Rails to guarantee that any form inputs it receives are coming from *your site*. Without this, malicious users could potentially set up links or buttons in a place they control (such as their own website or in an email) and trick users of your site into clicking on them in order to take actions on those users' behalf.
+Có thể bạn đã nhận thấy trong các ví dụ trên rằng Rails luôn gửi đến backend một parameter tên là `"authenticity_token"`, với giá trị là một chuỗi số và chữ có vẻ ngẫu nhiên. Token này là một chuỗi ngẫu nhiên, duy nhất mà Rails đưa vào biểu mẫu để bảo vệ trước các cuộc tấn công Cross-Site Request Forgery (CSRF). Về cơ bản, đây là cách Rails bảo đảm mọi input biểu mẫu nó nhận được đều đến từ *trang web của bạn*. Nếu không có cơ chế này, người dùng xấu có thể tạo các liên kết hoặc nút ở nơi họ kiểm soát (chẳng hạn website riêng hoặc email của họ), rồi lừa người dùng trang web của bạn nhấp vào đó để thực hiện hành động thay mặt họ.
 
-If Rails processes form input and the parameters lack the `authenticity_token` or its value doesn't match what Rails expects, Rails will raise an error rather than continue with processing the request. This keeps your site secure against these types of attacks.
+Nếu Rails xử lý dữ liệu biểu mẫu mà parameter không có `authenticity_token`, hoặc giá trị của nó không khớp với điều Rails mong đợi, Rails sẽ phát sinh lỗi thay vì tiếp tục xử lý yêu cầu. Điều này giữ cho trang web của bạn an toàn trước các kiểu tấn công như vậy.
 
-### Form helpers: form_with
+### Form helper: form_with
 
-Rails tries to make your life as easy as it can, so naturally it provides you with helper methods that automate some of the repetitive parts of creating forms. That doesn't mean you don't need to know how to create forms the "old fashioned" way... it's actually MORE important to know your form fundamentals when using helpers because you'll need to really understand what's going on behind the scenes if something breaks.
+Rails cố gắng làm cho cuộc sống của bạn dễ dàng nhất có thể, nên đương nhiên nó cung cấp các phương thức helper tự động hóa một số phần lặp đi lặp lại khi tạo biểu mẫu. Điều đó không có nghĩa bạn không cần biết cách tạo biểu mẫu theo cách "cổ điển"... thực tế, khi dùng helper thì việc nắm vững nền tảng biểu mẫu còn QUAN TRỌNG hơn, vì bạn cần thật sự hiểu chuyện gì diễn ra phía sau nếu có gì đó hỏng.
 
-Start by making a form using the `form_with` helper, which takes a block representing all the inputs to the form. It takes care of the CSRF security token we talked about above by automatically creating the hidden input for it so you don't have to. You pass it arguments to tell it which path to submit to (the default is the current page) and which method to use. Then there are tag helpers that create the specified tags for you, like `text_field_tag` below. All you need to specify there is what you want to call the field when it is submitted.
+Hãy bắt đầu bằng cách tạo một biểu mẫu dùng helper `form_with`, helper này nhận một block đại diện cho toàn bộ input của biểu mẫu. Nó tự xử lý token bảo mật CSRF đã nói ở trên bằng cách tự động tạo input ẩn cho token, nên bạn không phải làm việc đó. Bạn truyền các argument để cho biết biểu mẫu cần gửi đến path nào (mặc định là trang hiện tại) và dùng method nào. Sau đó có các tag helper tạo những thẻ tương ứng cho bạn, chẳng hạn `text_field_tag` bên dưới. Ở đó, tất cả những gì bạn cần chỉ là chỉ định tên của field khi nó được gửi đi.
 
 ```erb
   <%= form_with(url: "/search", method: "get") do %>
@@ -104,7 +104,7 @@ Start by making a form using the `form_with` helper, which takes a block represe
   <% end %>
 ```
 
-Creates the form:
+tạo ra biểu mẫu:
 
 ```html
 <form accept-charset="UTF-8" action="/search" method="get">
@@ -119,12 +119,12 @@ Creates the form:
 </form>
 ```
 
-There are tag helpers for all the major tags and the options they accept are all a bit different. See the reading assignment for more detail.
+Có tag helper cho tất cả các thẻ chính, và các tùy chọn chúng nhận vào cũng hơi khác nhau. Hãy xem bài đọc được giao để biết thêm chi tiết.
 
-There are a few things to take note of when using the `form_with` helper.
+Có một vài điều cần lưu ý khi dùng helper `form_with`.
 
-1. The ID of the inputs matches the name.
-1. The second line ends with `as TURBO_STREAM` when you look at your output in your console after submitting a form. By default, all forms are now submitted by Turbo Drive. This means that a full request cycle doesn't occur and the page doesn't reload when the form is submitted. In order to disable this, you need to add the necessary data attribute that we covered in the Turbo Drive lesson.
+1. ID của các input trùng với name.
+1. Dòng thứ hai kết thúc bằng `as TURBO_STREAM` khi bạn xem output trong console sau khi gửi biểu mẫu. Theo mặc định, tất cả biểu mẫu hiện được gửi bởi Turbo Drive. Điều này có nghĩa một chu kỳ request đầy đủ không diễn ra và trang không tải lại khi biểu mẫu được gửi. Để tắt hành vi này, bạn cần thêm thuộc tính dữ liệu tương ứng đã học trong bài Turbo Drive.
 
 ```erb
   <%= form_with(url: "/search", method: "get", data: { turbo: false} ) do %>
@@ -134,13 +134,13 @@ There are a few things to take note of when using the `form_with` helper.
   <% end %>
 ```
 
-### Using models with the form_with helper
+### Dùng model với helper form_with
 
-More often than not, you'll want your form to act on the attributes of an existing model. Like specifying a title (or whatever other fields are required for your model) of a new news Article.
+Trong phần lớn trường hợp, bạn sẽ muốn biểu mẫu tác động lên các thuộc tính của một model có sẵn. Chẳng hạn chỉ định title (hoặc bất kỳ field nào khác mà model yêu cầu) cho một Article mới.
 
-Just pass `form_with` a model object, and it will make the form submit to the URL for that object, e.g. `@article` will submit to the correct URL for creating an Article. Remember from the lesson on controllers that the `#new` action usually involves creating a new (unsaved) instance of your object and passing it to the view... now you finally get to see why by using that object in your `#form_with` forms!
+Chỉ cần truyền cho `form_with` một đối tượng model, nó sẽ khiến biểu mẫu gửi đến URL của đối tượng đó; ví dụ, `@article` sẽ gửi đến đúng URL để tạo một Article. Hãy nhớ từ bài học về controller rằng action `#new` thường tạo một instance mới (chưa lưu) của đối tượng rồi truyền nó cho view... giờ cuối cùng bạn cũng thấy lý do cần dùng đối tượng đó trong các biểu mẫu `#form_with`!
 
-From the Rails Guide:
+Theo Rails Guide:
 
 ```ruby
   # app/controllers/articles_controller.rb
@@ -157,7 +157,7 @@ From the Rails Guide:
   <% end %>
 ```
 
-This will produce the following HTML:
+Đoạn này sẽ tạo ra HTML sau:
 
 ```html
 <form action="/articles" method="post">
@@ -171,13 +171,13 @@ This will produce the following HTML:
 </form>
 ```
 
-The best part about `form_with` is that if you just pass it a model object like `@article` in the example above, Rails will check for you if the object has been saved yet. If it's a new object, it will send the form to your `#create` action. If the object has been saved before, so we know that we're editing an existing object, it will send the object to your `#update` action instead. This is done by automatically generating the correct URL when the form is created. Magic!
+Điểm hay nhất của `form_with` là nếu chỉ truyền một đối tượng model như `@article` trong ví dụ trên, Rails sẽ tự kiểm tra xem đối tượng đó đã được lưu chưa. Nếu là đối tượng mới, nó sẽ gửi biểu mẫu đến action `#create`. Nếu đối tượng đã từng được lưu, tức là chúng ta biết mình đang chỉnh sửa một đối tượng hiện có, nó sẽ gửi đối tượng đến action `#update` thay vào đó. Rails làm việc này bằng cách tự động tạo URL đúng khi biểu mẫu được tạo. Thật kỳ diệu!
 
-### Forms and validations
+### Biểu mẫu và validation
 
-What happens if your form is submitted but fails the validations you've placed on it? For instance, what if the user's password is too short? Well, first of all, you should have had some JavaScript validations to be your first line of defense and they should have caught that... but we'll get into that in another course. In any case, hopefully your controller is set up to re-render the current form.
+Điều gì xảy ra nếu biểu mẫu được gửi nhưng không vượt qua các validation bạn đặt ra? Ví dụ, nếu mật khẩu của người dùng quá ngắn thì sao? Trước hết, bạn đáng lẽ phải có các validation bằng JavaScript làm tuyến phòng thủ đầu tiên, và chúng phải phát hiện được vấn đề đó... nhưng chúng ta sẽ nói về việc này trong một khóa học khác. Dù sao đi nữa, hy vọng controller của bạn đã được thiết lập để render lại biểu mẫu hiện tại.
 
-You'll probably want to display the errors so the user knows what went wrong. Recall that when Rails tries to validate an object and fails, it attaches a new set of fields to the object called `errors`. You can see those errors by accessing `your_object_name.errors`. Those errors have a couple of handy helpers you can use to display them nicely in the browser -- `#count` and `#full_messages`. See the code below:
+Có lẽ bạn sẽ muốn hiển thị lỗi để người dùng biết chuyện gì đã xảy ra. Hãy nhớ rằng khi Rails cố gắng validate một đối tượng nhưng thất bại, nó gắn thêm một tập field mới có tên là `errors` vào đối tượng. Bạn có thể xem các lỗi đó bằng cách truy cập `your_object_name.errors`. Những lỗi này có một vài helper tiện dụng để hiển thị đẹp mắt trên trình duyệt -- `#count` và `#full_messages`. Xem đoạn code dưới đây:
 
 ```erb
   <% if @post.errors.any? %>
@@ -193,23 +193,23 @@ You'll probably want to display the errors so the user knows what went wrong. Re
   <% end %>
 ```
 
-That will give the user a message telling him/her how many errors there are and then a message for each error.
+Đoạn này sẽ cho người dùng một thông báo cho biết có bao nhiêu lỗi, sau đó là một thông báo cho từng lỗi.
 
-The best part about Rails form helpers... they handle errors automatically too! If a form is rendered for a specific model object, like using `form_with model: @article` from the example above, Rails will check for errors and, if it finds any, it will automatically wrap a special `<div>` element around that field with the class `field_with_errors` so you can write whatever CSS you want to make it stand out. Cool!
+Điểm hay nhất về form helper của Rails... chúng cũng tự động xử lý lỗi! Nếu một biểu mẫu được render cho một đối tượng model cụ thể, chẳng hạn dùng `form_with model: @article` như ví dụ trên, Rails sẽ kiểm tra lỗi và nếu tìm thấy lỗi, nó sẽ tự động bọc một phần tử `<div>` đặc biệt quanh field đó, với class `field_with_errors`, để bạn có thể viết CSS tùy ý nhằm làm field nổi bật. Hay quá!
 
-### Making PATCH and DELETE submissions
+### Gửi yêu cầu PATCH và DELETE
 
-Forms aren't really designed to natively delete objects because browsers only support GET and POST requests. Rails gives you a way around that by sticking a hidden field named "\_method" into your form. It tells Rails that you actually want to do either a PATCH (aka PUT) or DELETE request (whichever you specified), and might look like `<input name="_method" type="hidden" value="patch">`.
+Biểu mẫu vốn không được thiết kế để xóa đối tượng một cách nguyên bản vì trình duyệt chỉ hỗ trợ yêu cầu GET và POST. Rails cung cấp một cách khắc phục bằng cách chèn một field ẩn có tên "\_method" vào biểu mẫu. Field này cho Rails biết rằng thực ra bạn muốn thực hiện yêu cầu PATCH (còn gọi là PUT) hoặc DELETE (tùy phương thức bạn chỉ định), và có thể trông như `<input name="_method" type="hidden" value="patch">`.
 
-You get Rails to add this to your form by passing an option to `form_with` called `:method`, e.g.:
+Bạn yêu cầu Rails thêm field này vào biểu mẫu bằng cách truyền cho `form_with` một tùy chọn tên là `:method`, ví dụ:
 
 ```ruby
   form_with(url: search_path, method: "patch")
 ```
 
-### Controller-side refresher
+### Ôn lại phía controller
 
-Just as a refresher, here's a very basic controller setup for handling `#new` actions and `#create` actions.
+Để ôn lại, dưới đây là một thiết lập controller rất cơ bản để xử lý các action `#new` và `#create`.
 
 ```ruby
   # app/controllers/users_controller.rb
@@ -233,48 +233,48 @@ Just as a refresher, here's a very basic controller setup for handling `#new` ac
   ...
 ```
 
-I wanted to show this again so you could remind yourself what's going on in the form's lifecycle. The user presumably went to the path for the `#new` action, likely `http://www.yourapp.com/users/new`. That ran the `#new` action, which created a new user object in memory (but not yet saved to the database) and rendered the `new.html.erb` view. The view probably used `form_with model: @user` to make things nice and easy for the developer.
+Tôi muốn đưa đoạn này ra một lần nữa để bạn nhớ lại điều gì đang diễn ra trong vòng đời của biểu mẫu. Có lẽ người dùng đã đi đến path của action `#new`, thường là `http://www.yourapp.com/users/new`. Thao tác đó chạy action `#new`, tạo một đối tượng user mới trong bộ nhớ (nhưng chưa lưu vào database), rồi render view `new.html.erb`. View này có lẽ dùng `form_with model: @user` để mọi việc trở nên dễ dàng hơn cho developer.
 
-Once the form gets submitted, the `#create` action will build another new User object with the parameters we explicitly tell it are okay. Recall that our custom `#user_params` method will return the `params[:user]` hash for us, which lets `User.new` build us a complete new instance. If that instance can be saved to the database, we're all good and we go to that user's `show.html.erb` page.
+Khi biểu mẫu được gửi, action `#create` sẽ xây dựng một đối tượng User mới khác bằng các parameter mà chúng ta chỉ rõ là hợp lệ. Hãy nhớ rằng phương thức tùy chỉnh `#user_params` sẽ trả về hash `params[:user]`, nhờ đó `User.new` có thể xây dựng một instance mới hoàn chỉnh. Nếu instance đó được lưu vào database, mọi việc đều ổn và chúng ta đi đến trang `show.html.erb` của user đó.
 
-If the `@user` cannot be saved, like because the `first_name` contains numbers, we will jump straight back to rendering the `new.html.erb` view, this time using the `@user` instance that will still have errors attached to it. Our form should gracefully handle those errors by telling the user where they screwed up.
+Nếu không thể lưu `@user`, chẳng hạn vì `first_name` chứa chữ số, chúng ta sẽ quay thẳng lại việc render view `new.html.erb`, lần này dùng instance `@user` vẫn còn chứa các lỗi. Biểu mẫu của chúng ta nên xử lý các lỗi đó một cách phù hợp bằng cách cho người dùng biết họ đã nhập sai ở đâu.
 
-Notice how in our else clause we specify a status
+Hãy chú ý cách chúng ta chỉ định một status trong mệnh đề else:
 
 ```ruby
 else
   render :new, status: :unprocessable_entity
 ```
 
-Remember our Turbo Drive lesson? Which status codes does Turbo handle? Either a redirect, a 4XX status or a 5XX status. On a successful save of our created object you can see we do a redirect
+Bạn còn nhớ bài Turbo Drive không? Turbo xử lý những mã status nào? Một redirect, status 4XX hoặc status 5XX. Khi lưu thành công đối tượng đã tạo, bạn có thể thấy chúng ta thực hiện redirect:
 
 ```ruby
 if @user.save
   redirect_to @user
 ```
 
-This is the 303 redirect status we mentioned in the earlier Turbo Drive lesson. If we don't redirect, and we don't want a 5XX error, as that means our application has hit an unexpected issue, that only leaves us with a 4XX status code.
+Đây là status redirect 303 mà chúng ta đã nhắc đến trong bài Turbo Drive trước đó. Nếu không redirect, và cũng không muốn lỗi 5XX vì điều đó có nghĩa ứng dụng gặp sự cố ngoài dự kiến, thì chúng ta chỉ còn status 4XX.
 
-What would be returned if we didn't include `status: :unprocessable_entity`?
+Nếu không đưa `status: :unprocessable_entity` vào thì điều gì sẽ được trả về?
 
-It would be 200 OK status because that is the expected response to a failed form submission. The request has completed in the way we expected. Therefore when dealing with a form validation that fails, you need to specify the 422 HTTP status. Doing so will change a `Completed 200 OK in 206ms (Views: 125.5ms | ActiveRecord: 8.1ms | Allocations: 18793)` return status to `Completed 422 Unprocessable Entity in 52ms (Views: 44.6ms | ActiveRecord: 0.0ms | Allocations: 6391)`, and as we know, Turbo will handle this and update the HTML with the returned response.
+Đó sẽ là status 200 OK vì đây là phản hồi được mong đợi đối với một lần gửi biểu mẫu thất bại. Yêu cầu đã hoàn tất theo đúng cách chúng ta dự kiến. Vì vậy, khi xử lý validation biểu mẫu thất bại, bạn cần chỉ định status HTTP 422. Làm vậy sẽ thay đổi status trả về từ `Completed 200 OK in 206ms (Views: 125.5ms | ActiveRecord: 8.1ms | Allocations: 18793)` thành `Completed 422 Unprocessable Entity in 52ms (Views: 44.6ms | ActiveRecord: 0.0ms | Allocations: 6391)`, và như đã biết, Turbo sẽ xử lý phản hồi này rồi cập nhật HTML bằng response được trả về.
 
-What is the response? The new page rendered again as HTML. But this time, because the `@user` object has some errors on it, the HTML will include any information you've rendered on an object having some errors.
+Response là gì? Trang mới lại được render dưới dạng HTML. Nhưng lần này, vì đối tượng `@user` có một số lỗi, HTML sẽ bao gồm mọi thông tin bạn đã render cho một đối tượng đang có lỗi.
 
-If you find yourself submitting a form and nothing is happening, chances are you forgot to return the correct status. You can confirm in the server logs when you submit the form.
+Nếu bạn gửi biểu mẫu mà không có gì xảy ra, rất có thể bạn đã quên trả về status đúng. Bạn có thể xác nhận điều này trong server log khi gửi biểu mẫu.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read the [Rails Guide on Form Helpers](http://guides.rubyonrails.org/form_helpers.html), sections 1 through 2.4.
-  1. Skim 3.1 through 7 to see what kinds of things are out there.  One day you'll need them, and now you know where to look.
-  1. Read sections 8.1 through 8.3 for the official explanation of how parameters are created from the `name` attribute.
-  1. Read the [Rails Guide on Validations](http://guides.rubyonrails.org/active_record_validations.html#displaying-validation-errors-in-views) section 9 for a quick look at displaying errors.
-  1. Skim through the official Rails API section on the [form_with helper](https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with) to see various ways to use this helper tag.
+  1. Đọc [Rails Guide về Form Helpers](http://guides.rubyonrails.org/form_helpers.html), các mục từ 1 đến 2.4.
+  1. Đọc lướt các mục từ 3.1 đến 7 để xem có những gì. Một ngày nào đó bạn sẽ cần đến chúng, và giờ bạn đã biết tìm ở đâu.
+  1. Đọc các mục từ 8.1 đến 8.3 để xem giải thích chính thức về cách tạo parameter từ thuộc tính `name`.
+  1. Đọc mục 9 trong [Rails Guide về Validations](http://guides.rubyonrails.org/active_record_validations.html#displaying-validation-errors-in-views) để xem nhanh cách hiển thị lỗi.
+  1. Đọc lướt phần API Rails chính thức về [helper form_with](https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with) để xem những cách khác nhau có thể dùng tag helper này.
 
 </div>
 
-#### Conclusion
+#### Kết luận
 
-At this point, you should have a solid understanding of how forms work in general and a pretty good feel for how Rails helps you out by generating them for you. You'll get a chance to build a whole bunch of forms in the next few projects, so don't worry if it's not totally stuck for you yet. Seeing it in action will make things click.
+Đến đây, bạn hẳn đã hiểu vững cách biểu mẫu hoạt động nói chung và khá nắm được cách Rails hỗ trợ bạn bằng cách tự tạo biểu mẫu. Trong vài project tiếp theo, bạn sẽ có cơ hội xây dựng rất nhiều biểu mẫu, nên đừng lo nếu mọi thứ vẫn chưa hoàn toàn in sâu trong đầu. Nhìn thấy chúng hoạt động thực tế sẽ giúp bạn hiểu rõ hơn.

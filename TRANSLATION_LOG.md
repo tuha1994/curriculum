@@ -630,6 +630,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `ruby_on_rails/assets_and_navigation/asset_pipeline.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails asset code và lệnh. |
 | `ruby_on_rails/assets_and_navigation/importmap.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên importmap và JavaScript code. |
 
+## Ruby on Rails đã dịch — batch 14
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby_on_rails/assets_and_navigation/turbo_drive.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Turbo/JavaScript/HTML code. |
+| `ruby_on_rails/forms_and_authentication/form_basics.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails form code và HTML. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

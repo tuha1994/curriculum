@@ -1,108 +1,108 @@
-### Introduction
+### Giới thiệu
 
-Rails has always promoted itself as a framework that makes building a web application easy. But in a world built around the demands of users expecting lightning fast responses as well as increasingly complex UI, it wasn't easy for Rails to offer a compelling vision for how they saw a way through that complexity while sticking to core Rails philosophies. However, just before the release of Rails 7 we finally got a glimpse of how the Rails team saw the future of meeting these demands. Hotwire!
+Rails từ lâu đã tự giới thiệu mình là một framework giúp việc xây dựng ứng dụng web trở nên dễ dàng. Nhưng trong một thế giới được định hình bởi yêu cầu phản hồi nhanh như chớp của người dùng cùng giao diện ngày càng phức tạp, Rails khó có thể đưa ra một tầm nhìn thuyết phục về cách vượt qua sự phức tạp đó mà vẫn trung thành với những triết lý cốt lõi của Rails. Tuy nhiên, ngay trước khi Rails 7 ra mắt, cuối cùng chúng ta cũng được thấy phần nào cách đội ngũ Rails hình dung về tương lai đáp ứng những yêu cầu này. Hotwire!
 
-Hotwire is actually an umbrella term for three different frameworks. These frameworks are:
+Hotwire thực ra là một thuật ngữ bao trùm ba framework khác nhau. Các framework đó là:
 
 1. Turbo
 1. Stimulus
 1. Strada
 
-Stimulus is something we'll cover later and you don't need to worry about Strada for the scope of this course, just be familiar with the name as you will see it mentioned from time to time.
+Stimulus là nội dung chúng ta sẽ học sau, còn trong phạm vi khóa học này bạn không cần bận tâm đến Strada; chỉ cần quen với tên gọi này vì đôi khi bạn sẽ thấy nó được nhắc đến.
 
-Turbo itself is also an umbrella term for several different techniques for creating fast and modern web applications. The technique we're going to focus on here is the one whose behavior is part of Rails' core functionality, Turbo Drive. The other techniques we'll cover in the Advanced Turbo lesson later.
+Bản thân Turbo cũng là một thuật ngữ bao trùm một số kỹ thuật khác nhau để tạo ra các ứng dụng web nhanh và hiện đại. Kỹ thuật chúng ta sẽ tập trung ở đây là kỹ thuật có hành vi thuộc chức năng cốt lõi của Rails: Turbo Drive. Những kỹ thuật còn lại sẽ được học trong bài Advanced Turbo sau này.
 
-Links and Forms are the bedrock of most web applications. You need links to navigate around your site and forms to allow users to submit information to you. Turbo Drive is how Rails handles these in your applications.
+Liên kết và biểu mẫu là nền tảng của hầu hết ứng dụng web. Bạn cần liên kết để điều hướng quanh trang web và biểu mẫu để người dùng gửi thông tin cho bạn. Turbo Drive là cách Rails xử lý những thành phần này trong ứng dụng của bạn.
 
-If a lot of what follows seems confusing, don't worry! A lot of Turbo Drive happens under the hood and therefore it means we often need to discuss the concept rather than the implementation. This can make it harder initially to grok, but luckily it does also mean you can often just go about your business and never have to actively think about it.
+Nếu nhiều phần tiếp theo có vẻ khó hiểu thì đừng lo! Phần lớn hoạt động của Turbo Drive diễn ra ở phía sau, vì vậy chúng ta thường cần thảo luận về khái niệm thay vì cách triển khai. Điều này ban đầu có thể khiến việc nắm bắt khó hơn, nhưng may mắn là nó cũng có nghĩa bạn thường có thể tiếp tục công việc mà không cần chủ động suy nghĩ về nó.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài này.
 
-- The purpose of Turbo Drive.
-- How Turbo Drive handles page navigation.
-- The two kinds of page visit types in Turbo.
-- How to disable Turbo Drive.
-- What Turbolinks is.
+- Mục đích của Turbo Drive.
+- Cách Turbo Drive xử lý việc điều hướng trang.
+- Hai loại lượt truy cập trang trong Turbo.
+- Cách tắt Turbo Drive.
+- Turbolinks là gì.
 
-### Turbo drive
+### Turbo Drive
 
-Before we dive into Turbo Drive, let's talk about Turbo as a whole. It is a JavaScript library that ships with Rails by default and runs in the browser. Traditionally, full page reloads are slow, lose JavaScript state, and re-downloading assets is time-consuming. Enter Turbo: it makes creating fast, modern web applications easier by allowing the server to serve HTML directly to the browser.
+Trước khi đi sâu vào Turbo Drive, hãy cùng nói về Turbo nói chung. Đây là một thư viện JavaScript được Rails cung cấp mặc định và chạy trong trình duyệt. Theo cách truyền thống, việc tải lại toàn bộ trang chậm, làm mất trạng thái JavaScript, còn việc tải lại tài nguyên thì tốn thời gian. Turbo xuất hiện: nó giúp việc tạo các ứng dụng web nhanh và hiện đại trở nên dễ dàng hơn bằng cách cho phép máy chủ cung cấp HTML trực tiếp cho trình duyệt.
 
-Turbo has a few techniques that define it: Turbo Drive is used to make navigation faster without a full page reload. Turbo Frames help define specific content of a page that you want replaced without requesting an entire page. Turbo Streams respond to real-time changes on the client side over WebSocket. Finally, Turbo Native allows fast navigation in mobile apps.
+Turbo có một vài kỹ thuật làm nên đặc trưng của nó: Turbo Drive được dùng để tăng tốc điều hướng mà không cần tải lại toàn bộ trang. Turbo Frames giúp xác định phần nội dung cụ thể của trang cần được thay thế mà không phải yêu cầu toàn bộ trang. Turbo Streams phản hồi các thay đổi theo thời gian thực ở phía client thông qua WebSocket. Cuối cùng, Turbo Native cho phép điều hướng nhanh trong các ứng dụng di động.
 
-Turbo Drive is the portion of Turbo that accelerates overall page navigation. Turbo Drive watches for when a user clicks a link or submits a form, handles the request being made by the user, and then updates the page for the user without a full reload! This is the default behavior without any set up required. However, it is still important to understand what exactly Turbo Drive is doing in case you need to manually modify or disable its behavior in some portions of your web page.
+Turbo Drive là phần của Turbo giúp tăng tốc việc điều hướng trang nói chung. Turbo Drive theo dõi khi người dùng nhấp vào một liên kết hoặc gửi biểu mẫu, xử lý yêu cầu do người dùng tạo ra, rồi cập nhật trang cho người dùng mà không cần tải lại toàn bộ! Đây là hành vi mặc định, không cần cấu hình gì thêm. Tuy vậy, việc hiểu chính xác Turbo Drive đang làm gì vẫn rất quan trọng, phòng khi bạn cần sửa đổi hoặc tắt thủ công hành vi của nó ở một số phần trong trang web.
 
-#### Page navigation
+#### Điều hướng trang
 
-Turbo Drive defines page navigation as a *visit* to a *location* (URL) with an *action*.
+Turbo Drive định nghĩa việc điều hướng trang là một *lượt truy cập* đến một *địa chỉ* (URL) cùng một *hành động*.
 
-A visit is the navigation lifecycle that begins when a user clicks a link and lasts until the page is rendered. This includes the HTTP request, the user's browser history being updated, restoring the page from cache (if applicable), rendering the final response, and updating the user's scroll position.
+Một lượt truy cập là vòng đời điều hướng bắt đầu khi người dùng nhấp vào một liên kết và kéo dài cho đến khi trang được hiển thị. Vòng đời này bao gồm yêu cầu HTTP, cập nhật lịch sử trình duyệt, khôi phục trang từ bộ nhớ đệm (nếu có), hiển thị phản hồi cuối cùng và cập nhật vị trí cuộn của người dùng.
 
-There are two kinds of visits:
+Có hai loại lượt truy cập:
 
-1. **Application visit**, a visit with a Drive action of *advance* or *replace*.
-1. **Restoration visit**, a visit with a Drive action of *restore*.
+1. **Lượt truy cập ứng dụng**, là lượt truy cập có hành động Drive là *tiến tới* hoặc *thay thế*.
+1. **Lượt truy cập khôi phục**, là lượt truy cập có hành động Drive là *khôi phục*.
 
-#### Application visit
+#### Lượt truy cập ứng dụng
 
-The application visit lifecycle can be summarized as:
+Vòng đời của lượt truy cập ứng dụng có thể được tóm tắt như sau:
 
-1. Application visits begin when a user clicks a Turbo Drive enabled link (remember, Turbo Drive is enabled on links by default!).
-1. An HTTP network request is issued. Turbo Drive receives it and will render the HTML.
-1. If possible, Turbo Drive will use the browser's cache to render a preview of the page immediately after the visit begins, using the HTML for the previous visit of the same URL.
-1. The browser history is updated to reflect this page navigation. The way it is changed is determined by the visit action.
-    - **Advance**: This is the default action and will result in a new entry being added to the browser history.
-    - **Replace**: This action replaces the most recent browser history entry with the new location.
+1. Lượt truy cập ứng dụng bắt đầu khi người dùng nhấp vào một liên kết được Turbo Drive bật (hãy nhớ rằng Turbo Drive mặc định được bật trên các liên kết!).
+1. Một yêu cầu mạng HTTP được gửi đi. Turbo Drive tiếp nhận yêu cầu đó và sẽ hiển thị HTML.
+1. Nếu có thể, Turbo Drive sẽ dùng bộ nhớ đệm của trình duyệt để hiển thị ngay bản xem trước của trang sau khi lượt truy cập bắt đầu, bằng HTML của lượt truy cập trước đó đến cùng URL.
+1. Lịch sử trình duyệt được cập nhật để phản ánh việc điều hướng trang này. Cách cập nhật được quyết định bởi hành động của lượt truy cập.
+    - **Tiến tới**: Đây là hành động mặc định và sẽ thêm một mục mới vào lịch sử trình duyệt.
+    - **Thay thế**: Hành động này thay thế mục gần nhất trong lịch sử trình duyệt bằng địa chỉ mới.
 
-To change the action of a Turbo Drive link, you can use data attributes inside of your Rails link tags
+Để thay đổi hành động của một liên kết Turbo Drive, bạn có thể dùng các thuộc tính dữ liệu bên trong thẻ liên kết Rails.
 
 ```erb
 <%= link_to "Edit Article", edit_article_path(@article), data: { turbo_action: "replace" } %>
 ```
 
-which will generate:
+sẽ tạo ra:
 
 ```html
 <a href="..." data-turbo-action="replace">Edit Article</a>
 ```
 
-#### Restoration visit
+#### Lượt truy cập khôi phục
 
-The restoration visit lifecycle can be summarized as:
+Vòng đời của lượt truy cập khôi phục có thể được tóm tắt như sau:
 
-1. Restoration visits begin when the user navigates using the browser's forward & back buttons.
-1. If possible, Turbo Drive will use the browser's cache to render a preview of the page immediately after the visit begins. Otherwise, it will retrieve a fresh copy of the page over the network.
-1. The browser's scroll position is saved on every page before navigating away and will return to this saved position.
+1. Lượt truy cập khôi phục bắt đầu khi người dùng điều hướng bằng các nút tiến và lùi của trình duyệt.
+1. Nếu có thể, Turbo Drive sẽ dùng bộ nhớ đệm của trình duyệt để hiển thị ngay bản xem trước của trang sau khi lượt truy cập bắt đầu. Nếu không, nó sẽ lấy một bản sao mới của trang qua mạng.
+1. Vị trí cuộn của trình duyệt được lưu trên mỗi trang trước khi rời đi và sẽ được khôi phục về vị trí đã lưu này.
 
-Restoration visits are visits with the action of *restore*. This is used by Turbo Drive internally and you **should not** annotate a link with an action of restore.
+Lượt truy cập khôi phục là các lượt truy cập có hành động *khôi phục*. Turbo Drive sử dụng hành động này ở bên trong, và bạn **không nên** gắn hành động khôi phục cho một liên kết.
 
-#### HTTP request methods
+#### Phương thức yêu cầu HTTP
 
-By default, link clicks are sent with `GET` requests. However, Turbo Drive will scan `<a>` tags in your application for the `turbo-method` attribute to override the `GET` action.
+Theo mặc định, thao tác nhấp vào liên kết được gửi bằng yêu cầu `GET`. Tuy nhiên, Turbo Drive sẽ quét các thẻ `<a>` trong ứng dụng để tìm thuộc tính `turbo-method`, qua đó ghi đè hành động `GET`.
 
-For instance:
+Ví dụ:
 
 ```erb
 <%= link_to "Delete Article", article_path(@article), data: { turbo_method: "delete" }  %>
 ```
 
-which will generate:
+sẽ tạo ra:
 
 ```html
 <a href="..." data-turbo-method="delete">Delete Article</a>
 ```
 
-This creates a link that will use the `DELETE` method. However, it is suggested that you use a button or form for anything that isn't a `GET` request
+Điều này tạo ra một liên kết dùng phương thức `DELETE`. Tuy nhiên, bạn nên dùng nút hoặc biểu mẫu cho bất kỳ thao tác nào không phải yêu cầu `GET`.
 
-#### Disable turbo drive
+#### Tắt Turbo Drive
 
-There will be times where you do not want Turbo Drive to control navigation and want a full page reset.
+Sẽ có lúc bạn không muốn Turbo Drive kiểm soát việc điều hướng và muốn đặt lại toàn bộ trang.
 
-You can disable Turbo Drive by adding `data-turbo="false"` directly on your links or on the parent containing them.
+Bạn có thể tắt Turbo Drive bằng cách thêm `data-turbo="false"` trực tiếp vào các liên kết hoặc vào phần tử cha chứa chúng.
 
-For instance:
+Ví dụ:
 
 ```erb
 <div data-turbo="false">
@@ -111,48 +111,48 @@ For instance:
 </div>
 ```
 
-In the above example, we created a parent div with `data-turbo="false"`, which disables Turbo Drive on all elements inside of it. However, we also added `data: { turbo: "true" }` to the second `link_to`. This will turn Turbo Drive back on for that particular element.
+Trong ví dụ trên, chúng ta tạo một div cha có `data-turbo="false"`, qua đó tắt Turbo Drive trên mọi phần tử bên trong nó. Tuy nhiên, chúng ta cũng thêm `data: { turbo: "true" }` vào `link_to` thứ hai. Điều này sẽ bật lại Turbo Drive cho riêng phần tử đó.
 
-This showcases that you can disable and re-enable Turbo Drive in regions of your website and select specific elements to enable or disable it on. Remember that when using ERB tags (like `link_to`) we use the syntax style of `data: { foo: "bar" }` rather than the HTML style of `data-foo="bar"`.
+Ví dụ này cho thấy bạn có thể tắt và bật lại Turbo Drive trong các vùng khác nhau của trang web, đồng thời chọn những phần tử cụ thể để bật hoặc tắt nó. Hãy nhớ rằng khi dùng các thẻ ERB (chẳng hạn `link_to`), chúng ta dùng cú pháp `data: { foo: "bar" }` thay vì cú pháp HTML `data-foo="bar"`.
 
-### Forms
+### Biểu mẫu
 
-We cover Rails forms much deeper later, but because they are entwined with Turbo Drive we do need to cover some common information that will come together in the forms lessons that follow.
+Chúng ta sẽ học sâu hơn về biểu mẫu Rails ở phần sau, nhưng vì biểu mẫu gắn liền với Turbo Drive nên cần đề cập một số thông tin phổ biến, những thông tin này sẽ kết nối với các bài học về biểu mẫu tiếp theo.
 
-If you don't understand some of the information as it is explained below just wait until the Form Basics lesson and it should all come together.
+Nếu bạn chưa hiểu một vài thông tin được giải thích dưới đây thì đừng lo; hãy chờ đến bài Form Basics, mọi thứ sẽ dần sáng tỏ.
 
-#### Form submissions
+#### Gửi biểu mẫu
 
-While most link requests are issued as GET requests, forms are different. You often submit forms as a POST, PATCH or DELETE request in order to manipulate some data that lives on the server.
+Trong khi hầu hết yêu cầu từ liên kết được gửi dưới dạng yêu cầu GET, biểu mẫu lại khác. Bạn thường gửi biểu mẫu dưới dạng yêu cầu POST, PATCH hoặc DELETE để thao tác với dữ liệu nằm trên máy chủ.
 
-Turbo Drive intercepts all Form Submissions by default and submits them to the server on your behalf. As we advance into the form lessons, you must remember that Turbo expects the server to return an HTTP status of HTTP 303 or, in other words, a redirect.
+Theo mặc định, Turbo Drive chặn tất cả thao tác gửi biểu mẫu và thay mặt bạn gửi chúng đến máy chủ. Khi học tiếp các bài về biểu mẫu, bạn phải nhớ rằng Turbo mong máy chủ trả về mã trạng thái HTTP 303, hay nói cách khác là một chuyển hướng.
 
-Think of it like this, after you submit a form usually you want to be directed somewhere afterwards. That could be back to the same page with a blank form ready for another submission, or it could be to view the resource you just created with the form, but you expect to be redirected away from the current page with the completed form on it. There are two exceptions to this expectation:
+Hãy hình dung như sau: sau khi gửi biểu mẫu, thông thường bạn muốn được chuyển đến một nơi nào đó. Có thể là quay lại chính trang đó với biểu mẫu trống để gửi lần nữa, hoặc xem tài nguyên bạn vừa tạo bằng biểu mẫu; nhưng bạn mong được chuyển khỏi trang hiện tại, nơi biểu mẫu đã điền vẫn còn đó. Có hai ngoại lệ cho kỳ vọng này:
 
-1. When the server responds with a 4XX status code. This is common if you submit a form with the wrong information in it and the server will respond with a 422 Unprocessable Entity status.
-1. When the server responds with a 5XX status code of which the most common is 500 Internal Server Error.
+1. Khi máy chủ phản hồi bằng mã trạng thái 4XX. Điều này thường xảy ra nếu bạn gửi biểu mẫu với thông tin sai và máy chủ phản hồi bằng trạng thái 422 Unprocessable Entity.
+1. Khi máy chủ phản hồi bằng mã trạng thái 5XX, trong đó phổ biến nhất là 500 Internal Server Error.
 
-If the server responds with any other status, Turbo won't be able to handle it and it will appear as though nothing has happened as the page won't update. The one thing to keep in mind with this is the HTTP 200 status. This is returned when a request has succeeded so it might seem strange at first that Turbo can't handle this type of request.
+Nếu máy chủ phản hồi bằng bất kỳ trạng thái nào khác, Turbo sẽ không thể xử lý và có vẻ như chưa có gì xảy ra vì trang không cập nhật. Điều cần nhớ ở đây là trạng thái HTTP 200. Trạng thái này được trả về khi một yêu cầu thành công, vì vậy ban đầu việc Turbo không thể xử lý loại yêu cầu này có thể khá lạ.
 
-The reason is that if you've ever submitted a form and refreshed the page before the POST action completed you get a popup from your browser asking if you want to submit the form again. Your browser does this because when you refresh you've actually issued a new request and the server has responded with a 200 status because the request was ok and handled without an error or redirect. Browsers handle this case by offering to submit the form again as a POST request for you. Because Turbo has intercepted the request you won't get that default browser behavior and Turbo cannot replicate this and it has two options:
+Lý do là nếu bạn từng gửi biểu mẫu rồi làm mới trang trước khi thao tác POST hoàn tất, trình duyệt sẽ hiện hộp thoại hỏi bạn có muốn gửi lại biểu mẫu hay không. Trình duyệt làm vậy vì khi làm mới, thực ra bạn đã tạo một yêu cầu mới, và máy chủ phản hồi bằng trạng thái 200 vì yêu cầu đã được xử lý mà không gặp lỗi hay chuyển hướng. Trình duyệt xử lý trường hợp này bằng cách đề nghị gửi lại biểu mẫu dưới dạng yêu cầu POST. Vì Turbo đã chặn yêu cầu, bạn sẽ không nhận được hành vi mặc định đó của trình duyệt, còn Turbo không thể mô phỏng nó và có hai lựa chọn:
 
-1. It can either stay on the current URL in your browser; or
-1. It could try and navigate to the action that the form submits to.
+1. Nó có thể giữ nguyên URL hiện tại trong trình duyệt; hoặc
+1. Nó có thể thử điều hướng đến action mà biểu mẫu gửi tới.
 
-If it navigated to the form action it would do so as a new GET request, but since forms issued POST requests the server might not be set up to handle a GET request to that URL and you'd get an error. Because Turbolinks didn't handle form submissions this is what actually happened in previous versions of Rails. This is why Turbo Drive went with option 1, it stays on the current URL in your browser and therefore it appears to the user that nothing has happened. You must therefore ensure you always respond with one of the valid status codes mentioned above with forms.
+Nếu điều hướng đến action của biểu mẫu, nó sẽ thực hiện một yêu cầu GET mới, nhưng vì biểu mẫu đã gửi yêu cầu POST nên máy chủ có thể chưa được cấu hình để xử lý yêu cầu GET đến URL đó và bạn sẽ gặp lỗi. Vì Turbolinks không xử lý thao tác gửi biểu mẫu, đây chính là điều đã xảy ra trong các phiên bản Rails trước. Vì vậy Turbo Drive chọn phương án 1: giữ nguyên URL hiện tại trong trình duyệt, khiến người dùng có cảm giác như chưa có gì xảy ra. Do đó, bạn phải luôn bảo đảm biểu mẫu phản hồi bằng một trong các mã trạng thái hợp lệ nêu trên.
 
 ### Turbolinks
 
-Before we finish up, we should briefly mention the predecessor to Turbo, Turbolinks. Turbolinks is **no longer in active development**! Despite that, it's still worth mentioning as it has been around for a while (its first major release was 2013) and it's possible that you will encounter existing applications or online articles that mention Turbolinks. The goal of Turbolinks was to capture the request for any clicked links in your web application and, if that link was to another page in your web app and not to an outside resource, then Turbolinks would keep the current page instance alive and only swap out the content between the `<body>` tags of the document. It didn't require a full page reload (and was therefore faster) because it didn't have to download any resources in the head part of the document when they were unlikely to have changed.
+Trước khi kết thúc, chúng ta nên nói ngắn gọn về tiền thân của Turbo là Turbolinks. Turbolinks **không còn được phát triển tích cực**! Dù vậy, nó vẫn đáng được nhắc đến vì đã tồn tại khá lâu (bản phát hành lớn đầu tiên vào năm 2013), và bạn có thể gặp những ứng dụng hiện có hoặc các bài viết trực tuyến đề cập đến Turbolinks. Mục tiêu của Turbolinks là bắt các yêu cầu đối với mọi liên kết được nhấp trong ứng dụng web; nếu liên kết đó trỏ đến một trang khác trong ứng dụng web chứ không phải tài nguyên bên ngoài, Turbolinks sẽ giữ nguyên instance trang hiện tại và chỉ thay thế nội dung nằm giữa các thẻ `<body>` của tài liệu. Nó không yêu cầu tải lại toàn bộ trang (vì vậy nhanh hơn), bởi không cần tải xuống các tài nguyên trong phần head của tài liệu khi những tài nguyên đó gần như không thay đổi.
 
-This only applied when navigating pages with links, it did not intercept form submissions. While Turbolinks is no longer actively developed, the concept behind it has evolved into a new framework now known as Turbo.
+Điều này chỉ áp dụng khi điều hướng trang bằng liên kết; nó không chặn thao tác gửi biểu mẫu. Dù Turbolinks không còn được phát triển chủ động, khái niệm đứng sau nó đã phát triển thành một framework mới ngày nay được gọi là Turbo.
 
-To reiterate, Turbolinks is the **predecessor** of Turbo, and **Turbo is not shorthand for Turbolinks**. They are two different entities.
+Nhắc lại, Turbolinks là **tiền thân** của Turbo, và **Turbo không phải cách viết tắt của Turbolinks**. Đây là hai thực thể khác nhau.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read chapters 1 and 2 of the [Turbo handbook](https://turbo.hotwired.dev/handbook/introduction). Focus on ensuring you understand around link navigation and how that works as we'll cover forms later.
+1. Đọc chương 1 và 2 của [sổ tay Turbo](https://turbo.hotwired.dev/handbook/introduction). Tập trung bảo đảm bạn hiểu việc điều hướng bằng liên kết và cách nó hoạt động, vì chúng ta sẽ học về biểu mẫu sau.
 
 </div>

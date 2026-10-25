@@ -685,6 +685,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 | `ruby_on_rails/testing/model_testing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails/RSpec/test code. |
 | `ruby_on_rails/testing/unit_testing.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails/RSpec/test code. |
 
+## Ruby on Rails đã dịch — batch 22
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby_on_rails/rails_sprinkles/turbo.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Turbo/JavaScript/HTML code. |
+| `ruby_on_rails/mailers_advanced_topics/mailers.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails mailer code. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

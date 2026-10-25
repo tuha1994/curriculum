@@ -1,59 +1,59 @@
-### Introduction
+### Giới thiệu
 
-When a user makes a request to your application, your controller is the part of MVC that receives it and responds with the `.html.erb` view file. As you've been working on your applications so far, you may have been creating views with similar features and layouts. What if there was a way to only change the parts of our views that are different and not have to bother with updating content that we don't intend to change in the first place? We could cut down on loading times for the user and the amount of data our application has to send out.
+Khi người dùng gửi một yêu cầu đến ứng dụng, controller là phần của MVC tiếp nhận yêu cầu đó và phản hồi bằng tệp view `.html.erb`. Trong quá trình xây dựng các ứng dụng của mình, có thể bạn đã tạo những view có các tính năng và bố cục tương tự nhau. Sẽ thế nào nếu có cách chỉ thay đổi những phần khác nhau trong view mà không phải mất công cập nhật nội dung vốn không có ý định thay đổi ngay từ đầu? Nhờ vậy, chúng ta có thể giảm thời gian tải đối với người dùng và lượng dữ liệu ứng dụng phải gửi đi.
 
-That's where the concept of a **single-page application** comes in. This section will be about how we can use a framework known as **Turbo** to implement single-page application behaviour in our very own Rails application. This section covers a lot of tools and you may not fully understand them as you read through the first time. That's okay, consider this lesson to be a resource that you can refer back to when you actually begin using the  tools mentioned and get more of a visual as to what exactly is going on in your views.
+Đó là lúc khái niệm **ứng dụng một trang** xuất hiện. Phần này sẽ trình bày cách sử dụng một framework có tên **Turbo** để triển khai hành vi của ứng dụng một trang trong chính ứng dụng Rails của chúng ta. Phần này đề cập đến khá nhiều công cụ, nên có thể lần đầu đọc bạn chưa hiểu hết. Không sao cả; hãy xem bài học này như một tài liệu tham khảo để quay lại khi bạn bắt đầu sử dụng các công cụ được đề cập và hình dung rõ hơn điều gì đang diễn ra trong view của mình.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- What an SPA is.
-- What Hotwire is.
-- Turbo and the four components of it.
-- When to use a Turbo Frame.
-- How to use Turbo Streams to update your pages.
-- What Hotwire Native is used for.
+- SPA là gì.
+- Hotwire là gì.
+- Turbo và bốn thành phần của nó.
+- Khi nào nên sử dụng Turbo Frame.
+- Cách dùng Turbo Stream để cập nhật các trang.
+- Hotwire Native được dùng để làm gì.
 
-### Single-page applications (SPAs)
+### Ứng dụng một trang (SPA)
 
-Before getting into Turbo, it's important to understand the concept of a single-page application, or SPA. A SPA is an
-implementation for web applications that loads only a single web document. Rather than constantly replacing this document with a brand new one on every request, the website dynamically rewrites the current page with new information so that the page loads faster and feels more like a native application. A page refresh never occurs. Think about websites such as Gmail or Facebook where you see a brand-new email or timeline post without needing to refresh your page.
+Trước khi tìm hiểu Turbo, điều quan trọng là phải hiểu khái niệm ứng dụng một trang, hay SPA. SPA là một
+cách triển khai ứng dụng web chỉ tải một tài liệu web duy nhất. Thay vì liên tục thay tài liệu này bằng một tài liệu hoàn toàn mới sau mỗi yêu cầu, website sẽ tự động viết lại trang hiện tại bằng thông tin mới để trang tải nhanh hơn và mang lại cảm giác giống một ứng dụng gốc hơn. Trang không bao giờ được tải lại. Hãy nghĩ đến những website như Gmail hoặc Facebook, nơi bạn thấy email mới hoặc bài đăng mới trên dòng thời gian mà không cần làm mới trang.
 
-#### Creating a Single-page application in Rails
+#### Tạo ứng dụng một trang trong Rails
 
-There are various JavaScript frameworks to help developers implement SPA functionality. You have possibly heard of some of them, such as AngularJS or ReactJS. However, Rails has its own solution to creating the experience of a SPA without writing JavaScript. This solution is a collection of libraries that are under the umbrella of Hotwire.
+Có nhiều framework JavaScript hỗ trợ lập trình viên triển khai chức năng SPA. Có thể bạn đã nghe đến một số framework như AngularJS hoặc ReactJS. Tuy nhiên, Rails có giải pháp riêng để tạo trải nghiệm SPA mà không cần viết JavaScript. Giải pháp này là một tập hợp các thư viện nằm dưới cái ô Hotwire.
 
 #### Hotwire
 
-In Rails 7, all new applications include Hotwire by default. Hotwire is actually an umbrella term for three different frameworks. These frameworks are:
+Trong Rails 7, mọi ứng dụng mới đều mặc định bao gồm Hotwire. Thực ra Hotwire là thuật ngữ chung cho ba framework khác nhau. Ba framework đó là:
 
 1. Turbo
 1. Stimulus
 1. Hotwire Native
 
-The lesson you are reading now is all about Turbo. We will cover Stimulus in another lesson. You don't need to worry about Hotwire Native for the scope of this course, just be familiar with the name as you will see it mentioned from time-to-time.
+Bài học bạn đang đọc tập trung hoàn toàn vào Turbo. Chúng ta sẽ học Stimulus trong một bài khác. Trong phạm vi khóa học này, bạn không cần lo về Hotwire Native; chỉ cần nhớ tên của nó vì thỉnh thoảng bạn sẽ thấy nó được nhắc đến.
 
 ### Turbo
 
-Turbo is the heart of the Hotwire umbrella. The goal of Turbo is to use four different techniques to create the experience of a speedy SPA without having to write any JavaScript.
+Turbo là trung tâm của hệ sinh thái Hotwire. Mục tiêu của Turbo là dùng bốn kỹ thuật khác nhau để tạo trải nghiệm SPA nhanh nhạy mà không cần viết JavaScript.
 
-Here is a quick summary of the four Turbo techniques together. As you continue to read this lesson, we will look at each piece more in-depth
+Sau đây là phần tóm tắt nhanh về cả bốn kỹ thuật Turbo. Khi tiếp tục đọc bài, chúng ta sẽ tìm hiểu từng phần sâu hơn.
 
-1. **Turbo Drive**: We already covered this in an earlier lesson.
-1. **Turbo Frames**: Turbo Frames, like Turbo Drive, also help with fast navigation, but for predefined portions of a page. Rather than requesting an entire page, you can define a region of your HTML as a Turbo Frame and replace only the content inside of that region.
-1. **Turbo Streams**: Turbo Stream delivers web page changes to instantly insert, update, or remove a region of the webpage. An example of this could be a user creating a new post and that post immediately inserts itself at the top of the post index feed without any refresh or redirection.
-1. **Hotwire Native**: Hotwire Native is a technique that allows developers to achieve the same Turbo style transitions on a mobile app for iOS or Android.
+1. **Turbo Drive**: Chúng ta đã học phần này trong một bài trước.
+1. **Turbo Frames**: Giống Turbo Drive, Turbo Frames cũng hỗ trợ điều hướng nhanh, nhưng chỉ áp dụng cho các phần được định trước của trang. Thay vì yêu cầu toàn bộ trang, bạn có thể định nghĩa một vùng HTML là Turbo Frame và chỉ thay thế nội dung bên trong vùng đó.
+1. **Turbo Streams**: Turbo Stream phân phối các thay đổi của trang để lập tức chèn, cập nhật hoặc xóa một vùng của trang web. Ví dụ, người dùng tạo một bài đăng mới và bài đăng đó lập tức được chèn lên đầu danh sách bài đăng mà không cần tải lại hay chuyển hướng.
+1. **Hotwire Native**: Hotwire Native là kỹ thuật cho phép lập trình viên đạt được các chuyển cảnh kiểu Turbo tương tự trong ứng dụng di động cho iOS hoặc Android.
 
 ### Turbo Frames
 
-#### Creating a frame
+#### Tạo một frame
 
-Imagine a piece of paper and cutting out a small square hole in it. You could change what you see through the hole by swapping out another piece of paper behind it, but the rest of the paper will always look the same. That's the idea of Turbo Frames. Turbo Frames allow us to predefine a portion of our page to be replaced during a request. Any links or forms inside of our frame will make a special request that results in only changing the frame. A page can also have multiple Turbo Frames.
+Hãy tưởng tượng một tờ giấy bị khoét một lỗ vuông nhỏ. Bạn có thể thay đổi những gì nhìn thấy qua lỗ bằng cách đổi một tờ giấy khác ở phía sau, nhưng phần còn lại của tờ giấy vẫn luôn giống nhau. Đó chính là ý tưởng của Turbo Frames. Turbo Frames cho phép chúng ta định trước một phần của trang để thay thế trong lúc xử lý yêu cầu. Mọi liên kết hoặc form bên trong frame sẽ tạo một yêu cầu đặc biệt, kết quả là chỉ frame được thay đổi. Một trang cũng có thể có nhiều Turbo Frame.
 
-A frame is designated by wrapping a region inside of a `<turbo-frame>` element. Rails has a special helper for this, `<%= turbo_frame_tag %>`.
+Một frame được xác định bằng cách bọc một vùng bên trong phần tử `<turbo-frame>`. Rails có một helper đặc biệt cho việc này là `<%= turbo_frame_tag %>`.
 
-A basic Turbo Frame, using Rails helpers, may look like so:
+Một Turbo Frame cơ bản, sử dụng các helper của Rails, có thể trông như sau:
 
 ```erb
 # with a block
@@ -65,7 +65,7 @@ A basic Turbo Frame, using Rails helpers, may look like so:
 <%= turbo_frame_tag "article" %>
 ```
 
-which will generate:
+sẽ tạo ra:
 
 ```html
 # with a block
@@ -77,8 +77,8 @@ which will generate:
 <turbo-frame id="article"></turbo-frame>
 ```
 
-Note that the frames have an ID. The ID is how Turbo is able to identify a frame to find out which one is which.
-With the Turbo Frame helper, you can substitute the ID for a variable. For instance:
+Lưu ý rằng các frame có một ID. ID là cách Turbo nhận diện frame để biết frame nào là frame nào.
+Với helper Turbo Frame, bạn có thể thay ID bằng một biến. Ví dụ:
 
 ```erb
 <% @articles.each do |article| %>
@@ -88,13 +88,13 @@ With the Turbo Frame helper, you can substitute the ID for a variable. For insta
 <% end %>
 ```
 
-The above example will generate a turbo frame for every article. Each frame will have a unique id like `article_1` or `article_2` and all we had to include was our article variable.
+Ví dụ trên sẽ tạo một turbo frame cho mỗi bài viết. Mỗi frame có một id duy nhất như `article_1` hoặc `article_2`, và tất cả những gì chúng ta phải đưa vào là biến article.
 
-#### Connecting to other frames
+#### Kết nối với các frame khác
 
-Now that we have our first frame, we can replace its content with a link that requests new frame content. All we have to do is put a link inside of the Turbo Frame, where the requested view *also* includes a Turbo frame with the **same ID**.
+Bây giờ chúng ta đã có frame đầu tiên và có thể thay nội dung của nó bằng một liên kết yêu cầu nội dung frame mới. Tất cả những gì cần làm là đặt một liên kết bên trong Turbo Frame, trong đó view được yêu cầu *cũng* chứa một Turbo frame có **cùng ID**.
 
-Let us replace the `/show` view with the `/edit` view on an article:
+Hãy thay view `/show` bằng view `/edit` của một bài viết:
 
 ```erb
 # views/articles/show.html.erb
@@ -118,21 +118,21 @@ Let us replace the `/show` view with the `/edit` view on an article:
 ...
 ```
 
-That's all we have to do! Turbo will recognize that our destination URL, the `/show` or `/edit` page, has a matching Turbo Frame and will replace the frame region with the content from the new page's frame. Something else to note is that this does work with forms as well. In our controller, if the `update` action contains `redirect_to @article`, then our Turbo Frame will be updated when we submit our form just like if we clicked a link.
+Chỉ vậy là đủ! Turbo sẽ nhận ra URL đích, tức trang `/show` hoặc `/edit`, có một Turbo Frame tương ứng và thay vùng frame bằng nội dung từ frame của trang mới. Cũng cần lưu ý rằng cách này hoạt động với form. Trong controller, nếu action `update` chứa `redirect_to @article`, Turbo Frame sẽ được cập nhật khi chúng ta gửi form, giống như khi nhấp vào một liên kết.
 
-Now that we have our matching frames that can replace their content, what about the content located outside of the frame? Anything outside of the frame does not change. If we were going from `/show` to `/edit`, then the content outside of the frame would still be the same content of the `/show` page and we would not receive any content from outside of the `/edit` frame either. We did not navigate to a new page, we only requested new HTML from another route and inserted it into our current page. The current `url` also does not change. We will stay on the `/show` path, and if we refresh, we would still see the `/show` view. (Note that it is possible to change this default behaviour by making use of Turbo Drive's `data-turbo-action` to advance the browser history and update the current `url`.)
+Bây giờ các frame tương ứng đã có thể thay nội dung cho nhau, vậy nội dung nằm bên ngoài frame thì sao? Mọi thứ bên ngoài frame không thay đổi. Nếu đi từ `/show` đến `/edit`, nội dung bên ngoài frame vẫn là nội dung của trang `/show`, và chúng ta cũng không nhận được nội dung nào nằm ngoài frame `/edit`. Chúng ta không điều hướng đến trang mới; chỉ yêu cầu HTML mới từ một route khác rồi chèn nó vào trang hiện tại. `url` hiện tại cũng không thay đổi. Chúng ta vẫn ở path `/show`, và nếu làm mới trang, vẫn sẽ thấy view `/show`. (Lưu ý rằng có thể thay đổi hành vi mặc định này bằng cách dùng `data-turbo-action` của Turbo Drive để tiến lịch sử trình duyệt và cập nhật `url` hiện tại.)
 
-#### Breaking out of a Turbo Frame
+#### Thoát khỏi một Turbo Frame
 
-Sometimes you may have a link inside of the Turbo Frame that you want to act as a normal page navigation. To do so, add `data-turbo-frame="_top"` to the element. An example with a Rails link helper:
+Đôi khi bạn có thể muốn một liên kết bên trong Turbo Frame hoạt động như điều hướng trang bình thường. Để làm vậy, hãy thêm `data-turbo-frame="_top"` vào phần tử. Ví dụ với helper liên kết của Rails:
 
 ```erb
 <%= link_to "Return to Article", @article, data: { turbo_frame: "_top" } %>
 ```
 
-#### Targeting a Turbo Frame from outside
+#### Nhắm đến một Turbo Frame từ bên ngoài
 
-We can also do the opposite. We can make a link that exists outside of our Turbo Frame act as if it was inside of the Frame and update it. This time, we set the `turbo-frame` data attribute to point to the ID of the specific frame. Lets say we want to designate a turbo frame to show either a list of posts or a list of images:
+Chúng ta cũng có thể làm ngược lại: biến một liên kết nằm bên ngoài Turbo Frame hoạt động như thể nó nằm bên trong Frame và cập nhật frame đó. Lần này, chúng ta đặt thuộc tính dữ liệu `turbo-frame` trỏ đến ID của frame cụ thể. Giả sử chúng ta muốn chỉ định một turbo frame để hiển thị danh sách bài đăng hoặc danh sách hình ảnh:
 
 ```erb
 <%= link_to "Show Posts", posts_path, data: { turbo_frame: "list-region" } %>
@@ -141,13 +141,13 @@ We can also do the opposite. We can make a link that exists outside of our Turbo
 <%= turbo_frame_tag "list-region" %>
 ```
 
-Clicking either of the above links will send a request to the respective path and return the content inside of our `"list-region"` frame.
+Nhấp vào một trong hai liên kết trên sẽ gửi yêu cầu đến path tương ứng và trả về nội dung bên trong frame `"list-region"`.
 
-#### Src & lazy loading
+#### Src và tải chậm
 
-Frames can be given a `src` attribute. When this is supplied, the frame will be populated after the initial page load by making a separate request to the associated path. We can also wrap placeholder content inside of this `src` frame to create a [skeleton placeholder](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a).
+Frame có thể được cung cấp thuộc tính `src`. Khi thuộc tính này được cung cấp, frame sẽ được điền sau lần tải trang ban đầu bằng cách gửi một yêu cầu riêng đến path tương ứng. Chúng ta cũng có thể bọc nội dung giữ chỗ bên trong frame `src` này để tạo một [khung giữ chỗ dạng skeleton](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a).
 
-For example:
+Ví dụ:
 
 ```erb
 ...
@@ -160,7 +160,7 @@ For example:
 <% end %>
 ```
 
-We can also make our frames **lazy loaded**. A lazy loaded frame will only fetch its content when it becomes visible on the page. We make a frame lazy load by adding `loading=lazy`. A frame with `loading=lazy` *must* also have a `src:` attribute to fetch from, or else it will not do anything. Using our previous example:
+Chúng ta cũng có thể **tải chậm** các frame. Frame tải chậm chỉ lấy nội dung khi nó trở nên hiển thị trên trang. Để frame tải chậm, chúng ta thêm `loading=lazy`. Frame có `loading=lazy` *bắt buộc* phải có thêm thuộc tính `src:` để lấy nội dung; nếu không, nó sẽ không làm gì cả. Dùng lại ví dụ trước:
 
 ```erb
 ...
@@ -173,7 +173,7 @@ We can also make our frames **lazy loaded**. A lazy loaded frame will only fetch
 
 ### Turbo Stream
 
-Now we know how to set up our views to use Turbo Frames, but what about content that is being changed by our users? We can't put a Turbo Frame around something that doesn't exist yet. That's where Turbo Stream comes in. Turbo Streams send page changes as HTML wrapped in `<turbo-stream>` elements. Turbo Streams specify an action to perform and the target ID of the DOM element to update with this action. For instance, a Turbo Stream where `action="replace"` and `target="body"` would replace the HTML element where `id="body"` with the new element being delivered over Turbo Stream. These streams can be sent in response to either a direct browser request, or by broadcasting over a websocket connection. This lesson will stick to the browser request implementation. Turbo Streams can take the form of 7 different actions:
+Giờ chúng ta đã biết cách thiết lập view để dùng Turbo Frames, nhưng còn nội dung do người dùng thay đổi thì sao? Chúng ta không thể đặt một Turbo Frame quanh thứ chưa tồn tại. Đó là lúc Turbo Stream phát huy tác dụng. Turbo Streams gửi các thay đổi của trang dưới dạng HTML được bọc trong các phần tử `<turbo-stream>`. Turbo Streams chỉ định một action cần thực hiện và ID của phần tử DOM đích sẽ được cập nhật bằng action đó. Ví dụ, một Turbo Stream có `action="replace"` và `target="body"` sẽ thay thế phần tử HTML có `id="body"` bằng phần tử mới được gửi qua Turbo Stream. Các stream này có thể được gửi để phản hồi một yêu cầu trực tiếp từ trình duyệt hoặc được broadcast qua kết nối websocket. Bài học này chỉ tập trung vào cách triển khai bằng yêu cầu trình duyệt. Turbo Streams có thể dùng 7 action khác nhau:
 
 - Append
 - Prepend
@@ -183,13 +183,13 @@ Now we know how to set up our views to use Turbo Frames, but what about content 
 - Update
 - Remove
 
-Turbo Streams are delivered by use of our controller. Just like how your users make `html` requests and receive `view.html.erb` files, your users can receive `view.turbo_stream.erb` files. These are not standalone view files as you know them, they only contain a few lines and are a way of sending the user a Stream response instead of a new page.
+Turbo Streams được phân phối thông qua controller. Cũng như người dùng gửi yêu cầu `html` và nhận các tệp `view.html.erb`, người dùng có thể nhận các tệp `view.turbo_stream.erb`. Đây không phải các tệp view độc lập như bạn vẫn biết; chúng chỉ chứa vài dòng và là cách gửi cho người dùng một phản hồi Stream thay vì một trang mới.
 
-#### Our first Turbo Stream
+#### Turbo Stream đầu tiên
 
-Let's say that we have made a website where users can create posts. By adding a `turbo_frame` with a `src:` attribute that points to our `new_post_path`, and our `new` post view being wrapped in a `turbo_frame_tag` with a matching `id`, we can include our `new` action form on the same page as our `index` feed. It may look something like this.
+Giả sử chúng ta đã xây dựng một website nơi người dùng có thể tạo bài đăng. Bằng cách thêm một `turbo_frame` có thuộc tính `src:` trỏ đến `new_post_path`, đồng thời bọc view `new` của bài đăng trong một `turbo_frame_tag` có `id` tương ứng, chúng ta có thể đưa form của action `new` lên cùng trang với feed `index`. Nó có thể trông như sau.
 
-Our `index` view:
+View `index` của chúng ta:
 
 ```erb
 # views/posts/index.html.erb
@@ -200,7 +200,7 @@ Our `index` view:
 </div>
 ```
 
-Our `new` page with it's form:
+Trang `new` cùng form của nó:
 
 ```erb
 # views/posts/new.html.erb
@@ -214,7 +214,7 @@ Our `new` page with it's form:
 <% end %>
 ```
 
-Our `_post` partial that every post will be rendered with:
+Partial `_post` mà mọi bài đăng sẽ được render cùng:
 
 ```erb
 # views/posts/_post.html.erb
@@ -224,7 +224,7 @@ Our `_post` partial that every post will be rendered with:
 </div>
 ```
 
-Our controller:
+Controller của chúng ta:
 
 ```ruby
 # controllers/posts_controller.rb
@@ -255,15 +255,15 @@ class PostsController < ApplicationController
 end
 ```
 
-This will result in only the `posts#index` page loading initially and *then* another request being made to the `posts#new` action of our controller to insert the form! This also keeps our code DRY because if instead we opted to add the form by use of a partial on the index page, we would still have to repeat the `posts#new` controller action during the `posts#index` action.
+Kết quả là ban đầu chỉ trang `posts#index` được tải, *sau đó* một yêu cầu khác mới được gửi đến action `posts#new` của controller để chèn form! Cách này cũng giúp code của chúng ta DRY, vì nếu thay vào đó chọn thêm form bằng một partial trên trang index, chúng ta vẫn phải lặp lại action `posts#new` trong action `posts#index`.
 
-However, if a user is to submit a post right now, something weird happens! The form window goes away, but there's no error. Where did the post go? When we refresh the page, we see that the post did submit. What's happening here is that Rails doesn't know you are going to want a Turbo Stream so it can't automatically add your post yet. Instead it tries to redirect you to the page you are already on. **Turbo Drive** intercepts this and loads a cached version of the page, which does not have our form content in it, so the form goes away.
+Tuy nhiên, nếu ngay lúc này người dùng gửi một bài đăng, điều kỳ lạ sẽ xảy ra! Cửa sổ form biến mất nhưng không có lỗi nào. Bài đăng đã đi đâu? Khi làm mới trang, chúng ta thấy bài đăng đã được gửi. Chuyện xảy ra là Rails không biết chúng ta muốn một Turbo Stream nên chưa thể tự động thêm bài đăng. Thay vào đó, nó cố chuyển hướng đến chính trang hiện tại. **Turbo Drive** chặn việc này và tải một phiên bản được lưu trong bộ nhớ đệm của trang, phiên bản đó không có nội dung form, nên form biến mất.
 
-All of this looks very scary and like something is wrong, but it's fine. All we have to do is set up our Turbo Stream and the pieces will all begin to work together again.
+Tất cả chuyện này trông đáng sợ như thể có gì đó sai, nhưng không sao cả. Chúng ta chỉ cần thiết lập Turbo Stream, rồi các thành phần sẽ lại phối hợp với nhau.
 
-#### Turbo Stream in the controller
+#### Turbo Stream trong controller
 
-For starters, we tell our controller that we want to accept a Turbo Stream format. This is done in the same way as accepting a format such as JSON. Our create action may now look like:
+Trước hết, chúng ta cho controller biết rằng muốn chấp nhận định dạng Turbo Stream. Cách làm giống như khi chấp nhận một định dạng chẳng hạn JSON. Action create của chúng ta giờ có thể trông như sau:
 
 ```ruby
 # controllers/posts_controller.rb
@@ -281,66 +281,66 @@ For starters, we tell our controller that we want to accept a Turbo Stream forma
   end
 ```
 
-What's going on here? Well, the `respond_to do |format|` block is our way of telling the controller to do more than just `html` format requests. If our post saves, we would like the format we respond with to be a `create.turbo_stream.erb` format. If it does not save, we would like to respond with the `new.html.erb` file being rendered. Notice the difference in the formats is the file extension that is after the name and before the `.erb`.
+Điều gì đang diễn ra ở đây? Block `respond_to do |format|` là cách chúng ta cho controller biết phải xử lý nhiều hơn chỉ các yêu cầu định dạng `html`. Nếu bài đăng được lưu, chúng ta muốn định dạng phản hồi là `create.turbo_stream.erb`. Nếu không lưu được, chúng ta muốn render tệp `new.html.erb`. Hãy chú ý rằng điểm khác nhau giữa các định dạng nằm ở phần mở rộng tệp sau tên và trước `.erb`.
 
-We include the `422 Unprocessable Entity` error code with our response upon an unsaved post so that Turbo Drive knows what to do with it and our form window won't disappear anymore.
+Chúng ta đưa mã lỗi `422 Unprocessable Entity` vào phản hồi khi bài đăng chưa được lưu, để Turbo Drive biết phải xử lý thế nào và cửa sổ form không biến mất nữa.
 
-Now all we have to do is create our `create.turbo_stream.erb` file to respond with.
+Giờ tất cả những gì cần làm là tạo tệp `create.turbo_stream.erb` để phản hồi.
 
-#### Turbo Stream template
+#### Template Turbo Stream
 
-You create your Turbo Stream file inside of your `views` folder the same way as any other view. In this example, it would be located at `views/posts/create.turbo_stream.erb`. Our view file will look like this:
+Bạn tạo tệp Turbo Stream bên trong thư mục `views`, giống như mọi view khác. Trong ví dụ này, tệp sẽ nằm ở `views/posts/create.turbo_stream.erb`. Tệp view của chúng ta sẽ như sau:
 
 ```erb
 <%= turbo_stream.append "posts", @post %>
 ```
 
-That line is all we need! What this does is create a Turbo Stream packet with the `append` action. The target of the action is `"posts"`. This is the `<div>` with the `id="posts"` that contains all of our posts. Turbo Stream will locate the `<div>` and append our brand new `@post` to the bottom. Our newly created `@post` will even use the `_post.html.erb` partial to be in the proper layout as all of our other posts. For that, you can thank the Rails naming convention. If you are breaking from Rails convention, you can specify a partial to use inside of your `turbo_stream` template.
+Chỉ cần dòng đó! Dòng lệnh này tạo một gói Turbo Stream với action `append`. Đích của action là `"posts"`. Đây là `<div>` có `id="posts"`, chứa tất cả bài đăng. Turbo Stream sẽ tìm `<div>` đó và nối `@post` hoàn toàn mới vào cuối. `@post` vừa tạo thậm chí sẽ dùng partial `_post.html.erb` để có bố cục phù hợp như các bài đăng khác. Chúng ta có quy ước đặt tên của Rails để cảm ơn điều đó. Nếu bạn không theo quy ước Rails, có thể chỉ định partial cần dùng bên trong template `turbo_stream`.
 
-Now that we have added the `format.turbo_stream` response to our controller and our `create.turbo_stream.erb` file, we can now create a post and watch it append to the list.
+Bây giờ chúng ta đã thêm phản hồi `format.turbo_stream` vào controller và tệp `create.turbo_stream.erb`, chúng ta có thể tạo bài đăng và nhìn nó được nối vào danh sách.
 
-#### Additional Turbo Stream tips
+#### Mẹo bổ sung về Turbo Stream
 
-There's no time to get more in-depth on how Turbo Stream works in this lesson, but here are some topics for you to begin your personal research
-if you would like to learn more:
+Bài học này không có đủ thời gian để đi sâu hơn vào cách Turbo Stream hoạt động, nhưng sau đây là một số chủ đề để bạn tự nghiên cứu
+nếu muốn tìm hiểu thêm:
 
-1. You can chain multiple `turbo_stream` actions in one `turbo_stream.erb` file, like if you wanted to append to one region and
-    update another region at the same time.
+1. Bạn có thể nối nhiều action `turbo_stream` trong một tệp `turbo_stream.erb`, chẳng hạn khi muốn nối vào một vùng và
+    cập nhật một vùng khác cùng lúc.
 
-1. You don't *have* to create a separate layout file for your Stream formats. For instance, we could instead change the line in our controller to:
+1. Bạn *không bắt buộc* phải tạo một tệp bố cục riêng cho các định dạng Stream. Ví dụ, thay vào đó chúng ta có thể đổi dòng trong controller thành:
 
     ```ruby
     format.turbo_stream { render turbo_stream: turbo_stream.append('posts', @post) }
     ```
 
-    However, you shouldn't do this for anything complex or chained.
+    Tuy nhiên, bạn không nên làm vậy với thứ gì phức tạp hoặc có chuỗi action.
 
-1. You may have noticed that when you submit a new Post, the text box doesn't clear out. You need to reset the submission element in order for it to be empty again. Hotwire has a remedy for this problem by including Stimulus, a light JavaScript framework. Don't worry about Stimulus for this example though, the next lesson will cover how to write and make use of Stimulus Controllers.
+1. Có thể bạn đã nhận thấy khi gửi một Post mới, hộp văn bản không được xóa. Bạn cần reset phần tử gửi để nó lại trống. Hotwire có cách giải quyết bằng cách tích hợp Stimulus, một framework JavaScript nhẹ. Tuy nhiên, đừng lo về Stimulus trong ví dụ này; bài học tiếp theo sẽ trình bày cách viết và sử dụng Stimulus Controller.
 
 ### Hotwire Native
 
-The final piece of Turbo is something that you don't need to know much about for this course, other than it exists. Hotwire Native is useful for wrapping your application inside of a mobile-friendly shell. If you are interested in mobile development and how you can use Turbo with it, you may enjoy looking at the demos for [iOS](https://github.com/hotwired/turbo-ios/blob/main/Demo/README.md) and [Android](https://github.com/hotwired/turbo-android/blob/main/demo/README.md) phones.
+Mảnh ghép cuối cùng của Turbo là thứ bạn không cần biết nhiều trong phạm vi khóa học này, ngoài việc biết nó tồn tại. Hotwire Native hữu ích để bọc ứng dụng của bạn trong một shell thân thiện với thiết bị di động. Nếu quan tâm đến phát triển di động và cách dùng Turbo với nó, bạn có thể thích xem các bản demo cho điện thoại [iOS](https://github.com/hotwired/turbo-ios/blob/main/Demo/README.md) và [Android](https://github.com/hotwired/turbo-android/blob/main/demo/README.md).
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read sections 1, 2, and 3 of Bloomreach's [What Are Single Page Applications and Why Do People Like Them So Much?](https://www.bloomreach.com/en/blog/what-is-a-single-page-application) article
-1. Watch the [Hotwire Demo Video](https://www.youtube.com/watch?v=eKY-QES1XQQ)
-    - We have only covered content up until the 5:40 mark, but you may continue watching past that point to become more familiar with other aspects of Hotwire that we will be covering in upcoming lessons.
-    - The video is edited to be a very quick showcase. Don't worry about trying to pause and use this video as a tutorial. Just sit back and use this demo to watch how Turbo Drive, Frames, & Streams come together visually.
-1. Skim through sections 1-5 of the [Turbo Handbook](https://turbo.hotwired.dev/handbook/introduction)
-    - This Handbook is written to be backend-agnostic, meaning that the code you will see is pure HTML and not Rails tags, but it still is a useful resource for referencing how Turbo works.
-1. Take a quick glance at the Turbo-Rails gem [RubyDoc info page](https://www.rubydoc.info/gems/turbo-rails/)
-    - This resource covers the Rails-specific syntaxes and tags you can use for Turbo. You don't need to read anything now, just know that it exists so you can come back to it when you need to figure out how to use a specific piece of Turbo in your applications.
+1. Đọc các phần 1, 2 và 3 trong bài viết [Ứng dụng một trang là gì và tại sao mọi người lại thích chúng đến vậy?](https://www.bloomreach.com/en/blog/what-is-a-single-page-application) của Bloomreach.
+1. Xem [Video demo Hotwire](https://www.youtube.com/watch?v=eKY-QES1XQQ)
+    - Chúng ta mới chỉ học nội dung đến mốc 5:40, nhưng bạn có thể xem tiếp sau mốc đó để làm quen hơn với những khía cạnh khác của Hotwire sẽ được đề cập trong các bài sắp tới.
+    - Video được biên tập như một phần trình diễn rất nhanh. Đừng cố tạm dừng để dùng video này làm hướng dẫn. Hãy thư giãn và xem demo để quan sát trực quan cách Turbo Drive, Frames và Streams phối hợp với nhau.
+1. Đọc lướt các phần 1–5 của [Sổ tay Turbo](https://turbo.hotwired.dev/handbook/introduction)
+    - Sổ tay này được viết độc lập với backend, nghĩa là code bạn thấy là HTML thuần chứ không phải các tag Rails, nhưng đây vẫn là tài liệu hữu ích để tham khảo cách Turbo hoạt động.
+1. Xem nhanh [trang thông tin RubyDoc](https://www.rubydoc.info/gems/turbo-rails/) của gem Turbo-Rails.
+    - Tài liệu này trình bày các cú pháp và tag đặc thù Rails mà bạn có thể dùng cho Turbo. Hiện tại bạn chưa cần đọc gì; chỉ cần biết nó tồn tại để có thể quay lại khi cần tìm cách dùng một thành phần Turbo cụ thể trong ứng dụng.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ trợ.
 
-- [Turbo Reference Information](https://turbo.hotwired.dev/reference/drive)
-- Check out this tutorial on [Turbo Frames and Turbo Stream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams) to build a quotes editor.To get started right away, enter in command line `rails new quote-editor;cd quote-editor;rails g scaffold quote name:string` and then `rails db:migrate`.
-- [Official Hotwire Forums](https://discuss.hotwired.dev/)
-- Remember you can use your browser developer tools to [watch network activity](https://developer.chrome.com/docs/devtools/network/) and see what is happening with your Turbo requests and responses. If something doesn't work, check to see if your browser received a Rails error message. Look for a red font.
+- [Thông tin tham khảo về Turbo](https://turbo.hotwired.dev/reference/drive)
+- Hãy xem hướng dẫn này về [Turbo Frames và Turbo Stream](https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams) để xây dựng trình chỉnh sửa câu trích dẫn.Để bắt đầu ngay, hãy nhập vào dòng lệnh `rails new quote-editor;cd quote-editor;rails g scaffold quote name:string` rồi chạy `rails db:migrate`.
+- [Diễn đàn Hotwire chính thức](https://discuss.hotwired.dev/)
+- Hãy nhớ rằng bạn có thể dùng công cụ dành cho nhà phát triển của trình duyệt để [theo dõi hoạt động mạng](https://developer.chrome.com/docs/devtools/network/) và xem điều gì đang xảy ra với các yêu cầu và phản hồi Turbo. Nếu có gì đó không hoạt động, hãy kiểm tra xem trình duyệt có nhận được thông báo lỗi Rails hay không. Hãy tìm dòng chữ màu đỏ.

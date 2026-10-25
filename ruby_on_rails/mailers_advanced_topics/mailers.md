@@ -1,80 +1,80 @@
-### Introduction
+### Giới thiệu
 
-Email is under-appreciated in its complexity on many levels. You certainly won't think about it much until you need to actually bake it into your apps.  But what goes on behind the scenes, especially after hitting "send", is pretty impressive... lots of bouncing around the architecture of the internet, bypassing firewalls, and navigating SPAM filters.  Luckily all this can be handled by some specialty third party email providers.
+Email có mức độ phức tạp ở nhiều phương diện nhưng thường không được đánh giá đúng. Chắc chắn bạn sẽ không nghĩ nhiều về nó cho đến khi thật sự cần tích hợp vào ứng dụng. Nhưng những gì diễn ra phía sau, đặc biệt sau khi nhấn "send", khá ấn tượng... email phải đi qua rất nhiều tầng trong kiến trúc Internet, vượt qua tường lửa và xử lý các bộ lọc SPAM. May mắn là một số nhà cung cấp email bên thứ ba chuyên dụng có thể đảm nhiệm toàn bộ việc này.
 
-The actual production of the email is what we'll cover here... i.e. how do you make that special "thanks for signing up, userX" email.  Creating and sending email is actually conceptually similar to rendering views and shipping them to the web browser, at least from your point of view as a Rails dev.  In this lesson we'll cover that process and you'll get a chance to send your own emails in the projects.
+Ở đây chúng ta sẽ tập trung vào việc tạo email thực tế... chẳng hạn, làm thế nào để tạo email đặc biệt kiểu "cảm ơn bạn đã đăng ký, userX". Xét về mặt khái niệm, việc tạo và gửi email khá giống render view rồi gửi view đó đến trình duyệt web, ít nhất là từ góc nhìn của một lập trình viên Rails. Trong bài học này, chúng ta sẽ tìm hiểu quy trình đó và bạn sẽ có cơ hội tự gửi email trong các dự án.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- What a mailer is.
-- How mailers are similar to controllers or to models.
-- Why you need both a text and an HTML version of your mailers.
-- What an email provider is used for.
-- What the `letter_opener` gem is used for.
+- Mailer là gì.
+- Mailer tương tự controller hoặc model như thế nào.
+- Vì sao mailer cần cả phiên bản text lẫn HTML.
+- Nhà cung cấp email được dùng để làm gì.
+- Gem `letter_opener` được dùng để làm gì.
 
-### Brief overview
+### Tổng quan ngắn
 
-To send email, Rails uses the `ActionMailer` gem (one of the 7 core gems that make it up).  A mailer acts similar to a model and controller baked into one.  You will create a new mailer just like you would with a new controller (`$ rails generate mailer SomeName`).  You'll then set up methods for each email that you might want it to send (e.g. welcome email, followup email, thanks for purchasing email...).  Sounds a lot like controller actions, eh?
+Để gửi email, Rails sử dụng gem `ActionMailer` (một trong 7 gem cốt lõi cấu thành Rails). Mailer hoạt động tương tự như sự kết hợp giữa model và controller. Bạn sẽ tạo một mailer mới giống như tạo một controller mới (`$ rails generate mailer SomeName`). Sau đó, bạn thiết lập các method cho từng email mà mình muốn gửi (ví dụ: email chào mừng, email nhắc lại, email cảm ơn sau khi mua hàng...). Nghe khá giống các action của controller, đúng không?
 
-In each method, you need to identify the key fields and any variables that will be used in the text of the email (like the user's name).  The actual email itself is just a view.  They live in the `app/views` folder along with the rest of them, though in a sub-folder named after the mailer.
+Trong mỗi method, bạn cần xác định những trường chính và mọi biến sẽ được dùng trong phần nội dung email (chẳng hạn tên người dùng). Bản thân email thực chất chỉ là một view. Các view này nằm trong thư mục `app/views` cùng với những view còn lại, nhưng ở một thư mục con được đặt tên theo mailer.
 
-One distinction between mailer views and "normal" views is that emails typically have two separate formats -- HTML and text. Most people will view the HTML version but some will have HTML disabled and so they will need the text version in order to see your email.  Having the two versions also helps you bypass SPAM filters.  You'll quickly find that many things you do regarding email have to do with getting past the dreaded SPAM filter.
+Một điểm khác biệt giữa view của mailer và view "bình thường" là email thường có hai định dạng riêng -- HTML và text. Phần lớn mọi người sẽ xem phiên bản HTML, nhưng một số người tắt HTML nên họ cần phiên bản text để đọc email. Có cả hai phiên bản cũng giúp email vượt qua các bộ lọc SPAM. Bạn sẽ nhanh chóng nhận ra rằng nhiều việc liên quan đến email đều nhằm vượt qua bộ lọc SPAM đáng sợ.
 
-So you set up one view called, for instance, `app/views/user_mailer/welcome_email.html.erb` and another called `app/views/user_mailer/welcome_email.text.erb`.  It is kind of annoying having to manage two different versions of the same email but such is the cost of accessibility and SPAM fighting.  Another thing you'll notice is that you can use ERB (or HAML etc) preprocessing on your emails too.  Just like any other view, it allows you to dynamically create content that includes things like your user's name or non-sensitive account information.  This is all based on which variables you pass the view from your mailer, just like passing a controller action's instance variables to a normal view.
+Vì vậy, bạn thiết lập một view, chẳng hạn `app/views/user_mailer/welcome_email.html.erb`, và một view khác là `app/views/user_mailer/welcome_email.text.erb`. Việc phải quản lý hai phiên bản khác nhau của cùng một email hơi phiền, nhưng đó là cái giá của khả năng tiếp cận và việc chống SPAM. Bạn cũng sẽ nhận thấy có thể dùng tiền xử lý ERB (hoặc HAML, v.v.) cho email. Giống mọi view khác, cách này cho phép bạn tạo động nội dung có những thành phần như tên người dùng hoặc thông tin tài khoản không nhạy cảm. Tất cả phụ thuộc vào các biến bạn truyền cho view từ mailer, giống như việc truyền các biến instance của action controller cho một view thông thường.
 
-Mailers are actually a two-step process -- first you build the email itself and then you call the `#deliver_now` (or `#deliver_now!`) method to actually send it.  One way that mailers are different from controllers is that you call them directly instead of working through the router.  When you want to call the welcome email, you will write `UserMailer.welcome_email(@user)`, which returns the email object.  Deliver it by calling the `#deliver_now` method on that object, for a total chain of: `UserMailer.welcome_email(@user).deliver_now`.
+Mailer thực chất là quy trình gồm hai bước -- trước tiên bạn tạo bản thân email, sau đó gọi method `#deliver_now` (hoặc `#deliver_now!`) để thực sự gửi nó. Một điểm khiến mailer khác controller là bạn gọi mailer trực tiếp thay vì đi qua router. Khi muốn gọi email chào mừng, bạn sẽ viết `UserMailer.welcome_email(@user)`, lệnh này trả về đối tượng email. Gửi nó bằng cách gọi method `#deliver_now` trên đối tượng đó, tạo thành chuỗi đầy đủ: `UserMailer.welcome_email(@user).deliver_now`.
 
-As long as your view files (the HTML and text) are named the same as your mailer methods, Rails will find everything okay and will send the email (with both the HTML and text parts) using whichever email provider you've chosen to use for sending it. The Rails Guide reading does a good job walking through the process, so you'll get a chance to see it in action there.
+Miễn là các tệp view của bạn (HTML và text) được đặt tên giống với các method của mailer, Rails sẽ tìm thấy mọi thứ và gửi email (gồm cả phần HTML lẫn text) bằng nhà cung cấp email mà bạn đã chọn. Phần hướng dẫn Rails được giao đọc trình bày khá tốt quy trình này, nên bạn sẽ có cơ hội thấy nó hoạt động thực tế.
 
-### Callbacks
+### Callback
 
-Mailers allow you to use callbacks just like a normal controller, for instance the `after_action` callback.  They will run after the email is *generated*, not after it is *sent*, so you'll be able to modify parts of the email if you need to.  You get access to the instance variables of the mail instance, so you can use the `@user` variable as a part of your logic.
+Mailer cho phép bạn dùng callback giống như controller thông thường, chẳng hạn callback `after_action`. Các callback sẽ chạy sau khi email được *tạo*, chứ không phải sau khi email được *gửi*, nên bạn có thể sửa các phần của email nếu cần. Bạn có quyền truy cập vào các biến instance của đối tượng mail, vì vậy có thể dùng biến `@user` trong logic của mình.
 
-### Email providers
+### Nhà cung cấp email
 
-In the reading you'll see how to send mail using your Gmail account, but if you're building a real application you'll obviously want something a bit more robust. There are several leading players in the space of sending your email for you. Their whole job is to handle getting your mail delivered and opened so you can focus on building your application.
+Trong tài liệu đọc thêm, bạn sẽ thấy cách gửi thư bằng tài khoản Gmail, nhưng nếu xây dựng một ứng dụng thực tế thì rõ ràng bạn sẽ muốn một giải pháp mạnh mẽ hơn. Có một số nhà cung cấp hàng đầu chuyên gửi email thay bạn. Công việc của họ là đảm bảo thư được gửi đến nơi và được mở, để bạn có thể tập trung xây dựng ứng dụng.
 
-[SendGrid](https://addons.heroku.com/sendgrid#1500000) is the provider used with this website for delivering welcome emails and the like and it's pretty straightforward on Heroku.  
+[SendGrid](https://addons.heroku.com/sendgrid#1500000) là nhà cung cấp được website này dùng để gửi email chào mừng và các email tương tự; việc sử dụng nó trên Heroku khá đơn giản.
 
-See [Heroku's documentation on Twilio SendGrid](https://devcenter.heroku.com/articles/sendgrid), as well as [SendGrid's own documentation](https://docs.sendgrid.com/for-developers/sending-email/rubyonrails), which includes instructions for how you should set up your `config/environment.rb` file to get ActionMailer to interface with them.  You will need to use environment variables (or the `figaro` gem) again to avoid hard coding your password and username.
+Hãy xem [tài liệu của Heroku về Twilio SendGrid](https://devcenter.heroku.com/articles/sendgrid), cũng như [tài liệu riêng của SendGrid](https://docs.sendgrid.com/for-developers/sending-email/rubyonrails), trong đó có hướng dẫn thiết lập tệp `config/environment.rb` để ActionMailer giao tiếp với họ. Bạn sẽ lại cần dùng biến môi trường (hoặc gem `figaro`) để tránh hard-code mật khẩu và tên người dùng.
 
-Pricing for this, as most things, is free up until a certain usage tier. While you're building toy apps, it will do just fine. Other options are out there like [MailGun](https://www.mailgun.com/), [Mailchimp](https://mailchimp.com/) and [Postmark](https://postmarkapp.com/).
+Giống như hầu hết mọi thứ, dịch vụ này miễn phí cho đến một mức sử dụng nhất định. Trong lúc xây dựng các ứng dụng thử nghiệm, nó hoàn toàn đáp ứng được nhu cầu. Ngoài ra còn có các lựa chọn như [MailGun](https://www.mailgun.com/), [Mailchimp](https://mailchimp.com/) và [Postmark](https://postmarkapp.com/).
 
-You'll get a chance to play with mailers in the projects.
+Bạn sẽ có cơ hội thực hành với mailer trong các dự án.
 
-### Letter opener
+### Letter Opener
 
-One key thing to note is that you don't want to fire off a bunch of emails when you're testing your app in the development environment. That's not just bad practice, it can make your users pretty unhappy and get you put on SPAM lists. No bueno. But you do want to make sure the email function is working properly. Luckily, there's a solution which is quite useful.
+Một điều quan trọng cần lưu ý là bạn không muốn gửi hàng loạt email khi đang kiểm thử ứng dụng trong môi trường development. Đó không chỉ là cách làm không tốt; nó còn có thể khiến người dùng khó chịu và làm địa chỉ của bạn bị đưa vào danh sách SPAM. Không ổn chút nào. Nhưng bạn vẫn cần chắc chắn chức năng email hoạt động đúng. May mắn là có một giải pháp khá hữu ích.
 
-The [Letter Opener gem](https://github.com/ryanb/letter_opener), put in your `development` group of the Gemfile, will take your emails and display them in the web browser for you whenever they would otherwise be sent.  You just switch a config setting in your `config/environments/development.rb` file and you're good to go.  Sweet.
+[Gem Letter Opener](https://github.com/ryanb/letter_opener), được thêm vào group `development` trong Gemfile, sẽ lấy các email và hiển thị chúng trong trình duyệt web bất cứ khi nào lẽ ra chúng được gửi đi. Bạn chỉ cần đổi một thiết lập cấu hình trong tệp `config/environments/development.rb` là xong. Rất tiện.
 
-### Email wisdom
+### Kinh nghiệm về email
 
-- Email is SLOW! It can take 1-2 seconds per email to send, so don't make your main application do it when you're serving a whole bunch of them because then anyone trying to access it will be shut out.
-- Make sure you use full URLs in any links in your mailer (so `_url` not `_path` helper methods), since the user will be opening the email and clicking the link at an external source.  In your `config/environments/production.rb` file you'll want to make sure to specify your website's host name using something like `config.action_mailer.default_url_options = { :host => 'yourapp.com' }`.  If it's not set, you may get an error message about your host or your links may look funny.
-- The `#deliver!` method will throw an error on delivery failure whereas `#deliver` will return false (failing silently).
-- When styling your email HTML, you won't have access to any stylesheets so you'll need to do all the styling either inline or using `<style>` tags.
-- Attaching images to emails (like using logos in the HTML version) can be a bit of a pain.  See the reading.
+- Email CHẬM! Mỗi email có thể mất 1–2 giây để gửi, vì vậy đừng để ứng dụng chính của bạn xử lý việc đó khi phải gửi rất nhiều email; nếu không, bất kỳ ai cố truy cập ứng dụng cũng có thể bị chặn.
+- Hãy chắc chắn dùng URL đầy đủ trong mọi liên kết của mailer (dùng các helper `_url`, không dùng `_path`), vì người dùng sẽ mở email và nhấp vào liên kết từ một nguồn bên ngoài. Trong tệp `config/environments/production.rb`, bạn cần chỉ định tên host của website bằng cách như `config.action_mailer.default_url_options = { :host => 'yourapp.com' }`. Nếu không thiết lập, bạn có thể gặp thông báo lỗi về host hoặc các liên kết sẽ hiển thị kỳ lạ.
+- Method `#deliver!` sẽ ném lỗi khi gửi thất bại, trong khi `#deliver` sẽ trả về false (thất bại im lặng).
+- Khi tạo kiểu cho HTML email, bạn sẽ không có stylesheet để dùng, nên phải đặt toàn bộ CSS trực tiếp hoặc dùng các tag `<style>`.
+- Đính kèm hình ảnh vào email (chẳng hạn dùng logo trong phiên bản HTML) có thể khá phiền. Hãy xem tài liệu đọc thêm.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read sections 1 and 2 of the [Rails Guide on ActionMailer](https://guides.rubyonrails.org/action_mailer_basics.html).  
-  1. Read sections 6 and 7 to [learn about callbacks and helpers](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-callbacks).  
-  1. Read section 8.2, which covers [sending mail with your Gmail](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration-for-gmail).  
-  1. Skim sections 9 and 10 on [testing and intercepting emails](https://guides.rubyonrails.org/action_mailer_basics.html#previewing-and-testing-mailers).  
+  1. Đọc các phần 1 và 2 của [Rails Guide về ActionMailer](https://guides.rubyonrails.org/action_mailer_basics.html).
+  1. Đọc các phần 6 và 7 để [tìm hiểu về callback và helper](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-callbacks).
+  1. Đọc phần 8.2, trình bày về [gửi thư bằng Gmail của bạn](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration-for-gmail).
+  1. Đọc lướt các phần 9 và 10 về [kiểm thử và chặn email](https://guides.rubyonrails.org/action_mailer_basics.html#previewing-and-testing-mailers).
 
 </div>
 
-#### Conclusion
+#### Kết luận
 
-Sending email is just a slightly different way of using the same patterns you've already been using for controllers and views, so it should be pretty straightforward to pick up.  You'll have to navigate the usual batch of errors when trying out new things (often related to the configuration or naming your files properly), but it'll come to you quickly.
+Gửi email chỉ là một cách hơi khác để sử dụng những mẫu mà bạn đã quen dùng cho controller và view, nên việc tiếp cận sẽ khá dễ dàng. Khi thử những điều mới, bạn sẽ phải xử lý loạt lỗi quen thuộc (thường liên quan đến cấu hình hoặc việc đặt tên tệp cho đúng), nhưng bạn sẽ nhanh chóng nắm được.
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ trợ.
 
-- [How to Create, Preview, and Send Email From Your Rails App](https://www.youtube.com/watch?v=9eFXEzOPRNs)
+- [Cách tạo, xem trước và gửi email từ ứng dụng Rails](https://www.youtube.com/watch?v=9eFXEzOPRNs)

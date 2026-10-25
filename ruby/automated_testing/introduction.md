@@ -1,52 +1,52 @@
-### Introduction
+### Giới thiệu
 
-Hopefully, you’ve been having fun developing in Ruby so far. Perhaps one thing you may not have been enjoying as much, is the process of manually testing your app to ensure it still works after making any changes. Or even worse running your app, getting far into its execution and discovering you have a bug, and then having to do it all over again to verify that you've fixed the bug.
+Hy vọng rằng đến giờ bạn vẫn đang thấy việc phát triển bằng Ruby khá thú vị. Tuy nhiên, có lẽ một điều bạn không thích lắm là quá trình kiểm thử ứng dụng theo cách thủ công để đảm bảo ứng dụng vẫn hoạt động sau mỗi thay đổi. Tệ hơn nữa là bạn chạy ứng dụng, đi được khá xa trong quá trình thực thi rồi phát hiện ra một lỗi, sau đó phải làm lại mọi thứ để xác minh rằng mình đã sửa được lỗi đó.
 
-Automated tests are the alternative to manual testing. You've already seen them in action while doing the [Ruby basic exercises](https://github.com/TheOdinProject/ruby-exercises/tree/main/ruby_basics) earlier in this course. Those exercises tasked you with writing code to make a bunch of existing failing tests pass. Over the next few lessons you will learn how to write those tests yourself and integrate writing them into your workflow.
+Kiểm thử tự động là giải pháp thay thế cho kiểm thử thủ công. Trước đây trong khóa học này, bạn đã thấy kiểm thử tự động hoạt động khi làm các [bài tập Ruby cơ bản](https://github.com/TheOdinProject/ruby-exercises/tree/main/ruby_basics). Các bài tập đó yêu cầu bạn viết code để làm cho một loạt test có sẵn đang thất bại chuyển sang thành công. Trong vài bài học tiếp theo, bạn sẽ học cách tự viết những test đó và đưa việc viết test vào quy trình làm việc của mình.
 
-### Learning Outcomes
+### Mục tiêu học tập
 
-- What is automated testing?
-- What is a test suite?
-- What are the benefits of automated testing over manual testing?
-- What is a regression?
+- Kiểm thử tự động là gì?
+- Test suite là gì?
+- Kiểm thử tự động có những lợi ích gì so với kiểm thử thủ công?
+- Regression là gì?
 
-#### What are Automated Tests?
+#### Test tự động là gì?
 
-Automated tests, as the name suggests, automate the process of testing your projects. As you write a new feature, you also write tests for the feature that verify the correctness of it. If the tests pass, you can be confident that the code works as intended. If they fail you know a mistake has been made that needs to be corrected.
+Đúng như tên gọi, test tự động tự động hóa quá trình kiểm thử dự án của bạn. Khi viết một tính năng mới, bạn cũng viết các test cho tính năng đó để xác minh tính đúng đắn của nó. Nếu các test chạy qua, bạn có thể tin rằng code hoạt động như dự định. Nếu chúng thất bại, bạn biết rằng đã có sai sót cần được sửa.
 
-There are different types of automated tests. Some are low level and only test individual classes and methods. These are known as unit tests.
+Có nhiều loại test tự động khác nhau. Một số test ở cấp độ thấp và chỉ kiểm tra từng class, từng method riêng lẻ. Chúng được gọi là unit test.
 
-Other tests are high level and test your system as a whole by simulating how a real user would interact with the system. These are known as end-to-end tests. All of your tests put together are what's known as a test suite.
+Các test khác ở cấp độ cao và kiểm tra toàn bộ hệ thống bằng cách mô phỏng cách một người dùng thật tương tác với hệ thống. Chúng được gọi là end-to-end test. Tập hợp tất cả các test của bạn được gọi là test suite.
 
-### What Problems do Automated Tests Solve?
+### Test tự động giải quyết những vấn đề gì?
 
-#### They Save You Time
+#### Tiết kiệm thời gian
 
-The most obvious benefit automated testing has over manual testing is the amount of time it can save you.
+Lợi ích rõ ràng nhất của kiểm thử tự động so với kiểm thử thủ công là lượng thời gian mà nó có thể giúp bạn tiết kiệm.
 
-There's a lot of repetition involved with manual testing. Every time a new feature is added you have to test the feature as well as existing features to ensure they haven't been broken by the changes you've made.
+Kiểm thử thủ công đòi hỏi rất nhiều thao tác lặp lại. Mỗi khi thêm một tính năng mới, bạn phải kiểm tra tính năng đó cũng như các tính năng hiện có để đảm bảo chúng không bị hỏng do những thay đổi bạn đã thực hiện.
 
-Depending on the size of the project, it could take anywhere from a few minutes to a few weeks in order to exhaustively test everything manually. This amount of time only increases as the project grows in size and complexity.
+Tùy thuộc vào quy mô dự án, việc kiểm tra thủ công toàn diện mọi thứ có thể mất từ vài phút đến vài tuần. Khi dự án tăng về quy mô và độ phức tạp, khoảng thời gian này cũng chỉ tăng lên.
 
-On the flip side, automated tests take a fraction of the time to run, often only seconds. And you only need to write an automated test once, after which it will test that behavior every time the test suite is run as opposed to repeatedly testing the same thing manually every time a change is made.
+Ngược lại, test tự động chỉ mất một phần nhỏ thời gian để chạy, thường chỉ vài giây. Bạn cũng chỉ cần viết một test tự động một lần; sau đó, test này sẽ kiểm tra hành vi đó mỗi khi test suite được chạy, thay vì phải lặp đi lặp lại việc kiểm tra thủ công cùng một thứ mỗi khi có thay đổi.
 
-#### They Give You Confidence
+#### Mang lại sự tự tin
 
-Software projects are rarely ever finished and they change often. New features need to be added and existing features need to be modified. Any new changes come with the risk of unintentionally breaking something that was previously working. This is known as introducing a regression.
+Các dự án phần mềm hiếm khi thực sự hoàn thành và chúng thường xuyên thay đổi. Những tính năng mới cần được thêm vào, còn các tính năng hiện có cần được chỉnh sửa. Mọi thay đổi mới đều có nguy cơ vô tình làm hỏng một thứ trước đó vẫn hoạt động. Đây được gọi là việc tạo ra một regression.
 
-The time it takes to manually test all functionality in a decent-sized project means shortcuts are inevitably taken and regressions are missed because only the areas around where changes have been made will ultimately get tested. This puts the burden of testing everything else onto the end-users of the project.
+Thời gian cần thiết để kiểm tra thủ công toàn bộ chức năng trong một dự án có quy mô vừa phải khiến việc rút ngắn quy trình gần như không thể tránh khỏi, và các regression bị bỏ sót vì cuối cùng chỉ những khu vực xung quanh nơi thay đổi mới được kiểm tra. Điều này đẩy gánh nặng kiểm thử mọi thứ còn lại sang người dùng cuối của dự án.
 
-Automated tests are a safety net against introducing regressions. They provide an immediate feedback loop that lets you know when you've messed up, long before the changes ever make it into users' hands.
+Test tự động là một mạng lưới an toàn giúp ngăn việc tạo ra regression. Chúng cung cấp một vòng phản hồi tức thì, cho bạn biết khi mình mắc lỗi từ rất lâu trước khi những thay đổi đó đến tay người dùng.
 
-The peace of mind and confidence a safety net of automated tests gives you cannot be overstated enough. It encourages you, the developer, to make changes and improvements you might not otherwise have made out of fear of breaking some critical functionality. This, in turn, helps you improve the overall quality and reliability of the project, makes it faster and safer to release new features, and makes maintaining the project easier in the long run.
+Sự yên tâm và tự tin mà mạng lưới an toàn gồm các test tự động mang lại là điều không thể đánh giá quá cao. Nó khuyến khích bạn, với tư cách là developer, thực hiện những thay đổi và cải tiến mà có thể bạn đã không dám làm vì sợ phá hỏng một chức năng quan trọng nào đó. Đổi lại, điều này giúp bạn nâng cao chất lượng và độ tin cậy tổng thể của dự án, phát hành tính năng mới nhanh hơn và an toàn hơn, đồng thời giúp việc bảo trì dự án trở nên dễ dàng hơn về lâu dài.
 
-#### Conclusion
+#### Kết luận
 
-Like almost everything, there are trade-offs to automated testing. It requires an upfront cost in time in order to write the tests and it produces more code to maintain.
+Cũng như hầu hết mọi thứ, kiểm thử tự động có những đánh đổi. Bạn phải bỏ ra chi phí thời gian ban đầu để viết test, và nó tạo thêm code cần được bảo trì.
 
-But the benefits a well-tested project affords you far outweigh these costs and compound over the lifetime of the project.
+Nhưng lợi ích mà một dự án được kiểm thử tốt mang lại lớn hơn rất nhiều so với những chi phí này, đồng thời còn tích lũy trong suốt vòng đời của dự án.
 
-For some extra incentive, automated tests have become an industry standard. Being able to write them will be a requirement for almost all the jobs you will apply for. Therefore it's also important to learn how to write them to improve your prospects with getting hired as a developer.
+Để có thêm động lực, test tự động đã trở thành một tiêu chuẩn của ngành. Khả năng viết chúng sẽ là yêu cầu đối với gần như mọi công việc mà bạn ứng tuyển. Vì vậy, học cách viết test cũng rất quan trọng để cải thiện cơ hội được tuyển dụng với tư cách developer.
 
-Now that you know the why behind testing, the next few lessons will focus on the how. You will learn how to write tests using a testing framework called RSpec and how to use RSpec to write both unit and end-to-test (E2E) tests. Finally, we will explore test driven development, which is a workflow where you write tests first and use them to drive the design of your code.
+Giờ bạn đã biết lý do cần kiểm thử, vài bài học tiếp theo sẽ tập trung vào cách thực hiện. Bạn sẽ học cách viết test bằng một testing framework có tên là RSpec, cũng như cách dùng RSpec để viết cả unit test lẫn end-to-end (E2E) test. Cuối cùng, chúng ta sẽ tìm hiểu về phát triển hướng kiểm thử, một quy trình trong đó bạn viết test trước và dùng chúng để định hướng thiết kế code.

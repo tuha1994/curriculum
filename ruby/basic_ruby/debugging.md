@@ -1,43 +1,43 @@
-### Introduction
+### Giới thiệu
 
-Tracking down and fixing both errors and unexpected behavior in your code is an inevitable part of being a developer. The art of finding the cause of problems and then fixing them in code is known as **debugging**. The [origin of the term "debugging"](https://en.wikipedia.org/wiki/Debugging#Etymology) is a classic computer science tale worth reading if you haven’t already.
+Việc truy tìm và sửa cả lỗi lẫn những hành vi bất ngờ trong mã của bạn là một phần không thể tránh khỏi khi làm nhà phát triển. Nghệ thuật tìm ra nguyên nhân của vấn đề rồi sửa nó trong mã được gọi là **gỡ lỗi**. [Nguồn gốc của thuật ngữ "gỡ lỗi"](https://en.wikipedia.org/wiki/Debugging#Etymology) là một câu chuyện kinh điển của khoa học máy tính, rất đáng đọc nếu bạn chưa đọc.
 
-In this lesson, we'll cover all of the main techniques you can use to debug your code when you run into a problem.
+Trong bài học này, chúng ta sẽ tìm hiểu tất cả những kỹ thuật chính có thể dùng để gỡ lỗi mã khi gặp vấn đề.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày khái quát các chủ đề bạn sẽ học trong bài học.
 
-- What a stack trace is.
-- Using a stack trace to debug your code.
-- Using `puts`, `p`, Pry and debug gem's VSCode integration to debug your code.
-- How you should decide to start with debugging.
+- Stack trace là gì.
+- Dùng stack trace để gỡ lỗi mã.
+- Dùng `puts`, `p`, Pry và tích hợp VSCode của gem debug để gỡ lỗi mã.
+- Cách quyết định nên bắt đầu gỡ lỗi từ đâu.
 
-### Reading the stack trace
+### Đọc stack trace
 
-When your Ruby program crashes after encountering a runtime error or exception, it will produce a wall of text known as a **stack trace** that is then output in your terminal. A stack trace looks something like this:
+Khi chương trình Ruby bị dừng sau khi gặp lỗi thời gian chạy hoặc ngoại lệ, nó sẽ tạo ra một khối văn bản dài gọi là **stack trace**, sau đó in khối văn bản này ra terminal. Stack trace trông gần như sau:
 
-![Sample stack trace](https://cdn.statically.io/gh/TheOdinProject/curriculum/a2cfa47e944fa8127ccf5faa6e1c7c328de42428/ruby/basic_ruby/debugging/imgs/00.png)
+![Ví dụ về stack trace](https://cdn.statically.io/gh/TheOdinProject/curriculum/a2cfa47e944fa8127ccf5faa6e1c7c328de42428/ruby/basic_ruby/debugging/imgs/00.png)
 
-Don't let the stack trace intimidate you. You don't need to read it all or even know what most of it means.
+Đừng để stack trace làm bạn e ngại. Bạn không cần đọc hết, thậm chí cũng không cần biết phần lớn nội dung của nó có nghĩa gì.
 
-The stack trace prints each line of code in your program that was executed before it crashed. The very first line of the stack trace will generally provide the most useful information about the error your program encountered:
+Stack trace in ra từng dòng mã trong chương trình đã được thực thi trước khi chương trình bị dừng. Dòng đầu tiên của stack trace thường cung cấp thông tin hữu ích nhất về lỗi mà chương trình gặp phải:
 
-![First line of stack trace](https://cdn.statically.io/gh/TheOdinProject/curriculum/a2cfa47e944fa8127ccf5faa6e1c7c328de42428/ruby/basic_ruby/debugging/imgs/01.png)
+![Dòng đầu tiên của stack trace](https://cdn.statically.io/gh/TheOdinProject/curriculum/a2cfa47e944fa8127ccf5faa6e1c7c328de42428/ruby/basic_ruby/debugging/imgs/01.png)
 
-First, this line of the stack trace will tell you what specific line caused the runtime error. In the above example, the error was encountered in line 31 of the file `bottles.rb`. This line also provides a brief explanation of the error and the name of the error. (In this case, it's a [`NameError`](https://docs.ruby-lang.org/en/3.4/NameError.html)). And yes, in Ruby, [errors (Exceptions) are also objects](https://docs.ruby-lang.org/en/3.4/Exception.html).
+Trước hết, dòng này của stack trace cho biết chính xác dòng nào gây ra lỗi thời gian chạy. Trong ví dụ trên, lỗi xảy ra ở dòng 31 của tệp `bottles.rb`. Dòng này cũng cung cấp phần giải thích ngắn gọn về lỗi và tên của lỗi. (Trong trường hợp này là [`NameError`](https://docs.ruby-lang.org/en/3.4/NameError.html)). Và đúng vậy, trong Ruby, [lỗi (Exception) cũng là các đối tượng](https://docs.ruby-lang.org/en/3.4/Exception.html).
 
-There you have it. At this point, you know where in your code the exception is being raised, and you know the type of error you're dealing with. You might even know what fixes need to be implemented in your code.
+Vậy là xong. Đến đây, bạn biết ngoại lệ được phát sinh ở đâu trong mã, đồng thời biết loại lỗi mình đang xử lý. Thậm chí bạn có thể đã biết cần triển khai những cách sửa nào trong mã.
 
-But what if you don't know how to fix your code? Then it's time to dive into debugging!
+Nhưng nếu bạn không biết cách sửa mã thì sao? Khi đó đã đến lúc đi sâu vào việc gỡ lỗi!
 
-### Debugging with puts
+### Gỡ lỗi bằng puts
 
-The debugging process is all about confirming assumptions about your code until you find something that goes against your assumptions. For example, does a variable or method return what you expect? Does a calculation or iteration over an array or hash give the output you expect?
+Quá trình gỡ lỗi xoay quanh việc xác nhận các giả định về mã cho đến khi bạn tìm thấy điều gì đó trái với giả định của mình. Chẳng hạn, một biến hoặc phương thức có trả về giá trị bạn mong đợi không? Một phép tính hoặc vòng lặp qua mảng hay hash có cho ra kết quả bạn mong đợi không?
 
-The easiest and quickest way to confirm your assumptions while debugging is by using `puts` statements to output the return value of variables, methods, calculations, iterations, or even entire lines of code to your terminal.
+Cách dễ nhất và nhanh nhất để xác nhận các giả định khi gỡ lỗi là dùng các câu lệnh `puts` để in giá trị trả về của biến, phương thức, phép tính, vòng lặp, hoặc thậm chí cả dòng mã ra terminal.
 
-Let's say that for *whatever* reason, we need to write a method that takes a string and checks if the string is an **isogram** (a word that has no repeating letters) or not. Perhaps it's a hostage situation that requires a pro debugger? Let's take a look at a first draft:
+Giả sử vì *một lý do nào đó*, chúng ta cần viết một phương thức nhận vào một chuỗi rồi kiểm tra xem chuỗi đó có phải là **isogram** (một từ không có chữ cái lặp lại) hay không. Có lẽ đây là một tình huống bắt cóc cần đến một chuyên gia gỡ lỗi? Hãy xem bản nháp đầu tiên:
 
 ```ruby
 def isogram?(string)
@@ -52,9 +52,9 @@ isogram?("Odin")
 #=> false
 ```
 
-Okay, that didn't work. We didn't expect that. Why? Because the string *Odin* is an isogram but we got `false`. The method didn't throw an exception, so we don't even have a line to start debugging at. Now what?
+Được rồi, cách đó không hoạt động. Chúng ta không ngờ kết quả lại như vậy. Tại sao? Vì chuỗi *Odin* là một isogram nhưng chúng ta lại nhận được `false`. Phương thức không ném ra ngoại lệ, nên thậm chí chúng ta cũng không có dòng nào để bắt đầu gỡ lỗi. Vậy giờ phải làm gì?
 
-We know that `original_length == unique_length` returns `false` since it's the last statement, so why not place a `puts` on the line before that to see what `unique_length` is. As an alternative to `puts`, `p` is also commonly used for debugging; `p` is a combination of `puts` and `inspect` (more on that below). To better show the differences between what Ruby is printing to the terminal and returning, the examples in this section use the full IRB syntax, which is exactly what you'd see if you typed these commands into your own terminal IRB session.
+Chúng ta biết `original_length == unique_length` trả về `false` vì đó là câu lệnh cuối cùng, vậy tại sao không đặt một `puts` ở dòng ngay trước nó để xem `unique_length` là gì. Thay cho `puts`, `p` cũng thường được dùng để gỡ lỗi; `p` là sự kết hợp giữa `puts` và `inspect` (sẽ tìm hiểu thêm bên dưới). Để thể hiện rõ hơn sự khác nhau giữa việc Ruby in ra terminal và giá trị Ruby trả về, các ví dụ trong phần này dùng cú pháp IRB đầy đủ, chính xác như những gì bạn sẽ thấy nếu nhập các lệnh này vào phiên IRB trong terminal của mình.
 
 ```ruby
 irb(main):001:1* def isogram?(string)
@@ -72,7 +72,7 @@ irb(main):010:0> isogram?("Odin")
 => false
 ```
 
-*INTERESTING*. Using `p` on `unique_length` prints it to the console and shows us something must be wrong with how we called `#uniq` on `string_array` because we know that we have `4` unique characters in our input but we got `1` as output. For verification, let's place another `p` statement before the `unique_length` statement:
+*THÚ VỊ*. Dùng `p` với `unique_length` sẽ in giá trị đó ra console và cho thấy có điều gì đó không ổn trong cách chúng ta gọi `#uniq` trên `string_array`, vì chúng ta biết đầu vào có `4` ký tự khác nhau nhưng kết quả lại là `1`. Để kiểm chứng, hãy đặt thêm một câu lệnh `p` trước câu lệnh `unique_length`:
 
 ```ruby
 irb(main):001:1* def isogram?(string)
@@ -94,15 +94,15 @@ irb(main):013:0> isogram?("Odin")
 => false
 ```
 
-Indeed, we didn't use `#split` correctly, as it creates an array with the given string rather than an array of the string's characters. Why? By default, if we didn’t provide arguments, [the #split method](https://docs.ruby-lang.org/en/3.4/String.html#method-i-split) will divide the string using `whitespace` as the delimiter. Try running the above code in IRB using `#split('')` or an appropriate online REPL instead, and you'll see the difference.
+Quả nhiên, chúng ta đã không dùng `#split` đúng cách, vì nó tạo ra một mảng chứa chuỗi đã cho thay vì một mảng gồm các ký tự của chuỗi. Tại sao? Theo mặc định, nếu không cung cấp đối số, [phương thức #split](https://docs.ruby-lang.org/en/3.4/String.html#method-i-split) sẽ chia chuỗi bằng `whitespace` làm dấu phân cách. Hãy thử chạy đoạn mã trên trong IRB với `#split('')` hoặc một REPL trực tuyến phù hợp, bạn sẽ thấy sự khác biệt.
 
-Hostage situation resolved! That wasn't so bad, was it?
+Tình huống bắt cóc đã được giải quyết! Cũng không quá khó, đúng không?
 
-#### Debugging with puts and nil
+#### Gỡ lỗi bằng puts và nil
 
-Using `puts` is a great way to debug, but there's a **HUGE** caveat with using it: calling `puts` on anything that is `nil` or an empty string or collection will just print a blank line to your terminal.
+Dùng `puts` là một cách tuyệt vời để gỡ lỗi, nhưng có một điểm cần **ĐẶC BIỆT LƯU Ý**: gọi `puts` trên bất kỳ thứ gì là `nil`, chuỗi rỗng hoặc collection rỗng sẽ chỉ in ra một dòng trống trong terminal.
 
-This is one instance where using `p` will yield more information. As mentioned above, `p` is a combination of puts and [the #inspect method](https://docs.ruby-lang.org/en/3.4/Object.html#method-i-inspect), the latter of which essentially prints a string representation of whatever it's called on. To illustrate this, try the following in a REPL:
+Trong trường hợp này, dùng `p` sẽ cho bạn nhiều thông tin hơn. Như đã đề cập ở trên, `p` là sự kết hợp giữa puts và [phương thức #inspect](https://docs.ruby-lang.org/en/3.4/Object.html#method-i-inspect); về cơ bản, phương thức sau sẽ in ra biểu diễn dạng chuỗi của đối tượng mà nó được gọi trên đó. Để minh họa, hãy thử đoạn mã sau trong một REPL:
 
 ```ruby
 puts "Using puts:"
@@ -111,13 +111,13 @@ p "Using p:"
 p []
 ```
 
-### Debugging with Pry-byebug
+### Gỡ lỗi bằng Pry-byebug
 
-[Pry](https://github.com/pry/pry) is a Ruby gem that provides you with an interactive REPL while your program is running. The REPL provided by Pry is very similar to IRB but has added functionality. The recommended Ruby gem for debugging is [Pry-byebug](https://github.com/deivid-rodriguez/pry-byebug) and it includes Pry as a dependency. Pry-byebug adds step-by-step debugging and stack navigation.
+[Pry](https://github.com/pry/pry) là một gem Ruby cung cấp cho bạn một REPL tương tác trong khi chương trình đang chạy. REPL do Pry cung cấp rất giống IRB nhưng có thêm chức năng. Gem Ruby được khuyến nghị để gỡ lỗi là [Pry-byebug](https://github.com/deivid-rodriguez/pry-byebug), và gem này bao gồm Pry như một dependency. Pry-byebug bổ sung khả năng gỡ lỗi từng bước và điều hướng stack.
 
-To use Pry-byebug, you'll first need to install it in your terminal by running `gem install pry-byebug`. You can then make it available in your program by requiring it at the top of your file with `require 'pry-byebug'`. Finally, to use Pry-byebug, you just need to call `binding.pry` at any point in your program.
+Để dùng Pry-byebug, trước tiên bạn cần cài đặt nó trong terminal bằng cách chạy `gem install pry-byebug`. Sau đó, bạn có thể cung cấp gem này cho chương trình bằng cách thêm `require 'pry-byebug'` ở đầu tệp. Cuối cùng, để dùng Pry-byebug, bạn chỉ cần gọi `binding.pry` tại bất kỳ vị trí nào trong chương trình.
 
-To follow along with these examples save the code into a Ruby file (e.g., `script.rb`) and then run the file in your terminal (e.g., `ruby script.rb`)
+Để làm theo các ví dụ này, hãy lưu mã vào một tệp Ruby (ví dụ: `script.rb`), rồi chạy tệp trong terminal (ví dụ: `ruby script.rb`)
 
 ```ruby
 require 'pry-byebug'
@@ -135,13 +135,13 @@ end
 isogram?("Odin")
 ```
 
-When your code executes and gets to `binding.pry`, it will open an IRB-like session in your terminal. You can then use that session to check the values of anything within the scope of where you included `binding.pry`. However, keep in mind that any code written *after* the `binding.pry` statement will not have been evaluated during the Pry session.
+Khi mã chạy đến `binding.pry`, nó sẽ mở một phiên giống IRB trong terminal. Sau đó, bạn có thể dùng phiên này để kiểm tra giá trị của bất kỳ thứ gì nằm trong phạm vi nơi bạn chèn `binding.pry`. Tuy nhiên, hãy nhớ rằng mọi mã được viết *sau* câu lệnh `binding.pry` đều chưa được đánh giá trong phiên Pry.
 
-For example, here `original_length` and `string_array` are in scope. However, `unique_length` is not in scope, because it is written after `binding.pry` and has not been evaluated yet.
+Ví dụ, ở đây `original_length` và `string_array` nằm trong phạm vi. Tuy nhiên, `unique_length` thì không, vì nó được viết sau `binding.pry` và chưa được đánh giá.
 
-Thus, adding a `binding.pry` line in our code is similar to creating a breakpoint in JavaScript.
+Vì vậy, việc thêm một dòng `binding.pry` vào mã tương tự như tạo một breakpoint trong JavaScript.
 
-To see this point in action, try running the following:
+Để thấy điều này hoạt động, hãy thử chạy đoạn mã sau:
 
 ```ruby
 require 'pry-byebug'
@@ -159,9 +159,9 @@ end
 yell_greeting("bob")
 ```
 
-During the session, if you check for the value of `name`, you will notice that you get back the value `bob` instead of `BOB`. What value do you think `greeting` will return? Yup, it will be `nil`. This is because `name = name.upcase` and `greeting = "WASSAP, #{name}!"` occurred after the `binding.pry` call and were never evaluated.
+Trong phiên này, nếu kiểm tra giá trị của `name`, bạn sẽ thấy kết quả là `bob` thay vì `BOB`. Bạn nghĩ `greeting` sẽ trả về giá trị nào? Đúng vậy, nó sẽ là `nil`. Đó là vì `name = name.upcase` và `greeting = "WASSAP, #{name}!"` xuất hiện sau lời gọi `binding.pry` và chưa bao giờ được đánh giá.
 
-Using the same example above, you can use one of pry-byebug's commands to figure out what `name = name.upcase` will return. You won't need to quit the session or add another `binding.pry` beneath it. Enter `next` to step over to the next line.
+Vẫn dùng ví dụ trên, bạn có thể dùng một trong các lệnh của pry-byebug để tìm hiểu `name = name.upcase` sẽ trả về gì. Bạn không cần thoát phiên hay thêm một `binding.pry` khác bên dưới nó. Hãy nhập `next` để tiến đến dòng tiếp theo.
 
 ```ruby
 [1] pry(main)> name
@@ -185,32 +185,32 @@ Using the same example above, you can use one of pry-byebug's commands to figure
 
 ```
 
-It stops after evaluating the next line. `name` now returns `BOB`. Calling `next` again will evaluate the following line. Try it out to know what `greeting` will return. [Pry-byebug has a few more commands](https://github.com/deivid-rodriguez/pry-byebug). Play around with them to get a feel of what they do.
+Nó dừng lại sau khi đánh giá dòng tiếp theo. Giờ `name` trả về `BOB`. Gọi `next` lần nữa sẽ đánh giá dòng kế tiếp. Hãy thử để biết `greeting` sẽ trả về gì. [Pry-byebug còn có một số lệnh khác](https://github.com/deivid-rodriguez/pry-byebug). Hãy thử dùng chúng để hiểu rõ tác dụng của từng lệnh.
 
-As you can see, using Pry-byebug for debugging achieves the same outcome as `puts` debugging: it allows you to confirm the assumptions you have about particular parts of your code. If your code is complex, Pry-byebug will probably allow you to debug quicker thanks to its interactive runtime environment. In such scenarios, Pry-byebug will be easier to interact with than having to add `puts` statements everywhere and re-running your code each time.
+Như bạn thấy, dùng Pry-byebug để gỡ lỗi cũng đạt được kết quả giống như gỡ lỗi bằng `puts`: nó cho phép bạn xác nhận các giả định về những phần cụ thể trong mã. Nếu mã phức tạp, Pry-byebug có thể giúp bạn gỡ lỗi nhanh hơn nhờ môi trường runtime tương tác. Trong những tình huống như vậy, Pry-byebug dễ thao tác hơn so với việc thêm các câu lệnh `puts` ở khắp nơi rồi chạy lại mã mỗi lần.
 
-There is far, far more that you can do with Pry-byebug, but that's beyond the scope of this lesson. Check out the Assignments and Additional Resources to find out where you can learn more about this useful gem.
+Bạn còn có thể làm nhiều việc hơn nữa với Pry-byebug, nhưng những nội dung đó nằm ngoài phạm vi bài học này. Hãy xem phần Bài tập và Tài nguyên bổ sung để biết nơi tìm hiểu thêm về gem hữu ích này.
 
-### How to start debugging
+### Bắt đầu gỡ lỗi như thế nào
 
-Programs generally go wrong due to two main reasons:
+Chương trình thường gặp vấn đề vì hai lý do chính:
 
-1. The program encounters an error and won't run. For example, a typo may cause a syntax error to be raised that causes the program to crash. In this case, Ruby provides a stack trace.
+1. Chương trình gặp lỗi và không thể chạy. Ví dụ, một lỗi đánh máy có thể khiến một lỗi cú pháp được phát sinh, làm chương trình bị dừng. Trong trường hợp này, Ruby cung cấp một stack trace.
 
-1. The program runs but does not work the way you expect. For example, you expect a method to return a `2`, but it actually returns `6` when you run it. In this case, there is no stack trace.
+1. Chương trình chạy nhưng không hoạt động theo cách bạn mong đợi. Ví dụ, bạn mong một phương thức trả về `2`, nhưng khi chạy lại nhận được `6`. Trong trường hợp này, không có stack trace.
 
-Obviously, if available, the stack trace is the first place you should look when debugging. If there's no stack trace, then `puts` and Pry are the easiest and quickest tools you can use to get yourself back up and running.
+Rõ ràng, nếu có stack trace thì đó là nơi đầu tiên bạn nên xem khi gỡ lỗi. Nếu không có stack trace, `puts` và Pry là những công cụ dễ dùng và nhanh nhất để giúp bạn đưa chương trình hoạt động trở lại.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Go through the Ruby Guides [Ruby Debugging](https://www.rubyguides.com/2015/07/ruby-debugging/) tutorial, which covers the same topics we went over, but in more depth.
-1. Read through the [Exceptions and Stack Traces](https://launchschool.com/books/ruby/read/more_stuff#readingstacktraces) section of Launch School's online book *Introduction to Programming with Ruby*.
-1. Check your [VSCode Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace) and make sure the [Ruby LSP](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp) and the [VSCode rdbg Ruby Debugger](https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg) extensions are installed.
-1. Now that you're familiar with the basics, we're going to have some fun with VSCode! Check the [VSCode rdbg Ruby Debugger documentation](https://github.com/ruby/vscode-rdbg) and generate the configuration inside your VSCode by going to `Run and Debug` and clicking on `create a launch.json file` then picking `Ruby (rdbg)`. Now, the configuration you want to use is `Debug current file with rdbg` that you can see at the top of the Debug sidebar. You can also invoke the last used debugging configuration with `F5`. `launch.json` files need to be created on a per project basis. If you're having a hard time figuring out how to navigate to your `launch.json` file in order to change the configuration, peek into [Debugging with VScode launch configurations portion](https://code.visualstudio.com/docs/editor/debugging#_launch-configurations). We encourage you to go through the entire article, though!
-1. Now that everything is installed, configured, let's create a new file which you can call `script.rb`. Next copy and paste the very first example in the [Debugging with pry-byebug](#debugging-with-pry-byebug) Section. Get rid of the `require pry-byebug` line and change `binding.pry` to `debugger`. Save the file.
-1. Click the `Run and Debug` button, open up the folder your script is located in, set a VSCode breakpoint somewhere within the function, and Run the debugger! This should all look very familiar to you, when you hit the VSCode breakpoint it should look similar to the breakpoints you used in the [JavaScript Developer Tools lesson](https://www.theodinproject.com/lessons/foundations-javascript-developer-tools). But *whoa*, once we hit the `debugger` breakpoint we got an interactive REPL to play around with! The best of both worlds! Play around with this, and feel free to reference [Debugging with VScode documentation](https://code.visualstudio.com/docs/editor/debugging) if you get stuck.
-1. Although VSCode's debugger is a helpful tool that can make debugging simpler, many companies won't be using it - and will want you to be familiar with debugging using the concepts this lesson focused on: the stack trace, `puts`,`debug`, `pry-byebug`. Let's practice them by completing the debugging exercises from the [ruby-exercises repo](https://github.com/TheOdinProject/ruby-exercises/tree/main/ruby_basics#readme) that you previously cloned.
+1. Hãy học qua bài hướng dẫn [Gỡ lỗi Ruby](https://www.rubyguides.com/2015/07/ruby-debugging/) của Ruby Guides; bài này bao quát các chủ đề chúng ta đã học nhưng đi sâu hơn.
+1. Đọc phần [Ngoại lệ và Stack Trace](https://launchschool.com/books/ruby/read/more_stuff#readingstacktraces) trong cuốn sách trực tuyến *Nhập môn lập trình với Ruby* của Launch School.
+1. Kiểm tra [Phần mở rộng VSCode](https://code.visualstudio.com/docs/editor/extension-marketplace) và đảm bảo đã cài đặt các phần mở rộng [Ruby LSP](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp) và [Trình gỡ lỗi Ruby rdbg cho VSCode](https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg).
+1. Giờ bạn đã quen với những kiến thức cơ bản, chúng ta sẽ vui chơi một chút với VSCode! Hãy xem [tài liệu Trình gỡ lỗi Ruby rdbg cho VSCode](https://github.com/ruby/vscode-rdbg) và tạo cấu hình trong VSCode bằng cách vào `Run and Debug`, nhấp vào `create a launch.json file`, rồi chọn `Ruby (rdbg)`. Cấu hình bạn muốn dùng là `Debug current file with rdbg`, nằm ở đầu thanh bên Debug. Bạn cũng có thể gọi cấu hình gỡ lỗi được dùng gần đây nhất bằng `F5`. Các tệp `launch.json` cần được tạo riêng cho từng dự án. Nếu gặp khó khăn trong việc tìm đến tệp `launch.json` để thay đổi cấu hình, hãy xem phần [Gỡ lỗi bằng cấu hình khởi chạy VScode](https://code.visualstudio.com/docs/editor/debugging#_launch-configurations). Tuy vậy, chúng tôi khuyến khích bạn đọc toàn bộ bài viết!
+1. Giờ mọi thứ đã được cài đặt và cấu hình, hãy tạo một tệp mới có thể đặt tên là `script.rb`. Tiếp theo, sao chép và dán ví dụ đầu tiên trong phần [Gỡ lỗi bằng pry-byebug](#debugging-with-pry-byebug). Xóa dòng `require pry-byebug` và đổi `binding.pry` thành `debugger`. Lưu tệp.
+1. Nhấp vào nút `Run and Debug`, mở thư mục chứa tập lệnh, đặt một breakpoint của VSCode ở đâu đó bên trong hàm rồi chạy trình gỡ lỗi! Tất cả hẳn trông rất quen thuộc với bạn; khi chạm đến breakpoint của VSCode, giao diện sẽ tương tự các breakpoint bạn đã dùng trong [bài học Công cụ dành cho nhà phát triển JavaScript](https://www.theodinproject.com/lessons/foundations-javascript-developer-tools). Nhưng *chờ đã*, khi chạm đến breakpoint `debugger`, chúng ta lại có một REPL tương tác để khám phá! Đúng là kết hợp được những điều tốt nhất của cả hai! Hãy thử dùng nó, và nếu bị mắc kẹt thì có thể tham khảo [tài liệu Gỡ lỗi bằng VScode](https://code.visualstudio.com/docs/editor/debugging).
+1. Mặc dù trình gỡ lỗi của VSCode là một công cụ hữu ích giúp việc gỡ lỗi đơn giản hơn, nhiều công ty sẽ không dùng nó - và sẽ muốn bạn quen với việc gỡ lỗi bằng các khái niệm mà bài học này tập trung vào: stack trace, `puts`,`debug`, `pry-byebug`. Hãy luyện tập bằng cách hoàn thành các bài tập gỡ lỗi trong [kho ruby-exercises](https://github.com/TheOdinProject/ruby-exercises/tree/main/ruby_basics#readme) mà bạn đã clone trước đây.
 
 </div>

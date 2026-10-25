@@ -1,72 +1,72 @@
-### Introduction
+### Giới thiệu
 
-You've reached the end of the scope of this course and should feel pretty good about your Rails skills.  That doesn't mean you should feel like you understand everything, but you should be able to build a Rails application with the kind of functionality which is actually useful in the real world.  It probably won't look too pretty, but that will come in the next few courses.
+Bạn đã đi đến cuối phạm vi của khóa học này và hẳn có thể cảm thấy khá tự tin về kỹ năng Rails của mình. Điều đó không có nghĩa là bạn phải cảm thấy mình đã hiểu mọi thứ, nhưng bạn có thể xây dựng một ứng dụng Rails với những chức năng thực sự hữu ích trong thế giới thực. Có thể ứng dụng sẽ chưa đẹp lắm, nhưng điều đó sẽ đến trong vài khóa học tiếp theo.
 
-This isn't the last course in the curriculum and you've got quite a way to go before hitting that "full stack" point, but it's as far as we'll get with Rails and it's pretty darn far.  Despite how far you've come, it's up to you to keep building stuff, asking questions, and digging deeper into both Rails and best practices of software engineering in general.
+Đây chưa phải khóa học cuối cùng trong chương trình, và bạn vẫn còn một chặng đường khá dài trước khi đạt đến điểm "full stack", nhưng đây là toàn bộ phần Rails mà chúng ta sẽ đi qua, và như vậy cũng đã khá xa rồi. Dù đã tiến bộ đến đâu, bạn vẫn cần tiếp tục xây dựng sản phẩm, đặt câu hỏi và tìm hiểu sâu hơn về cả Rails lẫn các best practice của kỹ nghệ phần mềm nói chung.
 
-At this point, you've got the Rails building blocks but the learning is never finished.  Your first six months on the job as a Rails dev will involve learning at least as much information as you just did.  The point of this course has been to get you to a place where you can start thinking about actually getting that first job.  
+Đến lúc này, bạn đã có những khối xây dựng cơ bản của Rails, nhưng việc học không bao giờ kết thúc. Sáu tháng đầu tiên đi làm với vai trò Rails developer sẽ bao gồm việc học ít nhất lượng kiến thức tương đương những gì bạn vừa học. Mục tiêu của khóa học này là đưa bạn đến vị trí có thể bắt đầu nghĩ nghiêm túc về việc tìm công việc đầu tiên.
 
-### Next steps
+### Bước tiếp theo
 
-This final lesson isn't designed to explicitly teach new material, just point you in the right direction if you'd like to dig a bit deeper before moving on.  Or maybe you'll bookmark it and come back when you want to see where to head next in your Rails journey.  
+Bài học cuối này không được thiết kế để dạy rõ ràng thêm kiến thức mới, mà chỉ hướng bạn đi đúng hướng nếu muốn đào sâu hơn trước khi tiếp tục. Hoặc có thể bạn sẽ đánh dấu trang này rồi quay lại khi muốn biết nên đi tiếp thế nào trên hành trình Rails của mình.
 
-Rails is deep... there's a lot going on behind the scenes and it will take a long time to actually understand how it all works and the best ways to use it.  The best way to figure it out is to work for a company that uses it and get paid to learn.  If that's not an option, building your own stuff and reading on your own time can be a good substitute.  There's new information being created every day in blog posts, Stack Overflow posts, and podcasts.  
+Rails rất sâu... có rất nhiều thứ diễn ra phía sau và sẽ mất khá lâu để thực sự hiểu mọi thứ hoạt động thế nào cũng như cách sử dụng tốt nhất. Cách tốt nhất để tìm hiểu là làm việc cho một công ty sử dụng Rails và được trả lương trong khi học. Nếu đó không phải lựa chọn khả thi, tự xây dựng sản phẩm và đọc tài liệu trong thời gian rảnh cũng là một phương án thay thế tốt. Mỗi ngày đều có thông tin mới được tạo ra trong các bài blog, bài đăng Stack Overflow và podcast.
 
-A good first step is to reread the [Rails Guides](http://guides.rubyonrails.org/index.html).  There are some sections we skipped and some guides we never got to (especially in the "digging deeper" section).  In particular, the following sections might be interesting:
+Một bước đầu tiên tốt là đọc lại [Rails Guides](http://guides.rubyonrails.org/index.html). Có một số phần chúng ta đã bỏ qua và một số guide chưa kịp học (đặc biệt là phần "đào sâu hơn"). Cụ thể, các phần sau có thể sẽ thú vị:
 
-#### Security
+#### Bảo mật
 
-If you start working on more public-facing applications, security will become more important.  Check out the [Rails Guide on Security](http://guides.rubyonrails.org/security.html) for more information.
+Nếu bắt đầu làm việc trên các ứng dụng hướng tới công chúng nhiều hơn, bảo mật sẽ trở nên quan trọng hơn. Hãy xem [Rails Guide về Security](http://guides.rubyonrails.org/security.html) để biết thêm thông tin.
 
-#### Rails tasks
+#### Rails task
 
-Rails tasks are a special way of running scripts that can use your application.  You're already familiar with some like `$ rails db:migrate`, but you can also create your own.  This website uses a Rails task to populate the curriculum from its GitHub repo.  Check out the [Rails Guide on Command Line and bin/rails](http://guides.rubyonrails.org/command_line.html) for more information.
+Rails task là một cách đặc biệt để chạy các script có thể sử dụng ứng dụng của bạn. Bạn đã quen với một số task như `$ rails db:migrate`, nhưng cũng có thể tự tạo task của mình. Website này dùng một Rails task để nạp curriculum từ repo GitHub. Hãy xem [Rails Guide về Command Line và bin/rails](http://guides.rubyonrails.org/command_line.html) để biết thêm thông tin.
 
 #### Caching
 
-Caching makes your application faster by reducing database calls.  Check out the [Rails Guide on Caching](http://guides.rubyonrails.org/caching_with_rails.html) to learn more.
+Caching giúp ứng dụng nhanh hơn bằng cách giảm số lần gọi database. Hãy xem [Rails Guide về Caching](http://guides.rubyonrails.org/caching_with_rails.html) để tìm hiểu thêm.
 
-### Books
+### Sách
 
-Here are a few books that will take you a bit deeper as well:
+Dưới đây là một vài cuốn sách sẽ giúp bạn tìm hiểu sâu hơn:
 
-- [The Rails 5 Way](https://leanpub.com/tr5w) by Obie Fernandez is a comprehensive guide to the framework.
-- [Agile Web Development with Rails 6](https://pragprog.com/titles/rails6/agile-web-development-with-rails-6/) is sort of an in-depth guide combined with a tutorial that follows Agile practices along the way.
-- [Rails Antipatterns](http://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814) is a good best-practices guide.
+- [The Rails 5 Way](https://leanpub.com/tr5w) của Obie Fernandez là một hướng dẫn toàn diện về framework.
+- [Agile Web Development with Rails 6](https://pragprog.com/titles/rails6/agile-web-development-with-rails-6/) là một hướng dẫn chuyên sâu kết hợp với tutorial, đồng thời áp dụng các phương pháp Agile trong suốt quá trình.
+- [Rails Antipatterns](http://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814) là một hướng dẫn hay về best practice.
 
-### Other resources
+### Tài nguyên khác
 
-- [RailsCasts by Ryan Bates](http://railscasts.com/) are incredibly valuable.  Great ways to actually see the implementation of various gems or practices.
-- [GoRails](https://gorails.com/) alternative to RailsCasts.
-- The [RailsApps Project](https://tutorials.railsapps.org/) provides lots of great tutorials that walk you through building real-life scenarios like integrating Devise and CanCan with your app or building a payments backend.
-- [RubyFlow community blog](http://www.rubyflow.com/) will have some interesting stuff pop up from time to time.
+- [RailsCasts của Ryan Bates](http://railscasts.com/) vô cùng hữu ích, giúp bạn thực sự thấy cách triển khai nhiều gem hoặc practice khác nhau.
+- [GoRails](https://gorails.com/) là một lựa chọn thay thế cho RailsCasts.
+- [RailsApps Project](https://tutorials.railsapps.org/) cung cấp rất nhiều tutorial hay, hướng dẫn bạn xây dựng các tình huống thực tế như tích hợp Devise và CanCan vào app hoặc xây dựng backend thanh toán.
+- [Blog cộng đồng RubyFlow](http://www.rubyflow.com/) thỉnh thoảng sẽ có những nội dung thú vị xuất hiện.
 
-### Contributing
+### Đóng góp
 
-You know more than you think.  Remember when we just said that you should keep building stuff?  This website is completely open source and needs your help to improve.  We have a dedicated group of current and former students who help add features and proofread the curriculum.  The best part is that it's completely public and free so you can watch or participate at whatever level you're comfortable.
+Bạn biết nhiều hơn mình nghĩ đấy. Hãy nhớ lúc chúng ta nói rằng bạn nên tiếp tục xây dựng sản phẩm? Website này hoàn toàn mã nguồn mở và cần sự giúp đỡ của bạn để cải thiện. Chúng ta có một nhóm riêng gồm các học viên hiện tại và cựu học viên, những người giúp thêm tính năng và đọc soát curriculum. Điều tuyệt vời nhất là mọi thứ hoàn toàn công khai và miễn phí, nên bạn có thể theo dõi hoặc tham gia ở mức độ phù hợp với mình.
 
-It's a great way to start learning about agile development methodologies and to start doing meaningful development work in a friendly and supportive environment.  So check out [the general channel on our Discord server](https://discordapp.com/channels/505093832157691914/505093832157691916) to see what we're up to.  We'd love to have you get involved!
+Đây là một cách tuyệt vời để bắt đầu học về phương pháp phát triển Agile và bắt đầu làm những công việc phát triển có ý nghĩa trong một môi trường thân thiện, hỗ trợ lẫn nhau. Vì vậy, hãy xem [kênh chung trên máy chủ Discord của chúng ta](https://discordapp.com/channels/505093832157691914/505093832157691916) để biết chúng ta đang làm gì. Chúng tôi rất mong bạn tham gia!
 
-### Conclusion
+### Kết luận
 
-I want to emphasize again that the learning never really stops but also that you've come a long way.  Stick around for the next few courses and you'll take a good core and build some very interesting things.  In the HTML/CSS course, you'll learn to make your Rails applications look like actual websites instead of text dumps.  In the JavaScript course, you'll learn how to take everyday web apps and make them much faster and more dynamic in the browser.  
+Một lần nữa, tôi muốn nhấn mạnh rằng việc học thực sự không bao giờ dừng lại, nhưng bạn cũng đã đi được một chặng đường dài. Hãy tiếp tục đồng hành trong vài khóa học tiếp theo; bạn sẽ dùng nền tảng vững chắc này để xây dựng những sản phẩm rất thú vị. Trong khóa HTML/CSS, bạn sẽ học cách khiến ứng dụng Rails trông như những website thực sự thay vì chỉ là các khối văn bản. Trong khóa JavaScript, bạn sẽ học cách làm cho các web app hằng ngày nhanh hơn nhiều và năng động hơn trong trình duyệt.
 
-So there's a lot left to go but it gets better and better.  Stick with it!
+Vẫn còn rất nhiều điều phải học, nhưng mọi thứ sẽ ngày càng hay hơn. Hãy kiên trì!
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ trợ.
 
-- [How I Learned Ruby on Rails](https://medium.com/how-i-learned-ruby-rails/e08c94e2a51e) by Richardson Dackam
-- A [listing of Rails tutorials](https://tutorials.railsapps.org/rails-tutorial) from Daniel Kehoe of RailsApps
-- A list of some slightly [longer Rails Tutorials by Jumpstart Lab](https://web.archive.org/web/20240928083941/http://tutorials.jumpstartlab.com/)
-- The [University of Texas Rails Course Online](http://schneems.com/ut-rails) (incomplete/dated?)
-- [Rails Cheat Sheet](http://pragtob.github.io/rails-beginner-cheatsheet/index.html) by Tobias Pfeiffer
-- [Rails Best Practices list](http://rails-bestpractices.com/)
-- [Building a Simple CMS in Sinatra Tutorial](http://www.sitepoint.com/a-simple-content-management-system-in-sinatra/)
-- [Why not to hardcode your application's secret token in production](http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/)
-- [How I Test by Ryan Bates](http://railscasts.com/episodes/275-how-i-test)
-- [Why use the `%Q` methods?](http://stackoverflow.com/questions/10144543/what-is-the-use-case-for-rubys-q-q-quoting-methods)
-- [Build 10 Apps video series by Web-Crunch](https://www.youtube.com/watch?v=4ABesTeDKmQ&list=PL01nNIgQ4uxNkDZNMON-TrzDVNIk3cOz4)
-- [Mackenzie Child 12 apps in 12 weeks](https://medium.com/ruby-on-rails/how-i-finally-learned-rails-95e9b832675b#.mw99m5wat)
-- [Intro to API Video](https://www.youtube.com/watch?v=oBW_VNg4qD0)
+- [How I Learned Ruby on Rails](https://medium.com/how-i-learned-ruby-rails/e08c94e2a51e) của Richardson Dackam
+- [Danh sách các tutorial Rails](https://tutorials.railsapps.org/rails-tutorial) của Daniel Kehoe thuộc RailsApps
+- Danh sách một số [tutorial Rails dài hơn của Jumpstart Lab](https://web.archive.org/web/20240928083941/http://tutorials.jumpstartlab.com/)
+- [Khóa học Rails trực tuyến của University of Texas](http://schneems.com/ut-rails) (chưa hoàn chỉnh/lỗi thời?)
+- [Rails Cheat Sheet](http://pragtob.github.io/rails-beginner-cheatsheet/index.html) của Tobias Pfeiffer
+- [Danh sách Rails Best Practices](http://rails-bestpractices.com/)
+- [Tutorial xây dựng CMS đơn giản bằng Sinatra](http://www.sitepoint.com/a-simple-content-management-system-in-sinatra/)
+- [Vì sao không nên hard-code secret token của ứng dụng trong production](http://daniel.fone.net.nz/blog/2013/05/20/a-better-way-to-manage-the-rails-secret-token/)
+- [How I Test của Ryan Bates](http://railscasts.com/episodes/275-how-i-test)
+- [Vì sao nên dùng các method `%Q`](http://stackoverflow.com/questions/10144543/what-is-the-use-case-for-rubys-q-q-quoting-methods)
+- [Loạt video Build 10 Apps của Web-Crunch](https://www.youtube.com/watch?v=4ABesTeDKmQ&list=PL01nNIgQ4uxNkDZNMON-TrzDVNIk3cOz4)
+- [Mackenzie Child: 12 app trong 12 tuần](https://medium.com/ruby-on-rails/how-i-finally-learned-rails-95e9b832675b#.mw99m5wat)
+- [Video giới thiệu về API](https://www.youtube.com/watch?v=oBW_VNg4qD0)

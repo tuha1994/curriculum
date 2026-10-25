@@ -1,54 +1,54 @@
-### Introduction
+### Giới thiệu
 
-There are some topics that we just haven't had a chance to get into yet but will prove useful for you to know.  In this section we'll cover advanced routing, layouts, and a brief introduction to metaprogramming.
+Có một số chủ đề mà chúng ta chưa có dịp tìm hiểu, nhưng sẽ rất hữu ích nếu bạn biết đến chúng. Trong phần này, chúng ta sẽ tìm hiểu về định tuyến nâng cao, layout và phần giới thiệu ngắn về siêu lập trình.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát những chủ đề bạn sẽ học trong bài.
 
-- Singular resources.
-- Nested routes.
-- Member routes and collection routes.
-- Nesting layouts.
-- What metaprogramming is.
-- What design patterns are.
+- Tài nguyên số ít.
+- Các route lồng nhau.
+- Route thành viên và route tập hợp.
+- Lồng các layout.
+- Siêu lập trình là gì.
+- Mẫu thiết kế là gì.
 
-### Advanced routing
+### Định tuyến nâng cao
 
-You should be quite familiar by now with the bread and butter of routing -- converting RESTful requests using the familiar HTTP verbs into mappings for specific controller actions (whether using the `#resources` method or explicitly specifying them using the `get` method).  That's 90% of what you'll use your routes file for... but that other 10% gives you some pretty neat options like redirecting directly from the routes file, nesting routes inside each other, or parsing parameters from the incoming request.
+Đến lúc này, hẳn bạn đã khá quen với phần cốt lõi của định tuyến -- chuyển các request RESTful dùng những HTTP verb quen thuộc thành ánh xạ tới các action cụ thể của controller (dù dùng phương thức `#resources` hay khai báo tường minh bằng phương thức `get`). Đó là 90% công việc bạn sẽ làm với file routes... nhưng 10% còn lại đem đến một số tùy chọn khá thú vị, chẳng hạn chuyển hướng trực tiếp từ file routes, lồng các route vào nhau hoặc phân tích tham số từ request gửi đến.
 
-#### Singular resources
+#### Tài nguyên số ít
 
-You might have already run into this at some point without necessarily understanding it.  Up until now, we've been talking about resources (like "posts" and "users") where there are a whole lot of them.  It seems fairly intuitive.  In your `config/routes.rb` file, you represent these with a single line like `resources :users`.
+Có thể bạn đã gặp trường hợp này nhưng chưa thực sự hiểu. Từ trước đến nay, chúng ta nói về các resource (như "posts" và "users") trong đó có rất nhiều bản ghi. Điều này khá trực quan. Trong file `config/routes.rb`, bạn biểu diễn chúng bằng một dòng như `resources :users`.
 
-Sometimes there are also resources where it actually only makes sense for there to be one.  An example would be a User dashboard which displays interesting facts based on whichever user is logged in.  There is only one dashboard template, it just happens to be smart enough to display things that are relevant for the user who is currently logged in.
+Đôi khi cũng có những resource mà về bản chất chỉ nên có một. Ví dụ như dashboard của User, hiển thị các thông tin thú vị dựa trên user đang đăng nhập. Chỉ có một template dashboard, nhưng nó đủ thông minh để hiển thị những nội dung phù hợp với user hiện đang đăng nhập.
 
-In this case, it doesn't make a whole lot of sense to display an "index" of dashboards, since there is only one (it just changes based on who is logged in).  We can also say that, for any of the other actions which would normally require an ID to differentiate which resource we're operating on (like `#show`), since there's only one, we no longer need the `id` parameter.
+Trong trường hợp này, việc hiển thị một "index" của các dashboard không thật sự hợp lý, vì chỉ có một dashboard (nó chỉ thay đổi tùy theo người đăng nhập). Ta cũng có thể nói rằng, với những action khác vốn cần một ID để phân biệt resource đang thao tác (như `#show`), vì chỉ có một resource nên không còn cần tham số `id` nữa.
 
-The routes file line for a singular resource would look like:
+Dòng trong file routes cho một resource số ít sẽ có dạng:
 
 ```ruby
   # in config/routes.rb
   resource :dashboard
 ```
 
-Just note that the word "resource" is singular and so is `dashboard`.  That trips up a lot of people who make the typo of writing "resource" instead of "resources" when they really want plural resources (which are more common).
+Lưu ý rằng từ "resource" là số ít và `dashboard` cũng vậy. Điều này khiến nhiều người nhầm khi viết "resource" thay vì "resources" trong lúc thực sự muốn dùng resource số nhiều (vốn phổ biến hơn).
 
-The `$ rails routes` for a singular resource would only contain 6 routes (since we don't use `#index` anymore), and you would no longer see any of the `:id` portions of the routes, e.g.
+Kết quả `$ rails routes` cho một resource số ít chỉ có 6 route (vì không còn dùng `#index`), và bạn sẽ không còn thấy phần `:id` trong các route, chẳng hạn:
 
 ```bash
   edit_dashboard  GET /dashboard/edit(.:format)  dashboards#edit
 ```
 
-...compared with the plural version of the same route:
+...so với phiên bản số nhiều của cùng route:
 
 ```bash
   edit_dashboard  GET /dashboards/:id/edit(.:format)  dashboards#edit
 ```
 
-### Nested routes
+### Route lồng nhau
 
-Sometimes it just makes sense for one resource to be nested inside of another.  For instance, a listing of lessons like this logically falls within a listing of courses -- so you'd expect a URL sort of like `http://example.com/courses/1/lessons/3`. The way to achieve this nesting is in the routes file by literally nesting one resource inside a block given to another, which might look something like:
+Đôi khi việc một resource nằm bên trong resource khác là hợp lý. Chẳng hạn, danh sách lesson như thế này về mặt logic thuộc về danh sách course -- vì vậy bạn có thể mong đợi một URL dạng `http://example.com/courses/1/lessons/3`. Để tạo kiểu lồng này, trong file routes ta lồng một resource bên trong block được truyền cho resource khác, chẳng hạn:
 
 ```ruby
   # config/routes.rb
@@ -59,19 +59,19 @@ Sometimes it just makes sense for one resource to be nested inside of another.  
   end
 ```
 
-Note that the `#resources` method now takes a block which will consist of a set of routes.
+Lưu ý rằng phương thức `#resources` lúc này nhận một block, trong đó có một tập hợp các route.
 
-When you visit the URL, you'll have to specify the `:id` parameter for BOTH objects.  The `$ rails routes` for the above would include something like:
+Khi truy cập URL, bạn sẽ phải chỉ định tham số `:id` cho CẢ HAI đối tượng. Kết quả `$ rails routes` cho ví dụ trên sẽ bao gồm một route tương tự:
 
 ```ruby
   course_lesson  GET  /courses/:course_id/lessons/:id(.:format)  lessons#show
 ```
 
-It should also be noted that you're being taken to the controller of the deepest nested resource, and that's also the `:id` parameter which will be called `:id` (any parent resource parameters, as in the above, will be specifically called something like `:course_id`).
+Cũng cần lưu ý rằng request được đưa đến controller của resource nằm sâu nhất, và đó cũng là tham số `:id` được gọi là `:id` (các tham số của resource cha, như trong ví dụ trên, sẽ có tên cụ thể như `:course_id`).
 
-View helpers are also automatically generated in a logical way (as you can see in your `$ rails routes` output).  When you use view helpers like `#course_lesson_path` you will need to specify both parameters in order, e.g. `course_lesson_path(1,3)`.
+Các view helper cũng được tự động tạo theo cách hợp lý (như bạn có thể thấy trong output của `$ rails routes`). Khi dùng các view helper như `#course_lesson_path`, bạn sẽ cần chỉ định cả hai tham số theo đúng thứ tự, chẳng hạn `course_lesson_path(1,3)`.
 
-Don't nest routes too deeply! If you're more than a layer or two deep, something should be different.  In fact, oftentimes you'll see only some of the controller actions nested -- only the ones that actually *need* the parent's ID to uniquely specify it.  For instance, you can grab a specific Lesson by knowing only its ID.  But to get all the lessons that are listed beneath a specific Course, you need the Course ID so it will have to be nested.  Same is true for creating lessons, since they will need a parent specified:
+Đừng lồng route quá sâu! Nếu sâu hơn một hoặc hai tầng thì có lẽ bạn nên thiết kế khác đi. Thực tế, nhiều khi bạn chỉ thấy một số action của controller được lồng -- chỉ những action thực sự *cần* ID của resource cha để xác định duy nhất resource. Chẳng hạn, bạn có thể lấy một Lesson cụ thể chỉ bằng ID của nó. Nhưng để lấy tất cả lesson được liệt kê bên dưới một Course cụ thể, bạn cần Course ID nên route phải được lồng. Việc tạo lesson cũng tương tự, vì lesson cần có resource cha:
 
 ```ruby
   # config/routes.rb
@@ -82,11 +82,11 @@ Don't nest routes too deeply! If you're more than a layer or two deep, something
   end
 ```
 
-If this seems a bit confusing at first, you'll pick it up quickly when you actually run into it in your own coding.  If you find yourself working inside your controller and needing the parent's ID, the route should have been nested.  If you find that you don't need the parent's ID, it doesn't need to be nested.  Easy enough.
+Nếu ban đầu điều này hơi khó hiểu, bạn sẽ nhanh chóng nắm được khi gặp nó trong code của mình. Nếu trong controller bạn thấy mình cần ID của resource cha thì route lẽ ra phải được lồng. Nếu không cần ID của resource cha thì không cần lồng. Đơn giản vậy thôi.
 
-#### Member and collection routes
+#### Route thành viên và route tập hợp
 
-Sometimes you want to add another non-RESTful route to a resource. If you'd like to add a route to just a single member of that resource, use the `#member` method:
+Đôi khi bạn muốn thêm một route không RESTful khác cho một resource. Nếu muốn thêm route chỉ áp dụng cho một member của resource đó, hãy dùng phương thức `#member`:
 
 ```ruby
   # config/routes.rb
@@ -99,9 +99,9 @@ Sometimes you want to add another non-RESTful route to a resource. If you'd like
   end
 ```
 
-That route would map to the `courses#preview` action.  You can add as many as you'd like.
+Route đó sẽ ánh xạ tới action `courses#preview`. Bạn có thể thêm bao nhiêu route tùy thích.
 
-If you'd like to add a non-RESTful route to the whole collection of your resource (so you don't need to specify the `:id` attribute, like with the `index` action), you instead use the `#collection` method:
+Nếu muốn thêm route không RESTful cho toàn bộ collection của resource (nên không cần chỉ định thuộc tính `:id`, giống action `index`), bạn dùng phương thức `#collection`:
 
 ```ruby
   # config/routes.rb
@@ -117,13 +117,13 @@ If you'd like to add a non-RESTful route to the whole collection of your resourc
   end
 ```
 
-The `upcoming` route will map to the `courses#upcoming` action but will not take an `:id` parameter.
+Route `upcoming` sẽ ánh xạ tới action `courses#upcoming` nhưng không nhận tham số `:id`.
 
-If any of this seems confusing, just play around with them and run `$ rails routes` to see what is happening behind the scenes.
+Nếu thấy phần nào khó hiểu, cứ thử dùng chúng và chạy `$ rails routes` để xem điều gì đang diễn ra phía sau.
 
-#### Redirects and wildcard routes
+#### Chuyển hướng và route wildcard
 
-You might want to provide a URL out of convenience for your user but map it directly to another one you're already using.  Use a redirect:
+Có thể bạn muốn cung cấp một URL thuận tiện cho người dùng nhưng ánh xạ trực tiếp nó tới một URL khác mà bạn đang dùng. Hãy dùng redirect:
 
 ```ruby
   # config/routes.rb
@@ -132,13 +132,13 @@ You might want to provide a URL out of convenience for your user but map it dire
   end
 ```
 
-Well, that got interesting fast.  The basic principle here is to just use the `#redirect` method to send one route to another route.  If your route is basic, it's a really straightforward method. But if you want to also send the original parameters, you need to do a bit of gymnastics by capturing the parameter inside `%{here}`.  Note the single quotes around everything.
+Chỉ vậy mà đã có khá nhiều điều thú vị. Nguyên tắc cơ bản là dùng phương thức `#redirect` để chuyển một route tới route khác. Nếu route của bạn đơn giản, cách này rất thẳng thắn. Nhưng nếu muốn truyền cả các tham số ban đầu, bạn cần thực hiện thêm một chút bằng cách bắt tham số bên trong `%{here}`. Hãy lưu ý dấu nháy đơn bao quanh mọi thứ.
 
-In the example above, we've also renamed the route for convenience by using an alias with the `:as` parameter.  This lets us use that name in methods like the `#_path` helpers.  Again, test out your `$ rails routes` with questions.
+Trong ví dụ trên, chúng ta cũng đổi tên route cho tiện bằng cách dùng bí danh với tham số `:as`. Nhờ đó, ta có thể dùng tên này trong các phương thức như helper `#_path`. Một lần nữa, hãy thử chạy `$ rails routes` và tự đặt câu hỏi về kết quả.
 
-### Controllers, models and keeping things RESTful
+### Controller, model và việc giữ tính RESTful
 
-Along with the advanced routing topics covered, it can also be helpful to think about controllers in Rails that don't necessarily have their own ActiveRecord model to work with. Consider that we have a request for the application so that a `lesson` can have accompanying `images`. That seems easy enough, so we can update our model:
+Bên cạnh các chủ đề định tuyến nâng cao, việc suy nghĩ về những controller Rails không nhất thiết có ActiveRecord model riêng để làm việc cùng cũng hữu ích. Giả sử ứng dụng cần cho phép một `lesson` có các `images` đi kèm. Việc này có vẻ đơn giản, nên ta có thể cập nhật model:
 
 ```ruby
 # app/models/lesson.rb
@@ -148,7 +148,7 @@ class Lesson < ApplicationRecord
 end
 ```
 
-Then, we think about how we might want to manage these images from the route and controller side. We might think of something like this at first:
+Sau đó, ta suy nghĩ về cách quản lý các image này ở phía route và controller. Ban đầu, ta có thể nghĩ đến cách như sau:
 
 ```ruby
 # config/routes.rb
@@ -160,7 +160,7 @@ resources :lessons do
 end
 ```
 
-Then we have accompanying methods in the `LessonsController` to process the images. This would work well enough, but when we think about Rails controllers as standalone concepts, we might choose to implement this feature differently. Consider this second approach to the implementation:
+Tiếp theo, ta có các method tương ứng trong `LessonsController` để xử lý image. Cách này đủ dùng, nhưng khi nhìn controller Rails như một khái niệm độc lập, ta có thể chọn triển khai tính năng theo cách khác. Hãy xem cách tiếp cận thứ hai:
 
 ```ruby
 # config/routes.rb
@@ -169,7 +169,7 @@ resources :lessons do
 end
 ```
 
-Along with a new controller `Lessons::ImagesController` which looks like this:
+Cùng với một controller mới là `Lessons::ImagesController`, có dạng:
 
 ```ruby
 # app/controllers/lessons/images_controller.rb
@@ -186,25 +186,25 @@ module Lessons
 end
 ```
 
-What we've done is made the implementation more RESTful, because we no longer have any custom non-RESTful actions. Instead, we have a whole new (RESTful) controller. This controller doesn't relate to its own model to handle these actions, but works on the `Lesson` model. Not only that, by using a new controller we are able to stick to the REST actions to describe what we are doing: *creating* a new image attachment, or *destroying* an image for a lesson.
+Điều chúng ta đã làm là khiến cách triển khai mang tính RESTful hơn, vì không còn action tùy chỉnh không RESTful nào. Thay vào đó, ta có hẳn một controller mới (RESTful). Controller này không gắn với model riêng để xử lý các action, mà làm việc trên model `Lesson`. Không chỉ vậy, nhờ controller mới, ta có thể bám sát các action REST để mô tả việc đang làm: *tạo* một image attachment mới hoặc *hủy* một image của lesson.
 
-In fact, if you think about it, this was implicit in our original attempt: `attach_image` and `remove_image` both follow the `<action>_<noun>` pattern, which might be a signal we could use another resource. We've also used a nested controller here to provide a clue to the next developer of our intention. By keeping our actions in the RESTful realm, it can become easy to extend the application. Keeping things RESTful also makes it easier to understand what is happening without having to do a lot of digging around.
+Thực ra, nếu suy nghĩ kỹ, điều này đã được thể hiện ngầm trong cách thử ban đầu: `attach_image` và `remove_image` đều theo mẫu `<action>_<noun>`, có thể là dấu hiệu cho thấy ta nên dùng một resource khác. Ở đây, chúng ta cũng dùng một controller lồng để cho developer tiếp theo biết ý định của mình. Khi giữ các action trong phạm vi RESTful, việc mở rộng ứng dụng sẽ trở nên dễ dàng. Giữ mọi thứ RESTful cũng giúp hiểu chuyện gì đang diễn ra mà không cần đào quá sâu vào code.
 
-When we can think beyond the controller/model coupling in Rails, it can open the door to many possibilities. You could have a controller tied to a specific attribute of a model, even!
+Khi có thể suy nghĩ vượt ra ngoài sự gắn kết controller/model trong Rails, nhiều khả năng sẽ mở ra. Thậm chí bạn có thể có một controller gắn với một thuộc tính cụ thể của model!
 
-For more information and examples, there is an excellent talk by Derek Prior called "In Relentless Pursuit of REST" in the additional resources section that is highly recommended.
+Để xem thêm thông tin và ví dụ, bạn nên đọc bài nói chuyện xuất sắc của Derek Prior có tên "In Relentless Pursuit of REST" trong phần tài nguyên bổ sung.
 
-### Advanced layouts: Nesting layouts and passing information
+### Layout nâng cao: Lồng layout và truyền thông tin
 
-We got pretty good coverage of view layouts in the lesson on Views but one other topic involves rendering multiple layouts for one page, which allows you to create unique sections that still reuse a lot of the stylings that you might want to keep consistent across your whole site (e.g. the footer).  For example, maybe the user pages should have a different styling than your home page.  The first thought might be to try and have a different stylesheet for each layout but remember that Rails' Asset Pipeline jams all your stylesheets together anyway.
+Trong bài về Views, chúng ta đã tìm hiểu khá kỹ về view layout, nhưng còn một chủ đề khác: render nhiều layout cho một trang. Cách này cho phép bạn tạo các section riêng mà vẫn tái sử dụng nhiều phần style cần nhất quán trên toàn site (ví dụ footer). Chẳng hạn, các trang user có thể cần style khác với trang chủ. Ý nghĩ đầu tiên có thể là dùng một stylesheet khác cho từng layout, nhưng hãy nhớ rằng Asset Pipeline của Rails dù sao cũng gộp tất cả stylesheet lại.
 
-A better way of doing things is to tell your layout to do some stuff (whatever you might normally have your layout do) and then render *another* layout using the `render :template => "your_layout.html.erb"` method. You are sort of using your layouts like a view might use a view partial.
+Một cách tốt hơn là yêu cầu layout thực hiện một số việc (bất kỳ việc gì layout thường làm), rồi render *một* layout khác bằng phương thức `render :template => "your_layout.html.erb"`. Bạn có thể hình dung layout này dùng layout kia gần giống như một view dùng view partial.
 
-You can also pass information from the first layout to the one it renders by using the `#content_for` method.  This lets you create logic in your main layout that is dependent on what is passed by your individual layout files... the possibilities are endless.
+Bạn cũng có thể truyền thông tin từ layout đầu tiên sang layout mà nó render bằng phương thức `#content_for`. Nhờ đó, bạn có thể tạo logic trong layout chính phụ thuộc vào nội dung do các file layout riêng lẻ truyền vào... khả năng là vô tận.
 
-For instance, you might have a specific layout file for your static pages called `app/views/layouts/static_pages.html.erb`.  This file will be rendered by default (if it exists) for views generated from your StaticPagesController (which is a Rails default).  Let's say, though, that you want your static pages to look almost identical to the rest of the site but you don't want the navbar to appear across the top.
+Ví dụ, bạn có thể có một file layout riêng cho các trang tĩnh là `app/views/layouts/static_pages.html.erb`. Theo mặc định, file này sẽ được render (nếu tồn tại) cho các view tạo từ StaticPagesController (một controller mặc định của Rails). Tuy nhiên, giả sử bạn muốn các trang tĩnh trông gần giống toàn bộ site nhưng không muốn navbar xuất hiện ở phía trên.
 
-In this case, you would tell your `static_pages.html.erb` layout to call the `application.html.erb` layout but also pass it some special CSS by using the `#content_for` method, e.g.
+Trong trường hợp này, bạn sẽ yêu cầu layout `static_pages.html.erb` gọi layout `application.html.erb`, đồng thời truyền cho nó một số CSS đặc biệt bằng phương thức `#content_for`, chẳng hạn:
 
 ```erb
   # app/views/layouts/static_pages.html.erb
@@ -215,7 +215,7 @@ In this case, you would tell your `static_pages.html.erb` layout to call the `ap
   <%= render :template => "layouts/application" %>
 ```
 
-Then your `application.html.erb` layout needs to be set up to catch that content and use it, for instance by adding this `#yield` line:
+Sau đó, layout `application.html.erb` cần được thiết lập để nhận và sử dụng nội dung đó, chẳng hạn bằng cách thêm dòng `#yield` này:
 
 ```erb
   # app/views/layouts/application.html.erb
@@ -229,7 +229,7 @@ Then your `application.html.erb` layout needs to be set up to catch that content
   ...
 ```
 
-When you `#yield` to a particular content block, in this case `:stylesheets`, it will essentially drop the code from inside of that `content_for`'s block to where the `#yield` method was.  So in the above example, we effectively added some CSS styling to the application layout by first rendering a special `static_pages.html.erb` layout and then passing the styles to the main `application.html.erb` layout using `#content_for`.  The result would look like:
+Khi bạn `#yield` tới một content block cụ thể, trong trường hợp này là `:stylesheets`, nó sẽ đưa đoạn code bên trong block của `content_for` vào vị trí mà method `#yield` xuất hiện. Vì vậy, trong ví dụ trên, ta đã thêm một số style CSS vào application layout bằng cách trước tiên render layout `static_pages.html.erb` đặc biệt, rồi truyền style sang layout `application.html.erb` chính bằng `#content_for`. Kết quả sẽ là:
 
 ```erb
   # app/views/layouts/application.html.erb
@@ -241,17 +241,17 @@ When you `#yield` to a particular content block, in this case `:stylesheets`, it
   ...
 ```
 
-This trick is useful for more than just passing stylesheet information... any time you find yourself wanting to make a section of your site look different but without totally redesigning it with a fully new layout, you might consider nesting your layouts and passing information from one to another.
+Mẹo này hữu ích cho nhiều việc hơn là chỉ truyền thông tin stylesheet... bất cứ khi nào muốn một section của site trông khác đi nhưng không muốn thiết kế lại hoàn toàn bằng một layout mới, bạn có thể cân nhắc lồng các layout và truyền thông tin từ layout này sang layout khác.
 
-### Metaprogramming Rails
+### Siêu lập trình trong Rails
 
-What is "Metaprogramming"?  It's a great and useful concept that's used all over Rails and you can put it to work yourself too.  It's basically the idea that your application or script actually creates functions or methods or classes on the fly while it's running and can dynamically call them as well.  It's one of the great parts of using an interpreted language like Ruby... it's sort of baked into the language.  We'll just skim the surface here but you should definitely look into it more on your own once you feel comfortable with the nuts and bolts of Rails.
+"Siêu lập trình" là gì? Đây là một khái niệm tuyệt vời và hữu ích, được sử dụng khắp nơi trong Rails, và bạn cũng có thể tự mình áp dụng. Về cơ bản, đó là ý tưởng rằng ứng dụng hoặc script có thể tạo function, method hoặc class ngay trong lúc chạy, đồng thời cũng có thể gọi chúng một cách động. Đây là một trong những điểm mạnh của ngôn ngữ thông dịch như Ruby... gần như đã được tích hợp sẵn vào ngôn ngữ. Ở đây chúng ta chỉ lướt qua bề mặt, nhưng chắc chắn bạn nên tìm hiểu sâu hơn khi đã thấy thoải mái với những phần cốt lõi của Rails.
 
-An example of metaprogramming in action in Rails is with the route helpers.  When your Rails application fires up for the first time, it loads the `config/routes.rb` file, which might contain the line `get "home" => "static_pages#home"` so your users can type `http://www.yoursite.com/home` to get back to the home page.  Rails then creates a couple methods for you, including the `home_path` and `home_url` helpers.  That's one part of metaprogramming!
+Một ví dụ về siêu lập trình trong Rails là các route helper. Khi ứng dụng Rails khởi động lần đầu, nó nạp file `config/routes.rb`, trong đó có thể có dòng `get "home" => "static_pages#home"` để người dùng gõ `http://www.yoursite.com/home` và quay về trang chủ. Sau đó Rails tạo cho bạn một vài method, trong đó có helper `home_path` và `home_url`. Đó là một phần của siêu lập trình!
 
-The routes example almost isn't fair, though, because you wrote your `routes.rb` file and probably hard coded a bunch of `#home_path` or `#home_url` method calls based on what you knew would be in there.  What about more dynamic situations where you don't know ahead of time what the method is going to be called?
+Tuy nhiên, ví dụ routes này chưa thật sự công bằng, vì bạn đã viết file `routes.rb` và có lẽ đã hard-code nhiều lời gọi method `#home_path` hoặc `#home_url` dựa trên những gì bạn biết sẽ có ở đó. Còn những tình huống động hơn, khi bạn không biết trước method sẽ được gọi là gì thì sao?
 
-Ruby provides the `#send` method to save the day.  If you want to run a method on an object, just *send* that object the method and any arguments you want. A basic example you can do on your command line is `1+2`:
+Ruby cung cấp method `#send` để giải quyết vấn đề. Nếu muốn chạy một method trên một object, chỉ cần *gửi* cho object đó method cùng mọi argument bạn muốn. Một ví dụ đơn giản có thể thực hiện trên command line là `1+2`:
 
 ```bash
   > 1 + 2
@@ -260,9 +260,9 @@ Ruby provides the `#send` method to save the day.  If you want to run a method o
   => 3
 ```
 
-In an ordinary situation, there's no reason to use the `#send` method but if you don't know which method you're going to need to call, it's a lifesaver.  Just pass it the symbolized name of the method you want to run on that object and Ruby will go looking for it.
+Trong tình huống thông thường, không có lý do gì để dùng method `#send`, nhưng nếu không biết mình sẽ cần gọi method nào thì nó thật sự rất hữu ích. Chỉ cần truyền cho nó tên method dưới dạng symbol mà bạn muốn chạy trên object đó, Ruby sẽ tự tìm method ấy.
 
-But how do you define a new method on the fly anyway?  In this case, you can use the `#define_method` method, which takes the symbol of what you'd like to define and a block representing the method itself. The following examples were taken from this [metaprogramming guide from ruby-metaprogramming.rubylearning.com](https://web.archive.org/web/20200801134147/http://ruby-metaprogramming.rubylearning.com/html/ruby_metaprogramming_2.html):
+Nhưng làm thế nào để định nghĩa một method mới ngay trong lúc chạy? Trong trường hợp này, bạn có thể dùng method `#define_method`, nhận symbol của method muốn định nghĩa và một block đại diện cho chính method đó. Các ví dụ sau được lấy từ [hướng dẫn siêu lập trình này của ruby-metaprogramming.rubylearning.com](https://web.archive.org/web/20200801134147/http://ruby-metaprogramming.rubylearning.com/html/ruby_metaprogramming_2.html):
 
 ```ruby
   class Rubyist
@@ -276,9 +276,9 @@ But how do you define a new method on the fly anyway?  In this case, you can use
   puts(obj.hello('Matz')) # => Matz
 ```
 
-Another very powerful tool is the `#method_missing` method.  You've certainly seen errors that say something to the effect of "Hey you, you tried to call a method that doesn't exist!" and the stack trace will probably run through something called `method_missing`.  Most likely, you had a typo and spelled your method incorrectly.
+Một công cụ rất mạnh khác là method `#method_missing`. Chắc chắn bạn từng thấy lỗi đại loại như "Này, bạn vừa thử gọi một method không tồn tại!" và stack trace có thể chạy qua thứ gì đó tên là `method_missing`. Rất có thể bạn đã gõ sai tên method.
 
-Basically, `#method_missing` is a method of Ruby's `BasicObject` class which gets inherited by every single object in Ruby and it is called whenever you try to run a method that doesn't actually exist.  It also gets passed all the arguments you tried to send and any blocks that went with it.  That means that you can override `#method_missing` yourself for a given object and use whatever was previously called, for example printing out a message saying the name of the method you tried to call and its arguments:
+Về cơ bản, `#method_missing` là một method của class `BasicObject` trong Ruby, được mọi object trong Ruby kế thừa, và nó được gọi bất cứ khi nào bạn cố chạy một method thực sự không tồn tại. Nó cũng nhận tất cả argument bạn đã cố truyền cùng mọi block đi kèm. Điều đó có nghĩa là bạn có thể tự override `#method_missing` cho một object cụ thể và dùng thông tin vừa được gọi, chẳng hạn in ra tên method bạn định gọi cùng các argument của nó:
 
 ```ruby
   class Rubyist
@@ -305,60 +305,60 @@ Basically, `#method_missing` is a method of Ruby's `BasicObject` class which get
   => nil
 ```
 
-Metaprogramming is really nifty stuff and there are tons of interesting uses for it.  You don't need to master it to learn Rails, so only dive into it once you're comfortable with Rails, but it will certainly be useful to you in the real world.  There are all kinds of metaprogramming tricks and patterns and tips out there but it's beyond the scope of this course to dive into them.
+Siêu lập trình thật sự rất thú vị và có vô số cách sử dụng. Bạn không cần thành thạo nó để học Rails, nên chỉ nên đào sâu sau khi đã thoải mái với Rails, nhưng chắc chắn nó sẽ hữu ích trong thực tế. Có đủ loại mẹo, mẫu và thủ thuật siêu lập trình, nhưng việc tìm hiểu chúng nằm ngoài phạm vi của khóa học này.
 
-Here's a good example of [metaprogramming to DRY up your code](http://rails-bestpractices.com/posts/2010/07/24/dry-metaprogramming/).
+Đây là một ví dụ hay về [dùng siêu lập trình để DRY hóa code](http://rails-bestpractices.com/posts/2010/07/24/dry-metaprogramming/).
 
-Check out [Metaprogramming Ruby](http://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476) by Paolo Perrotta if you're really curious.
+Nếu thật sự tò mò, hãy xem [Metaprogramming Ruby](http://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476) của Paolo Perrotta.
 
-### Design patterns
+### Mẫu thiết kế
 
-Design patterns have a mixed reputation among software developers.  On the one hand, they represent "best practices" for how to code past a given situation (not specific code, just a template for how to fix something).  On the other, they can be sort of needlessly prescriptive.  See the [Wikipedia article on Design Patterns](http://en.wikipedia.org/wiki/Software_design_pattern) for an overview.  We won't be covering specific patterns in this course.
+Mẫu thiết kế có danh tiếng khá trái chiều trong giới phát triển phần mềm. Một mặt, chúng đại diện cho "best practices" về cách viết code để vượt qua một tình huống nhất định (không phải code cụ thể, chỉ là một khuôn mẫu để giải quyết vấn đề). Mặt khác, chúng đôi khi áp đặt một cách không cần thiết. Hãy xem [bài viết Wikipedia về Design Patterns](http://en.wikipedia.org/wiki/Software_design_pattern) để có cái nhìn tổng quan. Khóa học này sẽ không đi vào từng mẫu cụ thể.
 
-The [Wikipedia article on SOLID](http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) provides a good overview and good links related to SOLID software design.  If you're looking to write great code, you'll need to know each of the principles the letters represent (paraphrasing):
+[Bài viết Wikipedia về SOLID](http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) cung cấp phần tổng quan tốt cùng các liên kết hữu ích về thiết kế phần mềm SOLID. Nếu muốn viết code tốt, bạn cần biết từng nguyên tắc mà các chữ cái đại diện (diễn giải):
 
-- [Single Responsibility Principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) (A class should only have a single responsibility)
-- [Open/Closed Principle](http://en.wikipedia.org/wiki/Open/closed_principle) (your code entities should be open for extension but closed to modification)
-- [Liskov Substitution Principle](http://en.wikipedia.org/wiki/Liskov_substitution_principle) (replacing an object with one of its sub-types shouldn't break anything)
-- [Interface Segregation Principle](http://en.wikipedia.org/wiki/Interface_segregation_principle) (writing many client-specific interfaces is better than one behemoth general-use interface... think APIs)
-- [Dependency Inversion Principle](http://en.wikipedia.org/wiki/Dependency_inversion_principle) (instead of high level constructs depending on lower level ones, make them rely on abstractions instead)
+- [Single Responsibility Principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) (Một class chỉ nên có một trách nhiệm duy nhất)
+- [Open/Closed Principle](http://en.wikipedia.org/wiki/Open/closed_principle) (các thực thể trong code nên mở cho việc mở rộng nhưng đóng với việc sửa đổi)
+- [Liskov Substitution Principle](http://en.wikipedia.org/wiki/Liskov_substitution_principle) (thay một object bằng một subtype của nó không nên làm hỏng bất cứ điều gì)
+- [Interface Segregation Principle](http://en.wikipedia.org/wiki/Interface_segregation_principle) (viết nhiều interface dành riêng cho client tốt hơn một interface khổng lồ dùng chung... hãy nghĩ đến API)
+- [Dependency Inversion Principle](http://en.wikipedia.org/wiki/Dependency_inversion_principle) (thay vì cấu trúc cấp cao phụ thuộc vào cấu trúc cấp thấp, hãy để chúng phụ thuộc vào abstraction)
 
-Luckily, Rails has done a pretty good job of following these, so you should have absorbed some good habits just through using it. But you'll want to take a minute and read up on each of them (including the odd-sounding ones) because they're fairly central to all software engineering (and a ripe interview question).
+May mắn là Rails đã làm khá tốt việc tuân theo các nguyên tắc này, nên chỉ qua quá trình sử dụng Rails bạn có lẽ đã hình thành được một số thói quen tốt. Tuy vậy, hãy dành chút thời gian đọc về từng nguyên tắc (kể cả những nguyên tắc có tên nghe lạ) vì chúng khá cốt lõi đối với toàn bộ ngành kỹ nghệ phần mềm (và là câu hỏi phỏng vấn rất hay).
 
-There's a useful book written on anti-patterns, which can help you clean up your code by identifying bad smells, called [Rails Antipatterns](http://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814/) by Tammer Saleh and Chad Pytel.
+Có một cuốn sách hữu ích về anti-pattern, giúp bạn dọn dẹp code bằng cách nhận diện các dấu hiệu code có vấn đề, mang tên [Rails Antipatterns](http://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814/) của Tammer Saleh và Chad Pytel.
 
-### I18n: Internationalization
+### I18n: Quốc tế hóa
 
-[Internationalization and Localization](http://en.wikipedia.org/wiki/Internationalization_and_localization) is the process of adapting your application to fit specific geographies and/or languages. It's outside our scope to cover, but for those who are interested, check out this [Sitepoint tutorial on internationalization](http://www.sitepoint.com/go-global-rails-i18n/), as suggested by K. Bates.
+[Quốc tế hóa và bản địa hóa](http://en.wikipedia.org/wiki/Internationalization_and_localization) là quá trình điều chỉnh ứng dụng để phù hợp với các khu vực địa lý và/hoặc ngôn ngữ cụ thể. Phần này nằm ngoài phạm vi của chúng ta, nhưng nếu quan tâm, hãy xem [bài hướng dẫn quốc tế hóa trên SitePoint](http://www.sitepoint.com/go-global-rails-i18n/), theo gợi ý của K. Bates.
 
-### Conclusion
+### Kết luận
 
-In this lesson we covered some fairly random and intricate concepts but useful stuff to at least get familiar with, even if you're not going to use it every day.  Experience is the real key here -- in the course of building awesome stuff you'll run into the need for all of the things you just learned and it might just save you a lot of time and complexity in your code.
+Trong bài học này, chúng ta đã đề cập đến một số khái niệm khá ngẫu nhiên và phức tạp nhưng hữu ích, ít nhất là để làm quen, ngay cả khi bạn không dùng chúng hằng ngày. Kinh nghiệm mới là chìa khóa thật sự ở đây -- trong quá trình xây dựng những sản phẩm tuyệt vời, bạn sẽ gặp nhu cầu sử dụng tất cả những thứ vừa học và chúng có thể giúp bạn tiết kiệm rất nhiều thời gian cũng như độ phức tạp trong code.
 
-The more general principles like SOLID design and metaprogramming will be useful to you regardless of whether you stick with Ruby and Rails or move on to better and brighter things.
+Những nguyên tắc tổng quát hơn như thiết kế SOLID và siêu lập trình sẽ hữu ích bất kể bạn tiếp tục gắn bó với Ruby và Rails hay chuyển sang những công nghệ tốt hơn, sáng sủa hơn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Skim the [Rails Guide on Routing](http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing) section 2.6 about namespacing.
-  1. Read the same guide sections 2.7-3.7 to learn about nested, member and collection routes and more.
-  1. Read the same guide, sections 3.8-3.15 for a variety of different advanced routing topics including constraining the inputs to your routes and redirection.
-  1. Skim the same guide, chapter 4.  Some stuff we've seen but most is just to give you a sense for what's possible.  When you need it, you'll probably Google your way back there.
-  1. Read the [Rails Guide on Layouts](http://guides.rubyonrails.org/layouts_and_rendering.html#using-nested-layouts) section 3.5 to see how to pass information between your view file and your layout file, including CSS styles.  Really take a minute to understand what's going on in the example there.
-  1. If you're interested, take a peek at [Ruby metaprogramming](https://web.archive.org/web/20210514184321/http://ruby-metaprogramming.rubylearning.com/). It's not essential to building early Rails apps but you'll definitely start running into it more in "the wild".
-  1. Glance through this [Slideshare Presentation on SOLID principles](http://www.slideshare.net/jcfischer/solid-ruby-solid-rails) or [download the PDF directly](https://github.com/MichaelMahlberg/RailsWayCon2010/blob/master/railswaycon10_SOLID_ruby.pdf) if you prefer.
+  1. Đọc lướt phần 2.6 về namespacing trong [Rails Guide về Routing](http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing).
+  1. Đọc các phần 2.7-3.7 của cùng tài liệu để tìm hiểu về route lồng nhau, route thành viên, route tập hợp và nhiều nội dung khác.
+  1. Đọc các phần 3.8-3.15 của cùng tài liệu để tìm hiểu nhiều chủ đề định tuyến nâng cao, bao gồm giới hạn input cho route và chuyển hướng.
+  1. Đọc lướt chương 4 của cùng tài liệu. Một số nội dung chúng ta đã thấy, nhưng phần lớn nhằm giúp bạn hình dung những gì có thể làm được. Khi cần, có lẽ bạn sẽ lại Google để tìm đến đó.
+  1. Đọc phần 3.5 về [Rails Guide về Layout](http://guides.rubyonrails.org/layouts_and_rendering.html#using-nested-layouts) để xem cách truyền thông tin giữa view file và layout file, bao gồm cả CSS style. Hãy thật sự dành thời gian để hiểu điều gì đang xảy ra trong ví dụ đó.
+  1. Nếu quan tâm, hãy xem qua [Ruby metaprogramming](https://web.archive.org/web/20210514184321/http://ruby-metaprogramming.rubylearning.com/). Đây không phải kiến thức thiết yếu để xây dựng các ứng dụng Rails ban đầu, nhưng bạn chắc chắn sẽ gặp nó thường xuyên hơn trong "thực tế".
+  1. Đọc lướt [bài thuyết trình Slideshare về các nguyên tắc SOLID](http://www.slideshare.net/jcfischer/solid-ruby-solid-rails) hoặc [tải trực tiếp bản PDF](https://github.com/MichaelMahlberg/RailsWayCon2010/blob/master/railswaycon10_SOLID_ruby.pdf) nếu thích.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích tới nội dung liên quan. Đây không phải phần bắt buộc, nên hãy xem như tài liệu bổ trợ.
 
-- A Stack Overflow question on [understanding singular resource in Rails](http://stackoverflow.com/questions/6629142/having-problem-understanding-singular-resource-in-rails)
-- [In Relentless Pursuit of REST by Derek Prior](https://www.youtube.com/watch?v=HctYHe-YjnE)
-- [A video from Yehuda Katz on Rails Security](http://youtu.be/2Ex8EEv-WPs)
-- The first solution in this Stack Overflow question demonstrates a nice way to [work with multiple layouts that uses classes to trigger different CSS styling](http://stackoverflow.com/questions/4208380/confused-on-advanced-rails-layout-nesting).
+- Một câu hỏi trên Stack Overflow về [tìm hiểu resource số ít trong Rails](http://stackoverflow.com/questions/6629142/having-problem-understanding-singular-resource-in-rails)
+- [In Relentless Pursuit of REST của Derek Prior](https://www.youtube.com/watch?v=HctYHe-YjnE)
+- [Video của Yehuda Katz về Rails Security](http://youtu.be/2Ex8EEv-WPs)
+- Lời giải đầu tiên trong câu hỏi Stack Overflow này trình bày một cách hay để [làm việc với nhiều layout, dùng class để kích hoạt các style CSS khác nhau](http://stackoverflow.com/questions/4208380/confused-on-advanced-rails-layout-nesting).
 - [Ruby Metaprogramming](https://web.archive.org/web/20200801134147/http://ruby-metaprogramming.rubylearning.com/html/ruby_metaprogramming_2.html)
-- [SO post on design patterns in Rails (2010)](http://stackoverflow.com/questions/2522065/design-patterns-in-rails)
-- [A longer explanation of SOLID principles](https://www.youtube.com/watch?v=8STtzjyDTTQ)
+- [Bài viết trên Stack Overflow về mẫu thiết kế trong Rails (2010)](http://stackoverflow.com/questions/2522065/design-patterns-in-rails)
+- [Phần giải thích dài hơn về các nguyên tắc SOLID](https://www.youtube.com/watch?v=8STtzjyDTTQ)

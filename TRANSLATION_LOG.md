@@ -609,6 +609,13 @@ Không theo dõi các khóa hoặc thư mục khác cho đến khi người họ
 |---|---|---|---|---|
 | `ruby_on_rails/advanced_forms_and_activerecord/project_private_events.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải project. |
 
+## Ruby on Rails đã dịch — batch 11
+
+| Đường dẫn bài | Commit SHA gốc | Ngày kiểm tra | Trạng thái | Ghi chú cần duyệt |
+|---|---|---|---|---|
+| `ruby_on_rails/apis/apis_and_building_your_own.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Giữ nguyên Rails API và code HTTP. |
+| `ruby_on_rails/apis/project_kittens_api.md` | `ef7d9a4a8206c60050ffa0efb893316220826021` | 2026-10-25 | `đã kiểm tra code, cấu trúc và chờ hiển thị local` | Không viết lời giải project. |
+
 ## Quy tắc cập nhật
 
 1. Chỉ thêm bài thuộc phạm vi đã được người học cho phép, ghi rõ trong từng mục khóa học.

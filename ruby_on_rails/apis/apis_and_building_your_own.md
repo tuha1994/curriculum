@@ -1,61 +1,61 @@
-### Introduction
+### Giới thiệu
 
-Working with APIs is awesome and frustrating at the same time.  On the one hand, interfacing with other applications out there can greatly improve the reach and "cool factor" of your own app.  On the other, it involves lots of reading through documentation, figuring out authentication strategies, and parsing bad (or nonexistent) error messages.
+Làm việc với API vừa tuyệt vời vừa gây nản lòng. Một mặt, việc kết nối với những ứng dụng khác có thể mở rộng đáng kể phạm vi tiếp cận và "độ ngầu" của ứng dụng bạn. Mặt khác, công việc này đòi hỏi phải đọc rất nhiều tài liệu, tìm hiểu các chiến lược xác thực, rồi phân tích những thông báo lỗi tệ hại (hoặc hoàn toàn không có thông báo lỗi).
 
-Backing up, if you're still unclear on what an API (Application Programming Interface) basically is, [FreeCodeCamp explains what APIs are](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/). [Dave Roos' summary of APIs](http://money.howstuffworks.com/business-communications/how-to-leverage-an-api-for-conferencing1.htm) is also a good way to catch up.
+Nói rộng hơn, nếu bạn vẫn chưa rõ API (Application Programming Interface - giao diện lập trình ứng dụng) về cơ bản là gì, [FreeCodeCamp giải thích API là gì](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/). [Bài tóm tắt về API của Dave Roos](http://money.howstuffworks.com/business-communications/how-to-leverage-an-api-for-conferencing1.htm) cũng là một cách hay để nắm lại kiến thức.
 
-"API" is an incredibly broad concept -- any time your application talks to another application, that's via some sort of API.  The components within your own application, e.g. the different pieces of Rails, also talk to each other via APIs... they are more or less independent sub-applications that pass along the data they each need to complete their particular task.  Everything's an API in application-land!
+"API" là một khái niệm vô cùng rộng -- bất cứ khi nào ứng dụng của bạn giao tiếp với một ứng dụng khác, việc đó đều diễn ra thông qua một dạng API nào đó. Các thành phần bên trong chính ứng dụng của bạn, chẳng hạn những phần khác nhau của Rails, cũng giao tiếp với nhau thông qua API... về cơ bản, chúng là những ứng dụng con tương đối độc lập, truyền cho nhau dữ liệu cần thiết để hoàn thành nhiệm vụ riêng. Trong thế giới ứng dụng, mọi thứ đều là API!
 
-When you build applications that have more dynamic front-end functionality (as complicated as single page JavaScript applications or as basic as individual AJAX calls), they will talk to your Rails backend via your own APIs... which is really just an extra line or two of code to tell your controllers how to spit out JSON or XML instead of HTML.
+Khi xây dựng các ứng dụng có phần giao diện người dùng động hơn (từ những ứng dụng JavaScript một trang phức tạp đến những lời gọi AJAX riêng lẻ đơn giản), chúng sẽ giao tiếp với phần backend Rails thông qua các API do bạn xây dựng... mà thực chất chỉ cần thêm một hoặc hai dòng code để chỉ cho controller cách xuất JSON hoặc XML thay vì HTML.
 
-In this lesson, we'll cover how to build your own API.  In the following lesson, we'll cover how to interface with the APIs of other applications.  The lessons are meant to give you a good onramp to learning this stuff but couldn't possibly cover all the cases.  Much of working with APIs is learning to read their documentation and figure out what they want.
+Trong bài học này, chúng ta sẽ tìm hiểu cách xây dựng API của riêng mình. Ở bài học tiếp theo, chúng ta sẽ tìm hiểu cách kết nối với API của các ứng dụng khác. Các bài học nhằm cung cấp cho bạn điểm khởi đầu tốt để học nội dung này, nhưng tất nhiên không thể bao quát mọi trường hợp. Phần lớn việc làm việc với API là học cách đọc tài liệu của chúng và tìm hiểu chúng yêu cầu điều gì.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này đưa ra tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Creating a Rails Controller action capable of returning JSON and XML responses.
-- Creating an API for a model that hides certain attributes from consumers of your API.
-- Creating custom error messages for responding to faulty requests.
-- What Service Oriented Architecture is.
+- Tạo một action trong Rails Controller có khả năng trả về phản hồi JSON và XML.
+- Tạo API cho một model, trong đó ẩn một số thuộc tính nhất định khỏi người dùng API.
+- Tạo thông báo lỗi tùy chỉnh để phản hồi các request không hợp lệ.
+- Service Oriented Architecture là gì.
 
-### API basics
+### Kiến thức cơ bản về API
 
-Your Rails application is basically already an API, though you may not think of it that way.  The web browser your user is running is also a program, so it is effectively making an API request to your Rails app whenever you request a new page.  It just so happens that rendering HTML payloads is so common that we just bake that into our server-side programs as the default response type and consider everything else special.
+Ứng dụng Rails của bạn về cơ bản vốn đã là một API, dù có thể bạn chưa nhìn nhận nó theo cách đó. Trình duyệt web mà người dùng đang chạy cũng là một chương trình, vì vậy nó thực chất gửi một request API đến ứng dụng Rails mỗi khi bạn yêu cầu một trang mới. Chỉ là việc render payload HTML phổ biến đến mức chúng ta tích hợp sẵn nó vào các chương trình phía server như kiểu phản hồi mặc định và xem mọi thứ khác là đặc biệt.
 
-Often, though, you want to make a request that doesn't need to go through all the headache of using a web browser.  You may not care how the page is structured (HTML), but instead just want to get straight to the data.  Say you want to get a list of all users.  You could go to something like `http://yourapplication.com/users` which will probably run the `#index` action and render a list of all the application's users.
+Tuy nhiên, nhiều khi bạn muốn gửi một request mà không cần trải qua toàn bộ phiền phức của việc dùng trình duyệt web. Có thể bạn không quan tâm trang được cấu trúc như thế nào (HTML), mà chỉ muốn lấy thẳng dữ liệu. Giả sử bạn muốn lấy danh sách tất cả người dùng. Bạn có thể truy cập một URL như `http://yourapplication.com/users` mà URL này có lẽ sẽ chạy action `#index` và render danh sách tất cả người dùng của ứng dụng.
 
-But why bother with all that extra stuff if all you want is the user list?  The easiest thing to do would be to submit a request to that same URL asking for a JSON or XML response instead.  If you set up your Rails controller properly, you will get back a JSON array object containing all the users.  Sweet!
+Nhưng nếu tất cả những gì bạn muốn chỉ là danh sách người dùng, tại sao phải bận tâm đến toàn bộ phần dư thừa đó? Cách đơn giản nhất là gửi request đến chính URL đó và yêu cầu phản hồi JSON hoặc XML. Nếu thiết lập controller Rails đúng cách, bạn sẽ nhận lại một object mảng JSON chứa toàn bộ người dùng. Tuyệt!
 
-The same principle applies if you're talking to external APIs... say you want to grab a user's recent posts from X (formerly known as Twitter).  You just need to tell your Rails app how to talk to Twitter's API (e.g. authenticate yourself), submit the request, and handle the bunch of posts that get returned.
+Nguyên tắc tương tự cũng áp dụng khi bạn giao tiếp với API bên ngoài... chẳng hạn bạn muốn lấy các bài đăng gần đây của một người dùng từ X (trước đây có tên là Twitter). Bạn chỉ cần chỉ cho ứng dụng Rails cách giao tiếp với API của Twitter (ví dụ: tự xác thực), gửi request và xử lý nhóm bài đăng được trả về.
 
-### Building APIs
+### Xây dựng API
 
-You might want to make your Rails application entirely into an API backend for a front end webpage or you might just want to learn how to send out JSON when your front end requests it.  This section won't cover how to build a full featured RESTful API with authentication features... it is a gentle introduction to treating your application as an API.
+Bạn có thể muốn biến toàn bộ ứng dụng Rails thành backend API cho một trang web frontend, hoặc chỉ muốn học cách gửi JSON khi frontend yêu cầu. Phần này không hướng dẫn cách xây dựng một API RESTful đầy đủ tính năng với hệ thống xác thực... đây chỉ là phần giới thiệu nhẹ nhàng về việc coi ứng dụng của bạn như một API.
 
-#### The basics
+#### Những điều cơ bản
 
-If you want your Rails app to return JSON instead of HTML, you need to tell your controller to do so.  The cool thing is that the same controller action can return different things depending on whether your user is making a normal request from a browser or an API call from the command line. It determines which type of request is being made based on the extension of the file asked for, e.g. `example.xml` or `example.json`.
+Nếu muốn ứng dụng Rails trả về JSON thay vì HTML, bạn cần chỉ cho controller làm điều đó. Điều thú vị là cùng một action của controller có thể trả về những thứ khác nhau tùy thuộc việc người dùng đang gửi request thông thường từ trình duyệt hay một lời gọi API từ dòng lệnh. Rails xác định loại request dựa trên phần mở rộng của file được yêu cầu, chẳng hạn `example.xml` hoặc `example.json`.
 
-You can see which file type Rails thinks you want by checking your server log:
+Bạn có thể xem Rails cho rằng bạn muốn loại file nào bằng cách kiểm tra log của server:
 
 ```bash
   Started GET "/posts/new" for 127.0.0.1 at 2013-12-02 15:21:08 -0800
   Processing by PostsController#new as HTML
 ```
 
-The first line tells you which URL was requested and the second tells you where it's going and how Rails is processing it.  If you use a `.json` extension, it looks like:
+Dòng đầu tiên cho biết URL nào được yêu cầu, còn dòng thứ hai cho biết request đang được chuyển đến đâu và Rails xử lý nó như thế nào. Nếu dùng phần mở rộng `.json`, log sẽ trông như sau:
 
 ```bash
   Started GET "/posts.json" for 127.0.0.1 at 2013-12-04 12:02:01 -0800
   Processing by PostsController#index as JSON
 ```
 
-If you've got a sample application running, try going to different URLs.  If your controller isn't ready for them, you may get an error, but you should be able to see what Rails thinks you're asking for.
+Nếu đang chạy một ứng dụng mẫu, hãy thử truy cập các URL khác nhau. Nếu controller chưa sẵn sàng xử lý chúng, bạn có thể gặp lỗi, nhưng vẫn sẽ thấy Rails hiểu request của bạn là gì.
 
-#### Rendering JSON or XML
+#### Render JSON hoặc XML
 
-Once you've decided that you want to respond to a request for JSON or XML, you need to tell your controller to render JSON or XML instead of HTML.  The way to do so is by using the `#respond_to` method:
+Sau khi quyết định sẽ phản hồi một request JSON hoặc XML, bạn cần chỉ cho controller render JSON hoặc XML thay vì HTML. Cách thực hiện là dùng method `#respond_to`:
 
 ```ruby
   class UsersController < ApplicationController
@@ -73,21 +73,21 @@ Once you've decided that you want to respond to a request for JSON or XML, you n
   end
 ```
 
-In this case, `#respond_to` passes the block a format object, to which you can attach the appropriate rendering call.  If you do nothing, HTML will render using the default Rails template as normal (in this case, `app/views/index.html.erb`).
+Trong trường hợp này, `#respond_to` truyền cho block một object format, và bạn có thể gắn vào đó lời gọi render phù hợp. Nếu không làm gì, HTML sẽ được render bằng template Rails mặc định như bình thường (trong trường hợp này là `app/views/index.html.erb`).
 
-The `#render` function is smart enough to know how to render a wide range of formats.  When you pass it the key `:json`, it will call `#to_json` on the value, in this case `@users`.  That will make your Ruby object(s) into JSON strings, which can be transmitted to the requesting application.
+Hàm `#render` đủ thông minh để biết cách render rất nhiều định dạng. Khi truyền cho nó key `:json`, hàm sẽ gọi `#to_json` trên giá trị, trong trường hợp này là `@users`. Việc đó biến các object Ruby của bạn thành các chuỗi JSON, có thể được truyền đến ứng dụng đã gửi request.
 
-And just like that, you've got yourself an API.  Of course, things can get a bit more complicated if you want to do unusual things, but that's the basics.
+Vậy là bạn đã có một API. Tất nhiên, mọi thứ có thể phức tạp hơn một chút nếu bạn muốn làm những việc khác thường, nhưng đó là những điều cơ bản.
 
-#### Specifying attributes to return
+#### Chỉ định các thuộc tính cần trả về
 
-Let's say you want to make sure you don't return the user's email address with the User object.  In this case, you'll want to edit which User attributes get returned by modifying what the `#to_json` method does.
+Giả sử bạn muốn đảm bảo không trả về địa chỉ email của người dùng cùng với User object. Khi đó, bạn sẽ muốn điều chỉnh những thuộc tính User được trả về bằng cách thay đổi cách method `#to_json` hoạt động.
 
-In the old days, you'd just overwrite your own version of `#to_json` but these days you don't need to do that -- you will actually overwrite the `#as_json` method instead.  The `#as_json` method is used by `#to_json`, so modifying it will implicitly change the output of `#to_json`, but in a very specific way.
+Ngày trước, bạn chỉ cần ghi đè phiên bản `#to_json` của mình, nhưng hiện nay không cần làm vậy nữa -- thay vào đó, bạn sẽ ghi đè method `#as_json`. Method `#as_json` được `#to_json` sử dụng, vì vậy việc chỉnh sửa nó sẽ ngầm thay đổi output của `#to_json`, nhưng theo một cách rất cụ thể.
 
-`#to_json` does two things -- it runs `#as_json` and gets back a hash of attributes which will need to be rendered as JSON.  Then it will actually perform the rendering into JSON using `ActiveSupport::json.encode`.  So by modifying `#as_json`, you're more specifically targeting the part of the `#to_json` method that you actually want to change.
+`#to_json` thực hiện hai việc -- nó chạy `#as_json` và nhận lại một hash các thuộc tính cần được render thành JSON. Sau đó, nó thực sự thực hiện việc render thành JSON bằng `ActiveSupport::json.encode`. Vì vậy, bằng cách chỉnh sửa `#as_json`, bạn nhắm chính xác hơn vào phần của method `#to_json` mà mình thực sự muốn thay đổi.
 
-In our case, we'll do this by modifying `#as_json` in our model to return only the attributes we want:
+Trong trường hợp này, chúng ta sẽ sửa `#as_json` trong model để chỉ trả về những thuộc tính mong muốn:
 
 ```ruby
   # app/models/user.rb
@@ -106,7 +106,7 @@ In our case, we'll do this by modifying `#as_json` in our model to return only t
   end
 ```
 
-In our controller, we then just need to render JSON as normal (in the example below, it will just always return JSON, whether it's an HTML request or not):
+Trong controller, chúng ta chỉ cần render JSON như bình thường (ở ví dụ dưới đây, nó sẽ luôn trả về JSON, bất kể request có phải là request HTML hay không):
 
 ```ruby
   # app/controllers/users_controller.rb
@@ -119,14 +119,14 @@ In our controller, we then just need to render JSON as normal (in the example be
   end
 ```
 
-Note that you don't need to call `#to_json` yourself when using `#render`... it will do it for you.
+Lưu ý rằng bạn không cần tự gọi `#to_json` khi sử dụng `#render`... nó sẽ làm việc đó thay bạn.
 
-See the [as_json documentation](https://api.rubyonrails.org/classes/ActiveModel/Serializers/JSON.html#method-i-as_json) for details and more, like how to include associations.
+Xem [tài liệu về as_json](https://api.rubyonrails.org/classes/ActiveModel/Serializers/JSON.html#method-i-as_json) để biết thêm chi tiết, chẳng hạn như cách include các association.
 
-#### Rendering nothing or errors
+#### Render trạng thái không có nội dung hoặc lỗi
 
-Sometimes you just want to send out an HTTP error code without any response body. [Rails guides](https://guides.rubyonrails.org/layouts_and_rendering.html#using-head-to-build-header-only-responses) once again comes in really handy with an elegant solution for this problem.
-Here's an example (again we are just rendering the error in all cases):
+Đôi khi bạn chỉ muốn gửi một mã lỗi HTTP mà không có response body. [Rails guides](https://guides.rubyonrails.org/layouts_and_rendering.html#using-head-to-build-header-only-responses) một lần nữa cung cấp một giải pháp trang nhã và rất hữu ích cho vấn đề này.
+Đây là một ví dụ (một lần nữa, chúng ta chỉ render lỗi trong mọi trường hợp):
 
 ```ruby
   # app/controllers/users_controller.rb
@@ -139,70 +139,70 @@ Here's an example (again we are just rendering the error in all cases):
   end
 ```
 
-#### Creating dynamic error pages
+#### Tạo các trang lỗi động
 
-You can [create your own error pages](https://web-crunch.com/posts/custom-error-page-ruby-on-rails).
+Bạn có thể [tự tạo các trang lỗi](https://web-crunch.com/posts/custom-error-page-ruby-on-rails).
 
-Sometimes Heroku can require additional steps to properly display your error pages, as per the [Heroku error page docs](https://devcenter.heroku.com/articles/error-pages).  You might need to delete the static pages in the `app/public` directory first.
+Đôi khi Heroku yêu cầu thêm một số bước để hiển thị đúng các trang lỗi của bạn, như mô tả trong [tài liệu trang lỗi của Heroku](https://devcenter.heroku.com/articles/error-pages). Trước hết, bạn có thể cần xóa các trang tĩnh trong thư mục `app/public`.
 
-#### External facing security
+#### Bảo mật khi cung cấp API ra bên ngoài
 
-Let's say you want to only allow an API call if your user is logged in.  Your existing controller authentication will work to cover this as well -- just make sure you've got the right `#before_action` set up (e.g. `before_action :require_login`).  This might be the case if both logged in and non-logged-in users will be viewing the page but each should see different data.  You don't want your not-logged-in-users to be able to make API requests for sensitive data just like you wouldn't want them to be able to visit an unauthorized HTML page.
+Giả sử bạn chỉ muốn cho phép gọi API nếu người dùng đã đăng nhập. Cơ chế xác thực hiện có của controller cũng sẽ xử lý được việc này -- chỉ cần đảm bảo bạn đã thiết lập đúng `#before_action` (ví dụ: `before_action :require_login`). Trường hợp này có thể xảy ra khi cả người dùng đã đăng nhập và chưa đăng nhập đều xem trang, nhưng mỗi nhóm cần thấy dữ liệu khác nhau. Bạn không muốn người chưa đăng nhập có thể gọi API để lấy dữ liệu nhạy cảm, cũng như không muốn họ truy cập một trang HTML mà họ không được phép xem.
 
-If you want to handle requests from an application that isn't a web browser (e.g. the command line), you can't rely on browser cookies to authenticate you.  That's why most APIs issue custom tokens to each authorized user which must be sent along with the request as part of the authentication process.  We'll talk a bit more about tokens in the next lesson.
+Nếu muốn xử lý request từ một ứng dụng không phải trình duyệt web (ví dụ: dòng lệnh), bạn không thể dựa vào cookie trình duyệt để xác thực. Đó là lý do hầu hết API cấp token tùy chỉnh cho từng người dùng được cấp quyền; token này phải được gửi kèm request như một phần của quá trình xác thực. Chúng ta sẽ nói thêm một chút về token trong bài học tiếp theo.
 
-#### Next steps
+#### Các bước tiếp theo
 
-Right now you've got the ability to use your Rails app to serve up not just HTML but also whatever formats you want.  If you'd like to take this further and allow other developers to build on your platform (so they'll be making programmatic requests instead of logging in as users), you'll need to make your API system far more robust.  We won't cover it all here, but check out the following:
+Hiện giờ bạn đã có khả năng dùng ứng dụng Rails để cung cấp không chỉ HTML mà bất kỳ định dạng nào bạn muốn. Nếu muốn tiến xa hơn và cho phép các nhà phát triển khác xây dựng trên nền tảng của bạn (để họ gửi các request theo chương trình thay vì đăng nhập với tư cách người dùng), bạn sẽ cần làm cho hệ thống API mạnh mẽ hơn nhiều. Chúng ta không thể trình bày tất cả ở đây, nhưng hãy xem tài liệu sau:
 
-- [Building Awesome Rails APIs](http://collectiveidea.com/blog/archives/2013/06/13/building-awesome-rails-apis-part-1/) has a lot of best practices for moving beyond a toy API and into a production-ready app.
+- [Xây dựng Rails API tuyệt vời](http://collectiveidea.com/blog/archives/2013/06/13/building-awesome-rails-apis-part-1/) có nhiều phương pháp hay để phát triển từ một API thử nghiệm thành ứng dụng sẵn sàng cho production.
 
 ### Service Oriented Architecture (SOA)
 
-This is a good time to introduce an architectural concept called "Service Oriented Architecture".  The basic idea is that your application will likely have many different services within it, for instance the payments processing, user registration, recommendation engine, etc.  Instead of building all of these under the same master application, you break them out into fully independent pieces and have them talk to each other using internally facing APIs.
+Đây là lúc thích hợp để giới thiệu một khái niệm kiến trúc có tên là "Service Oriented Architecture". Ý tưởng cơ bản là ứng dụng của bạn có thể sẽ chứa nhiều service khác nhau, chẳng hạn xử lý thanh toán, đăng ký người dùng, engine gợi ý, v.v. Thay vì xây dựng tất cả dưới cùng một ứng dụng chính, bạn tách chúng thành những phần hoàn toàn độc lập và cho chúng giao tiếp với nhau bằng các API hướng vào bên trong.
 
-This is good for many reasons.  Because each piece of your application doesn't care how the other pieces work and it only knows how to ask for data via their APIs, it allows you to make major changes to the code within a service and the rest of your application works just the same.  You can completely substitute one service for another and, as long as it communicates using the same API methods, it's easy.  You can use an external API for a part of your app (like payments) instead of an internal one.  You can have a PHP app talking to a Python app talking to a Rails app and no one cares since they're all communicating using APIs.
+Cách làm này có nhiều ưu điểm. Vì mỗi phần trong ứng dụng không quan tâm các phần khác hoạt động ra sao mà chỉ biết cách yêu cầu dữ liệu thông qua API của chúng, bạn có thể thực hiện những thay đổi lớn đối với code bên trong một service mà phần còn lại của ứng dụng vẫn hoạt động y như cũ. Bạn có thể thay thế hoàn toàn service này bằng service khác và, miễn là nó giao tiếp bằng cùng các method API, việc đó rất dễ dàng. Bạn có thể dùng API bên ngoài cho một phần ứng dụng (như thanh toán) thay vì API nội bộ. Bạn có thể có một ứng dụng PHP giao tiếp với ứng dụng Python, rồi ứng dụng Python giao tiếp với ứng dụng Rails, và không ai bận tâm vì tất cả đều giao tiếp bằng API.
 
-It's usually a good idea to strive to keep independent pieces of your application as independent as possible anyway.  Formalizing this under the umbrella of SOA forces you to think in terms of exactly which methods you want to expose to the other parts of your application and it will make your code better along the way.  An added benefit is that, when you assume that each major component of your application is independent, you can also isolate issues much easier and will be forced to handle errors in a reasonable way.
+Dù thế nào thì việc cố gắng giữ các phần độc lập của ứng dụng càng độc lập càng tốt thường vẫn là một ý tưởng hay. Việc chính thức hóa điều này dưới tên gọi SOA buộc bạn suy nghĩ chính xác về những method nào muốn cung cấp cho các phần khác của ứng dụng, nhờ đó code cũng được cải thiện. Một lợi ích khác là khi coi mỗi thành phần lớn của ứng dụng là độc lập, bạn có thể cô lập vấn đề dễ hơn nhiều và buộc phải xử lý lỗi theo cách hợp lý.
 
-Using an SOA architecture for your whole application is sort of like breaking up a giant and complicated Ruby script into nice neat classes and methods, just on a broader scale.
+Dùng kiến trúc SOA cho toàn bộ ứng dụng cũng giống như tách một script Ruby khổng lồ và phức tạp thành những class và method gọn gàng, chỉ khác là ở quy mô rộng hơn.
 
-One of the best known cases of switching to a service-oriented architecture was Amazon.com.  Sometime in 2002, Jeff Bezos basically dictated that every group would switch to SOA or be fired. An infamous blog post from a Google Employee, accidentally released to the public instead of staying internal to the company, talked about [Amazon's strength with SOA](https://gist.github.com/chitchcock/1281611).  It's a great read so check it out, but the basics of Bezos' email are, as quoted from the post:
+Một trong những trường hợp nổi tiếng nhất về việc chuyển sang kiến trúc hướng service là Amazon.com. Vào khoảng năm 2002, Jeff Bezos về cơ bản đã ra lệnh rằng mọi nhóm phải chuyển sang SOA, nếu không sẽ bị sa thải. Một bài đăng blog nổi tiếng của một nhân viên Google, vô tình được công khai thay vì chỉ lưu hành nội bộ công ty, đã nói về [sức mạnh SOA của Amazon](https://gist.github.com/chitchcock/1281611). Đây là một bài rất đáng đọc, nhưng những điểm chính trong email của Bezos, được bài đăng trích dẫn, là:
 
-1. All teams will henceforth expose their data and functionality through service interfaces.
-1. Teams must communicate with each other through these interfaces.
-1. There will be no other form of interprocess communication allowed: no direct linking, no direct reads of another team's data store, no shared-memory model, no back-doors whatsoever. The only communication allowed is via service interface calls over the network.
-1. It doesn't matter what technology they use. HTTP, Corba, Pubsub, custom protocols -- doesn't matter. Bezos doesn't care.
-1. All service interfaces, without exception, must be designed from the ground up to be externalizable. That is to say, the team must plan and design to be able to expose the interface to developers in the outside world. No exceptions.
-1. Anyone who doesn't do this will be fired.
+1. Từ nay trở đi, tất cả các nhóm phải cung cấp dữ liệu và chức năng của mình thông qua các service interface.
+1. Các nhóm phải giao tiếp với nhau thông qua những interface này.
+1. Không được phép có bất kỳ hình thức giao tiếp liên tiến trình nào khác: không liên kết trực tiếp, không đọc trực tiếp kho dữ liệu của nhóm khác, không dùng mô hình bộ nhớ chia sẻ, hoàn toàn không có cửa sau nào. Hình thức giao tiếp duy nhất được phép là các lời gọi service interface qua mạng.
+1. Công nghệ họ sử dụng không quan trọng. HTTP, Corba, Pubsub, protocol tùy chỉnh -- không quan trọng. Bezos không quan tâm.
+1. Tất cả service interface, không có ngoại lệ, phải được thiết kế ngay từ đầu để có thể cung cấp ra bên ngoài. Nghĩa là nhóm phải lập kế hoạch và thiết kế sao cho có thể cung cấp interface cho các nhà phát triển bên ngoài. Không có ngoại lệ.
+1. Bất kỳ ai không làm điều này sẽ bị sa thải.
 
-SOA is a big deal.  There are certainly a lot of issues that crop up when you're using it -- see this post on [Amazon's “lessons learned”](http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/) -- but it ultimately has a lot of benefit.
+SOA là một vấn đề lớn. Chắc chắn sẽ có nhiều vấn đề phát sinh khi sử dụng nó -- hãy xem bài viết về [“bài học rút ra” của Amazon](http://apievangelist.com/2012/01/12/the-secret-to-amazons-success-internal-apis/) -- nhưng cuối cùng nó đem lại rất nhiều lợi ích.
 
-You probably won't be worrying too much about SOA while building "toy" applications for yourself but it will certainly come up if you find yourself working at a tech company and it's a good principle to become familiar with.
+Có lẽ bạn sẽ không quá bận tâm đến SOA khi tự xây dựng các ứng dụng "thử nghiệm", nhưng chắc chắn khái niệm này sẽ xuất hiện nếu bạn làm việc tại một công ty công nghệ, và đây là một nguyên tắc đáng để làm quen.
 
-### Conclusion
+### Kết luận
 
-We'll get more into using your application as an API during the course on JavaScript.  In that course, you'll build some full stack apps that use JavaScript AJAX calls to smooth out the user experience, which basically involves asking your Rails app for some XML or JSON data instead of a full HTML page.  Then you'll get to build some single page JavaScript apps which rely on the API provided by your Rails app for all the necessary database data but otherwise completely run the show on the front end.
+Chúng ta sẽ tìm hiểu sâu hơn về việc dùng ứng dụng như một API trong khóa học JavaScript. Trong khóa học đó, bạn sẽ xây dựng một số ứng dụng full-stack dùng các lời gọi AJAX bằng JavaScript để cải thiện trải nghiệm người dùng; về cơ bản, chúng sẽ yêu cầu ứng dụng Rails cung cấp dữ liệu XML hoặc JSON thay vì cả một trang HTML. Sau đó, bạn sẽ xây dựng các ứng dụng JavaScript một trang, dựa vào API do ứng dụng Rails cung cấp để lấy toàn bộ dữ liệu cần thiết từ database, nhưng phần còn lại sẽ hoàn toàn do frontend điều khiển.
 
-The best way to really figure out APIs is to build them and interface with them, so we'll focus on that in the projects.
+Cách tốt nhất để thực sự hiểu API là tự xây dựng và kết nối với chúng, vì vậy chúng ta sẽ tập trung vào điều đó trong các project.
 
-In the next lesson, we'll cover working with other people's APIs, which can add all kinds of firepower to your own application.
+Trong bài học tiếp theo, chúng ta sẽ tìm hiểu cách làm việc với API của người khác, qua đó bổ sung đủ loại sức mạnh cho ứng dụng của bạn.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Read the [Rails Guide on Controllers](https://guides.rubyonrails.org/v7.2/action_controller_overview.html#rendering) section 7 to learn about rendering JSON and XML.
+  1. Đọc phần 7 của [Rails Guide về Controllers](https://guides.rubyonrails.org/v7.2/action_controller_overview.html#rendering) để tìm hiểu về việc render JSON và XML.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ sung.
 
-- Watch this free [Railscast on making your App into an API](http://railscasts.com/episodes/348-the-rails-api-gem)
-- Watch this free [Railscast on securing your API](http://railscasts.com/episodes/352-securing-an-api)
-- Watch this free [Railscast on versioning your API](http://railscasts.com/episodes/350-rest-api-versioning)
-- [GoRails #162 Our First API](https://www.gorails.com/episodes/our-first-api)
-- [`to_json` or `as_json` by Jonathan Julian](http://jonathanjulian.com/2010/04/rails-to_json-or-as_json/) gives specific examples of digging into the `as_json` method.
-- [Service Oriented Architecture Explained](https://www.youtube.com/watch?v=7s_S5Hkm7z0)
+- Xem miễn phí [Railscast về việc biến ứng dụng của bạn thành API](http://railscasts.com/episodes/348-the-rails-api-gem)
+- Xem miễn phí [Railscast về bảo mật API](http://railscasts.com/episodes/352-securing-an-api)
+- Xem miễn phí [Railscast về versioning API](http://railscasts.com/episodes/350-rest-api-versioning)
+- [GoRails #162 API đầu tiên của chúng ta](https://www.gorails.com/episodes/our-first-api)
+- [Tìm hiểu `to_json` hay `as_json` qua bài viết của Jonathan Julian](http://jonathanjulian.com/2010/04/rails-to_json-or-as_json/) đưa ra các ví dụ cụ thể về việc đào sâu vào method `as_json`.
+- [Giải thích về Service Oriented Architecture](https://www.youtube.com/watch?v=7s_S5Hkm7z0)

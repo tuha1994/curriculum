@@ -1,26 +1,26 @@
-### Introduction
+### Giới thiệu
 
-In this lesson, you'll first get a chance to poke around with an existing API from Flickr. You'll need to read the documentation to understand which calls to make but they have a nice API explorer tool which submits API calls on your behalf.
+Trong bài học này, trước tiên bạn sẽ có cơ hội khám phá một API có sẵn của Flickr. Bạn sẽ cần đọc tài liệu để hiểu nên thực hiện những lời gọi nào, nhưng Flickr có một công cụ khám phá API khá tiện, giúp gửi các lời gọi API thay cho bạn.
 
-After that, you'll build your own simple Rails application that serves as a RESTful API.
+Sau đó, bạn sẽ xây dựng một ứng dụng Rails đơn giản của riêng mình, hoạt động như một API RESTful.
 
-### Exploring the Flickr API
+### Khám phá API Flickr
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Head over to the [Flickr API Documentation Page](http://www.flickr.com/services/api/). You can just Google `XYZ API docs` to locate these pages, which is usually much faster and easier than trying to find them by navigating the websites themselves.
-1. Look around at the different methods available. They have a couple of different request formats, but check out the RESTful API format by clicking on the link on the left under "Request Formats" called [REST](http://www.flickr.com/services/api/request.rest.html).
-1. This shows you the format that a typical API call would take -- you will make your request to the endpoint at `https://www.flickr.com/services/rest/` and include any required data in the GET query string or the POST body.
-1. Look around at the various methods. How would you upload a photo? How about getting your contacts list? Lots of these methods will require you to authenticate your application or user account first.
-1. Check out the [Search method docs](http://www.flickr.com/services/api/flickr.photos.search.html). This request doesn't require you to authenticate, just provide an API key (which you would get by registering as a developer on their platform). Browse through all the arguments that can be used.
-1. If you go to the bottom of the Search docs, you'll see a link to the [Search API Explorer](http://www.flickr.com/services/api/explore/flickr.photos.search). This tool lets you actually execute requests using Flickr's API key for illustrative purposes.  You just enter the options you want and it will make the request for you. Try entering "puppies" under the "tags" argument, then scroll to the bottom. Change the response "Output" dropdown to JSON then click "Call Method".
-1. When the page refreshes, you'll see your results down at the bottom. You should see a big list of photo objects (after some meta data) that were returned by your search.  They look like:
+1. Truy cập [Trang tài liệu API Flickr](http://www.flickr.com/services/api/). Bạn chỉ cần Google `XYZ API docs` để tìm những trang này; cách đó thường nhanh và dễ hơn nhiều so với việc tự lần theo menu trên các website.
+1. Xem qua các method khác nhau hiện có. Flickr cung cấp một vài định dạng request khác nhau, nhưng hãy xem định dạng API RESTful bằng cách nhấp vào liên kết [REST](http://www.flickr.com/services/api/request.rest.html) ở bên trái, dưới mục "Request Formats".
+1. Trang này cho thấy cấu trúc của một lời gọi API điển hình -- bạn sẽ gửi request đến endpoint `https://www.flickr.com/services/rest/` và đưa mọi dữ liệu bắt buộc vào query string của GET hoặc body của POST.
+1. Xem qua các method khác nhau. Bạn sẽ upload một bức ảnh như thế nào? Còn lấy danh sách liên hệ thì sao? Nhiều method trong số này sẽ yêu cầu bạn xác thực ứng dụng hoặc tài khoản người dùng trước.
+1. Xem [tài liệu về method Search](http://www.flickr.com/services/api/flickr.photos.search.html). Request này không yêu cầu xác thực, bạn chỉ cần cung cấp API key (lấy được bằng cách đăng ký làm developer trên nền tảng của họ). Hãy xem qua tất cả các argument có thể sử dụng.
+1. Nếu kéo xuống cuối tài liệu Search, bạn sẽ thấy liên kết đến [Search API Explorer](http://www.flickr.com/services/api/explore/flickr.photos.search). Công cụ này cho phép bạn thực sự thực thi các request bằng API key của Flickr cho mục đích minh họa. Bạn chỉ cần nhập các tùy chọn mong muốn, rồi công cụ sẽ thực hiện request thay bạn. Hãy thử nhập "puppies" vào argument "tags", sau đó cuộn xuống cuối trang. Đổi menu "Output" của response thành JSON rồi nhấp vào "Call Method".
+1. Khi trang tải lại, bạn sẽ thấy kết quả ở phía dưới. Bạn sẽ thấy một danh sách lớn các object ảnh (sau một ít metadata) được trả về từ lần tìm kiếm. Chúng trông như sau:
 
     ```json
     { "id": "11357337313", "owner": "84645040@N00", "secret": "6dd795c9c6", "server": "3805", "farm": 4, "title": "Gavin-Feb2013-0127", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
     ```
 
-    More interestingly, you can see the URL they used to make the request below that. Let's break it apart here to show the parameters more clearly:
+    Điều thú vị hơn là ngay bên dưới, bạn có thể thấy URL được dùng để thực hiện request. Hãy tách URL đó ra ở đây để làm rõ hơn các parameter:
 
     ```bash
     https://www.flickr.com/services/rest/
@@ -32,62 +32,62 @@ After that, you'll build your own simple Rails application that serves as a REST
     &api_sig=d207eb20abbce7c40437a01f759e1388
     ```
 
-1. The URL contains the REST endpoint we looked at before, along with our search query and some other options like the API key and format. If you copy and paste that into your browser, you'll see the same batch of output.
-1. Learn more about [how Flickr's photo URLs are structured](http://www.flickr.com/services/api/misc.urls.html).
-1. Flickr's API requires two steps to actually display a photo -- you need to get a photo's meta information (which we just received in our search results) and then you need to piece it together into a URL that Flickr can understand to actually retrieve the photo. The format they call typical is:
+1. URL chứa endpoint REST mà chúng ta đã xem trước đó, cùng với query tìm kiếm và một số tùy chọn khác như API key và format. Nếu copy rồi dán URL đó vào trình duyệt, bạn sẽ thấy cùng một nhóm output.
+1. Tìm hiểu thêm về [cấu trúc URL ảnh của Flickr](http://www.flickr.com/services/api/misc.urls.html).
+1. API của Flickr cần hai bước để thực sự hiển thị một bức ảnh -- bạn cần lấy thông tin metadata của ảnh (thứ chúng ta vừa nhận được trong kết quả tìm kiếm), rồi ghép thông tin đó thành một URL mà Flickr hiểu được để thực sự lấy ảnh về. Định dạng mà họ gọi là điển hình là:
 
     `https://live.staticflickr.com/{server-id}/{id}_{secret}_{size-suffix}.jpg`
 
-    We can plug in values from the previously retrieved photo to display a photo:
+    Chúng ta có thể điền các giá trị từ bức ảnh vừa lấy được để hiển thị ảnh:
 
     `https://live.staticflickr.com/3805/11357337313_6dd795c9c6.jpg`
 
-    Which looks like:
+    Kết quả trông như sau:
 
-    ![A Dog in snow](https://live.staticflickr.com/3805/11357337313_6dd795c9c6.jpg)
+    ![Một chú chó trong tuyết](https://live.staticflickr.com/3805/11357337313_6dd795c9c6.jpg)
 
-    As you can see, omitting `_{size-suffix}` works and defaults to the longest edge being 500px.
+    Như bạn thấy, bỏ qua `_{size-suffix}` vẫn hoạt động và mặc định cạnh dài nhất có kích thước 500px.
 
-1. Tada! Every API is different and you've got to read through their documentation to understand the basic format of using it. Sometimes it can be helpful to search for a [YouTube](http://www.youtube.com) or [NetTuts](http://code.tutsplus.com) video with a quick overview as well.
+1. Vậy là xong! Mỗi API đều khác nhau, và bạn phải đọc tài liệu của chúng để hiểu định dạng cơ bản khi sử dụng. Đôi khi bạn cũng có thể tìm một video [YouTube](http://www.youtube.com) hoặc [NetTuts](http://code.tutsplus.com) trình bày nhanh về chủ đề này.
 
 </div>
 
-### Building a kittens API
+### Xây dựng API kittens
 
-This is a fast and straightforward project where you'll set up a Rails app to be a data-producing API... which is just a fancy way of saying that all your controller methods will render data instead of HTML.  Consider this a drill in quickly building a pure vanilla RESTful resource. We won't be working with an external API until the next project.
+Đây là một project nhanh và đơn giản, trong đó bạn sẽ thiết lập một ứng dụng Rails đóng vai trò API cung cấp dữ liệu... nói cách khác, tất cả method của controller sẽ render dữ liệu thay vì HTML. Hãy coi đây là bài luyện tập để nhanh chóng xây dựng một resource RESTful thuần túy. Chúng ta sẽ chưa làm việc với API bên ngoài cho đến project tiếp theo.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. We'll start by building our Kitten application to work normally in the browser with HTML.
+1. Chúng ta sẽ bắt đầu bằng cách xây dựng ứng dụng Kitten để hoạt động bình thường trong trình duyệt với HTML.
 
-   1. Set up a new Rails application (`odin-kittens`) and Git repo.
-   1. Update the README to describe the application and link back to this project.
-   1. Build a Kitten model with attributes of `:name`, `:age`, `:cuteness`, and `:softness`.
-   1. Build a KittensController and `:kittens` routes for all 7 RESTful actions.
-   1. Set your default route to `kittens#index`.
-   1. Fill out each of your controller actions and their corresponding views to display a very basic HTML page -- `#index` should just list all Kittens, `#show` should display a single Kitten, `#new` should render a Kitten creation form, `#edit` should use the same form (which should be a partial used by both the New and Edit views) to Edit the Kitten, `#create` and `#update` should do their jobs.
-   1. Make a `delete` link on the Kitten's Show and Edit pages, as well as next to each Kitten listed in the Index page.
-   1. Implement a display of the `flash` hash which congratulates you on adding or editing or deleting kittens and makes fun of you for errors in your form.
-   1. Test out your Kitten creation machine to make sure all your controller actions are running properly.
+   1. Thiết lập một ứng dụng Rails mới (`odin-kittens`) và Git repo.
+   1. Cập nhật README để mô tả ứng dụng và liên kết trở lại project này.
+   1. Xây dựng model Kitten với các thuộc tính `:name`, `:age`, `:cuteness` và `:softness`.
+   1. Xây dựng KittensController và các route `:kittens` cho đủ 7 action RESTful.
+   1. Đặt route mặc định thành `kittens#index`.
+   1. Hoàn thiện từng action của controller và view tương ứng để hiển thị một trang HTML thật cơ bản -- `#index` chỉ cần liệt kê tất cả Kitten, `#show` hiển thị một Kitten, `#new` render form tạo Kitten, `#edit` dùng cùng form đó (form này nên là một partial được dùng bởi cả view New và Edit) để chỉnh sửa Kitten, còn `#create` và `#update` thực hiện đúng chức năng của chúng.
+   1. Tạo một liên kết `delete` trên các trang Show và Edit của Kitten, đồng thời đặt một liên kết bên cạnh mỗi Kitten được liệt kê trên trang Index.
+   1. Hiển thị hash `flash`, trong đó chúc mừng bạn khi thêm, chỉnh sửa hoặc xóa kitten, đồng thời trêu bạn khi form có lỗi.
+   1. Kiểm thử công cụ tạo Kitten để đảm bảo tất cả action của controller đều chạy đúng.
 
-1. Now it's time to make the Kittens resource available via API.
+1. Bây giờ là lúc cung cấp resource Kittens thông qua API.
 
-   1. Add the HTTParty gem to your project and open a Rails console. We'll use the `HTTParty` gem to send requests to our app:
+   1. Thêm gem HTTParty vào project và mở Rails console. Chúng ta sẽ dùng gem `HTTParty` để gửi request đến ứng dụng:
 
       ```bash
       bundle add httparty
       rails console
       ```
 
-      Then in the console:
+      Sau đó, trong console:
 
       ```ruby
       response = HTTParty.get("http://localhost:3000/kittens")
       ```
 
-   1. Let's see what we got back:
+   1. Hãy xem chúng ta nhận lại được gì:
 
       ```ruby
       response.body #=> Should return a sloppy mess of HTML.
@@ -95,24 +95,24 @@ This is a fast and straightforward project where you'll set up a Rails app to be
       response.to_s
       ```
 
-      If you check out your server output, it's probably processing as \*/\* (i.e. all media types), e.g. `Processing by KittensController#index as */*`
-   1. Try asking specifically for a JSON response by adding the headers option:
+      Nếu kiểm tra output của server, có lẽ request đang được xử lý dưới dạng \*/\* (tức là mọi media type), chẳng hạn `Processing by KittensController#index as */*`
+   1. Hãy thử yêu cầu cụ thể một response JSON bằng cách thêm tùy chọn headers:
 
       ```ruby
       json_response = HTTParty.get("http://localhost:3000/kittens", headers: { 'Accept' => 'application/json' })
       ```
 
-      You most likely will get a 406 Not Acceptable error - check your server console and you will see ActionController talking about UnknownFormat for your controller.
-   1. Now modify your KittenController's `#index` method to `#respond_to` JSON and render the proper variables.
-   1. Test it out by making sure your HTTParty calls return the proper JSON strings, e.g.:
+      Nhiều khả năng bạn sẽ nhận lỗi 406 Not Acceptable - hãy kiểm tra console của server và bạn sẽ thấy ActionController báo UnknownFormat cho controller của mình.
+   1. Bây giờ hãy sửa method `#index` của KittenController để `#respond_to` JSON và render các biến phù hợp.
+   1. Kiểm thử bằng cách đảm bảo các lời gọi HTTParty trả về đúng chuỗi JSON, ví dụ:
 
       ```ruby
       json_response = HTTParty.get("http://localhost:3000/kittens", headers: { 'Accept' => 'application/json' })
       puts json_response.body
       ```
 
-   1. Do the same for your `#show` method, which will require you to provide an ID when making your request.  Your CSRF protection will prevent you from creating, updating or deleting kittens via the API, so it's not necessary to implement those.
+   1. Làm tương tự với method `#show`, nhưng bạn sẽ phải cung cấp ID khi thực hiện request. Cơ chế bảo vệ CSRF sẽ ngăn bạn tạo, cập nhật hoặc xóa kitten thông qua API, vì vậy không cần triển khai những thao tác đó.
 
-Now you've got a website that is both a normal HTML-producing back end AND an API that can be used to pull data from it. You could use JavaScript calls from the front end to dynamically refresh your data now or even to load the whole page in the first place. Or maybe you'll be hooking up a Kittens app to your iPhone and need a back end. It doesn't matter, since now you've got a RESTful API.
+Giờ đây bạn có một website vừa là backend tạo HTML thông thường, vừa là một API có thể được dùng để lấy dữ liệu. Bạn có thể dùng các lời gọi JavaScript từ frontend để làm mới dữ liệu động, hoặc thậm chí tải toàn bộ trang ngay từ đầu. Hoặc có thể bạn sẽ kết nối một ứng dụng Kittens với iPhone và cần một backend. Điều đó không quan trọng, vì giờ bạn đã có một API RESTful.
 
 </div>

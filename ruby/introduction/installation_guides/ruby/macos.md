@@ -1,115 +1,115 @@
-### Guide: Install Ruby on macOS
+### Hướng dẫn: Cài đặt Ruby trên macOS
 
-#### Step 1: Install packages and libraries
+#### Bước 1: Cài đặt các gói và thư viện
 
-Before we can install Ruby, we need to install some base packages. We will use the terminal to install all of the programs.
+Trước khi có thể cài đặt Ruby, chúng ta cần cài đặt một số gói cơ bản. Chúng ta sẽ dùng terminal để cài đặt tất cả các chương trình.
 
-1. In your Applications folder, find "Utilities" and double click "Terminal". Alternatively, using Spotlight (<kbd>Cmd</kbd> + <kbd>Space</kbd>) or Launchpad, type "Terminal".
+1. Trong thư mục Applications, tìm "Utilities" rồi nhấp đúp vào "Terminal". Ngoài ra, bạn có thể dùng Spotlight (<kbd>Cmd</kbd> + <kbd>Space</kbd>) hoặc Launchpad rồi nhập "Terminal".
 
-   The rest of the instructions are done inside this terminal window and if you followed all the Foundations instructions, you should have already completed step 1.2 and 1.3.
+   Phần hướng dẫn còn lại sẽ được thực hiện trong cửa sổ terminal này; nếu bạn đã làm theo toàn bộ hướng dẫn Foundations, bạn hẳn đã hoàn thành bước 1.2 và 1.3.
 
-1. The first thing you need to install is Xcode, which is a program provided by Apple for programming. Xcode will install many programs that are needed for Ruby and Git and should take 10-15 minutes to install.
+1. Điều đầu tiên bạn cần cài đặt là Xcode, một chương trình do Apple cung cấp để lập trình. Xcode sẽ cài đặt nhiều chương trình cần thiết cho Ruby và Git, đồng thời quá trình này có thể mất từ 10–15 phút.
 
-   Run the following command in your terminal (you may need to click "Install" when prompted):
+   Hãy chạy lệnh sau trong terminal (có thể bạn sẽ cần nhấp vào "Install" khi được nhắc):
 
    ```bash
    xcode-select --install
    ```
 
-1. The next program you need to install is [Homebrew](https://brew.sh/), which makes it easy to install other programs you'll need. From inside the terminal, run the following:
+1. Chương trình tiếp theo bạn cần cài đặt là [Homebrew](https://brew.sh/), công cụ giúp bạn dễ dàng cài đặt những chương trình khác cần dùng. Trong terminal, hãy chạy lệnh sau:
 
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
-   You will be prompted to enter your password. When typing your password, you may not get any visual feedback, but rest assured that your password is being entered. Once you're done typing your password, press <kbd>Enter</kbd>.
+   Bạn sẽ được yêu cầu nhập mật khẩu. Khi nhập mật khẩu, có thể bạn sẽ không thấy phản hồi nào trên màn hình, nhưng hãy yên tâm rằng mật khẩu vẫn đang được nhập. Sau khi nhập xong mật khẩu, hãy nhấn <kbd>Enter</kbd>.
 
-1. To verify the Homebrew installation, we can run:
+1. Để kiểm tra việc cài đặt Homebrew, chúng ta có thể chạy:
 
    ```bash
    which brew
    ```
 
-   If it outputs a certain path, you're good to go ahead! But if the terminal reads ```brew not found```, please go through the [macOS instructions in the setting up git lesson](https://www.theodinproject.com/lessons/foundations-setting-up-git) to get homebrew installed.
+   Nếu lệnh xuất ra một đường dẫn nào đó, bạn có thể tiếp tục! Nhưng nếu terminal hiển thị ```brew not found```, hãy làm theo [hướng dẫn macOS trong bài học thiết lập git](https://www.theodinproject.com/lessons/foundations-setting-up-git) để cài đặt homebrew.
 
-Congratulations! You've installed the prerequisites!
+Chúc mừng! Bạn đã cài đặt xong các thành phần tiên quyết!
 
-### Step 2: Install rbenv
+### Bước 2: Cài đặt rbenv
 
-Now you're ready to install Ruby. We're going to use a tool called `rbenv`, which makes it easy to manage Ruby versions.
+Bây giờ bạn đã sẵn sàng cài đặt Ruby. Chúng ta sẽ sử dụng một công cụ có tên `rbenv`, giúp việc quản lý các phiên bản Ruby trở nên dễ dàng.
 
-1. First, let's install `ruby-build`:
+1. Trước tiên, hãy cài đặt `ruby-build`:
 
    ```bash
    brew install ruby-build
    ```
 
-   `ruby-build` will make it possible to install our Ruby version of choice.
+   `ruby-build` sẽ cho phép bạn cài đặt phiên bản Ruby mà mình muốn.
 
-1. To install `rbenv`, run the following in your terminal:
+1. Để cài đặt `rbenv`, hãy chạy lệnh sau trong terminal:
 
    ```bash
    brew install rbenv
    ```
 
-   Then, run this command:
+   Sau đó, chạy lệnh này:
 
    ```bash
    rbenv init
    ```
 
-1. To confirm that everything went as it should, close your terminal and open a new one, then run:
+1. Để xác nhận mọi thứ đã diễn ra đúng như mong đợi, hãy đóng terminal và mở lại một cửa sổ mới, sau đó chạy:
 
    ```bash
    rbenv -v
    ```
 
-   You should get an output with a version number **similar** to this:
+   Bạn sẽ nhận được kết quả có số phiên bản **tương tự** như sau:
 
    ```bash
    rbenv 1.2.0-14-gc6cc0a1
    ```
 
-   If you do not get a version number at all (anything not starting with `rbenv 1...`), please ask for help in [our Discord server](https://discordapp.com/channels/505093832157691914/505093832157691916).
+   Nếu hoàn toàn không nhận được số phiên bản nào (bất kỳ kết quả nào không bắt đầu bằng `rbenv 1...`), hãy nhờ trợ giúp trong [máy chủ Discord của chúng tôi](https://discordapp.com/channels/505093832157691914/505093832157691916).
 
-#### Step 3: Install Ruby
+#### Bước 3: Cài đặt Ruby
 
-We can now (finally) install Ruby! Our curriculum currently uses version 3.4.6, which will allow you to complete this path's materials and content without error. We upgrade the material to accommodate newer versions as necessary. Without further ado, let's get going!
+Bây giờ (cuối cùng) chúng ta có thể cài đặt Ruby! Hiện tại, chương trình học của chúng ta sử dụng phiên bản 3.4.6, phiên bản này sẽ cho phép bạn hoàn thành các tài liệu và nội dung của lộ trình mà không gặp lỗi. Khi cần thiết, chúng tôi sẽ cập nhật tài liệu để phù hợp với các phiên bản mới hơn. Không chần chừ thêm nữa, hãy bắt đầu thôi!
 
-1. First, let's upgrade `ruby-build`:
+1. Trước tiên, hãy nâng cấp `ruby-build`:
 
    ```bash
    brew upgrade ruby-build
    ```
 
-1. Now we're ready to install our desired version of Ruby:
+1. Bây giờ chúng ta đã sẵn sàng cài đặt phiên bản Ruby mong muốn:
 
    ```bash
    rbenv install 3.4.6 --verbose
    ```
 
-   This command will take 10-15 minutes to complete. The `--verbose` flag will show you what's going on so you can be sure it hasn't gotten stuck. While it installs, take this time to watch [funny jumping goats video](https://www.youtube.com/watch?v=X2CYWg9-2N0) or to get a glass of water.
+   Lệnh này sẽ mất từ 10–15 phút để hoàn tất. Cờ `--verbose` sẽ hiển thị những gì đang diễn ra để bạn biết chắc quá trình không bị treo. Trong lúc chờ cài đặt, bạn có thể xem [video những chú dê nhảy vui nhộn](https://www.youtube.com/watch?v=X2CYWg9-2N0) hoặc đi lấy một cốc nước.
 
-1. Once Ruby is installed, you need to tell rbenv which version to use by default. Inside the terminal, run:
+1. Sau khi cài đặt Ruby, bạn cần cho rbenv biết phiên bản nào sẽ được sử dụng theo mặc định. Trong terminal, hãy chạy:
 
    ```bash
    rbenv global 3.4.6
    ```
 
-1. Now double check that this worked by checking that the current Ruby version in use is 3.4.6:
+1. Bây giờ, hãy kiểm tra lại để chắc chắn mọi thứ đã hoạt động bằng cách xác nhận phiên bản Ruby hiện đang được sử dụng là 3.4.6:
 
    ```bash
    ruby -v
    ```
 
-   You should get an output with a version number **similar** to this:
+   Bạn sẽ nhận được kết quả có số phiên bản **tương tự** như sau:
 
    ```bash
    ruby 3.4.6pxx (20xx-xx-xx revision xxxxx) [x86_64-darwin18]
    ```
 
-   If you don't see the output above, close and reopen the terminal window, then run the command again.
+   Nếu không thấy kết quả như trên, hãy đóng rồi mở lại cửa sổ terminal và chạy lại lệnh.
 
-Well done! Pat yourself on the back! The hard part is done, and it's time to move on to the next lesson!
+Làm tốt lắm! Hãy tự vỗ vai mình một cái! Phần khó nhất đã hoàn thành, và đã đến lúc chuyển sang bài học tiếp theo!
 
-[Return to the Installing Ruby lesson](https://www.theodinproject.com/lessons/ruby-installing-ruby#assignment)
+[Quay lại bài học Cài đặt Ruby](https://www.theodinproject.com/lessons/ruby-installing-ruby#assignment)

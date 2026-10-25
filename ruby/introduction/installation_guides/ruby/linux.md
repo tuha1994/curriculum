@@ -1,86 +1,86 @@
-### Guide: Install Ruby on Linux
+### Hướng dẫn: Cài đặt Ruby trên Linux
 
-#### Step 1: Install updates, packages and libraries
+#### Bước 1: Cài đặt các bản cập nhật, gói và thư viện
 
-Before we can install Ruby, we need to install some base packages.
+Trước khi có thể cài đặt Ruby, chúng ta cần cài đặt một số gói cơ bản.
 
-1. We'll use the terminal to install all of the programs.
+1. Chúng ta sẽ dùng terminal để cài đặt tất cả các chương trình.
 
-   If you're using Ubuntu or Xubuntu, press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> to open the terminal (this may or may not work in other Ubuntu flavours; you'll have to try).
+   Nếu bạn đang dùng Ubuntu hoặc Xubuntu, hãy nhấn <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> để mở terminal (cách này có thể hoạt động hoặc không hoạt động trên các biến thể Ubuntu khác; bạn sẽ phải thử).
 
-   **Quick tip:** In Linux, you can copy from the terminal with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> and paste with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>.
+   **Mẹo nhanh:** Trên Linux, bạn có thể sao chép từ terminal bằng <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> và dán bằng <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>.
 
-1. The rest of the installation will take place inside the terminal window.
+1. Phần còn lại của quá trình cài đặt sẽ diễn ra trong cửa sổ terminal.
 
-   First, we need to make sure your Linux distribution is up to date. Run these commands one by one. Because these commands use `sudo`, you will have to enter your password in order for them to run. When typing your password, you may not get any visual feedback, but rest assured that your password is being entered. Once you're done typing your password, press <kbd>Enter</kbd>.
+   Trước hết, chúng ta cần đảm bảo bản phân phối Linux của bạn đã được cập nhật. Hãy chạy lần lượt từng lệnh sau. Vì các lệnh này sử dụng `sudo`, bạn sẽ phải nhập mật khẩu để chúng có thể chạy. Khi nhập mật khẩu, có thể bạn sẽ không thấy phản hồi nào trên màn hình, nhưng hãy yên tâm rằng mật khẩu vẫn đang được nhập. Sau khi nhập xong mật khẩu, hãy nhấn <kbd>Enter</kbd>.
 
    ```bash
    sudo apt update
    sudo apt upgrade
    ```
 
-   When it prompts you, press <kbd>Y</kbd> and then <kbd>Enter</kbd>.
+   Khi được nhắc, hãy nhấn <kbd>Y</kbd> rồi nhấn <kbd>Enter</kbd>.
 
-1. Next, you need to install some required packages that do not come preinstalled. Be sure to copy and paste this command.
+1. Tiếp theo, bạn cần cài đặt một số gói bắt buộc chưa được cài sẵn. Hãy nhớ sao chép và dán lệnh này.
 
    ```bash
    sudo apt install gcc make libssl-dev libreadline-dev zlib1g-dev libsqlite3-dev libyaml-dev
    ```
 
-   When it prompts you, press <kbd>Y</kbd> and then <kbd>Enter</kbd>. You may or may not have to type your password after pressing <kbd>Enter</kbd>.
+   Khi được nhắc, hãy nhấn <kbd>Y</kbd> rồi nhấn <kbd>Enter</kbd>. Có thể bạn sẽ phải nhập mật khẩu sau khi nhấn <kbd>Enter</kbd>, nhưng cũng có thể không.
 
-#### Step 2: Install rbenv
+#### Bước 2: Cài đặt rbenv
 
-To install Ruby, we're going to use a tool called `rbenv` which makes it easy to install and manage Ruby versions.
+Để cài đặt Ruby, chúng ta sẽ sử dụng một công cụ có tên `rbenv`, giúp việc cài đặt và quản lý các phiên bản Ruby trở nên dễ dàng.
 
-1. First, you need to clone the rbenv repository:
+1. Trước tiên, bạn cần sao chép kho lưu trữ rbenv:
 
    ```bash
    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
    ```
 
-1. Run the next command, which takes care of setting rbenv:
+1. Chạy lệnh tiếp theo để thiết lập rbenv:
 
    ```bash
    ~/.rbenv/bin/rbenv init
    ```
 
-   Now close the terminal window and open a new one to refresh.
+   Bây giờ hãy đóng cửa sổ terminal và mở lại một cửa sổ mới để làm mới môi trường.
 
-1. Next, you need to install `ruby-build` to help compile the Ruby binaries. Run these commands in the terminal to create a directory for the ruby-build plugin and then download it to the proper directory.
+1. Tiếp theo, bạn cần cài đặt `ruby-build` để hỗ trợ biên dịch các tệp nhị phân Ruby. Hãy chạy các lệnh sau trong terminal để tạo thư mục cho plugin ruby-build, sau đó tải plugin này vào đúng thư mục.
 
    ```bash
    mkdir -p "$(rbenv root)"/plugins
    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
    ```
 
-1. Finally, run the following command from your terminal to verify that `rbenv` has been installed correctly:
+1. Cuối cùng, hãy chạy lệnh sau trong terminal để xác minh rằng `rbenv` đã được cài đặt chính xác:
 
    ```bash
    rbenv -v
    ```
 
-   You should get an output with a version number **similar** to this:
+   Bạn sẽ nhận được kết quả có số phiên bản **tương tự** như sau:
 
    ```bash
    rbenv 1.2.0-14-gc6cc0a1
    ```
 
-   If you do not get a version number at all (anything not starting with `rbenv 1...`), please ask for help in [our Discord server](https://discordapp.com/channels/505093832157691914/505093832157691916).
+   Nếu hoàn toàn không nhận được số phiên bản nào (bất kỳ kết quả nào không bắt đầu bằng `rbenv 1...`), hãy nhờ trợ giúp trong [máy chủ Discord của chúng tôi](https://discordapp.com/channels/505093832157691914/505093832157691916).
 
-#### Step 3: Install Ruby
+#### Bước 3: Cài đặt Ruby
 
-It's finally time to install Ruby using `rbenv`!
+Cuối cùng cũng đến lúc cài đặt Ruby bằng `rbenv`!
 
-1. Inside the terminal, run this command:
+1. Trong terminal, hãy chạy lệnh này:
 
    ```bash
    rbenv install 3.4.6 --verbose
    ```
 
-   This command will take 10-15 minutes to complete. The `--verbose` flag will show you what's going on so you can be sure it hasn't gotten stuck. While it installs, take this time to watch [funny jumping goats video](https://youtu.be/X2CYWg9-2N0) or to get a glass of water.
+   Lệnh này sẽ mất từ 10–15 phút để hoàn tất. Cờ `--verbose` sẽ hiển thị những gì đang diễn ra để bạn biết chắc quá trình không bị treo. Trong lúc chờ cài đặt, bạn có thể xem [video những chú dê nhảy vui nhộn](https://youtu.be/X2CYWg9-2N0) hoặc đi lấy một cốc nước.
 
-   You may get this error message:
+   Bạn có thể gặp thông báo lỗi sau:
 
    ```bash
    ruby-build: definition not found: x.x.x
@@ -92,30 +92,30 @@ It's finally time to install Ruby using `rbenv`!
      git -C /home/itorja/.rbenv/plugins/ruby-build pull
    ```
 
-   If so, we run the suggested command:
+   Nếu gặp lỗi này, hãy chạy lệnh được đề xuất:
 
    ```bash
    git -C "$(rbenv root)"/plugins/ruby-build pull
    ```
 
-1. Once Ruby is installed, you need to tell rbenv which version to use by default. Inside the terminal, run:
+1. Sau khi cài đặt Ruby, bạn cần cho rbenv biết phiên bản nào sẽ được sử dụng theo mặc định. Trong terminal, hãy chạy:
 
    ```bash
    rbenv global 3.4.6
    ```
 
-1. Now check the version of Ruby your system is using by running:
+1. Bây giờ, hãy kiểm tra phiên bản Ruby mà hệ thống đang sử dụng bằng cách chạy:
 
    ```bash
    ruby -v
    ```
 
-   The above command should return something similar to the below, where x represents the version available at the time you installed Ruby:
+   Lệnh trên sẽ trả về kết quả tương tự như dưới đây, trong đó x đại diện cho phiên bản có sẵn tại thời điểm bạn cài đặt Ruby:
 
    ```bash
    ruby 3.4.6pxx (20xx-xx-xx revision xxxxx) [x86_64-linux]
    ```
 
-Well done! Pat yourself on the back! The hard part is done, and it's time to move on to the next lesson!
+Làm tốt lắm! Hãy tự vỗ vai mình một cái! Phần khó nhất đã hoàn thành, và đã đến lúc chuyển sang bài học tiếp theo!
 
-[Return to the Installing Ruby lesson](https://www.theodinproject.com/lessons/ruby-installing-ruby#assignment)
+[Quay lại bài học Cài đặt Ruby](https://www.theodinproject.com/lessons/ruby-installing-ruby#assignment)

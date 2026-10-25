@@ -1,75 +1,75 @@
-### Introduction
+### Giới thiệu
 
-This is a basic follow along lesson to show you how Action Cable can be used to enhance an application to give it real time features. We won't explain everything in detail, as much of the setup instructions should be familiar to you but will take the time around the Action Cable specific content to explain things a little more.
+Đây là một bài học thực hành cơ bản nhằm chỉ cho bạn cách sử dụng Action Cable để nâng cấp ứng dụng và bổ sung các tính năng thời gian thực. Chúng ta sẽ không giải thích mọi thứ thật chi tiết, vì phần lớn hướng dẫn thiết lập hẳn đã quen thuộc với bạn; tuy nhiên, chúng ta sẽ dành thời gian giải thích kỹ hơn một chút ở những phần riêng về Action Cable.
 
-The app we'll build will be in two stages. The first stage will be an app for sending messages only viewable to those currently logged in. We'll then build on it in the second stage to save the messages so that they are also viewable to anyone who logs in in the future.
+Ứng dụng chúng ta xây dựng sẽ gồm hai giai đoạn. Ở giai đoạn đầu, đó sẽ là một ứng dụng gửi các tin nhắn chỉ những người đang đăng nhập mới xem được. Sau đó, ở giai đoạn hai, chúng ta sẽ phát triển tiếp để lưu các tin nhắn, nhờ vậy chúng cũng có thể được xem bởi bất kỳ ai đăng nhập trong tương lai.
 
-### Setup
+### Thiết lập
 
-First let's create the app
+Trước tiên, hãy tạo ứng dụng
 
 ```bash
 rails new messenger -T
 ```
 
-Add devise to the Gemfile
+Thêm devise vào Gemfile
 
 ```bash
 bundle add devise
 ```
 
-`bundle add` both adds the gem to our Gemfile and runs bundle install. The good thing about it is it also sets the gem version to its latest variant. The down side is that it adds the gems to the bottom of the Gemfile by default. So use it with caution. [The `bundle add` command has a few flags you can use](https://bundler.io/man/bundle-add.1.html).
+`bundle add` vừa thêm gem vào Gemfile vừa chạy bundle install. Điểm hay là nó cũng đặt phiên bản gem thành biến thể mới nhất. Mặt hạn chế là theo mặc định, nó thêm các gem vào cuối Gemfile. Vì vậy hãy dùng lệnh này thận trọng. [Lệnh `bundle add` có một vài tùy chọn bạn có thể sử dụng](https://bundler.io/man/bundle-add.1.html).
 
-Run the devise installer
+Chạy trình cài đặt devise
 
 ```bash
 rails generate devise:install
 ```
 
-Open `config/environments/development.rb` and add the following line
+Mở `config/environments/development.rb` và thêm dòng sau
 
 ```ruby
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 ```
 
-Generate our user model and migrate
+Tạo model user và migrate
 
 ```bash
 rails generate devise user && rails db:migrate
 ```
 
-To get things started we'll just create a couple of users in `db/seeds.rb`
+Để bắt đầu, chúng ta chỉ cần tạo một vài user trong `db/seeds.rb`
 
 ```ruby
 User.create(email: 'humblebragger@humblebrag.com', password: 'humblebaby')
 User.create(email: 'fitnessgrampacer@test.com', password: 'pacertest')
 ```
 
-You can set the user info to whatever you want. Then run the seed file
+Bạn có thể đặt thông tin user tùy ý. Sau đó chạy tệp seed
 
 ```bash
 rails db:seed
 ```
 
-Let's create a basic one page app, users will land on our homepage, get redirected to log in, and then directed back to the homepage. First let's create a controller. We'll just call it `hangouts` as our users will hangout there doing absolutely nothing.
+Hãy tạo một ứng dụng một trang cơ bản: user sẽ vào trang chủ, được chuyển hướng đến trang đăng nhập, rồi được đưa trở lại trang chủ. Trước tiên, hãy tạo một controller. Chúng ta sẽ gọi nó là `hangouts`, vì user sẽ tụ tập ở đó mà chẳng làm gì cả.
 
 ```bash
 rails generate controller hangouts index
 ```
 
-Set the root to our index page in `routes.rb`
+Đặt trang index làm root trong `routes.rb`
 
 ```ruby
 root 'hangouts#index'
 ```
 
-Let's also protect our app from unauthorised viewing by adding the following to `app/controllers/application_controller.rb`
+Đồng thời, hãy bảo vệ ứng dụng khỏi việc bị xem trái phép bằng cách thêm đoạn sau vào `app/controllers/application_controller.rb`
 
 ```ruby
 before_action :authenticate_user!
 ```
 
-Lastly in the initial setup, let's add a little bit of styling with the Bulma gem and a navbar just with some login and logout functionality. We'll also install dartsass-rails so that Bulma works appropriately. (Note: If you receive this error - `LoadError: cannot load such file -- sassc` run `rails tmp:clear` and try restarting the server)
+Cuối cùng trong phần thiết lập ban đầu, hãy thêm một chút giao diện với gem Bulma và một thanh điều hướng chỉ có chức năng đăng nhập, đăng xuất. Chúng ta cũng sẽ cài dartsass-rails để Bulma hoạt động phù hợp. (Lưu ý: Nếu bạn nhận được lỗi này - `LoadError: cannot load such file -- sassc`, hãy chạy `rails tmp:clear` rồi thử khởi động lại server.)
 
 ```bash
 bundle add bulma-rails
@@ -77,15 +77,15 @@ bundle add bulma-rails
 ./bin/rails dartsass:install
 ```
 
-Next, and just to save some time you need to go to the `app/assets/stylesheets/` directory and change `application.css` to `application.scss`. Bulma-rails uses scss and although there are other ways to handle it this is the easiest.
+Tiếp theo, để tiết kiệm thời gian, hãy đi tới thư mục `app/assets/stylesheets/` và đổi tên `application.css` thành `application.scss`. Bulma-rails sử dụng scss; dù có những cách khác để xử lý việc này, đây là cách dễ nhất.
 
-Now open the `application.scss` file and right at the bottom add
+Bây giờ mở tệp `application.scss` và thêm đoạn sau ngay cuối tệp
 
 ```css
 @use "bulma";
 ```
 
-Lastly, to add the navbar functionality we can just add it straight into the main layout file. Open `app/views/layouts/application.html.erb` add the following code right below the opening `<body>` tag and above the `<%= yield %>` line.
+Cuối cùng, để thêm chức năng cho thanh điều hướng, chúng ta có thể đặt trực tiếp nó vào tệp layout chính. Mở `app/views/layouts/application.html.erb`, rồi thêm đoạn mã sau ngay dưới thẻ mở `<body>` và phía trên dòng `<%= yield %>`.
 
 ```html
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -103,21 +103,21 @@ Lastly, to add the navbar functionality we can just add it straight into the mai
 </nav>
 ```
 
-This mostly is just using Bulma stylings to make it look nice.
+Đoạn này chủ yếu chỉ sử dụng các kiểu giao diện của Bulma để làm cho ứng dụng trông đẹp hơn.
 
-Now if you were to spin up a server and open localhost in a browser you should need to log in to access the homepage and be able to logout using the button in the navbar. The login button is actually pretty redundant since as soon as you logout you get taken to the login screen because the app is protected, but it is what it is.
+Bây giờ, nếu khởi động server và mở localhost trong trình duyệt, bạn sẽ cần đăng nhập để truy cập trang chủ và có thể đăng xuất bằng nút trên thanh điều hướng. Nút đăng nhập thực ra khá thừa, vì ngay khi đăng xuất bạn sẽ được đưa đến màn hình đăng nhập do ứng dụng đang được bảo vệ, nhưng cứ để vậy cũng được.
 
 ### Action Cable
 
-Let's now deal with setting up the server connection. As we covered in the Action Cable lesson, the connection manages all the channels that a client subscribes to and deals with authentication and authorization.
+Bây giờ hãy xử lý việc thiết lập kết nối server. Như đã trình bày trong bài học Action Cable, connection quản lý tất cả channel mà một client đăng ký, đồng thời xử lý việc xác thực và phân quyền.
 
-The Action Cable files are not generated by default when you create a new app. We need to generate a channel first, which will also create the necessary Action Cable directory and files. Let's create a channel for messages. In the terminal we can write
+Các tệp Action Cable không được tạo mặc định khi bạn tạo ứng dụng mới. Trước tiên chúng ta cần tạo một channel; thao tác này cũng sẽ tạo các thư mục và tệp Action Cable cần thiết. Hãy tạo một channel cho message. Trong terminal, hãy nhập
 
 ```bash
 rails generate channel message
 ```
 
-You can see from the output it creates some files for us
+Bạn có thể thấy từ kết quả đầu ra rằng nó tạo một số tệp cho chúng ta
 
 ```bash
       create  app/channels/application_cable/channel.rb
@@ -128,9 +128,9 @@ You can see from the output it creates some files for us
       create  app/javascript/channels/message_channel.js
 ```
 
-This has created the Action Cable base files (`connection.rb` and `channel.rb`), as well as the `message_channel.rb` and `message_channel.js` files we will use shortly.
+Thao tác này đã tạo các tệp nền tảng của Action Cable (`connection.rb` và `channel.rb`), cùng với các tệp `message_channel.rb` và `message_channel.js` mà chúng ta sẽ sớm sử dụng.
 
-Now open up `app/channels/application_cable/connection.rb` so we can authorize a connection when the user logs in. The code is pretty identical to the [connection](https://guides.rubyonrails.org/action_cable_overview.html#server-side-components-connections) found in the Rails Guides on Action Cable, with the only difference being we can use the user details set on the Warden environment variable (Devise is built on top of [Warden](https://github.com/wardencommunity/warden/wiki)).
+Bây giờ mở `app/channels/application_cable/connection.rb` để chúng ta có thể cấp quyền cho một connection khi user đăng nhập. Đoạn mã này gần như giống hệt [connection](https://guides.rubyonrails.org/action_cable_overview.html#server-side-components-connections) trong Rails Guides về Action Cable; điểm khác duy nhất là chúng ta có thể sử dụng thông tin user được đặt trên biến môi trường Warden (Devise được xây dựng trên [Warden](https://github.com/wardencommunity/warden/wiki)).
 
 ```ruby
 module ApplicationCable
@@ -154,9 +154,9 @@ module ApplicationCable
 end
 ```
 
-This is used to establish a connection between client and server but it won't do anything until you set up the channel. It is the channel that makes a request to the websocket server that then starts the connection authorization.
+Đoạn mã này dùng để thiết lập kết nối giữa client và server, nhưng sẽ chưa làm gì cho đến khi bạn thiết lập channel. Chính channel sẽ gửi yêu cầu đến server websocket, từ đó bắt đầu quá trình cấp quyền cho connection.
 
-In `app/channels/message_channel.rb` let's establish our stream. Remember, streams are how Rails publishes broadcasts to subscribers. We won't be operating on a model so we won't need `stream_for`. We can instead use `stream_from` to just stream to our message room.
+Trong `app/channels/message_channel.rb`, hãy thiết lập stream của chúng ta. Hãy nhớ rằng stream là cách Rails phát broadcast đến các subscriber. Chúng ta sẽ không thao tác trên model, nên không cần `stream_for`. Thay vào đó, chúng ta có thể dùng `stream_from` để chỉ phát stream tới phòng message của mình.
 
 ```ruby
 class MessageChannel < ApplicationCable::Channel
@@ -170,9 +170,9 @@ class MessageChannel < ApplicationCable::Channel
 end
 ```
 
-Now that our stream is setup you should see in the server logs when you refresh that you are connected to the channel with `MessageChannel is streaming from message`. Nice.
+Bây giờ stream đã được thiết lập, khi refresh bạn sẽ thấy trong log server rằng mình đã kết nối với channel, với dòng `MessageChannel is streaming from message`. Tuyệt.
 
-The next thing we need is a display for our messages and a form in which to post them on our index page. Open up `app/views/hangouts/index.html.erb` and add the following code
+Việc tiếp theo cần làm là tạo nơi hiển thị message và một form để đăng message trên trang index. Mở `app/views/hangouts/index.html.erb` và thêm đoạn mã sau
 
 ```html
 <div>
@@ -193,9 +193,9 @@ The next thing we need is a display for our messages and a form in which to post
 </div>
 ```
 
-We've written a div with an id of `message-display` where we can display the messages as they are created and then we have a form. The form doesn't have an action because we aren't posting it anywhere. We'll need to grab a reference to the form in our JavaScript and when it's submitted we can post a message to the websocket server. We use a basic HTML form because we don't have an object or url to work with so Rails form helpers aren't much use to us. We can change this later when we do create a Message object to work with. All the class names are Bulma stylings so don't worry too much about the markup.
+Chúng ta đã viết một div có id `message-display`, nơi có thể hiển thị các message khi chúng được tạo, rồi thêm một form. Form không có action vì chúng ta không gửi nó đến đâu cả. Chúng ta sẽ cần lấy tham chiếu đến form trong JavaScript; khi form được submit, ta có thể gửi một message đến server websocket. Chúng ta dùng một form HTML cơ bản vì hiện chưa có object hay url để làm việc, nên các helper form của Rails không hữu ích lắm. Sau này, khi tạo Message object để thao tác, chúng ta có thể thay đổi điều này. Tất cả tên class đều là kiểu giao diện của Bulma, nên đừng quá bận tâm đến markup.
 
-I'm not going to stress about the page looking amazing. But just to make the message display area a decent size open up `app/assets/stylesheets/hangouts.scss` and add the following code.
+Tôi sẽ không quá lo về việc trang phải trông thật đẹp. Nhưng để khu vực hiển thị message có kích thước vừa phải, hãy mở `app/assets/stylesheets/hangouts.scss` và thêm đoạn mã sau.
 
 ```css
 #message-display {
@@ -208,20 +208,18 @@ I'm not going to stress about the page looking amazing. But just to make the mes
 }
 ```
 
-Import this into `app/assets/stylesheets/application.scss` by adding the
-following at the bottom of that file:
+Import tệp này vào `app/assets/stylesheets/application.scss` bằng cách thêm đoạn sau ở cuối tệp đó:
 
 ```scss
 @import "./hangouts.scss"
 ```
 
-The [Asset Pipeline](https://guides.rubyonrails.org/asset_pipeline.html) should
-pick up on these changes, but if not:
+[Asset Pipeline](https://guides.rubyonrails.org/asset_pipeline.html) sẽ nhận biết những thay đổi này, nhưng nếu không thì:
 
-1. run `./bin/dev` to recompile the stylesheet assets
-1. If the changes are not being picked up, run `rails assets:precompile`.
+1. chạy `./bin/dev` để biên dịch lại các asset stylesheet
+1. Nếu các thay đổi vẫn chưa được nhận biết, hãy chạy `rails assets:precompile`.
 
-Now when the form is submitted, we need to intercept and handle it. Open up our `app/javascript/channels/message_channel.js` and take a look at the code as it stands.
+Bây giờ, khi form được submit, chúng ta cần chặn và xử lý nó. Mở `app/javascript/channels/message_channel.js` và xem đoạn mã hiện có.
 
 ```javascript
 
@@ -239,9 +237,9 @@ const messageChannel = consumer.subscriptions.create("MessageChannel", {
 });
 ```
 
-Yours will have some comments that aren't important, but you will need to verify that the constant `messageChannel` is declared. What we need to do here first is set an event listener on the form submit so we can grab the value entered. Once we have the value, we want to send it to the server to be broadcast to all the channel subscribers. This is what we call [rebroadcasting](https://guides.rubyonrails.org/action_cable_overview.html#rebroadcasting-a-message). We can use `MessageChannel.send` to send the value entered in the input box to our websocket server.
+Đoạn mã của bạn có thể có một vài comment không quan trọng, nhưng bạn cần xác nhận rằng hằng số `messageChannel` đã được khai báo. Việc đầu tiên cần làm ở đây là đặt một event listener cho thao tác submit của form để lấy giá trị đã nhập. Khi có giá trị đó, chúng ta muốn gửi nó đến server để broadcast cho tất cả subscriber của channel. Đây được gọi là [rebroadcasting](https://guides.rubyonrails.org/action_cable_overview.html#rebroadcasting-a-message). Chúng ta có thể sử dụng `MessageChannel.send` để gửi giá trị trong ô input đến server websocket.
 
-Right at the bottom of our `message_channel.js` file add the following code
+Ngay cuối tệp `message_channel.js`, hãy thêm đoạn mã sau
 
 ```javascript
 document.addEventListener("turbo:load", () => {
@@ -260,19 +258,19 @@ document.addEventListener("turbo:load", () => {
 })
 ```
 
-Firstly, since JS assets are loaded in the head of our HTML, the JavaScript files will be evaluated often before the DOM has rendered, so we first want to make sure the DOM has been created. We do this using the `turbo:load` event listener. Then we want to check if we are on a page with the form. It might seem obvious since we only have one page but you can never be too careful...
+Trước hết, vì asset JS được tải trong phần head của HTML nên các tệp JavaScript thường được đánh giá trước khi DOM được render. Do đó, trước tiên chúng ta cần đảm bảo DOM đã được tạo. Ta làm việc này bằng event listener `turbo:load`. Tiếp theo, chúng ta kiểm tra xem hiện có đang ở một trang chứa form hay không. Có thể điều này nghe hiển nhiên vì chúng ta chỉ có một trang, nhưng cẩn thận không bao giờ là thừa...
 
-Next if we are on a page with the form we add an event listener to it on its submit property. When the form is submitted we first prevent the default submit from happening. This stops the page rerendering. Then we grab the value from our input field and check it isn't an empty string. If it is, then we return and do nothing. If it isn't, then we create a JS object with a key named `body` which holds the value of our messageInput. If you're wondering why we did this under its own object instead of just sending `message: messageInput` in the send method it's because often you'll submit more than one parameter, and when we do create a Message Model this is similar to how it will be returned from a controller.
+Tiếp theo, nếu đang ở trang có form, chúng ta thêm event listener cho thuộc tính submit của nó. Khi form được submit, trước tiên ta ngăn thao tác submit mặc định. Việc này ngăn trang render lại. Sau đó, ta lấy giá trị từ trường input và kiểm tra xem nó có phải chuỗi rỗng hay không. Nếu rỗng, ta return và không làm gì cả. Nếu không, ta tạo một object JS có key tên là `body`, chứa giá trị của messageInput. Nếu bạn thắc mắc tại sao chúng ta đặt nó trong một object riêng thay vì chỉ gửi `message: messageInput` trong phương thức send, đó là vì thường bạn sẽ submit nhiều hơn một tham số; và khi tạo Message Model, đây cũng tương tự cách nó sẽ được trả về từ controller.
 
-The last part of our code is the important bit. We call `send` on `messageChannel` and pass it an object with a key of `message` and a value of the message object we create earlier. You can see we create `messageChannel` in this line `const messageChannel = consumer.subscriptions.create("MessageChannel", {`. So it holds a reference to the channel created for message. When we call `send` on it, Rails knows to route it to the message_channel on the server side. If you save this file and refresh your browser if you have a rails server running you should be able to submit a message without the page refreshing. Check the server logs and you should see something like
+Phần cuối của đoạn mã mới là phần quan trọng. Chúng ta gọi `send` trên `messageChannel` và truyền vào một object có key là `message`, với giá trị là message object đã tạo trước đó. Bạn có thể thấy `messageChannel` được tạo trong dòng `const messageChannel = consumer.subscriptions.create("MessageChannel", {`. Vì vậy nó giữ tham chiếu đến channel được tạo cho message. Khi gọi `send` trên đó, Rails biết phải định tuyến nó tới message_channel ở phía server. Nếu lưu tệp này rồi refresh trình duyệt khi server Rails đang chạy, bạn sẽ có thể submit một message mà không làm trang refresh. Kiểm tra log server, bạn sẽ thấy nội dung tương tự
 
 ```bash
 Unable to process MessageChannel#receive({"message"=>{"body"=>"hello"}})
 ```
 
-This is because we're missing the server side handling of our message submitted to the server. The Rails Guides section linked above on rebroadcasting shows a `receive` method on the server side to handle incoming messages from the client.
+Điều này xảy ra vì chúng ta chưa có phần xử lý phía server cho message được submit đến server. Phần rebroadcasting trong Rails Guides được liên kết ở trên có trình bày một phương thức `receive` ở phía server để xử lý message đến từ client.
 
-Open up `app/channels/message_channel.rb` and underneath the `unsubscribed` method lets add the receive method
+Mở `app/channels/message_channel.rb` và thêm phương thức receive bên dưới phương thức `unsubscribed`
 
 ```ruby
 def receive(data)
@@ -280,9 +278,9 @@ def receive(data)
 end
 ```
 
-Rails handles routing any incoming message from a client to the `receive` method on the class representing the channel through which the message was sent. In our `receive` method we broadcast the message right back to all subscribers of the `message` stream. Sending it right back might seem strange but it's how we can ensure a message created on one client gets sent to all other clients subscribed to the channel without them having to refresh their browser. This is one of the main benefits of WebSockets.
+Rails xử lý việc định tuyến mọi message đến từ client tới phương thức `receive` trên class đại diện cho channel mà message được gửi qua. Trong phương thức `receive`, chúng ta broadcast message trở lại cho tất cả subscriber của stream `message`. Việc gửi ngược lại có vẻ kỳ lạ, nhưng đó là cách đảm bảo message được tạo trên một client sẽ được gửi đến tất cả client khác đã subscribe channel mà không cần họ refresh trình duyệt. Đây là một trong những lợi ích chính của WebSockets.
 
-When data is broadcast to subscriber it goes right back to the client side to the object handling the connection to the websocket channel. In this case it's our `messageChannel` that references the connection. Data received here goes, funnily enough, to the `received` function of our messageChannel object in `message_channel.js`. Inside `received` we need to use the data received to create a template for the message so we can display it and we then want to append it to our `#message-display` div. In order to create a template we can use JavaScript string template literals. Underneath the `received` function add a new function called `template` that will receive the data and return an HTML string. The template does use some Bulma stylings so don't worry about the actual markup. It could be any HTML.
+Khi dữ liệu được broadcast đến subscriber, nó sẽ quay lại phía client, tới object đang xử lý connection với websocket channel. Trong trường hợp này, đó là `messageChannel` tham chiếu đến connection. Dữ liệu nhận được ở đây, đúng như tên gọi, sẽ đi tới hàm `received` của object messageChannel trong `message_channel.js`. Bên trong `received`, chúng ta cần dùng dữ liệu nhận được để tạo template cho message nhằm hiển thị nó, rồi nối template vào div `#message-display`. Để tạo template, chúng ta có thể dùng JavaScript string template literal. Bên dưới hàm `received`, hãy thêm một hàm mới tên là `template`, hàm này nhận data và trả về một chuỗi HTML. Template có dùng một số kiểu giao diện của Bulma, nên đừng quá bận tâm đến markup thực tế. Nó có thể là bất kỳ HTML nào.
 
 ```javascript
 const messageChannel = consumer.subscriptions.create("MessageChannel", {
@@ -308,9 +306,9 @@ const messageChannel = consumer.subscriptions.create("MessageChannel", {
 });
 ```
 
-Don't forget to add a comma after the received function.
+Đừng quên thêm dấu phẩy sau hàm received.
 
-To get the message to display in our view we first find the div with the id of `message-display` that we created in our hangouts index view. We can then create the template and insert it into the document. This will happen in our `received()` function which handles incoming messages from the websocket server.
+Để hiển thị message trong view, trước tiên chúng ta tìm div có id `message-display` đã tạo trong view index của hangouts. Sau đó, ta có thể tạo template và chèn nó vào document. Việc này sẽ diễn ra trong hàm `received()`, là hàm xử lý các dữ liệu đến từ server websocket.
 
 ```javascript
 received(data) {
@@ -319,9 +317,9 @@ received(data) {
 }
 ```
 
-If you try this now you will get an error. That is because the data received doesn't know anything about the user so in our template where we write `${data.user.email}` it won't have a reference to the user.
+Nếu thử ngay bây giờ, bạn sẽ gặp lỗi. Đó là vì dữ liệu nhận được không biết gì về user; do đó trong template, chỗ viết `${data.user.email}` sẽ không có tham chiếu đến user.
 
-To fix this we need to go back to our `receive` method in `message_channel.rb`. Recall it currently looks like
+Để sửa, chúng ta cần quay lại phương thức `receive` trong `message_channel.rb`. Hãy nhớ hiện tại nó có dạng
 
 ```ruby
 def receive(data)
@@ -329,7 +327,7 @@ def receive(data)
 end
 ```
 
-To fix this we just need to set user on data. Remember data was json that has been turned into a hash object in our Ruby code. And we have access to the user who sent the message from `current_user`.
+Để sửa, chúng ta chỉ cần đặt user vào data. Hãy nhớ data là json đã được chuyển thành hash object trong mã Ruby, và chúng ta có user đã gửi message thông qua `current_user`.
 
 ```ruby
 def receive(data)
@@ -338,45 +336,45 @@ def receive(data)
 end
 ```
 
-data will then be converted back to JSON as it gets sent back to the client to be handled in the js file. Not bad.
+data sau đó sẽ được chuyển ngược lại thành JSON khi gửi về client để xử lý trong tệp js. Không tệ.
 
-Now if you log in and try and post a message you should get it nicely displayed. Open a private browser window and log in as your other user. Post some messages there with the other user too. The cool thing about our app currently is that it works as a secret meeting place. Only current logged in users will ever see the messages as they post. Anyone who joins later will never know what was said earlier.
+Bây giờ nếu đăng nhập và thử đăng message, bạn sẽ thấy nó được hiển thị gọn gàng. Hãy mở một cửa sổ trình duyệt riêng tư và đăng nhập bằng user còn lại. Đăng một vài message bằng user đó nữa. Điều thú vị ở ứng dụng hiện tại là nó hoạt động như một nơi gặp gỡ bí mật. Chỉ những user đang đăng nhập mới nhìn thấy message khi chúng được đăng. Bất kỳ ai tham gia sau đó sẽ không bao giờ biết trước đó đã nói gì.
 
-As cool as that is we will now cover turning the app into something which does save the messages. Strap in!
+Dù vậy khá thú vị, giờ chúng ta sẽ biến ứng dụng thành thứ có lưu các message. Chuẩn bị nhé!
 
-First things first. We're going to need a message model. We know from our template it needs a `body` of type `string` and we also need to reference the `user` who created it. That's everything for now.
+Trước hết, chúng ta cần một message model. Từ template, ta biết nó cần một `body` kiểu `string`, đồng thời cần tham chiếu đến `user` đã tạo nó. Hiện tại chỉ cần vậy.
 
-In the terminal type
+Trong terminal, nhập
 
 ```bash
 rails generate model message body:string user:references
 ```
 
-And then
+Sau đó
 
 ```bash
 rails db:migrate
 ```
 
-Next we need a controller for our messages. We only need a create action since we aren't doing anything else with them
+Tiếp theo, chúng ta cần một controller cho các message. Chỉ cần action create vì chúng ta không làm gì khác với chúng
 
 ```bash
 rails generate controller messages
 ```
 
-Then in your `routes.rb` create the resource
+Sau đó trong `routes.rb`, hãy tạo resource
 
 ```ruby
 resources :messages, only: [:create]
 ```
 
-In our user model add the other side of the association
+Trong user model, thêm phía còn lại của association
 
 ```ruby
 has_many :messages
 ```
 
-We can now create a form using Rails helpers. First in our hangouts controller in the index method we can create a new message object for the form to use
+Giờ chúng ta có thể tạo form bằng các helper của Rails. Trước hết, trong phương thức index của hangouts controller, chúng ta có thể tạo một message object mới cho form sử dụng
 
 ```ruby
 def index
@@ -384,7 +382,7 @@ def index
 end
 ```
 
-Then in our hangouts index view we can change the form to use `form_with`. You don't need to change anything else, just replace the form inside of the div with the `message-form` id with the following form:
+Sau đó trong view index của hangouts, chúng ta có thể đổi form sang dùng `form_with`. Bạn không cần thay đổi gì khác, chỉ cần thay form nằm trong div có id `message-form` bằng form sau:
 
 ```html
 <%= form_with model: @message, local: false do |f| %>
@@ -399,7 +397,7 @@ Then in our hangouts index view we can change the form to use `form_with`. You d
 <% end %>
 ```
 
-If you try and submit a message now it will still work. That's because in our `message_channel.js` file we still have the code hijacking the submit event and preventing the default. You should now delete the bit of the code. Open the `message_channel.js` file and delete
+Nếu bây giờ thử submit message, nó vẫn hoạt động. Đó là vì trong tệp `message_channel.js`, chúng ta vẫn có đoạn mã chiếm quyền xử lý thao tác submit và ngăn hành vi mặc định. Bây giờ bạn nên xóa phần mã đó. Mở tệp `message_channel.js` và xóa
 
 ```javascript
 document.addEventListener("turbo:load", () => {
@@ -418,15 +416,15 @@ document.addEventListener("turbo:load", () => {
 })
 ```
 
-Submitting the form now does work in the server logs, but obviously nothing happens. Before we tackle that we firstly need to tackle displaying any current message on page load.
+Bây giờ submit form có hoạt động trong log server, nhưng rõ ràng chưa có gì xảy ra. Trước khi xử lý việc đó, trước tiên chúng ta cần hiển thị các message hiện có khi tải trang.
 
-Go back to our hangouts controller and in the index method add the following line
+Quay lại hangouts controller và thêm dòng sau vào phương thức index
 
 ```ruby
 @messages = Message.all
 ```
 
-Then in our index view let's iterate the messages and display them using the same HTML as we used in our template. In our hangouts index file in the `message-display` div add the following code.
+Sau đó trong view index, hãy lặp qua các message và hiển thị chúng bằng cùng HTML đã dùng trong template. Trong tệp index của hangouts, thêm đoạn mã sau vào div `message-display`.
 
 ```html
 <% @messages.each do |message| %>
@@ -441,15 +439,15 @@ Then in our index view let's iterate the messages and display them using the sam
 <% end %>
 ```
 
-Kudos if you noticed the N+1 problem we just introduced. By calling `message.user` for each message. Let's fix that in the hangouts controller index method
+Xin khen bạn nếu đã nhận ra vấn đề N+1 mà chúng ta vừa tạo ra, do gọi `message.user` cho từng message. Hãy sửa nó trong phương thức index của hangouts controller
 
 ```ruby
 @messages = Message.includes(:user)
 ```
 
-Much better
+Tốt hơn nhiều.
 
-Now let's deal with our create method in the messages controller
+Giờ hãy xử lý phương thức create trong messages controller
 
 ```ruby
 def create
@@ -465,14 +463,14 @@ def message_params
 end
 ```
 
-This should all be familiar with the exception of `@message.as_json(include: :user)`. To send data to the client through the websocket server it must be in a json like format. If we just supplied `@message` then Rails would call `as_json` itself for us on the object. However, since we want to include the user association we need to call it ourselves.
+Mọi thứ ở đây hẳn đều quen thuộc, ngoại trừ `@message.as_json(include: :user)`. Để gửi dữ liệu đến client thông qua server websocket, dữ liệu phải ở dạng giống json. Nếu chỉ cung cấp `@message`, Rails sẽ tự gọi `as_json` trên object đó. Tuy nhiên, vì muốn đưa cả association user vào, chúng ta cần tự gọi phương thức này.
 
-We just have one last small change to make. If you put a console.log on `data` in the received function you'd see now `body` is a direct property of `data` so in our template function in `message_channel.js` we just need to change `${data.message.body}` to `${data.body}`.
+Chỉ còn một thay đổi nhỏ cuối cùng. Nếu đặt một console.log cho `data` trong hàm received, bạn sẽ thấy bây giờ `body` là thuộc tính trực tiếp của `data`; vì vậy trong hàm template ở `message_channel.js`, chúng ta chỉ cần đổi `${data.message.body}` thành `${data.body}`.
 
-That's it. Try sending messages between your two users and you should see instant real-time messages. As they are now saved nobody will miss any of the banter before they arrived.
+Vậy là xong. Hãy thử gửi message giữa hai user, bạn sẽ thấy message thời gian thực xuất hiện ngay lập tức. Vì giờ message đã được lưu nên sẽ không ai bỏ lỡ những câu chuyện vui trước khi họ tham gia.
 
-### Conclusion
+### Kết luận
 
-The point here was to show you how Action Cable makes WebSockets pretty easy to work with. You need to have at least a basic knowledge of JavaScript to handle things in the client when a message is sent but other than that you can see how powerful this can be. If you have a situation where you need to update all connected clients without waiting for them to refresh, then think WebSockets.
+Mục đích ở đây là chỉ cho bạn thấy Action Cable giúp làm việc với WebSockets dễ dàng như thế nào. Bạn cần ít nhất kiến thức JavaScript cơ bản để xử lý mọi việc ở client khi một message được gửi, nhưng ngoài ra bạn có thể thấy công cụ này mạnh mẽ ra sao. Nếu gặp tình huống cần cập nhật cho mọi client đang kết nối mà không phải chờ họ refresh, hãy nghĩ đến WebSockets.
 
-This only scratches the surface of what Action Cable can do, but if you do find yourself in a situation where you think they might be useful you should be able to find what you need with a few searches.
+Đây mới chỉ là phần bề mặt của những gì Action Cable có thể làm, nhưng nếu gặp một tình huống mà bạn nghĩ chúng có thể hữu ích, bạn sẽ có thể tìm thấy điều mình cần sau vài lần tìm kiếm.

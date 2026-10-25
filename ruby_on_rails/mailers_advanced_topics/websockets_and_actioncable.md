@@ -1,70 +1,70 @@
-### Introduction
+### Giới thiệu
 
-In a typical interaction between a client and website, a browser makes a request to the server, and after that request has completed the server closes the connection.
+Trong một tương tác điển hình giữa client và website, trình duyệt gửi một request đến server; sau khi request hoàn tất, server đóng connection.
 
-There are often times when you want to keep that connection open so that the server can update the client if there is something relevant for the user. For that we have WebSockets, and Action Cable brings WebSockets to Rails in an easy to use way.
+Có nhiều lúc bạn muốn giữ connection đó mở để server có thể cập nhật cho client khi có điều gì liên quan đến user. WebSockets giải quyết nhu cầu này, còn Action Cable đưa WebSockets vào Rails theo một cách dễ sử dụng.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này trình bày tổng quan về các chủ đề bạn sẽ học trong bài.
 
-- What a WebSocket is.
-- What kinds of problems WebSockets can help you solve.
-- What an Action Cable is.
+- WebSocket là gì.
+- WebSockets có thể giúp bạn giải quyết những loại vấn đề nào.
+- Action Cable là gì.
 
-### What is a WebSocket?
+### WebSocket là gì?
 
-Before diving into Action Cable specifics we should first understand what a WebSocket is and what problem it seeks to solve.
+Trước khi đi sâu vào các chi tiết riêng của Action Cable, trước tiên chúng ta nên hiểu WebSocket là gì và nó muốn giải quyết vấn đề nào.
 
-The WebSocket API was created to allow two-way communication between a server and a client. A typical http connection between a server and client opens and closes as the client requests something. A WebSocket connection keeps the http connection alive so that the server can send updates to the client without a specific request being made.
+WebSocket API được tạo ra để cho phép giao tiếp hai chiều giữa server và client. Một kết nối http điển hình giữa server và client mở rồi đóng khi client yêu cầu một thứ gì đó. Kết nối WebSocket giữ kết nối http hoạt động để server có thể gửi các cập nhật đến client mà không cần có một request cụ thể.
 
-A WebSocket manages the connection between server and client as well as sends and receives data through that connection.
+WebSocket quản lý connection giữa server và client, đồng thời gửi và nhận dữ liệu thông qua connection đó.
 
-To understand what problem WebSockets solve let us consider an example of where WebSockets may be useful and then consider what our options would have been prior to the WebSocket API.
+Để hiểu WebSockets giải quyết vấn đề nào, hãy xem xét một ví dụ về nơi WebSockets có thể hữu ích, rồi xem trước WebSocket API chúng ta đã có những lựa chọn nào.
 
-Let us imagine we've built an awesome new social media app, Chewbooka. A place to be our true selves and talk all things Chewbacca. One key feature for our app, to make us all billions, is that when someone creates a new post extolling the virtues of Peter Mayhew, all the other users connected to our app receive that post without having to manually refresh for updates.
+Hãy tưởng tượng chúng ta đã xây dựng một ứng dụng mạng xã hội mới tuyệt vời, Chewbooka. Đây là nơi chúng ta được sống thật với bản thân và nói mọi chuyện về Chewbacca. Một tính năng then chốt của ứng dụng, giúp tất cả chúng ta trở thành tỷ phú, là khi ai đó tạo một bài đăng ca ngợi những phẩm chất của Peter Mayhew, tất cả user khác đang kết nối với ứng dụng đều nhận được bài đăng đó mà không phải tự refresh để cập nhật.
 
-We'll be rich! But, in a time before WebSockets, how are we going to solve it?
+Chúng ta sẽ giàu to! Nhưng trong thời kỳ trước WebSockets, chúng ta sẽ giải quyết việc này thế nào?
 
-We could use JavaScript to set an interval to reach out to the server at regular intervals to see if there are any updates. If there are, we could notify users of the new post and update their view, and if there aren't, we can just return an empty response. This still involves opening and closing a request on the server. This was a technique known as polling, and was one of the first ways websites tried to bring server updates to the client. The downside to this was that it was inefficient. If there were no updates for the client it would still request an update from the server. In an age of capped internet usage this was a big no.
+Chúng ta có thể dùng JavaScript để đặt một interval, định kỳ liên hệ với server xem có cập nhật nào không. Nếu có, ta có thể thông báo cho user về bài đăng mới và cập nhật view của họ; nếu không, ta chỉ cần trả về một response rỗng. Cách này vẫn phải mở và đóng một request trên server. Kỹ thuật này được gọi là polling, và là một trong những cách đầu tiên các website thử dùng để đưa cập nhật từ server đến client. Nhược điểm là nó không hiệu quả. Nếu không có cập nhật nào cho client, client vẫn request một bản cập nhật từ server. Trong thời kỳ Internet bị giới hạn dung lượng, đây là điều rất tệ.
 
-Since we don't want the inefficiency of checking for an update when there isn't one, what if instead we did the following: Allow a client to send an http request and if there is no new information, instead of sending an empty response and closing the connection, we hold the request open on the server side. When we have a new post we can send that response to any open http requests being held, and that will complete the http request and close the connection. Then the client can send a new request to open the connection again. This is known as long-polling and is still in operation on many sites. The downside of this approach is that it's very server intensive to keep receiving requests and holding them open for an indefinite time, and if order is important in the response you may have issues if there are several updates between requests. You may have come across this in the past on some sites where the order of updates changed if you refreshed the page. Some old chat rooms did this.
+Vì không muốn sự kém hiệu quả của việc kiểm tra khi chẳng có cập nhật nào, vậy nếu chúng ta làm như sau thì sao: Cho phép client gửi một http request; nếu không có thông tin mới, thay vì gửi response rỗng rồi đóng connection, ta giữ request đó mở ở phía server. Khi có bài đăng mới, ta có thể gửi response đó đến mọi http request đang được giữ mở; việc này sẽ hoàn tất http request và đóng connection. Sau đó client có thể gửi request mới để mở connection lại. Cách này gọi là long-polling và hiện vẫn được nhiều website sử dụng. Nhược điểm của nó là server phải làm việc rất nhiều để liên tục nhận request và giữ chúng mở trong thời gian không xác định; ngoài ra, nếu thứ tự response quan trọng, bạn có thể gặp vấn đề khi có nhiều cập nhật giữa hai request. Có thể trước đây bạn từng gặp hiện tượng này trên một số website, khi thứ tự cập nhật thay đổi sau mỗi lần refresh trang. Một số phòng chat cũ từng hoạt động như vậy.
 
-There are some other approaches used, such as Java applets or Cross Frame Communication, but ultimately they all had some pretty big drawbacks. The internet was not initially designed for these kinds of requests.
+Có một số cách tiếp cận khác, chẳng hạn Java applet hoặc Cross Frame Communication, nhưng cuối cùng tất cả đều có những nhược điểm khá lớn. Internet ban đầu không được thiết kế cho những loại request này.
 
-If our app is going to make it, if we want to give the world Chewbooka, we need something else...
+Nếu ứng dụng của chúng ta muốn thành công, nếu muốn mang Chewbooka đến với thế giới, chúng ta cần một thứ khác...
 
-WebSockets were created for this. Our moment is now!
+WebSockets được tạo ra để làm việc này. Thời khắc của chúng ta đã đến!
 
-### WebSockets and Action Cable
+### WebSockets và Action Cable
 
-In earlier versions of Rails, when WebSockets first came onto the scene, there was no easy way to integrate them into an app. A lot of gems came about to solve this problem but ultimately they were a little bit hacky. Eventually, with Rails 5, came Action Cable - a built in way to support WebSockets the Rails way. It's evolved quite a bit since then to make the integration even more seamless, and now it's easy to get up and running with WebSockets. We'll cover the basics here which should give you the platform to go and use them yourself when you find a use case in your own apps.
+Trong các phiên bản Rails trước đây, khi WebSockets lần đầu xuất hiện, không có cách dễ dàng nào để tích hợp chúng vào ứng dụng. Nhiều gem đã ra đời để giải quyết vấn đề này, nhưng cuối cùng chúng vẫn hơi chắp vá. Đến Rails 5 thì Action Cable xuất hiện — một cách tích hợp sẵn để hỗ trợ WebSockets theo đúng phong cách Rails. Kể từ đó nó đã phát triển khá nhiều để việc tích hợp liền mạch hơn, và giờ đây việc bắt đầu với WebSockets rất dễ dàng. Chúng ta sẽ trình bày những kiến thức cơ bản ở đây, đủ để tạo nền tảng cho bạn tự sử dụng khi tìm thấy trường hợp phù hợp trong các ứng dụng của mình.
 
-#### Terminology
+#### Thuật ngữ
 
-The first thing we need to cover is some of the terminology you'll come across with Action Cable.
+Điều đầu tiên cần trình bày là một số thuật ngữ bạn sẽ gặp khi làm việc với Action Cable.
 
-Action Cable uses a server to handle connections. A single user may have several connections open to the same server, such as if they were using multiple tabs in their browser to visit your website. But for simplicity most people will just use one browser tab to visit a site, and therefore will hold one connection to the Action Cable server. The client of that connection is called a consumer.
+Action Cable sử dụng một server để xử lý các connection. Một user có thể có nhiều connection mở tới cùng một server, chẳng hạn khi họ dùng nhiều tab trình duyệt để truy cập website của bạn. Nhưng để đơn giản, phần lớn mọi người chỉ dùng một tab trình duyệt để truy cập một website, và do đó sẽ duy trì một connection tới server Action Cable. Client của connection đó được gọi là consumer.
 
-Although a consumer holds one connection to the cable server, they can subscribe, through that connection, to multiple channels. A channel should represent one logical piece of work. When a consumer subscribes to a channel, they become known as a subscriber and the connection becomes known as a subscription.
+Mặc dù một consumer giữ một connection tới cable server, nó có thể subscribe, thông qua connection đó, tới nhiều channel. Một channel nên đại diện cho một đơn vị công việc logic. Khi consumer subscribe một channel, nó được gọi là subscriber, còn connection được gọi là subscription.
 
-Once subscribed, each channel can then stream what are known as 'broadcastings' to subscribers, such as new posts to Chewbooka.
+Sau khi subscribe, mỗi channel có thể stream những thứ gọi là 'broadcastings' đến các subscriber, chẳng hạn các bài đăng mới trên Chewbooka.
 
-There is quite a bit of terminology here, and also these are handled on both the client and server side, so it is a lot to consider - but Rails does a lot of the heavy lifting for us.
+Ở đây có khá nhiều thuật ngữ, hơn nữa chúng được xử lý ở cả phía client lẫn server, nên có rất nhiều điều cần cân nhắc — nhưng Rails đã làm phần lớn công việc nặng cho chúng ta.
 
-When going through the layers of Action Cable it's helpful to have a real Rails app to refer to. If you still have your Rails install cars project on hand that would be ideal for looking through the files as we mention them here to get familiar with where they are. If not, just spinning up a new Rails app would also work fine.
+Khi đi qua các tầng của Action Cable, sẽ rất hữu ích nếu có một ứng dụng Rails thực tế để tham khảo. Nếu bạn vẫn còn ứng dụng Rails cars đã cài trước đây thì đó là lựa chọn lý tưởng để mở các tệp khi chúng ta nhắc đến, qua đó làm quen với vị trí của chúng. Nếu không, chỉ cần khởi tạo một ứng dụng Rails mới cũng hoàn toàn được.
 
-We'll handle server side and client side concerns separately to try and keep things simple.
+Chúng ta sẽ tách riêng các vấn đề phía server và phía client để cố gắng giữ mọi thứ đơn giản.
 
-Let's first look at the files that handle WebSockets. The Action Cable files are not generated by default when you create a new app. They are created the first time you run a channel generator (e.g. `rails generate channel room`). Then we can look at what comes with that.
+Trước tiên hãy xem các tệp xử lý WebSockets. Các tệp Action Cable không được tạo mặc định khi bạn tạo ứng dụng mới. Chúng được tạo lần đầu khi bạn chạy một channel generator (ví dụ: `rails generate channel room`). Sau đó chúng ta sẽ xem những gì được tạo ra cùng với nó.
 
-### Server side concerns
+### Các vấn đề phía server
 
-#### WebSocket connections
+#### Các WebSocket connection
 
-As mentioned earlier, every WebSocket accepted by the server creates a connection which manages all the channels that a user subscribes to. The connection itself deals with authentication and authorization. The client of this connection object is called a consumer.
+Như đã đề cập trước đó, mỗi WebSocket được server chấp nhận sẽ tạo một connection quản lý tất cả channel mà user subscribe. Bản thân connection xử lý việc authentication và authorization. Client của connection object này được gọi là consumer.
 
-After generating a channel, open up `app/channels/application_cable/connection.rb`
+Sau khi tạo channel, hãy mở `app/channels/application_cable/connection.rb`
 
 ```ruby
 module ApplicationCable
@@ -73,11 +73,11 @@ module ApplicationCable
 end
 ```
 
-You use the class above to authorize the incoming connection. You can use any logic you want to uniquely identify a user. If you use devise or a similar gem and only want logged in users to be authorized, then you can use that to verify the incoming connection.
+Bạn dùng class trên để cấp quyền cho connection đến. Bạn có thể dùng bất kỳ logic nào muốn để nhận diện duy nhất một user. Nếu dùng devise hoặc một gem tương tự và chỉ muốn các user đã đăng nhập được cấp quyền, bạn có thể dùng nó để xác minh connection đến.
 
-You can see an example of how you would do that in the Rails Guides section on [Action Cable connections](https://guides.rubyonrails.org/action_cable_overview.html#connection-setup). Here they look for an encrypted cookie with user_id to verify a connection, so would assume you set a cookie in this way. As you may know, devise does set a cookie in the session. However, because Action Cable operates on its own separate server for WebSockets, it doesn't have access to the session. Instead we can use the warden environment variable object. It does this as Devise is built on top of [Warden](https://github.com/wardencommunity/warden/wiki), and sets the user on the warden middleware object.
+Bạn có thể xem ví dụ về cách làm việc đó trong phần Rails Guides về [Action Cable connections](https://guides.rubyonrails.org/action_cable_overview.html#connection-setup). Ở đó, họ tìm một cookie đã mã hóa chứa user_id để xác minh connection, nên có thể giả định rằng bạn đã đặt cookie theo cách này. Như bạn biết, devise đặt một cookie trong session. Tuy nhiên, vì Action Cable hoạt động trên một server riêng biệt dành cho WebSockets, nó không có quyền truy cập session. Thay vào đó, chúng ta có thể dùng object biến môi trường warden. Lý do là Devise được xây dựng trên [Warden](https://github.com/wardencommunity/warden/wiki) và đặt user trên object middleware warden.
 
-So, if you are using devise, a neat way to verify a connection is to use the following in your `find_verified_user` method:
+Vì vậy, nếu đang dùng devise, một cách gọn gàng để xác minh connection là dùng đoạn sau trong phương thức `find_verified_user`:
 
 ```ruby
 def find_verified_user
@@ -89,25 +89,25 @@ def find_verified_user
 end
 ```
 
-There are lots of ways to authorize a connection. You might want it to be available for all users, even those not logged in for example. There is a range of options so we'll leave it to you to investigate if you ever have a need for a different way.
+Có rất nhiều cách để cấp quyền cho một connection. Chẳng hạn, bạn có thể muốn nó khả dụng cho tất cả user, kể cả những người chưa đăng nhập. Có rất nhiều lựa chọn, nên nếu từng cần một cách khác, chúng ta sẽ để bạn tự tìm hiểu.
 
-#### Channels
+#### Channel
 
-A channel is a logical unit of work, not too different from what a controller does in a Rails app. It handles the incoming and outgoing information through a particular channel. If you have a Rails app handy you can take a look at `app/channels/application_cable/channel.rb`. This is the parent channel that any channels you create inherit from. This is where you can put any logic that should be shared across multiple channels rather than duplicating code.
+Channel là một đơn vị công việc logic, không khác controller trong ứng dụng Rails quá nhiều. Nó xử lý thông tin đến và đi thông qua một channel cụ thể. Nếu đang có một ứng dụng Rails, bạn có thể xem `app/channels/application_cable/channel.rb`. Đây là channel cha mà mọi channel bạn tạo sẽ kế thừa. Bạn có thể đặt ở đây mọi logic cần được dùng chung giữa nhiều channel thay vì lặp lại code.
 
-#### Subscriptions
+#### Subscription
 
-Each channel you create can be subscribed to by one or more clients. Messages can then be broadcast to that channel who will forward it to any subscribers.
+Mỗi channel bạn tạo có thể được một hoặc nhiều client subscribe. Sau đó message có thể được broadcast đến channel này, và channel sẽ chuyển tiếp chúng đến mọi subscriber.
 
-### Client side concerns
+### Các vấn đề phía client
 
-#### Client-server connections
+#### Kết nối client-server
 
-Consumers of subscriptions require an instance of the connection on the client side also. This is so when the server broadcasts a message it can be picked up and handled by the browser. Rails generates this boilerplate for you when you create a channel and the files live in `app/javascript/channels`.
+Consumer của subscription cũng cần một instance của connection ở phía client. Nhờ vậy, khi server broadcast một message, trình duyệt có thể nhận và xử lý nó. Rails tự tạo phần boilerplate này cho bạn khi tạo channel, các tệp nằm trong `app/javascript/channels`.
 
-#### Connect consumer
+#### Kết nối consumer
 
-This will be in `app/javascript/channels/consumer.js` when you create a channel
+Tệp này sẽ nằm ở `app/javascript/channels/consumer.js` khi bạn tạo channel
 
 ```javascript
 import { createConsumer } from "@rails/actioncable"
@@ -115,23 +115,23 @@ import { createConsumer } from "@rails/actioncable"
 export default createConsumer()
 ```
 
-This code creates a consumer that will try to establish a connection to `/cable` on your server. All channels you create will import this file and use it to create a subscription to the server.
+Đoạn mã này tạo một consumer, consumer sẽ cố gắng thiết lập connection tới `/cable` trên server của bạn. Mọi channel bạn tạo sẽ import tệp này và dùng nó để tạo subscription đến server.
 
-### Creating channels
+### Tạo channel
 
-Now that we've learned the basics of how Rails handles creating a WebSocket connection between server and client let us turn our attention to how to create a channel and what files this produces.
+Bây giờ đã nắm được những điều cơ bản về cách Rails xử lý việc tạo connection WebSocket giữa server và client, hãy chuyển sang cách tạo channel và xem thao tác này tạo ra những tệp nào.
 
-#### Rails channel generator
+#### Trình tạo channel của Rails
 
-Unsurprisingly Rails gives us a generator we can use to create new channels. This creates all the boilerplate code we can use to make getting started simpler.
+Không có gì đáng ngạc nhiên khi Rails cung cấp cho chúng ta một generator để tạo channel mới. Generator này tạo toàn bộ boilerplate code cần dùng, giúp việc bắt đầu đơn giản hơn.
 
-The command is straightforward. Imagine we wanted to create a WebSocket connection for a chatroom. We would write the following in the terminal
+Lệnh này rất dễ hiểu. Hãy tưởng tượng chúng ta muốn tạo một connection WebSocket cho một phòng chat. Trong terminal, chúng ta sẽ nhập
 
 ```bash
 rails generate channel room
 ```
 
-This will create the following files
+Lệnh này sẽ tạo các tệp sau
 
 ```bash
       create  app/channels/application_cable/channel.rb
@@ -142,24 +142,24 @@ This will create the following files
       create  app/javascript/channels/room_channel.js
 ```
 
-You can see here it creates the Action Cable base files (`connection.rb` and `channel.rb`) along with the channel-specific files. If any of these files already exist, such as from a previous channel generation, it won't overwrite them.
+Bạn có thể thấy nó tạo các tệp nền tảng của Action Cable (`connection.rb` và `channel.rb`) cùng các tệp riêng cho channel. Nếu một trong các tệp này đã tồn tại, chẳng hạn do trước đó đã tạo channel, nó sẽ không ghi đè chúng.
 
-#### Possible Error
+#### Lỗi có thể gặp
 
-You may get an error message such as "You have already activated error_highlight 0.6.0, but your Gemfile requires error_highlight 0.5.1. Prepending 'bundle exec' to your command may solve this. (Gem::LoadError)".
-In this case, delete your Gemfile.lock and run
+Bạn có thể nhận được thông báo lỗi như "You have already activated error_highlight 0.6.0, but your Gemfile requires error_highlight 0.5.1. Prepending 'bundle exec' to your command may solve this. (Gem::LoadError)".
+Trong trường hợp đó, hãy xóa Gemfile.lock và chạy
 
 ```bash
 bundle install
 ```
 
-, which creates a new Gemfile.lock. Now the "rails generate channel room" command should create the files correctly as above.
+, thao tác này sẽ tạo một Gemfile.lock mới. Bây giờ lệnh "rails generate channel room" sẽ tạo đúng các tệp như trên.
 
-### Client-server interactions
+### Tương tác client-server
 
-Let's take a closer look at the room_channel.rb and room_channel.js files that were created by the generator.
+Hãy xem kỹ hơn các tệp room_channel.rb và room_channel.js được generator tạo ra.
 
-As mentioned earlier the generator will create a channel in the `app/channels` directory. In our example it was `room_channel.rb` which produces some boilerplate code:
+Như đã đề cập, generator sẽ tạo một channel trong thư mục `app/channels`. Trong ví dụ của chúng ta, đó là `room_channel.rb`, chứa một đoạn boilerplate code:
 
 ```ruby
 class RoomChannel < ApplicationCable::Channel
@@ -173,13 +173,13 @@ class RoomChannel < ApplicationCable::Channel
 end
 ```
 
-#### Streams
+#### Stream
 
-Streams are how Rails publishes broadcasts to subscribers. In order to register a subscription, once a connection is established, the subscribed method is called which should set up the stream.
+Stream là cách Rails phát broadcast đến các subscriber. Để đăng ký một subscription, sau khi connection được thiết lập, phương thức subscribed sẽ được gọi và phương thức này nên thiết lập stream.
 
-Action Cable gives us two stream options. `stream_from` and `stream_for`.
+Action Cable cung cấp hai tùy chọn stream: `stream_from` và `stream_for`.
 
-The difference is that `stream_from` expects a string to identify the stream whereas `stream_for` operates on a model. Ultimately they produce something similar.
+Điểm khác nhau là `stream_from` mong đợi một chuỗi để nhận diện stream, còn `stream_for` hoạt động trên một model. Về cơ bản, chúng tạo ra thứ tương tự nhau.
 
 ```ruby
 def subscribed
@@ -192,9 +192,9 @@ def subscribed
 end
 ```
 
-So you would reach for `stream_for` when you have a specific model you want to use for the stream. To give an example imagine our chat room scenario. You may want to subscribe to the chatroom and broadcast when a message is created in that room. Using `stream_for` means we can let Rails do the heavy lifting of setting up the stream so we can broadcast using the room object (this will make sense in a moment when we look at the broadcast options).
+Vì vậy, bạn sẽ dùng `stream_for` khi có một model cụ thể muốn sử dụng cho stream. Lấy ví dụ từ tình huống phòng chat: bạn có thể muốn subscribe vào phòng chat và broadcast khi một message được tạo trong phòng đó. Dùng `stream_for` cho phép Rails tự xử lý phần nặng của việc thiết lập stream, để chúng ta có thể broadcast bằng room object (điều này sẽ rõ hơn sau một chút khi xem các tùy chọn broadcast).
 
-You can also pass parameters from the client to the server and use those to generate a stream. We'll look at how to do that on the client side shortly. On the server side it's not that much different from how you'd handle it in a controller
+Bạn cũng có thể truyền các tham số từ client đến server và dùng chúng để tạo stream. Chúng ta sẽ xem cách làm phía client ngay sau đây. Ở phía server, việc này không khác cách bạn xử lý trong controller quá nhiều
 
 ```ruby
 def subscribed
@@ -207,15 +207,15 @@ def subscribed
 end
 ```
 
-#### Broadcasting
+#### Broadcast
 
-Once you have the WebSocket server set up, you just need to broadcast to it from wherever is appropriate in your app. Usually it would be a controller.
+Sau khi thiết lập xong WebSocket server, bạn chỉ cần broadcast tới nó từ nơi phù hợp trong ứng dụng. Thông thường, nơi đó sẽ là một controller.
 
-Like streams, there are a couple of ways you can broadcast.
+Giống như stream, có một vài cách để broadcast.
 
-If you used `stream_for` then you can call `broadcast_to` directly on the room channel object itself, using it this way you'd pass at least two arguments. The first argument would be the room object that you initially set up the stream on, the other arguments would be the data you want to broadcast. This can either be a list of key value pairs, or an object that responds to `to_json` because ultimately the data is streamed in a json convertible format.
+Nếu dùng `stream_for`, bạn có thể gọi trực tiếp `broadcast_to` trên chính room channel object. Khi dùng cách này, bạn sẽ truyền ít nhất hai đối số. Đối số đầu tiên là room object mà ban đầu bạn dùng để thiết lập stream; các đối số còn lại là dữ liệu muốn broadcast. Dữ liệu có thể là một danh sách các cặp key-value hoặc một object phản hồi `to_json`, vì cuối cùng dữ liệu được stream ở định dạng có thể chuyển đổi thành json.
 
-Following our earlier example of setting up a stream on a room, you may have a message controller where you create messages for an associated room. Your create method may look something like
+Theo ví dụ trước về việc thiết lập stream trên một room, bạn có thể có một message controller, nơi tạo message cho một room liên kết. Phương thức create có thể trông như sau
 
 ```ruby
 def create
@@ -228,39 +228,39 @@ def create
 end
 ```
 
-Rails automatically calls `to_json` on our message object. The alternative syntax would look something like
+Rails tự động gọi `to_json` trên message object của chúng ta. Cú pháp thay thế sẽ như sau
 
 ```ruby
 RoomChannel.broadcast_to(@room, name: 'Kevin', dork_status: 'Ultimate')
 ```
 
-Here Rails calls `to_json` on the arguments as a Hash object.
+Ở đây Rails gọi `to_json` trên các đối số dưới dạng Hash object.
 
-The other way to broadcast a stream is to broadcast it directly from the ApplicationCable server. Why might you want to do this? If you didn't set up the stream on an object, but instead used `stream_from`, then using `broadcast_to` on RoomChannel will look for a stream with a particular name format. Going back to our chat example,if you had set the stream up as
+Cách còn lại để broadcast một stream là broadcast trực tiếp từ ApplicationCable server. Tại sao bạn lại muốn làm vậy? Nếu không thiết lập stream trên một object mà dùng `stream_from`, việc dùng `broadcast_to` trên RoomChannel sẽ tìm một stream có định dạng tên cụ thể. Quay lại ví dụ chat, nếu bạn thiết lập stream như sau
 
 ```ruby
 stream_from "room"
 ```
 
-And then tried to call
+rồi thử gọi
 
 ```ruby
 RoomChannel.broadcast_to("room", @message)
 ```
 
-Rails would look for a stream called `room:room`. This is just how Action Cable works. When you use `stream_for room` it actually creates the stream as `room:<some_room_id>` so the format is correct when you then later call `RoomChannel.broadcast_to(@room, @message)`. At that point it would look for the stream `room:<the_room_id>`.
+Rails sẽ tìm stream có tên `room:room`. Đây chỉ là cách Action Cable hoạt động. Khi dùng `stream_for room`, thực tế nó tạo stream là `room:<some_room_id>`, nên định dạng sẽ đúng khi sau đó bạn gọi `RoomChannel.broadcast_to(@room, @message)`. Khi ấy nó sẽ tìm stream `room:<the_room_id>`.
 
-So if you just wanted to call broadcast on a stream set up as a string using `stream_from`, you could write in the controller
+Vì vậy, nếu chỉ muốn gọi broadcast trên một stream được thiết lập bằng chuỗi thông qua `stream_from`, bạn có thể viết trong controller
 
 ```ruby
 ActionCable.server.broadcast 'message', @message
 ```
 
-This way we can just hit the server directly, looking for a stream with the relevant name. It might take a little getting used to but the approach you take really depends on how you set up the stream.
+Bằng cách này, chúng ta truy cập trực tiếp server và tìm stream có tên tương ứng. Cách tiếp cận này có thể cần một chút thời gian để quen, nhưng lựa chọn của bạn thực sự phụ thuộc vào cách đã thiết lập stream.
 
-#### Client subscriptions
+#### Subscription phía client
 
-Going back to our earlier channel generator, the other file it generated for us was `app/javascript/channels/room_channel.js`. This is pretty straightforward with only a couple of things we need to concern ourselves with at this time. Let's take a look at the default file it generated for us:
+Quay lại channel generator ở trên, tệp còn lại mà nó tạo cho chúng ta là `app/javascript/channels/room_channel.js`. Tệp này khá dễ hiểu, chỉ có vài điều chúng ta cần quan tâm lúc này. Hãy xem tệp mặc định mà generator tạo ra:
 
 ```javascript
 import consumer from "./consumer"
@@ -280,45 +280,45 @@ consumer.subscriptions.create("RoomChannel", {
 });
 ```
 
-Note that it imports our consumer from the consumer.js file we discussed earlier. Then it calls `subscriptions.create` on the consumer. We don't need to really dive into how this works under the hood; we just need to understand a couple of key points.
+Lưu ý rằng nó import consumer từ tệp consumer.js đã nói ở trên. Sau đó nó gọi `subscriptions.create` trên consumer. Chúng ta không thực sự cần đi sâu vào cách hoạt động bên trong; chỉ cần hiểu một vài điểm chính.
 
-The first is that the first argument is given as a string. This would try to connect to the `RoomChannel` channel on the server. It doesn't have to be a string though. Remember those parameters we discussed earlier? This is where you can pass them. Instead of a string you can instead pass an object. The first key-value pair must be in the format `channel: 'ChannelName'`, and then afterwards you can pass in any number of key-value pairs, which become the parameters sent to the server to establish a connection. Let's say we want to send the id of a room to our RoomChannel. We could write that first line as follows
+Điểm đầu tiên là đối số thứ nhất được truyền dưới dạng chuỗi. Cách này sẽ cố gắng kết nối tới channel `RoomChannel` ở server. Tuy nhiên, nó không nhất thiết phải là chuỗi. Hãy nhớ các tham số đã nói trước đó? Đây là nơi bạn có thể truyền chúng. Thay vì chuỗi, bạn có thể truyền một object. Cặp key-value đầu tiên phải có định dạng `channel: 'ChannelName'`, sau đó có thể truyền bao nhiêu cặp key-value tùy ý; chúng sẽ trở thành các tham số gửi tới server để thiết lập connection. Giả sử muốn gửi id của một room tới RoomChannel. Ta có thể viết dòng đầu tiên như sau
 
 ```javascript
 consumer.subscriptions.create({channel: 'RoomChannel', room: 1}, {
 ```
 
-We could then access the parameters in the RoomChannel on the server side as
+Sau đó, ở phía server, ta có thể truy cập các tham số trong RoomChannel như sau
 
 ```ruby
 room = Room.find(params[:room])
 ```
 
-This allows you to set multiple streams to the same channel by providing different parameters. When might this be useful? An example is registering to different chatrooms using the same channel object. Or how about subscribing to different notifications for different programming languages? They'd have to go through the same NotificationChannel but you would want to send relevant data only to those who subscribed to the relevant notification. Params are the way to do it.
+Điều này cho phép bạn thiết lập nhiều stream cho cùng một channel bằng cách cung cấp các tham số khác nhau. Khi nào cách này hữu ích? Một ví dụ là đăng ký vào các phòng chat khác nhau bằng cùng một channel object. Hoặc bạn có thể subscribe tới các notification khác nhau cho các ngôn ngữ lập trình khác nhau. Tất cả phải đi qua cùng NotificationChannel, nhưng bạn chỉ muốn gửi dữ liệu phù hợp đến những người đã subscribe notification tương ứng. Params là cách để làm việc đó.
 
-The second argument is another object containing three pre-defined functions. `connected()` and `disconnected()` are called when the channel first connects and disconnects from the server. `received(data)` is where you'll spend most of your time focusing. This is called every time something is broadcast through the stream. What you do here will depend on your app but will usually involve appending something to the DOM, or alerting a user to a new message, etc.
+Đối số thứ hai là một object khác chứa ba hàm được định nghĩa sẵn. `connected()` và `disconnected()` được gọi khi channel lần lượt kết nối và ngắt kết nối với server. `received(data)` là nơi bạn sẽ dành phần lớn thời gian tập trung. Hàm này được gọi mỗi khi có thứ gì đó được broadcast qua stream. Việc bạn làm ở đây phụ thuộc vào ứng dụng, nhưng thường sẽ gồm nối thêm thứ gì đó vào DOM hoặc thông báo cho user về một message mới.
 
-You can add additional functions to the object to help you process the data. The data will be in json format.
+Bạn có thể thêm các hàm khác vào object để hỗ trợ xử lý dữ liệu. Dữ liệu sẽ ở định dạng json.
 
-### A few last things
+### Một vài điều cuối cùng
 
-It is possible for a client to send a message to the server and for the server to rebroadcast that message to others. You can read the short section in the [Rails Guides](https://guides.rubyonrails.org/action_cable_overview.html#rebroadcasting-a-message) if you are interested.
+Client có thể gửi một message đến server và server có thể rebroadcast message đó cho những client khác. Nếu quan tâm, bạn có thể đọc phần ngắn trong [Rails Guides](https://guides.rubyonrails.org/action_cable_overview.html#rebroadcasting-a-message).
 
-If you want to send dynamic parameters from the client when setting up the server, care needs to be taken. You can only get params once the DOM has rendered, and it's common therefore to wrap code in a `turbo:load` event listener. Because of this, if you aren't careful, you can end up subscribing the same stream multiple times as you navigate pages. Action Cable doesn't check if you are already subscribed to a stream before doing it again, because this might be intended behavior for your app; they can't only allow one connection to a channel. This is connected with the way turbolinks works. You can read this Stack Overflow post where others have experienced [duplicate messages from duplicate stream subscriptions](https://stackoverflow.com/questions/39541259/rails-actioncable-turbolinks-chat-issue-posting-duplicate-messages).
+Nếu muốn gửi các tham số động từ client khi thiết lập server, bạn cần cẩn thận. Bạn chỉ có thể lấy params sau khi DOM đã render, vì vậy thông thường sẽ bọc code trong một event listener `turbo:load`. Do đó, nếu không cẩn thận, bạn có thể subscribe cùng một stream nhiều lần khi điều hướng giữa các trang. Action Cable không kiểm tra xem bạn đã subscribe stream hay chưa trước khi thực hiện lại, vì đây có thể là hành vi có chủ đích trong ứng dụng; họ không thể chỉ cho phép một connection tới một channel. Điều này liên quan đến cách turbolinks hoạt động. Bạn có thể đọc bài đăng Stack Overflow này, nơi những người khác từng gặp [duplicate messages from duplicate stream subscriptions](https://stackoverflow.com/questions/39541259/rails-actioncable-turbolinks-chat-issue-posting-duplicate-messages).
 
-For testing and development Action Cable uses an async adapter to work, but in Production it defaults to looking for a redis server. You will need to ensure you have one working if you want to get it up and running on Heroku or another service.
+Để kiểm thử và phát triển, Action Cable sử dụng async adapter; nhưng trong Production, mặc định nó tìm một redis server. Bạn cần đảm bảo có một server hoạt động nếu muốn chạy ứng dụng trên Heroku hoặc một dịch vụ khác.
 
-The connection only remains active while the http request remains unbroken. Refreshing the browser or navigating to a new page sever the connection and then will look to establish it again on reconnection.
+Connection chỉ duy trì hoạt động khi http request vẫn còn nguyên vẹn. Refresh trình duyệt hoặc điều hướng sang trang mới sẽ ngắt connection, sau đó connection sẽ được thiết lập lại khi kết nối lại.
 
-### Conclusion
+### Kết luận
 
-There is more to Action Cable but it's still quite a niche use case so it's not something you should seek to use on every app you build. Look to only introduce WebSockets when you see a real opportunity to add value to your site.
+Action Cable còn nhiều điều khác, nhưng đây vẫn là một trường hợp sử dụng khá đặc thù, nên bạn không cần tìm cách dùng nó trong mọi ứng dụng xây dựng. Chỉ nên đưa WebSockets vào khi thấy một cơ hội thực sự để tăng giá trị cho website.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-  1. Make sure you've read through all of the [Rails Guides on Action Cable](https://guides.rubyonrails.org/action_cable_overview.html). They even have some full stack examples which you may find useful.
-  1. Follow along with this [Basic Messaging App](https://github.com/TheOdinProject/curriculum/blob/main/ruby_on_rails/mailers_advanced_topics/actioncable_lesson.md) that we've written to give you a taste of introducing Action Cable to a project
+  1. Hãy chắc chắn bạn đã đọc toàn bộ [Rails Guides về Action Cable](https://guides.rubyonrails.org/action_cable_overview.html). Các tài liệu này còn có một số ví dụ full stack hoàn chỉnh có thể hữu ích.
+  1. Làm theo [Basic Messaging App](https://github.com/TheOdinProject/curriculum/blob/main/ruby_on_rails/mailers_advanced_topics/actioncable_lesson.md) mà chúng ta đã viết để bạn trải nghiệm việc đưa Action Cable vào một dự án
 
 </div>

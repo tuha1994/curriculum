@@ -1,30 +1,30 @@
-### Introduction
+### Giới thiệu
 
-Introduced in Ruby 2.7, pattern matching uses specified patterns to match against some data. If the data conforms to the pattern, there is a match and the data is deconstructed accordingly. If there is no match, you can either supply a default value to return or else a `NoMatchingPatternError` is raised.
+Được giới thiệu trong Ruby 2.7, pattern matching sử dụng các mẫu được chỉ định để đối chiếu với một số dữ liệu. Nếu dữ liệu phù hợp với mẫu, việc đối chiếu thành công và dữ liệu được phân rã tương ứng. Nếu không có kết quả khớp, bạn có thể cung cấp một giá trị mặc định để trả về; nếu không, `NoMatchingPatternError` sẽ được ném ra.
 
-With Ruby 3.1, most parts of the pattern matching syntax are no longer considered experimental, so it is now worth ensuring you are familiar with the basics. The syntax can feel a little clunky at first, but there are times it can definitely simplify Ruby code. There are a couple of new patterns with Ruby 3 which we'll introduce at the end.
+Kể từ Ruby 3.1, hầu hết các phần trong cú pháp pattern matching không còn được xem là thử nghiệm, vì vậy đây là lúc bạn nên nắm chắc những điều cơ bản. Ban đầu, cú pháp này có thể hơi vụng về, nhưng trong một số trường hợp, nó thực sự giúp đơn giản hóa mã Ruby. Ruby 3 cũng bổ sung một vài mẫu mới mà chúng ta sẽ giới thiệu ở cuối bài.
 
-If you want to play with the examples, make sure you're on at least Ruby 2.7 or try an appropriate online REPL.
+Nếu muốn thử các ví dụ, hãy đảm bảo bạn đang dùng ít nhất Ruby 2.7 hoặc thử một REPL trực tuyến phù hợp.
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này khái quát các chủ đề bạn sẽ học trong bài.
 
-- Explain the syntax for implementing a pattern matching case statement.
-- Explain what types can be used in pattern matching.
-- Explain the possible return values from a pattern match.
-- Explain how to implement a guard condition in a pattern match statement.
-- Explain how to pattern match against an Array and Arrays within Arrays.
-- Explain how to pattern match against a Hash.
-- Explain the main differences between Hash and Array pattern matching.
-- Explain the use of the pin operator.
-- Explain the use of the alternative pattern.
-- Explain how to bind matches to a variable.
-- Explain how to match against your own custom classes.
+- Giải thích cú pháp để triển khai một câu lệnh case dùng pattern matching.
+- Giải thích những kiểu dữ liệu có thể được sử dụng trong pattern matching.
+- Giải thích các giá trị có thể được trả về từ một lần pattern matching.
+- Giải thích cách triển khai điều kiện bảo vệ trong câu lệnh pattern matching.
+- Giải thích cách pattern matching với một Array và các Array lồng trong Array.
+- Giải thích cách pattern matching với một Hash.
+- Giải thích những khác biệt chính giữa pattern matching với Hash và Array.
+- Giải thích cách sử dụng toán tử ghim.
+- Giải thích cách sử dụng mẫu thay thế.
+- Giải thích cách liên kết các kết quả khớp với một biến.
+- Giải thích cách đối chiếu với các lớp tùy chỉnh của riêng bạn.
 
-### Basics
+### Cơ bản
 
-The basic format for a pattern match is a case statement. This is not too different from the case statement you are already familiar with for matching conditions in Ruby, except now instead of `when`, we use `in`. If your use case is very basic, you will find there is no difference between using either `in` or `when` as the below example illustrates.
+Dạng cơ bản của pattern matching là một câu lệnh case. Nó không quá khác câu lệnh case quen thuộc dùng để đối chiếu điều kiện trong Ruby, chỉ khác là thay vì `when`, giờ ta dùng `in`. Nếu trường hợp sử dụng của bạn rất đơn giản, bạn sẽ thấy dùng `in` hay `when` cũng không khác nhau, như ví dụ dưới đây minh họa.
 
 ```ruby
 grade = 'C'
@@ -40,7 +40,7 @@ end
 # => Well done
 ```
 
-vs pattern matching syntax
+cú pháp pattern matching tương ứng
 
 ```ruby
 grade = 'C'
@@ -56,7 +56,7 @@ end
 # => Well done
 ```
 
-The second format is a one line syntax using the trusty hash rocket that will be familiar to you from hashes.
+Dạng thứ hai là cú pháp một dòng, sử dụng hash rocket quen thuộc mà bạn đã biết từ các hash.
 
 ```ruby
 login = { username: 'hornby', password: 'iliketrains' }
@@ -68,36 +68,36 @@ puts "Logged in with username #{username}"
 #=> Logged in with username hornby
 ```
 
-We'll get to matching against hashes shortly so don't worry about the exact syntax of what is happening. Just note that we can use the hash rocket `=>` to match against some kind of structure. The second format is still considered experimental so the examples that follow will use the case statement format.
+Chúng ta sẽ sớm tìm hiểu cách đối chiếu với hash, nên bạn chưa cần lo về cú pháp chính xác đang diễn ra ở đây. Chỉ cần lưu ý rằng ta có thể dùng hash rocket `=>` để đối chiếu với một dạng cấu trúc nào đó. Dạng thứ hai vẫn được xem là thử nghiệm, vì vậy các ví dụ tiếp theo sẽ dùng dạng câu lệnh case.
 
-The case/in format is best used when there are multiple conditionals you could possibly match against and you need to check against all of them. The hash rocket syntax is best used when the data structure you are matching against is known, such as the login data example we used above.
+Dạng case/in phù hợp nhất khi có nhiều điều kiện có thể khớp và bạn cần kiểm tra lần lượt tất cả chúng. Cú pháp hash rocket phù hợp nhất khi đã biết cấu trúc dữ liệu cần đối chiếu, chẳng hạn dữ liệu đăng nhập trong ví dụ trên.
 
-### Patterns
+### Các mẫu
 
-There are multiple ways of potentially matching against an input. Patterns can be:
+Có nhiều cách để đối chiếu một đầu vào. Các mẫu có thể là:
 
-- Any Ruby object which is matched using `===`. The Object Pattern.
-- A variable capture / Variable Pattern
-- An As Pattern
-- An Alternative Pattern
-- A Guard Condition
-- An Array Pattern
-- A Hash Pattern
+- Bất kỳ đối tượng Ruby nào được đối chiếu bằng `===`. Mẫu đối tượng.
+- Bắt giữ biến / Mẫu biến
+- Mẫu as
+- Mẫu thay thế
+- Điều kiện bảo vệ
+- Mẫu Array
+- Mẫu Hash
 
-You can use the above patterns while also having the following experimental additions.
+Bạn có thể sử dụng các mẫu trên cùng với những bổ sung thử nghiệm sau đây.
 
-- Rightward Assignment
-- A Find Pattern
+- Phép gán hướng phải
+- Mẫu tìm kiếm
 
-Patterns can also be matched using many of the patterns above together. For example, you may have an array inside a hash, so you could use the hash and array patterns. We'll go through each of the various patterns in more detail below.
+Các mẫu trên cũng có thể được kết hợp với nhau. Ví dụ, bạn có thể có một array bên trong một hash, khi đó có thể dùng cả mẫu hash lẫn mẫu array. Dưới đây chúng ta sẽ lần lượt tìm hiểu chi tiết từng loại mẫu.
 
-When we say "pattern", we aren't talking about design patterns which you may have come across. We mean the pattern used to match against an input.
+Khi nói “mẫu”, chúng ta không nói đến các mẫu thiết kế mà bạn có thể từng gặp. Ở đây, chúng ta nói đến mẫu dùng để đối chiếu với một đầu vào.
 
-### Return values
+### Giá trị trả về
 
-There are two possible outcomes for a pattern match statement - either there is a match or there is no match. If there is a match, it will return the last evaluated value in the body of the matching branch.
-If there are no matches, the pattern matching statement will return `NoMatchingPatternError`.
-Consider the following example, where the variable `result` is assigned the value 3.
+Một câu lệnh pattern matching có hai kết quả có thể xảy ra — khớp hoặc không khớp. Nếu khớp, nó sẽ trả về giá trị được đánh giá sau cùng trong phần thân của nhánh khớp.
+Nếu không có kết quả khớp, câu lệnh pattern matching sẽ trả về `NoMatchingPatternError`.
+Hãy xem ví dụ sau, trong đó biến `result` được gán giá trị 3.
 
 ```ruby
 grade = 'C'
@@ -113,20 +113,20 @@ puts result
 #=> 3
 ```
 
-When we `puts` something inside a case statement, we'll use `#=>` to show what `puts` will print.
-In your terminal, however, you'll see the value printed followed by `=> nil`, since `puts` returns `nil`.
-We'll omit that because it's not relevant to what we're trying to show you.
-Just be aware that the `nil` you see is just the return value of `puts`. Standard Ruby behavior.
+Khi `puts` một giá trị bên trong câu lệnh case, chúng ta dùng `#=>` để cho biết `puts` sẽ in gì.
+Tuy nhiên, trong terminal, bạn sẽ thấy giá trị được in ra kèm theo `=> nil`, vì `puts` trả về `nil`.
+Chúng ta sẽ bỏ qua phần đó vì nó không liên quan đến điều muốn minh họa.
+Chỉ cần nhớ rằng `nil` bạn nhìn thấy chỉ là giá trị trả về của `puts`. Đây là hành vi tiêu chuẩn của Ruby.
 
-As you'll see, though, the point of a pattern match usually is to not only match against a pattern, but also bind all or part of the match to one or more variables that you can then use outside of the pattern match expression.
+Như bạn sẽ thấy, mục đích của pattern matching thường không chỉ là đối chiếu với một mẫu, mà còn liên kết toàn bộ hoặc một phần kết quả khớp với một hay nhiều biến để có thể sử dụng chúng bên ngoài biểu thức pattern matching.
 
-### Object pattern match
+### Đối chiếu theo mẫu đối tượng
 
-Any object can be used in a pattern match. It is matched using `===` to compare the two objects and is the same basis for matches in the case/when format. This pattern is usually used within other patterns, such as the array pattern.
+Bất kỳ đối tượng nào cũng có thể được sử dụng trong pattern matching. Đối tượng được đối chiếu bằng `===` để so sánh hai đối tượng, và đây cũng là cơ sở của việc đối chiếu trong dạng case/when. Mẫu này thường được dùng bên trong các mẫu khác, chẳng hạn mẫu array.
 
-The grade example provided earlier was one such use of the Ruby object pattern match. On each check, Ruby compared the grade with the specified letter. When there was a match, it executed the then clause of that match. `'A' === 'A' #=> true`.
+Ví dụ về điểm số ở trên là một trường hợp sử dụng mẫu đối tượng của Ruby. Ở mỗi lần kiểm tra, Ruby so sánh điểm số với chữ cái được chỉ định. Khi khớp, nó thực thi mệnh đề then của lần đối chiếu đó. `'A' === 'A' #=> true`.
 
-Because of this we can also check against data types.
+Nhờ vậy, chúng ta cũng có thể kiểm tra kiểu dữ liệu.
 
 ```ruby
 input = 3
@@ -139,28 +139,28 @@ end
 #=> input was of type Integer
 ```
 
-It's important to note here that Ruby places the pattern to match on the left of the comparison in `===`. If it didn't then there would be no match. `3 === Integer` is false whereas `Integer === 3` is true. That is because of how Ruby implements the `===` method on Integer vs on instances of Integer. On Integer, `===` will check that the operand on the right of the comparison is of type Integer. On an instance of an integer, `===` will check they hold the same value. `3 === 3` is true.
+Điều quan trọng cần lưu ý là Ruby đặt mẫu cần đối chiếu ở bên trái phép so sánh trong `===`. Nếu không, việc đối chiếu sẽ không thành công. `3 === Integer` là false, trong khi `Integer === 3` là true. Điều này là do cách Ruby triển khai phương thức `===` trên Integer và trên các thể hiện của Integer. Với Integer, `===` kiểm tra toán hạng bên phải của phép so sánh có kiểu Integer hay không. Với một thể hiện của số nguyên, `===` kiểm tra hai bên có cùng giá trị hay không. `3 === 3` là true.
 
-With Ruby pattern matching, you can match against the following literal types.
+Với pattern matching của Ruby, bạn có thể đối chiếu các kiểu literal sau đây.
 
-- Booleans
+- Boolean
 - nil
-- Numbers
-- Strings
-- Symbols
-- Arrays
-- Hashes
-- Ranges
-- Regular Expressions
-- Procs
+- Số
+- Chuỗi
+- Symbol
+- Array
+- Hash
+- Khoảng
+- Biểu thức chính quy
+- Proc
 
-This isn't any different from what we can do with a case/when statement, but the power comes when you match these types within some of the other patterns as we'll see next.
+Điều này không khác những gì ta có thể làm với câu lệnh case/when, nhưng sức mạnh xuất hiện khi bạn đối chiếu các kiểu này bên trong một số mẫu khác, như chúng ta sẽ thấy tiếp theo.
 
-### Variable pattern
+### Mẫu biến
 
-The variable pattern binds a variable or variables to the values that match the pattern.
+Mẫu biến liên kết một hoặc nhiều biến với các giá trị khớp với mẫu.
 
-The basic format is:
+Dạng cơ bản là:
 
 ```ruby
 age = 15
@@ -173,9 +173,9 @@ end
 # => 15
 ```
 
-This example isn't useful in itself, but lays the foundation for use in other patterns as we'll see.
+Bản thân ví dụ này không hữu ích lắm, nhưng nó đặt nền tảng cho việc sử dụng trong các mẫu khác, như chúng ta sẽ thấy.
 
-Something to take note of is that the variable pattern always binds the value to the variable. Be careful if there is another variable with the same name in the outer scope which you'll need.
+Điều cần lưu ý là mẫu biến luôn liên kết giá trị với biến. Hãy cẩn thận nếu trong phạm vi bên ngoài có một biến cùng tên mà bạn cần sử dụng.
 
 ```ruby
 a = 5
@@ -189,7 +189,7 @@ puts a
 #=> 1
 ```
 
-Above, you might have thought you were comparing the value held in the initial `a` variable against the value `1` from the case statement. What actually happened is a variable assignment pattern match. To avoid this, Ruby provides the pin operator `^` which instead matches against a variable of that name.
+Ở trên, có thể bạn nghĩ rằng mình đang so sánh giá trị ban đầu nằm trong biến `a` với giá trị `1` từ câu lệnh case. Thực tế, điều xảy ra là một phép pattern matching gán biến. Để tránh điều này, Ruby cung cấp toán tử ghim `^`, qua đó đối chiếu với biến có tên tương ứng.
 
 ```ruby
 a = 5
@@ -202,9 +202,9 @@ end
 #=> NoMatchingPatternError
 ```
 
-### As pattern match
+### Đối chiếu theo mẫu as
 
-The as pattern is similar to the variable pattern but can be used to manage more complex assignments. This will make most sense when using Arrays and Hashes so examples will be shown when covering those patterns but the general pattern is written as follows:
+Mẫu as tương tự mẫu biến, nhưng có thể dùng để xử lý những phép gán phức tạp hơn. Mẫu này sẽ dễ hiểu nhất khi dùng với Array và Hash, vì vậy các ví dụ sẽ được trình bày ở phần nói về những mẫu đó; còn dạng tổng quát được viết như sau:
 
 ```ruby
 case 3
@@ -215,11 +215,11 @@ end
 # => 3
 ```
 
-It uses the hash rocket in the same way the one line pattern match does. Look out for the examples in later sections for clarification on when this pattern could be useful.
+Mẫu này dùng hash rocket giống như pattern matching một dòng. Hãy chú ý các ví dụ ở những phần sau để hiểu rõ khi nào mẫu này hữu ích.
 
-### Alternative pattern match
+### Đối chiếu theo mẫu thay thế
 
-The alternative pattern allows you to check if multiple options match the input.
+Mẫu thay thế cho phép bạn kiểm tra xem đầu vào có khớp với một trong nhiều lựa chọn hay không.
 
 ```ruby
 case 0
@@ -230,11 +230,11 @@ end
 # => match
 ```
 
-There isn't much more to it. The same rules apply as with any other pattern. So you can use the `^` operator if you are using variables to compare.
+Mẫu này không có gì nhiều hơn thế. Các quy tắc giống với mọi mẫu khác. Vì vậy, nếu dùng các biến để so sánh, bạn có thể sử dụng toán tử `^`.
 
-### Guard conditions
+### Điều kiện bảo vệ
 
-This isn't a pattern per se, but a way to make sure the pattern is only matched if the guard condition holds true.
+Đây không hẳn là một mẫu, mà là cách đảm bảo mẫu chỉ được khớp khi điều kiện bảo vệ có giá trị true.
 
 ```ruby
 some_other_value = true
@@ -247,11 +247,11 @@ end
 # => match
 ```
 
-You can use any expression in the condition that can evaluate to true or false. You can also use `unless` instead of `if` if it suits you.
+Bạn có thể dùng bất kỳ biểu thức nào trong điều kiện, miễn là biểu thức đó có thể được đánh giá thành true hoặc false. Nếu phù hợp, bạn cũng có thể dùng `unless` thay cho `if`.
 
-### Array pattern match
+### Đối chiếu theo mẫu Array
 
-Matching against arrays can be done in a few different ways. At its most basic, you can match against the exact elements in the array.
+Có vài cách khác nhau để đối chiếu với array. Ở mức cơ bản nhất, bạn có thể đối chiếu với các phần tử chính xác trong array.
 
 ```ruby
 arr = [1 ,2]
@@ -264,7 +264,7 @@ end
 # => match
 ```
 
-That works using the `===` operator from the object pattern match so would work using case/when. That's no fun, so let's ramp it up a little bit.
+Cách này hoạt động nhờ toán tử `===` của mẫu đối tượng, nên cũng sẽ hoạt động với case/when. Như vậy thì chưa thú vị lắm, hãy nâng mức độ lên một chút.
 
 ```ruby
 arr = [1, 2]
@@ -279,9 +279,9 @@ end
 # => match
 ```
 
-Here we've matched against the type of the arrays elements. This is an example of Ruby matching against a pattern rather than the actual values in the array.
+Ở đây, chúng ta đối chiếu kiểu của các phần tử trong array. Đây là ví dụ Ruby đối chiếu với một mẫu thay vì các giá trị thực tế trong array.
 
-What happens if we have more elements in the array?
+Nếu array có nhiều phần tử hơn thì sao?
 
 ```ruby
 arr = [1, 2, 3]
@@ -294,7 +294,7 @@ end
 # => [1, 2, 3] (NoMatchingPatternError)
 ```
 
-An error! Ruby appears to only match against arrays with the same number of elements. What if you want to match against only part of an array? Use the trusty splat `*`.
+Một lỗi! Có vẻ Ruby chỉ đối chiếu với các array có cùng số lượng phần tử. Nếu muốn đối chiếu chỉ một phần của array thì sao? Hãy dùng splat `*` quen thuộc.
 
 ```ruby
 arr = [1, 2, 3]
@@ -307,7 +307,7 @@ end
 # => match
 ```
 
-You can place the splat anywhere in an array to match against multiple entries.
+Bạn có thể đặt splat ở bất kỳ vị trí nào trong array để đối chiếu với nhiều phần tử.
 
 ```ruby
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -320,7 +320,7 @@ end
 # => match
 ```
 
-Here we are checking only the first and last two elements are Integers. You can also mix and match between checking actual values and types.
+Ở đây, chúng ta chỉ kiểm tra hai phần tử đầu và hai phần tử cuối có phải là Integer hay không. Bạn cũng có thể kết hợp việc kiểm tra giá trị thực tế với việc kiểm tra kiểu dữ liệu.
 
 ```ruby
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -333,7 +333,7 @@ end
 # => match
 ```
 
-If you want to scoop up the values of the array matched against the splat, you can use the variable pattern.
+Nếu muốn gom các giá trị trong array được đối chiếu với splat, bạn có thể dùng mẫu biến.
 
 ```ruby
 arr = [1, 2, 3, 4]
@@ -346,7 +346,7 @@ end
 # => [3, 4]
 ```
 
-If you don't care about some values in the array and are happy to match against any value for that index you can use `_`.
+Nếu không quan tâm đến một số giá trị trong array và chấp nhận đối chiếu với bất kỳ giá trị nào tại vị trí đó, bạn có thể dùng `_`.
 
 ```ruby
 arr = [1, 2, 3, 4]
@@ -359,7 +359,7 @@ end
 # => match
 ```
 
-Let's say you want to match against an array of two numbers, but only if they aren't the same number. You can use a guard clause.
+Giả sử bạn muốn đối chiếu với một array gồm hai số, nhưng chỉ khi hai số đó khác nhau. Bạn có thể dùng mệnh đề bảo vệ.
 
 ```ruby
 arr = [1, 2]
@@ -371,7 +371,7 @@ end
 # => match
 ```
 
-You can even match against nested arrays.
+Bạn thậm chí có thể đối chiếu với các array lồng nhau.
 
 ```ruby
 arr = [1, 2, [3, 4]]
@@ -384,9 +384,9 @@ end
 # => match
 ```
 
-This is where the real power of pattern matching shines: traversing deeply nested structures for matches.
+Đây là nơi sức mạnh thực sự của pattern matching tỏa sáng: duyệt qua các cấu trúc lồng nhau sâu để tìm kết quả khớp.
 
-You can incorporate the variable pattern to bind matching values to variables to use later.
+Bạn có thể kết hợp mẫu biến để liên kết các giá trị khớp với các biến và sử dụng chúng về sau.
 
 ```ruby
 arr = [1, 2, 3, 4, 5]
@@ -401,7 +401,7 @@ end
 # => 5
 ```
 
-Let's say you have a nested array and you want to match against both the nested array and some individual parts of it. This is where the as pattern can be used.
+Giả sử bạn có một array lồng nhau và muốn đối chiếu cả array lồng lẫn một số phần tử riêng lẻ của nó. Đây là lúc có thể dùng mẫu as.
 
 ```ruby
 case [1, 2, 3, [4, 5]]
@@ -414,7 +414,7 @@ end
 # => [4, 5]
 ```
 
-Be careful with variable reassignment as we discussed earlier.
+Hãy cẩn thận với việc gán lại biến như đã thảo luận trước đó.
 
 ```ruby
 arr = [1, 2, 3]
@@ -429,7 +429,7 @@ p arr
 # => [1, 2, 4]
 ```
 
-One last point to note is that when matching an array the `[]` are optional on the outer array.
+Một điểm cuối cần lưu ý là khi đối chiếu với array, cặp `[]` bên ngoài là tùy chọn.
 
 ```ruby
 arr = [1, 2, 3, 4]
@@ -442,11 +442,11 @@ end
 # => match
 ```
 
-### Hash pattern matching
+### Pattern matching với Hash
 
-Pattern Matching with Hashes works in a similar way to arrays with a couple of important differences. The first is that pattern matching only works for symbol keys, not string keys. The reason for this is to do with how Ruby matches against a hash. This may change in future Ruby versions. The second important difference is that unlike with arrays, you can match against parts of a Hash without having to handle the fact there may be additional key-value pairs.
+Pattern matching với Hash hoạt động tương tự array, nhưng có một vài khác biệt quan trọng. Thứ nhất, pattern matching chỉ hoạt động với các khóa symbol, không phải khóa string. Lý do liên quan đến cách Ruby đối chiếu với một hash. Điều này có thể thay đổi trong các phiên bản Ruby tương lai. Khác biệt quan trọng thứ hai là, không giống array, bạn có thể đối chiếu với một phần của Hash mà không cần xử lý khả năng còn có thêm các cặp khóa-giá trị.
 
-We can match against the actual values of a hash.
+Chúng ta có thể đối chiếu với các giá trị thực tế của một hash.
 
 ```ruby
 case { a: 'apple', b: 'banana' }
@@ -459,7 +459,7 @@ end
 # => match
 ```
 
-We can match against a hash and assign values to variables.
+Chúng ta có thể đối chiếu với một hash và gán các giá trị cho biến.
 
 ```ruby
 case { a: 'apple', b: 'banana' }
@@ -472,7 +472,7 @@ end
 # => banana
 ```
 
-Because of Ruby syntactic sugar for hashes, we could rewrite the above as below. Note how we don't have to provide names for the variables. This isn't pattern matching behavior but normal Ruby hash behavior.
+Nhờ cú pháp rút gọn của Ruby dành cho hash, chúng ta có thể viết lại đoạn trên như sau. Hãy chú ý rằng không cần cung cấp tên cho các biến. Đây không phải là hành vi riêng của pattern matching, mà là hành vi thông thường của hash trong Ruby.
 
 ```ruby
 case { a: 'apple', b: 'banana' }
@@ -485,7 +485,7 @@ end
 # => banana
 ```
 
-As with arrays, with hashes you can omit the brackets `{}`.
+Cũng như với array, khi dùng hash bạn có thể bỏ cặp ngoặc `{}`.
 
 ```ruby
 case { a: 'apple', b: 'banana' }
@@ -498,7 +498,7 @@ end
 # => banana
 ```
 
-You can use the double splat `**` to scoop up multiple key-value pairs.
+Bạn có thể dùng double splat `**` để gom nhiều cặp khóa-giá trị.
 
 ```ruby
 case { a: 'ant', b: 'ball', c: 'cat' }
@@ -509,7 +509,7 @@ end
 # => { :b => "ball", :c => "cat" }
 ```
 
-Something to be mindful of with hashes is that because a hash will match with only a subset of keys matching, you need to guard against situations where you don't want that behavior.
+Một điều cần lưu ý với hash là vì hash có thể khớp chỉ với một tập con các khóa, bạn cần đề phòng những tình huống không mong muốn hành vi đó.
 
 ```ruby
 case { a: 'ant', b: 'ball' }
@@ -520,7 +520,7 @@ in { a: 'ant', b: 'ball' }
 end
 ```
 
-If you want to ensure you only match exactly you can use `**nil`.
+Nếu muốn đảm bảo chỉ khớp chính xác, bạn có thể dùng `**nil`.
 
 ```ruby
 case { a: 'ant', b: 'ball' }
@@ -533,7 +533,7 @@ end
 # => match
 ```
 
-We can use the as pattern to assign the entire hash match to a variable.
+Chúng ta có thể dùng mẫu as để gán toàn bộ hash đã khớp cho một biến.
 
 ```ruby
 case { a: 'ant', b: 'ball' }
@@ -544,15 +544,15 @@ end
 #=> { :a => 'ant', :b => 'ball' }
 ```
 
-### Ruby 3 patterns
+### Các mẫu trong Ruby 3
 
-With Ruby 3 came a couple of new patterns. You may get a warning about these features being experimental and subject to change so they aren't yet considered ready for any production code.
+Ruby 3 bổ sung một vài mẫu mới. Bạn có thể nhận được cảnh báo rằng các tính năng này vẫn đang thử nghiệm và có thể thay đổi, vì vậy chúng chưa được xem là sẵn sàng cho mã production.
 
-### Rightward assignment
+### Phép gán hướng phải
 
-Usually, you place variables on the left of an expression that binds a value to that variable. With rightward assignment you deconstruct an object and assign values to variables on the right of the expression. Instead of using `=` to assign you use a hash rocket `=>`.
+Thông thường, bạn đặt các biến ở bên trái biểu thức liên kết một giá trị với biến đó. Với phép gán hướng phải, bạn phân rã một đối tượng rồi gán các giá trị cho các biến ở bên phải biểu thức. Thay vì dùng `=` để gán, bạn dùng hash rocket `=>`.
 
-All of the previous patterns we've covered can be used in this syntax.
+Tất cả các mẫu đã trình bày trước đó đều có thể được dùng với cú pháp này.
 
 ```ruby
 login = { username: 'hornby', password: 'iliketrains' }
@@ -564,15 +564,15 @@ puts "Logged in with username #{username}"
 #=> "Logged in with username hornby"
 ```
 
-The case/in format is best used when there are multiple conditionals you could possibly match against and you need to check against all of them. The hash rocket syntax is best used when the data structure you are matching against is known, such as the login data example we used above.
+Dạng case/in phù hợp nhất khi có nhiều điều kiện có thể khớp và bạn cần kiểm tra lần lượt tất cả chúng. Cú pháp hash rocket phù hợp nhất khi đã biết cấu trúc dữ liệu cần đối chiếu, chẳng hạn dữ liệu đăng nhập trong ví dụ trên.
 
-### Find pattern
+### Mẫu tìm kiếm
 
-An array pattern matches elements by position, starting from the beginning of the array. This makes it unsuitable when you want to match a value that may appear anywhere inside the array.
+Mẫu array đối chiếu các phần tử theo vị trí, bắt đầu từ đầu array. Điều này khiến nó không phù hợp khi bạn muốn đối chiếu một giá trị có thể xuất hiện ở bất kỳ đâu trong array.
 
-While the as pattern can capture the entire array and variable patterns can capture individual elements, they still rely on positional matching. To allow matching a subsequence regardless of its position, Ruby introduced the find pattern.
+Mẫu as có thể bắt giữ toàn bộ array và mẫu biến có thể bắt giữ từng phần tử, nhưng cả hai vẫn dựa vào việc đối chiếu theo vị trí. Để cho phép đối chiếu một chuỗi con bất kể vị trí của nó, Ruby đã giới thiệu mẫu tìm kiếm.
 
-It works by placing a `*` either side of the part you want to match. You can even use the variable pattern to give each `*` a variable name to reference later. Let's look at some examples.
+Mẫu này hoạt động bằng cách đặt một `*` ở hai bên phần bạn muốn đối chiếu. Bạn thậm chí có thể dùng mẫu biến để đặt tên biến cho từng `*` nhằm tham chiếu về sau. Hãy xem một vài ví dụ.
 
 ```ruby
 case [1, 2, 3]
@@ -585,7 +585,7 @@ end
 # => []
 ```
 
-Because everything was matched between the pattern our `pre` and `post` variables were assigned empty arrays. Let's see what happens when they aren't.
+Vì mọi thứ đều đã được khớp giữa mẫu, các biến `pre` và `post` của chúng ta được gán các array rỗng. Hãy xem điều gì xảy ra khi chúng không rỗng.
 
 ```ruby
 case [1, 2, 3, 4, 5]
@@ -598,7 +598,7 @@ end
 # => [4, 5]
 ```
 
-Here's an interesting one. Let's say you have a mixed array of strings and integers and want to match on the first instance of two consecutive strings. While that would be a bit of a pain to implement without using pattern matching, with the find pattern it's easy. We can even throw in the as pattern to grab the values of the two consecutive strings.
+Đây là một ví dụ thú vị. Giả sử bạn có một array gồm cả string và số nguyên, và muốn tìm lần xuất hiện đầu tiên của hai string liên tiếp. Nếu không dùng pattern matching, việc triển khai điều này sẽ khá phiền; còn với mẫu tìm kiếm thì rất đơn giản. Ta thậm chí có thể thêm mẫu as để lấy các giá trị của hai string liên tiếp.
 
 ```ruby
 case [1, 2, "a", 4, "b", "c", 7, 8, 9]
@@ -615,7 +615,7 @@ end
 # => [7, 8, 9]
 ```
 
-As a last example, we'll consider a common use case which will hopefully show where the find pattern could be a better fit than a conventional Ruby solution. It's not uncommon in Ruby to find yourself with an array of hashes or JSON data, and you might need to locate a record from that data. You need to match that data on a few hash keys. The data might look something like this.
+Ở ví dụ cuối, chúng ta sẽ xét một trường hợp sử dụng phổ biến, qua đó hy vọng cho thấy khi nào mẫu tìm kiếm phù hợp hơn giải pháp Ruby thông thường. Trong Ruby, việc gặp một array chứa các hash hoặc dữ liệu JSON là chuyện không hiếm, và bạn có thể cần tìm một bản ghi trong dữ liệu đó. Bạn cần đối chiếu dữ liệu dựa trên một vài khóa hash. Dữ liệu có thể trông như sau.
 
 ```ruby
 data = [
@@ -627,7 +627,7 @@ data = [
 ]
 ```
 
-Let's say you get a name, age, and job title as parameters. If that person exists, you need to return their first language, otherwise `nil`. Before pattern matching, you may do something like this.
+Giả sử bạn nhận được tên, tuổi và chức danh công việc dưới dạng tham số. Nếu người đó tồn tại, bạn cần trả về ngôn ngữ đầu tiên của họ; nếu không, trả về `nil`. Trước khi có pattern matching, bạn có thể làm như sau.
 
 ```ruby
 name = 'Jill'
@@ -641,9 +641,9 @@ end
 match&.fetch(:first_language)
 ```
 
-A couple of things to note here. Firstly, because `match` could be `nil` if it couldn't find a record, we had to use the `&` safe search navigator to check that we could call fetch on match. Otherwise, it would have blown up with a no method error. Secondly, while this isn't actually that bad, imagine we had more than 3 fields to search. What if there were 10? Our code would start to get out of control.
+Có vài điểm cần lưu ý. Thứ nhất, vì `match` có thể là `nil` nếu không tìm được bản ghi, chúng ta phải dùng toán tử điều hướng an toàn `&` để kiểm tra xem có thể gọi fetch trên match hay không. Nếu không, chương trình sẽ bị lỗi do gọi phương thức không tồn tại. Thứ hai, dù đoạn mã này thực ra chưa quá tệ, hãy thử tưởng tượng ta có hơn 3 trường cần tìm. Nếu có 10 trường thì sao? Mã của chúng ta sẽ bắt đầu trở nên mất kiểm soát.
 
-Now let's see how we could have handled it using a pattern match.
+Bây giờ hãy xem có thể xử lý việc này bằng pattern matching như thế nào.
 
 ```ruby
 name = 'Jill'
@@ -661,22 +661,22 @@ puts first_language
 # => italian
 ```
 
-With pattern matching, we do need to consider the case if there is no match. Without the else clause, we'd get the no matching pattern error. But that is exactly what the else clause is for in the case statement. We get a couple of benefits from doing it this way. Firstly, we can bind the `first_language` value to a variable right there in the pattern. Secondly, and we acknowledge this is somewhat subjective, but we find it beneficial in the case statement to see exactly what kind of data structure we're trying to match against. This can be useful when getting to grips with code where the data may come from a third party API. And remember, this is still a very simplistic example. In the real world, data can be nested several levels deep which can lead to a horrible tangle of spaghetti code when trying to make sure you can locate a value several levels deep. What if you had to dive 6 levels, but grab a value or two along the way from a couple of the higher levels? No problem with pattern matching.
+Với pattern matching, chúng ta cần xét cả trường hợp không có kết quả khớp. Nếu không có mệnh đề else, ta sẽ nhận lỗi không có mẫu khớp. Nhưng đó chính là mục đích của mệnh đề else trong câu lệnh case. Cách làm này đem lại một vài lợi ích. Thứ nhất, ta có thể liên kết giá trị `first_language` với một biến ngay trong mẫu. Thứ hai — và chúng tôi thừa nhận đây phần nào là ý kiến chủ quan — chúng tôi thấy câu lệnh case hữu ích ở chỗ cho thấy chính xác loại cấu trúc dữ liệu đang được đối chiếu. Điều này có thể hữu ích khi làm quen với mã sử dụng dữ liệu đến từ API bên thứ ba. Và hãy nhớ, đây vẫn là một ví dụ rất đơn giản. Trong thực tế, dữ liệu có thể lồng sâu nhiều tầng, dẫn đến một mớ mã spaghetti rối rắm khi cố đảm bảo có thể tìm được một giá trị ở nhiều tầng bên trong. Nếu phải đi sâu 6 tầng nhưng đồng thời lấy một hoặc hai giá trị trên đường đi từ vài tầng cao hơn thì sao? Pattern matching xử lý được việc đó.
 
-### Wrapping up
+### Tổng kết
 
-Pattern Matching provides a powerful way to get at the data you need in a way that makes sense. But as with any tool, you don't need to reach for it in every use case. For data structures that are shallow, just think about whether you need to bring in a pattern match when you could just grab the value using the hash and array methods already available. If you do find yourself deep in a nested structure with many checks for `nil` and a lot of edge case handling, it might be time to see if pattern matching brings something to the table.
+Pattern Matching cung cấp một cách mạnh mẽ để lấy được dữ liệu cần thiết theo cách dễ hiểu. Nhưng cũng như mọi công cụ khác, bạn không cần dùng nó trong mọi trường hợp. Với các cấu trúc dữ liệu nông, hãy cân nhắc xem có cần đưa pattern matching vào không, khi bạn có thể lấy giá trị bằng các phương thức hash và array vốn đã có sẵn. Nếu bạn thấy mình đang xử lý một cấu trúc lồng sâu với nhiều lần kiểm tra `nil` và rất nhiều trường hợp biên, có lẽ đã đến lúc xem pattern matching có thể giúp ích gì không.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Ruby docs on pattern matching](https://docs.ruby-lang.org/en/3.4/syntax/pattern_matching_rdoc.html). They cover quite a lot of ground.
+1. Đọc [tài liệu Ruby về pattern matching](https://docs.ruby-lang.org/en/3.4/syntax/pattern_matching_rdoc.html). Tài liệu này bao quát khá nhiều nội dung.
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ trợ.
 
-- [An Introduction to Pattern Matching in Ruby](https://blog.appsignal.com/2021/07/28/introduction-to-pattern-matching-in-ruby.html) from AppSignal should be another useful perspective on the material.
+- [Giới thiệu về Pattern Matching trong Ruby](https://blog.appsignal.com/2021/07/28/introduction-to-pattern-matching-in-ruby.html) từ AppSignal có thể mang đến một góc nhìn hữu ích khác về nội dung này.

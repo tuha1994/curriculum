@@ -1,51 +1,51 @@
-### Introduction
+### Giới thiệu
 
-Recursion is the idea that a function calls itself. Pretty straightforward, right? It's used to take a big problem and start breaking it down into smaller and smaller pieces ("Divide and Conquer") and continuing to feed their solutions back into the original function until some sort of answer is achieved and the whole chain unwinds.
+Đệ quy là ý tưởng trong đó một hàm tự gọi chính nó. Khá dễ hiểu, đúng không? Đệ quy được dùng để lấy một bài toán lớn rồi bắt đầu chia nó thành những phần ngày càng nhỏ hơn ("Chia để trị"), đồng thời liên tục đưa lời giải của chúng trở lại hàm ban đầu cho đến khi đạt được một dạng đáp án nào đó và toàn bộ chuỗi lời gọi được gỡ ngược lại.
 
-From the [Wikipedia entry on Divide and Conquer Algorithms](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm):
+Theo [bài viết trên Wikipedia về các thuật toán Chia để trị](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm):
 
-> In computer science, divide and conquer (D&C) is an important algorithm design paradigm based on multi-branched recursion. A divide and conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same (or related) type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.
+> Trong khoa học máy tính, chia để trị (D&C) là một mô hình thiết kế thuật toán quan trọng dựa trên đệ quy nhiều nhánh. Một thuật toán chia để trị hoạt động bằng cách đệ quy chia một bài toán thành hai hoặc nhiều bài toán con cùng loại (hoặc có liên quan), cho đến khi chúng trở nên đủ đơn giản để giải trực tiếp. Sau đó, các lời giải của những bài toán con được kết hợp để tạo thành lời giải cho bài toán ban đầu.
 
-There's also a right and wrong way to use recursion.  The fact is, any problem you can solve recursively, you can also solve using the iterators that you know and love.  If you find yourself saying "why didn't I just use a `while` loop here?" then you probably should have.  You won't often end up using a recursive solution to a problem, but you should get a feel for when it might be a good idea.  Some problems also break down into far too many pieces and totally overwhelm your computer's memory.  There's a balance.
+Đệ quy cũng có cách dùng đúng và cách dùng sai. Sự thật là bất kỳ bài toán nào bạn có thể giải bằng đệ quy thì bạn cũng có thể giải bằng những iterator mà bạn đã quen thuộc và yêu thích. Nếu bạn thấy mình tự hỏi "sao lúc nãy mình không dùng vòng lặp `while` nhỉ?" thì có lẽ bạn nên dùng nó. Bạn sẽ không thường xuyên dùng lời giải đệ quy cho một bài toán, nhưng nên hình thành cảm nhận về lúc nào nó có thể là một lựa chọn tốt. Một số bài toán còn bị chia thành quá nhiều phần, khiến bộ nhớ máy tính của bạn hoàn toàn quá tải. Cần có sự cân bằng.
 
-In this brief lesson, you'll get a chance to learn more about when and how to use recursion and then in the next project you will get the chance to apply some of that (since it probably won't really stick until you've had a chance to try it).
+Trong bài học ngắn này, bạn sẽ có cơ hội tìm hiểu thêm về thời điểm và cách sử dụng đệ quy; sau đó, ở dự án tiếp theo, bạn sẽ được áp dụng một phần kiến thức đó (vì có lẽ kiến thức sẽ chưa thực sự ghi nhớ cho đến khi bạn có cơ hội tự thử).
 
-### Lesson overview
+### Tổng quan bài học
 
-This section contains a general overview of topics that you will learn in this lesson.
+Phần này cung cấp cái nhìn tổng quan về các chủ đề bạn sẽ học trong bài học này.
 
-- Why recursion is a useful technique for solving large problems.
-- The limitations of using recursive solutions.
-- Which types of problems are better solved using loops instead of recursion.
-- The concept of "recursive depth".
-- What a "stack overflow" is (the concept, not the website).
-- Why stack overflow is relevant to recursive problems.
+- Vì sao đệ quy là một kỹ thuật hữu ích để giải các bài toán lớn.
+- Những hạn chế của việc sử dụng lời giải đệ quy.
+- Những loại bài toán nào nên được giải bằng vòng lặp thay vì đệ quy.
+- Khái niệm "độ sâu đệ quy".
+- "Tràn ngăn xếp" là gì (khái niệm này, không phải trang web).
+- Vì sao tràn ngăn xếp có liên quan đến các bài toán đệ quy.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Read the [Chapter on Recursion](http://ruby.bastardsbook.com/chapters/recursion/) in the Bastards Book of Ruby by Dan Nguyen.
-1. Watch this [explanation of recursion by Web Dev Simplified](https://www.youtube.com/watch?v=6oDQaB2one8).
-1. Watch this [Video on Recursion](https://www.youtube.com/watch?v=mz6tAJMVmfM) from CS50.
-1. Read the ["Implementation Issues" section of the wiki article](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm#Implementation_issues) to get an overview of some of the limitations of recursion.
-1. If you haven't already, fork and clone the [ruby-exercises repo](https://github.com/TheOdinProject/ruby-exercises/) (you likely already did this while doing the `/ruby_basics/` exercises earlier in the Ruby course). `cd` into the `/recursion` directory and follow the instructions in the README there. Complete each of the recursion exercises in order, and pass the tests.
+1. Đọc [chương về Đệ quy](http://ruby.bastardsbook.com/chapters/recursion/) trong Bastards Book of Ruby của Dan Nguyen.
+1. Xem [phần giải thích về đệ quy của Web Dev Simplified](https://www.youtube.com/watch?v=6oDQaB2one8).
+1. Xem [video về Đệ quy](https://www.youtube.com/watch?v=mz6tAJMVmfM) từ CS50.
+1. Đọc [phần "Các vấn đề triển khai" của bài viết trên wiki](http://en.wikipedia.org/wiki/Divide_and_conquer_algorithm#Implementation_issues) để có cái nhìn tổng quan về một số hạn chế của đệ quy.
+1. Nếu chưa làm, hãy fork và clone [repo ruby-exercises](https://github.com/TheOdinProject/ruby-exercises/) (có lẽ bạn đã làm việc này khi thực hiện các bài tập `/ruby_basics/` trước đó trong khóa Ruby). Dùng `cd` để vào thư mục `/recursion` và làm theo hướng dẫn trong README ở đó. Hoàn thành lần lượt từng bài tập về đệ quy và vượt qua các bài kiểm thử.
 
    <div class="lesson-note lesson-note--tip" markdown="1">
 
-   #### Use a debugger!
+   #### Hãy dùng trình gỡ lỗi!
 
-   It can be rather difficult trying to track what's going on in a recursive function layer by layer, don't put yourself through that! If you haven't already been making use of a debugger when solving some problems (you'll have been missing out on a lot if not!), now is as good a time as any to get familiar with it as it can help make navigating the code flow so much easier.
+   Việc theo dõi từng lớp của một hàm đệ quy đang diễn ra như thế nào có thể khá khó khăn, nên đừng tự làm khổ mình! Nếu trước đây bạn chưa dùng trình gỡ lỗi khi giải một số bài toán (nếu chưa thì bạn đã bỏ lỡ rất nhiều!), thì đây là thời điểm thích hợp để làm quen với nó, vì trình gỡ lỗi có thể giúp việc theo dõi luồng thực thi của mã dễ dàng hơn nhiều.
 
    </div>
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ trợ.
 
-- ["What is Ruby Recursion and How Does It Work?"](http://stackoverflow.com/questions/6418017/what-is-ruby-recursion-and-how-does-it-work) on Stack Overflow
-- [Efficient Recursion from U of Alberta](http://webdocs.cs.ualberta.ca/~holte/T26/efficient-rec.html)
-- [Natashatherobot's blog post on Recursion in Ruby](https://web.archive.org/web/20210121055221/http://natashatherobot.com/recursion-factorials-fibonacci-ruby/)
-- [Functional Programming Techniques with Ruby post](http://www.sitepoint.com/functional-programming-techniques-with-ruby-part-iii/), which covers recursion at the top
+- ["Đệ quy trong Ruby là gì và hoạt động như thế nào?"](http://stackoverflow.com/questions/6418017/what-is-ruby-recursion-and-how-does-it-work) trên Stack Overflow
+- [Đệ quy hiệu quả từ U of Alberta](http://webdocs.cs.ualberta.ca/~holte/T26/efficient-rec.html)
+- [Bài viết trên blog của Natashatherobot về Đệ quy trong Ruby](https://web.archive.org/web/20210121055221/http://natashatherobot.com/recursion-factorials-fibonacci-ruby/)
+- [Bài viết về các kỹ thuật lập trình hàm với Ruby](http://www.sitepoint.com/functional-programming-techniques-with-ruby-part-iii/), trong đó có đề cập đến đệ quy ở phần đầu

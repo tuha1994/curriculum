@@ -1,44 +1,44 @@
-### Introduction
+### Giới thiệu
 
-Use what you have learnt about recursion so far to tackle two classic problems that can leverage recursion: Fibonacci and Merge Sort.
+Hãy sử dụng những gì bạn đã học về đệ quy cho đến nay để giải quyết hai bài toán kinh điển có thể tận dụng đệ quy: Fibonacci và Merge Sort.
 
-#### Fibonacci
+#### Dãy Fibonacci
 
-The [Fibonacci Sequence](http://en.wikipedia.org/wiki/Fibonacci_number), is a numerical sequence where each number is the sum of the two numbers before it. Eg. 0, 1, 1, 2, 3, 5, 8, 13 are the first eight digits in the sequence.
+[Chuỗi Fibonacci](http://en.wikipedia.org/wiki/Fibonacci_number) là một chuỗi số trong đó mỗi số là tổng của hai số đứng trước nó. Ví dụ: 0, 1, 1, 2, 3, 5, 8, 13 là tám số đầu tiên trong chuỗi.
 
-You should already be thinking that perhaps this can be solved iteratively rather than recursively, and you would be correct. Nevertheless generating the sequence recursively is an excellent way to better understand recursion.
+Có lẽ bạn đã nghĩ ngay rằng bài toán này có thể được giải bằng cách lặp thay vì đệ quy, và bạn đã đúng. Tuy vậy, việc tạo chuỗi bằng đệ quy là một cách tuyệt vời để hiểu rõ hơn về đệ quy.
 
-You can watch this [video from Khan Academy on recursive Fibonacci](https://www.youtube.com/watch?v=zg-ddPbzcKM) to understand it further.
+Bạn có thể xem [video của Khan Academy về Fibonacci đệ quy](https://www.youtube.com/watch?v=zg-ddPbzcKM) để hiểu thêm.
 
-#### Merge sort
+#### Sắp xếp trộn (Merge sort)
 
-A significant part of computer science is dedicated to sorting data. An algorithm which uses the 'divide and conquer' approach of recursion is able to reduce a sorting problem to smaller and smaller sub-problems.
+Một phần quan trọng của khoa học máy tính dành cho việc sắp xếp dữ liệu. Một thuật toán sử dụng cách tiếp cận 'chia để trị' của đệ quy có thể giảm một bài toán sắp xếp thành những bài toán con ngày càng nhỏ hơn.
 
-Merge sort is one such sorting algorithm, and can be much faster than other algorithms such as bubble sort on the right data sets. Essentially merge sort recurses through an array of unsorted data until it reaches its smallest sub-set, a single item. Of course an array with a single item is considered sorted. Merge sort then merges the single items back together in sorted order. Pretty clever!
+Merge sort là một thuật toán sắp xếp như vậy và có thể nhanh hơn nhiều so với các thuật toán khác, chẳng hạn bubble sort, trên những tập dữ liệu phù hợp. Về cơ bản, merge sort đệ quy đi qua một mảng dữ liệu chưa được sắp xếp cho đến khi mảng đạt đến tập con nhỏ nhất, tức là một phần tử đơn lẻ. Dĩ nhiên, một mảng chỉ có một phần tử được xem là đã sắp xếp. Sau đó, merge sort gộp các phần tử đơn lẻ trở lại theo thứ tự đã sắp xếp. Khá thông minh!
 
-To understand what the merge sort algorithm is doing check out these resources:
+Để hiểu thuật toán merge sort đang làm gì, hãy xem các tài nguyên sau:
 
-1. Watch this introductory video on [merge sort from Harvard's CS50x course](https://youtu.be/Ns7tGNbtvV4).
-1. Watch another explanation of [how merge sort works](https://youtu.be/4oqjcKenCH8?t=6248) (watch only until 1:58:33), this time from a part of a Harvard CS50x lecture.
-1. [The concept of merging](https://youtu.be/6pV2IF0fgKY) and [Merge Sort -- How it Works part](https://youtu.be/mB5HXBb_HY8) on YouTube give you a more formal look at this problem if you're still unclear.
+1. Xem video nhập môn về [merge sort trong khóa học CS50x của Harvard](https://youtu.be/Ns7tGNbtvV4).
+1. Xem một phần giải thích khác về [cách merge sort hoạt động](https://youtu.be/4oqjcKenCH8?t=6248) (chỉ xem đến 1:58:33), lần này từ một phần bài giảng CS50x của Harvard.
+1. [Khái niệm gộp](https://youtu.be/6pV2IF0fgKY) và [phần Merge Sort -- Cách nó hoạt động](https://youtu.be/mB5HXBb_HY8) trên YouTube sẽ giúp bạn có cái nhìn chính thức hơn về bài toán này nếu vẫn chưa hiểu rõ.
 
-### Assignment
+### Bài tập
 
 <div class="lesson-content__panel" markdown="1">
 
-First up create a file and tackle the fibonacci sequence:
+Trước tiên, hãy tạo một tệp và giải quyết chuỗi fibonacci:
 
-1. Using iteration, write a method `#fibs` which takes a number and returns an array containing that many numbers from the Fibonacci sequence. Using an example input of `8`, this function should return the array `[0, 1, 1, 2, 3, 5, 8, 13]`.
-1. Now write another method `#fibs_rec` which solves the same problem recursively.
-1. Test both versions of your methods by passing in various lengths as arguments.
+1. Sử dụng phép lặp, viết một phương thức `#fibs` nhận vào một số và trả về một mảng chứa số lượng phần tử tương ứng trong chuỗi Fibonacci. Với đầu vào mẫu là `8`, hàm này phải trả về mảng `[0, 1, 1, 2, 3, 5, 8, 13]`.
+1. Bây giờ hãy viết một phương thức khác là `#fibs_rec` để giải quyết cùng bài toán bằng đệ quy.
+1. Kiểm thử cả hai phiên bản phương thức bằng cách truyền vào các độ dài khác nhau.
 
-Hopefully you were able to solve the problem with recursion! If you need some help understanding what's going on with this function, the "Test it out" section below will help. If you're still a bit confused, there are some additional resources linked at the end of this page.
+Hy vọng bạn đã giải quyết được bài toán bằng đệ quy! Nếu cần trợ giúp để hiểu điều gì đang xảy ra trong hàm này, phần "Thử chạy" bên dưới sẽ hữu ích. Nếu vẫn còn hơi bối rối, ở cuối trang có liên kết đến một số tài nguyên bổ sung.
 
-Once you have a firm grasp on solving Fibonacci with recursion, create a new file and work on a merge sort:
+Khi đã nắm vững cách giải Fibonacci bằng đệ quy, hãy tạo một tệp mới và làm việc với merge sort:
 
-1. Build a function `#merge_sort` that takes in an array and returns a sorted array, using a recursive merge sort methodology.
+1. Xây dựng một hàm `#merge_sort` nhận vào một mảng và trả về một mảng đã sắp xếp, sử dụng phương pháp merge sort đệ quy.
 
-Test Examples:
+Ví dụ kiểm thử:
 
 - `merge_sort([])` → `[]`
 - `merge_sort([73])` → `[73]`
@@ -46,32 +46,32 @@ Test Examples:
 - `merge_sort([3, 2, 1, 13, 8, 5, 0, 1])` → `[0, 1, 1, 2, 3, 5, 8, 13]`
 - `merge_sort([105, 79, 100, 110])` → `[79, 100, 105, 110]`
 
-Tips:
+Mẹo:
 
-- Think about what the base case is and what behavior is happening again and again and can actually be delegated to someone else (e.g. that same method!).
-- It may be helpful to check out the background videos again if you don't quite understand what should be going on.
+- Hãy suy nghĩ về trường hợp cơ sở, cũng như hành vi nào đang lặp đi lặp lại và thực sự có thể được giao cho một đối tượng khác xử lý (ví dụ: chính phương thức đó!).
+- Nếu chưa hiểu rõ điều gì nên xảy ra, bạn có thể xem lại các video nền tảng.
 
-#### Test it out
+#### Thử chạy
 
-To showcase the recursive effect implemented in your Fibonacci method, do the following:
+Để minh họa hiệu ứng đệ quy được triển khai trong phương thức Fibonacci, hãy làm như sau:
 
-1. Add the following to the start of the method:
+1. Thêm đoạn sau vào đầu phương thức:
 
    ```ruby
    puts 'This was printed recursively'
    ```
 
-1. Run the method with `8` as the input.
+1. Chạy phương thức với đầu vào là `8`.
 
-1. If the method is implemented correctly, you should see that sentence printed around 8 times (Keep in mind that, depending on the way you implemented the method, you may see 7 instead of 8. This isn't a bug! It simply depends on how many times the method is *actually* repeated).
+1. Nếu phương thức được triển khai chính xác, bạn sẽ thấy câu đó được in ra khoảng 8 lần (Hãy nhớ rằng, tùy vào cách bạn triển khai phương thức, bạn có thể thấy 7 lần thay vì 8. Đây không phải lỗi! Điều đó đơn giản phụ thuộc vào số lần phương thức được lặp lại *thực sự*).
 
 </div>
 
-### Additional resources
+### Tài nguyên bổ sung
 
-This section contains helpful links to related content. It isn't required, so consider it supplemental.
+Phần này chứa các liên kết hữu ích đến nội dung liên quan. Đây không phải phần bắt buộc, vì vậy hãy xem nó như tài liệu bổ trợ.
 
-- An extensive written JavaScript solution for [recursive Fibonacci](https://www.scaler.com/topics/fibonacci-series-in-javascript/)
-- Another look at [merge sort](https://www.toptal.com/developers/sorting-algorithms/merge-sort)
-- Visualize and [understand](https://www.educative.io/courses/recursion-for-coding-interviews-in-javascript/NEZ7kKgMJKK) the memory allocation for recursive functions
-- For more attempts at recursion try the first 5 problems in [Project Euler](https://projecteuler.net/problems)
+- Một lời giải JavaScript dạng bài viết đầy đủ cho [Fibonacci đệ quy](https://www.scaler.com/topics/fibonacci-series-in-javascript/)
+- Một góc nhìn khác về [merge sort](https://www.toptal.com/developers/sorting-algorithms/merge-sort)
+- Trực quan hóa và [tìm hiểu](https://www.educative.io/courses/recursion-for-coding-interviews-in-javascript/NEZ7kKgMJKK) cách cấp phát bộ nhớ cho các hàm đệ quy
+- Để thử thêm các bài toán về đệ quy, hãy làm 5 bài đầu tiên trong [Project Euler](https://projecteuler.net/problems)
